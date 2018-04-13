@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:background="#f0f0f0"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:layout_width="match_parent"
+                android:layout_height="388px"
+                android:background="#0f0">
+
+            </com.youth.banner.Banner>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86px"
+                android:background="#fdfdfe"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" 
+                    android:layout_weight="1"
+                    android:src="@drawable/gonggao"
+                    android:paddingBottom="26px"
+                    android:paddingTop="26px"
+                    android:paddingLeft="30px"
+                    />
+                <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.MarqueeTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" 
+                    android:layout_weight="7"
+                    android:id="@+id/marqueeTv"
+                    android:paddingTop="10px"
+                    android:paddingRight="30px"
+             
+                    />
+                
+              
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dadada" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="288px"
+                android:background="#fdfdfe">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="30px"
+                        android:layout_weight="2"
+                        android:src="@drawable/anquanbaozhang" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="资金安全保障"
+                        android:textColor="#333333"
+                        android:textSize="24px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="30px"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="恒丰银行资金存管 "
+                        android:textColor="#999999"
+                        android:textSize="22px" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="30px"
+                        android:layout_weight="2"
+                        android:src="@drawable/xinxianquan" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="信息安全保障"
+                        android:textColor="#333333"
+                        android:textSize="24px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="30px"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="完成等保三级备案"
+                        android:textColor="#999999"
+                        android:textSize="22px" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="30px"
+                        android:layout_weight="2"
+                        android:src="@drawable/youzhixiangmu" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="资金安全保障"
+                        android:textColor="#333333"
+                        android:textSize="24px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="30px"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="低风险抵押类资产"
+                        android:textColor="#999999"
+                        android:textSize="22px" />
+
+                </LinearLayout>
+              
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="432px"
+                android:layout_marginTop="20px"
+                android:background="#ef56"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="259px"
+                android:layout_marginTop="20px"
+                android:background="#ef19"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="86px"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="查看更多项目 > >"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -2,8 +2,7 @@
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="#f0f0f0"
-    >
+    android:background="#f0f0f0">
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -27,26 +26,24 @@ android:background="#f0f0f0"
                 android:layout_height="86px"
                 android:background="#fdfdfe"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" 
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/gonggao"
                     android:paddingBottom="26px"
-                    android:paddingTop="26px"
                     android:paddingLeft="30px"
-                    />
+                    android:paddingTop="26px"
+                    android:src="@drawable/gonggao" />
+
                 <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.MarqueeTextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent" 
-                    android:layout_weight="7"
                     android:id="@+id/marqueeTv"
-                    android:paddingTop="10px"
-                    android:paddingRight="30px"
-             
-                    />
-                
-              
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:gravity="center" />
+
+
             </LinearLayout>
 
             <View
@@ -130,6 +127,7 @@ android:background="#f0f0f0"
                         android:textSize="22px" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -165,7 +163,7 @@ android:background="#f0f0f0"
                         android:textSize="22px" />
 
                 </LinearLayout>
-              
+
 
             </LinearLayout>
 
@@ -205,5 +203,6 @@ android:background="#f0f0f0"
 
         </LinearLayout>
     </ScrollView>
+
 
 </com.zhy.autolayout.AutoRelativeLayout>

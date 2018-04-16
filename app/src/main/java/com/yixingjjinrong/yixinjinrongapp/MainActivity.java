@@ -1,16 +1,15 @@
 package com.yixingjjinrong.yixinjinrongapp;
 
-import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Faxian;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Wode;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.XiangMu;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class MainActivity extends AutoLayoutActivity {
@@ -30,9 +29,10 @@ public class MainActivity extends AutoLayoutActivity {
     private void getinit() {
         mbottomBar=findViewById(R.id.bottom_tab_bar);
         mbottomBar.init(getSupportFragmentManager(),768,1280)
-                .setImgSize(55,55)
-                .setFontSize(22)
-                .setTabPadding(10,12,10)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
+                .setImgSize(53,33)
+                .setFontSize(18)
+                .setChangeColor(Color.parseColor("#fe6623"),Color.parseColor("#999999"))
+                .setTabPadding(10,7,10)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
                 .addTabItem("首页",R.drawable.shouyedianji,R.drawable.shouye, Shouye.class)
                 .addTabItem("项目",R.drawable.xiangmudianji,R.drawable.xiangmu, XiangMu.class)
                 .addTabItem("发现",R.drawable.faxiandianji,R.drawable.faxian, Faxian.class)

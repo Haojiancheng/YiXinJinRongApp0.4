@@ -36,14 +36,18 @@
                     android:paddingTop="26px"
                     android:src="@drawable/gonggao" />
 
-                <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.MarqueeTextView
-                    android:id="@+id/marqueeTv"
+                <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView
+                    android:id="@+id/notice_view"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    android:gravity="center" />
-
-
+                    />
+                <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView
+                    android:id="@+id/noticeTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    />
             </LinearLayout>
 
             <View

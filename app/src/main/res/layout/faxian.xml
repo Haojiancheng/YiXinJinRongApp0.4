@@ -1,6 +1,482 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="128px"
+        android:background="@drawable/mycolor"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingBottom="15px"
+            android:text="发现"
+            android:textColor="#ffffff"
+            android:textSize="38px"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360px"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fdfdfe"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="51px"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="51px"
+                    android:src="@drawable/pingtaijieshao" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="60px"
+                    android:text="平台介绍"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#dadada" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="51px"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="51px"
+                    android:src="@drawable/anquan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="60px"
+                    android:text="安全保障"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadada"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fdfdfe"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="51px"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="51px"
+                    android:src="@drawable/xinxipilu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="60px"
+                    android:text="信息披露"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#dadada" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="51px"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="51px"
+                    android:src="@drawable/wangdaiketang" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="60px"
+                    android:text="网贷课堂"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.youth.banner.Banner
+        android:layout_width="match_parent"
+        android:layout_height="254px"
+        android:background="#586e58"></com.youth.banner.Banner>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="412px"
+        android:layout_marginTop="18px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/jifenline"
+            android:layout_width="match_parent"
+            android:layout_height="92px"
+            android:background="#fdfdfe"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_marginBottom="30px"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="30px"
+                android:src="@drawable/jifenduihuan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:text="积分兑换"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30px"
+                android:gravity="right"
+                android:paddingTop="38px"
+                android:text="更多 >"
+                android:textColor="#999999"
+                android:textSize="24px" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadada" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fdfdfe"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10px"
+                        android:layout_marginTop="32px"
+                        android:layout_weight="1"
+                        android:src="@drawable/xianjinquan" />
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="36px"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:paddingTop="42px"
+                            android:text="现金券"
+                            android:textColor="#333333"
+                            android:textSize="30px" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingTop="30px"
+                                android:text="99"
+                                android:textColor="#fc6623"
+                                android:textSize="30px" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:paddingTop="30px"
+                                android:text="亿金币"
+                                android:textColor="#999999"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="#dadada" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10px"
+                        android:layout_marginLeft="56px"
+                        android:layout_marginTop="32px"
+                        android:layout_weight="1"
+                        android:src="@drawable/xiaomi" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="50px"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="42px"
+                            android:text="小米手环"
+                            android:textColor="#333333"
+                            android:textSize="30px" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="9px"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingTop="30px"
+                                android:text="120"
+                                android:textColor="#fc6623"
+                                android:textSize="30px" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:paddingTop="30px"
+                                android:text="亿金币"
+                                android:textColor="#999999"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dadada" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10px"
+                        android:layout_weight="1"
+                        android:src="@drawable/pangxie" />
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6px"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_marginTop="42px"
+                            android:layout_weight="1"
+                            android:text="螃蟹劵"
+                            android:textColor="#333333"
+                            android:textSize="30px" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="9dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingRight="3px"
+                                android:text="100"
+                                android:textColor="#fc6623"
+                                android:textSize="30px" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="亿金币"
+                                android:textColor="#999999"
+                                android:textSize="28px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="#dadada" />
+
+                <LinearLayout
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10px"
+                        android:layout_marginLeft="40px"
+                        android:layout_marginTop="32px"
+                        android:layout_weight="1"
+                        android:src="@drawable/jiaxiquan" />
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_marginTop="42px"
+                            android:layout_weight="1"
+                            android:text="加息劵"
+                            android:textColor="#333333"
+                            android:textSize="30px" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="99"
+                                android:textColor="#fc6623"
+                                android:textSize="30px" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="亿金币"
+                                android:textColor="#999999"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

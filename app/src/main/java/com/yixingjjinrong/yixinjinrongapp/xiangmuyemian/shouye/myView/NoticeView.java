@@ -56,7 +56,7 @@ public class NoticeView extends ViewFlipper implements View.OnClickListener {
             textView = new TextView(mContext);
             textView.setSingleLine();
             textView.setText(notice);
-            textView.setTextSize(17);
+            textView.setTextSize(20);
 //            textView.setMaxEms(16);
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setTextColor(Color.parseColor("#999999"));
@@ -93,7 +93,7 @@ public class NoticeView extends ViewFlipper implements View.OnClickListener {
         mOnNoticeClickListener = onNoticeClickListener;
     }
     private int dp2px(float v) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,v,mContext.getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,v,mContext.getResources().getDisplayMetrics());
     }
 
 }

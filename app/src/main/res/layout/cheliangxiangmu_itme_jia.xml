@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f1f1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageView  
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="76px"
+                android:src="@drawable/cheliang" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14px"
+                android:layout_marginTop="76px"
+                android:text="房屋抵押  X18D10193" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadada" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="40px"
+                        android:text="7.0"
+                        android:textColor="#fe6632"
+                        android:textSize="52px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40px"
+                        android:text=" %"
+                        android:textColor="#fe6632"
+                        android:textSize="32px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40px"
+                        android:text=" + "
+                        android:textColor="#fe6632"
+                        android:textSize="32px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40px"
+                        android:text="1.0"
+                        android:textColor="#fe6632"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40px"
+                        android:text=" %"
+                        android:textColor="#fe6632"
+                        android:textSize="32px" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="约定年化收益"
+                        android:textColor="#999999"
+                        android:textSize="24px"
+                        android:layout_marginLeft="35px"
+                        android:layout_marginTop="10px"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="46px"
+                    android:text="3个月"
+                    android:textColor="#333333"
+                    android:textSize="34px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35px"
+                    android:layout_marginTop="24px"
+                    android:text="借款期限"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="280px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="51px"
+                    android:background="@drawable/bt_shape"
+                    android:text="立即出借"
+                    android:textColor="#ffffff"
+                    android:textSize="32px" />
+
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

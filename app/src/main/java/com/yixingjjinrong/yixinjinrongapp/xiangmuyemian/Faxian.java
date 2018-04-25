@@ -14,7 +14,7 @@ public class Faxian extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.faxian, container, false);
+        View view = inflater.inflate(R.layout.faxian2, container, false);
         return view;
     }
 }

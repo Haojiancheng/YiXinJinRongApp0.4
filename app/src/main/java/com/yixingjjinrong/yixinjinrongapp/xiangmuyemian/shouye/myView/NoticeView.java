@@ -56,7 +56,7 @@ public class NoticeView extends ViewFlipper implements View.OnClickListener {
             textView = new TextView(mContext);
             textView.setSingleLine();
             textView.setText(notice);
-            textView.setTextSize(20);
+            textView.setTextSize(17);
 //            textView.setMaxEms(16);
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setTextColor(Color.parseColor("#999999"));

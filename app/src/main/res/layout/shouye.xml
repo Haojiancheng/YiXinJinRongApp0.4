@@ -2,7 +2,9 @@
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0">
+    android:background="#f0f0f0"
+    android:id="@+id/shouye_frament"
+    >
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -30,7 +32,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:paddingBottom="26px"
                     android:paddingLeft="30px"
                     android:paddingTop="26px"
@@ -40,14 +42,14 @@
                     android:id="@+id/notice_view"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="7"
+                    android:layout_weight="9"
                     />
                 <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView
                     android:id="@+id/noticeTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:layout_marginLeft="30px"
+                    android:layout_weight="5"
+                   
                     android:paddingLeft="20px"
                     />
             </LinearLayout>
@@ -198,13 +200,15 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/gengduoxiangmu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="查看更多项目 > >"
                     android:textColor="#999999"
-                    android:textSize="26px" />
+                    android:textSize="26px"
+                    />
             </LinearLayout>
 
         </LinearLayout>

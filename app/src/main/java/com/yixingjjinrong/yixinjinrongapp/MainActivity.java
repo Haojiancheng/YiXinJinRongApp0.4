@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Faxian;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Wode;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.XiangMu;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;
 import com.zhy.autolayout.AutoLayoutActivity;
 

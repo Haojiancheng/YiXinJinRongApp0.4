@@ -1,4 +1,4 @@
-package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian;
+package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,17 @@ import android.view.ViewGroup;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 
-public class XiangMu extends Fragment {
+public class ChuJieJiLu extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.xianmu, container, false);
-        return view;
+        return inflater.inflate(R.layout.chujiejilufragment, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        
     }
 }

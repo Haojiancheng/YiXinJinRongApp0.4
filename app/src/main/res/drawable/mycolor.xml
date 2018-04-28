@@ -5,6 +5,6 @@
     <!--设置渐变-->
     <gradient android:startColor="#f9570f"
         android:endColor="#f37416"
-        android:angle="180"/>
+        android:angle="45"/>
 
 </shape>

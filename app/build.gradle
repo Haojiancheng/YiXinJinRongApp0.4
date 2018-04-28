@@ -31,6 +31,8 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.9'
     //屏幕适配
     implementation 'com.zhy:autolayout:1.4.5'
-    
+    //头部导航栏
+    implementation 'com.android.support:design:27.1.1'
+
 
 }

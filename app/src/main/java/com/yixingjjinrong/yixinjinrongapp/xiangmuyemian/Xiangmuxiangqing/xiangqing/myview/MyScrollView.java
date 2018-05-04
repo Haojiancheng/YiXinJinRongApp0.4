@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangq
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,13 @@ import android.widget.ScrollView;
  */
 
 public class MyScrollView extends ScrollView {
+    private static String TAG = MyScrollView.class.getName();
 
+    public void setScrollListener(ScrollListener scrollListener) {
+        this.mScrollListener = scrollListener;
+    }
+
+    private ScrollListener mScrollListener;
 
     public MyScrollView(Context context) {
         super(context);
@@ -23,56 +30,51 @@ public class MyScrollView extends ScrollView {
         super(context, attrs);
     }
 
-    boolean intercepet = false;
-    ListView mListView;
-    private float mLastY;
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        getChildListView();
-
-        int action = ev.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                super.onInterceptTouchEvent(ev);
-                intercepet = false;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                //满足listView滑动到顶部，如果继续下滑，那就让scrollView拦截事件
-                if (mListView.getFirstVisiblePosition() ==0 && (ev.getY()-mLastY)>0) {
-                    intercepet = true;
-                }
-                //满足listView滑动到底部，如果继续上滑，那就让scrollView拦截事件
-                else if (mListView.getLastVisiblePosition() ==mListView.getCount()-1 && (ev.getY()-mLastY)<0) {
-                    intercepet = true;
-                } else {
-                    intercepet = false;
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                intercepet = false;
-                break;
-        }
-
-
-        mLastY =ev.getY();
-        return intercepet;
+    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
-    public void getChildListView() {
-        View childAt = getChildAt(0);
-        if (childAt instanceof ListView) {
-            mListView = (ListView) childAt;
-        } else {
-            if (childAt instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) childAt;
-                for (int i = 0; i < viewGroup.getChildCount() - 1; i++) {
-                    View childAt1 = viewGroup.getChildAt(i);
-                    if(childAt1 instanceof  ListView){
-                        mListView = (ListView)childAt1;
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+
+                if (mScrollListener != null) {
+                    int contentHeight = getChildAt(0).getHeight();
+                    int scrollHeight = getHeight();
+                    Log.d(TAG, "scrollY:" + getScrollY() + "contentHeight:" + contentHeight + " scrollHeight" + scrollHeight + "object:" + this);
+
+                    int scrollY = getScrollY();
+                    mScrollListener.onScroll(scrollY);
+
+                    if (scrollY + scrollHeight >= contentHeight || contentHeight <= scrollHeight) {
+                        mScrollListener.onScrollToBottom();
+                    } else {
+                        mScrollListener.notBottom();
                     }
+
+                    if (scrollY == 0) {
+                        mScrollListener.onScrollToTop();
+                    }
+
                 }
-            }
+
+                break;
         }
+        boolean result = super.onTouchEvent(ev);
+        requestDisallowInterceptTouchEvent(false);
+
+        return result;
+    }
+
+    public interface ScrollListener {
+        void onScrollToBottom();
+
+        void onScrollToTop();
+
+        void onScroll(int scrollY);
+
+        void notBottom();
     }
 }

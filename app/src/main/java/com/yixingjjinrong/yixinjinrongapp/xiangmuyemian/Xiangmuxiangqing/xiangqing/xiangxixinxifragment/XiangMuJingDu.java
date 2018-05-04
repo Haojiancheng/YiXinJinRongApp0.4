@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 
 public class XiangMuJingDu extends Fragment {
 
@@ -21,6 +23,35 @@ public class XiangMuJingDu extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        
+        initview();
+    }
+
+    private void initview() {
+        MyScrollView xiangmujinduSV=getActivity().findViewById(R.id.xiangmujingduScrollView);
+        xiangmujinduSV.setScrollListener(new MyScrollView.ScrollListener() {
+            @Override
+            public void onScrollToBottom() {
+                
+            }
+
+            @Override
+            public void onScrollToTop() {
+
+            }
+
+            @Override
+            public void onScroll(int scrollY) {
+                if (scrollY == 0) {
+                    PublicStaticClass.IsTop = true;
+                } else {
+                    PublicStaticClass.IsTop = false;
+                }
+            }
+
+            @Override
+            public void notBottom() {
+
+            }
+        });
     }
 }

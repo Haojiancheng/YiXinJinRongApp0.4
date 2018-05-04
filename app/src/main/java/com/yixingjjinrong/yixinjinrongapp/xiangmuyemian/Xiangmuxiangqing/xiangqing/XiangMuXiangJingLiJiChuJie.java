@@ -6,11 +6,11 @@ import android.os.Bundle;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-public class XiangMuXiaoQinXiangXiXinXi extends AutoLayoutActivity {
+public class XiangMuXiangJingLiJiChuJie extends AutoLayoutActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.xiangmuxiangxingxiangxixinxi);
+        setContentView(R.layout.xiangmuxiangqinglijichujie);
     }
 }

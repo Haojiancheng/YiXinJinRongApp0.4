@@ -6,6 +6,11 @@
     android:orientation="vertical"
     android:background="#f0f0f0"
     >
-    
+    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/xiangmuxinxScrollView"
+        ></com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+
 
 </com.zhy.autolayout.AutoLinearLayout>

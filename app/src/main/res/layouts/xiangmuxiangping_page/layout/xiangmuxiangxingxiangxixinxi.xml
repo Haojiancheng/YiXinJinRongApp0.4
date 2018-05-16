@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#f0f0f0"
+android:orientation="vertical">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="#fdfdfe"
+        app:tabIndicatorColor="#fe6623"
+        app:tabIndicatorHeight="4px"
+        app:tabMode="scrollable"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        app:layout_scrollFlags="scroll"
+        app:tabSelectedTextColor="#fe6623"
+        app:tabTextColor="#1a1919">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20px">
+
+    </android.support.v4.view.ViewPager>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

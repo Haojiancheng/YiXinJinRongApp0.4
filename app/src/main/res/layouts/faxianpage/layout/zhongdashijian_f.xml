@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="公司减资、合并、分立、解散或申请破产："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="公司依法进入破产程序："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="公司被责令停业、整顿、关闭："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="550px"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="37px"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="37px"
+                android:text="公司涉及重大诉讼、仲裁、或涉嫌违法违
+规被有权机关调查，或受到刑事处罚、重
+大行政处罚："
+                android:textAlignment="viewStart"
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="550px"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="37px"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="37px"
+                android:text="公司法定代表人、实际控制人、主要负责
+人、懂事、监事、高级管理人员涉及重大
+诉讼、仲裁、或涉嫌违法违纪被有权机关
+调查，或受到刑事处罚、重大行政处罚，
+或被采取强制措施："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="公司主要或者全部业务陷入停顿："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#adadad" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="550px"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="37px"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="37px"
+                android:text="存在欺骗、损害出借人利益等其他影响网络
+借款信息中介机构经营活动的重大事项："
+                android:textColor="#999999"
+                android:textSize="28px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30px"
+                android:text="无"
+                android:textColor="#333333"
+                android:textSize="28px" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

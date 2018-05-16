@@ -28,7 +28,13 @@
         </activity>
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing" />
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangJingLiJiChuJie" />
-        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiaoQinXiangXiXinXi"></activity>
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiaoQinXiangXiXinXi" />
+        <activity android:name=".xiangmuyemian.faxian.faxianerji.PingTaJieShao" />
+        <activity android:name=".xiangmuyemian.faxian.faxianerji.AnQuanBaoZhang" />
+        <activity android:name=".xiangmuyemian.faxian.faxianerji.xinxipilu.XinXiPiLu" />
+        <activity android:name=".xiangmuyemian.faxian.faxianerji.WangDaiKeTang" />
+        <activity android:name=".xiangmuyemian.faxian.jifen_fx.JiFenDuiHuan" />
+        <activity android:name=".xiangmuyemian.faxian.jifen_fx.ShangPingXiangQing"></activity>
     </application>
 
 </manifest>

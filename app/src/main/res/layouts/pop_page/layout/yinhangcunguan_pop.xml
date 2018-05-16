@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="530px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:background="@drawable/bt_huisebiankuang"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="193px"
+            android:background="@drawable/mybackgrandcolor"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/yinhangcunguan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24px"
+                android:text="开通银行存管"
+                android:textColor="#ffffff"
+                android:textSize="34px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="193px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="50px"
+            android:text="平台已接入恒丰银行资金存管系统，充值、提现、出借等资金操作均需开通存管账户，支持多家银行储蓄卡。" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#dadada" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center"
+            android:text="立即开通"
+            android:textColor="#fe6623"
+            android:textSize="34px" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="165dp"
+        android:src="@drawable/guanbi" />
+    
+
+</com.zhy.autolayout.AutoRelativeLayout>

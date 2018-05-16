@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#edf2f9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fbfcfd"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30px"
+                        android:src="@drawable/biaoti" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="平台数据总览"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="#dadada" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginLeft="30px"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fengxianjiagou" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#fdfdfe"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30px"
+                        android:src="@drawable/biaoti" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="项目保障"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="#dadada" />
+
+                <LinearLayout
+                    android:layout_width="690px"
+                    android:layout_height="273px"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="30px"
+                    android:background="@drawable/bt_huisebiankuang"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="120px"
+                        android:layout_height="120px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20px"
+                        android:src="@drawable/youzhizichan" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:text="精挑细选优质项目"
+                            android:textColor="#333333"
+                            android:textSize="28px"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="我们精挑细选，只选择优质资产提供给投资
+用户。比如房产抵押类项目，我们目前只选
+择北京本地的房产、从源头上保证资产必须
+是优质的。"
+                            android:textColor="#666666"
+                            android:textSize="26px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="690px"
+                    android:layout_height="273px"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="30px"
+                    android:background="@drawable/bt_huisebiankuang"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="120px"
+                        android:layout_height="120px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20px"
+                        android:src="@drawable/zerenbaozheng" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:text="合作方提供连带责任保证"
+                            android:textColor="#333333"
+                            android:textSize="28px"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="每个项目我们均要求合作机构方为借款人的
+还款义务提供连带责任保证，一旦发生项目
+逾期或违约，合作方将按照合同约定履行相
+应还款义务。"
+                            android:textColor="#666666"
+                            android:textSize="26px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="690px"
+                    android:layout_height="273px"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginTop="30px"
+                    android:background="@drawable/bt_huisebiankuang"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="120px"
+                        android:layout_height="120px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20px"
+                        android:src="@drawable/danbao" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:text="足值抵押物担保"
+                            android:textColor="#333333"
+                            android:textSize="28px"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginTop="30px"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="所有项目，我们都要求借款人提供足值抵押
+物，确保抵押物的价值完全覆盖借款的金额
+此外，在签署借款合同的同时，严格办理抵
+押物抵押登记手续。"
+                            android:textColor="#666666"
+                            android:textSize="26px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#fdfdfe"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30px"
+                        android:src="@drawable/biaoti" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="风险预警管理"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/a01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="44dp"
+                            android:src="@drawable/a01" />
+
+                        <LinearLayout
+                            android:layout_width="300px"
+                            android:layout_height="300px"
+                            android:layout_below="@+id/a01"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/bt_huisebiankuang"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chubushenhe" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="46px"
+                                android:text="对借款人资质进行
+初步审核"
+                                android:textAlignment="center"
+                                android:textColor="#333333"
+                                android:textSize="28px" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/a02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="44dp"
+                            android:src="@drawable/a02" />
+
+                        <LinearLayout
+                            android:layout_width="300px"
+                            android:layout_height="300px"
+                            android:layout_below="@+id/a02"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/bt_huisebiankuang"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/zuzhishenhe" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="46px"
+                                android:text="专业的评估团队对抵
+押物进行足值审核"
+                                android:textAlignment="center"
+                                android:textColor="#333333"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/a03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="44dp"
+                            android:src="@drawable/a03" />
+
+                        <LinearLayout
+                            android:layout_width="300px"
+                            android:layout_height="300px"
+                            android:layout_below="@+id/a03"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/bt_huisebiankuang"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/jinxingfushen" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="46px"
+                                android:text="全方位、面对面借款
+真实性进行复审"
+                                android:textAlignment="center"
+                                android:textColor="#333333"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/a04"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="44dp"
+                            android:src="@drawable/a04" />
+
+                        <LinearLayout
+                            android:layout_width="300px"
+                            android:layout_height="300px"
+                            android:layout_below="@+id/a04"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/bt_huisebiankuang"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/diyadengji" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="46px"
+                                android:text="借款人办理借款
+抵押登记等"
+                                android:textAlignment="center"
+                                android:textColor="#333333"
+                                android:textSize="28px" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="30px"
+                    android:text="手续经过对借款人信息进行综合判断、分析、比较和评价，完成风险评估流程后，亿信宝最终出具审批意见。还款中进行预警跟进，对借款人的借款用途、信用状况等全方位信息透明公开；对满标终极审核，自动检测异常；还款管理系统，定期核查、回访等。借款到期时，通过短信、电话等方式提醒客户及时还款。"
+                    android:textColor="#666666"
+                    android:textSize="26px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#fbfcfd"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30px"
+                        android:src="@drawable/biaoti" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="贷款后管理流程"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="#dadada" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="30px"
+                    android:text="         逾期初期积极配合合作渠道进行电话、短信、信函等催
+收，并做好相应的逾期管理；逾期情况严重的准备逾期项目
+证明资金流向等资料，协助相关的第三方担保机构/律所催缴
+经平台撮合成交的项目一旦逾期，平台将协助相关方面通过
+提供逾期证明、融资服务协议（电子合同）、资金流转记录等
+必须的信息和资金链证据，协助相方面实现短信、电话、
+诉讼、外包等合规催收手段。对于存在欺诈风险的申请，将
+提交至反欺诈团队，专业人员介入调查，联防联控。对反欺
+诈调查中确定存在欺诈行为的借款人，我们会加入平台建立
+的黑名单库。"
+                    android:textColor="#666666"
+                    android:textSize="26px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#f9fbfc"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100px"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30px"
+                        android:src="@drawable/biaoti" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="风控模型"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="#dadada" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="30px"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fengkongmoxing" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.zhy.autolayout.AutoLinearLayout>

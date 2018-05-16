@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="@drawable/mybackgrandcolor">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="17dp"
+            android:src="@drawable/fanhui" />
+
+        <TextView
+            android:layout_width="230px"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="50px"
+            android:text="出借成功"
+            android:textColor="#ffffff"
+            android:textSize="50px" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="120px"
+            android:src="@drawable/chujiechenggong" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="48px"
+            android:text="恭喜您出借成功！"
+            android:textColor="#333333"
+            android:textSize="44px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="160px"
+                android:layout_height="match_parent"
+                android:text="出借金额"
+                android:textColor="#999999"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:text="88888.00"
+                android:textColor="#fe6632"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 元"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="160px"
+                android:layout_height="match_parent"
+                android:text="出借时间"
+
+                android:textColor="#999999"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40px"
+                android:text="2018-02-11"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="570px"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:layout_marginTop="82px"
+            android:background="@drawable/bt_shape"
+            android:text="进入我的账户"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+
+        <Button
+            android:layout_width="570px"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:layout_marginTop="36px"
+            android:background="@drawable/bt_biankuang"
+            android:text="继续出借"
+            android:textColor="#ef6623"
+            android:textSize="38px" />
+
+    </LinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

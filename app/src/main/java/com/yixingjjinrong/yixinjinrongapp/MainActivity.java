@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.hjm.bottomtabbar.BottomTabBar;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Faxian;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.Faxian;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Wode;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;

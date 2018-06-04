@@ -5,8 +5,14 @@
     android:background="#f0f0f0"
     android:orientation="vertical">
 
-    <include android:id="@+id/weidengru" layout="@layout/weidengru"/>
-    <include android:id="@+id/dengru_chenggong" layout="@layout/dengru" android:visibility="gone"/>
+    <include
+        android:id="@+id/weidengru"
+        layout="@layout/weidengru" />
+
+    <include
+        android:id="@+id/dengru_chenggong"
+        layout="@layout/dengru"
+        android:visibility="gone" />
 
 
     <LinearLayout
@@ -59,9 +65,19 @@
             android:textColor="#fc6623" />
     </LinearLayout>
 
-    <include android:id="@+id/shiming_my" layout="@layout/shimingrenzheng_itme" />
-    <include android:id="@+id/yinhangcunguan_my" layout="@layout/yinghangcunguan_itme" android:visibility="gone" />
-    <include android:id="@+id/fangxianpingce_my" layout="@layout/fengxianpingce_itme" android:visibility="gone" />
+    <include
+        android:id="@+id/shiming_my"
+        layout="@layout/shimingrenzheng_itme" />
+
+    <include
+        android:id="@+id/yinhangcunguan_my"
+        layout="@layout/yinghangcunguan_itme"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/fangxianpingce_my"
+        layout="@layout/fengxianpingce_itme"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -170,56 +186,76 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_marginLeft="20px"
-                android:src="@drawable/yaoqing" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="150px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:text="我的邀请"
-                android:textColor="#333333"
-                android:textSize="30px" />
+                <ImageView
+                    android:id="@+id/e1"
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:src="@drawable/yaoqing" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="278px"
-                android:paddingLeft="22px"
-                android:text="已邀请"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/e1"
+                    android:text="我的邀请"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
 
-            <TextView
-                android:id="@+id/yaoqing"
-                android:layout_width="40px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5px"
-                android:text="0"
-                android:gravity="center"
-                android:textColor="#fe6623"
-                android:textSize="26px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/yaoqing"
+                    android:layout_marginRight="10px"
+                    android:paddingLeft="22px"
+                    android:text="已邀请"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
 
-            <TextView
-                android:layout_width="40px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5px"
-                android:text="人"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <TextView
+                    android:id="@+id/yaoqing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/q1"
+                    android:layout_marginRight="10px"
+                    android:text="0"
+                    android:textColor="#fe6623"
+                    android:textSize="26px" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="10px"
-                android:text=">"
+                <TextView
+                    android:id="@+id/q1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:textColor="#999999"
-                android:textSize="26px" />
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/e21"
+                    android:layout_marginRight="20px"
+                    android:text="人"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+
+                <TextView
+                    android:id="@+id/e21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20px"
+                    android:text=">"
+
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+
+            </RelativeLayout>
         </LinearLayout>
 
         <View
@@ -234,36 +270,49 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_marginLeft="20px"
-                android:src="@drawable/xiangmu" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="150px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:text="优质项目"
-                android:textColor="#333333"
-                android:textSize="30px" />
+                <ImageView
+                    android:id="@+id/r1"
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:src="@drawable/xiangmu" />
 
-            <TextView
-                android:layout_width="130px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="347px"
-                android:text="立即出借"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/r1"
+                    android:text="优质项目"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="10px"
-                android:text=">"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/r2"
+                    android:layout_marginRight="20px"
+                    android:text="立即出借"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+
+                <TextView
+                    android:id="@+id/r2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20px"
+                    android:text=">"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+            </RelativeLayout>
         </LinearLayout>
 
         <View
@@ -278,36 +327,50 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_marginLeft="20px"
-                android:src="@drawable/kefu" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="150px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24px"
-                android:text="客服电话"
-                android:textColor="#333333"
-                android:textSize="30px" />
 
-            <TextView
-                android:layout_width="190px"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="285px"
-                android:text="400-183-8818"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <ImageView
+                    android:id="@+id/t1"
+                    android:layout_width="40px"
+                    android:layout_height="40px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:src="@drawable/kefu" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="10px"
-                android:text=">"
-                android:textColor="#999999"
-                android:textSize="26px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20px"
+                    android:layout_toRightOf="@+id/t1"
+                    android:text="客服电话"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/bi1"
+                    android:text="400-183-8818"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+
+                <TextView
+                    android:id="@+id/bi1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20px"
+                    android:text=">"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 

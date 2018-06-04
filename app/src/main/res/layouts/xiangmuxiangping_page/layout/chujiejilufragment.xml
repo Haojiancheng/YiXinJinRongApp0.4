@@ -11,14 +11,14 @@
         android:id="@+id/chujiejiluScrollView"
         >
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#fdfdfe"
             android:layout_marginTop="20px"
             >
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="96px"
                 android:orientation="horizontal"
                 >
@@ -56,40 +56,12 @@
                 android:layout_height="1px"
                 android:background="#e1e8f1"
                 />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="96px"
-                android:orientation="horizontal"
-                >
-               
-                <TextView
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="137***5555"
-                    android:textSize="24px"
-                    android:textColor="#333333"
-                    />
-                <TextView
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="2.00"
-                    android:textSize="24px"
-                    android:gravity="center"
-                    android:textColor="#333333"
-                    />
-                <TextView
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="2018-01-01 12:27"
-                    android:gravity="center"
-                    android:textSize="24px"
-                    android:textColor="#333333"
-                    />
-            </LinearLayout>
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/chujejilu_rview"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+           </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
     

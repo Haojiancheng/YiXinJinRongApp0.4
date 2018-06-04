@@ -30,6 +30,7 @@
             android:textSize="38px" />
 
         <TextView
+            android:id="@+id/jiekuanxieyi"
             android:layout_width="220px"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

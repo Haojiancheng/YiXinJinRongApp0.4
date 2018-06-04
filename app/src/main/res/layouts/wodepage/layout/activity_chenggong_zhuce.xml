@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wode.dengruzuce.ChengGongZhuCe">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="108px">
+
+        <ImageView
+            android:id="@+id/zhucefanhui"
+            android:layout_width="38px"
+            android:layout_height="38px"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="14dp"
+            android:background="#fdfdfe"
+            android:src="@drawable/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="亿信宝注册"
+            android:textColor="#363636"
+            android:textSize="38px" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dadada" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="116px"
+        android:src="@drawable/zhucechenggong" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30px"
+        android:text="恭喜您注册成功了"
+        android:textColor="#fe6623"
+        android:textSize="38px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40px"
+        android:text="为了保护您的账户安全及出借权益"
+        android:textColor="#666"
+        android:textSize="26px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="出借前需要进行实名认证"
+        android:textColor="#666"
+        android:textSize="26px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40px"
+        android:text="*请确保信息准确，以免影响您的出借、提现等操作"
+        android:textColor="#ff9c70"
+        android:textSize="22px" />
+
+    <Button
+        android:id="@+id/lijishiming"
+        android:layout_width="690px"
+        android:layout_height="90px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="93px"
+        android:background="@drawable/bt_shape"
+        android:text="立即实名认证"
+        android:textColor="#fdfdfc"
+        android:textSize="38px" />
+    <Button
+        android:id="@+id/wodezhanghu"
+        android:layout_width="690px"
+        android:layout_height="90px"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bt_biankuang"
+        android:layout_marginTop="38px"
+        android:text="我的账户"
+        android:textSize="38px"
+        android:textColor="#fe6623"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -23,6 +23,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/fabuxiangmu"
                     android:layout_width="0px"
                     android:layout_height="70px"
                     android:layout_weight="1"
@@ -42,6 +43,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fabuxiangmu_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
@@ -59,6 +61,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/fb_xyb"
                     android:layout_width="0px"
                     android:layout_height="50px"
                     android:layout_weight="1"
@@ -78,10 +81,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/muji"
                     android:layout_width="0px"
                     android:layout_height="70px"
                     android:layout_weight="1"
-                    android:src="@drawable/mujiwancheng" />
+                    android:src="@drawable/mujizhong" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -97,10 +101,11 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/mujitime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
-                        android:text="开始时间  2018-01-15 17:30:00"
+                        android:text="募集完成  正在募集中。。。"
                         android:textColor="#999999"
                         android:textSize="24px" />
                 </LinearLayout>
@@ -114,10 +119,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/muji_xyb"
                     android:layout_width="0px"
                     android:layout_height="50px"
                     android:layout_weight="1"
-                    android:src="@drawable/jinxingwancheng" />
+                    android:src="@drawable/jinxingngzhong" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -133,10 +139,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/fangkuan"
                     android:layout_width="0px"
                     android:layout_height="70px"
                     android:layout_weight="1"
-                    android:src="@drawable/fangkuanwancheng" />
+                    android:src="@drawable/fangkuanzhong" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -152,10 +159,11 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fangkuan_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
-                        android:text="开始时间  2018-01-15 17:30:00"
+                        android:text="开始时间  募集完成放款后起息"
                         android:textColor="#999999"
                         android:textSize="24px" />
                 </LinearLayout>
@@ -169,10 +177,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/fk_xyb"
                     android:layout_width="0px"
                     android:layout_height="50px"
                     android:layout_weight="1"
-                    android:src="@drawable/jinxingwancheng" />
+                    android:src="@drawable/jinxingngzhong" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -188,10 +197,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/huankuan"
                     android:layout_width="0px"
                     android:layout_height="70px"
                     android:layout_weight="1"
-                    android:src="@drawable/huankuanwancheng" />
+                    android:src="@drawable/huankuanzhomg" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -206,13 +216,52 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20px"
-                        android:text="开始时间  2018-01-15 17:30:00"
-                        android:textColor="#999999"
-                        android:textSize="24px" />
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:id="@+id/yihuan_jine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="已还金额 0.00"
+                            android:textColor="#999999"
+                            android:textSize="24px" />
+                        <TextView
+                            android:id="@+id/yehuan_qi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="(0期)"
+                            android:textColor="#999999"
+                            android:layout_marginLeft="8px"
+                            android:textSize="24px" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:id="@+id/daihuan_jine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="待还金额 0.00"
+                            android:textColor="#999999"
+                            android:textSize="24px" />
+                        <TextView
+                            android:id="@+id/daihua_qi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:text="(12期)"
+                            android:textColor="#999999"
+                            android:layout_marginLeft="8px"
+                            android:textSize="24px" />
+                    </LinearLayout>
       
 
                 </LinearLayout>

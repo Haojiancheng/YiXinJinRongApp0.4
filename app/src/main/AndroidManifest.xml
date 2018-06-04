@@ -3,6 +3,13 @@
     package="com.yixingjjinrong.yixinjinrongapp">
     //联网
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".application.MyApplication"
@@ -27,14 +34,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing" />
-        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangJingLiJiChuJie" />
-        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiaoQinXiangXiXinXi" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.PingTaJieShao" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.AnQuanBaoZhang" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.xinxipilu.XinXiPiLu" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.WangDaiKeTang" />
         <activity android:name=".xiangmuyemian.faxian.jifen_fx.JiFenDuiHuan" />
-        <activity android:name=".xiangmuyemian.faxian.jifen_fx.ShangPingXiangQing"></activity>
+        <activity android:name=".xiangmuyemian.faxian.jifen_fx.ShangPingXiangQing" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu" />
+        <activity
+            android:name=".wode.dengruzuce.WoDe_DengRu"
+            android:launchMode="singleTask" />
+        <activity android:name=".wode.dengruzuce.ZhuCe_PaGa" />
+        <activity android:name=".wode.dengruzuce.YanZheng_PaGa" />
+        <activity android:name=".wode.dengruzuce.ChengGongZhuCe" />
+        <activity android:name=".wode.dengruzuce.ZhaoHuiMiMa" />
+        <activity android:name=".wode.dengruzuce.ZhaoHuiMiMaYanZheng" />
+        <activity android:name=".wode.shezhi.WoDe_SheZhi" />
+        <activity android:name=".wode.fore_inot.WoDe_ChuJie" />
+        <activity android:name=".wode.dengruzuce.ShiMingrenzheng"></activity>
     </application>
 
 </manifest>

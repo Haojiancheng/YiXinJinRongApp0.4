@@ -5,106 +5,9 @@
     android:background="#f0f0f0"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="370px"
-        android:background="@drawable/wodebeijing"
-        android:orientation="vertical">
+    <include android:id="@+id/weidengru" layout="@layout/weidengru"/>
+    <include android:id="@+id/dengru_chenggong" layout="@layout/dengru" android:visibility="gone"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="185px"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/touxiang"
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="76px"
-                android:src="@drawable/touxiang" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="108px"
-                android:layout_marginTop="76px"
-                android:layout_marginLeft="10px"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="28px"
-                    android:text="137****1459"
-                    android:textColor="#ffffff"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20px"
-                    android:text="LV:小白"
-                    android:textColor="#ffffff"
-                    android:textSize="28px" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="160px"
-                android:layout_height="108px"
-                android:layout_marginLeft="300px"
-                android:layout_marginTop="60px"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:src="@drawable/xiaoxi" />
-
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_marginLeft="30px"
-                    android:src="@drawable/shezhi" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="资产总额（元）"
-                    android:textColor="#ffc0a5"
-                    android:textSize="24px" />
-
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="35px"
-                    android:layout_marginLeft="40px"
-                    android:src="@drawable/zhengyan" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="240px"
-                android:layout_marginTop="30px"
-                android:text="123546.56"
-                android:textColor="#ffffff"
-                android:textSize="50px" />
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,6 +30,7 @@
                 android:textSize="24px" />
 
             <TextView
+                android:id="@+id/keyongyue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15px"
@@ -155,27 +59,9 @@
             android:textColor="#fc6623" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:background="#fff2e2"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="35px"
-            android:layout_height="35px"
-            android:layout_marginLeft="40px"
-            android:src="@drawable/gonggao" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="28px"
-            android:layout_marginLeft="14px"
-            android:text="因监管要求，出借前您需要进行实名认证，立即免费认证 >>"
-            android:textColor="#ff8e44"
-            android:textSize="24px" />
-    </LinearLayout>
+    <include android:id="@+id/shiming_my" layout="@layout/shimingrenzheng_itme" />
+    <include android:id="@+id/yinhangcunguan_my" layout="@layout/yinghangcunguan_itme" android:visibility="gone" />
+    <include android:id="@+id/fangxianpingce_my" layout="@layout/fengxianpingce_itme" android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -191,6 +77,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/wode_chujie"
                 android:layout_width="70px"
                 android:layout_height="70px"
                 android:src="@drawable/chujie" />
@@ -307,10 +194,12 @@
                 android:textSize="26px" />
 
             <TextView
+                android:id="@+id/yaoqing"
                 android:layout_width="40px"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
-                android:text="12"
+                android:text="0"
+                android:gravity="center"
                 android:textColor="#fe6623"
                 android:textSize="26px" />
 
@@ -328,6 +217,7 @@
                 android:layout_marginLeft="20px"
                 android:layout_marginRight="10px"
                 android:text=">"
+
                 android:textColor="#999999"
                 android:textSize="26px" />
         </LinearLayout>

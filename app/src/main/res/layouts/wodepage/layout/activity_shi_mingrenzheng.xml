@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f4f4"
+    tools:context=".wode.dengruzuce.ShiMingrenzheng">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="128px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/fanhui"
+            android:paddingTop="20px"
+            android:layout_marginLeft="20px"
+            />
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="实名认证"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140px"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:text="为了保护您的账户安全及出借权益，投资前需实名认证"
+            android:layout_marginLeft="30px"
+            android:textColor="#5c5c5c"
+            android:textSize="24px"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="*请确保信息准确，以免影响您的投资、取现操作"
+            android:layout_marginLeft="30px"
+            android:textColor="#ef6623"
+            android:textSize="22px"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/beijinglogo"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110px"
+            android:gravity="center"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="真实姓名"
+                    android:layout_marginLeft="30px"
+                    android:textSize="30px"
+                    android:textColor="#333"
+                    android:gravity="bottom"
+                    />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    >
+
+                    <EditText
+                        android:id="@+id/zhen_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30px"
+                        android:background="@null"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="28px"
+                        android:hint="请输入真实姓名"
+                        android:inputType="textEmailAddress" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="10px"
+            android:background="#737373" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110px"
+            android:layout_marginTop="40px"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="身份证号"
+                android:layout_marginLeft="30px"
+                android:textSize="30px"
+                android:textColor="#333"
+                android:gravity="bottom"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null">
+
+                <EditText
+                    android:id="@+id/user_idcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="30px"
+                    android:background="@null"
+                    android:hint="请输入身份证号号码"
+                    android:textSize="28px"
+                    android:inputType="textEmailAddress"
+                     />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/renzheng_goin"
+            android:layout_width="690px"
+            android:layout_height="90px"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bt_shape"
+            android:layout_marginTop="90px"
+            android:text="认证"
+            android:textSize="38px"
+            android:textColor="#fdfdfc"
+            />
+
+
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

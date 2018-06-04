@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="370px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="370px"
+        android:background="@drawable/wodebeijing"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="185px"
+           >
+
+            <ImageView
+                android:id="@+id/touxiang1"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="76px"
+                android:src="@drawable/touxiang" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="108px"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/touxiang1"
+                android:layout_marginLeft="12px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/myphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="middle"
+                    android:text="2555555"
+                    android:textColor="#ffffff"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/wodedengji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:textColor="#ffffff"
+                    android:textSize="28px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="160px"
+                android:layout_height="108px"
+
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="13dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:src="@drawable/xiaoxi" />
+
+                <ImageView
+                    android:id="@+id/wode_shezhi"
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:layout_marginLeft="30px"
+                    android:src="@drawable/shezhi" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="资产总额（元）"
+                    android:textColor="#ffc0a5"
+                    android:textSize="24px" />
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="35px"
+                    android:layout_marginLeft="40px"
+                    android:src="@drawable/zhengyan" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/wode_zonge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:gravity="center_horizontal"
+                android:text="0.00"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

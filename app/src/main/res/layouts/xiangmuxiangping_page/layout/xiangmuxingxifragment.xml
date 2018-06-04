@@ -25,15 +25,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="35px"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:text="项目基本信息"
-                        
+
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
@@ -54,6 +54,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/xm_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -88,17 +89,17 @@
 
                         <TextView
                             android:id="@+id/main_tv_hidden"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="13dp"
+                            android:text="dsdfsdf"
                             android:lines="2"
-                            android:text="个人资金周转借款 Y17D1000个人资转借款 Y17D1000资转借款 Y17D1000"
                             android:textColor="#333333"
                             android:textSize="28px" />
 
                         <TextView
                             android:id="@+id/main_tv_show"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="25px"
@@ -114,11 +115,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_below="@+id/layouy_text"
-                        android:onClick="onClick"
-                        android:text="【展开】"
                         android:layout_alignParentRight="true"
+                        android:layout_below="@+id/layouy_text"
                         android:layout_marginRight="30px"
+                        android:onClick="ToInterest"
+                        android:text="【展开】"
                         android:textColor="#009ACD"
                         android:textSize="24px" />
                 </RelativeLayout>
@@ -138,6 +139,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/jk_jine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -162,6 +164,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/jk_qixian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -186,6 +189,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/jk_yongtu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -210,6 +214,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/hk_fangshi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -235,6 +240,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/yd_lilv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -283,6 +289,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/hk_lanyuan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -307,6 +314,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/bx_cuoshi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -331,6 +339,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -355,6 +364,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -382,9 +392,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
+                        android:paddingTop="10px"
                         android:text="借款人基本信息"
                         android:textColor="#333333"
-                        android:paddingTop="10px"
                         android:textSize="30px" />
                 </LinearLayout>
 
@@ -403,6 +413,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/zt_xingzhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -428,6 +439,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -453,6 +465,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -477,6 +490,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_sax"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -501,6 +515,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -525,6 +540,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_suday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -549,6 +565,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_huji"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -573,6 +590,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_dizhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -597,6 +615,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_zhiwei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -621,6 +640,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_hangye"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -645,6 +665,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_shouru"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -669,6 +690,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_huanhuancishu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -693,6 +715,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/man_yuqicishu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -717,6 +740,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/lishiyuqi_jinge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -741,6 +765,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/dangqian_jine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -765,6 +790,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/yuqi_qingkuang"
                         android:layout_width="390px"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -790,6 +816,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/qita_pingtai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -818,9 +845,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
+                        android:paddingTop="10px"
                         android:text="房产信息"
                         android:textColor="#333333"
-                        android:paddingTop="10px"
                         android:textSize="30px" />
                 </LinearLayout>
 
@@ -839,6 +866,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fangchan_dizhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -864,6 +892,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/xq_mingcheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -873,6 +902,7 @@
                         android:textSize="28px" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -888,6 +918,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/sy_nx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -897,6 +928,7 @@
                         android:textSize="28px" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -912,6 +944,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fc_mianji"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -921,6 +954,7 @@
                         android:textSize="28px" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -936,6 +970,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fc_jiage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -945,6 +980,7 @@
                         android:textSize="28px" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -960,6 +996,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/xk_jg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -970,6 +1007,7 @@
 
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -986,8 +1024,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="45px"
                         android:layout_marginLeft="30px"
-                        android:text="审查信息"
                         android:paddingTop="10px"
+                        android:text="审查信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
@@ -1001,43 +1039,74 @@
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="30px"
+                        android:layout_weight="1"
                         android:text="身份认证"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/sf_rz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
-                        android:textSize="28px" />
+                        android:textSize="28px"
+                         />
+
                     <TextView
+                        android:id="@+id/sf_wrz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
-                        android:layout_marginLeft="30px"
-                        android:text="住址认证"
-                        android:textColor="#999999"
-                        android:paddingLeft="40px"
-                        android:textSize="28px" />
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
 
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
                         android:layout_weight="1"
+                        android:paddingLeft="40px"
+                        android:text="住址认证"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/zz_rz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
+                        android:paddingLeft="40px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:paddingLeft="40px"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
                         android:textSize="28px" />
+                    <TextView
+                        android:id="@+id/zz_wrz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1049,44 +1118,75 @@
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="30px"
+                        android:layout_weight="1"
                         android:text="征信报告"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/zxbg_rz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
+                        android:id="@+id/zxbg_wrz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
-                        android:layout_marginLeft="30px"
-                        android:text="房屋产权"
-                        android:textColor="#999999"
-                        android:paddingLeft="40px"
-                        android:textSize="28px" />
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
 
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
                         android:layout_weight="1"
+                        android:paddingLeft="40px"
+                        android:text="房屋产权"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/fwcq_rz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
+                        android:paddingLeft="40px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:paddingLeft="40px"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
                         android:textSize="28px" />
+                    <TextView
+                        android:id="@+id/fwcq_wrz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
+                    
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1096,44 +1196,74 @@
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginLeft="30px"
+                        android:layout_weight="1"
                         android:text="房产评估"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/fcpg_rz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
+                        android:id="@+id/fcpg_wrz"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
-                        android:layout_marginLeft="30px"
-                        android:text="担保函"
-                        android:textColor="#999999"
-                        android:paddingLeft="40px"
-                        android:textSize="28px" />
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
 
                     <TextView
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
                         android:layout_weight="1"
+                        android:paddingLeft="40px"
+                        android:text="担保函"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbh_rz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/yirenzheng"
+                        android:paddingLeft="40px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:paddingLeft="40px"
-                        android:drawableLeft="@drawable/yirenzheng"
                         android:textColor="#333333"
                         android:textSize="28px" />
+                    <TextView
+                        android:id="@+id/dbh_wrz"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:drawableLeft="@drawable/weirenzheng"
+                        android:paddingRight="1px"
+                        android:text="未认证"
+                        android:textColor="#333333"
+                        android:textSize="28px"
+                        android:visibility="gone"
+                        />
                 </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1149,6 +1279,7 @@
                         android:textSize="28px" />
 
                     <TextView
+                        android:id="@+id/sh_yj"
                         android:layout_width="530px"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -1159,31 +1290,31 @@
 
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="40px"
                 android:background="#fbfcfd"
-                >
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="45px" 
-                    android:text="平台免责声明"
-                    android:textColor="#333333"
-                    android:textSize="28px"
+                    android:layout_height="45px"
                     android:paddingLeft="30px"
                     android:paddingTop="10px"
-                    />
+                    android:text="平台免责声明"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="审核意见经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款项目审批通过，通过通过通过通过通过经风控综合评估，该借款"
                     android:layout_marginTop="40px"
-                    android:textColor="#999999"
-                    android:textSize="28px"
                     android:paddingLeft="30px"
-                    />
+                    android:text="亿信宝作为交易服务平台进行信息发布，不对任何出借人及/或任何交易提供任何担保，无论是明示、默示或法定的。亿信宝平台提供的各种信息及资料仅供参考，出借人应依其独立判断做出决策。出借人据此进行出借交易的，产生的出借风险由出借人自行承担，亿信宝不承担任何责任。"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
             </LinearLayout>
         </LinearLayout>
     </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="60px">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff2e2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_marginLeft="40px"
+            android:src="@drawable/gonggao" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="28px"
+            android:layout_marginLeft="14px"
+            android:text="为保障你的资金安全，出借前您需开通银行存管，立即开通 >>"
+            android:textColor="#ff8e44"
+            android:textSize="24px" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

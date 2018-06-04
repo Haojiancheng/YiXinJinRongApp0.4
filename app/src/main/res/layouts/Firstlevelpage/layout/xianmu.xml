@@ -22,12 +22,11 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/xiangqingtiaozhuang"
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xrecycview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:text="详情跳转"
-        
-        />
+        android:layout_height="wrap_content">
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
 </com.zhy.autolayout.AutoLinearLayout>

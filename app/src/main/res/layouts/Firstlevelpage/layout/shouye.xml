@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shouye_frament"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0"
-    android:id="@+id/shouye_frament"
-    >
+    android:background="#f0f0f0">
 
-    <ScrollView
+    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,9 +16,9 @@
             android:orientation="vertical">
 
             <com.youth.banner.Banner
+                android:id="@+id/shouyetobbanner"
                 android:layout_width="match_parent"
-                android:layout_height="388px"
-                android:background="#0f0">
+                android:layout_height="388px">
 
             </com.youth.banner.Banner>
 
@@ -42,16 +41,15 @@
                     android:id="@+id/notice_view"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    />
+                    android:layout_weight="9" />
+
                 <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView
                     android:id="@+id/noticeTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                   
-                    android:paddingLeft="20px"
-                    />
+
+                    android:paddingLeft="20px" />
             </LinearLayout>
 
             <View
@@ -175,23 +173,15 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/mylist"
                 android:layout_width="match_parent"
-                android:layout_height="432px"
-                android:layout_marginTop="20px"
-                android:background="#ef56"
-                android:orientation="horizontal">
+                android:layout_height="1000px"
+                android:layout_marginTop="30px"
+                android:divider="#00000000"
+                android:dividerHeight="20px">
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="259px"
-                android:layout_marginTop="20px"
-                android:background="#ef19"
-                android:orientation="vertical">
-
-            </LinearLayout>
+            </ListView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -207,12 +197,11 @@
                     android:gravity="center"
                     android:text="查看更多项目 > >"
                     android:textColor="#999999"
-                    android:textSize="26px"
-                    />
+                    android:textSize="26px" />
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
 
 
 </com.zhy.autolayout.AutoRelativeLayout>

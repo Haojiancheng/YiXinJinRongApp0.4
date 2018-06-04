@@ -30,9 +30,10 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/xiangqing_lilv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="6.0"
+                       
                         android:textColor="#ffffff"
                         android:textSize="70px" />
 
@@ -46,25 +47,26 @@
                         />
 
                     <TextView
+                        android:id="@+id/xiangqing_jiaohao"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10px"
                         android:layout_marginTop="10px"
-                        android:text="+"
+                        
                         android:textColor="#ffffff"
                         android:textSize="54px" />
 
                     <TextView
+                        android:id="@+id/xiangqing_fujia_lilv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="15.2"
                         android:textColor="#ffffff"
                         android:textSize="70px" />
 
                     <TextView
+                        android:id="@+id/xiangqing_fujia_bi"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="%"
                         android:textColor="#ffffff"
                         android:textSize="70px"
 
@@ -104,6 +106,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/shengyuchujie"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1,000,000,000"
@@ -132,6 +135,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/xiangqing_qixian"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3个月"
@@ -160,6 +164,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/xiangqing_zonge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1000万"
@@ -190,6 +195,7 @@
                     android:text="还款方式" />
 
                 <TextView
+                    android:id="@+id/fangshi"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -235,10 +241,11 @@
                     android:text="可用余额（元）" />
 
                 <TextView
+                    android:id="@+id/keyangyue"
                     android:layout_width="270px"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="100000000.00"
+                    android:text="0.00"
                     android:textColor="#333333"
                     android:textSize="28px" />
 
@@ -276,7 +283,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="122,333,555.00"
+                        android:text="0.00"
                         android:textColor="#fe6623"
                         android:textSize="34px" />
                 </LinearLayout>
@@ -375,6 +382,7 @@
                     android:textSize="20px" />
 
                 <TextView
+                    android:id="@+id/wangdaitishishu"
                     android:layout_width="520px"
                     android:layout_height="80px"
                     android:gravity="center_vertical"
@@ -389,6 +397,7 @@
                 android:orientation="horizontal"
                 >
                 <TextView
+                    android:id="@+id/zijinlaiyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="60px"
                     android:layout_marginLeft="85px"
@@ -397,6 +406,7 @@
                     android:textSize="20px" />
 
                 <TextView
+                    android:id="@+id/dianziqianzhang"
                     android:layout_width="wrap_content"
                     android:layout_height="60px"
                     

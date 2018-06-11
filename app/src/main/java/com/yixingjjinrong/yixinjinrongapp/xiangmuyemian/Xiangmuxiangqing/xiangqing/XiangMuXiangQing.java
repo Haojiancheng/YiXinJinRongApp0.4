@@ -17,12 +17,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.BorrowRandomId_id;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.ChuJieJiLu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.HuiKuanJiHua;
@@ -91,7 +91,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//网贷提示书
-                Intent it=new Intent(XiangMuXiangQing.this,WandaiTishishu.class);
+                Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
                 it.putExtra("url","yxb_mobile/financeapp/agreement.do");
                 it.putExtra("title1","网络借贷风险和禁止行为提示书");
                 startActivity(it);
@@ -110,7 +110,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         dianziqianzhang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//电子签章
-                Intent it=new Intent(XiangMuXiangQing.this,WandaiTishishu.class);
+                Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
                 it.putExtra("url","yxb_mobile/financeapp/promisebook.do");
                 it.putExtra("title1","个人电子签章授权委托书");
                 startActivity(it);
@@ -119,7 +119,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         zijinlaiyuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(XiangMuXiangQing.this,WandaiTishishu.class);
+                Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
                 it.putExtra("url","yxb_mobile/financeapp/Promptbook.do ");
                 it.putExtra("title1","资金来源合法承诺书");
                 startActivity(it);
@@ -227,7 +227,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     xiangqing_jiaohao.setText("+");
                     xiangqing_fujia_bi.setText("%");
                 }
-                EventBus.getDefault().post(new BorrowRandomId_id(id));
+
 
             }
 

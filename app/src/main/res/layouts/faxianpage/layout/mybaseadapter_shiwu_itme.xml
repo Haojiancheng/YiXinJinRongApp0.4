@@ -27,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="小米手环"
+            android:maxEms="6"
+            android:maxLines="1"
             android:textColor="#333333"
             android:textSize="30px" />
 

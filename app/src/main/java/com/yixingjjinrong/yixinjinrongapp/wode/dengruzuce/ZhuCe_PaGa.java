@@ -1,8 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,7 +67,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
 //                        Intent zhuce_page=new Intent(ZhuCe_PaGa.this,YanZheng_PaGa.class);
 //                        zhuce_page.putExtra("user_Phone",zhucephone.getText().toString());
 //                        startActivity(zhuce_page);
-                        finish();
+
                     }
                 }
             }
@@ -115,6 +113,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                     Intent zhuce_page=new Intent(ZhuCe_PaGa.this,YanZheng_PaGa.class);
                     zhuce_page.putExtra("user_Phone",zhucephone.getText().toString());
                     startActivity(zhuce_page);
+                    finish();
                 }else {
                     Toast.makeText(ZhuCe_PaGa.this, "该手机号已注册，请登入", Toast.LENGTH_SHORT).show();
                 }

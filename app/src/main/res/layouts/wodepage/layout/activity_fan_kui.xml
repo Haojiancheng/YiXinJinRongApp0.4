@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical"
+    tools:context=".wode.shezhi.FanKui">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="#fdfdfe">
+
+        <ImageView
+            android:id="@+id/fanhui_yijianfk"
+            android:layout_width="38px"
+            android:layout_height="40px"
+            android:layout_alignParentStart="true"
+
+            android:layout_marginTop="63px"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="60px"
+            android:text="意见反馈"
+            android:textColor="#333"
+            android:textSize="38px" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:layout_marginTop="40px"
+        android:background="#fdfdfe"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:layout_marginTop="40px"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="说点什么吧~我们会做得更好~"
+            android:maxLength="200"
+            android:padding="30px"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/p0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10px"
+                android:text="/200字" />
+
+            <TextView
+                android:id="@+id/text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/p0"
+                android:text="0"
+                android:textColor="#fe6623" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10px"
+                android:layout_toStartOf="@+id/text_count"
+                android:text="不超过" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="40px"
+        android:background="#fdfdfe">
+
+        <EditText
+            android:id="@+id/fk_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:background="#fdfdfe"
+            android:drawablePadding="18px"
+            android:hint="手机号/邮箱（选填，方便我们联系您）"
+            android:inputType="textEmailAddress"
+            android:textSize="28px"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="690px"
+        android:layout_height="90px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="148px"
+        android:background="@drawable/bt_shape"
+        android:text="确定"
+        android:textColor="#fdfdfc"
+        android:textSize="38px" />
+
+</com.zhy.autolayout.AutoLinearLayout>

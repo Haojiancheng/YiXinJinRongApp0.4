@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wode.fore_inot.Juan">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="#fdfdfe"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/jiantou"
+            android:paddingTop="20px"
+            android:layout_marginLeft="20px"
+            />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/juan_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/fh"
+            android:layout_marginLeft="50px"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            app:tabIndicatorColor="#fe6623"
+            app:tabIndicatorHeight="4px"
+            app:tabMode="scrollable"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:layout_scrollFlags="scroll"
+            app:tabSelectedTextColor="#fe6623"
+            app:tabTextColor="#1a1919">
+
+        </android.support.design.widget.TabLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/juan_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20px">
+
+    </android.support.v4.view.ViewPager>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

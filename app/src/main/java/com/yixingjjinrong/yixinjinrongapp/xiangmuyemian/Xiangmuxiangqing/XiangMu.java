@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.SpaceItemDecoration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     private List<XiangMu_Gson.ResultBean> list = new ArrayList<>();
     private XiangMu_Adapter adapter;
     private int a = 1;
+
 
     @Nullable
     @Override
@@ -85,7 +87,10 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                 XiangMu_Gson data = new Gson().fromJson(result, XiangMu_Gson.class);
                 list.addAll(data.getResult());
                 adapter = new XiangMu_Adapter(list);
+                Log.e("条目数", ""+list.size());
                 xRecyclerView.setAdapter(adapter);
+                int spacingInPixels = 10;
+                xRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
                 adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {

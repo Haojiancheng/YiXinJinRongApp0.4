@@ -13,16 +13,12 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.BorrowRandomId_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXinXi_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -42,7 +38,7 @@ public class XiangMuXinXi extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        EventBus.getDefault().register(this);//注册
+
         return inflater.inflate(R.layout.xiangmuxingxifragment, container, false);
         
     }
@@ -54,7 +50,7 @@ public class XiangMuXinXi extends Fragment {
         initview();
         getxmxxid();
 
-    
+        getHttp();
     }
 
     private void getxmxxid() {
@@ -120,17 +116,13 @@ public class XiangMuXinXi extends Fragment {
 
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void gdf (BorrowRandomId_id event) {
-        borr_id = event.getBorrowRandom();
-        Log.e("TAG","id+:"+ borr_id);
-        getHttp();
-    }
+
+
     private void getHttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
-            js_request.put("borrowRandomId",borr_id);
+            js_request.put("borrowRandomId","ca0b5c09-57da-4b8e-ad23-35eb9f807bb4");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -306,9 +298,5 @@ public class XiangMuXinXi extends Fragment {
 
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);//反注册
-    }
+
 }

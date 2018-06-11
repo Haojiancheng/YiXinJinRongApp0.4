@@ -1,15 +1,14 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class WandaiTishishu extends AutoLayoutActivity {
@@ -29,6 +28,11 @@ public class WandaiTishishu extends AutoLayoutActivity {
         String url = it.getStringExtra("url");
         title1.setText(it.getStringExtra("title1"));
         String bid = it.getStringExtra("b_id");
+        WebSettings webSettings = web.getSettings();
+
+        webSettings.setJavaScriptEnabled(true);
+        // 设置允许JS弹窗
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         web.loadUrl("http://192.168.1.201:8080/" + url+"borrowRandomId="+bid);
         web_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override

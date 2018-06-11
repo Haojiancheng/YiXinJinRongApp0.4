@@ -47,10 +47,13 @@ public class WoDe_DengRu extends AutoLayoutActivity {
     private boolean isLogin;
     private ToggleButton dr_togglePwd;//显示与隐藏密码
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wo_de__deng_ru);
+
         isLogin = (boolean) SPUtil.get(this,"isLogin",false);
         getDengruId();
         getdengruOnClick();
@@ -199,6 +202,8 @@ public class WoDe_DengRu extends AutoLayoutActivity {
 
 
     }
+
+
 
     private void getDengruId() {
         fanhui_dengru = findViewById(R.id.dengrufanhui);//返回键

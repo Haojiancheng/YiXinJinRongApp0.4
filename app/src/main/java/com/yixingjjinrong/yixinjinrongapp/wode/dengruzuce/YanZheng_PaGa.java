@@ -66,7 +66,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity {
                     Toast.makeText(YanZheng_PaGa.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
                 }else{
                     gethttp_zhuce();
-                    finish();
+
                 }
                 
             }
@@ -152,6 +152,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity {
 
                 intent_dengru.putExtras(bundle);
                 startActivity(intent_dengru);
+                finish();
             }
 
             @Override

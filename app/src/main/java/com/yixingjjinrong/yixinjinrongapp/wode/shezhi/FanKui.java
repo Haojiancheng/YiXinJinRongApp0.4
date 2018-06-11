@@ -1,16 +1,16 @@
-package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
+package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -21,41 +21,54 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class ShiMingrenzheng extends AutoLayoutActivity {
-    private EditText zhen_name,user_idcard;
-    private Button renzheng_goin;
-    private int user_ird;
+public class FanKui extends AutoLayoutActivity {
+    private EditText et_content=null,fk_phone;
+    private TextView text_count=null;
+    private Button btn_submit;
+    private static final int MAX_COUNT = 200;
     private String sha1;//SHA1加密
     private String base1;//Base64加密
+    private int user_ird;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shi_mingrenzheng);
+        setContentView(R.layout.activity_fan_kui);
+        getid();
         Bundle b = getIntent().getExtras();
         user_ird = b.getInt("user_ird");
-        getzhen_id();
-        getonrenzheng();
-
-    }
-
-    private void getonrenzheng() {
-        renzheng_goin.setOnClickListener(new View.OnClickListener() {
+        et_content.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                getHttp();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                text_count.setText( String.valueOf(MAX_COUNT - s.length()));
             }
         });
+       btn_submit.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               gethttp();
+           }
+       });
     }
 
-    private void getHttp() {
-        String my_name = zhen_name.getText().toString();
-        final String zhen_id = user_idcard.getText().toString();
+    private void gethttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
-            js_request.put("userId", user_ird);
-            js_request.put("idNo", zhen_id);
-            js_request.put("realName", my_name);
+            js_request.put("counts", et_content.getText().toString());
+            js_request.put("userid", user_ird);
+            Log.e("....ID", ""+user_ird);
+            Log.e("....counts", ""+et_content.getText().toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -71,23 +84,14 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/userAuth.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/contre.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("实名认证的GSOn", ""+result);
-                ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
-                String message = data.getMessage().toString();
-                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
-                String zhuangtai = data.getState().toString();
-                if (zhuangtai.equals("success")){
-                    zhen_name.setText(data.getResult().getRealName().toString());
-                    user_idcard.setText(data.getResult().getIdNo().toString());
-                }
+                Log.e("意见反馈GSON", ""+result);
 
             }
 
@@ -107,13 +111,12 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
             }
         });
 
-
     }
 
-    private void getzhen_id() {
-        zhen_name=findViewById(R.id.zhen_name);
-        user_idcard=findViewById(R.id.user_idcard);
-        renzheng_goin=findViewById(R.id.renzheng_goin);
-
+    private void getid() {
+        et_content=findViewById(R.id.et_content);
+        fk_phone=findViewById(R.id.fk_phone);
+        text_count=findViewById(R.id.text_count);
+        btn_submit=findViewById(R.id.btn_submit);
     }
 }

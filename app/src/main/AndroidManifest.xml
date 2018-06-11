@@ -51,7 +51,11 @@
         <activity android:name=".wode.dengruzuce.ZhaoHuiMiMaYanZheng" />
         <activity android:name=".wode.shezhi.WoDe_SheZhi" />
         <activity android:name=".wode.fore_inot.WoDe_ChuJie" />
-        <activity android:name=".wode.dengruzuce.ShiMingrenzheng"></activity>
+        <activity android:name=".wode.dengruzuce.ShiMingrenzheng" />
+        <activity android:name=".wode.shezhi.XiuGaiMiMa" />
+        <activity android:name=".wode.shezhi.FanKui" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView" />
+        <activity android:name=".wode.fore_inot.Juan"></activity>
     </application>
 
 </manifest>

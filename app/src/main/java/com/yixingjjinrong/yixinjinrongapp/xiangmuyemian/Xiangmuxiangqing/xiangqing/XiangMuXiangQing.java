@@ -41,6 +41,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class XiangMuXiangQing extends AutoLayoutActivity {
     private ArrayList<Fragment> list_fragment = new ArrayList<>();//定义要装fragment的列表
@@ -59,6 +60,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String id;
     private String sha1;//SHA1加密
     private String base1;//Base64加
+    private TextView youhuijuan;//优惠券
     private int user_id;
 
     @Override
@@ -86,13 +88,19 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //        EventBus.getDefault().post(new BorrowRandomId_id(id));
         getHttps();
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void gdewsf (User_id event) {
+        user_id = event.getUser_id();
+        Log.e("传来的User_id","id+:"+ user_id);
+
+    }
 
     private void getWebview() {
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//网贷提示书
                 Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
-                it.putExtra("url","yxb_mobile/financeapp/agreement.do");
+                it.putExtra("url","yxb_mobile/yxbApp/agreement.do");
                 it.putExtra("title1","网络借贷风险和禁止行为提示书");
                 startActivity(it);
             }
@@ -101,7 +109,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {//借款协议
                 Intent it=new Intent(XiangMuXiangQing.this,WandaiTishishu.class);
-                it.putExtra("url","yxb_mobile/financeapp/borrowmoney.do?");
+                it.putExtra("url","yxb_mobile/yxbApp/borrowmoney.do?");
                 it.putExtra("b_id",id);
                 it.putExtra("title1","借款协议范本");
                 startActivity(it);
@@ -111,7 +119,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {//电子签章
                 Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
-                it.putExtra("url","yxb_mobile/financeapp/promisebook.do");
+                it.putExtra("url","yxb_mobile/yxbApp/promisebook.do");
                 it.putExtra("title1","个人电子签章授权委托书");
                 startActivity(it);
             }
@@ -120,7 +128,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 Intent it=new Intent(XiangMuXiangQing.this,WebView.class);
-                it.putExtra("url","yxb_mobile/financeapp/Promptbook.do ");
+                it.putExtra("url","yxb_mobile/yxbApp/Promptbook.do ");
                 it.putExtra("title1","资金来源合法承诺书");
                 startActivity(it);
             }
@@ -170,15 +178,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         jikuanxieyi=findViewById(R.id.jiekuanxieyi);//借款协议
         zijinlaiyuan=findViewById(R.id.zijinlaiyuan);//资金来源
         dianziqianzhang=findViewById(R.id.dianziqianzhang);//电子签章
-        
+        youhuijuan=findViewById(R.id.youhuijuan);//优惠券
         
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void gdf (User_id event) {
-        user_id = event.getUser_id();
-        Log.e("TAG","id+:"+ user_id);
 
-    }
 
 
     private void getHttps() {
@@ -186,7 +189,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
 
             js_request.put("borrowRandomId",id);
-            js_request.put("userId",11558);
+            js_request.put("userId",11208);
             Log.e("TAG","id"+user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -203,7 +206,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/financeapp/couponinformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/couponinformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -226,6 +229,21 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     xiangqing_fujia_lilv.setText(data.getResult().getRedList1().getRans()+"");
                     xiangqing_jiaohao.setText("+");
                     xiangqing_fujia_bi.setText("%");
+                }
+                if (data.getResult().getJuan()!=null){
+                    youhuijuan.setText("未使用");
+                    List<String> jiaxilist=new ArrayList<>();
+                    for (int i = 0; i <data.getResult().getJuan().size(); i++) {
+                        Log.e("卷",""+data.getResult().getJuan().get(i).getActivitype()+"第"+i);
+
+                    }
+
+//                    youhuijuan.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
                 }
 
 
@@ -267,7 +285,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params1 = new RequestParams(Urls.BASE_URL+"yxb_mobile/financeapp/ProjectInformation.do");
+        RequestParams params1 = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/ProjectInformation.do");
         x.http().post(params1, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

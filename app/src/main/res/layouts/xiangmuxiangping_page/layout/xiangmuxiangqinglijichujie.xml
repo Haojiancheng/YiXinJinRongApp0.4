@@ -356,12 +356,24 @@
                     android:textSize="34px" />
 
                 <TextView
+                    android:id="@+id/youhuijuan"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:text="暂无可用优惠券  >"
-                    android:layout_marginRight="30px"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/v43"
+                    android:text="暂无可用优惠券"
+                    android:textColor="#999999"
+                    android:textSize="26px" />
+
+                <TextView
+                    android:id="@+id/v43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20px"
+                    android:text=">"
                     android:textColor="#999999"
                     android:textSize="26px" />
             </RelativeLayout>

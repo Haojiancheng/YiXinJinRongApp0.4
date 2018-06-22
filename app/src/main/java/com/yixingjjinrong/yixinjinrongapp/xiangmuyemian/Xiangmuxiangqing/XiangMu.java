@@ -21,7 +21,6 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.SpaceItemDecoration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -90,7 +89,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                 Log.e("条目数", ""+list.size());
                 xRecyclerView.setAdapter(adapter);
                 int spacingInPixels = 10;
-                xRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
+//                xRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
                 adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {
@@ -142,8 +141,8 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         list.clear();
         a=1;
         getHttp();
-        adapter.notifyDataSetChanged();
         xRecyclerView.refreshComplete();
+        adapter.notifyDataSetChanged();
     }
 
     @Override

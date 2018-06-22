@@ -4,9 +4,10 @@ import java.util.List;
 
 public class XiangMuXiangQing_Gson {
 
+
     /**
      * message : 成功了
-     * result : {"userMap":{"usertype":"1","usableSum":"1329400.23"},"redList1":{"paymentMode":"按先息后本还款","ran":9,"borrowSum":"6万","rans":0,"surplus":"6.00","deadline":"2个月"},"juan":[{"useCondition":"","startTime":"2018-05-14","id":363,"quota":"100","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-13","info":"10"}]}
+     * result : {"userMap":{"usertype":"1","usableSum":"5058610.00"},"redList1":{"ranaa":6,"paymentMode":"","ran":6,"borrowSum":"300元","rans":0,"surplus":"300.00","deadline":"3个月"},"juan":[{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10}]}
      * state : success
      */
 
@@ -40,9 +41,9 @@ public class XiangMuXiangQing_Gson {
 
     public static class ResultBean {
         /**
-         * userMap : {"usertype":"1","usableSum":"1329400.23"}
-         * redList1 : {"paymentMode":"按先息后本还款","ran":9,"borrowSum":"6万","rans":0,"surplus":"6.00","deadline":"2个月"}
-         * juan : [{"useCondition":"","startTime":"2018-05-14","id":363,"quota":"100","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-13","info":"10"}]
+         * userMap : {"usertype":"1","usableSum":"5058610.00"}
+         * redList1 : {"ranaa":6,"paymentMode":"","ran":6,"borrowSum":"300元","rans":0,"surplus":"300.00","deadline":"3个月"}
+         * juan : [{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10}]
          */
 
         private UserMapBean userMap;
@@ -76,7 +77,7 @@ public class XiangMuXiangQing_Gson {
         public static class UserMapBean {
             /**
              * usertype : 1
-             * usableSum : 1329400.23
+             * usableSum : 5058610.00
              */
 
             private String usertype;
@@ -101,20 +102,30 @@ public class XiangMuXiangQing_Gson {
 
         public static class RedList1Bean {
             /**
-             * paymentMode : 按先息后本还款
-             * ran : 9.0
-             * borrowSum : 6万
+             * ranaa : 6.0
+             * paymentMode :
+             * ran : 6.0
+             * borrowSum : 300元
              * rans : 0.0
-             * surplus : 6.00
-             * deadline : 2个月
+             * surplus : 300.00
+             * deadline : 3个月
              */
 
+            private double ranaa;
             private String paymentMode;
             private double ran;
             private String borrowSum;
             private double rans;
             private String surplus;
             private String deadline;
+
+            public double getRanaa() {
+                return ranaa;
+            }
+
+            public void setRanaa(double ranaa) {
+                this.ranaa = ranaa;
+            }
 
             public String getPaymentMode() {
                 return paymentMode;
@@ -167,26 +178,28 @@ public class XiangMuXiangQing_Gson {
 
         public static class JuanBean {
             /**
-             * useCondition : 
-             * startTime : 2018-05-14
-             * id : 363
+             * useCondition :
+             * startTime : 2018-05-21
+             * id : 206
              * quota : 100
-             * remark : 满100减10元
-             * activitype : 6
-             * isHot : 1
-             * endTime : 2019-05-13
-             * info : 10
+             * useRange : 房屋抵押,助学计划,项目集,
+             * remark : 满100元加息5%
+             * activitype : 3
+             * isHot :
+             * endTime : 2018-09-20
+             * info : 5.0
              */
 
             private String useCondition;
             private String startTime;
             private int id;
-            private String quota;
+            private int quota;
+            private String useRange;
             private String remark;
             private int activitype;
             private String isHot;
             private String endTime;
-            private String info;
+            private double info;
 
             public String getUseCondition() {
                 return useCondition;
@@ -212,12 +225,20 @@ public class XiangMuXiangQing_Gson {
                 this.id = id;
             }
 
-            public String getQuota() {
+            public int getQuota() {
                 return quota;
             }
 
-            public void setQuota(String quota) {
+            public void setQuota(int quota) {
                 this.quota = quota;
+            }
+
+            public String getUseRange() {
+                return useRange;
+            }
+
+            public void setUseRange(String useRange) {
+                this.useRange = useRange;
             }
 
             public String getRemark() {
@@ -252,11 +273,11 @@ public class XiangMuXiangQing_Gson {
                 this.endTime = endTime;
             }
 
-            public String getInfo() {
+            public double getInfo() {
                 return info;
             }
 
-            public void setInfo(String info) {
+            public void setInfo(double info) {
                 this.info = info;
             }
         }

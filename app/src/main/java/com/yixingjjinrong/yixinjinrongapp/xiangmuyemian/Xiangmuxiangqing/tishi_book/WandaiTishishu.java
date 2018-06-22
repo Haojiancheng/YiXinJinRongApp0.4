@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class WandaiTishishu extends AutoLayoutActivity {
@@ -33,7 +34,7 @@ public class WandaiTishishu extends AutoLayoutActivity {
         webSettings.setJavaScriptEnabled(true);
         // 设置允许JS弹窗
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        web.loadUrl("http://192.168.1.201:8080/" + url+"borrowRandomId="+bid);
+        web.loadUrl(Urls.BASE_URL + url+"borrowRandomId="+bid);
         web_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

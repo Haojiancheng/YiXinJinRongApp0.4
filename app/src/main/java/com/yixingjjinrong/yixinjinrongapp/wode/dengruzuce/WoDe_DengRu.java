@@ -1,7 +1,10 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -46,7 +49,7 @@ public class WoDe_DengRu extends AutoLayoutActivity {
     private String dengrufanhuizhi;
     private boolean isLogin;
     private ToggleButton dr_togglePwd;//显示与隐藏密码
-
+    private Context context;
 
 
     @Override
@@ -130,9 +133,12 @@ public class WoDe_DengRu extends AutoLayoutActivity {
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        String myurl=getid(context);
+        Log.e("唯一标示",""+myurl );
         try {
             js_request.put("username", shoujihao);
             js_request.put("password", mima);
+            js_request.put("url", myurl);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -214,6 +220,11 @@ public class WoDe_DengRu extends AutoLayoutActivity {
         dengrujoin = findViewById(R.id.dengru_goin);//登入
         dengru_guanbi=findViewById(R.id.dengru_guanbi);//清除账号
         dr_togglePwd=findViewById(R.id.dr_togglePwd);//显示与隐藏密码
+    }
+    public synchronized String getid(Context context){
+        TelephonyManager telephonyManager=(TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("Missingpermission") String ID=telephonyManager.getSubscriberId();
+        return ID;
     }
 
     @Override

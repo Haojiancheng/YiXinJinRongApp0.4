@@ -7,35 +7,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200px"
-        android:orientation="horizontal"
         android:background="#fdfdfe"
-        >
+        android:layout_marginLeft="30px"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1.2"
             android:background="@drawable/keshiyong"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/qian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="￥50"
-                android:textSize="58px"
                 android:textColor="#ffff"
-                />
+                android:textSize="58px" />
+
             <TextView
                 android:id="@+id/yaoqu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="满1000减"
                 android:layout_marginTop="20px"
-                android:textSize="28px"
+                android:text="满1000减"
                 android:textColor="#ffff"
-                />
+                android:textSize="28px" />
 
         </LinearLayout>
 
@@ -44,34 +43,36 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/laiyuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="来源：积分兑换"
-                android:textSize="24px"
-                android:textColor="#333333"
-                android:layout_marginTop="40px"
                 android:layout_marginLeft="20px"
-                />
+                android:layout_marginTop="40px"
+                android:text="来源：积分兑换"
+                android:textColor="#333333"
+                android:textSize="24px" />
+
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="适用于3个月及以上的房产抵押"
-            android:textSize="22px"
-            android:textColor="#999999"
-            android:layout_marginLeft="20px"
-            android:layout_marginTop="26px"
-            />
-            <TextView
+                android:id="@+id/fanwei"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="有效期：2018-03-06"
-                android:textSize="22px"
-                android:textColor="#999999"
                 android:layout_marginLeft="20px"
                 android:layout_marginTop="26px"
-                />
+                android:text="适用于3个月及以上的房产抵押"
+                android:textColor="#999999"
+                android:textSize="22px" />
+
+            <TextView
+                android:id="@+id/time_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="26px"
+                android:text="有效期：2018-03-06"
+                android:textColor="#999999"
+                android:textSize="22px" />
 
         </LinearLayout>
 
@@ -79,16 +80,15 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <Button
                 android:layout_width="140px"
                 android:layout_height="52px"
                 android:background="@drawable/bt_shape"
                 android:text="立即使用"
-                android:textColor="#ffffff"
-                />
+                android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 

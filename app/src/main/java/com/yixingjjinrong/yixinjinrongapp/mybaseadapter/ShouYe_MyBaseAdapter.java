@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.ChuJieJiLu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +66,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
             holder.fujia_jiahao.setText("");
             holder.jiahao.setText("");
         }else {
-            holder.fujia_lilv.setText((int) list.get(position).getSubsidiesRate());
+            holder.fujia_lilv.setText(list.get(position).getSubsidiesRate()+"");
             holder.fujia_jiahao.setText("%");
             holder.jiahao.setText("+");
         }

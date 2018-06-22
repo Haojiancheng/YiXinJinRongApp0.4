@@ -34,12 +34,12 @@ public class Juan extends AppCompatActivity {
         tabLayout=findViewById(R.id.juan_tab);
         mxianjin = new XianJinJuan_Fragment();
         mjiaxi = new JianXiJuan_Fragment();
-        list_fragment.add(mxianjin);
         list_fragment.add(mjiaxi);
+        list_fragment.add(mxianjin);
 
 
-        list_title.add("现金卷");
         list_title.add("加息卷");
+        list_title.add("现金卷");
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this, list_fragment, list_title);
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

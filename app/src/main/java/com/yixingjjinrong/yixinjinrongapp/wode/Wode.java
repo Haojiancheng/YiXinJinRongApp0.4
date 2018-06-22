@@ -204,6 +204,14 @@ public class Wode extends Fragment {
                 startActivity(it);
             }
         });
+        jiaxi_juan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(getActivity(), Juan.class);
+                EventBus.getDefault().post(new User_id(user_id));
+                startActivity(it);
+            }
+        });
 
     }
 

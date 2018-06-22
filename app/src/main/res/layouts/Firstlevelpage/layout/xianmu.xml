@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:id="@+id/xiangmu_fragment"
+    android:background="#0f0"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,9 +24,10 @@
             android:textSize="38px" />
     </LinearLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:background="#c9cfc9"
         android:id="@+id/xrecycview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
 

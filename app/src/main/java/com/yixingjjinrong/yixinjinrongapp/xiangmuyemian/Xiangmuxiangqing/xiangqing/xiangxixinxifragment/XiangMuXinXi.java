@@ -16,6 +16,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXinXi_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 
@@ -34,7 +35,8 @@ public class XiangMuXinXi extends Fragment {
     private TextView zt_xingzhi,man_name,man_id,man_sax,man_age,man_suday,man_huji,man_dizhi,man_zhiwei,man_hangye,man_shouru,man_huanhuancishu,man_yuqicishu,lishiyuqi_jinge,dangqian_jine,yuqi_qingkuang,qita_pingtai;
     private TextView fangchan_dizhi,xq_mingcheng,sy_nx,fc_mianji,fc_jiage,xk_jg;
     private TextView sf_rz,sf_wrz,zz_rz,zz_wrz,zxbg_rz,zxbg_wrz,fwcq_rz,fwcq_wrz,fcpg_rz,fcpg_wrz,dbh_rz,dbh_wrz,sh_yj;
-
+    private String borrowRandomId;
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -122,7 +124,8 @@ public class XiangMuXinXi extends Fragment {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
-            js_request.put("borrowRandomId","ca0b5c09-57da-4b8e-ad23-35eb9f807bb4");
+            js_request.put("borrowRandomId",borrowRandomId);
+            Log.e("项目信息borrowRandomId", borrowRandomId );
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -140,7 +143,7 @@ public class XiangMuXinXi extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/financeapp/ProjectInformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/ProjectInformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -267,6 +270,7 @@ public class XiangMuXinXi extends Fragment {
     }
 
     private void initview() {
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borrowRandomId","");
         MyScrollView xiangmuxingxiSV = getActivity().findViewById(R.id.xiangmuxinxScrollView);
         xiangmuxingxiSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

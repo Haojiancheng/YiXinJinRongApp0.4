@@ -26,7 +26,7 @@ import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
-import com.yixingjjinrong.yixinjinrongapp.utils.SPUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,7 +57,7 @@ public class WoDe_DengRu extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wo_de__deng_ru);
 
-        isLogin = (boolean) SPUtil.get(this,"isLogin",false);
+        isLogin = (boolean) SPUtils.get(this,"isLogin",false);
         getDengruId();
         getdengruOnClick();
         
@@ -102,9 +102,6 @@ public class WoDe_DengRu extends AutoLayoutActivity {
         fanhui_dengru.setOnClickListener(new View.OnClickListener() {//返回键
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(dengrufanhuizhi)) {
-//                    EventBus.getDefault().post(new User_data("", "",""));
-                }
                 finish();
             }
         });
@@ -133,8 +130,9 @@ public class WoDe_DengRu extends AutoLayoutActivity {
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-        String myurl=getid(context);
-        Log.e("唯一标示",""+myurl );
+        String myurl= getid(context);
+        Log.e("唯一标识",""+myurl);
+        
         try {
             js_request.put("username", shoujihao);
             js_request.put("password", mima);
@@ -162,7 +160,7 @@ public class WoDe_DengRu extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", ">>>>成功" + result);
-                SPUtil.put(WoDe_DengRu.this,"isLogin",true);
+                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
                 if (isLogin==true) {
                     DengruData d_data = new Gson().fromJson(result, DengruData.class);
                     dengrufanhuizhi = d_data.getState(); //状态值
@@ -221,12 +219,13 @@ public class WoDe_DengRu extends AutoLayoutActivity {
         dengru_guanbi=findViewById(R.id.dengru_guanbi);//清除账号
         dr_togglePwd=findViewById(R.id.dr_togglePwd);//显示与隐藏密码
     }
-    public synchronized String getid(Context context){
-        TelephonyManager telephonyManager=(TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        @SuppressLint("Missingpermission") String ID=telephonyManager.getSubscriberId();
+    public synchronized String getid(Context context) {
+        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
         return ID;
     }
 
+  
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

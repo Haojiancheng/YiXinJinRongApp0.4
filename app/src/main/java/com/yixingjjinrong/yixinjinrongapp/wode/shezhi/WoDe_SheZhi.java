@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
-import com.yixingjjinrong.yixinjinrongapp.utils.SPUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -79,6 +81,10 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
 
         try {
+            Log.e("useridddd",user_ird+"" );
+            Log.e("token",token+"" );
+            SPUtils.remove(WoDe_SheZhi.this,"userId");
+            SPUtils.remove(WoDe_SheZhi.this,"borrowRandomId");
             js_request.put("userid", user_ird);
             js_request.put("token", token);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
@@ -106,7 +112,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 Log.e("退出登入的GSON:", result);
                 Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
                 startActivity(shezhi_tuichu);
-                SPUtil.put(WoDe_SheZhi.this,"isLogin",false);
+                SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
                 finish();
             }
 

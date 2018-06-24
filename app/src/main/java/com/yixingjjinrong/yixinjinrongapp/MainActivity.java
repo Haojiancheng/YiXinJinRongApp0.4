@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.hjm.bottomtabbar.BottomTabBar;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.wode.Wode;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.Faxian;
 
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;
 import com.zhy.autolayout.AutoLayoutActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends AutoLayoutActivity {
     private BottomTabBar mbottomBar;
@@ -34,6 +38,7 @@ public class MainActivity extends AutoLayoutActivity {
     }
 
     private void getinit() {
+        EventBus.getDefault().register(this);
         mbottomBar=findViewById(R.id.bottom_tab_bar);
         mbottomBar.init(getSupportFragmentManager(),768,1280)
                 .setImgSize(53,33)
@@ -57,6 +62,11 @@ public class MainActivity extends AutoLayoutActivity {
         
         
     }
+    
+    @Subscribe
+    public void lookMore(LookMore lookMore){
+        mbottomBar.setCurrentTab(1);
+    }
 
     //Fragment的跳转
 //    private class mainReceiver extends BroadcastReceiver {
@@ -73,4 +83,10 @@ public class MainActivity extends AutoLayoutActivity {
 //            }
 //        }
 //    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

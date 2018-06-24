@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
@@ -67,7 +68,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        EventBus.getDefault().register(this);//注册 
+//        EventBus.getDefault().register(this);//注册 
         setContentView(R.layout.xiaomuxiangqing);
    
         getID();//获取资源ID
@@ -88,12 +89,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //        EventBus.getDefault().post(new BorrowRandomId_id(id));
         getHttps();
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void gdewsf (User_id event) {
-        user_id = event.getUser_id();
-        Log.e("传来的User_id","id+:"+ user_id);
-
-    }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void gdewsf (User_id event) {
+//        user_id = event.getUser_id();
+//        Log.e("传来的User_id","id+:"+ user_id);
+//
+//    }
 
     private void getWebview() {
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +163,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     private void getID() {
+        user_id = (int) SPUtils.get(this,"userId",0);
+        Log.e("userid", "id:"+user_id );
         jianhao = findViewById(R.id.bt_jianhao);
         jinge = findViewById(R.id.et_jinge);
         jiahao = findViewById(R.id.bt_jiahao);
@@ -189,7 +192,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
 
             js_request.put("borrowRandomId",id);
-            js_request.put("userId",11208);
+            SPUtils.put(this,"borrowRandomId",id);
+            js_request.put("userId", user_id);
             Log.e("TAG","id"+user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -238,12 +242,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     }
 
-//                    youhuijuan.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                        }
-//                    });
+
                 }
 
 
@@ -264,50 +263,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             }
         });
-        final JSONObject js_request1 = new JSONObject();//服务器需要传参的json对象
-        try {
-
-            js_request1.put("borrowRandomId","92e2575c-1762-43e0-9dd2-2c037d7338c9");
-            base1 = Base64JiaMI.AES_Encode(js_request1.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
-            sha1 = SHA1jiami.Encrypt(js_request1.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONObject canshu1 = new JSONObject();
-        try {
-            canshu1.put("param", base1);
-            canshu1.put("sign", sha1);
-            Log.e("TAG","param>"+base1);
-            Log.e("TAG","sign>"+sha1);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        RequestParams params1 = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/ProjectInformation.do");
-        x.http().post(params1, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG","XXGSON>>>"+result);
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+        
     }
 
     private void initView() {
@@ -355,6 +311,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);//反注册  
+//        EventBus.getDefault().unregister(this);//反注册  
     }
 }

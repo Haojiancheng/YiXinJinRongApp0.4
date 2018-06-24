@@ -19,12 +19,14 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import org.greenrobot.eventbus.EventBus;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -159,6 +161,12 @@ public class Shouye extends Fragment {
     private void getgengduoxiangmu() {
         //更多项目的跳转
         gengduo = getActivity().findViewById(R.id.gengduoxiangmu);
+        gengduo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new LookMore());
+            }
+        });
     }
 
     private class GlideImageloader extends ImageLoader {

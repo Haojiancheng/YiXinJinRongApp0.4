@@ -18,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.IChuJieJiLu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ChuJieJiLu_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 
@@ -36,6 +37,7 @@ public class ChuJieJiLu extends Fragment {
     private String base1;//Base64加
     private List<IChuJieJiLu_Gson.ResultBean.InvestListBean> list=new ArrayList<>();
     private ChuJieJiLu_Adapter adapter;
+    private String borrowRandomId;
 
     @Nullable
     @Override
@@ -56,7 +58,7 @@ public class ChuJieJiLu extends Fragment {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
-            js_request.put("borrowRandomId","722e2e57-60c2-4d21-bab3-aaa6cb121707");
+            js_request.put("borrowRandomId",borrowRandomId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -74,7 +76,7 @@ public class ChuJieJiLu extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/financeapp/record.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/record.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -114,6 +116,8 @@ public class ChuJieJiLu extends Fragment {
     }
 
     private void initView() {
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borrowRandomId","");
+        
         MyScrollView chujiejiluSV=getActivity().findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

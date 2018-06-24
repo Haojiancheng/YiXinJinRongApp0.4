@@ -18,12 +18,14 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.Myuser_id;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.User_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
@@ -41,7 +43,7 @@ import org.xutils.x;
 public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
     private Button yonghudengru;//用户登入跳转按钮
-    private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing;//等级、总额、可用余额、我的邀请
+    private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing,lijichujie;//等级、总额、可用余额、我的邀请
     private ImageView wode_shazhi, wode_chujie,xianjin_juan,jiaxi_juan;//设置，我的出借,现金券，加息卷
     private int user_id;
     //    private String userToken;
@@ -150,7 +152,8 @@ public class Wode extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "请重新登入", Toast.LENGTH_SHORT).show();
                 }
-                EventBus.getDefault().post(new Myuser_id(user_id));
+//                EventBus.getDefault().post(new Myuser_id(user_id));
+                SPUtils.put(getActivity(),"userId",user_id);
                 getoncilink();
             }
 
@@ -212,6 +215,12 @@ public class Wode extends Fragment {
                 startActivity(it);
             }
         });
+        lijichujie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new LookMore());
+            }
+        });
 
     }
 
@@ -235,6 +244,7 @@ public class Wode extends Fragment {
         wode_chujie = getActivity().findViewById(R.id.wode_chujie);//我的出借
         xianjin_juan=getActivity().findViewById(R.id.xianjing_juan);//现金券
         jiaxi_juan=getActivity().findViewById(R.id.jiaxi_juan);//加息卷
+        lijichujie=getActivity().findViewById(R.id.lijichujie);
 
     }
 

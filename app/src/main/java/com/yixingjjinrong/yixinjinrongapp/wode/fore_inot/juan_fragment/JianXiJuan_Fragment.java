@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,14 +39,14 @@ public class JianXiJuan_Fragment extends Fragment {
     private String base1;//Base64加密
     private RecyclerView jiaxi_rview;
     private List<JiaXiJuan_Gson.QueryVouchersListBean> mlist=new ArrayList<>();
-    private JiaXiJuan_adapter adapter;
+    private JiaXiJuan_adapter myadapter;
     private int user_id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.jiaxijuan_f, container, false);
-        EventBus.getDefault().register(this);//注册
+
         return view;
     }
 
@@ -52,18 +54,10 @@ public class JianXiJuan_Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getid();
-
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void myMethoeed(User_id event) {
-
-        user_id = event.getUser_id();
-//        userToken = event.getUserToken();
-//        getHttp();
+        user_id = (int) SPUtils.get(getActivity(),"userId",0);
         Log.e("加息卷user_id", "" + user_id);
         getHttp();
     }
-
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -96,11 +90,11 @@ public class JianXiJuan_Fragment extends Fragment {
                 Log.e("加息卷GSON", result);
                 JiaXiJuan_Gson data = new Gson().fromJson(result, JiaXiJuan_Gson.class);
                 mlist.addAll(data.getQueryVouchersList());
-                adapter=new JiaXiJuan_adapter(mlist);
+                myadapter=new JiaXiJuan_adapter(mlist);
                 Log.e("条目数", mlist.size()+"");
-                jiaxi_rview.setAdapter(adapter);
+                jiaxi_rview.setAdapter(myadapter);
 
-                adapter.notifyDataSetChanged();
+                myadapter.notifyDataSetChanged();
             }
 
             @Override

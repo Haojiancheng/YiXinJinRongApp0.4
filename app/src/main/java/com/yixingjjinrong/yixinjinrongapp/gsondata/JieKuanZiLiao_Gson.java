@@ -4,9 +4,10 @@ import java.util.List;
 
 public class JieKuanZiLiao_Gson {
 
+
     /**
      * message : 成功了
-     * result : {"ICIMAGE":"http://192.168.1.84:8080/yxb_mobile/","qualificationList":[{"imgName":"哈哈哈","imgUrl":"upload/user/20180529/20180529094440501.jpg"},{"imgName":"哈哈哈","imgUrl":"upload/user/20180529/20180529094440448.jpg"},{"imgName":"哈哈","imgUrl":"upload/user/20180529/20180529094440677.jpg"},{"imgName":"哈哈","imgUrl":"upload/user/20180529/20180529094440493.jpg"}]}
+     * result : {"qualificationList":[{"imgUrl":"upload/user/20180622/20180622135805649.jpg","imgName":""}],"ICIMAGE":"http://127.0.0.1:8080/yxb_oms/"}
      * state : success
      */
 
@@ -40,8 +41,8 @@ public class JieKuanZiLiao_Gson {
 
     public static class ResultBean {
         /**
-         * ICIMAGE : http://192.168.1.84:8080/yxb_mobile/
-         * qualificationList : [{"imgName":"哈哈哈","imgUrl":"upload/user/20180529/20180529094440501.jpg"},{"imgName":"哈哈哈","imgUrl":"upload/user/20180529/20180529094440448.jpg"},{"imgName":"哈哈","imgUrl":"upload/user/20180529/20180529094440677.jpg"},{"imgName":"哈哈","imgUrl":"upload/user/20180529/20180529094440493.jpg"}]
+         * qualificationList : [{"imgUrl":"upload/user/20180622/20180622135805649.jpg","imgName":""}]
+         * ICIMAGE : http://127.0.0.1:8080/yxb_oms/
          */
 
         private String ICIMAGE;
@@ -65,20 +66,12 @@ public class JieKuanZiLiao_Gson {
 
         public static class QualificationListBean {
             /**
-             * imgName : 哈哈哈
-             * imgUrl : upload/user/20180529/20180529094440501.jpg
+             * imgUrl : upload/user/20180622/20180622135805649.jpg
+             * imgName :
              */
 
-            private String imgName;
             private String imgUrl;
-
-            public String getImgName() {
-                return imgName;
-            }
-
-            public void setImgName(String imgName) {
-                this.imgName = imgName;
-            }
+            private String imgName;
 
             public String getImgUrl() {
                 return imgUrl;
@@ -86,6 +79,14 @@ public class JieKuanZiLiao_Gson {
 
             public void setImgUrl(String imgUrl) {
                 this.imgUrl = imgUrl;
+            }
+
+            public String getImgName() {
+                return imgName;
+            }
+
+            public void setImgName(String imgName) {
+                this.imgName = imgName;
             }
         }
     }

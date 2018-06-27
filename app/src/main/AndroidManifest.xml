@@ -5,7 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -55,7 +56,13 @@
         <activity android:name=".wode.shezhi.XiuGaiMiMa" />
         <activity android:name=".wode.shezhi.FanKui" />
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView" />
-        <activity android:name=".wode.fore_inot.Juan"></activity>
+        <activity android:name=".wode.fore_inot.Juan" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJuan" />
+        <activity android:name=".wode.FengXianPingCe" />
+        <activity android:name=".wode.mycontent.My_Content" />
+        <activity android:name=".wode.dengruzuce.ShiMingRenZhengKO" />
+        <activity android:name=".wode.dengruzuce.YinHangCunGuan" />
+        <activity android:name=".wode.chongzhi.ChongZhq"></activity>
     </application>
 
 </manifest>

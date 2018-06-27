@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
@@ -29,6 +30,7 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqi
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.HuiKuanJiHua;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.JieKuanZiLiao;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJingDu;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuXinXi;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -63,6 +65,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String base1;//Base64加
     private TextView youhuijuan;//优惠券
     private int user_id;
+    private String juan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,27 +77,15 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         getID();//获取资源ID
         initView();
         getjinge();//获取输入金额
-//        wangdaitishishu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(XiangMuXiangQing.this, WandaiTishishu.class);
-//                startActivity(intent);
-//            }
-//        });
+
         Intent it=getIntent();
         id = it.getStringExtra("xiangmu_id");
 
         getWebview();//各种提示书
 
-//        EventBus.getDefault().post(new BorrowRandomId_id(id));
         getHttps();
+
     }
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void gdewsf (User_id event) {
-//        user_id = event.getUser_id();
-//        Log.e("传来的User_id","id+:"+ user_id);
-//
-//    }
 
     private void getWebview() {
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +155,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     private void getID() {
         user_id = (int) SPUtils.get(this,"userId",0);
+//        juan = (String) SPUtils.get(this, "juan", 0);
         Log.e("userid", "id:"+user_id );
         jianhao = findViewById(R.id.bt_jianhao);
         jinge = findViewById(R.id.et_jinge);
@@ -221,7 +213,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 xiangqing_zonge.setText(data.getResult().getRedList1().getBorrowSum());
                 xiangqing_qixian.setText(data.getResult().getRedList1().getDeadline());
                 fangshi.setText(data.getResult().getRedList1().getPaymentMode());
-                xiangqing_lilv.setText(data.getResult().getRedList1().getRan()+"");
+                xiangqing_lilv.setText(data.getResult().getRedList1().getRanaa()+"");
                 shengyuchujie.setText(data.getResult().getRedList1().getSurplus());
                 keyangyue.setText(data.getResult().getUserMap().getUsableSum());
                 if (data.getResult().getRedList1().getRans()==0){
@@ -236,13 +228,19 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 }
                 if (data.getResult().getJuan()!=null){
                     youhuijuan.setText("未使用");
-                    List<String> jiaxilist=new ArrayList<>();
-                    for (int i = 0; i <data.getResult().getJuan().size(); i++) {
-                        Log.e("卷",""+data.getResult().getJuan().get(i).getActivitype()+"第"+i);
+                    youhuijuan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent ti=new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
+                            startActivity(ti);
+                        }
+                    });
+//                    Intent intent = getIntent();//获取传来的intent对象
+//                    String juan = intent.getStringExtra("juan");
+//                    youhuijuan.setText(juan);
 
-                    }
-
-
+                }else {
+                    youhuijuan.setText("暂无可用优惠券");
                 }
 
 
@@ -311,6 +309,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);//反注册  
+//        EventBus.getDefault().unregister(this);//反注册
+//         SPUtils.remove(this,"userId");
     }
 }

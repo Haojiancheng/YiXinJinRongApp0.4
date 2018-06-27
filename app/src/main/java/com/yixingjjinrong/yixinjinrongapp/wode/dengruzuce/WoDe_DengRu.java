@@ -1,9 +1,11 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -26,6 +28,8 @@ import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
+import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -37,7 +41,7 @@ import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class WoDe_DengRu extends AutoLayoutActivity {
+public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterface {
     private ImageView fanhui_dengru,dengru_guanbi;//返回键
     private TextView zhuche_dengru, zhaohuimima;//注册页面的跳转,找回密码页面的跳转
     private EditText dengru_phone, dengru_mima;//用户登入的手机号,用户登入的密码
@@ -50,13 +54,14 @@ public class WoDe_DengRu extends AutoLayoutActivity {
     private boolean isLogin;
     private ToggleButton dr_togglePwd;//显示与隐藏密码
     private Context context;
-
+    private PermissionHelper mPermissionHelper;//动态申请权限
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wo_de__deng_ru);
-
+        mPermissionHelper = new PermissionHelper(this, this);
+        mPermissionHelper.requestPermissions();
         isLogin = (boolean) SPUtils.get(this,"isLogin",false);
         getDengruId();
         getdengruOnClick();
@@ -130,6 +135,7 @@ public class WoDe_DengRu extends AutoLayoutActivity {
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+
         String myurl= getid(context);
         Log.e("唯一标识",""+myurl);
         
@@ -160,37 +166,40 @@ public class WoDe_DengRu extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", ">>>>成功" + result);
-                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
-                if (isLogin==true) {
+//                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
+//                if (isLogin==true) {
                     DengruData d_data = new Gson().fromJson(result, DengruData.class);
                     dengrufanhuizhi = d_data.getState(); //状态值
+                    String message = d_data.getMessage();
                     String  user_token=d_data.getResult().getToken();
                     int user_id=d_data.getResult().getUserid();
                     
-                    if (dengrufanhuizhi.equals("success")) {
+                    if (message.equals("登录成功")) {
                         EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id));
                         EventBus.getDefault().post(new User_id(user_id));
                         finish();
+                    }else {
+                        Toast.makeText(WoDe_DengRu.this, ""+message.toString(), Toast.LENGTH_SHORT).show();
                     }
 
 
-                }
+//                }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
-                if (ex instanceof HttpException) { // 网络错误  
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    String errorResult = httpEx.getResult();
-                    Log.e("TAG", ">>>>" + responseMsg);
-                    Log.e("TAG", ">>>>" + errorResult);
-                    // ...  
-                } else { // 其他错误  
-                    // ...  
-                }
+//                Toast.makeText(x.app(), "网络连接失败", Toast.LENGTH_LONG).show();
+//                if (ex instanceof HttpException) { // 网络错误
+//                    HttpException httpEx = (HttpException) ex;
+//                    int responseCode = httpEx.getCode();
+//                    String responseMsg = httpEx.getMessage();
+//                    String errorResult = httpEx.getResult();
+//                    Log.e("TAG", ">>>>" + responseMsg);
+//                    Log.e("TAG", ">>>>" + errorResult);
+//                    // ...
+//                } else { // 其他错误
+//                    // ...
+//                }
             }
 
             @Override
@@ -224,8 +233,49 @@ public class WoDe_DengRu extends AutoLayoutActivity {
         @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
         return ID;
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)){
+            //权限请求结果，并已经处理了该回调
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
-  
+    @Override
+    public int getPermissionsRequestCode() {
+        //设置权限请求requestCode，只有不跟onRequestPermissionsResult方法中的其他请求码冲突即可。
+        return 10000;
+    }
+
+    @Override
+    public String[] getPermissions() {
+        //设置该界面所需的全部权限
+        return new String[]{
+                Manifest.permission.READ_PHONE_NUMBERS,
+                Manifest.permission.READ_PHONE_STATE
+
+        };
+    }
+
+    @Override
+    public void requestPermissionsSuccess() {
+        //权限请求用户已经全部允许
+        initViews();
+    }
+
+    @Override
+    public void requestPermissionsFail() {
+        //权限请求不被用户允许。可以提示并退出或者提示权限的用途并重新发起权限申请。
+        finish();
+    }
+
+    private void initViews(){
+        //已经拥有所需权限，可以放心操作任何东西了
+        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -5,8 +5,8 @@ public class User_Gson {
 
     /**
      * message : 成功了
-     * result : {"userId":11208}
-     * userMap : {"hasPaySum":"140390.47","phone":"177****1111","otherEarnAmount":"0.00","freezeAmount":"324452.00","usableAmount":"5058610.00","usableCreditLimit":"0.00","creditLimit":"0.00","jxq":"1","hasPayPrincipal":"128400.00","risk":"1","cashFreezeAmount":"0.00","forRePaySum":"0.00","hasRePayInterest":"0.00","forRePayPrincipal":"0.00","rateEarnAmount":"13536.78","hasRePayPrincipal":"0.00","earnSum":"13536.78","forRePayInterest":"0.00","forPayPrincipal":"73600.00","levelNo":"10","hasPayInterest":"11990.47","inviteAmount":"0","mails":"1","djq":"1","hasRePaySum":"0.00","forPaySum":"75146.31","accountSum":"5458208.31","cg":"1","auth":"1","forPayInterest":"1546.31"}
+     * result : {"userId":11208,"Token":"864711326104376"}
+     * userMap : {"hasPaySum":"140390.47","phone":"177****1111","otherEarnAmount":"0.00","freezeAmount":"324652.00","usableAmount":"5058427.00","usableCreditLimit":"0.00","creditLimit":"0.00","jxq":"1","hasPayPrincipal":"128400.00","risk":"1","cashFreezeAmount":"0.00","forRePaySum":"0.00","hasRePayInterest":"0.00","forRePayPrincipal":"0.00","rateEarnAmount":"13536.78","hasRePayPrincipal":"0.00","earnSum":"13536.78","forRePayInterest":"0.00","riskType":"稳健型","forPayPrincipal":"73600.00","hasPayInterest":"11990.47","inviteAmount":"0","mails":"1","djq":"1","hasRePaySum":"0.00","forPaySum":"75146.31","accountSum":"5458225.31","cg":"1","auth":"1","levelname":"SVIP","forPayInterest":"1546.31"}
      * state : success
      */
 
@@ -52,8 +52,8 @@ public class User_Gson {
          * hasPaySum : 140390.47
          * phone : 177****1111
          * otherEarnAmount : 0.00
-         * freezeAmount : 324452.00
-         * usableAmount : 5058610.00
+         * freezeAmount : 324652.00
+         * usableAmount : 5058427.00
          * usableCreditLimit : 0.00
          * creditLimit : 0.00
          * jxq : 1
@@ -67,17 +67,18 @@ public class User_Gson {
          * hasRePayPrincipal : 0.00
          * earnSum : 13536.78
          * forRePayInterest : 0.00
+         * riskType : 稳健型
          * forPayPrincipal : 73600.00
-         * levelNo : 10
          * hasPayInterest : 11990.47
          * inviteAmount : 0
          * mails : 1
          * djq : 1
          * hasRePaySum : 0.00
          * forPaySum : 75146.31
-         * accountSum : 5458208.31
+         * accountSum : 5458225.31
          * cg : 1
          * auth : 1
+         * levelname : SVIP
          * forPayInterest : 1546.31
          */
 
@@ -99,8 +100,8 @@ public class User_Gson {
         private String hasRePayPrincipal;
         private String earnSum;
         private String forRePayInterest;
+        private String riskType;
         private String forPayPrincipal;
-        private String levelNo;
         private String hasPayInterest;
         private String inviteAmount;
         private String mails;
@@ -110,6 +111,7 @@ public class User_Gson {
         private String accountSum;
         private String cg;
         private String auth;
+        private String levelname;
         private String forPayInterest;
 
         public String getHasPaySum() {
@@ -256,20 +258,20 @@ public class User_Gson {
             this.forRePayInterest = forRePayInterest;
         }
 
+        public String getRiskType() {
+            return riskType;
+        }
+
+        public void setRiskType(String riskType) {
+            this.riskType = riskType;
+        }
+
         public String getForPayPrincipal() {
             return forPayPrincipal;
         }
 
         public void setForPayPrincipal(String forPayPrincipal) {
             this.forPayPrincipal = forPayPrincipal;
-        }
-
-        public String getLevelNo() {
-            return levelNo;
-        }
-
-        public void setLevelNo(String levelNo) {
-            this.levelNo = levelNo;
         }
 
         public String getHasPayInterest() {
@@ -342,6 +344,14 @@ public class User_Gson {
 
         public void setAuth(String auth) {
             this.auth = auth;
+        }
+
+        public String getLevelname() {
+            return levelname;
+        }
+
+        public void setLevelname(String levelname) {
+            this.levelname = levelname;
         }
 
         public String getForPayInterest() {

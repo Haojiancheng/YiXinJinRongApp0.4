@@ -1,6 +1,5 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,36 +8,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXianjinJuan_adapter.MyViewHolder> {
+    private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
 
-public class JiaXiJuan_adapter extends RecyclerView.Adapter<JiaXiJuan_adapter.MyViewHolder> {
-    private List<JiaXiJuan_Gson.QueryVouchersListBean> mlist=new ArrayList<>();
-
-    public JiaXiJuan_adapter(List<JiaXiJuan_Gson.QueryVouchersListBean> mlist) {
-        this.mlist = mlist;
+    public XiangMuXianjinJuan_adapter(List<XianJinJuan_gson.QueryVouchersListBean> list) {
+        this.list = list;
     }
 
     @NonNull
     @Override
-    public JiaXiJuan_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public XiangMuXianjinJuan_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.juan_keshi_itme, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JiaXiJuan_adapter.MyViewHolder holder, int position) {
-        holder.qian.setText(mlist.get(position).getInfo() + "%");
-        holder.yaoqu.setText(mlist.get(position).getRemark());
-        holder.fanwei.setText(mlist.get(position).getUseRange());
-        holder.time_out.setText(mlist.get(position).getEndTime());
+    public void onBindViewHolder(@NonNull XiangMuXianjinJuan_adapter.MyViewHolder holder, int position) {
+        holder.qian.setText("¥"+list.get(position).getInfo());
+        holder.yaoqu.setText(list.get(position).getRemark());
+        holder.fanwei.setText(list.get(position).getUseRange());
+        holder.time_out.setText(list.get(position).getEndTime());
         holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +46,7 @@ public class JiaXiJuan_adapter extends RecyclerView.Adapter<JiaXiJuan_adapter.My
 
     @Override
     public int getItemCount() {
-        return mlist.size();
+        return list.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

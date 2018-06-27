@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f4f4f4"
-    tools:context=".wode.shezhi.WoDe_SheZhi">
+    tools:context=".wode.mycontent.My_Content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="108px"
@@ -14,7 +14,7 @@
         >
 
         <ImageView
-            android:id="@+id/dengrufanhui"
+            android:id="@+id/mycontentfanhui"
             android:layout_width="38px"
             android:layout_height="38px"
             android:layout_alignParentStart="true"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="设置"
+            android:text="个人信息"
             android:textColor="#333"
             android:textSize="38px" />
     </RelativeLayout>
@@ -39,7 +39,7 @@
         >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100px"
+            android:layout_height="140px"
             android:gravity="center_vertical"
             android:layout_marginBottom="37px"
             >
@@ -48,37 +48,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="登入密码"
-                android:layout_marginTop="40px"
+                android:text="头像"
+                android:layout_marginTop="56px"
                 android:textColor="#333"
                 android:textSize="30px" />
 
-            <TextView
-                android:id="@+id/repassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/xj1"
-                android:layout_marginRight="40px"
-                android:layout_marginTop="40px"
-                android:text="修改"
-                android:textColor="#999999"
-                android:textSize="30px" />
+
 
             <ImageView
-                android:id="@+id/xj1"
-                android:layout_width="30px"
-                android:layout_height="30px"
+                android:id="@+id/xj15"
+                android:layout_width="90px"
+                android:layout_height="90px"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="45px"
-                android:src="@drawable/xiao_jiantou" />
+                android:layout_marginEnd="31dp"
+                android:layout_marginTop="25px"
+                android:src="@drawable/touxiang1" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#dadada" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -90,36 +81,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="手势密码"
+                android:text="手机号"
                 android:layout_marginTop="40px"
                 android:textColor="#333"
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/myphone1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/xj2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30px"
                 android:layout_marginRight="40px"
                 android:layout_marginTop="40px"
-                android:text="未开启"
+                android:text="126****2365"
                 android:textColor="#999999"
                 android:textSize="30px" />
 
-            <ImageView
-                android:id="@+id/xj2"
-                android:layout_width="30px"
-                android:layout_height="30px"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="45px"
-                android:src="@drawable/xiao_jiantou" />
+
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#dadada" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -131,19 +117,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="推送设置"
+                android:text="实名认证"
                 android:layout_marginTop="40px"
                 android:textColor="#333"
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/shiming"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/xj3"
                 android:layout_marginRight="40px"
                 android:layout_marginTop="40px"
-                android:text="已开启"
-                android:textColor="#999999"
+                android:text="立即认证"
+                android:textColor="#fe6623"
                 android:textSize="30px" />
 
             <ImageView
@@ -151,11 +138,42 @@
                 android:layout_width="30px"
                 android:layout_height="30px"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="30px"
                 android:layout_marginTop="45px"
                 android:src="@drawable/xiao_jiantou" />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:background="#dadada" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="37px"
+            >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="收货地址"
+                android:layout_marginTop="40px"
+                android:textColor="#333"
+                android:textSize="30px" />
+
+
+
+            <ImageView
+                android:id="@+id/xj31"
+                android:layout_width="30px"
+                android:layout_height="30px"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30px"
+                android:layout_marginTop="45px"
+                android:src="@drawable/xiao_jiantou" />
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -164,6 +182,7 @@
         android:orientation="vertical"
         android:layout_marginTop="40px"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -175,27 +194,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="意见反馈"
+                android:text="银行存管"
                 android:layout_marginTop="40px"
                 android:textColor="#333"
                 android:textSize="30px" />
 
+            <TextView
+                android:id="@+id/cunguan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/xj30"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="40px"
+                android:text="立即开通"
+                android:textColor="#fe6623"
+                android:textSize="30px" />
 
             <ImageView
-                android:id="@+id/fankui"
+                android:id="@+id/xj30"
                 android:layout_width="30px"
                 android:layout_height="30px"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="30px"
                 android:layout_marginTop="45px"
                 android:src="@drawable/xiao_jiantou" />
         </RelativeLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#dadada" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -207,41 +235,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="缓存清理"
+                android:text="风险测评"
                 android:layout_marginTop="40px"
                 android:textColor="#333"
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/ceping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/huancun"
+                android:layout_alignRight="@+id/xj301"
                 android:layout_marginRight="40px"
                 android:layout_marginTop="40px"
-                android:text="1.67M"
-                android:textColor="#999999"
+                android:text="立即测评"
+                android:textColor="#fe6623"
                 android:textSize="30px" />
 
             <ImageView
-                android:id="@+id/huancun"
+                android:id="@+id/xj301"
                 android:layout_width="30px"
                 android:layout_height="30px"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="30px"
                 android:layout_marginTop="45px"
                 android:src="@drawable/xiao_jiantou" />
         </RelativeLayout>
-        
     </LinearLayout>
-   <Button
-       android:id="@+id/user_tuichu"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="安全退出"
-       android:textSize="30px"
-       android:textColor="#fe6623"
-       android:background="#fdfdfe"
-       android:layout_marginTop="40px"
-       />
 
 </com.zhy.autolayout.AutoLinearLayout>

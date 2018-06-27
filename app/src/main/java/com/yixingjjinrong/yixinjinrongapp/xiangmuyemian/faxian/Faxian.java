@@ -76,25 +76,6 @@ public class Faxian extends Fragment {
     }
 
     private void gethppt() {
-//        final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-//        try {
-//            js_request.put("userId", "11208");
-//            base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>base加密11111!!--" + base1);
-//            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>SH!!" + sha1);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JSONObject canshu = new JSONObject();
-//        try {
-//            canshu.put("param", base1);
-//            canshu.put("sign", sha1);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
         RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/discoveryIndex.do");
         params.setAsJsonContent(true);
 //        params.setBodyContent(canshu.toString());

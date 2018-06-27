@@ -1,7 +1,10 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +36,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private String token;
     private String sha1;//SHA1加密
     private String base1;//Base64加
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +83,16 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 
     private void gethttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-
+        String myurl= getid(context);
         try {
-            Log.e("useridddd",user_ird+"" );
-            Log.e("token",token+"" );
-            SPUtils.remove(WoDe_SheZhi.this,"userId");
-            SPUtils.remove(WoDe_SheZhi.this,"borrowRandomId");
+
+//            SPUtils.remove(WoDe_SheZhi.this,"userId");
+//            SPUtils.remove(WoDe_SheZhi.this,"Token1");
             js_request.put("userid", user_ird);
             js_request.put("token", token);
+            js_request.put("url", myurl);
+            Log.e("useridddd",user_ird+"" );
+            Log.e("token",token+"" );
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -110,8 +116,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("退出登入的GSON:", result);
-                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
-                startActivity(shezhi_tuichu);
+//                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
+//                startActivity(shezhi_tuichu);
                 SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
                 finish();
             }
@@ -133,7 +139,11 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         });
 
     }
-
+    public synchronized String getid(Context context) {
+        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
+        return ID;
+    }
 
     private void getSheZhi_Id() {
         user_tuichu=findViewById(R.id.user_tuichu);//退出

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wode.chongzhi.ChongZhq">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/fanhui" />
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="充值"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/yhcard"
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+
+        >
+
+        <ImageView
+            android:id="@+id/yh_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:src="@drawable/touxiang" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="67px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/yh_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25px"
+                    android:text="招商银行"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="20px"
+                    android:layout_marginLeft="10px"
+                    android:layout_marginRight="10px"
+                    android:layout_marginTop="35px"
+                    android:background="#dadada"
+
+                    />
+
+                <TextView
+                    android:id="@+id/yh_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25px"
+                    android:text="63243*****234234"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15px"
+                android:text="单笔限额限额5万，单日限额20万"
+                android:textColor="#999999"
+                android:textSize="24px" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="270px"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="181px"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="30px"
+                android:text="充值金额"
+                android:textColor="#666666"
+                android:textSize="28px" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:text="￥"
+                    android:textColor="#333333"
+                    android:textSize="44px"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/cz_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14px"
+                    android:layout_marginTop="40px"
+                    android:background="@null"
+                    android:hint="请输入金额"
+                    android:textSize="30px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadada" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cz_keyong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="33px"
+                android:text="可用余额:  0.00元"
+                android:textColor="#999999"
+                android:textSize="24px" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:text="大额充值，请使用"
+            android:textColor="#333333"
+            android:textSize="24px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快速支付通道"
+            android:textColor="#078dcf"
+            android:textSize="24px" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/cz_ok"
+        android:layout_width="690px"
+        android:layout_height="90px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100px"
+        android:background="@drawable/bt_shape"
+        android:text="确认充值"
+        android:textColor="#fdfdfe" />
+
+</com.zhy.autolayout.AutoLinearLayout>

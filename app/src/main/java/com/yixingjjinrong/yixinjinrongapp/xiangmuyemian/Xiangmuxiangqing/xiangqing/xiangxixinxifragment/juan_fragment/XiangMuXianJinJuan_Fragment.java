@@ -1,4 +1,4 @@
-package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment;
+package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.juan_fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,16 +14,13 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMuXianjinJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -33,13 +30,13 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XianJinJuan_Fragment extends Fragment{
+public class XiangMuXianJinJuan_Fragment extends Fragment{
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private RecyclerView xianjinjun_rview;
     private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
     private int user_id;
-    private XianjinJuan_adapter myadapter;
+    private XiangMuXianjinJuan_adapter myadapter;
 
     @Nullable
     @Override
@@ -90,7 +87,7 @@ public class XianJinJuan_Fragment extends Fragment{
                 Log.e("现金券GSon",""+result );
                 XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                 list.addAll(data.getQueryVouchersList());
-                myadapter=new XianjinJuan_adapter(list);
+                myadapter=new XiangMuXianjinJuan_adapter(list);
                 xianjinjun_rview.setAdapter(myadapter);
                 myadapter.notifyDataSetChanged();
 

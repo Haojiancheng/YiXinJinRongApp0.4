@@ -33,6 +33,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private String password;
     private String dengrufanhuizhi;
     private int userid1;
+    private String myurl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,11 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         final Intent intent = getIntent();
         if (intent != null) {
             shoujihao = intent.getStringExtra("Phone_my");
-
+            myurl = intent.getStringExtra("url");
             password = intent.getStringExtra("password");
             Bundle b = getIntent().getExtras();
             userid1 = b.getInt("user_id");
+            Log.e("成功注册：", "Phone_my:"+shoujihao+"__password:"+password+"__url:"+myurl);
         }
         
         
@@ -57,8 +59,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             public void onClick(View v) {
 //                double zonge =0.00;//总额
 //                EventBus.getDefault().post(new User_data(shoujihao,  userid));
-                finish();
                 getHttp_zhucechenggong();
+
             }
         });
         lijishiming.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +138,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         try {
             js_request.put("username", shoujihao);
             js_request.put("password", password);
+            js_request.put("url", myurl);
+            Log.e("成功注册(登入)：", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -146,8 +150,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         JSONObject canshu = new JSONObject();
         try {
             canshu.put("param", base1);
-            canshu.put("sign", sha1);
-
+            JSONObject sign = canshu.put("sign", sha1);
+//            Log.e("我的账户：", ""+canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }

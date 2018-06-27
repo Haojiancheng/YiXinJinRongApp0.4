@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -85,8 +86,11 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
                 String zhuangtai = data.getState().toString();
                 if (zhuangtai.equals("success")){
-                    zhen_name.setText(data.getResult().getRealName().toString());
-                    user_idcard.setText(data.getResult().getIdNo().toString());
+                    String realName = data.getResult().getRealName();
+                    String idNo = data.getResult().getIdNo();
+                    Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
+
+                    startActivity(intent);
                 }
 
             }

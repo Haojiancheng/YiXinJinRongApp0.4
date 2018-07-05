@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
 
@@ -18,9 +21,11 @@ import java.util.List;
 
 public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyViewHolder> {
     private List<XiangMu_Gson.ResultBean> list=new ArrayList<>();
+    private Context context;
 
-    public XiangMu_Adapter(List<XiangMu_Gson.ResultBean> list) {
+    public XiangMu_Adapter(List<XiangMu_Gson.ResultBean> list, Context context) {
         this.list = list;
+        this.context = context;
     }
 
     private OnEveryItemClickListener onEveryItemClickListener;
@@ -43,9 +48,17 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull XiangMu_Adapter.MyViewHolder holder, final int position) {
-        holder.xiangmu_name.setText(list.get(position).getMortgageType());
+        holder.xiangmu_name.setText(list.get(position).getMortgageTypeStr());
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.years_lilv.setText(String.valueOf(list.get(position).getSubsidies()));
+        holder.qixian.setText(list.get(position).getDeadlineNew());
+       int type= list.get(position).getMortgageType();
+       if (type==1){
+           Glide.with(context).load(R.drawable.fangchandiya).into(holder.xiangmu_src);
+       }else {
+           Glide.with(context).load(R.drawable.cheliang).into(holder.xiangmu_src);
+       }
+//        holder.xiangmu_src.setImageDrawable();
         if (list.get(position).getSubsidiesRate()!=0){
             holder.fujia_lilv.setText(String.valueOf(list.get(position).getSubsidiesRate()));
 
@@ -102,6 +115,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView xiangmu_name,xiangmu_code,years_lilv,jiahao,fujia_lilv,fujia_jiahao,qixian;
         Button chujie;
+        ImageView xiangmu_src;
         public MyViewHolder(View itemView) {
             super(itemView);
             xiangmu_name=itemView.findViewById(R.id.xiangmu_name);
@@ -112,6 +126,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
             fujia_jiahao=itemView.findViewById(R.id.fujia_jiahao);
             qixian=itemView.findViewById(R.id.qixian);
             chujie=itemView.findViewById(R.id.chujie);
+            xiangmu_src=itemView.findViewById(R.id.xiangmu_src);
 
         }
     }

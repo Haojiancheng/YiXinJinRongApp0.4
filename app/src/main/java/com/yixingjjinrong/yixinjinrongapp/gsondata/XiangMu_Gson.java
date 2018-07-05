@@ -6,7 +6,7 @@ public class XiangMu_Gson {
 
     /**
      * message : 查询成功
-     * result : [{"ableTenderDate":"2018-05-23 11:23 ","amount":"10,000,000.00","annualRate":6,"borrowCode":"X18D10521","borrowFrom":2,"borrowRandomId":"1de0c7e6-7c80-463d-8f35-96e631ee3fe3","borrowSpe":"公司借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"企业房","deadlineNew":"2个月","id":2259,"investNumTotal":"9,983,100.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"0.16%","subsidies":6,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-05-02 18:09 ","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10440","borrowFrom":1,"borrowRandomId":"b1b6e85a-c782-41f1-be14-138ceb197ba2","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0502第三标","deadlineNew":"3个月","id":2172,"investNumTotal":"900.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"10.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-05-01 17:57","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10439","borrowFrom":1,"borrowRandomId":"af2cefdb-cbde-4599-b336-8a74d4b6fc3d","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0502第四标","deadlineNew":"3个月","id":2171,"investNumTotal":"900.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"10.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-05-01 17:50","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10438","borrowFrom":1,"borrowRandomId":"b868c7a6-986e-47cb-b377-6a1b53f7f84d","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0502第三标","deadlineNew":"3个月","id":2170,"investNumTotal":"1,000.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"0%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-05-01 17:05","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10437","borrowFrom":1,"borrowRandomId":"ac6d5ae2-e018-4cb8-9d25-531997b8730c","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0501第一标","deadlineNew":"3个月","id":2167,"investNumTotal":"800.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"20.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-04-30 20:22","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10436","borrowFrom":1,"borrowRandomId":"9ad1c368-87c0-4957-828a-11d0b9670dd8","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0430第三标","deadlineNew":"3个月","id":2163,"investNumTotal":"1,000.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"0%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-05-01 19:35 ","amount":"1,000.00","annualRate":1,"borrowCode":"X18D10434","borrowFrom":1,"borrowRandomId":"7cdf6e39-ccea-4e73-bf26-85e9a9f30335","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"0430第一标","deadlineNew":"1个月","id":2161,"investNumTotal":"900.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"10.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-04-20 13:51 ","amount":"10,000.00","annualRate":1,"borrowCode":"X18D10387","borrowFrom":1,"borrowRandomId":"edc79438-5986-4b9f-a144-2e7d608f00fa","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"测试00000","deadlineNew":"3个月","id":2090,"investNumTotal":"10,000.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"0%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-04-20 11:35 ","amount":"100,000.00","annualRate":1,"borrowCode":"X18D10386","borrowFrom":1,"borrowRandomId":"3723fa50-eef2-49aa-998e-d783d442f50b","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"测试99999","deadlineNew":"3个月","id":2089,"investNumTotal":"99,500.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"0.50%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-04-19 16:55 ","amount":"10,000.00","annualRate":1,"borrowCode":"X18D10378","borrowFrom":1,"borrowRandomId":"8a1822b6-cce6-43aa-bd82-1a30d8779d58","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"募集中","borrowTitle":"55555","deadlineNew":"3个月","id":2081,"investNumTotal":"9,900.00","isDayThe":1,"mortgageType":"房产抵押","schedules":"1.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0}]
+     * result : [{"ableTenderDate":"2018-06-27 16:38 ","amount":"10,000.00","annualRate":1,"borrowCode":"X18D10062","borrowFrom":1,"borrowRandomId":"d89cdc35-2497-45e7-b917-a0b70445bffe","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"143阿斯顿阿斯顿","deadlineNew":"5个月","id":2435,"investNumTotal":"9,500.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"5.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:35 ","amount":"10,000.00","annualRate":4,"borrowCode":"X18D10061","borrowFrom":1,"borrowRandomId":"94c8cea1-2f8f-4afb-9b18-6e6c9642f4a7","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"梵蒂冈","deadlineNew":"5个月","id":2434,"investNumTotal":"10,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":4,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:30 ","amount":"20,000.00","annualRate":3,"borrowCode":"X18D10060","borrowFrom":1,"borrowRandomId":"30c64044-0f84-4dec-a547-1e02a163d81e","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"4个月","id":2433,"investNumTotal":"20,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:15","amount":"11,111.00","annualRate":4,"borrowCode":"X18D10059","borrowFrom":1,"borrowRandomId":"501cdd96-6575-4c1e-b45a-2608b33b949b","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"asdasdasdasdasd","deadlineNew":"9个月","id":2429,"investNumTotal":"10,911.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"1.80%","subsidies":4,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:42","amount":"11,111.00","annualRate":1,"borrowCode":"X18D10058","borrowFrom":1,"borrowRandomId":"03491b4e-370d-47be-9af1-bf8c3f7aa483","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿爱的","deadlineNew":"2个月","id":2428,"investNumTotal":"11,111.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-23 16:45 ","amount":"11,111.00","annualRate":2,"borrowCode":"X18D10057","borrowFrom":1,"borrowRandomId":"60046ae1-75c3-420e-995d-215d58268a3c","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"12个月","id":2396,"investNumTotal":"11.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"99.90%","subsidies":1,"subsidiesRate":1,"timeFlag":0},{"ableTenderDate":"2018-06-22 14:15 ","amount":"123,123.00","annualRate":3,"borrowCode":"X18D10048","borrowFrom":1,"borrowRandomId":"a714cb94-9614-48e9-a168-b80a20f27419","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"asd","deadlineNew":"3个月","id":2371,"investNumTotal":"121,923.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0.97%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-22 14:05 ","amount":"10,000.00","annualRate":2,"borrowCode":"X18D10047","borrowFrom":1,"borrowRandomId":"722e2e57-60c2-4d21-bab3-aaa6cb121707","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"2个月","id":2370,"investNumTotal":"9,700.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"3.00%","subsidies":1,"subsidiesRate":1,"timeFlag":0},{"ableTenderDate":"2018-06-22 10:24","amount":"700.00","annualRate":6,"borrowCode":"X18D10041","borrowFrom":1,"borrowRandomId":"6787d50b-92ca-4cd6-95fb-a10e3757c0b5","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"房屋_公司_一次性还款","deadlineNew":"3个月","id":2363,"investNumTotal":"300.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"57.14%","subsidies":6,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-20 11:23","amount":"6,000.00","annualRate":6,"borrowCode":"X18D10016","borrowFrom":2,"borrowRandomId":"9f7863e6-41c0-4f8b-9f8d-04686381dad8","borrowSpe":"公司借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"企业担保公司","deadlineNew":"2个月","id":2311,"investNumTotal":"4,800.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"20.00%","subsidies":6,"subsidiesRate":0,"timeFlag":0}]
      * state : success
      */
 
@@ -40,30 +40,31 @@ public class XiangMu_Gson {
 
     public static class ResultBean {
         /**
-         * ableTenderDate : 2018-05-23 11:23
-         * amount : 10,000,000.00
-         * annualRate : 6
-         * borrowCode : X18D10521
-         * borrowFrom : 2
-         * borrowRandomId : 1de0c7e6-7c80-463d-8f35-96e631ee3fe3
-         * borrowSpe : 公司借款
+         * ableTenderDate : 2018-06-27 16:38
+         * amount : 10,000.00
+         * annualRate : 1.0
+         * borrowCode : X18D10062
+         * borrowFrom : 1
+         * borrowRandomId : d89cdc35-2497-45e7-b917-a0b70445bffe
+         * borrowSpe : 个人借款
          * borrowStatus : 2
-         * borrowStatusStr : 募集中
-         * borrowTitle : 企业房
-         * deadlineNew : 2个月
-         * id : 2259
-         * investNumTotal : 9,983,100.00
+         * borrowStatusStr : 立即出借
+         * borrowTitle : 143阿斯顿阿斯顿
+         * deadlineNew : 5个月
+         * id : 2435
+         * investNumTotal : 9,500.00
          * isDayThe : 1
-         * mortgageType : 房产抵押
-         * schedules : 0.16%
-         * subsidies : 6
-         * subsidiesRate : 0
+         * mortgageType : 1
+         * mortgageTypeStr : 房产抵押
+         * schedules : 5.00%
+         * subsidies : 1.0
+         * subsidiesRate : 0.0
          * timeFlag : 0
          */
 
         private String ableTenderDate;
         private String amount;
-        private int annualRate;
+        private double annualRate;
         private String borrowCode;
         private int borrowFrom;
         private String borrowRandomId;
@@ -75,10 +76,11 @@ public class XiangMu_Gson {
         private int id;
         private String investNumTotal;
         private int isDayThe;
-        private String mortgageType;
+        private int mortgageType;
+        private String mortgageTypeStr;
         private String schedules;
-        private int subsidies;
-        private int subsidiesRate;
+        private double subsidies;
+        private double subsidiesRate;
         private int timeFlag;
 
         public String getAbleTenderDate() {
@@ -97,11 +99,11 @@ public class XiangMu_Gson {
             this.amount = amount;
         }
 
-        public int getAnnualRate() {
+        public double getAnnualRate() {
             return annualRate;
         }
 
-        public void setAnnualRate(int annualRate) {
+        public void setAnnualRate(double annualRate) {
             this.annualRate = annualRate;
         }
 
@@ -193,12 +195,20 @@ public class XiangMu_Gson {
             this.isDayThe = isDayThe;
         }
 
-        public String getMortgageType() {
+        public int getMortgageType() {
             return mortgageType;
         }
 
-        public void setMortgageType(String mortgageType) {
+        public void setMortgageType(int mortgageType) {
             this.mortgageType = mortgageType;
+        }
+
+        public String getMortgageTypeStr() {
+            return mortgageTypeStr;
+        }
+
+        public void setMortgageTypeStr(String mortgageTypeStr) {
+            this.mortgageTypeStr = mortgageTypeStr;
         }
 
         public String getSchedules() {
@@ -209,19 +219,19 @@ public class XiangMu_Gson {
             this.schedules = schedules;
         }
 
-        public int getSubsidies() {
+        public double getSubsidies() {
             return subsidies;
         }
 
-        public void setSubsidies(int subsidies) {
+        public void setSubsidies(double subsidies) {
             this.subsidies = subsidies;
         }
 
-        public int getSubsidiesRate() {
+        public double getSubsidiesRate() {
             return subsidiesRate;
         }
 
-        public void setSubsidiesRate(int subsidiesRate) {
+        public void setSubsidiesRate(double subsidiesRate) {
             this.subsidiesRate = subsidiesRate;
         }
 

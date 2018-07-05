@@ -189,6 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
             android:src="@drawable/yinhanglogo"
+            android:visibility="gone"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -197,6 +198,7 @@
             android:textColor="#999"
             android:textSize="24px"
             android:layout_marginLeft="16px"
+            android:visibility="gone"
             />
         
     </LinearLayout>

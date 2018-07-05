@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wode.mycontent.addess.MyAddess">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/fanhui"
+            android:paddingTop="20px"
+            android:layout_marginLeft="20px"
+            />
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="收货地址"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+
+    </RelativeLayout>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/addass_rview"
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        >
+        <Button
+            android:id="@+id/addass_instat"
+            android:layout_width="690px"
+            android:layout_height="90px"
+            android:background="@drawable/bt_shape"
+            android:layout_marginTop="40px"
+            android:text="添加新地址"
+            android:layout_marginBottom="30px"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fdfdfe" />
+
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

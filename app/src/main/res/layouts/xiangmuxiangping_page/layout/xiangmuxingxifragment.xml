@@ -60,7 +60,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
                         android:paddingRight="1px"
-                        android:text="个人资金周转借款 Y17D1000"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -92,7 +92,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="13dp"
-                            android:text="dsdfsdf"
+                            android:text=""
                             android:lines="2"
                             android:textColor="#333333"
                             android:textSize="28px" />
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="200.000元"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="三个月"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -194,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="指借款人申请借款的具体去向"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -220,7 +220,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
                         android:drawableRight="@drawable/yiwen"
-                        android:text="按月付息，到期还本 "
+                        android:text=" "
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -245,7 +245,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="7%"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -294,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="经营收入"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -319,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="房款抵押"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -344,7 +344,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="2018-01-15 17:30:00"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -369,7 +369,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="2018-01-15 18:30:00"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -444,7 +444,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="文**"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
 
@@ -470,7 +470,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="110*********1219"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -495,7 +495,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="男"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -520,7 +520,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="36"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -545,7 +545,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="本科"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -570,7 +570,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="江苏省苏州市"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -595,7 +595,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="江苏省宿迁市****"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -620,7 +620,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="销售经理"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -645,7 +645,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="汽车"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -670,7 +670,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text="40000元"
+                        android:text=""
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -830,6 +830,572 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/car_danbaoren"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fdfdfe"
+                android:layout_marginTop="20px"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30px"
+                        android:paddingTop="10px"
+                        android:text="担保人基本信息"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="主体性质"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="担保人姓名"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="猪**"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="身份证号"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_idcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="420********1112"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="性别"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_sax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="男"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="年龄"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="36"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="婚姻状况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_hunyin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="已婚"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="本人学历"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_xl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="本科"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="户籍地"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_huji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="北京银川"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="地址"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_adriess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="北京**************"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="月收入"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_shouru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="100000.00元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="所属职业"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_zhiye"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="IT"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="所属行业"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbr_hangye"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="IT"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/car_xx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:background="#fdfdfe"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30px"
+                    android:paddingTop="10px"
+                    android:text="车辆信息"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="品牌车型"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_pp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="奥迪a6"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="车牌号码"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="京A1***4"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="行驶公里"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_km"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="1000公里"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="购买时间"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="2018-02-06"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="发动机排量"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_pailiang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="3.4"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="车况"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_ck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="优"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="购买价格"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="100万"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="评估价格"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="100万"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:text="参考价格"
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/car_cmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25px"
+                    android:paddingRight="1px"
+                    android:text="100万"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hose_xx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20px"
@@ -1089,8 +1655,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
-                        android:paddingLeft="40px"
-                        android:paddingRight="1px"
+
+
                         android:text="已认证"
                         android:textColor="#333333"
                         android:textSize="28px" />
@@ -1166,7 +1732,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
-                        android:paddingLeft="40px"
+
                         android:paddingRight="1px"
                         android:text="已认证"
                         android:textColor="#333333"
@@ -1244,7 +1810,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
-                        android:paddingLeft="40px"
                         android:paddingRight="1px"
                         android:text="已认证"
                         android:textColor="#333333"

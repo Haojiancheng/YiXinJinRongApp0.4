@@ -62,7 +62,15 @@
         <activity android:name=".wode.mycontent.My_Content" />
         <activity android:name=".wode.dengruzuce.ShiMingRenZhengKO" />
         <activity android:name=".wode.dengruzuce.YinHangCunGuan" />
-        <activity android:name=".wode.chongzhi.ChongZhq"></activity>
+        <activity android:name=".wode.chongzhi.ChongZhq" />
+        <activity android:name=".wode.xiaoxi.WoDe_XiaoXi" />
+        <activity android:name=".wode.xiaoxi.XiaoXi_XiangQing" />
+        <activity android:name=".xiangmuyemian.faxian.twojifen.JIFenJiLu" />
+        <activity android:name=".xiangmuyemian.faxian.twojifen.DuiHuanJILu" />
+        <activity android:name=".xiangmuyemian.faxian.goodsmassing.ShangPinXiangQing" />
+        <activity android:name=".wode.mycontent.addess.MyAddess" />
+        <activity android:name=".wode.mycontent.addess.UpData_Addass" />
+        <activity android:name=".wode.mycontent.addess.AddAddass"></activity>
     </application>
 
 </manifest>

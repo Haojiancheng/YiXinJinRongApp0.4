@@ -66,6 +66,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private TextView youhuijuan;//优惠券
     private int user_id;
     private String juan;
+    private String mType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
         Intent it=getIntent();
         id = it.getStringExtra("xiangmu_id");
+        mType = it.getStringExtra("mortgageType");
 
         getWebview();//各种提示书
 
@@ -185,6 +187,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             js_request.put("borrowRandomId",id);
             SPUtils.put(this,"borrowRandomId",id);
+            SPUtils.put(this, "mtype1", mType);
             js_request.put("userId", user_id);
             Log.e("TAG","id"+user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());

@@ -20,13 +20,18 @@ import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYeMassage_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
+import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
+import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -44,8 +49,13 @@ public class Shouye extends Fragment {
     //    private String[] images = {};
     private String picurl;
     private String picpath;
+    private String sha1;//SHA1加密
+    private String base1;//Base64加
     private ListView mylistview;
     private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist = new ArrayList<>();
+    List<ShouYeMassage_Gson.ResultBean> msglist=new ArrayList<>();
+    private List<String> mymasseg=new ArrayList<>();
+    private List<String> mymassegtime=new ArrayList<>();
     private ShouYe_MyBaseAdapter adapter;
     private boolean isGetData = false;
 
@@ -62,8 +72,9 @@ public class Shouye extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getshouyeid();
+        getgongaoHTTP();
         //公告栏
-        getgonggao();
+//        getgonggao();
         //更多项目的跳转
         getgengduoxiangmu();
 
@@ -139,21 +150,76 @@ public class Shouye extends Fragment {
     }
 
 
+
+
+    private void getgongaoHTTP() {
+        final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("pageNum", 1);
+
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+            Log.e("TAG", ">>>>SH!!" + sha1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            canshu.put("sign", sha1);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryPublicMsgList.do");
+        params.setAsJsonContent(true);
+        params.setBodyContent(canshu.toString());
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("首页消息",""+result);
+                ShouYeMassage_Gson data = new Gson().fromJson(result, ShouYeMassage_Gson.class);
+                for (int i = 0; i < data.getResult().size(); i++) {
+                    mymasseg.add(data.getResult().get(i).getArticle_title());
+                }
+                for (int i = 0; i < data.getResult().size(); i++) {
+                    mymassegtime.add(data.getResult().get(i).getArticle_pub_time());
+                }
+
+                getgonggao();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
     private void getgonggao() {
         //公告栏
         noticeView = getActivity().findViewById(R.id.notice_view);
         noticeTime = getActivity().findViewById(R.id.noticeTime);
+
         List<String> notices = new ArrayList<>();
-        notices.add("大促销下单拆福袋，亿万新年红包随便拿12564");
-        notices.add("家电五折团，抢十亿无门槛现金红包dddddd");
-        notices.add("星球大战剃须刀首发送200元代金券ddddd");
+        notices.addAll(mymasseg);
+
         noticeView.addNotice(notices);
         noticeView.startFlipping();
+
         //时间
         List<String> notTime = new ArrayList<>();
-        notTime.add("2018-09-25");
-        notTime.add("2013-06-08");
-        notTime.add("2015-05-25");
+        notTime.addAll(mymassegtime);
         noticeTime.addNotice(notTime);
         noticeTime.startFlipping();
     }

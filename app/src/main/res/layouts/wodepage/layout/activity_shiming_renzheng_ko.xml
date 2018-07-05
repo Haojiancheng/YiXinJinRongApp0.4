@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="平台已接入恒丰银行资金管理系统，充值、提"
+        android:text="平台已接入存管银行资金管理系统，充值、提"
         android:textSize="26px"
         android:textColor="#666666"
         android:layout_gravity="center_horizontal"

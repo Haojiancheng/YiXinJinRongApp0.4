@@ -39,6 +39,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
 import com.yixingjjinrong.yixinjinrongapp.wode.shezhi.WoDe_SheZhi;
+import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,7 +54,7 @@ public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
     private Button yonghudengru, chongzhi, tixian;//用户登入跳转按钮,充值，提现
     private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing, lijichujie;//等级、总额、可用余额、我的邀请
-    private ImageView wode_shazhi, wode_chujie, xianjin_juan, jiaxi_juan, touxiang1;//设置，我的出借,现金券，加息卷
+    private ImageView wode_xiaoxi, wode_shazhi, wode_chujie, xianjin_juan, jiaxi_juan, touxiang1;//设置，我的出借,现金券，加息卷
     private int user_id;
     //    private String userToken;
     private String sha1;//SHA1加密
@@ -416,6 +417,14 @@ public class Wode extends Fragment {
                 startActivity(itcz);
             }
         });
+        wode_xiaoxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itcxx = new Intent(getActivity(), WoDe_XiaoXi.class);
+
+                startActivity(itcxx);
+            }
+        });
 
     }
 
@@ -430,7 +439,7 @@ public class Wode extends Fragment {
 //        food.setVisibility(View.VISIBLE);
         yonghudengru = getActivity().findViewById(R.id.yonghudengru);//等入按钮
         yonghudengji = getActivity().findViewById(R.id.wodedengji);//等级
-
+        wode_xiaoxi=getActivity().findViewById(R.id.wode_xiaoxi);//消息
         wozonge = getActivity().findViewById(R.id.wode_zonge);//总额
         myphone = getActivity().findViewById(R.id.myphone);//手机号
         keyongyue = getActivity().findViewById(R.id.keyongyue);//可用余额

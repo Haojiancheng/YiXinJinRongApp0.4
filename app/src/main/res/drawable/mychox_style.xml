@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false"><span style="white-space:pre">	</span>//设置当状态为未点击时的样式
+        <shape> <span style="white-space:pre">				</span>//在shaoe内编写自定义的样式
+            <solid android:color="#ffffff"/>       //填充的颜色
+            <corners android:bottomLeftRadius="2dp"
+                android:bottomRightRadius="2dp"
+                android:topLeftRadius="2dp"
+                android:topRightRadius="2dp" /><span style="white-space:pre">	</span>//边角弧度
+            <stroke android:color="#979797" android:width="5px"/>  //边框设置 color：边框颜色 ， width：边框厚度
+        </shape>
+    </item>
+    <item android:state_pressed="true">         //同理，该处是设置点击状态时的样式
+        <shape>
+            <solid android:color="#f26c24"/>
+            <corners android:bottomLeftRadius="2dp"
+                android:bottomRightRadius="2dp"
+                android:topLeftRadius="2dp"
+                android:topRightRadius="2dp" />
+            <stroke android:color="#000" android:width="5px"/>
+        </shape>
+    </item>
+
+</selector>

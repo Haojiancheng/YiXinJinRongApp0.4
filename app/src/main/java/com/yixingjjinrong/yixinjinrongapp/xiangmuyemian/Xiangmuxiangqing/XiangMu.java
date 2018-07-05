@@ -60,9 +60,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
 
             js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+//            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+//            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -70,13 +70,13 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            Log.e("TAG", ">>>>()base()加密11111!!--" + canshu);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/yxbAppProjectList.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/yxbAppProjectList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -84,18 +84,19 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
             public void onSuccess(String result) {
                 Log.e("TAG", "项目列表GSON>" + result);
                 XiangMu_Gson data = new Gson().fromJson(result, XiangMu_Gson.class);
+
                 list.addAll(data.getResult());
-                adapter = new XiangMu_Adapter(list);
-                Log.e("条目数", ""+list.size());
+                adapter = new XiangMu_Adapter(list,getActivity());
                 xRecyclerView.setAdapter(adapter);
-                int spacingInPixels = 10;
-//                xRecyclerView.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
+
                 adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {
+                        String mtype = String.valueOf(list.get(position).getMortgageType());
                         String xiangmu_id = list.get(position).getBorrowRandomId();
                         Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
                         intent.putExtra("xiangmu_id", xiangmu_id);
+                        intent.putExtra("mortgageType", mtype);
                         Log.e("TASG","项目id:"+xiangmu_id);
                         startActivity(intent);
                     }
@@ -130,7 +131,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         xRecyclerView.setLoadingListener(this);
         xRecyclerView.setPullRefreshEnabled(true);
         xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
-
+        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
 //        adapter=new XiangMu_Adapter(list);
 //        xRecyclerView.setAdapter(adapter);
 //        getHttp();
@@ -138,18 +139,17 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
 
     @Override
     public void onRefresh() {
-        list.clear();
+        adapter.notifyDataSetChanged();
         a=1;
         getHttp();
         xRecyclerView.refreshComplete();
-        adapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onLoadMore() {
         a++;
         getHttp();
-
         xRecyclerView.loadMoreComplete();
     }
 }

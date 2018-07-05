@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.MyAddess;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -35,6 +37,7 @@ public class My_Content extends AutoLayoutActivity {
     private String base1;//Base64加
     private int user_id;
     private String riskType;
+    private ImageView shouhuodi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,13 @@ public class My_Content extends AutoLayoutActivity {
                 }
             });
         }
-
+        shouhuodi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//收货地址
+                Intent intent=new Intent(My_Content.this, MyAddess.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getshimingHTTp() {
@@ -133,6 +142,7 @@ public class My_Content extends AutoLayoutActivity {
 
             }
         });
+
     }
 
     private void getmyconcentid() {
@@ -153,5 +163,6 @@ public class My_Content extends AutoLayoutActivity {
         myphone = findViewById(R.id.myphone1);
         cunguan = findViewById(R.id.cunguan);
         ceping = findViewById(R.id.ceping);
+        shouhuodi=findViewById(R.id.xj31);//收货地址
     }
 }

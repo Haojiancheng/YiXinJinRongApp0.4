@@ -42,16 +42,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Faxian extends Fragment {
-    private TextView pingtaijieshao12,anquanbaozhang,xingxipilu,wangdaiketang,fx_gengduo;
+    private TextView pingtaijieshao12, anquanbaozhang, xingxipilu, wangdaiketang, fx_gengduo;
     private Banner fanxian_banner;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-    
+
     private String picurl;
     private String picpath;
     private RecyclerView myrecview;
     private FaXianBasrAdapter adapter;
-    private List<FaXian_Data.ResultBean.GoodsListBean> list=new ArrayList<>();
+    private List<FaXian_Data.ResultBean.GoodsListBean> list = new ArrayList<>();
 
 
     @Nullable
@@ -67,16 +67,16 @@ public class Faxian extends Fragment {
         getfaxiaid();
 
         getOnClickq();
-        
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         myrecview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-       
+
         gethppt();
     }
 
     private void gethppt() {
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/discoveryIndex.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/discoveryIndex.do");
         params.setAsJsonContent(true);
 //        params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -91,23 +91,23 @@ public class Faxian extends Fragment {
                  * RecyclerView
                  */
                 list.addAll(data.getResult().getGoodsList());
-                adapter=new FaXianBasrAdapter(list,picpath);
+                adapter = new FaXianBasrAdapter(list, picpath);
                 myrecview.setAdapter(adapter);
-                
+
                 adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {
-                        if (list.get(position).getAwardType()==1){
-                            //跳实物
-                            
-                        }else{
-                            //跳兑换券
-                            
-                        }
+                        String awardType = String.valueOf(list.get(position).getAwardType());
+                        //跳实物
+
+
+                        //跳兑换券
+
+
                     }
                 });
-                
-                
+
+
                 Log.e("TAG", "Path:" + paht);
                 for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                     picurl = data.getResult().getBannerList().get(i).getPicurl();
@@ -135,7 +135,7 @@ public class Faxian extends Fragment {
                 fanxian_banner.setImageLoader(new GlideImageloader());
                 fanxian_banner.setImages(list3);
                 fanxian_banner.start();
-               
+
 
             }
 
@@ -155,6 +155,7 @@ public class Faxian extends Fragment {
             }
         });
     }
+
     private class GlideImageloader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
@@ -163,52 +164,53 @@ public class Faxian extends Fragment {
             imageView.setImageURI(uri);
         }
     }
+
     private void getOnClickq() {
         pingtaijieshao12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent itw=new Intent(getActivity(),PingTaJieShao.class);
+                Intent itw = new Intent(getActivity(), PingTaJieShao.class);
                 startActivity(itw);
             }
         });
         anquanbaozhang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(getActivity(), AnQuanBaoZhang.class);
+                Intent it = new Intent(getActivity(), AnQuanBaoZhang.class);
                 startActivity(it);
             }
         });
         xingxipilu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(getActivity(), XinXiPiLu.class);
+                Intent it = new Intent(getActivity(), XinXiPiLu.class);
                 startActivity(it);
             }
         });
         wangdaiketang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(getActivity(), WangDaiKeTang.class);
+                Intent it = new Intent(getActivity(), WangDaiKeTang.class);
                 startActivity(it);
             }
         });
         fx_gengduo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(getActivity(), JiFenDuiHuan.class);
+                Intent it = new Intent(getActivity(), JiFenDuiHuan.class);
                 startActivity(it);
             }
         });
     }
 
     private void getfaxiaid() {
-        pingtaijieshao12=getActivity().findViewById(R.id.pintaijieshao1);
-        anquanbaozhang=getActivity().findViewById(R.id.anquanbaozhang);
-        xingxipilu= getActivity().findViewById(R.id.xinxipilu);
-        wangdaiketang=getActivity().findViewById(R.id.wangdaiketang);
-        fx_gengduo=getActivity().findViewById(R.id.fx_gengduo);
-        myrecview=getActivity().findViewById(R.id.myrecycerview);
+        pingtaijieshao12 = getActivity().findViewById(R.id.pintaijieshao1);
+        anquanbaozhang = getActivity().findViewById(R.id.anquanbaozhang);
+        xingxipilu = getActivity().findViewById(R.id.xinxipilu);
+        wangdaiketang = getActivity().findViewById(R.id.wangdaiketang);
+        fx_gengduo = getActivity().findViewById(R.id.fx_gengduo);
+        myrecview = getActivity().findViewById(R.id.myrecycerview);
     }
 
-    
+
 }

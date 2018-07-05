@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".xiangmuyemian.faxian.twojifen.JIFenJiLu">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/fanhui"
+            android:paddingTop="20px"
+            android:layout_marginLeft="20px"
+            />
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="积分记录"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+    </RelativeLayout>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/jilu_rview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+</com.zhy.autolayout.AutoLinearLayout>

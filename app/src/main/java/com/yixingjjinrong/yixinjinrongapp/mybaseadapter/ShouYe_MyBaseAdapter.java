@@ -77,7 +77,9 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                 String xiangmu_id = list.get(position).getBorrowRandomId();
                 Log.e("TAG","+.."+xiangmu_id);
                 Intent it = new Intent(context, XiangMuXiangQing.class);
+                String mortgageType = list.get(position).getMortgageType();
                 it.putExtra("xiangmu_id", xiangmu_id);
+                it.putExtra("mortgageType", mortgageType);
                 context.startActivity(it);
             }
         });

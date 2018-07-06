@@ -70,7 +70,8 @@
         <activity android:name=".xiangmuyemian.faxian.goodsmassing.ShangPinXiangQing" />
         <activity android:name=".wode.mycontent.addess.MyAddess" />
         <activity android:name=".wode.mycontent.addess.UpData_Addass" />
-        <activity android:name=".wode.mycontent.addess.AddAddass"></activity>
+        <activity android:name=".wode.mycontent.addess.AddAddass" />
+        <activity android:name=".wode.h5.ZhuCeH5"></activity>
     </application>
 
 </manifest>

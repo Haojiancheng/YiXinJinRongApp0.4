@@ -464,7 +464,7 @@
                 <a href="javascript:void(0);" class="jion">完成评测</a>
             </div>
             <div class="buon4" id="las">
-                <a href="riskIndex.do">重新测评</a>
+                <a >重新测评</a>
             </div>
             <p class="fxts">当产品安全等级超出借人风险承受能力时，页面将提示风险，出借人确认风险后可以进行出借。 (您今年还可以评测<em>4</em>次)</p>
         </div>
@@ -533,6 +533,10 @@
     var userIdString = "";
     function sendKey(userId) {
         userIdString = userId;
+    }
+    var yxb_http = "";
+    function getYXBIP(yxb_http) {
+        yxb_http = yxb_http;
     }
     var flag_success = false;
     $(function () {
@@ -673,16 +677,15 @@
             param["paramMap.attention"] = t11;
             param["paramMap.mark"] = t12;
             param["paramMap.userCount"] = count8;
-
+            
             param["paramMap.userId"] = userIdString;
             if (t1 && t2 && t3 && t4 && t5 && t6 && t7 && t8 && t9 && t10 && t11 && t12) {
-
               $.ajax({
                      type : "post",
-                     url : "http://192.168.1.84:8080/yxb_mobile/yxbApp/addUserInvestigation.do",
+                     url : "http://192.168.1.120:8080/yxb_mobile/yxbApp/addUserInvestigation.do",
                      dataType : "jsonp",//数据类型为jsonp
                      jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
-                     data: {"name":"111","city"="2222"},
+                     data: param,
                      success : function(data){
                      if (data.result > 0) {
                      flag_success = true;
@@ -806,14 +809,18 @@
         return false
     });
                             
-    $("#las a").click(function(){
-         window.webkit.messageHandlers.restart.postMessage(null);
-         return false
-    });
+
     $("#backBtn01").click(function(){
         window.webkit.messageHandlers.popToVC.postMessage(null);
         return false
-    })
+    });
+    $("#las a").click(function(){
+                      $("#t1").show();
+                      $("#t2,#t3").hide();
+                      $(".bulletin-header").removeClass("onlybackheader");
+                      mySwiper.slideTo( 0, 0);
+                      $(".input input").removeAttr("checked");
+                      });
 
 </script>
 </body>

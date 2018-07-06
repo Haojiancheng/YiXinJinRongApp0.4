@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -15,6 +16,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengShouJiHao_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -24,25 +26,44 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 public class ZhuCe_PaGa extends AutoLayoutActivity {
-    private ImageView zhuce_fanhui,zhuceqingchu;//返回按钮,清除手机号
+    private ImageView zhuce_fanhui, zhuceqingchu;//返回按钮,清除手机号
     private Button zhuce_xiayibu;//下一步跳转
     private EditText zhucephone;//需要注册的手机号
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private String myphone;
     private String phonezhuangtai;
+    private TextView zz_h5,zz_dr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhuce__pa_ga);
         getzhuce_pagerId();
-        
+
         getZhuCeOnClik();
     }
 
 
     private void getZhuCeOnClik() {
+        zz_dr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(ZhuCe_PaGa.this,WoDe_DengRu.class);
+                startActivity(it);
+                finish();
+            }
+        });
+        zz_h5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent zhuce_page = new Intent(ZhuCe_PaGa.this, ZhuCeH5.class);
+
+                startActivity(zhuce_page);
+            }
+        });
+
+
         zhuce_fanhui.setOnClickListener(new View.OnClickListener() {//返回按钮
             @Override
             public void onClick(View v) {
@@ -53,12 +74,12 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 myphone = zhucephone.getText().toString();
-                if (myphone.length()<11){
+                if (myphone.length() < 11) {
                     Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
-                }else if (myphone.length()>11){
+                } else if (myphone.length() > 11) {
                     Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
-                }else {
-                    
+                } else {
+
                     if (myphone.isEmpty()) {
                         Toast.makeText(ZhuCe_PaGa.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
                     } else {
@@ -79,8 +100,9 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 zhucephone.setText("");
             }
         });
-        
+
     }
+
     private void getHttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
@@ -101,21 +123,21 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/PhoneVerify.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/PhoneVerify.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", "Gson:" + result);
-                YanZhengShouJiHao_Data data=new Gson().fromJson(result,YanZhengShouJiHao_Data.class);
+                YanZhengShouJiHao_Data data = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
                 phonezhuangtai = data.getResult().getMapPhone();
-                if (phonezhuangtai.equals("1")){
-                    Intent zhuce_page=new Intent(ZhuCe_PaGa.this,YanZheng_PaGa.class);
-                    zhuce_page.putExtra("user_Phone",zhucephone.getText().toString());
+                if (phonezhuangtai.equals("1")) {
+                    Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
+                    zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
                     startActivity(zhuce_page);
                     finish();
-                }else {
+                } else {
                     Toast.makeText(ZhuCe_PaGa.this, "该手机号已注册，请登入", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -135,13 +157,15 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
 
             }
         });
-        
+
     }
 
     private void getzhuce_pagerId() {
-        zhuce_fanhui=findViewById(R.id.zhucefanhui);
-        zhuce_xiayibu=findViewById(R.id.zhuce_xiayibu);
-        zhucephone=findViewById(R.id.zucePhone);//需要注册的手机号
-        zhuceqingchu=findViewById(R.id.zhuce_qingchu);//清除手机号
+        zhuce_fanhui = findViewById(R.id.zhucefanhui);
+        zhuce_xiayibu = findViewById(R.id.zhuce_xiayibu);
+        zhucephone = findViewById(R.id.zucePhone);//需要注册的手机号
+        zhuceqingchu = findViewById(R.id.zhuce_qingchu);//清除手机号
+        zz_h5 = findViewById(R.id.zz_h5);
+        zz_dr=findViewById(R.id.zz_dr);
     }
 }

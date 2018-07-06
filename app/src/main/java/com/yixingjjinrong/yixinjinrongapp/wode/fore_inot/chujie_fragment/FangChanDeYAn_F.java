@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
@@ -19,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.FangChanDiYa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Fangchandiya_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -32,21 +35,20 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FangChanDeYAn_F extends Fragment {
+public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingListener{
     private String sha1;//SHA1加密
     private String base1;//Base64加密
-    private RecyclerView rview_fcdy;
+    private XRecyclerView rview_fcdy;
     private List<FangChanDiYa_Gson.InvestListBean> list=new ArrayList<>();
     private Fangchandiya_adapter adapter;
-
+    private int a=1;
     private int user_id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fangchandiyan_f, container, false);
-        EventBus.getDefault().register(this);//注册
-        return view;
+         return view;
     }
 
     @Override
@@ -54,31 +56,35 @@ public class FangChanDeYAn_F extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         getfcdy_id();
+        getHttp();
 
     }
 
     private void getfcdy_id() {
+        user_id = (int) SPUtils.get(getActivity(),"userId",0);
         rview_fcdy=getActivity().findViewById(R.id.fangchan_diya_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         rview_fcdy.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rview_fcdy.setLoadingListener(this);
+        rview_fcdy.setPullRefreshEnabled(true);
+        rview_fcdy.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        rview_fcdy.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void myMethoeed(User_id event) {
 
-        user_id = event.getUser_id();
-//        userToken = event.getUserToken();
-        getHttp();
 
-    }
+
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
             js_request.put("borrowStatus", 1);
+            js_request.put("pageNumber", a);
+            js_request.put("guaranteeType", 0);
+            Log.e("我的出借房产表参数：",""+js_request );
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -90,7 +96,7 @@ public class FangChanDeYAn_F extends Fragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-
+            Log.e("我的出借房产表加密：",""+canshu );
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -129,6 +135,20 @@ public class FangChanDeYAn_F extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);//反注册
+    }
+
+    @Override
+    public void onRefresh() {
+        adapter.notifyDataSetChanged();
+        a=1;
+        getHttp();
+        rview_fcdy.refreshComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        a++;
+        getHttp();
+        rview_fcdy.loadMoreComplete();
     }
 }

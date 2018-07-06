@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".wode.h5.ZhuCeH5">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="128px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/fanhui"
+            android:paddingTop="20px"
+            android:layout_marginLeft="20px"
+            />
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="注册协议"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/zuce1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

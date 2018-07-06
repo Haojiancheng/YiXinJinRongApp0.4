@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.CarDeYAn_F;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.FangChanDeYAn_F;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -18,7 +19,8 @@ public class WoDe_ChuJie extends AutoLayoutActivity {
     private TabLayout tabLayout;
     private ArrayList<Fragment> list_fragment = new ArrayList<>();//定义要装fragment的列表
     private ArrayList<String> list_title = new ArrayList<>();  //定义要装fragment的列表
-    private FangChanDeYAn_F mfangchandiya;               //出借记录 fragment
+    private FangChanDeYAn_F mfangchandiya;               //房产出借记录 fragment
+    private CarDeYAn_F mcar;                             //车辆记录 fragment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,12 @@ public class WoDe_ChuJie extends AutoLayoutActivity {
         viewPager = findViewById(R.id.chujie_vp);
         tabLayout = findViewById(R.id.chujie_tab);
         mfangchandiya = new FangChanDeYAn_F();
+        mcar=new CarDeYAn_F();
         list_fragment.add(mfangchandiya);
-
+         list_fragment.add(mcar);
 
         list_title.add("房产抵押");
-
+        list_title.add("车辆抵押");
 
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this, list_fragment, list_title);
         viewPager.setAdapter(pagerAdapter);

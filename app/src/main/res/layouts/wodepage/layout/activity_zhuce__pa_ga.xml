@@ -97,6 +97,7 @@
             android:textSize="28px" />
 
         <TextView
+            android:id="@+id/zz_h5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《注册协议》"
@@ -128,6 +129,7 @@
             android:text="已有账号，" />
 
         <TextView
+            android:id="@+id/zz_dr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即登入"

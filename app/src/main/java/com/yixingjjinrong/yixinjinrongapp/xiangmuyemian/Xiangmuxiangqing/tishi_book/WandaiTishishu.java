@@ -3,6 +3,7 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -41,5 +42,10 @@ public class WandaiTishishu extends AutoLayoutActivity {
                 finish();
             }
         });
+    }
+
+    @JavascriptInterface
+    public void back() {
+        finish();
     }
 }

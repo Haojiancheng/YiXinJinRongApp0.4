@@ -177,6 +177,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                     if (message.equals("登录成功")) {
                         EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id));
                         EventBus.getDefault().post(new User_id(user_id));
+                        SPUtils.put(WoDe_DengRu.this,"isLogin",true);
                         finish();
                     }else {
                         Toast.makeText(WoDe_DengRu.this, ""+message.toString(), Toast.LENGTH_SHORT).show();

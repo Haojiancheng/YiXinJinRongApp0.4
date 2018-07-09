@@ -23,7 +23,7 @@
                 android:layout_height="38px"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="14px"
                 android:src="@drawable/fanhui" />
 
             <TextView
@@ -122,9 +122,9 @@
 
             <ToggleButton
                 android:id="@+id/dr_togglePwd"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_marginRight="30px"
                 android:background="@drawable/buxianshi"
                 android:textOff=""
                 android:textOn="" />
@@ -181,7 +181,7 @@
         android:layout_height="50px"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="20px"
         android:orientation="horizontal"
         android:gravity="center"
         >

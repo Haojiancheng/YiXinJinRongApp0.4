@@ -75,8 +75,10 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                     holder.chujie.setText(list.get(position).getBorrowStatusStr());
                     holder.chujie.setTextColor(Color.parseColor("#fe6623"));
                     holder.chujie.setBackgroundResource(R.drawable.bt_biankuang);
+                    holder.chujie.setClickable(false);
                 }else {//可出借
                     holder.chujie.setText(list.get(position).getBorrowStatusStr());
+                    holder.chujie.setBackgroundResource(R.drawable.bt_shape);
                     holder.chujie.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -91,16 +93,19 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_huise);
+                holder.chujie.setClickable(false);
                 break;
             case 4://回款中
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_huise);
+                holder.chujie.setClickable(false);
                 break;
             case 5://回款完成
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_shenhuise);
+                holder.chujie.setClickable(false);
                 break;
         }
 

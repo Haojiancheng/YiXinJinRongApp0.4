@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.UnLogin;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
@@ -119,6 +120,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
                 SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
+//                EventBus.getDefault().post(new UnLogin());
                 finish();
             }
 

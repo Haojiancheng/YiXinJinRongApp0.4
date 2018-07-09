@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.Myuser_id;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.UnLogin;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
@@ -93,7 +94,8 @@ public class Wode extends Fragment {
         });
 
     }
-
+    
+    
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void myMethod(User_data event) {
         user_id = event.getUser_id();
@@ -118,7 +120,7 @@ public class Wode extends Fragment {
         final String token = userToken;
         try {
             js_request.put("userId", user_id);
-            js_request.put("Token", token);
+            js_request.put("url", token);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -146,6 +148,7 @@ public class Wode extends Fragment {
                 phone = data.getUserMap().getPhone();
                 myphone.setText(phone);//手机号
                 String zhuangtaima = data.getState();
+//                Log.e("state",zhuangtaima);
                 if (zhuangtaima.equals("success")) {
                     weidengru.setVisibility(View.GONE); //显示布局
                     dengru.setVisibility(View.VISIBLE);//影藏布局
@@ -219,7 +222,8 @@ public class Wode extends Fragment {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                weidengru.setVisibility(View.VISIBLE); //显示布局
+                dengru.setVisibility(View.GONE);//影藏布局
             }
 
             @Override
@@ -458,6 +462,11 @@ public class Wode extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        boolean isLogin= (boolean) SPUtils.get(getActivity(),"isLogin",false);
+        if (isLogin==false){
+            userToken="";
+            getHttp();
+        }
     }
 
     @Override

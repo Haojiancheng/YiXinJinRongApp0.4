@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -43,5 +44,9 @@ public class FengXianPingCe extends AutoLayoutActivity {
         pc_web.loadUrl("file:///android_asset/index.html");
 
         pc_web.setWebChromeClient(new WebChromeClient());
+    }
+    @JavascriptInterface
+    public int putUserId() {
+        return user_ird;
     }
 }

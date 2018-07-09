@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -18,7 +20,9 @@ import java.util.List;
 
 public class ShouYe_MyBaseAdapter extends BaseAdapter {
     private Context context;
-    private List<ShouYe_Gson.ResultBean.BorrowListBean> list=new ArrayList<>();
+    private List<ShouYe_Gson.ResultBean.BorrowListBean> list;
+    private static final int TYPE_0 = 0;
+    private static final int TYPE_1 = 1;
 
     public ShouYe_MyBaseAdapter(Context context, List<ShouYe_Gson.ResultBean.BorrowListBean> list) {
         this.context = context;
@@ -27,7 +31,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return list.size();
+        return 3;
     }
 
     @Override
@@ -42,52 +46,175 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViweHolder holder=null;
-        if (convertView==null){
-            holder=new ViweHolder();
-            convertView=View.inflate(context, R.layout.fangchanxiangmu_itme_jia,null);
-            holder.xiangmu_name=convertView.findViewById(R.id.xiangmu_name);
-            holder.xiangmu_code=convertView.findViewById(R.id.xiangmu_code);
-            holder.years_lilv=convertView.findViewById(R.id.years_lilv);
-            holder.jiahao=convertView.findViewById(R.id.jiahao);
-            holder.fujia_lilv=convertView.findViewById(R.id.fujia_lilv);
-            holder.fujia_jiahao=convertView.findViewById(R.id.fujia_jiahao);
-            holder.qixian=convertView.findViewById(R.id.qixian);
-            holder.chujie=convertView.findViewById(R.id.chujie);
-            convertView.setTag(holder);
-        }else {
-            holder= (ViweHolder) convertView.getTag();
+//        ViweHolder holder=null;
+//        if (convertView==null){
+//            holder=new ViweHolder();
+//            convertView=View.inflate(context, R.layout.fangchanxiangmu_itme_jia,null);
+//            holder.xiangmu_name=convertView.findViewById(R.id.xiangmu_name);
+//            holder.xiangmu_code=convertView.findViewById(R.id.xiangmu_code);
+//            holder.years_lilv=convertView.findViewById(R.id.years_lilv);
+//            holder.jiahao=convertView.findViewById(R.id.jiahao);
+//            holder.fujia_lilv=convertView.findViewById(R.id.fujia_lilv);
+//            holder.fujia_jiahao=convertView.findViewById(R.id.fujia_jiahao);
+//            holder.qixian=convertView.findViewById(R.id.qixian);
+//            holder.chujie=convertView.findViewById(R.id.chujie);
+//            convertView.setTag(holder);
+//        }else {
+//            holder= (ViweHolder) convertView.getTag();
+//        }
+//        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
+//        holder.xiangmu_code.setText(list.get(position).getBorrowCode());
+//        holder.years_lilv.setText((int) list.get(position).getSubsidies()+"");
+//        if(list.get(position).getSubsidiesRate()==0){
+//            holder.fujia_lilv.setText("");
+//            holder.fujia_jiahao.setText("");
+//            holder.jiahao.setText("");
+//        }else {
+//            holder.fujia_lilv.setText(list.get(position).getSubsidiesRate()+"");
+//            holder.fujia_jiahao.setText("%");
+//            holder.jiahao.setText("+");
+//        }
+//        holder.qixian.setText(list.get(position).getDeadlineNew());
+//        holder.chujie.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String xiangmu_id = list.get(position).getBorrowRandomId();
+//                Log.e("TAG","+.."+xiangmu_id);
+//                Intent it = new Intent(context, XiangMuXiangQing.class);
+//                String mortgageType = list.get(position).getMortgageType();
+//                it.putExtra("xiangmu_id", xiangmu_id);
+//                it.putExtra("mortgageType", mortgageType);
+//                context.startActivity(it);
+//            }
+//        });
+//        
+//        return convertView;
+        //得到指定条目的布局类型
+        int type = getItemViewType(position);
+        ViewHolder1 holder1 = null;
+        ViewHolder2 holder2 = null;
+        switch (type) {
+            case 0:
+                if (convertView == null) {
+                    convertView = View.inflate(context, R.layout.shouyefirst_itme, null);
+                    holder1=new ViewHolder1();
+                    holder1.first_name = convertView.findViewById(R.id.first_name);
+                    holder1.first_lv = convertView.findViewById(R.id.first_lv);
+                    holder1.first_jia = convertView.findViewById(R.id.first_jia);
+                    holder1.first_fujialv = convertView.findViewById(R.id.first_fujialv);
+                    holder1.first_fujiabai = convertView.findViewById(R.id.first_fujiabai);
+                    holder1.first_qixian = convertView.findViewById(R.id.first_qixian);
+                    holder1.first_chujie = convertView.findViewById(R.id.first_chujie);
+                    convertView.setTag(holder1);
+                } else {
+                    holder1 = (ViewHolder1) convertView.getTag();
+                }
+
+                break;
+            case 1:
+                if (convertView == null) {
+                    convertView = View.inflate(context, R.layout.fangchanxiangmu_itme_jia, null);
+                    holder2=new ViewHolder2();
+                    holder2.xiangmu_name = convertView.findViewById(R.id.xiangmu_name);
+                    holder2.xiangmu_code = convertView.findViewById(R.id.xiangmu_code);
+                    holder2.years_lilv = convertView.findViewById(R.id.years_lilv);
+                    holder2.jiahao = convertView.findViewById(R.id.jiahao);
+                    holder2.fujia_lilv = convertView.findViewById(R.id.fujia_lilv);
+                    holder2.fujia_jiahao = convertView.findViewById(R.id.fujia_jiahao);
+                    holder2.qixian = convertView.findViewById(R.id.qixian);
+                    holder2.chujie = convertView.findViewById(R.id.chujie);
+                    convertView.setTag(holder2);
+                } else {
+                    holder2 = (ViewHolder2) convertView.getTag();
+                }
+
+                break;
         }
-        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
-        holder.xiangmu_code.setText(list.get(position).getBorrowCode());
-        holder.years_lilv.setText((int) list.get(position).getSubsidies()+"");
-        if(list.get(position).getSubsidiesRate()==0){
-            holder.fujia_lilv.setText("");
-            holder.fujia_jiahao.setText("");
-            holder.jiahao.setText("");
-        }else {
-            holder.fujia_lilv.setText(list.get(position).getSubsidiesRate()+"");
-            holder.fujia_jiahao.setText("%");
-            holder.jiahao.setText("+");
+        switch (type) {
+            case 0:
+                holder1.first_name.setText(list.get(position).getBorrowTitle()+"   "+list.get(position).getBorrowCode());
+                holder1.first_lv.setText((int) list.get(position).getSubsidies() + "");
+                if (list.get(position).getSubsidiesRate() == 0) {
+                    holder1.first_fujialv.setText("");
+                    holder1.first_jia.setText("");
+                    holder1.first_fujiabai.setText("");
+                } else {
+                    holder1.first_fujialv.setText(list.get(position).getSubsidiesRate() + "");
+                    holder1.first_fujiabai.setText("%");
+                    holder1.first_jia.setText("+");
+                }
+                holder1.first_qixian.setText(list.get(position).getDeadlineNew());
+                holder1.first_chujie.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String xiangmu_id = list.get(position).getBorrowRandomId();
+                        Log.e("TAG", "+.." + xiangmu_id);
+                        Intent it = new Intent(context, XiangMuXiangQing.class);
+                        String mortgageType = list.get(position).getMortgageType();
+                        it.putExtra("xiangmu_id", xiangmu_id);
+                        it.putExtra("mortgageType", mortgageType);
+                        context.startActivity(it);
+                    }
+                });
+                break;
+            case 1:
+                holder2.xiangmu_name.setText(list.get(position).getBorrowTitle());
+                holder2.xiangmu_code.setText(list.get(position).getBorrowCode());
+                holder2.years_lilv.setText((int) list.get(position).getSubsidies() + "");
+                if (list.get(position).getSubsidiesRate() == 0) {
+                    holder2.fujia_lilv.setText("");
+                    holder2.fujia_jiahao.setText("");
+                    holder2.jiahao.setText("");
+                } else {
+                    holder2.fujia_lilv.setText(list.get(position).getSubsidiesRate() + "");
+                    holder2.fujia_jiahao.setText("%");
+                    holder2.jiahao.setText("+");
+                }
+                holder2.qixian.setText(list.get(position).getDeadlineNew());
+                holder2.chujie.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String xiangmu_id = list.get(position).getBorrowRandomId();
+                        Log.e("TAG", "+.." + xiangmu_id);
+                        Intent it = new Intent(context, XiangMuXiangQing.class);
+                        String mortgageType = list.get(position).getMortgageType();
+                        it.putExtra("xiangmu_id", xiangmu_id);
+                        it.putExtra("mortgageType", mortgageType);
+                        context.startActivity(it);
+                    }
+                });
+                break;
         }
-        holder.qixian.setText(list.get(position).getDeadlineNew());
-        holder.chujie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String xiangmu_id = list.get(position).getBorrowRandomId();
-                Log.e("TAG","+.."+xiangmu_id);
-                Intent it = new Intent(context, XiangMuXiangQing.class);
-                String mortgageType = list.get(position).getMortgageType();
-                it.putExtra("xiangmu_id", xiangmu_id);
-                it.putExtra("mortgageType", mortgageType);
-                context.startActivity(it);
-            }
-        });
-        
         return convertView;
     }
-    public class ViweHolder{
-        TextView xiangmu_name,xiangmu_code,years_lilv,jiahao,fujia_lilv,fujia_jiahao,qixian;
+
+    class ViewHolder1 {
+        TextView first_name,first_lv,first_jia,first_fujialv,first_fujiabai,first_qixian,first_yue;
+        Button first_chujie;
+    }
+
+    class ViewHolder2 {
+        TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian;
         Button chujie;
+    }
+//    public class ViweHolder{
+//        TextView xiangmu_name,xiangmu_code,years_lilv,jiahao,fujia_lilv,fujia_jiahao,qixian;
+//        Button chujie;
+//    }
+
+    @Override
+    public int getItemViewType(int position) {
+        //得到某个条目的类型
+        if (position == 0) {
+            return TYPE_0;
+        } else {
+            return TYPE_1;
+        }
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        //指定你要在这个当前这个ListView显示几种类型的条目
+        return 2;
     }
 }

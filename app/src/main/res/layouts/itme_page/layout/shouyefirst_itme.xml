@@ -91,14 +91,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50px"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="30px"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="64px"
+                android:layout_marginLeft="30px"
                 android:src="@drawable/qixian" />
 
             <TextView
@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18px"
-                android:text="1,000,000.00元"
+                android:text=""
                 android:textColor="#333333"
                 android:textSize="34px" />
         </LinearLayout>

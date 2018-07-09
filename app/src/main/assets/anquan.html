@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+        }
+        #anquan{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            /*background: #ffffff;*/
+            color: #333333;
+            /*width: 100%;*/
+            /*-webkit-box-sizing: border-box;*/
+            /*-moz-box-sizing: border-box;*/
+            /*box-sizing: border-box;*/
+        }
+        #anquan-header{
+            width: 100%;
+            height:0.88rem;
+            line-height: 0.88rem;
+            color: #333;
+            font-size: 0.31rem;
+            z-index: 999;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+
+        }
+        .goback{
+            width: 0.22rem;
+            height: 0.38rem;
+            overflow: hidden;
+            position: absolute;
+            background-image: url(./img/arrows.png);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+
+        }
+        .icon-goback {
+            top: 0.24rem;
+            left: 0.3rem;
+        }
+        /*内容*/
+        .anquan-content{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0.88rem;
+            overflow: auto;
+        }
+        /*多重安全保障*/
+        .anquan-content .content-guarantee{}
+        .anquan-content .content-guarantee img{
+            display:block;
+            width: 100%;
+        }
+        /*恒丰银行资金存管*/
+        .anquan-content .content-deposit{
+            padding: 0 0.5rem;
+        }
+        .anquan-content .content-deposit .deposit-title{
+            font-size: 0.35rem;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 0.39rem;
+            margin-bottom: 0.3rem;
+        }
+        .anquan-content .content-deposit .deposit-details{
+            font-size: 0.25rem;
+            line-height: 0.44rem;
+            background-color: #f3fbff;
+            padding:0.03rem 0.26rem 0.13rem 0.24rem;
+            box-shadow:0.03rem 0.02rem 0.04rem #e7f1fc;
+            margin-bottom: 0.2rem;
+            color: #666666;
+        }
+        .anquan-content .content-deposit div img{
+            display:block;
+            width: 6.5rem;
+            height: 5.1rem;
+            margin:0 auto;
+            padding-bottom: 0.39rem;
+        }
+            /*甄选优质资产*/
+        .anquan-content .content-asset{
+            padding:0 0.5rem;
+            background-color: #f5f5f5;
+            height: 24rem;
+        }
+        .anquan-content .content-asset .asset-title{
+            font-size: 0.35rem;
+            text-align: center;
+            font-weight: bold;
+            padding-top: 0.74rem;
+            margin-bottom: 0.3rem;
+            letter-spacing:0.01rem;
+        }
+        .anquan-content .content-asset img{
+            display: block;
+            width: 2.08rem;
+            height: 2.03rem;
+            margin: 0 auto;
+
+        }
+        /*贷前审查*/
+        .anquan-content .content-asset .asset-examine{
+            width: 100%;
+            height: 9.8rem;
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+        .anquan-content .content-asset .asset-examine .examine-subtitle{
+            padding-top: 0.41rem;
+            padding-bottom: 0.35rem;
+
+        }
+        .anquan-content .content-asset .asset-examine .examine-subtitle .subtitle-t{
+            font-size: 0.27rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333333;
+            padding-bottom: 0.1rem;
+            letter-spacing:0.02rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-subtitle .subtitle-b{
+            /*padding-top: 0.1rem;*/
+            width: 0.26rem;
+            height: 0.02rem;
+            background: #fe6623;
+            margin: 0 auto;
+        }
+
+        .anquan-content .content-asset .asset-examine img{
+            width: 0.9rem;
+            height: 0.9rem;
+            padding-bottom: 0.3rem;
+            padding-top: 0.3rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-one{
+            border:0.01rem solid #dadada;
+            /*width: 3.08rem;*/
+            height: 4.18rem;
+            width: 42%;
+            padding-right: 0.19rem;
+            padding-left: 0.19rem;
+            float: left;
+            /*margin-right: 0.29rem;*/
+            border-radius: 4%;
+            margin-bottom: 0.18rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-one .one-title{
+            font-size: 0.27rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding-bottom: 0.19rem;
+            letter-spacing:0.04rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-one .one-details{
+            font-size: 0.23rem;
+            color: #666;
+            line-height: 0.4rem;
+            letter-spacing:0.05rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-two{
+            border:0.01rem solid #dadada;
+            /*width: 3.08rem;*/
+            height: 4.18rem;
+            width: 42%;
+            padding-right: 0.19rem;
+            padding-left: 0.19rem;
+            float: right;
+            border-radius: 4%;
+            margin-bottom: 0.18rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-two .two-title{
+            font-size: 0.27rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding-bottom: 0.19rem;
+            letter-spacing:0.04rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-two .two-details{
+            font-size: 0.23rem;
+            color: #666;
+            line-height: 0.4rem;
+            letter-spacing:0.05rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-three{
+            border:0.01rem solid #dadada;
+            /*width: 3.08rem;*/
+            height: 4.18rem;
+            width: 42%;
+            padding-right: 0.19rem;
+            padding-left: 0.19rem;
+            float: left;
+            /*margin-right: 0.29rem;*/
+            border-radius: 4%;
+        }
+        .anquan-content .content-asset .asset-examine .examine-three .three-title{
+            font-size: 0.27rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding-bottom: 0.19rem;
+            letter-spacing:0.04rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-three .three-details{
+            font-size: 0.23rem;
+            color: #666;
+            line-height: 0.4rem;
+            letter-spacing:0.05rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-four{
+            border:0.01rem solid #dadada;
+            /*width: 3.08rem;*/
+            height: 4.18rem;
+            width: 42%;
+            padding-right: 0.19rem;
+            padding-left: 0.19rem;
+            float: right;
+            border-radius: 4%;
+        }
+        .anquan-content .content-asset .asset-examine .examine-four .four-title{
+            font-size: 0.27rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding-bottom: 0.19rem;
+            letter-spacing:0.04rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-four .four-details{
+            font-size: 0.23rem;
+            color: #666;
+            line-height: 0.4rem;
+            letter-spacing:0.05rem;
+        }
+        /*贷中管理*/
+        .anquan-content .content-asset .asset-manage{
+
+        }
+        .anquan-content .content-asset .manage-subtitle{
+
+            padding-bottom: 0.35rem;
+        }
+        .anquan-content .content-asset .manage-subtitle .subtitle-t{
+            font-size: 0.27rem;
+            font-weight: bold;
+            text-align: center;
+            color: #333333;
+            padding-bottom: 0.1rem;
+            letter-spacing:0.02rem;
+            margin-top: 0.41rem;
+        }
+        .anquan-content .content-asset .manage-subtitle .subtitle-b{
+            /*padding-top: 0.1rem;*/
+            width: 0.26rem;
+            height: 0.02rem;
+            background: #fe6623;
+            margin: 0 auto;
+        }
+        .anquan-content .content-asset .manage-flow img{
+            display: block;
+            width: 6.5rem;
+            height: 6.76rem;
+            margin: 0 auto;
+        }
+        .anquan-content .content-asset .manage-refund img{
+            display: block;
+            width: 6.5rem;
+            height: 1.68rem;
+            margin: 0 auto;
+            padding-top: 0.52rem;
+        }
+            /*信息数据安全*/
+        .anquan-content .content-data{
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .anquan-content .content-data .data-title{
+            font-size: 0.35rem;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 0.41rem;
+        }
+        .anquan-content .content-data .data-computer img{
+            display: block;
+            padding-bottom: 0.35rem;
+            padding-top: 0.32rem;
+            width: 2.06rem;
+            height: 2.06rem;
+            margin: 0 auto;
+        }
+        .anquan-content .content-data .data-safety{
+            margin-bottom: 0.41rem;
+        }
+        .anquan-content .content-data .data-safety .safety-subtitle{
+            font-size: 0.27rem;
+            text-align: center;      
+            font-weight: bold;
+            padding-bottom: 0.3rem;
+            letter-spacing:0.01rem;
+        }
+        .anquan-content .content-data .data-safety .safety-details{
+            font-size: 0.25rem;
+            color: #747474;
+            line-height: 0.41rem;
+            letter-spacing:0.02rem;
+
+        }
+    </style>
+</head>
+<body>
+<div id="anquan">
+    <header id="anquan-header"style="display:block;">
+        <span class="goback icon-goback" onclick="backNactive()"></span>
+        <span class="txt-header">安全保障</span>
+    </header>
+    <section class="anquan-content">             
+        <!-- 多重安全保障-->
+        <div class="content-guarantee">
+            <img src="./img/guarantee.jpg" alt=""/>
+        </div>
+        <!-- 恒丰银行资金存管-->
+        <div class="content-deposit">
+            <p class="deposit-title">银行存管存管</p>
+            <p class="deposit-details">亿信宝于2017年8月15日全量业务上线资金存管系统，亿信宝所有用户的账户信息和资金全部迁移至银行存管系统每一位用户在银行存管系统内拥有一个专属的资金管理账户，实现了用户资金、平台资金的分账户管理，资金流向更加透明、合规，资金安全性得到进一步提升。</p>
+            <div>
+                <img src="./img/relation.png" alt=""/>
+            </div>
+        </div>
+        <!-- 甄选优质资产-->
+        <div class="content-asset">
+            <p class="asset-title"><span style="padding-right:0.16rem;">专业风控管理</span><span>甄选优质资产</span></p>
+            <img src="./img/shield.jpg" alt=""/>
+            <!-- 贷前审查-->
+            <div class="asset-examine">
+                <div class="examine-subtitle"><p class="subtitle-t">贷前审查</p><p class="subtitle-b"></p></div>
+                <div class="examine-one">
+                    <img src="./img/trade.jpg" alt=""/>
+                    <p class="one-title">准入群体过滤</p>
+                    <p class="one-details">制定借款人准入细则,严格执行准入细则,对借款人资质进行审核,确保借款人有稳定、可信的还款能力。</p>
+                </div>
+                <div class="examine-two">
+                    <img src="./img/group.jpg" alt=""/>
+                    <p class="two-title">准入群体过滤</p>
+                    <p class="two-details">制定高危行业准入标准,管理划分借款用户行业群体,过滤进入标准以下的行业。</p>
+                </div>
+                <div class="examine-three">
+                    <img src="./img/pledge.jpg" alt=""/>
+                    <p class="three-title">抵押资产评估</p>
+                    <p class="three-details">专业团队对抵押资产评估，对资产及参与主体进行核查，核查抵押登记手续，保证项目信息真实有效。</p>
+                </div>
+                <div class="examine-four">
+                    <img src="./img/items.jpg" alt=""/>
+                    <p class="four-title">项目材料多级审查</p>
+                    <p class="four-details">专业风控团队跟进，必备项目材料逐一审查、归类整理并归档，全方位覆盖风险点。</p>
+                </div>
+            </div>
+
+            <!-- 贷中管理-->
+            <div class="asset-manage">
+                <div class="manage-subtitle"><p class="subtitle-t">贷中管理</p><p class="subtitle-b"></p></div>
+                <div class="manage-flow">
+                    <img src="./img/flow.jpg" alt=""/>
+                </div>
+                <div class="manage-refund">
+                    <img src="./img/refund.jpg" alt=""/>
+                </div>
+            </div>
+        </div>
+
+        <!-- 信息数据安全-->
+        <div class="content-data">
+            <p class="data-title">
+                信息数据安全
+            </p>
+            <div class="data-computer">
+                <img src="./img/computer.jpg" alt=""/>
+            </div>
+            <div class="data-safety">
+                <p class="safety-subtitle">信息安全</p>
+                <p class="safety-details">获国家信息系统安全等级保护三级备案证明，信息安全达非银机构最高级别。</p>
+            </div>
+            <div class="data-safety">
+                <p class="safety-subtitle">数据安全</p>
+                <p class="safety-details">由全球领先的云计算厂商阿里云提供金融云服务，采用多地域分布式部署的方式，确保用户信息数据安全。</p>
+            </div>
+            <div class="data-safety">
+                <p class="safety-subtitle">安全防护</p>
+                <p class="safety-details">采用企业级抗DDOS防火墙、WEB防火墙、入侵检测系统、行业领导企业的SSL证书、国际通用的RSA非对称加密法等多种安全防护设备和技术手段保障用户的个人信息和账户信息安全。</p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+<script>
+    function backNactive(){
+        back();
+    }
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=750){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+</script>
+</html>

@@ -9,6 +9,7 @@
         android:layout_height="300px"
         android:background="#fdfdfe"
         android:descendantFocusability="blocksDescendants"
+        android:layout_marginTop="20px"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,8 +20,9 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/myima"
+                android:layout_width="30px"
+                android:layout_height="30px"
                 android:layout_marginLeft="30px"
                 android:layout_marginTop="26px"
                 android:src="@drawable/fangchandiya" />

@@ -2,15 +2,14 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fdfdfe"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300px"
-        android:background="#fdfdfe"
         android:layout_marginTop="30px"
         android:descendantFocusability="blocksDescendants"
+        android:background="#ffffff"
         android:orientation="vertical">
 
         <LinearLayout
@@ -91,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40px"
-                        android:text=" + "
+                        android:text="+"
                         android:textColor="#fe6632"
                         android:textSize="32px" />
 
@@ -101,9 +100,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40px"
                         android:text="1.0"
-                        android:maxEms="3"
-                        android:singleLine="true"
-                        android:ellipsize="end"
                         android:textColor="#fe6632"
                         android:textSize="40px" />
 
@@ -112,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40px"
-                        android:text=" %"
+                        android:text="%"
                         android:textColor="#fe6632"
                         android:textSize="32px" />
                 </LinearLayout>

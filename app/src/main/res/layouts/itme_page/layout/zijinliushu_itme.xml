@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:orientation="horizontal"
+        android:background="#f3f5f3"
+        android:layout_marginTop="20px"
+        >
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:layout_marginLeft="30px">
+            <TextView
+                android:id="@+id/liushutitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="chujie"
+                android:textColor="#333333"
+                android:textSize="30px"
+                />
+            <TextView
+                android:id="@+id/liushuitime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="26px"
+                android:text="2018-06-05"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/liushuimoney"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingVertical="28px"
+            android:text="-1000" />
+    </LinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

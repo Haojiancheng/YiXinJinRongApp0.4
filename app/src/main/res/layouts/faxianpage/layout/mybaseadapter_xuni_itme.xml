@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="374px"
-    android:layout_height="369px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#e8e8ea"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,7 +12,9 @@
         android:background="#fdfdfe"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-
+        android:layout_marginLeft="50px"
+        android:layout_marginTop="20px"
+        android:layout_marginRight="30px"
         >
 
         <ImageView

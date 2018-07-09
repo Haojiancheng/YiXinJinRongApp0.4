@@ -105,6 +105,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     holder1.first_fujiabai = convertView.findViewById(R.id.first_fujiabai);
                     holder1.first_qixian = convertView.findViewById(R.id.first_qixian);
                     holder1.first_chujie = convertView.findViewById(R.id.first_chujie);
+                    holder1.first_yue=convertView.findViewById(R.id.first_yue);
                     convertView.setTag(holder1);
                 } else {
                     holder1 = (ViewHolder1) convertView.getTag();
@@ -134,6 +135,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
             case 0:
                 holder1.first_name.setText(list.get(position).getBorrowTitle()+"   "+list.get(position).getBorrowCode());
                 holder1.first_lv.setText((int) list.get(position).getSubsidies() + "");
+                holder1.first_yue.setText(list.get(position).getAmount()+" 元");
                 if (list.get(position).getSubsidiesRate() == 0) {
                     holder1.first_fujialv.setText("");
                     holder1.first_jia.setText("");

@@ -71,7 +71,9 @@
         <activity android:name=".wode.mycontent.addess.MyAddess" />
         <activity android:name=".wode.mycontent.addess.UpData_Addass" />
         <activity android:name=".wode.mycontent.addess.AddAddass" />
-        <activity android:name=".wode.h5.ZhuCeH5"></activity>
+        <activity android:name=".wode.h5.ZhuCeH5" />
+        <activity android:name=".wode.fore_inot.chujie_fragment.ChuJIeXiangQing" />
+        <activity android:name=".wode.fore_inot.zijinliushui.ZiJinliushui"></activity>
     </application>
 
 </manifest>

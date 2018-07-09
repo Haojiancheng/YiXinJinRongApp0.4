@@ -38,6 +38,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.zijinliushui.ZiJinliushui;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
 import com.yixingjjinrong.yixinjinrongapp.wode.shezhi.WoDe_SheZhi;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
@@ -55,7 +56,7 @@ public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
     private Button yonghudengru, chongzhi, tixian;//用户登入跳转按钮,充值，提现
     private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing, lijichujie;//等级、总额、可用余额、我的邀请
-    private ImageView wode_xiaoxi, wode_shazhi, wode_chujie, xianjin_juan, jiaxi_juan, touxiang1;//设置，我的出借,现金券，加息卷
+    private ImageView zjls,wode_xiaoxi, wode_shazhi, wode_chujie, xianjin_juan, jiaxi_juan, touxiang1;//设置，我的出借,现金券，加息卷
     private int user_id;
     //    private String userToken;
     private String sha1;//SHA1加密
@@ -429,6 +430,13 @@ public class Wode extends Fragment {
                 startActivity(itcxx);
             }
         });
+        zjls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(getActivity(), ZiJinliushui.class);
+                startActivity(it);
+            }
+        });
 
     }
 
@@ -456,7 +464,7 @@ public class Wode extends Fragment {
         touxiang1 = getActivity().findViewById(R.id.touxiang1);//个人中心
         chongzhi = getActivity().findViewById(R.id.chongzhi);//充值
         tixian = getActivity().findViewById(R.id.tixian);//提现
-
+        zjls=getActivity().findViewById(R.id.zjls);//资金流水
     }
 
     @Override

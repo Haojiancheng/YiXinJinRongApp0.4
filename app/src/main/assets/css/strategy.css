@@ -1,0 +1,222 @@
+
+        *,
+        ::before,
+        ::after{
+
+            margin:0;
+            padding:0;
+            /* 去除链接的高亮 */
+            -webkit-tap-highlight-color:transparent;
+            box-sizing:border-box;
+            /* .inYuo_car .yhua_ico a:nth-child(3){
+                        width: 303px;
+                        display: inline-block;
+                           -o-text-overflow: ellipsis;ext-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+                } */
+        }
+        ul,li,ol{
+            list-style:none;
+        }
+        body{
+            height: 100%;
+        }
+
+        a{
+            text-decoration:none;
+            color:#333;
+        }
+        .strategy{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+        }
+        #strategy-header{
+            position:absolute;
+            top:0;
+            left: 0;
+            right:0;
+            width: 100%;
+            height:0.88rem;
+            line-height: 0.88rem;
+            color: #333;
+            font-size: 0.31rem;
+            z-index: 999;
+            text-align: center;
+            border-bottom: 0.01rem solid #dadada;
+        }
+        .goback{
+              width: 0.22rem;
+              height: 0.38rem;
+              overflow: hidden;
+              position: absolute;
+              background-image: url(../img/arrows.png);
+              background-size: 100% auto;
+              background-repeat: no-repeat;
+
+          }
+        .icon-goback {
+            top: 0.24rem;
+            left: 0.3rem;
+        }
+        .strategy-details{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            top: 0.88rem;
+            overflow: auto;
+        }
+        /*如何赚取积分*/
+        .strategy-details .details-obtain{
+            position: absolute;
+            top:0.26rem;
+            bottom:0.26rem;
+            left: 0.26rem;
+            right: 0.26rem;
+            /*margin:0.26rem 0.35rem;*/
+            border:0.01rem solid #e9e9e9;
+            padding:0.3rem 0.24rem 0.3rem 0.2rem;
+            color: #333;
+            font-size: 0.27rem;
+            height: 6.63rem;
+            box-shadow:0rem 0rem 0.04rem #ccc;
+            border-radius:3%;
+            background-color: #fffaf6;
+        }
+        .strategy-details .obtain-motif img{
+            width: 2.95rem;
+            display:block;
+            height: auto;
+            margin: auto;
+            margin-top: 0.31rem;
+            margin-bottom: 0.41rem;
+
+        }
+        .strategy-details .obtain-earn{
+
+        }
+        /*左*/
+        .strategy-details .obtain-earn .earn-digit{
+            width: 0.42rem;
+            position:absolute;
+            top:1.56rem;
+        }
+        .strategy-details .obtain-earn .earn-digit li{
+            width: 0.28rem;
+            height: 0.28rem;
+            background-color: #fe6623;
+            color: #fff;
+            text-align: center;
+            font-size: 0.2rem;
+            box-shadow:0.02rem 0.02rem 0.02rem #ccc;
+        }
+        .strategy-details .obtain-earn .earn-digit li:nth-child(1){
+            margin-bottom: 2.24rem;
+        }
+        /*右*/
+        .strategy-details .obtain-earn .earn-state{
+            float: left;
+            width: 100%;
+            padding-left: 0.54rem;
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(2){
+
+
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(2) img{
+            width: 4.11rem;
+            display:block;
+            height: auto;
+            margin: auto;
+            margin-top: 0.31rem;
+            margin-bottom: 0.34rem;
+        }
+        .strategy-details .details-obtain .obtain-flow{
+            margin-top: 3.89rem;
+            margin-left: 0.18rem;
+        }
+        .strategy-details .details-obtain .obtain-flow .flow-way{
+            width: 1.38rem;
+            height: 1.38rem;
+            border-radius:50%;
+            border:0.04rem solid #fe6623;
+            text-align: center;
+            color: #f65c46;
+            padding-top:0.25rem;
+            float: left;
+        }
+        .strategy-details .details-obtain .obtain-flow .flow-arrows{
+            width: 0.23rem;
+            /*height: 0.12rem;*/
+            margin-left: 0.3rem;
+            margin-right: 0.4rem;
+            margin-top: 0.5rem;
+            float: left;
+        }
+        .strategy-details .details-obtain .obtain-flow .flow-arrows img{
+        ;
+        }
+        /*积分兑换规则*/
+        .strategy-details .details-rule{
+            position: absolute;
+            top:7.17rem;
+            left: 0.26rem;
+            right: 0.26rem;
+            border:0.01rem solid #e9e9e9;
+            padding:0.3rem 0.24rem 0.3rem 0.2rem;
+            color: #333;
+            font-size: 0.27rem;
+            box-shadow:0rem 0rem 0.04rem #ccc;
+            border-radius:3%;
+            background-color: #fffaf6;
+            margin-bottom: 0.26rem;
+        }
+        .strategy-details .details-rule .rule-motif img{
+            width: 2.95rem;
+            display:block;
+            height: auto;
+            margin: auto;
+            margin-top: 0.31rem;
+            margin-bottom: 0.41rem;
+
+        }
+        .strategy-details .details-rule .rule-list ul{
+            font-size: 0.26rem;
+            counter-reset: mycount;
+            margin-bottom: 0.11rem;
+            color: #666;
+            
+        }
+        .strategy-details .details-rule .rule-list ul li{
+            counter-increment: mycount;
+            overflow: hidden;
+            margin-bottom: 0.11rem;
+        }
+        .strategy-details .details-rule .rule-list ul li:before {
+            width: 0.28rem;
+            height: 0.28rem;
+            background-color: #fe6623;
+            color: #fff;
+            text-align: center;
+            font-size: 0.2rem;
+            box-shadow:0.02rem 0.02rem 0.02rem #ccc;
+            content: counter(mycount, decimal);
+            background: -webkit-linear-gradient(left, #f36a33 , #fd8421); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(left, #f36a33, #fd8421); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(left, #f36a33, #fd8421); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to left, #f36a33 , #fd8421); /* 标准的语法 */
+            float: left;
+            margin-right: 0.2rem;
+            margin-top: 0.06rem;
+        }
+        .strategy-details .details-rule .rule-list ul li .list-state{
+            line-height: 0.41rem;
+            overflow: hidden;
+            text-align: justify;
+            word-break: break-all;
+
+
+        }
+   

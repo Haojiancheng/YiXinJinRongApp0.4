@@ -19,6 +19,15 @@ public class Fangchandiya_adapter extends RecyclerView.Adapter<Fangchandiya_adap
     public Fangchandiya_adapter(List<FangChanDiYa_Gson.InvestListBean> list) {
         this.list = list;
     }
+    private OnEveryItemClickListener onEveryItemClickListener;
+
+    public interface OnEveryItemClickListener {
+        void onEveryClick(int position);
+    }
+
+    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
+        this.onEveryItemClickListener = onEveryItemClickListener;
+    }
 
     @NonNull
     @Override
@@ -29,7 +38,7 @@ public class Fangchandiya_adapter extends RecyclerView.Adapter<Fangchandiya_adap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Fangchandiya_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Fangchandiya_adapter.MyViewHolder holder, final int position) {
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.qixian_chujie.setText(list.get(position).getDeadline());
         holder.jinge_chujie.setText(String.valueOf(list.get(position).getInvestAmount()));
@@ -43,6 +52,14 @@ public class Fangchandiya_adapter extends RecyclerView.Adapter<Fangchandiya_adap
             holder.fujia_lilv_chujie.setVisibility(View.GONE);
 
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener != null) {
+                    onEveryItemClickListener.onEveryClick(position);
+                }
+            }
+        });
 
     }
 

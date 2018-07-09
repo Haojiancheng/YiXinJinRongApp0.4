@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -113,6 +114,19 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
                 adapter=new Fangchandiya_adapter(list);
                 rview_fcdy.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                adapter.setonEveryItemClickListener(new Fangchandiya_adapter.OnEveryItemClickListener() {
+                    @Override
+                    public void onEveryClick(int position) {
+                        String borrowid = String.valueOf(list.get(position).getBorrowId());
+                        String investid = String.valueOf(list.get(position).getInvestid());
+                        Intent it=new Intent(getActivity(),ChuJIeXiangQing.class);
+                        it.putExtra("borrowid", borrowid);
+                        it.putExtra("investid", investid);
+                        it.putExtra("type", "fang");
+                        startActivity(it);
+
+                    }
+                });
             }
 
             @Override

@@ -39,7 +39,7 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
     private List<JiaXiJuan_Gson.QueryVouchersListBean> mlist=new ArrayList<>();
     private XiangMuJiaXiJuan_adapter myadapter;
     private int user_id;
-    private int a=1;
+    private int a=2;
 
 
     @Nullable

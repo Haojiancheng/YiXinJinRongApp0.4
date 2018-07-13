@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -21,10 +22,15 @@ public class YinHangCunGuan extends AutoLayoutActivity {
         cg_wb=findViewById(R.id.cg_wb);
         Intent it=getIntent();
         String htlm = it.getStringExtra("HTML");
-        Log.e("HTML:", ""+htlm);
-        cg_wb.loadDataWithBaseURL(null, htlm, "text/html", "utf-8", null);
-        cg_wb.getSettings().setJavaScriptEnabled(true);
-        cg_wb.setWebChromeClient(new WebChromeClient());
+        Log.e("开通存管HTML:",""+htlm);
+        WebSettings webSettings = cg_wb.getSettings();
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存
+
+        webSettings.setJavaScriptEnabled(true);//设置能够解析Javascript
+
+        webSettings.setDomStorageEnabled(true);//设置适应Html5 //重点是这个设置
+        cg_wb.loadData(htlm.toString(), "text/html", "UTF-8"); // 加载定义的代码，并设定编码格式和字符集。
+
     }
 
 }

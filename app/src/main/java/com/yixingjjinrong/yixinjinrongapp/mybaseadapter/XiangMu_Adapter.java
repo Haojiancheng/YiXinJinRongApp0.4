@@ -69,43 +69,44 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
 
         }
         int borrowStatus = list.get(position).getBorrowStatus();
+        holder.chujie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener!=null){
+                    onEveryItemClickListener.onEveryClick(position);
+                }
+            }
+        });
         switch (borrowStatus){
             case 2://招标中（出借）
                 if (String.valueOf(list.get(position).getTimeFlag()).equals("1")){//预热
                     holder.chujie.setText(list.get(position).getBorrowStatusStr());
                     holder.chujie.setTextColor(Color.parseColor("#fe6623"));
                     holder.chujie.setBackgroundResource(R.drawable.bt_biankuang);
-                    holder.chujie.setClickable(false);
+
                 }else {//可出借
                     holder.chujie.setText(list.get(position).getBorrowStatusStr());
                     holder.chujie.setBackgroundResource(R.drawable.bt_shape);
-                    holder.chujie.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (onEveryItemClickListener!=null){
-                                onEveryItemClickListener.onEveryClick(position);
-                            }
-                        }
-                    });
+
                 }
                 break;
             case 3://已满标
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_huise);
-                holder.chujie.setClickable(false);
+
                 break;
             case 4://回款中
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_huise);
-                holder.chujie.setClickable(false);
+
                 break;
             case 5://回款完成
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_shenhuise);
-                holder.chujie.setClickable(false);
+;
                 break;
         }
 

@@ -46,50 +46,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-//        ViweHolder holder=null;
-//        if (convertView==null){
-//            holder=new ViweHolder();
-//            convertView=View.inflate(context, R.layout.fangchanxiangmu_itme_jia,null);
-//            holder.xiangmu_name=convertView.findViewById(R.id.xiangmu_name);
-//            holder.xiangmu_code=convertView.findViewById(R.id.xiangmu_code);
-//            holder.years_lilv=convertView.findViewById(R.id.years_lilv);
-//            holder.jiahao=convertView.findViewById(R.id.jiahao);
-//            holder.fujia_lilv=convertView.findViewById(R.id.fujia_lilv);
-//            holder.fujia_jiahao=convertView.findViewById(R.id.fujia_jiahao);
-//            holder.qixian=convertView.findViewById(R.id.qixian);
-//            holder.chujie=convertView.findViewById(R.id.chujie);
-//            convertView.setTag(holder);
-//        }else {
-//            holder= (ViweHolder) convertView.getTag();
-//        }
-//        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
-//        holder.xiangmu_code.setText(list.get(position).getBorrowCode());
-//        holder.years_lilv.setText((int) list.get(position).getSubsidies()+"");
-//        if(list.get(position).getSubsidiesRate()==0){
-//            holder.fujia_lilv.setText("");
-//            holder.fujia_jiahao.setText("");
-//            holder.jiahao.setText("");
-//        }else {
-//            holder.fujia_lilv.setText(list.get(position).getSubsidiesRate()+"");
-//            holder.fujia_jiahao.setText("%");
-//            holder.jiahao.setText("+");
-//        }
-//        holder.qixian.setText(list.get(position).getDeadlineNew());
-//        holder.chujie.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String xiangmu_id = list.get(position).getBorrowRandomId();
-//                Log.e("TAG","+.."+xiangmu_id);
-//                Intent it = new Intent(context, XiangMuXiangQing.class);
-//                String mortgageType = list.get(position).getMortgageType();
-//                it.putExtra("xiangmu_id", xiangmu_id);
-//                it.putExtra("mortgageType", mortgageType);
-//                context.startActivity(it);
-//            }
-//        });
-//        
-//        return convertView;
-        //得到指定条目的布局类型
+
         int type = getItemViewType(position);
         ViewHolder1 holder1 = null;
         ViewHolder2 holder2 = null;
@@ -106,6 +63,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     holder1.first_qixian = convertView.findViewById(R.id.first_qixian);
                     holder1.first_chujie = convertView.findViewById(R.id.first_chujie);
                     holder1.first_yue=convertView.findViewById(R.id.first_yue);
+                    holder1.view_first=convertView.findViewById(R.id.view_first);
                     convertView.setTag(holder1);
                 } else {
                     holder1 = (ViewHolder1) convertView.getTag();
@@ -146,6 +104,19 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     holder1.first_jia.setText("+");
                 }
                 holder1.first_qixian.setText(list.get(position).getDeadlineNew());
+
+                holder1.view_first.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String xiangmu_id = list.get(position).getBorrowRandomId();
+                    Log.e("TAG", "+.." + xiangmu_id);
+                    Intent it = new Intent(context, XiangMuXiangQing.class);
+                    String mortgageType = list.get(position).getMortgageType();
+                    it.putExtra("xiangmu_id", xiangmu_id);
+                    it.putExtra("mortgageType", mortgageType);
+                    context.startActivity(it);
+                }
+            });
                 holder1.first_chujie.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -193,6 +164,8 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
     class ViewHolder1 {
         TextView first_name,first_lv,first_jia,first_fujialv,first_fujiabai,first_qixian,first_yue;
         Button first_chujie;
+        View view_first;
+
     }
 
     class ViewHolder2 {

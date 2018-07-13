@@ -48,10 +48,12 @@ public class HuiKuanJiHua extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        hkjhlist.clear();
         initview();
         getid_kh();
         
         getHttp();
+
     }
 
     private void getid_kh() {
@@ -59,6 +61,7 @@ public class HuiKuanJiHua extends Fragment {
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         hkjh_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+
     }
 
     private void getHttp() {
@@ -89,12 +92,13 @@ public class HuiKuanJiHua extends Fragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG","<><>,>?>?GSOn"+result);
+                Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
                 HuiKuanJiHua_Gson data=new Gson().fromJson(result,HuiKuanJiHua_Gson.class);
                 hkjhlist.addAll(data.getResult().getRepaymentList());
                 adapter=new HuiKuanJH_adapter(hkjhlist,data.getResult().getBorrowStatus());
                 hkjh_rview.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override

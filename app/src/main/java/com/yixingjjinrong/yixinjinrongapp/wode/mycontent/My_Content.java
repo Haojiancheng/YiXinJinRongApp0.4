@@ -12,13 +12,16 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.MyAddess;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.YiShiMing;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -47,6 +50,13 @@ public class My_Content extends AutoLayoutActivity {
         myphone.setText(telephone);
         if (s_name.equals("1")) {
             shiming.setText("已认证");
+            shiming.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it=new Intent(My_Content.this, YiShiMing.class);
+                    startActivity(it);
+                }
+            });
         } else {
             shiming.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -60,6 +70,13 @@ public class My_Content extends AutoLayoutActivity {
             cunguan.setText("已开通");
         } else {
             cunguan.setText("未开通");
+
+            cunguan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    grthttp();
+                }
+            });
         }
         if (fx.equals("1")) {
             ceping.setText(riskType);
@@ -84,6 +101,62 @@ public class My_Content extends AutoLayoutActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void grthttp() {
+
+            JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+            try {
+                js_request.put("userid", String.valueOf(user_id));
+                base1 = Base64JiaMI.AES_Encode(js_request.toString());
+
+                sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JSONObject canshu = new JSONObject();
+            try {
+                canshu.put("param", base1);
+                canshu.put("sign", sha1);
+                Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+            params.setAsJsonContent(true);
+            params.setBodyContent(canshu.toString());
+            Log.e("TAG", ">>>>网址" + params);
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.e("存管GSON:",""+result );
+                    CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                    String html = data.getResult().getHtml();
+                    Intent it=new Intent(My_Content.this, YinHangCunGuan.class);
+                    it.putExtra("HTML",html );
+                    startActivity(it);
+                    Toast.makeText(My_Content.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e("wangy",""+html );
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
     }
 
     private void getshimingHTTp() {
@@ -116,6 +189,7 @@ public class My_Content extends AutoLayoutActivity {
                 Log.e("是否可实名GSON：", result);
                 ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                 String message = data.getMessage().toString();
+
                 Toast.makeText(My_Content.this, "" + message, Toast.LENGTH_SHORT).show();
                 String jieguo = data.getState().toString();
                 if (jieguo.equals("success")) {

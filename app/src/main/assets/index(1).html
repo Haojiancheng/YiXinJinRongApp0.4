@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="投资理财，P2P理财，互联网金融，个人理财，互联网金融P2P，网络理财，互联网金融平台，金融理财，理财产品，">
+    <meta name="description"
+          content="亿信宝 www.yxb.com - 真正走心的互联网金融理财平台，以抵押模式为主的P2P理财平台，最严格的线下风险控制与线上风险控制相结合，提供最安全、高效的网络投融资服务。第三方资金托管,保障资金安全。">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="msapplication-tap-highlight" content="no">
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/carry.js"></script>
+    <script src="swiper/swiper-3.3.1.jquery.min.js"></script>
+    <link rel="stylesheet" href="swiper/swiper.min.css"/>
+    <link rel="stylesheet" href="css/idount.css"/>
+    <title></title>
+</head>
+<body>
+<div class="max">
+    <header class="bulletin-header">
+        <span class="goback icon-goback" id="backBtn01" onClick="back()"></span>
+        <h1 class="txt-header">出借人风险评测</h1>
+    </header>
+    <section class="toup" id="t1">
+        <div class="toup_content ">
+            <div class="con">
+                <h1>请您先仔细阅读如下内容，再开始评测。</h1>
+                <ul class="con_list clearfix">
+                    <li>
+                        <p>《亿信宝出借人风险评测》可以在出借资金前，协助您评估自身风险承受能力。</p>
+                    </li>
+                    <li>
+                        <p>您应了解并同意，若您提供不准确或不完整的资料，对评估结果产生影响，因此而产生的决策偏差，亿信宝不承担任何责任。</p>
+                    </li>
+                    <li>
+                        <p>网贷有风险，出借需谨慎。您应充分考虑网贷风险，并结合您自身风险承受能力，选择适当的产品进行出借。</p>
+                    </li>
+                </ul>
+                <h6>为了给您提供更好的资产选择，请您认真作答，感谢您的配合。</h6>
+            </div>
+            <div class="sto1">
+                <a href="javascript:void(0);" class="jion" id="kscp">开始评测</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="toup toup2 hide" id="t2">
+        <div class="toup_content">
+            <div class="active">
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="swipers">
+                <!-- 上下 -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>1. 您目前的职业类别是？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s1" value="1"/>
+                                        <label for="t1s1">A.&nbsp;国有企业员工</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s2" value="2"/>
+                                        <label for="t1s2">B.&nbsp;公务员 </label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s3" value="3"/>
+                                        <label for="t1s3">C.&nbsp;自由出借人</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s4" value="4"/>
+                                        <label for="t1s4">D.&nbsp;金融从业人员</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s5" value="5"/>
+                                        <label for="t1s5">E.&nbsp;民营企业员工</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s6" value="6"/>
+                                        <label for="t1s6">F.&nbsp;外企员工</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s7" value="7"/>
+                                        <label for="t1s7">G.&nbsp;个体工商户</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s8" value="8"/>
+                                        <label for="t1s8">H.&nbsp;大学生</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t1" id="t1s9" value="9"/>
+                                        <label for="t1s9">I.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>2. 您目前在P2P网络借贷市场理财资金的主要来源是？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t2" id="t2s1" value="1"/>
+                                        <label for="t2s1">A.&nbsp;自有资金</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t2" id="t2s2" value="2"/>
+                                        <label for="t2s2">B.&nbsp;代他人理财</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t2" id="t2s3" value="3"/>
+                                        <label for="t2s3">C.&nbsp;信用卡</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t2" id="t2s4" value="4"/>
+                                        <label for="t2s4">D.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>3. 您通过P2P网络借贷投资有多久？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t3" id="t3s1" value="1"/>
+                                        <label for="t3s1">A.&nbsp;大于等于3年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t3" id="t3s2" value="2"/>
+                                        <label for="t3s2">B.&nbsp;2-3年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t3" id="t3s3" value="3"/>
+                                        <label for="t3s3">C.&nbsp;1-2年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t3" id="t3s4" value="4"/>
+                                        <label for="t3s4">D.&nbsp;6个月-1年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t3" id="t3s5" value="5"/>
+                                        <label for="t3s5">E.&nbsp;6个月以下</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>4. 您通过什么途径了解网贷这些平台？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t4" id="t4s1" value="1"/>
+                                        <label for="t4s1">A.&nbsp;媒体</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t4" id="t4s2" value="2"/>
+                                        <label for="t4s2">B.&nbsp;网上查询</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t4" id="t4s3" value="3"/>
+                                        <label for="t4s3">C.&nbsp;朋友推荐</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t4" id="t4s4" value="4"/>
+                                        <label for="t4s4">D.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>5. 您在P2P网络借贷市场的平均投资金额金额大概是？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s1" value="1"/>
+                                        <label for="t5s1">A.&nbsp;小于1万</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s2" value="2"/>
+                                        <label for="t5s2">B.&nbsp;1万-3万</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s3" value="3"/>
+                                        <label for="t5s3">C.&nbsp;3万-5万</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s4" value="4"/>
+                                        <label for="t5s4">D.&nbsp;5万-10万</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s5" value="5"/>
+                                        <label for="t5s5">E.&nbsp;10万-20万</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t5" id="t5s6" value="6"/>
+                                        <label for="t5s6">F.&nbsp;大于20万</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>6. 您在P2P网络借贷市场的投资金额占您整个投资额的比例大概是？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t6" id="t6s1" value="1"/>
+                                        <label for="t6s1">A.&nbsp;小于20%</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t6" id="t6s2" value="2"/>
+                                        <label for="t6s2">B.&nbsp;20%-30%</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t6" id="t6s3" value="3"/>
+                                        <label for="t6s3">C.&nbsp;30%-40%</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t6" id="t6s4" value="4"/>
+                                        <label for="t6s4">D.&nbsp;40%-50%</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t6" id="t6s5" value="5"/>
+                                        <label for="t6s5">E.&nbsp;大于50%</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>7. 您对出借产品的一般投资期限为：</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t7" id="t7s1" value="1"/>
+                                        <label for="t7s1">A.&nbsp;月度产品</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t7" id="t7s2" value="2"/>
+                                        <label for="t7s2">B.&nbsp;季度产品</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t7" id="t7s3" value="3"/>
+                                        <label for="t7s3">C.&nbsp;半年期产品</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t7" id="t7s4" value="4"/>
+                                        <label for="t7s4">D.&nbsp;2~3年期产品</label></div>
+                                    <div class="input">
+                                        <input type="radio" name="t7" id="t7s5" value="5"/>
+                                        <label for="t7s5">E.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>8. 您能接受的风险收益比例是：</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t8" id="t8s1" value="1"/>
+                                        <label for="t8s1">A.&nbsp;收益80%以上亏损80%以上</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t8" id="t8s2" value="2"/>
+                                        <label for="t8s2">B.&nbsp;收益20%且可能亏损60%以内</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t8" id="t8s3" value="3"/>
+                                        <label for="t8s3">C.&nbsp;收益0~20%且可能亏损20%</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t8" id="t8s4" value="4"/>
+                                        <label for="t8s4">D.&nbsp;我无法接受亏损</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>9. 您选择利用P2P网络借贷市场理财的原因是什么？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t9" id="t9s1" value="1"/>
+                                        <label for="t9s1">A.&nbsp;风险小</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t9" id="t9s2" value="2"/>
+                                        <label for="t9s2">B.&nbsp;利率高</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t9" id="t9s3" value="3"/>
+                                        <label for="t9s3">C.&nbsp;新奇，想要尝试</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t9" id="t9s4" value="4"/>
+                                        <label for="t9s4">D.&nbsp;方便快捷</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t9" id="t9s5" value="5"/>
+                                        <label for="t9s5">E.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>10. 当您需要融资借贷时，一般设定的还款期限为：</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t10" id="t10s1" value="1"/>
+                                        <label for="t10s1">A.&nbsp;1-3月</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t10" id="t10s2" value="2"/>
+                                        <label for="t10s2">B.&nbsp;半年左右</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t10" id="t10s3" value="3"/>
+                                        <label for="t10s3">C.&nbsp;1年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t10" id="t10s4" value="4"/>
+                                        <label for="t10s4">D.&nbsp;1-2年</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t10" id="t10s5" value="5"/>
+                                        <label for="t10s5">E.&nbsp;3年及以上</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>11. 下列关于借款人的资料信息，您主要关注下列哪些要素？</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s1" value="1"/>
+                                        <label for="t11s1">A.&nbsp;借款人的征信报告</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s2" value="2"/>
+                                        <label for="t11s2">B.&nbsp;借款人通过的资料认证</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s3" value="3"/>
+                                        <label for="t11s3">C.&nbsp;借款人的抵押品</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s4" value="4"/>
+                                        <label for="t11s4">D.&nbsp;借款人的年收入</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s5" value="5"/>
+                                        <label for="t11s5">E.&nbsp;借款人的学历</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s6" value="6"/>
+                                        <label for="t11s6">F.&nbsp;借款人在平台的借款记录</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t11" id="t11s7" value="7"/>
+                                        <label for="t11s7">G.&nbsp;其他</label>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev">上一题</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="scores">
+                                <h3>12. 您觉得亿信宝网贷平台是否给您的理财带来多大的便利？【1—5打分，数字越大满意度越高】</h3>
+
+                                <div class="choose">
+                                    <div class="input">
+                                        <input type="radio" name="t12" id="t12s1" value="1"/>
+                                        <label for="t12s1">A.&nbsp;5</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t12" id="t12s2" value="2"/>
+                                        <label for="t12s2">B.&nbsp;4</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t12" id="t12s3" value="3"/>
+                                        <label for="t12s3">C.&nbsp;3</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t12" id="t12s4" value="4"/>
+                                        <label for="t12s4">D.&nbsp;2</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="radio" name="t12" id="t12s5" value="5"/>
+                                        <label for="t12s5">E.&nbsp;1</label>
+                                    </div>
+                                </div>
+                                <div class="sto1">
+                                    <a href="javascript:void(0);" id="s_btn" class="btn_tj">提交</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 上下end -->
+
+    </section>
+
+    <section class="toup toup3 hide" id="t3">
+        <div class="swipers3">
+            <h3 class="sm_later"></h3>
+            <ul class="fxcp_list02">
+                <li>
+                    <span>风险承受度</span>
+                    <ul>
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <em></em>
+                </li>
+                <li>
+                    <span>资产配置</span>
+                    <ul>
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <em></em>
+                </li>
+                <li>
+                    <span>资金回报</span>
+                    <ul>
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <em></em>
+                </li>
+            </ul>
+            <p id="los2" class="shcp">适合您的产品为:AAA、AA、A、BBB、BB、B安全等级的产品。</p>
+            <div class="buon3" id="tijiaoDiv">
+                <a href="javascript:void(0);" class="jion">完成评测</a>
+            </div>
+            <div class="buon4" id="las">
+                <a >重新测评</a>
+            </div>
+            <p class="fxts">当产品安全等级超出借人风险承受能力时，页面将提示风险，出借人确认风险后可以进行出借。 (您今年还可以评测<em>4</em>次)</p>
+        </div>
+    </section>
+
+    <div class="dan_kuan hide"></div>
+    <div class="kuan" style="display:none;">
+        <div class="nei_Kuan">
+            <p class="font"></p>
+        </div>
+        <p class="font2"><a href="javascript:close();">确定</a></p>
+    </div>
+</div>
+<script>
+    function showWindow(msg) {
+        $(".font").html(msg);
+        $(".dan_kuan").show();
+        $(".kuan").show();
+    }
+    function close() {
+        var str=$(".font").text();
+        var num=str.replace(/(请填写第)(\d+)(.*)/ig,"$2");
+        if(num>0){
+            console.log(num);
+            mySwiper.slideTo(num-1, 1000);
+        }
+        $(".font").html("");
+        $(".dan_kuan").hide();
+        $(".kuan").hide();
+    }
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationType: 'fraction',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        autoHeight: true,
+        observer: true,
+        observeParents: true,
+        loop: false
+    });
+    $("#t2,#t3").hide();
+    $("#kscp").on("click", function () {
+        $("#t1").hide();
+        $("#t2").show();
+    });
+    $(".swiper-container input ").change(function () {
+        var this_active = $(this).parents(".swiper-slide").index();
+        setTimeout(function () {
+            mySwiper.slideTo(this_active + 1, 1000);
+        }, 200);
+    });
+    function testFirstUnchecked(){
+        var index=0;
+        $('.swiper-slide ').each(function(i,ele){
+           if(!$(this).find('input:checked').length){
+               index=i;
+               return false
+           }else{
+               index=$(".swiper-slide").length-1;
+           }
+        });
+        return index
+    }
+    var userIdString = "";
+    function sendKey(userId) {
+        userIdString = userId;
+    }
+    var yxb_http = "";
+    function getYXBIP(yxb_http) {
+        yxb_http = yxb_http;
+    }
+    var flag_success = false;
+    $(function () {
+        $("#s_btn").click(function () {
+            $("#s_btn").attr("disabled", true);
+            var count1 = 0;
+            var count2 = 0;
+            var count3 = 0;
+            var count4 = 0;
+            var count5 = 0;
+            var count6 = 0;
+            var count7 = 0;
+            var count8 = 0;
+            var param = {};
+            var t1 = $('input[name="t1"]:checked ').val();
+            var t2 = $('input[name="t2"]:checked ').val();
+            var t3 = $('input[name="t3"]:checked ').val();
+            var t4 = $('input[name="t4"]:checked ').val();
+            var t5 = $('input[name="t5"]:checked ').val();
+            var t6 = $('input[name="t6"]:checked ').val();
+            var t7 = $('input[name="t7"]:checked ').val();
+            var t8 = $('input[name="t8"]:checked ').val();
+            var t9 = $('input[name="t9"]:checked ').val();
+            var t10 = $('input[name="t10"]:checked ').val();
+            var t11 = $('input[name="t11"]:checked ').val();
+            var t12 = $('input[name="t12"]:checked ').val();
+            if (!t1) {
+                showWindow("请填写第1项，您目前的职业类别...");
+                return;
+            }
+
+            if (!t2) {
+                showWindow("请填写第2项，您目前在P2P网络借贷市场...");
+                return;
+            }
+
+            if (!t3) {
+                showWindow("请填写第3项，您通过P2P网络借贷投资...");
+                return;
+            }
+
+            if (!t4) {
+                showWindow("请填写第4项，您通过什么途径了解网贷...");
+                return;
+            }
+            if (!t5) {
+                showWindow("请填写第5项，您在P2P网络借贷市场的平均投资金额...");
+                return;
+            }
+            if (!t6) {
+                showWindow("请填写第6项，您在P2P网络借贷市场的投资金额...");
+                return;
+            }
+            if (!t7) {
+                showWindow("请填写第7项，您对出借产品的一般投资期限...");
+                return;
+            }
+            if (!t8) {
+                showWindow("请填写第8项，您能接受的风险收益比例是...");
+                return;
+            }
+            if (!t9) {
+                showWindow("请填写第9项，您选择利用P2P网络借贷市场...");
+                return;
+            }
+            if (!t10) {
+                showWindow("请填写第10项，当您需要融资借贷时，...");
+                return;
+            }
+            if (!t11) {
+                showWindow("请填写第11项，下列关于借款人的资料信息，...");
+                return;
+            }
+            if (!t12) {
+                showWindow("请填写第12项，您觉得亿信宝网络借贷平台...");
+                return;
+            }
+            if (t2 == 1) {
+                var count1 = 1;
+            } else if (t2 == 2) {
+                var count1 = 2;
+            } else if (t2 == 3 || t2 == 4) {
+                var count1 = 3;
+            }
+            if (t3 == 1 || t3 == 2) {
+                var count2 = 4;
+            } else if (t3 == 4) {
+                var count2 = 2;
+            } else if (t3 == 3 || t3 == 5) {
+                var count2 = 3;
+            }
+            if (t5 == 1) {
+                var count3 = 1;
+            } else if (t5 == 2 || t5 == 3 || t5 == 4) {
+                var count3 = 2;
+            } else if (t5 == 6 || t5 == 5) {
+                var count3 = 3;
+            }
+            if (t6 == 1) {
+                var count4 = 1;
+            } else if (t6 == 2 || t6 == 3 || t6 == 4) {
+                var count4 = 2;
+            } else if (t6 == 5) {
+                var count4 = 3;
+            }
+            if (t7 == 1) {
+                var count5 = 1;
+            } else if (t7 == 2 || t7 == 3) {
+                var count5 = 2;
+            } else if (t7 == 4 || t7 == 5) {
+                var count5 = 3;
+            }
+            if (t8 == 1 || t8 == 2) {
+                var count6 = 3;
+            } else if (t8 == 3) {
+                var count6 = 2;
+            } else if (t8 == 4) {
+                var count6 = 1;
+            }
+            if (t10 == 1) {
+                var count7 = 1;
+            } else if (t10 == 2 || t10 == 3 || t10 == 4) {
+                var count7 = 2;
+            } else if (t10 == 5) {
+                var count7 = 3;
+            }
+            count8 = count1 + count2 + count3 + count4 + count5 + count6 + count7;
+            param["paramMap.occupation"] = t1;
+            param["paramMap.fundSource"] = t2;
+            param["paramMap.investTime"] = t3;
+            param["paramMap.knowWay"] = t4;
+            param["paramMap.investAmount"] = t5;
+            param["paramMap.investRatio"] = t6;
+            param["paramMap.productTerm"] = t7;
+            param["paramMap.riskBenefitRatio"] = t8;
+            param["paramMap.internetLendReason"] = t9;
+            param["paramMap.loanRepayPeriod"] = t10;
+            param["paramMap.attention"] = t11;
+            param["paramMap.mark"] = t12;
+            param["paramMap.userCount"] = count8;
+            
+            param["paramMap.userId"] = userIdString;
+            if (t1 && t2 && t3 && t4 && t5 && t6 && t7 && t8 && t9 && t10 && t11 && t12) {
+              $.ajax({
+                     type : "post",
+                     url : "http://192.168.1.120:8080/yxb_mobile/yxbApp/addUserInvestigation.do",
+                     dataType : "jsonp",//数据类型为jsonp
+                     jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
+                     data: param,
+                     success : function(data){
+                     if (data.result > 0) {
+                     flag_success = true;
+                     alert("风险评测提交成功！");
+                     $("#t2").hide();
+                     $("#t3").show();
+                     $(".bulletin-header").addClass("onlybackheader");
+                     } else {
+                     alert("风险评测提交失败！");
+                     }
+                     },
+                     error:function(){
+                     alert('fail');
+                     }
+                     });
+                riskScore();
+            } else {
+                showWindow("请填写完整选项！");
+            }
+        });
+
+    });
+    function setListData(lx,fx,cc,zj,n){
+        $(".sm_later").html(lx);
+        $(".fxcp_list02>li").eq(0).find("em").text(fx);
+        $(".fxcp_list02>li").eq(1).find("em").text(cc);
+        $(".fxcp_list02>li").eq(2).find("em").text(zj);
+        $(".fxcp_list02 li>ul").each(function(i){
+            $(this).children("li").removeClass("on");
+            $(this).children("li").slice(0,n).addClass("on");
+        });
+    }
+    function riskScore() {
+        var count1 = 0;
+        var count2 = 0;
+        var count3 = 0;
+        var count4 = 0;
+        var count5 = 0;
+        var count6 = 0;
+        var count7 = 0;
+        var count8 = 0;
+        var t1 = $('input[name="t1"]:checked ').val();
+        var t2 = $('input[name="t2"]:checked ').val();
+        var t3 = $('input[name="t3"]:checked ').val();
+        var t4 = $('input[name="t4"]:checked ').val();
+        var t5 = $('input[name="t5"]:checked ').val();
+        var t6 = $('input[name="t6"]:checked ').val();
+        var t7 = $('input[name="t7"]:checked ').val();
+        var t8 = $('input[name="t8"]:checked ').val();
+        var t9 = $('input[name="t9"]:checked ').val();
+        var t10 = $('input[name="t10"]:checked ').val();
+        var t11 = $('input[name="t11"]:checked ').val();
+        var t12 = $('input[name="t12"]:checked ').val();
+        if (t2 == 1) {
+            var count1 = 1;
+        } else if (t2 == 2) {
+            var count1 = 2;
+        } else if (t2 == 3 || t2 == 4) {
+            var count1 = 3;
+        }
+        if (t3 == 1 || t3 == 2) {
+            var count2 = 4;
+        } else if (t3 == 4) {
+            var count2 = 2;
+        } else if (t3 == 3 || t3 == 5) {
+            var count2 = 3;
+        }
+        if (t5 == 1) {
+            var count3 = 1;
+        } else if (t5 == 2 || t5 == 3 || t5 == 4) {
+            var count3 = 2;
+        } else if (t5 == 6 || t5 == 5) {
+            var count3 = 3;
+        }
+        if (t6 == 1) {
+            var count4 = 1;
+        } else if (t6 == 2 || t6 == 3 || t6 == 4) {
+            var count4 = 2;
+        } else if (t6 == 5) {
+            var count4 = 3;
+        }
+        if (t7 == 1) {
+            var count5 = 1;
+        } else if (t7 == 2 || t7 == 3) {
+            var count5 = 2;
+        } else if (t7 == 4 || t7 == 5) {
+            var count5 = 3;
+        }
+        if (t8 == 1 || t8 == 2) {
+            var count6 = 3;
+        } else if (t8 == 3) {
+            var count6 = 2;
+        } else if (t8 == 4) {
+            var count6 = 1;
+        }
+        if (t10 == 1) {
+            var count7 = 1;
+        } else if (t10 == 2 || t10 == 3 || t10 == 4) {
+            var count7 = 2;
+        } else if (t10 == 5) {
+            var count7 = 3;
+        }
+        count8 = count1 + count2 + count3 + count4 + count5 + count6 + count7;
+        if (Number(count8) < 8) {
+            setListData("保守型","较低","绝对安全","低",2);
+            //$("#los2").html("您的风险承受能力较低，对回报要求不高，但追求本金绝对安全。适合您的产品为：AAA、AA 、A、BBB、BB安全等级的产品。");
+            $("#los2").html("适合您的产品为：AAA、AA 、A、BBB、BB安全等级的产品。");
+        } else if (Number(count8) >= 8 && Number(count8) <= 18) {
+            setListData("稳健型","适中","均衡","中",4);
+            //$("#los2").html("您的风险承受度适中，偏向于资产均衡配置，能够承受一定的风险，同时，对资产回报要求高于稳健型者。适合您的产品为：AAA、AA 、A、BBB、BB、B安全等级的产品。");
+            $("#los2").html("适合您的产品为：AAA、AA 、A、BBB、BB、B安全等级的产品。");
+        } else if (Number(count8) > 18) {
+            setListData("积极型","较高","激进","较高",6);
+            //$("#los2").html("您偏向于激进的资产配置，对风险有较高的承受能力，回报预期相对较高。您可以出借亿信宝平台所有产品。");
+            $("#los2").html("您可以出借亿信宝平台所有产品。");
+        }
+    }
+    $("#tijiaoDiv a").click(function(){
+    //完成测评执行方法
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+            window.webkit.messageHandlers.accomplish.postMessage(null);
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+            android.token_timeout();
+        }
+
+        return false
+    });
+                            
+
+    $("#backBtn01").click(function(){
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+            window.webkit.messageHandlers.popToVC.postMessage(null);
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+            window.back();
+        }
+        return false
+    });
+    $("#las a").click(function(){
+          $("#t1").show();
+          $("#t2,#t3").hide();
+          $(".bulletin-header").removeClass("onlybackheader");
+          mySwiper.slideTo( 0, 0);
+          $(".input input").removeAttr("checked");
+      });
+
+
+
+</script>
+</body>
+</html>

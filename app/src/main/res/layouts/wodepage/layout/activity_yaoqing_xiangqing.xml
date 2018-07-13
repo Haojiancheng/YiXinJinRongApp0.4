@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+    tools:context=".wode.yaoqing.YaoQingXiangQing">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/jiantou" />
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="我的邀请"
+            android:textColor="#333"
+            android:textSize="38px" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="198px"
+        android:layout_marginTop="20px"
+        
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/xq_mymancount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#333333"
+                android:textSize="40px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16px"
+                android:text="邀请人数"
+                android:textColor="#999999"
+                android:textSize="24px" />
+
+        </LinearLayout>
+<View
+    android:layout_width="1px"
+    android:layout_height="68px"
+    android:background="#dadada"
+    android:layout_gravity="center_vertical"
+    />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/xq_mycount_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="#ff6e3a"
+                android:textSize="40px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16px"
+                android:text="邀请总收益（元）"
+                android:textColor="#999999"
+                android:textSize="24px" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <include
+        android:id="@+id/wushuju"
+        layout="@layout/wujilu" 
+        android:visibility="gone"
+        />
+    <include
+        android:id="@+id/youshuju"
+        layout="@layout/wodeyaoxing"
+
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

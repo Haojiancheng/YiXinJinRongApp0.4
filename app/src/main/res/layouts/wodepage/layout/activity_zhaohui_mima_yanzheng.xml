@@ -155,6 +155,17 @@
             android:textOff=""
             android:textOn="" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/jingdao"
+        android:layout_width="wrap_content"
+        android:layout_height="30px"
+        android:text="  6-18位字母和数字组合"
+        android:textSize="24px"
+        android:textColor="#ff5757"
+        android:layout_marginLeft="30px"
+        android:drawableLeft="@drawable/jinggao"
+        android:visibility="invisible"
+        />
     <Button
         android:id="@+id/zhaohuimiam_queding"
         android:layout_width="690px"

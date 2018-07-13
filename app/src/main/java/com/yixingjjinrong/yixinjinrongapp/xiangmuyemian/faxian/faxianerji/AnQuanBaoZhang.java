@@ -28,8 +28,8 @@ public class AnQuanBaoZhang extends AutoLayoutActivity {
         webSettings.setDatabaseEnabled(true);
         // 设置允许JS弹窗
         anquanweb.loadUrl("file:///android_asset/anquan.html");
-
         anquanweb.setWebChromeClient(new WebChromeClient());
+
     }
     @JavascriptInterface
     public void back() {

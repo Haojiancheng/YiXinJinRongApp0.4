@@ -82,7 +82,7 @@ public class ChuJieJiLu extends Fragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG", "出借记录》GSON"+result);
+                Log.e("TAG出借记录》GSON", ""+result);
                 IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
                 list.addAll(date.getResult().getInvestList());
                 adapter=new ChuJieJiLu_Adapter(list);

@@ -5,7 +5,7 @@ public class XiangMuXinXi_Gson {
 
     /**
      * message : 成功了
-     * result : {"car":null,"borrowInfo":"电饭锅","paymentMode":"","bondsman":{"professiond":"","addressd":"","monthIncomed":"","idNod":"341***********7439","tradeTyped":"","sexd":"男","trcityd":"","realNamed":"茅**","birthd":"42","highestEdud":"高中或以下","maritalStatusd":"未婚"},"borrowSum":"10000.00","house":{"houseAddress":"梵蒂冈大哥","referencePrice":"3万","constructionArea":"100","useYears":"3","communityName":"覆盖 ","evaluationPrice":"1万"},"ableTenderDate":"2018-06-27 16:38 ","times":{"times":"23"},"overMoney":{"overMoney":"0.00"},"overTimes":{"overTimes":"0"},"trcity":"保定","idNo":"610***********7626","ProjectName":"143阿斯顿阿斯顿","endTenderDate":"2018-06-29 16:38 ","mortgageType":"房产抵押","trpro":"河北","borrowPurpose":"撒大事","rxx":{"overdueStatus":"阿斯顿","tradeType":"规范化","sex":"女","otherWebStatus":"梵蒂冈","monthIncome":"10000.00","profession":"挂号费","age":"33","highestEdu":"高中","maritalStatus":"未婚","realNames":"钱迎蓉"},"ran":1,"address":"阿斯顿阿斯顿***********","authentication":{"gocar_auth":0,"id":645,"person_auth":0,"house_evaluation":1,"borrowId":2435,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":0,"danbao_auth":0,"address_auth":1,"company_auth":0,"credit_auth":0},"repaysource":"撒旦岸上","realName":"钱**","overMoneys":{"overMoney":"0.00"},"deadline":"5个月"}
+     * result : {"car":null,"borrowInfo":"和法国否给和","bondsman":{"professiond":"发发发","addressd":"多对多","monthIncomed":"1000.00","idNod":"320***********7327","tradeTyped":"发发发","sexd":"女","trcityd":"昌都","realNamed":"借*","birthd":"34","highestEdud":"初中","maritalStatusd":"未婚"},"borrowSum":"10000.00","house":{"houseAddress":" 法国和风格***********","referencePrice":"1万","constructionArea":"100","useYears":"3","communityName":"法国货法国货","evaluationPrice":"1万"},"ableTenderDate":"2018-07-09 09:40 ","times":{"times":"23"},"refund":{"paymentMode":"按月付息，到期还本。"},"overMoney":{"overMoney":"0.00"},"overTimes":{"overTimes":"0"},"trcity":"铁岭","idNo":"610***********7626","houseAddress":null,"ProjectName":"梵蒂冈个地方","endTenderDate":"2018-07-13 09:40 ","mortgageType":"房产抵押","trpro":"辽宁","borrowPurpose":"工夫的","rxx":{"overdueStatus":"东方大厦","tradeType":"规范化","sex":"女","otherWebStatus":"地方个","monthIncome":"10000.00","profession":"电饭锅饭锅","age":"33","highestEdu":"高中","maritalStatus":"已婚"},"ran":2,"address":"过分的个地方***********","authentication":{"gocar_auth":0,"id":729,"person_auth":0,"house_evaluation":1,"borrowId":2522,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":1,"danbao_auth":1,"address_auth":0,"company_auth":0,"credit_auth":0},"repaysource":"佛挡杀佛","realName":"钱**","overMoneys":{"overMoney":"0.00"},"deadline":"3个月"}
      * state : success
      */
 
@@ -40,44 +40,46 @@ public class XiangMuXinXi_Gson {
     public static class ResultBean {
         /**
          * car : null
-         * borrowInfo : 电饭锅
-         * paymentMode :
-         * bondsman : {"professiond":"","addressd":"","monthIncomed":"","idNod":"341***********7439","tradeTyped":"","sexd":"男","trcityd":"","realNamed":"茅**","birthd":"42","highestEdud":"高中或以下","maritalStatusd":"未婚"}
+         * borrowInfo : 和法国否给和
+         * bondsman : {"professiond":"发发发","addressd":"多对多","monthIncomed":"1000.00","idNod":"320***********7327","tradeTyped":"发发发","sexd":"女","trcityd":"昌都","realNamed":"借*","birthd":"34","highestEdud":"初中","maritalStatusd":"未婚"}
          * borrowSum : 10000.00
-         * house : {"houseAddress":"梵蒂冈大哥","referencePrice":"3万","constructionArea":"100","useYears":"3","communityName":"覆盖 ","evaluationPrice":"1万"}
-         * ableTenderDate : 2018-06-27 16:38
+         * house : {"houseAddress":" 法国和风格***********","referencePrice":"1万","constructionArea":"100","useYears":"3","communityName":"法国货法国货","evaluationPrice":"1万"}
+         * ableTenderDate : 2018-07-09 09:40
          * times : {"times":"23"}
+         * refund : {"paymentMode":"按月付息，到期还本。"}
          * overMoney : {"overMoney":"0.00"}
          * overTimes : {"overTimes":"0"}
-         * trcity : 保定
+         * trcity : 铁岭
          * idNo : 610***********7626
-         * ProjectName : 143阿斯顿阿斯顿
-         * endTenderDate : 2018-06-29 16:38
+         * houseAddress : null
+         * ProjectName : 梵蒂冈个地方
+         * endTenderDate : 2018-07-13 09:40
          * mortgageType : 房产抵押
-         * trpro : 河北
-         * borrowPurpose : 撒大事
-         * rxx : {"overdueStatus":"阿斯顿","tradeType":"规范化","sex":"女","otherWebStatus":"梵蒂冈","monthIncome":"10000.00","profession":"挂号费","age":"33","highestEdu":"高中","maritalStatus":"未婚","realNames":"钱迎蓉"}
-         * ran : 1.0
-         * address : 阿斯顿阿斯顿***********
-         * authentication : {"gocar_auth":0,"id":645,"person_auth":0,"house_evaluation":1,"borrowId":2435,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":0,"danbao_auth":0,"address_auth":1,"company_auth":0,"credit_auth":0}
-         * repaysource : 撒旦岸上
+         * trpro : 辽宁
+         * borrowPurpose : 工夫的
+         * rxx : {"overdueStatus":"东方大厦","tradeType":"规范化","sex":"女","otherWebStatus":"地方个","monthIncome":"10000.00","profession":"电饭锅饭锅","age":"33","highestEdu":"高中","maritalStatus":"已婚"}
+         * ran : 2.0
+         * address : 过分的个地方***********
+         * authentication : {"gocar_auth":0,"id":729,"person_auth":0,"house_evaluation":1,"borrowId":2522,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":1,"danbao_auth":1,"address_auth":0,"company_auth":0,"credit_auth":0}
+         * repaysource : 佛挡杀佛
          * realName : 钱**
          * overMoneys : {"overMoney":"0.00"}
-         * deadline : 5个月
+         * deadline : 3个月
          */
 
         private Object car;
         private String borrowInfo;
-        private String paymentMode;
         private BondsmanBean bondsman;
         private String borrowSum;
         private HouseBean house;
         private String ableTenderDate;
         private TimesBean times;
+        private RefundBean refund;
         private OverMoneyBean overMoney;
         private OverTimesBean overTimes;
         private String trcity;
         private String idNo;
+        private Object houseAddress;
         private String ProjectName;
         private String endTenderDate;
         private String mortgageType;
@@ -106,14 +108,6 @@ public class XiangMuXinXi_Gson {
 
         public void setBorrowInfo(String borrowInfo) {
             this.borrowInfo = borrowInfo;
-        }
-
-        public String getPaymentMode() {
-            return paymentMode;
-        }
-
-        public void setPaymentMode(String paymentMode) {
-            this.paymentMode = paymentMode;
         }
 
         public BondsmanBean getBondsman() {
@@ -156,6 +150,14 @@ public class XiangMuXinXi_Gson {
             this.times = times;
         }
 
+        public RefundBean getRefund() {
+            return refund;
+        }
+
+        public void setRefund(RefundBean refund) {
+            this.refund = refund;
+        }
+
         public OverMoneyBean getOverMoney() {
             return overMoney;
         }
@@ -186,6 +188,14 @@ public class XiangMuXinXi_Gson {
 
         public void setIdNo(String idNo) {
             this.idNo = idNo;
+        }
+
+        public Object getHouseAddress() {
+            return houseAddress;
+        }
+
+        public void setHouseAddress(Object houseAddress) {
+            this.houseAddress = houseAddress;
         }
 
         public String getProjectName() {
@@ -294,16 +304,16 @@ public class XiangMuXinXi_Gson {
 
         public static class BondsmanBean {
             /**
-             * professiond :
-             * addressd :
-             * monthIncomed :
-             * idNod : 341***********7439
-             * tradeTyped :
-             * sexd : 男
-             * trcityd :
-             * realNamed : 茅**
-             * birthd : 42
-             * highestEdud : 高中或以下
+             * professiond : 发发发
+             * addressd : 多对多
+             * monthIncomed : 1000.00
+             * idNod : 320***********7327
+             * tradeTyped : 发发发
+             * sexd : 女
+             * trcityd : 昌都
+             * realNamed : 借*
+             * birthd : 34
+             * highestEdud : 初中
              * maritalStatusd : 未婚
              */
 
@@ -410,11 +420,11 @@ public class XiangMuXinXi_Gson {
 
         public static class HouseBean {
             /**
-             * houseAddress : 梵蒂冈大哥
-             * referencePrice : 3万
+             * houseAddress :  法国和风格***********
+             * referencePrice : 1万
              * constructionArea : 100
              * useYears : 3
-             * communityName : 覆盖
+             * communityName : 法国货法国货
              * evaluationPrice : 1万
              */
 
@@ -490,6 +500,22 @@ public class XiangMuXinXi_Gson {
             }
         }
 
+        public static class RefundBean {
+            /**
+             * paymentMode : 按月付息，到期还本。
+             */
+
+            private String paymentMode;
+
+            public String getPaymentMode() {
+                return paymentMode;
+            }
+
+            public void setPaymentMode(String paymentMode) {
+                this.paymentMode = paymentMode;
+            }
+        }
+
         public static class OverMoneyBean {
             /**
              * overMoney : 0.00
@@ -524,16 +550,15 @@ public class XiangMuXinXi_Gson {
 
         public static class RxxBean {
             /**
-             * overdueStatus : 阿斯顿
+             * overdueStatus : 东方大厦
              * tradeType : 规范化
              * sex : 女
-             * otherWebStatus : 梵蒂冈
+             * otherWebStatus : 地方个
              * monthIncome : 10000.00
-             * profession : 挂号费
+             * profession : 电饭锅饭锅
              * age : 33
              * highestEdu : 高中
-             * maritalStatus : 未婚
-             * realNames : 钱迎蓉
+             * maritalStatus : 已婚
              */
 
             private String overdueStatus;
@@ -545,7 +570,6 @@ public class XiangMuXinXi_Gson {
             private String age;
             private String highestEdu;
             private String maritalStatus;
-            private String realNames;
 
             public String getOverdueStatus() {
                 return overdueStatus;
@@ -618,29 +642,21 @@ public class XiangMuXinXi_Gson {
             public void setMaritalStatus(String maritalStatus) {
                 this.maritalStatus = maritalStatus;
             }
-
-            public String getRealNames() {
-                return realNames;
-            }
-
-            public void setRealNames(String realNames) {
-                this.realNames = realNames;
-            }
         }
 
         public static class AuthenticationBean {
             /**
              * gocar_auth : 0
-             * id : 645
+             * id : 729
              * person_auth : 0
              * house_evaluation : 1
-             * borrowId : 2435
+             * borrowId : 2522
              * car_auth : 0
              * buycar_auth : 0
              * regist_capital_auth : 0
-             * house_right_auth : 0
-             * danbao_auth : 0
-             * address_auth : 1
+             * house_right_auth : 1
+             * danbao_auth : 1
+             * address_auth : 0
              * company_auth : 0
              * credit_auth : 0
              */

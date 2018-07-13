@@ -48,6 +48,7 @@ public class JieKuanZiLiao extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        list.clear();
         initview();
         getjk_id();
         getHttp_jkzl();

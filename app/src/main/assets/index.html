@@ -464,7 +464,7 @@
                 <a href="javascript:void(0);" class="jion">完成评测</a>
             </div>
             <div class="buon4" id="las">
-                <a >重新测评</a>
+                <a>重新测评</a>
             </div>
             <p class="fxts">当产品安全等级超出借人风险承受能力时，页面将提示风险，出借人确认风险后可以进行出借。 (您今年还可以评测<em>4</em>次)</p>
         </div>
@@ -478,7 +478,9 @@
         <p class="font2"><a href="javascript:close();">确定</a></p>
     </div>
 </div>
-<script>
+<script  type="text/javascript">
+
+
     function showWindow(msg) {
         $(".font").html(msg);
         $(".dan_kuan").show();
@@ -530,10 +532,11 @@
         });
         return index
     }
-    var userIdString = "";
-    function sendKey(userId) {
-        userIdString = userId;
-    }
+
+    var sendKey = function (json) {
+         alert(JSON.stringify(json));
+    };
+
     var yxb_http = "";
     function getYXBIP(yxb_http) {
         yxb_http = yxb_http;
@@ -805,13 +808,23 @@
     }
     $("#tijiaoDiv a").click(function(){
     //完成测评执行方法
-        window.webkit.messageHandlers.accomplish.postMessage(null);
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+            window.webkit.messageHandlers.accomplish.postMessage(null);
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+            android.token_timeout();
+        }
+
         return false
     });
-                            
+
 
     $("#backBtn01").click(function(){
-        window.webkit.messageHandlers.popToVC.postMessage(null);
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+            window.webkit.messageHandlers.popToVC.postMessage(null);
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+
+            window.android.backq();
+        }
         return false
     });
     $("#las a").click(function(){
@@ -821,6 +834,7 @@
                       mySwiper.slideTo( 0, 0);
                       $(".input input").removeAttr("checked");
                       });
+
 
 </script>
 </body>

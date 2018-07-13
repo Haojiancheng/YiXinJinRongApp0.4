@@ -5,8 +5,8 @@ public class User_Gson {
 
     /**
      * message : 成功了
-     * result : {"userId":11208,"Token":"864711326104376"}
-     * userMap : {"hasPaySum":"140390.47","phone":"177****1111","otherEarnAmount":"0.00","freezeAmount":"324652.00","usableAmount":"5058427.00","usableCreditLimit":"0.00","creditLimit":"0.00","jxq":"1","hasPayPrincipal":"128400.00","risk":"1","cashFreezeAmount":"0.00","forRePaySum":"0.00","hasRePayInterest":"0.00","forRePayPrincipal":"0.00","rateEarnAmount":"13536.78","hasRePayPrincipal":"0.00","earnSum":"13536.78","forRePayInterest":"0.00","riskType":"稳健型","forPayPrincipal":"73600.00","hasPayInterest":"11990.47","inviteAmount":"0","mails":"1","djq":"1","hasRePaySum":"0.00","forPaySum":"75146.31","accountSum":"5458225.31","cg":"1","auth":"1","levelname":"SVIP","forPayInterest":"1546.31"}
+     * result : {"userId":11817,"token":"864711326104376"}
+     * userMap : {"hasPaySum":"0.00","phone":"188****8888","otherEarnAmount":"0.00","freezeAmount":"0.00","usableAmount":"0.00","usableCreditLimit":"4000.00","creditLimit":"4000.00","jxq":"0","hasPayPrincipal":"0.00","risk":"0","cashFreezeAmount":"0.00","forRePaySum":"0.00","hasRePayInterest":"0.00","forRePayPrincipal":"0.00","rateEarnAmount":"0.00","hasRePayPrincipal":"0.00","earnSum":"0.00","forRePayInterest":"0.00","riskType":"","forPayPrincipal":"0.00","hasPayInterest":"0.00","inviteAmount":"0","mails":"0","djq":"0","hasRePaySum":"0.00","forPaySum":"0.00","totalEarn":"0.00","accountSum":"0.00","cg":"0","auth":"0","levelname":"小白","forPayInterest":"0.00"}
      * state : success
      */
 
@@ -49,37 +49,38 @@ public class User_Gson {
 
     public static class UserMapBean {
         /**
-         * hasPaySum : 140390.47
-         * phone : 177****1111
+         * hasPaySum : 0.00
+         * phone : 188****8888
          * otherEarnAmount : 0.00
-         * freezeAmount : 324652.00
-         * usableAmount : 5058427.00
-         * usableCreditLimit : 0.00
-         * creditLimit : 0.00
-         * jxq : 1
-         * hasPayPrincipal : 128400.00
-         * risk : 1
+         * freezeAmount : 0.00
+         * usableAmount : 0.00
+         * usableCreditLimit : 4000.00
+         * creditLimit : 4000.00
+         * jxq : 0
+         * hasPayPrincipal : 0.00
+         * risk : 0
          * cashFreezeAmount : 0.00
          * forRePaySum : 0.00
          * hasRePayInterest : 0.00
          * forRePayPrincipal : 0.00
-         * rateEarnAmount : 13536.78
+         * rateEarnAmount : 0.00
          * hasRePayPrincipal : 0.00
-         * earnSum : 13536.78
+         * earnSum : 0.00
          * forRePayInterest : 0.00
-         * riskType : 稳健型
-         * forPayPrincipal : 73600.00
-         * hasPayInterest : 11990.47
+         * riskType :
+         * forPayPrincipal : 0.00
+         * hasPayInterest : 0.00
          * inviteAmount : 0
-         * mails : 1
-         * djq : 1
+         * mails : 0
+         * djq : 0
          * hasRePaySum : 0.00
-         * forPaySum : 75146.31
-         * accountSum : 5458225.31
-         * cg : 1
-         * auth : 1
-         * levelname : SVIP
-         * forPayInterest : 1546.31
+         * forPaySum : 0.00
+         * totalEarn : 0.00
+         * accountSum : 0.00
+         * cg : 0
+         * auth : 0
+         * levelname : 小白
+         * forPayInterest : 0.00
          */
 
         private String hasPaySum;
@@ -108,6 +109,7 @@ public class User_Gson {
         private String djq;
         private String hasRePaySum;
         private String forPaySum;
+        private String totalEarn;
         private String accountSum;
         private String cg;
         private String auth;
@@ -320,6 +322,14 @@ public class User_Gson {
 
         public void setForPaySum(String forPaySum) {
             this.forPaySum = forPaySum;
+        }
+
+        public String getTotalEarn() {
+            return totalEarn;
+        }
+
+        public void setTotalEarn(String totalEarn) {
+            this.totalEarn = totalEarn;
         }
 
         public String getAccountSum() {

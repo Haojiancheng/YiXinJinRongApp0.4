@@ -153,7 +153,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="资金安全保障"
+                        android:text="优质资产项目"
                         android:textColor="#333333"
                         android:textSize="24px"
                         android:textStyle="bold" />

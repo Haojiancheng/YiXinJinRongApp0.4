@@ -213,6 +213,7 @@
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/hz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/huancun"

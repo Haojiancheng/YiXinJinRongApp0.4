@@ -94,11 +94,15 @@
                     android:textColor="#ffc0a5"
                     android:textSize="24px" />
 
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="35px"
-                    android:layout_marginLeft="40px"
-                    android:src="@drawable/zhengyan" />
+                <ToggleButton
+                    android:id="@+id/wode_togglePwd"
+                    android:layout_width="40px"
+                    android:layout_height="30px"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/zhengyan"
+                    android:padding="10dp"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
 
             <TextView

@@ -37,7 +37,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private String base1;//Base64加密
     private String phone;
     private TimeCount time;
-    private TextView phonet;
+    private TextView phonet,jinggao;
     private EditText ed_code,news_mima;
     private ImageView et_qc;
     private ToggleButton zh_togglePwd;
@@ -52,9 +52,12 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         getzhaohuimima_Id();
         Intent it=getIntent();
         phone = it.getStringExtra("phone");
-        phonet.setText("正在为"+phone+"找回登入密码");
+        String mobile = phone;
+        String maskNumber = mobile.substring(0,3)+"****"+mobile.substring(7,mobile.length());
+        phonet.setText("正在为"+maskNumber+"找回登入密码");
         getzhaohuimima_Onclik();
         time = new TimeCount(60000, 1000);
+
     }
     public static boolean isPassword(String password) {
         return Pattern.matches(REGEX_PASSWORD, password);
@@ -75,6 +78,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 int lenght = news_mima.getText().toString().trim().length();
 //                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
                 if (lenght<6||lenght>18 || !isPassword(news_mima.getText().toString())){
+                    jinggao.setVisibility(View.VISIBLE);
                     Toast.makeText(ZhaoHuiMiMaYanZheng.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
                 }else {
                     getyanzhengHttp();
@@ -216,6 +220,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         news_mima=findViewById(R.id.news_mima);
         zh_togglePwd=findViewById(R.id.zh_togglePwd);
         et_qc=findViewById(R.id.zh_guanbi);
+        jinggao=findViewById(R.id.jingdao);
     }
     class TimeCount extends CountDownTimer {
 

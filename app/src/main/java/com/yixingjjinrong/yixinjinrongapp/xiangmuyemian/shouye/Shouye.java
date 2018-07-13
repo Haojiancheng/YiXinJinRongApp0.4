@@ -1,6 +1,7 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,6 +27,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
+import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -58,6 +62,8 @@ public class Shouye extends Fragment {
     private List<String> mymassegtime=new ArrayList<>();
     private ShouYe_MyBaseAdapter adapter;
     private boolean isGetData = false;
+    private ShouYe_Gson data;
+
 
     @Nullable
     @Override
@@ -72,7 +78,7 @@ public class Shouye extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getshouyeid();
-        getgongaoHTTP();
+//        getgongaoHTTP();
         //公告栏
 //        getgonggao();
         //更多项目的跳转
@@ -95,7 +101,7 @@ public class Shouye extends Fragment {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", "" + result);
-                final ShouYe_Gson data = new Gson().fromJson(result, ShouYe_Gson.class);
+                data = new Gson().fromJson(result, ShouYe_Gson.class);
                 String paht = data.getResult().getPath();
                 Log.e("TAG", "Path:" + paht);
 
@@ -128,66 +134,27 @@ public class Shouye extends Fragment {
                 mylist.addAll(data.getResult().getBorrowList());
                 adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
                 mylistview.setAdapter(adapter);
+                mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String xiangmu_id = mylist.get(position).getBorrowRandomId();
+                        Log.e("TAG", "+.." + xiangmu_id);
+                        Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
+                        String mortgageType = mylist.get(position).getMortgageType();
+                        it.putExtra("xiangmu_id", xiangmu_id);
+                        it.putExtra("mortgageType", mortgageType);
+                        startActivity(it);
+                    }
+                });
                 adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-    }
-
-
-
-
-    private void getgongaoHTTP() {
-        final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-        try {
-            js_request.put("pageNum", 1);
-
-            base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
-            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONObject canshu = new JSONObject();
-        try {
-            canshu.put("param", base1);
-            canshu.put("sign", sha1);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryPublicMsgList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("首页消息",""+result);
-                ShouYeMassage_Gson data = new Gson().fromJson(result, ShouYeMassage_Gson.class);
-                for (int i = 0; i < data.getResult().size(); i++) {
-                    mymasseg.add(data.getResult().get(i).getArticle_title());
+                for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
+                    mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());
                 }
-                for (int i = 0; i < data.getResult().size(); i++) {
-                    mymassegtime.add(data.getResult().get(i).getArticle_pub_time());
+                for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
+                    mymassegtime.add(data.getResult().getPublicMsgList().get(i).getArticle_pub_time());
                 }
-
                 getgonggao();
+
             }
 
             @Override
@@ -206,6 +173,7 @@ public class Shouye extends Fragment {
             }
         });
     }
+
     private void getgonggao() {
         //公告栏
         noticeView = getActivity().findViewById(R.id.notice_view);
@@ -216,6 +184,19 @@ public class Shouye extends Fragment {
 
         noticeView.addNotice(notices);
         noticeView.startFlipping();
+        noticeView.setOnNoticeClickListener(new NoticeView.OnNoticeClickListener() {
+            @Override
+            public void onNotieClick(int position, String notice) {
+//                data.getResult().get(position).geta
+                int article_link = data.getResult().getPublicMsgList().get(position).getAid();
+                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("xx_ird", article_link);
+                it.putExtras(bundle);
+                startActivity(it);
+//                Log.e("公告：",""+position);
+            }
+        });
 
         //时间
         List<String> notTime = new ArrayList<>();

@@ -146,6 +146,6 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         super.onRestart();
         list.clear();
         getaddAssHTTP();
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 }

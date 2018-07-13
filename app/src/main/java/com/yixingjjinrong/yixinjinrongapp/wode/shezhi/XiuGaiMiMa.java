@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -18,6 +20,8 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiuGaiMiMa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -35,6 +39,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     private ToggleButton xiugai_togglePwd;//,隐藏密码
     private String sha1;//SHA1加密
     private String base1;//Base64加密
+    private TextView xg_mima;
     public static final String REGEX_PASSWORD = "^(?=.*?[a-z])(?=.*?[0-9])[a-zA-Z0-9_]{6,16}$";
     private int user_ird;
 
@@ -46,6 +51,13 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         Bundle b = getIntent().getExtras();
         user_ird = b.getInt("user_ird");
         getoncolik();
+        xg_mima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_Zhaohuimima = new Intent(XiuGaiMiMa.this, ZhaoHuiMiMa.class);
+                startActivity(intent_Zhaohuimima);
+            }
+        });
     }
 
     private void getoncolik() {
@@ -146,5 +158,6 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         old_mima=findViewById(R.id.old_mima);
         new_mima=findViewById(R.id.new_mima);
         re_password=findViewById(R.id.re_password);
+        xg_mima=findViewById(R.id.xg_mima);
     }
 }

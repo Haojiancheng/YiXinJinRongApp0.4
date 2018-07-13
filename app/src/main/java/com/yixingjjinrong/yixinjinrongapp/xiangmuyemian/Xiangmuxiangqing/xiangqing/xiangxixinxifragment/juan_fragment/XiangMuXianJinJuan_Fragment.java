@@ -37,6 +37,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
     private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
     private int user_id;
     private XiangMuXianjinJuan_adapter myadapter;
+    private  int a=1;
 
     @Nullable
     @Override
@@ -62,6 +63,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
             js_request.put("userId", user_id);
             js_request.put("activitype", "6");
             js_request.put("staut", "1");
+            js_request.put("pageNumber", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");

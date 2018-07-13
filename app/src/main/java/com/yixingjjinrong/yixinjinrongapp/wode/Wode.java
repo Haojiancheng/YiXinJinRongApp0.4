@@ -7,15 +7,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -42,6 +46,8 @@ import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.zijinliushui.ZiJinliush
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
 import com.yixingjjinrong.yixinjinrongapp.wode.shezhi.WoDe_SheZhi;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
+import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.MyYaoQing;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -70,6 +76,9 @@ public class Wode extends Fragment {
     private String phone;
     private String keyong;
     private String riskType;
+    private ToggleButton wode_togglePwd;
+    private String inviteAmount;
+    private String totalEarn;
 
 
     @Nullable
@@ -94,9 +103,16 @@ public class Wode extends Fragment {
             }
         });
 
+//        userToken = (String) SPUtils.get(getActivity(),"Token1",0);
+//        if (userToken!=null){
+//            user_id = (int) SPUtils.get(getActivity(),"userId",0);
+//            getHttp();
+//        }
+
+
     }
-    
-    
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void myMethod(User_data event) {
         user_id = event.getUser_id();
@@ -121,7 +137,7 @@ public class Wode extends Fragment {
         final String token = userToken;
         try {
             js_request.put("userId", user_id);
-            js_request.put("url", token);
+            js_request.put("token", token);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -133,7 +149,7 @@ public class Wode extends Fragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-
+            Log.e("我的加密：", ":"+canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -148,6 +164,10 @@ public class Wode extends Fragment {
                 User_Gson data = new Gson().fromJson(result, User_Gson.class);
                 phone = data.getUserMap().getPhone();
                 myphone.setText(phone);//手机号
+                //邀请人数
+                inviteAmount = data.getUserMap().getInviteAmount();
+                //邀请总金额
+                totalEarn = data.getUserMap().getTotalEarn();
                 String zhuangtaima = data.getState();
 //                Log.e("state",zhuangtaima);
                 if (zhuangtaima.equals("success")) {
@@ -192,6 +212,8 @@ public class Wode extends Fragment {
                                 }
                             });
                         } else {
+                            shimingrenzheng_itme.setVisibility(View.GONE);
+                            yinhangcunguan_itme.setVisibility(View.GONE);
                             if (fx.equals("0")) {
                                 fengxianpingce_itme.setVisibility(View.VISIBLE);
                                 fengxianpingce_itme.setOnClickListener(new View.OnClickListener() {
@@ -204,27 +226,46 @@ public class Wode extends Fragment {
                                         startActivity(intent);
                                     }
                                 });
+                            }else {
+                                shimingrenzheng_itme.setVisibility(View.GONE);
+                                yinhangcunguan_itme.setVisibility(View.GONE);
+                                fengxianpingce_itme.setVisibility(View.GONE);
                             }
 
                         }
                     }
 
-
+                    getoncilink();
                 } else {
-                    weidengru.setVisibility(View.VISIBLE); //显示布局
-                    dengru.setVisibility(View.GONE);//影藏布局
-                    Toast.makeText(getActivity(), "请重新登入", Toast.LENGTH_SHORT).show();
+//                    weidengru.setVisibility(View.VISIBLE); //显示布局
+//                    dengru.setVisibility(View.GONE);//影藏布局
+//                    keyongyue.setText("0.00");
+//                    shimingrenzheng_itme.setVisibility(View.VISIBLE);
+//                    yinhangcunguan_itme.setVisibility(View.GONE);
+//                    fengxianpingce_itme.setVisibility(View.GONE);
+//                    shimingrenzheng_itme.setEnabled(false);
+//                    chongzhi.setEnabled(false);
+//                    tixian.setEnabled(false);
+//                    wode_chujie.setEnabled(false);
+//                    zjls.setEnabled(false);
+//                    xianjin_juan.setEnabled(false);
+//                    jiaxi_juan.setEnabled(false);
+//                    yaoqing.setText("0");
+//                    yaoqing.setEnabled(false);
+//                    Toast.makeText(getActivity(), "请重新登入", Toast.LENGTH_SHORT).show();
                 }
 //                EventBus.getDefault().post(new Myuser_id(user_id));
                 SPUtils.put(getActivity(), "userId", user_id);
                 SPUtils.put(getActivity(), "Token1", token);
-                getoncilink();
+
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 weidengru.setVisibility(View.VISIBLE); //显示布局
                 dengru.setVisibility(View.GONE);//影藏布局
+                keyongyue.setText("0.00");
+                yaoqing.setText("0");
             }
 
             @Override
@@ -437,6 +478,36 @@ public class Wode extends Fragment {
                 startActivity(it);
             }
         });
+        wode_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    //如果选中，显示密码
+                    wozonge.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    wode_togglePwd.setBackground(getResources().getDrawable(R.drawable.zhengyan));
+                } else {
+                    //否则隐藏密码
+                    wozonge.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    wode_togglePwd.setBackground(getResources().getDrawable(R.drawable.biyan));
+                }
+            }
+        });
+        yaoqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(getActivity(), MyYaoQing.class);
+                it.putExtra("mancount", inviteAmount);
+                it.putExtra("countmoney", totalEarn);
+                startActivity(it);
+            }
+        });
+        wozonge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), ZongziChan.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -465,6 +536,7 @@ public class Wode extends Fragment {
         chongzhi = getActivity().findViewById(R.id.chongzhi);//充值
         tixian = getActivity().findViewById(R.id.tixian);//提现
         zjls=getActivity().findViewById(R.id.zjls);//资金流水
+        wode_togglePwd=getActivity().findViewById(R.id.wode_togglePwd);//眼睛
     }
 
     @Override
@@ -472,7 +544,7 @@ public class Wode extends Fragment {
         super.onResume();
         boolean isLogin= (boolean) SPUtils.get(getActivity(),"isLogin",false);
         if (isLogin==false){
-            userToken="";
+//            userToken="";
             getHttp();
         }
     }

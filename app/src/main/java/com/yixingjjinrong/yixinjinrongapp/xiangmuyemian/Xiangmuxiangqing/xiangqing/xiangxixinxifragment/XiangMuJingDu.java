@@ -43,6 +43,7 @@ public class XiangMuJingDu extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         initview();
         gethttpjingde_id();
         gethttp_jingdu();

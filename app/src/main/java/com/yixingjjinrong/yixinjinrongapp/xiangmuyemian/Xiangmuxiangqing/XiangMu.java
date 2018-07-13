@@ -97,7 +97,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                         Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
                         intent.putExtra("xiangmu_id", xiangmu_id);
                         intent.putExtra("mortgageType", mtype);
-                        Log.e("TASG","项目id:"+xiangmu_id);
+                        intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
+
+                        Log.e("TASG","立即出借id:"+xiangmu_id);
                         startActivity(intent);
                     }
                 });
@@ -130,6 +132,10 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xRecyclerView.setLoadingListener(this);
         xRecyclerView.setPullRefreshEnabled(true);
+//        头部刷新样式
+//        xRecyclerView.setRefreshProgressStyle(5);
+//        加载更多样式
+//        xRecyclerView.setLoadingMoreProgressStyle(2);
         xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
 //        adapter=new XiangMu_Adapter(list);

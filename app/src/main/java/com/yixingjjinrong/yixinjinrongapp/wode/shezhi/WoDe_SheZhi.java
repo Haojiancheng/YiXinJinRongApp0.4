@@ -12,16 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.DataCleanManager;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.UnLogin;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -32,7 +29,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private Button user_tuichu;//退出按钮
     private TextView repassword;//修改密码
     private ImageView fankui;//意见反馈
-
+    private TextView hz;//缓存
     private int user_ird;
     private String token;
     private String sha1;//SHA1加密
@@ -47,7 +44,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         getSheZhi_Id();
         Bundle b = getIntent().getExtras();
         user_ird = b.getInt("user_ird");
-        Log.e("TAG", "SSSS"+user_ird);
+
         token = b.getString("token");
         user_tuichu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,9 +61,16 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
                 startActivity(shezhi_tuichu);
-                finish();
+
             }
         });
+        try {
+            String sizea = DataCleanManager.getTotalCacheSize(context);
+            hz.setText(""+sizea);
+            Log.e("我的缓存", ""+sizea);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         fankui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +125,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //                startActivity(shezhi_tuichu);
                 SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
 //                EventBus.getDefault().post(new UnLogin());
+                SPUtils.remove(WoDe_SheZhi.this,"userId");
                 finish();
             }
 
@@ -151,5 +156,6 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         user_tuichu=findViewById(R.id.user_tuichu);//退出
         repassword=findViewById(R.id.repassword);//修改密码
         fankui=findViewById(R.id.fankui);//意见反馈
+        hz=findViewById(R.id.hz);//缓存
     }
 }

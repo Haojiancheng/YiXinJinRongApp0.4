@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZhiOk_GSon;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -79,10 +80,11 @@ public class ChongZhq extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("ok充值：", result);
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent itcz = new Intent(ChongZhq.this, YinHangCunGuan.class);
+                ChongZhiOk_GSon data = new Gson().fromJson(result, ChongZhiOk_GSon.class);
+                String html = data.getHtml();
+                Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
                 itcz.putExtra("HTML", html);
+                Log.e("HTML!:",""+html.toString() );
                 startActivity(itcz);
             }
 

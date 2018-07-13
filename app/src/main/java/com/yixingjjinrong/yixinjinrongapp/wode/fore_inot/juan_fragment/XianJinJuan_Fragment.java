@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
@@ -33,13 +35,14 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XianJinJuan_Fragment extends Fragment{
+public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.LoadingListener{
     private String sha1;//SHA1加密
     private String base1;//Base64加密
-    private RecyclerView xianjinjun_rview;
+    private XRecyclerView xianjinjun_rview;
     private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
     private int user_id;
     private XianjinJuan_adapter myadapter;
+    private int a=1;
 
     @Nullable
     @Override
@@ -65,6 +68,7 @@ public class XianJinJuan_Fragment extends Fragment{
             js_request.put("userId", user_id);
             js_request.put("activitype", "6");
             js_request.put("staut", "1");
+            js_request.put("pageNumber", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -92,7 +96,7 @@ public class XianJinJuan_Fragment extends Fragment{
                 list.addAll(data.getQueryVouchersList());
                 myadapter=new XianjinJuan_adapter(list);
                 xianjinjun_rview.setAdapter(myadapter);
-                myadapter.notifyDataSetChanged();
+
 
             }
 
@@ -115,11 +119,31 @@ public class XianJinJuan_Fragment extends Fragment{
 
     private void getfcdy_id() {
         xianjinjun_rview=getActivity().findViewById(R.id.xianjinjuan_rview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        xianjinjun_rview.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        xianjinjun_rview.setLayoutManager(manager);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        xianjinjun_rview.setLoadingListener(this);
+        xianjinjun_rview.setPullRefreshEnabled(true);
+        xianjinjun_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        xianjinjun_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onRefresh() {
+        myadapter.notifyDataSetChanged();
+        a=1;
+        getHttp();
+        xianjinjun_rview.refreshComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        a++;
+        getHttp();
+        xianjinjun_rview.loadMoreComplete();
     }
 }

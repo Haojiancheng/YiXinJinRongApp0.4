@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -28,6 +29,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private int user_ird;
     private String sha1;//SHA1加密
     private String base1;//Base64加密
+    private TextView jinggao;//错误消息
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +85,18 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 Log.e("实名认证的GSOn", ""+result);
                 ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
                 String message = data.getMessage().toString();
-                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
-                String zhuangtai = data.getState().toString();
+//                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
+
+                String zhuangtai = data.getState();
+                Log.e("实名认证", zhuangtai);
                 if (zhuangtai.equals("success")){
                     String realName = data.getResult().getRealName();
                     String idNo = data.getResult().getIdNo();
                     Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
-
                     startActivity(intent);
+                }else {
+                    jinggao.setVisibility(View.VISIBLE);
+                    jinggao.setText(message);
                 }
 
             }
@@ -118,6 +124,6 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
         zhen_name=findViewById(R.id.zhen_name);
         user_idcard=findViewById(R.id.user_idcard);
         renzheng_goin=findViewById(R.id.renzheng_goin);
-
+        jinggao=findViewById(R.id.jinggao11);
     }
 }

@@ -39,9 +39,9 @@ public class XiangMuXinXi extends Fragment {
     private String base1;//Base64加
     private String borr_id;
     private TextView xm_name, jk_jine, jk_qixian, jk_yongtu, hk_fangshi, yd_lilv, hk_lanyuan, bx_cuoshi, start_time, end_time;
-    private TextView zt_xingzhi, man_name, man_id, man_sax, man_age, man_suday, man_huji, man_dizhi, man_zhiwei, man_hangye, man_shouru, man_huanhuancishu, man_yuqicishu, lishiyuqi_jinge, dangqian_jine, yuqi_qingkuang, qita_pingtai;
+    private TextView zt_xingzhi, man_name, man_id, man_sax, man_age, man_suday,man_hunyin, man_huji, man_dizhi, man_zhiwei, man_hangye, man_shouru, man_huanhuancishu, man_yuqicishu, lishiyuqi_jinge, dangqian_jine, yuqi_qingkuang, qita_pingtai;
     private TextView fangchan_dizhi, xq_mingcheng, sy_nx, fc_mianji, fc_jiage, xk_jg;
-    private TextView sf_rz, sf_wrz, zz_rz, zz_wrz, zxbg_rz, zxbg_wrz, fwcq_rz, fwcq_wrz, fcpg_rz, fcpg_wrz, dbh_rz, dbh_wrz, sh_yj;
+    private TextView sf_rz,car_jia,sf_wrz, zz_rz, zz_wrz, zxbg_rz, zxbg_wrz, fwcq_rz, fwcq_wrz, fcpg_rz, fcpg_wrz, dbh_rz, dbh_wrz, sh_yj;
     private String borrowRandomId;
     private String mtpye;
     private TextView dbr_name,dbr_idcard,dbr_sax,dbr_age,dbr_hunyin,dbr_xl,dbr_huji,dbr_adriess,dbr_shouru,dbr_zhiye,dbr_hangye;
@@ -82,6 +82,7 @@ public class XiangMuXinXi extends Fragment {
         start_time = getActivity().findViewById(R.id.start_time);
         end_time = getActivity().findViewById(R.id.end_time);
         yd_lilv = getActivity().findViewById(R.id.yd_lilv);
+        man_hunyin=getActivity().findViewById(R.id.man_hunyin);
 
 // ,,,,,,,,,个人信息,,,,,,,,,;
         zt_xingzhi = getActivity().findViewById(R.id.zt_xingzhi);
@@ -129,6 +130,7 @@ public class XiangMuXinXi extends Fragment {
         hose_xx=getActivity().findViewById(R.id.hose_xx);
         car_xx=getActivity().findViewById(R.id.car_xx);
         car_dbr=getActivity().findViewById(R.id.car_danbaoren);
+        car_jia=getActivity().findViewById(R.id.car_jia);
         //担保人信息
 
         dbr_name=getActivity().findViewById(R.id.dbr_name);
@@ -220,6 +222,7 @@ public class XiangMuXinXi extends Fragment {
                     car_buy.setText(cardata.getResult().getCar().getCarprice());
                     car_money.setText(cardata.getResult().getCar().getCar_offer());
                     car_cmoney.setText(cardata.getResult().getCar().getReferenceprice());
+                    car_jia.setText(cardata.getResult().getCar().getCarshelf());
                     //基本信息
                     String s=data.getResult().getProjectName();
                     Log.e("哎呀我去之天龙八部：",""+s);
@@ -227,10 +230,11 @@ public class XiangMuXinXi extends Fragment {
                     jk_jine.setText(data.getResult().getBorrowSum());
                     jk_qixian.setText(data.getResult().getDeadline());
                     jk_yongtu.setText(data.getResult().getBorrowPurpose());
-                    hk_fangshi.setText(data.getResult().getPaymentMode());
+                    hk_fangshi.setText(data.getResult().getRefund().getPaymentMode());
                     hidden.setText(data.getResult().getBorrowInfo());
                     show.setText(data.getResult().getBorrowInfo());
-                    yd_lilv.setText(String.valueOf(data.getResult().getRan()));
+                    man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
+                    yd_lilv.setText(String.valueOf(data.getResult().getRan())+"%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
                     bx_cuoshi.setText(data.getResult().getMortgageType());
                     start_time.setText(data.getResult().getAbleTenderDate());
@@ -326,10 +330,10 @@ public class XiangMuXinXi extends Fragment {
                     jk_jine.setText(data.getResult().getBorrowSum());
                     jk_qixian.setText(data.getResult().getDeadline());
                     jk_yongtu.setText(data.getResult().getBorrowPurpose());
-                    hk_fangshi.setText(data.getResult().getPaymentMode());
+                    hk_fangshi.setText(data.getResult().getRefund().getPaymentMode());
                     hidden.setText(data.getResult().getBorrowInfo());
                     show.setText(data.getResult().getBorrowInfo());
-                    yd_lilv.setText(String.valueOf(data.getResult().getRan()));
+                    yd_lilv.setText(String.valueOf(data.getResult().getRan())+"%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
                     bx_cuoshi.setText(data.getResult().getMortgageType());
                     start_time.setText(data.getResult().getAbleTenderDate());
@@ -360,6 +364,7 @@ public class XiangMuXinXi extends Fragment {
                     man_zhiwei.setText(data.getResult().getRxx().getProfession());
                     man_hangye.setText(data.getResult().getRxx().getTradeType());
                     man_shouru.setText(data.getResult().getRxx().getMonthIncome());
+                    man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
                     man_huanhuancishu.setText(data.getResult().getTimes().getTimes());
                     man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes());
                     lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney());

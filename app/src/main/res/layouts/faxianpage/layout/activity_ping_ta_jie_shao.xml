@@ -403,6 +403,30 @@
                     android:textSize="28px" />
             </RelativeLayout>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20px"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gudongxinxi"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20px"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/zuzhijiagou"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20px"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/yuangongxinxi"
+                />
         </LinearLayout>
     </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
 

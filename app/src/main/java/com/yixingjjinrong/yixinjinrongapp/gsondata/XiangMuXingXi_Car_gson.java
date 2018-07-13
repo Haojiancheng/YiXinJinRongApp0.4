@@ -4,7 +4,7 @@ public class XiangMuXingXi_Car_gson {
 
     /**
      * message : 成功了
-     * result : {"car":{"carprice":"50万","car_style":"奥迪a6","referenceprice":"50万","car_register":"2018-06-04 00:00:00","carcode":"浙****A","car_offer":"50万","car_emission":"3.5","car_condition":"优","car_mileage":"10"},"borrowInfo":"gdfgfd","paymentMode":"","bondsman":{"professiond":"计算机","addressd":"北京市海淀区","monthIncomed":"10000.00","idNod":"420***********4059","tradeTyped":"计算机","sexd":"男","trcityd":"银川","realNamed":"朱**","birthd":"56","highestEdud":"高中或以下","maritalStatusd":"未婚"},"borrowSum":"1000.00","house":null,"ableTenderDate":"2018-06-23 14:13 ","times":{"times":"7"},"overMoney":{"overMoney":"0.00"},"overTimes":{"overTimes":"0"},"trcity":"北京","idNo":"210***********1825","ProjectName":"微信_一次性还款","endTenderDate":"2018-06-29 14:13 ","mortgageType":"车辆抵押","trpro":"北京","borrowPurpose":"一次性还款","rxx":{"overdueStatus":"发鬼地方","tradeType":"教育","sex":"女","otherWebStatus":"大范甘迪","monthIncome":"10000.00","profession":"教师","age":"46","highestEdu":"初中","maritalStatus":"未婚"},"ran":6,"address":"大法官大人个***********","authentication":{"gocar_auth":1,"id":600,"person_auth":1,"house_evaluation":0,"borrowId":2390,"car_auth":1,"buycar_auth":1,"regist_capital_auth":0,"house_right_auth":0,"danbao_auth":1,"address_auth":1,"company_auth":0,"credit_auth":1},"repaysource":"工资","realName":"张**","overMoneys":{"overMoney":"0.00"},"deadline":"3个月"}
+     * result : {"car":{"carprice":"10万","car_style":"日产","carshelf":"987****0","referenceprice":"10万","car_register":"2018-07-01","carcode":"京****K","car_offer":"10万","car_emission":"1.5t","car_condition":"优","car_mileage":"1234"},"borrowInfo":"测试","bondsman":{"professiond":"计算机","addressd":"北京市海淀区","monthIncomed":"10000.00","idNod":"420***********4059","tradeTyped":"计算机","sexd":"男","trcityd":"银川","realNamed":"朱**","birthd":"56","highestEdud":"高中或以下","maritalStatusd":"未婚"},"borrowSum":"1000.00","house":null,"ableTenderDate":"2018-07-11 14:50 ","times":{"times":"11"},"refund":{"paymentMode":"按月付息，到期还本","paymentModezhi":"2","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。"},"overMoney":{"overMoney":"0.00"},"overTimes":{"overTimes":"0"},"trcity":"北京","idNo":"433***********2414","houseAddress":null,"ProjectName":"担保公司测试","endTenderDate":"2018-07-12 14:35 ","mortgageType":"车辆抵押","trpro":"北京","borrowPurpose":"测试","rxx":{"overdueStatus":"无","tradeType":"物流","sex":"男","otherWebStatus":"无","monthIncome":"10000.00","profession":"快递物流","age":"52","highestEdu":"高中","maritalStatus":"已婚"},"ran":6,"address":"朝阳***********","authentication":{"gocar_auth":0,"id":756,"person_auth":1,"house_evaluation":0,"borrowId":2549,"car_auth":0,"buycar_auth":0,"regist_capital_auth":1,"house_right_auth":0,"danbao_auth":0,"address_auth":0,"company_auth":1,"credit_auth":1},"repaysource":"本人","realName":"钱**","overMoneys":{"overMoney":"0.00"},"deadline":"3个月"}
      * state : success
      */
 
@@ -38,45 +38,47 @@ public class XiangMuXingXi_Car_gson {
 
     public static class ResultBean {
         /**
-         * car : {"carprice":"50万","car_style":"奥迪a6","referenceprice":"50万","car_register":"2018-06-04 00:00:00","carcode":"浙****A","car_offer":"50万","car_emission":"3.5","car_condition":"优","car_mileage":"10"}
-         * borrowInfo : gdfgfd
-         * paymentMode :
+         * car : {"carprice":"10万","car_style":"日产","carshelf":"987****0","referenceprice":"10万","car_register":"2018-07-01","carcode":"京****K","car_offer":"10万","car_emission":"1.5t","car_condition":"优","car_mileage":"1234"}
+         * borrowInfo : 测试
          * bondsman : {"professiond":"计算机","addressd":"北京市海淀区","monthIncomed":"10000.00","idNod":"420***********4059","tradeTyped":"计算机","sexd":"男","trcityd":"银川","realNamed":"朱**","birthd":"56","highestEdud":"高中或以下","maritalStatusd":"未婚"}
          * borrowSum : 1000.00
          * house : null
-         * ableTenderDate : 2018-06-23 14:13
-         * times : {"times":"7"}
+         * ableTenderDate : 2018-07-11 14:50
+         * times : {"times":"11"}
+         * refund : {"paymentMode":"按月付息，到期还本","paymentModezhi":"2","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。"}
          * overMoney : {"overMoney":"0.00"}
          * overTimes : {"overTimes":"0"}
          * trcity : 北京
-         * idNo : 210***********1825
-         * ProjectName : 微信_一次性还款
-         * endTenderDate : 2018-06-29 14:13
+         * idNo : 433***********2414
+         * houseAddress : null
+         * ProjectName : 担保公司测试
+         * endTenderDate : 2018-07-12 14:35
          * mortgageType : 车辆抵押
          * trpro : 北京
-         * borrowPurpose : 一次性还款
-         * rxx : {"overdueStatus":"发鬼地方","tradeType":"教育","sex":"女","otherWebStatus":"大范甘迪","monthIncome":"10000.00","profession":"教师","age":"46","highestEdu":"初中","maritalStatus":"未婚"}
+         * borrowPurpose : 测试
+         * rxx : {"overdueStatus":"无","tradeType":"物流","sex":"男","otherWebStatus":"无","monthIncome":"10000.00","profession":"快递物流","age":"52","highestEdu":"高中","maritalStatus":"已婚"}
          * ran : 6.0
-         * address : 大法官大人个***********
-         * authentication : {"gocar_auth":1,"id":600,"person_auth":1,"house_evaluation":0,"borrowId":2390,"car_auth":1,"buycar_auth":1,"regist_capital_auth":0,"house_right_auth":0,"danbao_auth":1,"address_auth":1,"company_auth":0,"credit_auth":1}
-         * repaysource : 工资
-         * realName : 张**
+         * address : 朝阳***********
+         * authentication : {"gocar_auth":0,"id":756,"person_auth":1,"house_evaluation":0,"borrowId":2549,"car_auth":0,"buycar_auth":0,"regist_capital_auth":1,"house_right_auth":0,"danbao_auth":0,"address_auth":0,"company_auth":1,"credit_auth":1}
+         * repaysource : 本人
+         * realName : 钱**
          * overMoneys : {"overMoney":"0.00"}
          * deadline : 3个月
          */
 
         private CarBean car;
         private String borrowInfo;
-        private String paymentMode;
         private BondsmanBean bondsman;
         private String borrowSum;
         private Object house;
         private String ableTenderDate;
         private TimesBean times;
+        private RefundBean refund;
         private OverMoneyBean overMoney;
         private OverTimesBean overTimes;
         private String trcity;
         private String idNo;
+        private Object houseAddress;
         private String ProjectName;
         private String endTenderDate;
         private String mortgageType;
@@ -105,14 +107,6 @@ public class XiangMuXingXi_Car_gson {
 
         public void setBorrowInfo(String borrowInfo) {
             this.borrowInfo = borrowInfo;
-        }
-
-        public String getPaymentMode() {
-            return paymentMode;
-        }
-
-        public void setPaymentMode(String paymentMode) {
-            this.paymentMode = paymentMode;
         }
 
         public BondsmanBean getBondsman() {
@@ -155,6 +149,14 @@ public class XiangMuXingXi_Car_gson {
             this.times = times;
         }
 
+        public RefundBean getRefund() {
+            return refund;
+        }
+
+        public void setRefund(RefundBean refund) {
+            this.refund = refund;
+        }
+
         public OverMoneyBean getOverMoney() {
             return overMoney;
         }
@@ -185,6 +187,14 @@ public class XiangMuXingXi_Car_gson {
 
         public void setIdNo(String idNo) {
             this.idNo = idNo;
+        }
+
+        public Object getHouseAddress() {
+            return houseAddress;
+        }
+
+        public void setHouseAddress(Object houseAddress) {
+            this.houseAddress = houseAddress;
         }
 
         public String getProjectName() {
@@ -293,19 +303,21 @@ public class XiangMuXingXi_Car_gson {
 
         public static class CarBean {
             /**
-             * carprice : 50万
-             * car_style : 奥迪a6
-             * referenceprice : 50万
-             * car_register : 2018-06-04 00:00:00
-             * carcode : 浙****A
-             * car_offer : 50万
-             * car_emission : 3.5
+             * carprice : 10万
+             * car_style : 日产
+             * carshelf : 987****0
+             * referenceprice : 10万
+             * car_register : 2018-07-01
+             * carcode : 京****K
+             * car_offer : 10万
+             * car_emission : 1.5t
              * car_condition : 优
-             * car_mileage : 10
+             * car_mileage : 1234
              */
 
             private String carprice;
             private String car_style;
+            private String carshelf;
             private String referenceprice;
             private String car_register;
             private String carcode;
@@ -328,6 +340,14 @@ public class XiangMuXingXi_Car_gson {
 
             public void setCar_style(String car_style) {
                 this.car_style = car_style;
+            }
+
+            public String getCarshelf() {
+                return carshelf;
+            }
+
+            public void setCarshelf(String carshelf) {
+                this.carshelf = carshelf;
             }
 
             public String getReferenceprice() {
@@ -505,7 +525,7 @@ public class XiangMuXingXi_Car_gson {
 
         public static class TimesBean {
             /**
-             * times : 7
+             * times : 11
              */
 
             private String times;
@@ -516,6 +536,42 @@ public class XiangMuXingXi_Car_gson {
 
             public void setTimes(String times) {
                 this.times = times;
+            }
+        }
+
+        public static class RefundBean {
+            /**
+             * paymentMode : 按月付息，到期还本
+             * paymentModezhi : 2
+             * paymentModezi : 计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。
+             */
+
+            private String paymentMode;
+            private String paymentModezhi;
+            private String paymentModezi;
+
+            public String getPaymentMode() {
+                return paymentMode;
+            }
+
+            public void setPaymentMode(String paymentMode) {
+                this.paymentMode = paymentMode;
+            }
+
+            public String getPaymentModezhi() {
+                return paymentModezhi;
+            }
+
+            public void setPaymentModezhi(String paymentModezhi) {
+                this.paymentModezhi = paymentModezhi;
+            }
+
+            public String getPaymentModezi() {
+                return paymentModezi;
+            }
+
+            public void setPaymentModezi(String paymentModezi) {
+                this.paymentModezi = paymentModezi;
             }
         }
 
@@ -553,15 +609,15 @@ public class XiangMuXingXi_Car_gson {
 
         public static class RxxBean {
             /**
-             * overdueStatus : 发鬼地方
-             * tradeType : 教育
-             * sex : 女
-             * otherWebStatus : 大范甘迪
+             * overdueStatus : 无
+             * tradeType : 物流
+             * sex : 男
+             * otherWebStatus : 无
              * monthIncome : 10000.00
-             * profession : 教师
-             * age : 46
-             * highestEdu : 初中
-             * maritalStatus : 未婚
+             * profession : 快递物流
+             * age : 52
+             * highestEdu : 高中
+             * maritalStatus : 已婚
              */
 
             private String overdueStatus;
@@ -649,18 +705,18 @@ public class XiangMuXingXi_Car_gson {
 
         public static class AuthenticationBean {
             /**
-             * gocar_auth : 1
-             * id : 600
+             * gocar_auth : 0
+             * id : 756
              * person_auth : 1
              * house_evaluation : 0
-             * borrowId : 2390
-             * car_auth : 1
-             * buycar_auth : 1
-             * regist_capital_auth : 0
+             * borrowId : 2549
+             * car_auth : 0
+             * buycar_auth : 0
+             * regist_capital_auth : 1
              * house_right_auth : 0
-             * danbao_auth : 1
-             * address_auth : 1
-             * company_auth : 0
+             * danbao_auth : 0
+             * address_auth : 0
+             * company_auth : 1
              * credit_auth : 1
              */
 

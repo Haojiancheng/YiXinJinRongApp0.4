@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -42,9 +43,9 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterface {
-    private ImageView fanhui_dengru,dengru_guanbi;//返回键
+    private ImageView fanhui_dengru, dengru_guanbi;//返回键
     private TextView zhuche_dengru, zhaohuimima;//注册页面的跳转,找回密码页面的跳转
-    private EditText dengru_phone, dengru_mima;//用户登入的手机号,用户登入的密码
+    private TextInputEditText dengru_phone, dengru_mima;//用户登入的手机号,用户登入的密码
     private Button dengrujoin;//登入
     private String shoujihao;
     private String mima;
@@ -55,6 +56,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     private ToggleButton dr_togglePwd;//显示与隐藏密码
     private Context context;
     private PermissionHelper mPermissionHelper;//动态申请权限
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +64,10 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         setContentView(R.layout.activity_wo_de__deng_ru);
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
-        isLogin = (boolean) SPUtils.get(this,"isLogin",false);
+        isLogin = (boolean) SPUtils.get(this, "isLogin", false);
         getDengruId();
         getdengruOnClick();
-        
+
 
     }
 
@@ -99,8 +101,8 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 } else {
 //                    Toast.makeText(WoDe_DengRu.this, "成功", Toast.LENGTH_SHORT).show();
                     getHttp();
-                  
-                   
+
+
                 }
             }
         });
@@ -130,15 +132,15 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 }
             }
         });
-        
+
     }
 
     private void getHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
 
-        String myurl= getid(context);
-        Log.e("唯一标识",""+myurl);
-        
+        String myurl = getid(context);
+        Log.e("唯一标识", "" + myurl);
+
         try {
             js_request.put("username", shoujihao);
             js_request.put("password", mima);
@@ -158,7 +160,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/Applogin.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -168,20 +170,20 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 Log.e("TAG", ">>>>成功" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
-                    DengruData d_data = new Gson().fromJson(result, DengruData.class);
-                    dengrufanhuizhi = d_data.getState(); //状态值
-                    String message = d_data.getMessage();
-                    String  user_token=d_data.getResult().getToken();
-                    int user_id=d_data.getResult().getUserid();
-                    
-                    if (message.equals("登录成功")) {
-                        EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id));
-                        EventBus.getDefault().post(new User_id(user_id));
-                        SPUtils.put(WoDe_DengRu.this,"isLogin",true);
-                        finish();
-                    }else {
-                        Toast.makeText(WoDe_DengRu.this, ""+message.toString(), Toast.LENGTH_SHORT).show();
-                    }
+                DengruData d_data = new Gson().fromJson(result, DengruData.class);
+                dengrufanhuizhi = d_data.getState(); //状态值
+                message = d_data.getMessage();
+                String user_token = d_data.getResult().getToken();
+                int user_id = d_data.getResult().getUserid();
+
+                if (message.equals("登录成功")) {
+                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id));
+                    EventBus.getDefault().post(new User_id(user_id));
+                    SPUtils.put(WoDe_DengRu.this, "isLogin", true);
+                    finish();
+                } else {
+                    Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
+                }
 
 
 //                }
@@ -200,6 +202,8 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 //                    // ...
 //                } else { // 其他错误
 //                    // ...
+                Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
+
 //                }
             }
 
@@ -218,7 +222,6 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     }
 
 
-
     private void getDengruId() {
         fanhui_dengru = findViewById(R.id.dengrufanhui);//返回键
         zhuche_dengru = findViewById(R.id.zhuce_dengrupage);//注册页面的跳转
@@ -226,17 +229,19 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         dengru_phone = findViewById(R.id.dengru_Phone);//用户登入的手机号
         dengru_mima = findViewById(R.id.dengru_mima);//用户登入的密码
         dengrujoin = findViewById(R.id.dengru_goin);//登入
-        dengru_guanbi=findViewById(R.id.dengru_guanbi);//清除账号
-        dr_togglePwd=findViewById(R.id.dr_togglePwd);//显示与隐藏密码
+        dengru_guanbi = findViewById(R.id.dengru_guanbi);//清除账号
+        dr_togglePwd = findViewById(R.id.dr_togglePwd);//显示与隐藏密码
     }
+
     public synchronized String getid(Context context) {
-        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
+        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("MissingPermission") String ID = TelephonyMgr.getDeviceId();
         return ID;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)){
+        if (mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)) {
             //权限请求结果，并已经处理了该回调
             return;
         }
@@ -271,7 +276,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         finish();
     }
 
-    private void initViews(){
+    private void initViews() {
         //已经拥有所需权限，可以放心操作任何东西了
         Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
 
@@ -280,7 +285,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        
+
     }
 
     @Override

@@ -65,7 +65,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String juan;
     private String mType;
     private XiangMuXiangQing_Gson data;
-    private String token1 = "864711326104376";
+    private String token1;
     private Button bt_lijichujie;
 
     @Override
@@ -171,6 +171,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     private void getID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
+        token1 = (String) SPUtils.get(this, "Token1", "");
+        Log.e("我的--》项目详情Token",""+token1);
 //        token1 = (int) SPUtils.get(this, "Token1", 0);
 
 //        juan = (String) SPUtils.get(this, "juan", 0);

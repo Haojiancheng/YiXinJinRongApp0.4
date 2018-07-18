@@ -39,6 +39,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zi_jinliushui);
+        list.clear();
         getlsID();
         getlsHTTP();
     }
@@ -47,6 +48,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("pageNumber", 1);
 //            js_request.put("pageNumber", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);

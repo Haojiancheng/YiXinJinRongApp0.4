@@ -78,7 +78,12 @@
         <activity android:name=".wode.chongzhi.ChongZhiOK" />
         <activity android:name=".wode.yaoqing.MyYaoQing" />
         <activity android:name=".wode.yaoqing.YaoQingXiangQing" />
-        <activity android:name=".wode.zongzichen.ZongziChan"></activity>
+        <activity android:name=".wode.zongzichen.ZongziChan" />
+        <activity android:name=".wode.chongzhi.KUaiJieZhiFu" />
+        <activity android:name=".wode.chongzhi.QianYueOk" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.ChuJie_OK" />
+        <activity android:name=".wode.chongzhi.jieguo.ChongZhiShiBai" />
+        <activity android:name=".wode.tixian.TiXian"></activity>
     </application>
 
 </manifest>

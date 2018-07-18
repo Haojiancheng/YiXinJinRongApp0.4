@@ -35,12 +35,6 @@ public class XianjinJuan_adapter extends RecyclerView.Adapter<XianjinJuan_adapte
         holder.yaoqu.setText(list.get(position).getRemark());
         holder.fanwei.setText(list.get(position).getUseRange());
         holder.time_out.setText(list.get(position).getEndTime());
-        holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("点击了","jjjjjjbbbbbb");
-            }
-        });
     }
 
     @Override

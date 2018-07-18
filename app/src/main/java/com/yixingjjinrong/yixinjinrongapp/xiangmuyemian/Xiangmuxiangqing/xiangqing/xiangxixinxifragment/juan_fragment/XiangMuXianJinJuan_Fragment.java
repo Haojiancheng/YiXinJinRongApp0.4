@@ -30,14 +30,14 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XiangMuXianJinJuan_Fragment extends Fragment{
+public class XiangMuXianJinJuan_Fragment extends Fragment {
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private RecyclerView xianjinjun_rview;
-    private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
+    private List<XianJinJuan_gson.QueryVouchersListBean> list = new ArrayList<>();
     private int user_id;
     private XiangMuXianjinJuan_adapter myadapter;
-    private  int a=1;
+    private int a = 1;
 
     @Nullable
     @Override
@@ -50,9 +50,10 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        list.clear();
         getfcdy_id();
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
-        Log.e("现金券user_id",""+user_id );
+
+        Log.e("现金券user_id", "" + user_id);
         getHttp();
     }
 
@@ -75,7 +76,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-
+            Log.e("现金券", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,10 +87,10 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("现金券GSon",""+result );
+                Log.e("现金券GSon", "" + result);
                 XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                 list.addAll(data.getQueryVouchersList());
-                myadapter=new XiangMuXianjinJuan_adapter(list);
+                myadapter = new XiangMuXianjinJuan_adapter(list);
                 xianjinjun_rview.setAdapter(myadapter);
                 myadapter.notifyDataSetChanged();
 
@@ -113,10 +114,12 @@ public class XiangMuXianJinJuan_Fragment extends Fragment{
     }
 
     private void getfcdy_id() {
-        xianjinjun_rview=getActivity().findViewById(R.id.xianjinjuan_rview);
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+        xianjinjun_rview = getActivity().findViewById(R.id.xianjinjuan_rview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         xianjinjun_rview.setLayoutManager(linearLayoutManager);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

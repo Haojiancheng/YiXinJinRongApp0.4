@@ -53,8 +53,9 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mlist.clear();
         getid();
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
+
         Log.e("加息卷user_id", "" + user_id);
         getHttp();
     }
@@ -125,6 +126,7 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
     }
 
     private void getid() {
+        user_id = (int) SPUtils.get(getActivity(),"userId",0);
         jiaxi_rview = getActivity().findViewById(R.id.jiaxi_rview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         jiaxi_rview.setLayoutManager(linearLayoutManager);

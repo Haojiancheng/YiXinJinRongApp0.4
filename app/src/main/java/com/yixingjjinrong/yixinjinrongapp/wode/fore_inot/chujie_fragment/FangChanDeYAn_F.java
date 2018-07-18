@@ -108,7 +108,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG", "<>?<>Gsaonm" + result);
+                Log.e("TAG<>?<>Gsaonm", "" + result);
                 FangChanDiYa_Gson data = new Gson().fromJson(result, FangChanDiYa_Gson.class);
                 list.addAll(data.getInvestList());
                 adapter=new Fangchandiya_adapter(list);

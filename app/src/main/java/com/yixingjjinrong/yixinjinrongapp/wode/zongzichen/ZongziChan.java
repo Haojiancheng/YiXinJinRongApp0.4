@@ -2,11 +2,14 @@ package com.yixingjjinrong.yixinjinrongapp.wode.zongzichen;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DataItem;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DiscView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.ZongE_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
@@ -26,6 +29,8 @@ public class ZongziChan extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
+    private TextView zonge_z,zonge_daishou,zonge_keyong,zonge_dongjie;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,16 @@ public class ZongziChan extends AutoLayoutActivity {
 
         getzzcID();
         gethttp();
+//        getquan();
 
+    }
+
+    private void getquan() {
+//        List<DataItem> items = new ArrayList<>();
+//        items.add(new DataItem((int)zong_floor, "总代收", getResources().getColor(R.color.colorRed)));
+//        items.add(new DataItem((int)ke_floor, "可用余额", getResources().getColor(R.color.colorPrimaryDark)));
+//        items.add(new DataItem((int)dong_floor, "冻结金额", getResources().getColor(R.color.colorTransparent)));
+//        rv.setItems(items);
     }
 
     private void gethttp() {
@@ -52,7 +66,7 @@ public class ZongziChan extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的加密：", ":"+canshu);
+            Log.e("我的加密：", ":" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -63,7 +77,31 @@ public class ZongziChan extends AutoLayoutActivity {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("我的总资产Gson",result );
+                Log.e("我的总资产Gson", result);
+                ZongE_Gson data = new Gson().fromJson(result, ZongE_Gson.class);
+                String accountSum = data.getUserMap().getAccountSum();//总资产
+                String forAmount = data.getUserMap().getForAmount();//总代收
+                String usableAmount = data.getUserMap().getUsableAmount();//可用余额
+                String freezeAmount = data.getUserMap().getFreezeAmount();//冻结金额
+                zonge_z.setText(accountSum);
+                zonge_daishou.setText(forAmount);
+                zonge_keyong.setText(usableAmount);
+                zonge_dongjie.setText(freezeAmount);
+               float i=Float.parseFloat(forAmount);
+               float u=Float.parseFloat(usableAmount);
+               float y=Float.parseFloat(freezeAmount);
+               float z=Float.parseFloat(accountSum);
+//                //总代收%
+//                zong = i/z*10;
+//                zong_floor = Math.floor(zong);
+//                //可用余额%
+//                ke = u/z*10;
+//                ke_floor = Math.floor(zong);
+//                //冻结金额%
+//                dong = y/z*10;
+
+
+
             }
 
             @Override
@@ -78,20 +116,18 @@ public class ZongziChan extends AutoLayoutActivity {
 
             @Override
             public void onFinished() {
-
             }
+
         });
     }
 
     private void getzzcID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
-        rv=findViewById(R.id.disc);
-        List<DataItem> items = new ArrayList<>();
+        rv = findViewById(R.id.disc);
+        zonge_z=findViewById(R.id.zonge_z);
+        zonge_daishou=findViewById(R.id.zonge_daishou);
+        zonge_keyong=findViewById(R.id.zonge_keyong);
+        zonge_dongjie=findViewById(R.id.zonge_dongjie);
 
-        items.add(new DataItem(1,"腾讯",getResources().getColor(R.color.colorPrimary)));
-        items.add(new DataItem(1,"美团",getResources().getColor(R.color.colorPrimaryDark)));
-        items.add(new DataItem(23,"Google",getResources().getColor(R.color.colorTransparent)));
-
-        rv.setItems(items);
     }
 }

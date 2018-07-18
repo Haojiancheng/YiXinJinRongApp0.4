@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#f0f0f0"
+    android:orientation="vertical"
     tools:context=".wode.zongzichen.ZongziChan">
 
     <RelativeLayout
@@ -36,8 +36,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="440px"
-        android:background="#fdfdfe"
-        >
+        android:background="#fdfdfe">
 
         <com.yixingjjinrong.yixinjinrongapp.MyView.DiscView
 
@@ -62,6 +61,7 @@
                 android:textSize="24px" />
 
             <TextView
+                android:id="@+id/zonge_z"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,324 +72,323 @@
         </LinearLayout>
 
     </RelativeLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#fbfcfd"
-    android:layout_marginTop="20px"
-    >
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50px"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20px"
-        >
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30px"
-                android:layout_marginTop="10px"
-                android:src="@drawable/zongdaishou" />
-
-        </RelativeLayout>
+        android:background="#fbfcfd"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_marginTop="20px"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30px"
+                    android:layout_marginTop="10px"
+                    android:src="@drawable/zongdaishou" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:text="总收款"
-                android:textColor="#333333"
-                android:textSize="30px" />
+                android:layout_weight="6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总收款"
+                    android:textColor="#333333"
+                    android:textSize="30px" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/zonge_daishou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@id/xiala"
+                    android:text="0.00"
+                    android:textColor="#333333"
+                    android:textSize="28px" />
+
+                <ImageView
+                    android:id="@+id/xiala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="30px"
+                    android:src="@drawable/xiala" />
+            </RelativeLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_marginTop="30px"
+            android:background="#fdfdfe"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="房产抵押（本金+利息）"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="1,000.00"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"></RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_marginTop="20px"
+            android:background="#fdfdfe"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="车辆抵押（本金+利息）"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="1,000.00"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"></RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_marginTop="20px"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="企业信用贷（本金+利息）"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+                <TextView
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:text="1,000.00"
+                    android:textColor="#999999"
+                    android:textSize="24px" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"></RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:background="#adadad" />
+
         <RelativeLayout
-            android:layout_width="0px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_marginTop="40px"
+            android:background="#fdfdfe">
+
+            <ImageView
+                android:id="@+id/r5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:src="@drawable/keyongyue" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="40px"
+                android:layout_marginLeft="20px"
+                android:layout_toRightOf="@+id/r5"
+                android:text="可用余额"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/zonge_keyong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20px"
-                android:layout_toLeftOf="@id/xiala"
+                android:layout_toLeftOf="@+id/r6"
                 android:text="0.00"
                 android:textColor="#333333"
                 android:textSize="28px" />
 
-            <ImageView
-                android:id="@+id/xiala"
+            <TextView
+                android:id="@+id/r6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="30px"
-                android:src="@drawable/xiala" />
+                android:layout_marginEnd="20px"
+                android:text=">"
+                android:textColor="#999999"
+                android:textSize="26px" />
         </RelativeLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50px"
-        android:layout_marginTop="30px"
-        android:orientation="horizontal"
-        android:background="#fdfdfe">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:background="#adadad" />
 
         <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:background="#fdfdfe">
 
+            <ImageView
+                android:id="@+id/r1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:src="@drawable/dongjiezongjine" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="40px"
+                android:layout_marginLeft="20px"
+                android:layout_toRightOf="@+id/r1"
+                android:text="冻结金额"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/zonge_dongjie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20px"
+                android:layout_toLeftOf="@+id/r2"
+                android:text="0.00"
+                android:textColor="#333333"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/r2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20px"
+                android:text=">"
+                android:textColor="#999999"
+                android:textSize="26px" />
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="房产抵押（本金+利息）"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:text="1,000.00"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"></RelativeLayout>
-
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50px"
-        android:layout_marginTop="20px"
-        android:orientation="horizontal"
-        android:background="#fdfdfe">
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="车辆抵押（本金+利息）"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:text="1,000.00"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"></RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50px"
-        android:layout_marginTop="20px"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="企业信用贷（本金+利息）"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:text="1,000.00"
-                android:textColor="#999999"
-                android:textSize="24px" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"></RelativeLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="20px"
-        android:background="#adadad" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
-        android:background="#fdfdfe"
-        >
-
-        <ImageView
-            android:id="@+id/r5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20px"
-            android:src="@drawable/keyongyue" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="40px"
-            android:layout_marginLeft="20px"
-            android:layout_toRightOf="@+id/r5"
-            android:text="可用余额"
-            android:textColor="#333333"
-            android:textSize="30px" />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20px"
-            android:layout_toLeftOf="@+id/r6"
-            android:text="0.00"
-            android:textColor="#333333"
-            android:textSize="28px" />
-
-        <TextView
-            android:id="@+id/r6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20px"
-            android:text=">"
-            android:textColor="#999999"
-            android:textSize="26px" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#adadad"
-        android:layout_marginTop="20px"
-        android:layout_marginLeft="30px"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20px"
-        android:background="#fdfdfe"
-        >
-
-        <ImageView
-            android:id="@+id/r1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20px"
-            android:src="@drawable/dongjiezongjine" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20px"
-            android:layout_toRightOf="@+id/r1"
-            android:text="冻结金额"
-            android:layout_marginBottom="40px"
-            android:textColor="#333333"
-            android:textSize="30px" />
-
-        <TextView
-            android:id="@+id/lijichujie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20px"
-            android:layout_toLeftOf="@+id/r2"
-            android:text="0.00"
-            android:textColor="#333333"
-            android:textSize="28px" />
-
-        <TextView
-            android:id="@+id/r2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20px"
-            android:text=">"
-            android:textColor="#999999"
-            android:textSize="26px" />
-    </RelativeLayout>
-</LinearLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

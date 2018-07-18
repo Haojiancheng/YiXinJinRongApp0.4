@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.ChuJie_OK;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
@@ -65,8 +66,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String juan;
     private String mType;
     private XiangMuXiangQing_Gson data;
-    private String token1 = "864711326104376";
+    private String token1;
     private Button bt_lijichujie;
+    private int juan_id;
+    private int juan_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,11 +174,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     private void getID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
+        token1 = (String) SPUtils.get(this, "Token1", "");
 //        token1 = (int) SPUtils.get(this, "Token1", 0);
 
 //        juan = (String) SPUtils.get(this, "juan", 0);
         Log.e("userid", "id:" + user_id);
-        Log.e("立即持戒token1", "" + token1);
+
         jianhao = findViewById(R.id.bt_jianhao);
         jinge = findViewById(R.id.et_jinge);
         xq_chongzhi = findViewById(R.id.xq_chongzhi);
@@ -204,7 +208,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
 
             js_request.put("borrowRandomId", id);
-            SPUtils.put(this, "borrowRandomId", id);
+            SPUtils.put(this, "borroFwRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             js_request.put("userId", user_id);
             Log.e("TAG", "id" + user_id);
@@ -219,11 +223,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
+            Log.e("立即出借首页",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/couponinformation.do");
+        RequestParams params = new RequestParams("http://192.168.1.219:8080/yxb_mobile/yxbApp/couponinformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -312,8 +317,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("borrowRandomId", id);
             Log.e("立即出借borrowRandomId:", "" + id);
             js_request.put("investAmount", jinge.getText().toString());
-            js_request.put("activitype", "");
-            js_request.put("activityId", "");
+
+
             SPUtils.put(this, "borrowRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             Log.e("TAG", "id" + user_id);
@@ -350,12 +355,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     case 3:
                         Toast.makeText(XiangMuXiangQing.this, "未开通银行存管", Toast.LENGTH_SHORT).show();
                         break;
+                    case 5:
+                        Toast.makeText(XiangMuXiangQing.this, "未签约", Toast.LENGTH_SHORT).show();
+                        break;
                     case 4:
                         Toast.makeText(XiangMuXiangQing.this, "未风险评测", Toast.LENGTH_SHORT).show();
                         break;
                     case 0:
-                        Toast.makeText(XiangMuXiangQing.this, "出借成功", Toast.LENGTH_SHORT).show();
-                        getchujieHttpTwo();
+                         getchujieHttpTwo();
 
                         break;
                     case 11:
@@ -392,13 +399,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("borrowRandomId", id);
             Log.e("立即出借borrowRandomId:", "" + id);
             js_request.put("investAmount", jinge.getText().toString());
-            js_request.put("activitype", "");
-            js_request.put("activityId", "");
+            js_request.put("activitype", juan_type);
+            js_request.put("activityId", juan_id);
             SPUtils.put(this, "borrowRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             Log.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e("TAGjs_request", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -408,12 +415,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-
+            Log.e("立即出接two",""+canshu );
         } catch (JSONException e) {
             e.printStackTrace();
         }
         RequestParams params = new RequestParams("http://192.168.1.219:8080/yxb_mobile/yxbApp/Immediately.do");
         params.setAsJsonContent(true);
+        params.setCacheMaxAge(1000 * 70);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -423,24 +431,17 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 String msg = data.getResult().getMsg();
                 if (msg.equals("1")){
                     Toast.makeText(XiangMuXiangQing.this, "我擦", Toast.LENGTH_SHORT).show();
+                    String toumoney = data.getResult().getInvestAmount();
+                    String toutime = data.getResult().getInvestDate();
+                    Intent it=new Intent(XiangMuXiangQing.this, ChuJie_OK.class);
+                    it.putExtra("money",toumoney);
+                    it.putExtra("time",toutime);
+                    startActivity(it);
+
                 }else {
                     Toast.makeText(XiangMuXiangQing.this, ""+msg, Toast.LENGTH_SHORT).show();
                 }
-//                int auth253 = data.getResult().getAuth();
-//                switch (auth253) {
-//                    case 2:
-//                        Toast.makeText(XiangMuXiangQing.this, "未实名认证", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case 3:
-//                        Toast.makeText(XiangMuXiangQing.this, "未开通银行存管", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case 4:
-//                        Toast.makeText(XiangMuXiangQing.this, "未风险评测", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case 0:
-//                        Toast.makeText(XiangMuXiangQing.this, "出借成功", Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
+
 
             }
 

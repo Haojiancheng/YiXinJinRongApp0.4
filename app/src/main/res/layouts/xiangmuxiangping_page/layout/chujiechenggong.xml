@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".xiangmuyemian.Xiangmuxiangqing.ChuJie_OK"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -66,6 +69,7 @@
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/cj_money"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30px"
@@ -93,11 +97,11 @@
                 android:layout_width="160px"
                 android:layout_height="match_parent"
                 android:text="出借时间"
-
                 android:textColor="#999999"
                 android:textSize="30px" />
 
             <TextView
+                android:id="@+id/cj_time"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="40px"

@@ -61,7 +61,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的出借房产表加密：",""+canshu );
+            Log.e("出借详情ddd：",""+canshu );
         } catch (JSONException e) {
             e.printStackTrace();
         }

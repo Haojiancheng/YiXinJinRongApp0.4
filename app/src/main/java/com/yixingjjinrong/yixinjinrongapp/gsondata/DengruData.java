@@ -2,10 +2,9 @@ package com.yixingjjinrong.yixinjinrongapp.gsondata;
 
 public class DengruData {
 
-
     /**
      * message : 登录成功
-     * result : {"token":"388c76698c12365cc397da6c4396578b","userid":11520}
+     * result : {"loginId":"login:11817","token":"login:868550035271969","userid":11817}
      * state : success
      */
 
@@ -39,12 +38,22 @@ public class DengruData {
 
     public static class ResultBean {
         /**
-         * token : 388c76698c12365cc397da6c4396578b
-         * userid : 11520
+         * loginId : login:11817
+         * token : login:868550035271969
+         * userid : 11817
          */
 
+        private String loginId;
         private String token;
         private int userid;
+
+        public String getLoginId() {
+            return loginId;
+        }
+
+        public void setLoginId(String loginId) {
+            this.loginId = loginId;
+        }
 
         public String getToken() {
             return token;

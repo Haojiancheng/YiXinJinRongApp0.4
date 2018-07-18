@@ -45,6 +45,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.zijinliushui.ZiJinliushui;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
 import com.yixingjjinrong.yixinjinrongapp.wode.shezhi.WoDe_SheZhi;
+import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
 import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.MyYaoQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
@@ -314,6 +315,7 @@ public class Wode extends Fragment {
                 String html = data.getResult().getHtml();
                 Intent it=new Intent(getActivity(), YinHangCunGuan.class);
                 it.putExtra("HTML",html );
+                Log.e("我的页面银行存管HTML:",""+it);
                 startActivity(it);
 
                Log.e("wangy",""+html );
@@ -506,6 +508,14 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 Intent i=new Intent(getActivity(), ZongziChan.class);
                 startActivity(i);
+            }
+        });
+        tixian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itcz = new Intent(getActivity(), TiXian.class);
+                itcz.putExtra("keyong2", keyong);
+                startActivity(itcz);
             }
         });
 

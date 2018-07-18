@@ -1,4 +1,4 @@
-package com.yixingjjinrong.yixinjinrongapp.wode.chongzhi;
+package com.yixingjjinrong.yixinjinrongapp.wode.tixian;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +14,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZhiOk_GSon;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXian_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -29,31 +28,25 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class ChongZhq extends AutoLayoutActivity {
+public class TiXian extends AutoLayoutActivity {
+    private ImageView t_yh_img;
+    private TextView t_yh_name,t_yh_number,t_cz_keyong;
+    private EditText t_cz_money;
+    private Button cz_ok;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-    private TextView yh_name, yh_number, cz_keyong;
-    private ImageView yh_img;
-    private EditText cz_money;
-    private String keyong;
     private int user_id;
-    private Button cz_ok;
-    private View yhcard;
+    private String keyong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chong_zhq);
-        getczid();
-        cz_keyong.setText("可用余额:  " + keyong + "元");
-        getczHTTp();
-
-
+        setContentView(R.layout.activity_ti_xian);
+        getID();
+        gethttp();
     }
 
-
-
-    private void getczHTTp() {
+    private void gethttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
@@ -73,46 +66,47 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/fuRechgeInitMobileApp.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/withdrawInitMobilefApp.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("充值GSON:", "" + result);
-                Yinhangka_Gson data = new Gson().fromJson(result, Yinhangka_Gson.class);
+                Log.e("提现GSon",result );
+                TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
                 String msg = data.getMsg();
                 if (msg.equals("")) {
-                    yh_name.setText(data.getBankName());
-                    yh_number.setText(data.getCardNum());
-                    x.image().bind(yh_img, Urls.BASE_URL + "yxb_mobile/" + data.getBankImage());
+                    t_yh_name.setText(data.getBankName());
+                    t_yh_number.setText(data.getCardNum());
+                    x.image().bind(t_yh_img, data.getImage());
                     cz_ok.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(View v) {//可以提现，下一步
                             getokHTTp();
                         }
                     });
                 } else {
 
 
-                    yhcard.setVisibility(View.GONE);//影藏布局
+//                    t_yhcard.setVisibility(View.GONE);//影藏布局
                     if (msg.equals("auth")) {
-                        Toast.makeText(ChongZhq.this, "没有实名认证", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TiXian.this, "没有实名认证", Toast.LENGTH_SHORT).show();
 
                     }
                     if (msg.equals("bank_link")) {
-                        Toast.makeText(ChongZhq.this, "没有富友开户", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TiXian.this, "没有富友开户", Toast.LENGTH_SHORT).show();
 
                     }
                     if (msg.equals("sign_card")) {
-                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
-                        Intent it=new Intent(ChongZhq.this,KUaiJieZhiFu.class);
+                        Toast.makeText(TiXian.this, "没有签约", Toast.LENGTH_SHORT).show();
+                        Intent it=new Intent(TiXian.this,KUaiJieZhiFu.class);
                         startActivity(it);
 
                     }
 
 
                 }
+
             }
 
             @Override
@@ -130,15 +124,13 @@ public class ChongZhq extends AutoLayoutActivity {
 
             }
         });
-
     }
 
     private void getokHTTp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
-            js_request.put("money", cz_money.getText().toString());
-
+            js_request.put("money", t_cz_money.getText().toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -155,20 +147,13 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/postOnlineCZFu.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/addWithdrawInfoMobilef.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("ok充值：", result);
-                ChongZhiOk_GSon data = new Gson().fromJson(result, ChongZhiOk_GSon.class);
-                String html = data.getHtml();
-                Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
-                itcz.putExtra("HTML", html);
-                Log.e("HTML!:",""+html.toString() );
-                startActivity(itcz);
-                finish();
+                Log.e("ok提现：", result);
             }
 
             @Override
@@ -188,19 +173,18 @@ public class ChongZhq extends AutoLayoutActivity {
         });
     }
 
-    private void getczid() {
+    private void getID() {
         Intent itzc = getIntent();
         user_id = (int) SPUtils.get(this, "userId", 0);
         keyong = itzc.getStringExtra("keyong2");
-        Log.e("ddddd+*9*+*", "" + keyong);
-        yh_name = findViewById(R.id.yh_name);
-        yh_number = findViewById(R.id.yh_number);
-        cz_keyong = findViewById(R.id.cz_keyong);
-        cz_money = findViewById(R.id.cz_money);
-        yh_img = findViewById(R.id.yh_img);
-        cz_ok = findViewById(R.id.cz_ok);
-        yhcard = findViewById(R.id.yhcard);
+        Log.e("充值----》", "" + keyong);
+        t_yh_img=findViewById(R.id.t_yh_img);
+        t_yh_name=findViewById(R.id.t_yh_name);
+        t_yh_number=findViewById(R.id.t_yh_number);
+        t_cz_keyong=findViewById(R.id.t_cz_keyong);
+        t_cz_money=findViewById(R.id.t_cz_money);
+        cz_ok=findViewById(R.id.cz_ok);
 
+        t_cz_keyong.setText(keyong);
     }
-
 }

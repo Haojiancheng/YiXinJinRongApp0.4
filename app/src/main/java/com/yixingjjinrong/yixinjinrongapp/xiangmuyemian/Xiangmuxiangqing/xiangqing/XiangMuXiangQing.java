@@ -175,6 +175,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private void getID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
+
+        Log.e("我的--》项目详情Token",""+token1);
 //        token1 = (int) SPUtils.get(this, "Token1", 0);
 
 //        juan = (String) SPUtils.get(this, "juan", 0);
@@ -362,7 +364,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Toast.makeText(XiangMuXiangQing.this, "未风险评测", Toast.LENGTH_SHORT).show();
                         break;
                     case 0:
-                         getchujieHttpTwo();
+                        Toast.makeText(XiangMuXiangQing.this, "出借成功", Toast.LENGTH_SHORT).show();
+                        getchujieHttpTwo();
 
                         break;
                     case 11:

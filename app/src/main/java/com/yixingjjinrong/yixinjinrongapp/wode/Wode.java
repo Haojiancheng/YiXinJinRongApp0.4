@@ -103,21 +103,12 @@ public class Wode extends Fragment {
                 startActivity(intentwode);
             }
         });
-
-//        userToken = (String) SPUtils.get(getActivity(),"Token1",0);
-//        if (userToken!=null){
-//            user_id = (int) SPUtils.get(getActivity(),"userId",0);
-//            getHttp();
-//        }
-
-
     }
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void myMethod(User_data event) {
         user_id = event.getUser_id();
-
         userToken = event.getUserToken();
 //        getHttp();
         isLogin = (boolean) SPUtils.get(getActivity(), "isLogin", false);
@@ -257,7 +248,7 @@ public class Wode extends Fragment {
                 }
 //                EventBus.getDefault().post(new Myuser_id(user_id));
                 SPUtils.put(getActivity(), "userId", user_id);
-                SPUtils.put(getActivity(), "Token1", token);
+                SPUtils.put(getActivity(), "Token1", userToken);
 
             }
 

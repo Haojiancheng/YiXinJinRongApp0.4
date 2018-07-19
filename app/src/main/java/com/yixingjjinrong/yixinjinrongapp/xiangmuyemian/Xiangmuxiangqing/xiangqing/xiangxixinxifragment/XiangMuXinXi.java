@@ -34,19 +34,20 @@ import java.util.Date;
 
 public class XiangMuXinXi extends Fragment {
     private TextView tv_click, show, hidden;
-    private View hose_xx, car_xx, car_dbr;
+    private View hose_xx, car_xx, car_dbr, car_dbgs;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private String borr_id;
     private TextView xm_name, jk_jine, jk_qixian, jk_yongtu, hk_fangshi, yd_lilv, hk_lanyuan, bx_cuoshi, start_time, end_time;
-    private TextView zt_xingzhi, man_name, man_id, man_sax, man_age, man_suday,man_hunyin, man_huji, man_dizhi, man_zhiwei, man_hangye, man_shouru, man_huanhuancishu, man_yuqicishu, lishiyuqi_jinge, dangqian_jine, yuqi_qingkuang, qita_pingtai;
+    private TextView zt_xingzhi, man_name, man_id, man_sax, man_age, man_suday, man_hunyin, man_huji, man_dizhi, man_zhiwei, man_hangye, man_shouru, man_huanhuancishu, man_yuqicishu, lishiyuqi_jinge, dangqian_jine, yuqi_qingkuang, qita_pingtai;
     private TextView fangchan_dizhi, xq_mingcheng, sy_nx, fc_mianji, fc_jiage, xk_jg;
-    private TextView sf_rz,car_jia,sf_wrz, zz_rz, zz_wrz, zxbg_rz, zxbg_wrz, fwcq_rz, fwcq_wrz, fcpg_rz, fcpg_wrz, dbh_rz, dbh_wrz, sh_yj;
+    private TextView sf_rz, car_jia, sf_wrz, zz_rz, zz_wrz, zxbg_rz, zxbg_wrz, fwcq_rz, fwcq_wrz, fcpg_rz, fcpg_wrz, dbh_rz, dbh_wrz, sh_yj;
     private String borrowRandomId;
     private String mtpye;
-    private TextView dbr_name,dbr_idcard,dbr_sax,dbr_age,dbr_hunyin,dbr_xl,dbr_huji,dbr_adriess,dbr_shouru,dbr_zhiye,dbr_hangye;
+    private TextView dbr_name, dbr_idcard, dbr_sax, dbr_age, dbr_hunyin, dbr_xl, dbr_huji, dbr_adriess, dbr_shouru, dbr_zhiye, dbr_hangye;
     private Date mNewDate;
-    private TextView car_pp,car_id,car_km,car_time,car_pailiang,car_ck,car_buy,car_money,car_cmoney;
+    private TextView car_pp, car_id, car_km, car_time, car_pailiang, car_ck, car_buy, car_money, car_cmoney;
+    private TextView dbgs_name, dbgs_daima, dbgs_daibiaoman, dbgs_addass;
 
 
     @Nullable
@@ -82,7 +83,7 @@ public class XiangMuXinXi extends Fragment {
         start_time = getActivity().findViewById(R.id.start_time);
         end_time = getActivity().findViewById(R.id.end_time);
         yd_lilv = getActivity().findViewById(R.id.yd_lilv);
-        man_hunyin=getActivity().findViewById(R.id.man_hunyin);
+        man_hunyin = getActivity().findViewById(R.id.man_hunyin);
 
 // ,,,,,,,,,个人信息,,,,,,,,,;
         zt_xingzhi = getActivity().findViewById(R.id.zt_xingzhi);
@@ -127,34 +128,40 @@ public class XiangMuXinXi extends Fragment {
         dbh_wrz = getActivity().findViewById(R.id.dbh_wrz);
         sh_yj = getActivity().findViewById(R.id.sh_yj);
         //车辆、房产
-        hose_xx=getActivity().findViewById(R.id.hose_xx);
-        car_xx=getActivity().findViewById(R.id.car_xx);
-        car_dbr=getActivity().findViewById(R.id.car_danbaoren);
-        car_jia=getActivity().findViewById(R.id.car_jia);
+        hose_xx = getActivity().findViewById(R.id.hose_xx);
+        car_xx = getActivity().findViewById(R.id.car_xx);
+        car_dbr = getActivity().findViewById(R.id.car_danbaoren);
+        car_jia = getActivity().findViewById(R.id.car_jia);
         //担保人信息
+        dbr_name = getActivity().findViewById(R.id.dbr_name);
+        dbr_idcard = getActivity().findViewById(R.id.dbr_idcard);
+        dbr_sax = getActivity().findViewById(R.id.dbr_sax);
+        dbr_age = getActivity().findViewById(R.id.dbr_age);
+        dbr_hunyin = getActivity().findViewById(R.id.dbr_hunyin);
+        dbr_xl = getActivity().findViewById(R.id.dbr_xl);
+        dbr_huji = getActivity().findViewById(R.id.dbr_huji);
+        dbr_adriess = getActivity().findViewById(R.id.dbr_adriess);
+        dbr_shouru = getActivity().findViewById(R.id.dbr_shouru);
+        dbr_zhiye = getActivity().findViewById(R.id.dbr_zhiye);
+        dbr_hangye = getActivity().findViewById(R.id.dbr_hangye);
+        //担保公司
+        car_dbgs = getActivity().findViewById(R.id.car_danbaogs);
+        dbgs_name = getActivity().findViewById(R.id.dbgs_name);
+        dbgs_daima = getActivity().findViewById(R.id.dbgs_daima);
+        dbgs_daibiaoman = getActivity().findViewById(R.id.dbgs_daibiaoman);
+        dbgs_addass = getActivity().findViewById(R.id.dbgs_addass);
 
-        dbr_name=getActivity().findViewById(R.id.dbr_name);
-        dbr_idcard=getActivity().findViewById(R.id.dbr_idcard);
-        dbr_sax=getActivity().findViewById(R.id.dbr_sax);
-        dbr_age=getActivity().findViewById(R.id.dbr_age);
-        dbr_hunyin=getActivity().findViewById(R.id.dbr_hunyin);
-        dbr_xl=getActivity().findViewById(R.id.dbr_xl);
-        dbr_huji=getActivity().findViewById(R.id.dbr_huji);
-        dbr_adriess=getActivity().findViewById(R.id.dbr_adriess);
-        dbr_shouru=getActivity().findViewById(R.id.dbr_shouru);
-        dbr_zhiye=getActivity().findViewById(R.id.dbr_zhiye);
-        dbr_hangye=getActivity().findViewById(R.id.dbr_hangye);
         //车辆信息
         //,,,,,,,,car_cmoney;
-        car_pp=getActivity().findViewById(R.id.car_pp);
-        car_id=getActivity().findViewById(R.id.car_id);
-        car_km=getActivity().findViewById(R.id.car_km);
-        car_time=getActivity().findViewById(R.id.car_time);
-        car_pailiang=getActivity().findViewById(R.id.car_pailiang);
-        car_ck=getActivity().findViewById(R.id.car_ck);
-        car_buy=getActivity().findViewById(R.id.car_buy);
-        car_money=getActivity().findViewById(R.id.car_money);
-        car_cmoney=getActivity().findViewById(R.id.car_cmoney);
+        car_pp = getActivity().findViewById(R.id.car_pp);
+        car_id = getActivity().findViewById(R.id.car_id);
+        car_km = getActivity().findViewById(R.id.car_km);
+        car_time = getActivity().findViewById(R.id.car_time);
+        car_pailiang = getActivity().findViewById(R.id.car_pailiang);
+        car_ck = getActivity().findViewById(R.id.car_ck);
+        car_buy = getActivity().findViewById(R.id.car_buy);
+        car_money = getActivity().findViewById(R.id.car_money);
+        car_cmoney = getActivity().findViewById(R.id.car_cmoney);
 
 
     }
@@ -164,24 +171,21 @@ public class XiangMuXinXi extends Fragment {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("borrowRandomId", borrowRandomId);
-//            js_request.put("mortgageType", mtpye);
-            Log.e("项目信息类型", ""+js_request);
+
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JSONObject canshu = new JSONObject();
+        final JSONObject canshu = new JSONObject();
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("项目信息加密", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/ProjectInformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/ProjectInformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -194,11 +198,25 @@ public class XiangMuXinXi extends Fragment {
                 XiangMuXingXi_Car_gson cardata = new Gson().fromJson(result, XiangMuXingXi_Car_gson.class);
 
                 //TextView ,,,基本信息,,,,,,
-                 Log.e("      项 目信    息type", mtpye);
-                if (mtpye.equals("4")){
+                if (mtpye.equals("4")) {
                     car_xx.setVisibility(View.VISIBLE);
-                    car_dbr.setVisibility(View.VISIBLE);
+
                     hose_xx.setVisibility(View.GONE);
+                    String guaranteeType = cardata.getResult().getGuaranteeType();
+                    if (guaranteeType.equals("0")) {
+                        car_dbr.setVisibility(View.GONE);
+                        car_dbgs.setVisibility(View.VISIBLE);
+                    } else {
+                        car_dbr.setVisibility(View.VISIBLE);
+                        car_dbgs.setVisibility(View.GONE);
+                    }
+                    //担保公司
+                    dbgs_name.setText(cardata.getResult().getC_name());
+                    dbgs_daima.setText(cardata.getResult().getRegCode());
+                    dbgs_daibiaoman.setText(cardata.getResult().getNewRealName());
+                    dbgs_addass.setText(cardata.getResult().getNewAddresss());
+
+                    //担保人
                     dbr_name.setText(cardata.getResult().getBondsman().getRealNamed());
                     dbr_idcard.setText(cardata.getResult().getBondsman().getIdNod());
                     dbr_sax.setText(cardata.getResult().getBondsman().getSexd());
@@ -207,14 +225,14 @@ public class XiangMuXinXi extends Fragment {
                     dbr_xl.setText(cardata.getResult().getBondsman().getHighestEdud());
                     dbr_huji.setText(cardata.getResult().getBondsman().getTrcityd());
                     dbr_adriess.setText(cardata.getResult().getBondsman().getAddressd());
-                    dbr_shouru.setText(cardata.getResult().getBondsman().getMonthIncomed()+"元");
+                    dbr_shouru.setText(cardata.getResult().getBondsman().getMonthIncomed() + "元");
                     dbr_zhiye.setText(cardata.getResult().getBondsman().getProfessiond());
                     dbr_hangye.setText(cardata.getResult().getBondsman().getTradeTyped());
                     //车辆信息
                     //,,,,,,,,;
                     car_pp.setText(cardata.getResult().getCar().getCar_style());
                     car_id.setText(cardata.getResult().getCar().getCarcode());
-                    car_km.setText(cardata.getResult().getCar().getCar_mileage()+"公里");
+                    car_km.setText(cardata.getResult().getCar().getCar_mileage() + "公里");
                     String car_register = cardata.getResult().getCar().getCar_register();
                     car_time.setText(car_register);
                     car_pailiang.setText(cardata.getResult().getCar().getCar_emission());
@@ -224,8 +242,7 @@ public class XiangMuXinXi extends Fragment {
                     car_cmoney.setText(cardata.getResult().getCar().getReferenceprice());
                     car_jia.setText(cardata.getResult().getCar().getCarshelf());
                     //基本信息
-                    String s=data.getResult().getProjectName();
-                    Log.e("哎呀我去之天龙八部：",""+s);
+                    String s = data.getResult().getProjectName();
                     xm_name.setText(data.getResult().getProjectName());
                     jk_jine.setText(data.getResult().getBorrowSum());
                     jk_qixian.setText(data.getResult().getDeadline());
@@ -234,7 +251,7 @@ public class XiangMuXinXi extends Fragment {
                     hidden.setText(data.getResult().getBorrowInfo());
                     show.setText(data.getResult().getBorrowInfo());
                     man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
-                    yd_lilv.setText(String.valueOf(data.getResult().getRan())+"%");
+                    yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
                     bx_cuoshi.setText(data.getResult().getMortgageType());
                     start_time.setText(data.getResult().getAbleTenderDate());
@@ -271,7 +288,7 @@ public class XiangMuXinXi extends Fragment {
                     dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney());
                     yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                     qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
-                    Log.e("身份认证", ""+data.getResult().getAuthentication().getPerson_auth());
+
                     if (data.getResult().getAuthentication().getPerson_auth() == 1) {
                         sf_rz.setVisibility(View.VISIBLE);
                         sf_wrz.setVisibility(View.GONE);
@@ -279,7 +296,6 @@ public class XiangMuXinXi extends Fragment {
                         sf_rz.setVisibility(View.GONE);
                         sf_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("住址认证", ""+data.getResult().getAuthentication().getAddress_auth());
                     if (data.getResult().getAuthentication().getAddress_auth() == 1) {
                         zz_rz.setVisibility(View.VISIBLE);
                         zz_wrz.setVisibility(View.GONE);
@@ -287,7 +303,6 @@ public class XiangMuXinXi extends Fragment {
                         zz_rz.setVisibility(View.GONE);
                         zz_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("征信报告认证", ""+data.getResult().getAuthentication().getCredit_auth());
                     if (data.getResult().getAuthentication().getCredit_auth() == 1) {
                         zxbg_rz.setVisibility(View.VISIBLE);
                         zxbg_wrz.setVisibility(View.GONE);
@@ -295,7 +310,6 @@ public class XiangMuXinXi extends Fragment {
                         zxbg_rz.setVisibility(View.GONE);
                         zxbg_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("房屋产权认证", ""+data.getResult().getAuthentication().getHouse_right_auth());
                     if (data.getResult().getAuthentication().getHouse_right_auth() == 1) {
                         fwcq_rz.setVisibility(View.VISIBLE);
                         fwcq_wrz.setVisibility(View.GONE);
@@ -303,7 +317,6 @@ public class XiangMuXinXi extends Fragment {
                         fwcq_rz.setVisibility(View.GONE);
                         fwcq_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("房产权评估认证", ""+data.getResult().getAuthentication().getHouse_evaluation());
                     if (data.getResult().getAuthentication().getHouse_evaluation() == 1) {
                         fcpg_rz.setVisibility(View.VISIBLE);
                         fcpg_wrz.setVisibility(View.GONE);
@@ -311,7 +324,6 @@ public class XiangMuXinXi extends Fragment {
                         fcpg_rz.setVisibility(View.GONE);
                         fcpg_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("担保函认证", ""+data.getResult().getAuthentication().getDanbao_auth());
                     if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
                         dbh_rz.setVisibility(View.VISIBLE);
                         dbh_wrz.setVisibility(View.GONE);
@@ -319,13 +331,12 @@ public class XiangMuXinXi extends Fragment {
                         dbh_rz.setVisibility(View.GONE);
                         dbh_wrz.setVisibility(View.VISIBLE);
                     }
-                }else {
+                } else {
                     car_xx.setVisibility(View.GONE);
                     car_dbr.setVisibility(View.GONE);
                     hose_xx.setVisibility(View.VISIBLE);
                     //基本信息
-                    String s=data.getResult().getProjectName();
-                    Log.e("哎呀我去之天龙八部：",""+s);
+                    String s = data.getResult().getProjectName();
                     xm_name.setText(data.getResult().getProjectName());
                     jk_jine.setText(data.getResult().getBorrowSum());
                     jk_qixian.setText(data.getResult().getDeadline());
@@ -333,7 +344,7 @@ public class XiangMuXinXi extends Fragment {
                     hk_fangshi.setText(data.getResult().getRefund().getPaymentMode());
                     hidden.setText(data.getResult().getBorrowInfo());
                     show.setText(data.getResult().getBorrowInfo());
-                    yd_lilv.setText(String.valueOf(data.getResult().getRan())+"%");
+                    yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
                     bx_cuoshi.setText(data.getResult().getMortgageType());
                     start_time.setText(data.getResult().getAbleTenderDate());
@@ -371,7 +382,7 @@ public class XiangMuXinXi extends Fragment {
                     dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney());
                     yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                     qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
-//  ,,,,,;          //房产信息
+                    //房产信息
                     fangchan_dizhi.setText(data.getResult().getHouse().getHouseAddress());
                     xq_mingcheng.setText(data.getResult().getHouse().getCommunityName());
                     sy_nx.setText(data.getResult().getHouse().getUseYears());
@@ -380,7 +391,6 @@ public class XiangMuXinXi extends Fragment {
                     xk_jg.setText(data.getResult().getHouse().getReferencePrice());
 
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-                    Log.e("身份认证", ""+data.getResult().getAuthentication().getPerson_auth());
                     if (data.getResult().getAuthentication().getPerson_auth() == 1) {
                         sf_rz.setVisibility(View.VISIBLE);
                         sf_wrz.setVisibility(View.GONE);
@@ -388,7 +398,6 @@ public class XiangMuXinXi extends Fragment {
                         sf_rz.setVisibility(View.GONE);
                         sf_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("住址认证", ""+data.getResult().getAuthentication().getAddress_auth());
                     if (data.getResult().getAuthentication().getAddress_auth() == 1) {
                         zz_rz.setVisibility(View.VISIBLE);
                         zz_wrz.setVisibility(View.GONE);
@@ -396,7 +405,6 @@ public class XiangMuXinXi extends Fragment {
                         zz_rz.setVisibility(View.GONE);
                         zz_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("征信报告认证", ""+data.getResult().getAuthentication().getCredit_auth());
                     if (data.getResult().getAuthentication().getCredit_auth() == 1) {
                         zxbg_rz.setVisibility(View.VISIBLE);
                         zxbg_wrz.setVisibility(View.GONE);
@@ -404,7 +412,6 @@ public class XiangMuXinXi extends Fragment {
                         zxbg_rz.setVisibility(View.GONE);
                         zxbg_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("房屋产权认证", ""+data.getResult().getAuthentication().getHouse_right_auth());
                     if (data.getResult().getAuthentication().getHouse_right_auth() == 1) {
                         fwcq_rz.setVisibility(View.VISIBLE);
                         fwcq_wrz.setVisibility(View.GONE);
@@ -412,7 +419,6 @@ public class XiangMuXinXi extends Fragment {
                         fwcq_rz.setVisibility(View.GONE);
                         fwcq_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("房产权评估认证", ""+data.getResult().getAuthentication().getHouse_evaluation());
                     if (data.getResult().getAuthentication().getHouse_evaluation() == 1) {
                         fcpg_rz.setVisibility(View.VISIBLE);
                         fcpg_wrz.setVisibility(View.GONE);
@@ -420,7 +426,6 @@ public class XiangMuXinXi extends Fragment {
                         fcpg_rz.setVisibility(View.GONE);
                         fcpg_wrz.setVisibility(View.VISIBLE);
                     }
-                    Log.e("担保函认证", ""+data.getResult().getAuthentication().getDanbao_auth());
                     if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
                         dbh_rz.setVisibility(View.VISIBLE);
                         dbh_wrz.setVisibility(View.GONE);
@@ -429,9 +434,6 @@ public class XiangMuXinXi extends Fragment {
                         dbh_wrz.setVisibility(View.VISIBLE);
                     }
                 }
-
-
-
 
 
             }
@@ -454,7 +456,7 @@ public class XiangMuXinXi extends Fragment {
     }
 
     private void initview() {
-        borrowRandomId = (String) SPUtils.get(getActivity(), "borrowRandomId", "");
+        borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
         mtpye = (String) SPUtils.get(getActivity(), "mtype1", "");
 
         MyScrollView xiangmuxingxiSV = getActivity().findViewById(R.id.xiangmuxinxScrollView);

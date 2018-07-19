@@ -120,7 +120,8 @@ public class JieKuanZiLiao extends Fragment {
     }
 
     private void initview() {
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borrowRandomId","");
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+        Log.e("项目借款资料", ""+borrowRandomId);
         MyScrollView jiekuanziliaoSV=getActivity().findViewById(R.id.jiekuanziliaoScrollView);
         jiekuanziliaoSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

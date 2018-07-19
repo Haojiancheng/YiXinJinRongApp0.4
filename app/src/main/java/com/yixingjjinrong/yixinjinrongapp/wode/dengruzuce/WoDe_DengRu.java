@@ -163,23 +163,25 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
+        Log.e(">>>>登入", "" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG", ">>>>成功" + result);
+                Log.e(">>>>登入", "" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
                 DengruData d_data = new Gson().fromJson(result, DengruData.class);
                 dengrufanhuizhi = d_data.getState(); //状态值
                 message = d_data.getMessage();
                 String user_token = d_data.getResult().getToken();
+                String loginId = d_data.getResult().getLoginId();
                 int user_id = d_data.getResult().getUserid();
 
                 if (message.equals("登录成功")) {
                     EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id));
                     EventBus.getDefault().post(new User_id(user_id));
                     SPUtils.put(WoDe_DengRu.this, "isLogin", true);
+                    SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
                     finish();
                 } else {
                     Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();

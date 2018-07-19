@@ -80,6 +80,7 @@ public class Wode extends Fragment {
     private ToggleButton wode_togglePwd;
     private String inviteAmount;
     private String totalEarn;
+    private String loginid;
 
 
     @Nullable
@@ -130,8 +131,9 @@ public class Wode extends Fragment {
         try {
             js_request.put("userId", user_id);
             js_request.put("token", token);
+//            js_request.put("LoginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e(">>>>base加密11111!!--", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -514,6 +516,7 @@ public class Wode extends Fragment {
 
 
     private void getWodeid() {
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         dengru = getActivity().findViewById(R.id.dengru_chenggong);//登入状态
         weidengru = getActivity().findViewById(R.id.weidengru);//未登入状态
         shimingrenzheng_itme = getActivity().findViewById(R.id.shiming_my);//未实名itme
@@ -545,7 +548,7 @@ public class Wode extends Fragment {
         super.onResume();
         boolean isLogin= (boolean) SPUtils.get(getActivity(),"isLogin",false);
         if (isLogin==false){
-//            userToken="";
+            userToken="";
             getHttp();
         }
     }

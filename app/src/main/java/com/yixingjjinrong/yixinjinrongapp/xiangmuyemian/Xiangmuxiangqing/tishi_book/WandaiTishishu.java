@@ -2,12 +2,14 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -36,6 +38,7 @@ public class WandaiTishishu extends AutoLayoutActivity {
         // 设置允许JS弹窗
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         web.loadUrl(Urls.BASE_URL + url+"borrowRandomId="+bid);
+        Log.e("ddddfd_-ff", ""+Urls.BASE_URL + url+"borrowRandomId="+bid);
         web_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +49,8 @@ public class WandaiTishishu extends AutoLayoutActivity {
     }
 
     @JavascriptInterface
-    public void back() {
+    public void backq() {
+        Toast.makeText(this, "调用back()",Toast.LENGTH_LONG ).show();
         finish();
     }
 }

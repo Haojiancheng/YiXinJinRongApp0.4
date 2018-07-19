@@ -2,8 +2,10 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -31,5 +33,10 @@ public class WebView extends AutoLayoutActivity {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
         wb.loadUrl(Urls.BASE_URL+url);
+    }
+    @JavascriptInterface
+    public void backq() {
+        Toast.makeText(this, "调用back()",Toast.LENGTH_LONG ).show();
+        finish();
     }
 }

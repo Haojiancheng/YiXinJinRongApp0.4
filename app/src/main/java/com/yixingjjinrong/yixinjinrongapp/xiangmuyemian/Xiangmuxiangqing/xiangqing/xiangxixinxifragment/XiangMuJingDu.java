@@ -206,7 +206,8 @@ public class XiangMuJingDu extends Fragment {
     }
 
     private void initview() {
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borrowRandomId","");
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+        Log.e("项目进度类型", ""+borrowRandomId);
         MyScrollView xiangmujinduSV = getActivity().findViewById(R.id.xiangmujingduScrollView);
         xiangmujinduSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

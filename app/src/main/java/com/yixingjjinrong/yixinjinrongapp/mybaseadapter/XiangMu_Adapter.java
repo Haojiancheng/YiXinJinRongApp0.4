@@ -48,7 +48,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull XiangMu_Adapter.MyViewHolder holder, final int position) {
-        holder.xiangmu_name.setText(list.get(position).getMortgageTypeStr());
+        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.years_lilv.setText(String.valueOf(list.get(position).getSubsidies()));
         holder.qixian.setText(list.get(position).getDeadlineNew());

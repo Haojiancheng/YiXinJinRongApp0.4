@@ -117,8 +117,8 @@ public class ChuJieJiLu extends Fragment {
     }
 
     private void initView() {
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borrowRandomId","");
-        
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+        Log.e("项目出借记录", ""+borrowRandomId);
         MyScrollView chujiejiluSV=getActivity().findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

@@ -46,6 +46,13 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
                 getHttp();
             }
         });
+        zclb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(KUaiJieZhiFu.this,ZhiChiBanK.class);
+                startActivity(it);
+            }
+        });
 
     }
 

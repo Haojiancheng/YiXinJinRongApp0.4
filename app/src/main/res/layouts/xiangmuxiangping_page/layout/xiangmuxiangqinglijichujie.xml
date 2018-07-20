@@ -391,6 +391,7 @@
                     android:layout_height="80px"
                     android:layout_marginLeft="15px"
                     android:text="我已阅读并同意"
+
                     android:textColor="#333333"
                     android:textSize="20px" />
 

@@ -89,7 +89,7 @@ public class ChongZhq extends AutoLayoutActivity {
                 if (msg.equals("")) {
                     yh_name.setText(data.getBankName());
                     yh_number.setText(data.getCardNum());
-                    x.image().bind(yh_img, Urls.BASE_URL + "yxb_mobile/" + data.getBankImage());
+                    x.image().bind(yh_img,  data.getBankImage());
                     cz_ok.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

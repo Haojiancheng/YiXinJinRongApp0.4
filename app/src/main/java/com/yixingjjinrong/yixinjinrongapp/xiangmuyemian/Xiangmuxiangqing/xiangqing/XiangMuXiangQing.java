@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +77,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private Button bt_lijichujie;
     private int juan_id;
     private int juan_type;
+    private CheckBox cb_fuxuankuang = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +184,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
 
-        Log.e("我的--》项目详情Token",""+token1);
+        Log.e("我的--》项目详情Token", "" + token1);
 //        token1 = (int) SPUtils.get(this, "Token1", 0);
 
 //        juan = (String) SPUtils.get(this, "juan", 0);
@@ -205,6 +209,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         zijinlaiyuan = findViewById(R.id.zijinlaiyuan);//资金来源
         dianziqianzhang = findViewById(R.id.dianziqianzhang);//电子签章
         youhuijuan = findViewById(R.id.youhuijuan);//优惠券
+        cb_fuxuankuang = findViewById(R.id.cb_fuxuankuang);//复选框
 
     }
 
@@ -229,12 +234,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("立即出借首页",""+canshu );
+            Log.e("立即出借首页", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/couponinformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/couponinformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -246,6 +251,42 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 xiangqing_qixian.setText(data.getResult().getRedList1().getDeadline());
                 fangshi.setText(data.getResult().getRedList1().getPaymentMode());
                 xiangqing_lilv.setText(data.getResult().getRedList1().getRanaa() + "");
+                int borrowStatus = data.getResult().getRedList1().getBorrowStatus();
+                switch (borrowStatus) {
+                    case 2://招标中（出借）
+                        if (String.valueOf(data.getResult().getRedList1().getTimeFlag()).equals("1")) {//预热
+                            bt_lijichujie.setText(data.getResult().getRedList1().getAbleTenderDate());
+                            bt_lijichujie.setTextColor(Color.parseColor("#fe6623"));
+                            bt_lijichujie.setBackgroundResource(R.drawable.bt_biankuang);
+                            bt_lijichujie.setEnabled(false);
+
+                        } else {//可出借
+                            bt_lijichujie.setText(data.getResult().getRedList1().getBorrowStatusStr());
+                            bt_lijichujie.setBackgroundResource(R.drawable.bt_shape);
+                            bt_lijichujie.setEnabled(true);
+                        }
+                        break;
+                    case 3://已满标
+                        bt_lijichujie.setText(data.getResult().getRedList1().getBorrowStatusStr());
+                        bt_lijichujie.setTextColor(Color.parseColor("#ffffff"));
+                        bt_lijichujie.setBackgroundResource(R.drawable.bt_huise);
+                        bt_lijichujie.setEnabled(false);
+                        break;
+                    case 4://回款中
+                        bt_lijichujie.setText(data.getResult().getRedList1().getBorrowStatusStr());
+                        bt_lijichujie.setTextColor(Color.parseColor("#ffffff"));
+                        bt_lijichujie.setBackgroundResource(R.drawable.bt_huise);
+                        bt_lijichujie.setEnabled(false);
+                        break;
+                    case 5://回款完成
+                        bt_lijichujie.setText(data.getResult().getRedList1().getBorrowStatusStr());
+                        bt_lijichujie.setTextColor(Color.parseColor("#ffffff"));
+                        bt_lijichujie.setBackgroundResource(R.drawable.bt_shenhuise);
+                        bt_lijichujie.setEnabled(false);
+                        break;
+                }
+
+
                 shengyuchujie.setText(data.getResult().getRedList1().getSurplus());
                 keyangyue.setText(data.getResult().getUserMap().getUsableSum());
                 xq_chongzhi.setOnClickListener(new View.OnClickListener() {
@@ -278,12 +319,28 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         }
                     }
                 });
-                bt_lijichujie.setOnClickListener(new View.OnClickListener() {
+
+
+                cb_fuxuankuang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
-                    public void onClick(View v) {
-                        getchujieHttp();
+                    public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
+
+                        if (isChecked) {
+                            bt_lijichujie.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (isChecked) {
+                                        getchujieHttp();
+                                    } else {
+                                        Toast.makeText(XiangMuXiangQing.this, "请先阅读", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
+                        }
                     }
                 });
+
                 if (data.getResult().getJuan() != null) {
                     youhuijuan.setText("未使用");
                     youhuijuan.setOnClickListener(new View.OnClickListener() {
@@ -293,15 +350,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             startActivity(ti);
                         }
                     });
-//                    Intent intent = getIntent();//获取传来的intent对象
-//                    String juan = intent.getStringExtra("juan");
-//                    youhuijuan.setText(juan);
-
                 } else {
                     youhuijuan.setText("暂无可用优惠券");
                 }
-
-
             }
 
             @Override
@@ -331,7 +382,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("borrowRandomId", id);
             Log.e("立即出借borrowRandomId:", "" + id);
             js_request.put("investAmount", jinge.getText().toString());
-
             Log.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -349,7 +399,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/particulars.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/particulars.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -362,7 +412,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 switch (aaa) {
                     case 2:
                         Toast.makeText(XiangMuXiangQing.this, "未实名认证", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                        AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                 .setTitle("提示")
                                 .setMessage("您还未实名认证，是否认证")
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -382,7 +432,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         break;
                     case 3:
                         Toast.makeText(XiangMuXiangQing.this, "未开通银行存管", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                        AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                 .setTitle("提示")
                                 .setMessage("您还未开通银行存管，是否开通")
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -401,7 +451,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         break;
                     case 5:
                         Toast.makeText(XiangMuXiangQing.this, "未签约", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                        AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                 .setTitle("提示")
                                 .setMessage("您还未未签约，是否签约")
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -420,7 +470,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         break;
                     case 4:
                         Toast.makeText(XiangMuXiangQing.this, "未风险评测", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                        AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                 .setTitle("提示")
                                 .setMessage("您还未风险评测，是否风险评测")
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -532,7 +582,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void shouAlertDialog(String msj) {
-        AlertDialog alertDialog=new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+        AlertDialog alertDialog = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                 .setTitle("提示")
                 .setMessage(msj)
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -575,11 +625,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("立即出接two",""+canshu );
+            Log.e("立即出接two", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/Immediately.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/Immediately.do");
         params.setAsJsonContent(true);
         params.setCacheMaxAge(1000 * 70);
         params.setBodyContent(canshu.toString());
@@ -589,17 +639,17 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 Log.e("立即出借GSon", result);
                 LJCJtwo_gson data = new Gson().fromJson(result, LJCJtwo_gson.class);
                 String msg = data.getResult().getMsg();
-                if (msg.equals("1")){
+                if (msg.equals("1")) {
                     Toast.makeText(XiangMuXiangQing.this, "我擦", Toast.LENGTH_SHORT).show();
                     String toumoney = data.getResult().getInvestAmount();
                     String toutime = data.getResult().getInvestDate();
-                    Intent it=new Intent(XiangMuXiangQing.this, ChuJie_OK.class);
-                    it.putExtra("money",toumoney);
-                    it.putExtra("time",toutime);
+                    Intent it = new Intent(XiangMuXiangQing.this, ChuJie_OK.class);
+                    it.putExtra("money", toumoney);
+                    it.putExtra("time", toutime);
                     startActivity(it);
 
-                }else {
-                    Toast.makeText(XiangMuXiangQing.this, ""+msg, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(XiangMuXiangQing.this, "" + msg, Toast.LENGTH_SHORT).show();
                 }
 
 

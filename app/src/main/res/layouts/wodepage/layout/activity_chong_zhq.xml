@@ -43,10 +43,9 @@
 
         <ImageView
             android:id="@+id/yh_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30px"
-            android:src="@drawable/touxiang" />
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginLeft="30px"/>
 
         <LinearLayout
             android:layout_width="match_parent"

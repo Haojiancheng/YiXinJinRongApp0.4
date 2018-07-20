@@ -57,7 +57,6 @@ public class Shouye extends Fragment {
     private String base1;//Base64加
     private ListView mylistview;
     private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist = new ArrayList<>();
-    List<ShouYeMassage_Gson.ResultBean> msglist=new ArrayList<>();
     private List<String> mymasseg=new ArrayList<>();
     private List<String> mymassegtime=new ArrayList<>();
     private ShouYe_MyBaseAdapter adapter;
@@ -78,10 +77,6 @@ public class Shouye extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getshouyeid();
-//        getgongaoHTTP();
-        //公告栏
-//        getgonggao();
-        //更多项目的跳转
         getgengduoxiangmu();
 
         getHttp();
@@ -187,14 +182,13 @@ public class Shouye extends Fragment {
         noticeView.setOnNoticeClickListener(new NoticeView.OnNoticeClickListener() {
             @Override
             public void onNotieClick(int position, String notice) {
-//                data.getResult().get(position).geta
                 int article_link = data.getResult().getPublicMsgList().get(position).getAid();
                 Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("xx_ird", article_link);
                 it.putExtras(bundle);
                 startActivity(it);
-//                Log.e("公告：",""+position);
+
             }
         });
 
@@ -233,8 +227,6 @@ public class Shouye extends Fragment {
         if (enter && !isGetData) {
             isGetData = true;
             //   这里可以做网络请求或者需要的数据刷新操作
-//            GetData();
-//            adapter.notifyDataSetChanged();
             getHttp();
 
             

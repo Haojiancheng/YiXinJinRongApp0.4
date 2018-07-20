@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
         }
         switch (type) {
             case 0:
+
                 holder1.first_name.setText(list.get(position).getBorrowTitle()+"   "+list.get(position).getBorrowCode());
                 holder1.first_lv.setText((int) list.get(position).getSubsidies() + "");
                 holder1.first_yue.setText(list.get(position).getAmount()+" 元");
@@ -117,6 +119,39 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     context.startActivity(it);
                 }
             });
+                int borrowStatus = list.get(position).getBorrowStatus();
+                switch (borrowStatus){
+                    case 2://招标中（出借）
+                        if (String.valueOf(list.get(position).getTimeFlag()).equals("1")){//预热
+                            holder1.first_chujie.setText(list.get(position).getAbleTenderDate());
+                            holder1.first_chujie.setTextColor(Color.parseColor("#fe6623"));
+                            holder1.first_chujie.setBackgroundResource(R.drawable.bt_biankuang);
+
+                        }else {//可出借
+                            holder1.first_chujie.setText(list.get(position).getBorrowStatusStr());
+                            holder1.first_chujie.setBackgroundResource(R.drawable.bt_shape);
+
+                        }
+                        break;
+                    case 3://已满标
+                        holder1.first_chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder1.first_chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder1.first_chujie.setBackgroundResource(R.drawable.bt_huise);
+
+                        break;
+                    case 4://回款中
+                        holder1.first_chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder1.first_chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder1.first_chujie.setBackgroundResource(R.drawable.bt_huise);
+
+                        break;
+                    case 5://回款完成
+                        holder1.first_chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder1.first_chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder1.first_chujie.setBackgroundResource(R.drawable.bt_shenhuise);
+
+                        break;
+                }
                 holder1.first_chujie.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,6 +177,39 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     holder2.fujia_lilv.setText(list.get(position).getSubsidiesRate() + "");
                     holder2.fujia_jiahao.setText("%");
                     holder2.jiahao.setText("+");
+                }
+                int borrowStatus2 = list.get(position).getBorrowStatus();
+                switch (borrowStatus2){
+                    case 2://招标中（出借）
+                        if (String.valueOf(list.get(position).getTimeFlag()).equals("1")){//预热
+                            holder2.chujie.setText(list.get(position).getAbleTenderDate());
+                            holder2.chujie.setTextColor(Color.parseColor("#fe6623"));
+                            holder2.chujie.setBackgroundResource(R.drawable.bt_biankuang);
+
+                        }else {//可出借
+                            holder2.chujie.setText(list.get(position).getBorrowStatusStr());
+                            holder2.chujie.setBackgroundResource(R.drawable.bt_shape);
+
+                        }
+                        break;
+                    case 3://已满标
+                        holder2.chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder2.chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder2.chujie.setBackgroundResource(R.drawable.bt_huise);
+
+                        break;
+                    case 4://回款中
+                        holder2.chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder2.chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder2.chujie.setBackgroundResource(R.drawable.bt_huise);
+
+                        break;
+                    case 5://回款完成
+                        holder2.chujie.setText(list.get(position).getBorrowStatusStr());
+                        holder2.chujie.setTextColor(Color.parseColor("#ffffff"));
+                        holder2.chujie.setBackgroundResource(R.drawable.bt_shenhuise);
+
+                        break;
                 }
                 holder2.qixian.setText(list.get(position).getDeadlineNew());
                 holder2.chujie.setOnClickListener(new View.OnClickListener() {

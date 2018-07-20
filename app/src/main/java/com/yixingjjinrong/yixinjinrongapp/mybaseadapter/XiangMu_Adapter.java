@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,13 +81,14 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
         switch (borrowStatus){
             case 2://招标中（出借）
                 if (String.valueOf(list.get(position).getTimeFlag()).equals("1")){//预热
-                    holder.chujie.setText(list.get(position).getBorrowStatusStr());
+                    holder.chujie.setText(list.get(position).getAbleTenderDate());
                     holder.chujie.setTextColor(Color.parseColor("#fe6623"));
                     holder.chujie.setBackgroundResource(R.drawable.bt_biankuang);
 
                 }else {//可出借
                     holder.chujie.setText(list.get(position).getBorrowStatusStr());
                     holder.chujie.setBackgroundResource(R.drawable.bt_shape);
+                    holder.chujie.setTextColor(Color.parseColor("#ffffff"));
 
                 }
                 break;
@@ -106,7 +108,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_shenhuise);
-;
+
                 break;
         }
 

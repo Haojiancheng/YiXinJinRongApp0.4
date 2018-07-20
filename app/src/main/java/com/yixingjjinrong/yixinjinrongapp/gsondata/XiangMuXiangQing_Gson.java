@@ -4,10 +4,9 @@ import java.util.List;
 
 public class XiangMuXiangQing_Gson {
 
-
     /**
      * message : 成功了
-     * result : {"userMap":{"usertype":"1","usableSum":"5058610.00"},"redList1":{"ranaa":6,"paymentMode":"","ran":6,"borrowSum":"300元","rans":0,"surplus":"300.00","deadline":"3个月"},"juan":[{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10}]}
+     * result : {"userMap":{"usertype":"1","usableSum":"188322.00"},"redList1":{"ranaa":6,"ableTenderDate":"2018-06-28 15:51","paymentMode":"","borrowStatus":2,"borrowStatusStr":"立即出借","ran":6,"timeFlag":"0","borrowSum":"800元","rans":0,"surplus":"400.00","deadline":"3个月"},"juan":[{"useCondition":"","startTime":"2018-07-18","id":368,"quota":1000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满1000减108元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":108},{"useCondition":"","startTime":"2018-07-18","id":369,"quota":5000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满5000减66元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":66},{"useCondition":"","startTime":"2018-07-18","id":370,"quota":1000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满1000减15元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":15},{"useCondition":"","startTime":"2018-07-18","id":371,"quota":500,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满500减10元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":10}],"borrowRandomId":"0c244be7-eaf2-4e4e-81a8-8f61f3988eab"}
      * state : success
      */
 
@@ -41,13 +40,15 @@ public class XiangMuXiangQing_Gson {
 
     public static class ResultBean {
         /**
-         * userMap : {"usertype":"1","usableSum":"5058610.00"}
-         * redList1 : {"ranaa":6,"paymentMode":"","ran":6,"borrowSum":"300元","rans":0,"surplus":"300.00","deadline":"3个月"}
-         * juan : [{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-21","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-20","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":206,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100元加息5%","activitype":3,"isHot":"","endTime":"2018-09-24","info":5},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10},{"useCondition":"","startTime":"2018-05-25","id":363,"quota":100,"useRange":"房屋抵押,助学计划,项目集,","remark":"满100减10元","activitype":6,"isHot":"1","endTime":"2019-05-24","info":10}]
+         * userMap : {"usertype":"1","usableSum":"188322.00"}
+         * redList1 : {"ranaa":6,"ableTenderDate":"2018-06-28 15:51","paymentMode":"","borrowStatus":2,"borrowStatusStr":"立即出借","ran":6,"timeFlag":"0","borrowSum":"800元","rans":0,"surplus":"400.00","deadline":"3个月"}
+         * juan : [{"useCondition":"","startTime":"2018-07-18","id":368,"quota":1000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满1000减108元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":108},{"useCondition":"","startTime":"2018-07-18","id":369,"quota":5000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满5000减66元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":66},{"useCondition":"","startTime":"2018-07-18","id":370,"quota":1000,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满1000减15元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":15},{"useCondition":"","startTime":"2018-07-18","id":371,"quota":500,"useRange":"房屋抵押,助学计划,项目集,车辆抵押,","remark":"满500减10元","activitype":6,"isHot":"1","endTime":"2018-07-27","info":10}]
+         * borrowRandomId : 0c244be7-eaf2-4e4e-81a8-8f61f3988eab
          */
 
         private UserMapBean userMap;
         private RedList1Bean redList1;
+        private String borrowRandomId;
         private List<JuanBean> juan;
 
         public UserMapBean getUserMap() {
@@ -66,6 +67,14 @@ public class XiangMuXiangQing_Gson {
             this.redList1 = redList1;
         }
 
+        public String getBorrowRandomId() {
+            return borrowRandomId;
+        }
+
+        public void setBorrowRandomId(String borrowRandomId) {
+            this.borrowRandomId = borrowRandomId;
+        }
+
         public List<JuanBean> getJuan() {
             return juan;
         }
@@ -77,7 +86,7 @@ public class XiangMuXiangQing_Gson {
         public static class UserMapBean {
             /**
              * usertype : 1
-             * usableSum : 5058610.00
+             * usableSum : 188322.00
              */
 
             private String usertype;
@@ -103,17 +112,25 @@ public class XiangMuXiangQing_Gson {
         public static class RedList1Bean {
             /**
              * ranaa : 6.0
+             * ableTenderDate : 2018-06-28 15:51
              * paymentMode :
+             * borrowStatus : 2
+             * borrowStatusStr : 立即出借
              * ran : 6.0
-             * borrowSum : 300元
+             * timeFlag : 0
+             * borrowSum : 800元
              * rans : 0.0
-             * surplus : 300.00
+             * surplus : 400.00
              * deadline : 3个月
              */
 
             private double ranaa;
+            private String ableTenderDate;
             private String paymentMode;
+            private int borrowStatus;
+            private String borrowStatusStr;
             private double ran;
+            private String timeFlag;
             private String borrowSum;
             private double rans;
             private String surplus;
@@ -127,6 +144,14 @@ public class XiangMuXiangQing_Gson {
                 this.ranaa = ranaa;
             }
 
+            public String getAbleTenderDate() {
+                return ableTenderDate;
+            }
+
+            public void setAbleTenderDate(String ableTenderDate) {
+                this.ableTenderDate = ableTenderDate;
+            }
+
             public String getPaymentMode() {
                 return paymentMode;
             }
@@ -135,12 +160,36 @@ public class XiangMuXiangQing_Gson {
                 this.paymentMode = paymentMode;
             }
 
+            public int getBorrowStatus() {
+                return borrowStatus;
+            }
+
+            public void setBorrowStatus(int borrowStatus) {
+                this.borrowStatus = borrowStatus;
+            }
+
+            public String getBorrowStatusStr() {
+                return borrowStatusStr;
+            }
+
+            public void setBorrowStatusStr(String borrowStatusStr) {
+                this.borrowStatusStr = borrowStatusStr;
+            }
+
             public double getRan() {
                 return ran;
             }
 
             public void setRan(double ran) {
                 this.ran = ran;
+            }
+
+            public String getTimeFlag() {
+                return timeFlag;
+            }
+
+            public void setTimeFlag(String timeFlag) {
+                this.timeFlag = timeFlag;
             }
 
             public String getBorrowSum() {
@@ -179,15 +228,15 @@ public class XiangMuXiangQing_Gson {
         public static class JuanBean {
             /**
              * useCondition :
-             * startTime : 2018-05-21
-             * id : 206
-             * quota : 100
-             * useRange : 房屋抵押,助学计划,项目集,
-             * remark : 满100元加息5%
-             * activitype : 3
-             * isHot :
-             * endTime : 2018-09-20
-             * info : 5.0
+             * startTime : 2018-07-18
+             * id : 368
+             * quota : 1000
+             * useRange : 房屋抵押,助学计划,项目集,车辆抵押,
+             * remark : 满1000减108元
+             * activitype : 6
+             * isHot : 1
+             * endTime : 2018-07-27
+             * info : 108.0
              */
 
             private String useCondition;

@@ -90,8 +90,8 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 String zhuangtai = data.getState();
                 Log.e("实名认证", zhuangtai);
                 if (zhuangtai.equals("success")){
-                    String realName = data.getResult().getRealName();
-                    String idNo = data.getResult().getIdNo();
+//                    String realName = data.getResult().getRealName();
+//                    String idNo = data.getResult().getIdNo();
                     Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
                     startActivity(intent);
                 }else {

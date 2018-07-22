@@ -65,6 +65,7 @@
                 />
 
             <EditText
+                android:id="@+id/pop_myname"
                 android:layout_width="540px"
                 android:layout_height="80px"
                 android:layout_marginTop="34px"
@@ -75,6 +76,7 @@
                 
                 />
             <EditText
+                android:id="@+id/pop_myidcard"
                 android:layout_width="540px"
                 android:layout_height="80px"
                 android:layout_marginTop="40px"
@@ -84,6 +86,7 @@
                 android:hint="请输入18位身份证号"
                 />
             <Button
+                android:id="@+id/pop_myb_t"
                 android:layout_width="540px"
                 android:layout_height="80px"
                 android:layout_marginTop="50px"

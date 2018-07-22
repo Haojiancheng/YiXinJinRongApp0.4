@@ -10,21 +10,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiBean;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJuan_adapter.MyViewHolder> {
-    private List<JiaXiJuan_Gson.QueryVouchersListBean> mlist=new ArrayList<>();
+    private List<JiaXiBean.xianJuanBean> juanBeanList;
 
     private OnEveryItemClickListener onEveryItemClickListener;
     public interface OnEveryItemClickListener{
         void onEveryClick(int position);
     }
-    public XiangMuJiaXiJuan_adapter(List<JiaXiJuan_Gson.QueryVouchersListBean> mlist) {
-        this.mlist = mlist;
+    public XiangMuJiaXiJuan_adapter(List<JiaXiBean.xianJuanBean> juanBeanList) {
+        this.juanBeanList = juanBeanList;
     }
     public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener){
         this.onEveryItemClickListener=onEveryItemClickListener;
@@ -42,25 +44,27 @@ public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJ
 
     @Override
     public void onBindViewHolder(@NonNull XiangMuJiaXiJuan_adapter.MyViewHolder holder, final int position) {
-        holder.qian.setText(mlist.get(position).getInfo() + "%");
-        holder.yaoqu.setText(mlist.get(position).getRemark());
-        holder.fanwei.setText(mlist.get(position).getUseRange());
-        holder.time_out.setText(mlist.get(position).getEndTime());
-        holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("点击了","jjjjjjbbbbbb");
-                if (onEveryItemClickListener!=null){
-                    onEveryItemClickListener.onEveryClick(position);
-                }
+        if (juanBeanList.get(position).getActivitype()==3) {
+            holder.qian.setText(juanBeanList.get(position).getInfo() + "%");
+            holder.yaoqu.setText(juanBeanList.get(position).getRemark());
+            holder.fanwei.setText(juanBeanList.get(position).getUseRange());
+            holder.time_out.setText(juanBeanList.get(position).getEndTime());
+            holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.e("点击了", "jjjjjjbbbbbb");
+                    if (onEveryItemClickListener != null) {
+                        onEveryItemClickListener.onEveryClick(position);
+                    }
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mlist.size();
+        return juanBeanList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

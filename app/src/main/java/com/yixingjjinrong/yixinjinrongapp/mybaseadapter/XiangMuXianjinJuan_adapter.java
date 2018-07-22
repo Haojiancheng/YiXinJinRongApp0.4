@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,16 +11,30 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinBean;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXianjinJuan_adapter.MyViewHolder> {
-    private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
+    private List<XianJinBean.xianJuanBean> juanBeanList;
+    private Context context;
 
-    public XiangMuXianjinJuan_adapter(List<XianJinJuan_gson.QueryVouchersListBean> list) {
-        this.list = list;
+    public XiangMuXianjinJuan_adapter(List<XianJinBean.xianJuanBean> juanBeanList, Context context) {
+        this.juanBeanList = juanBeanList;
+        this.context = context;
+    }
+    private OnEveryItemClickListener onEveryItemClickListener;
+    public interface OnEveryItemClickListener{
+        void onEveryClick(int position);
+    }
+
+
+    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener){
+        this.onEveryItemClickListener=onEveryItemClickListener;
     }
 
     @NonNull
@@ -31,22 +46,28 @@ public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXian
     }
 
     @Override
-    public void onBindViewHolder(@NonNull XiangMuXianjinJuan_adapter.MyViewHolder holder, int position) {
-        holder.qian.setText("¥"+list.get(position).getInfo());
-        holder.yaoqu.setText(list.get(position).getRemark());
-        holder.fanwei.setText(list.get(position).getUseRange());
-        holder.time_out.setText(list.get(position).getEndTime());
-        holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("点击了","jjjjjjbbbbbb");
-            }
-        });
+    public void onBindViewHolder(@NonNull final XiangMuXianjinJuan_adapter.MyViewHolder holder, final int position) {
+        if (juanBeanList.get(position).getActivitype()==6) {
+            holder.qian.setText("¥" + juanBeanList.get(position).getInfo());
+            holder.yaoqu.setText(juanBeanList.get(position).getRemark());
+            holder.fanwei.setText(juanBeanList.get(position).getUseRange());
+            holder.time_out.setText(juanBeanList.get(position).getEndTime());
+            holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onEveryItemClickListener!=null){
+                        onEveryItemClickListener.onEveryClick(position);
+                    }
+                   
+                    
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return juanBeanList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -5,32 +5,42 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.LJCJONR_GSon;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.LJCJtwo_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.ChuJie_OK;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
@@ -69,7 +79,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String id;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-    private TextView youhuijuan;//优惠券
+    private TextView youhuijuan,yujishouyi;//优惠券,預計收益
     private int user_id;
     private String mType;
     private XiangMuXiangQing_Gson data;
@@ -78,6 +88,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private int juan_id;
     private int juan_type;
     private CheckBox cb_fuxuankuang = null;
+    private String juanmake;
+    private String popname;
+    private String popidcard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +101,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
         getID();//获取资源ID
         initView();
-        getjinge();//获取输入金额
+       
 
         Intent it = getIntent();
         id = it.getStringExtra("xiangmu_id");
@@ -98,8 +111,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         getWebview();//各种提示书
 
         getHttps();
-
-
+        
     }
 
     private void getWebview() {
@@ -146,6 +158,28 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     private void getjinge() {
+        jinge.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.e("CharSequence", "" + s);
+                String myjine= jinge.getText().toString();
+                double b1= Double.parseDouble(myjine);
+                Log.e("s1",""+b1);
+                double myshouyi= b1*data.getResult().getRedList1().getRan()/100;
+                Log.e("myshouyi",""+myshouyi);
+                yujishouyi.setText(""+myshouyi);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         if (Integer.valueOf(jinge.getText().toString().trim()) == 0) {
             jianhao.setEnabled(false);
             jiahao.setOnClickListener(new View.OnClickListener() {
@@ -179,17 +213,33 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        juan_id = (int) SPUtils.get(this, "juanId", 0);
+        juan_type = (int) SPUtils.get(this, "juantype", 0);
+        juanmake = (String) SPUtils.get(this, "juanmake", "");
+        Log.e("我的--》juan_type", "" + juan_type);
+        Log.e("我的--》juan_id", "" + juan_id);
+        Log.e("我的--》juanmake", "" + juanmake);
+        youhuijuan.setText(juanmake);
+    }
 
     private void getID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
-
+        juan_id = (int) SPUtils.get(this, "juanId", 0);
+        juan_type = (int) SPUtils.get(this, "juantype", 0);
+        juanmake = (String) SPUtils.get(this, "juanmake", "");
+        Log.e("我的--》juan_type", "" + juan_type);
+        Log.e("我的--》juan_id", "" + juan_id);
+        Log.e("我的--》juanmake", "" + juanmake);
         Log.e("我的--》项目详情Token", "" + token1);
 //        token1 = (int) SPUtils.get(this, "Token1", 0);
 
 //        juan = (String) SPUtils.get(this, "juan", 0);
         Log.e("userid", "id:" + user_id);
-
+        yujishouyi=findViewById(R.id.yujishouyi);
         jianhao = findViewById(R.id.bt_jianhao);
         jinge = findViewById(R.id.et_jinge);
         xq_chongzhi = findViewById(R.id.xq_chongzhi);
@@ -210,6 +260,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         dianziqianzhang = findViewById(R.id.dianziqianzhang);//电子签章
         youhuijuan = findViewById(R.id.youhuijuan);//优惠券
         cb_fuxuankuang = findViewById(R.id.cb_fuxuankuang);//复选框
+
 
     }
 
@@ -246,7 +297,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("8888Gson:", "" + result);
+
                 data = new Gson().fromJson(result, XiangMuXiangQing_Gson.class);
+                getjinge();//获取输入金额
                 xiangqing_zonge.setText(data.getResult().getRedList1().getBorrowSum());
                 xiangqing_qixian.setText(data.getResult().getRedList1().getDeadline());
                 fangshi.setText(data.getResult().getRedList1().getPaymentMode());
@@ -341,12 +394,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     }
                 });
 
-                if (data.getResult().getJuan() != null) {
+                if (data.getResult().getJuan().size()!=0) {
                     youhuijuan.setText("未使用");
                     youhuijuan.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
+                            ti.putExtra("juan", data.getResult());
                             startActivity(ti);
                         }
                     });
@@ -423,7 +477,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        getshimingHTTp();
+                                        
+                                        showpopwindow();
                                         Toast.makeText(XiangMuXiangQing.this, "请实名", Toast.LENGTH_SHORT).show();
                                     }
                                 })
@@ -443,6 +498,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        cGpop();
                                         Toast.makeText(XiangMuXiangQing.this, "请开通", Toast.LENGTH_SHORT).show();
                                     }
                                 })
@@ -522,6 +578,114 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
+    private void cGpop() {
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(this, R.layout.yinhangcunguan_pop, null);
+        TextView cg_pop=popView.findViewById(R.id.ch_pop);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+
+        final PopupWindow popWindow = new PopupWindow(popView,width,height);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
+        cg_pop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getchHTTP();
+               
+            }
+        });
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
+    }
+
+    private void getchHTTP() {
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("userid", String.valueOf(user_id));
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            canshu.put("sign", sha1);
+            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+        params.setAsJsonContent(true);
+        params.setBodyContent(canshu.toString());
+        Log.e("TAG", ">>>>网址" + params);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("存管GSON:",""+result );
+                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                String html = data.getResult().getHtml();
+                Intent it=new Intent(XiangMuXiangQing.this, YinHangCunGuan.class);
+                it.putExtra("HTML",html );
+                Log.e("我的页面银行存管HTML:",""+it);
+                startActivity(it);
+
+                Log.e("wangy",""+html );
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+    private void showpopwindow() {
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(this, R.layout.shimingrenzheng_pop, null);
+        final EditText pop_name=popView.findViewById(R.id.pop_myname);
+        final EditText pop_idcard=popView.findViewById(R.id.pop_myidcard);
+        Button popb_t=popView.findViewById(R.id.pop_myb_t);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+
+        final PopupWindow popWindow = new PopupWindow(popView,width,height);
+
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+        
+        popb_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popname = pop_name.getText().toString();
+                popidcard = pop_idcard.getText().toString();
+                getshimingHTTp();
+                popWindow.dismiss();
+            }
+            
+        });
+
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+    }
+
     private void getshimingHTTp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
@@ -560,6 +724,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                    bundle.putInt("user_ird", user_id);
 //                    it.putExtras(bundle);
 //                    startActivity(it);
+                    getsmHttp();
                 }
 
             }
@@ -579,6 +744,75 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             }
         });
+    }
+
+    private void getsmHttp() {
+            JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+            try {
+                js_request.put("userId", user_id);
+                js_request.put("idNo", popidcard);
+                js_request.put("realName", popname);
+                base1 = Base64JiaMI.AES_Encode(js_request.toString());
+                Log.e("TAG", ">>>>base加密11111!!--" + base1);
+                sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+                Log.e("TAG", ">>>>SH!!" + sha1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JSONObject canshu = new JSONObject();
+            try {
+                canshu.put("param", base1);
+                canshu.put("sign", sha1);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/userAuth.do");
+            params.setAsJsonContent(true);
+            params.setBodyContent(canshu.toString());
+            Log.e("TAG", ">>>>网址" + params);
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.e("实名认证的GSOn", ""+result);
+                    ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
+                    String message = data.getMessage().toString();
+//                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
+
+                    String zhuangtai = data.getState();
+                    Log.e("实名认证", zhuangtai);
+                    if (zhuangtai.equals("success")){
+//                    String realName = data.getResult().getRealName();
+//                    String idNo = data.getResult().getIdNo();
+                        Intent intent=new Intent(XiangMuXiangQing.this,ShiMingRenZhengKO.class);
+                        startActivity(intent);
+                    }else {
+//                        jinggao.setVisibility(View.VISIBLE);
+//                        jinggao.setText(message);
+                        Toast.makeText(XiangMuXiangQing.this, ""+message, Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+
+
+        
     }
 
     private void shouAlertDialog(String msj) {
@@ -647,7 +881,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     it.putExtra("money", toumoney);
                     it.putExtra("time", toutime);
                     startActivity(it);
-
+                    SPUtils.remove(XiangMuXiangQing.this, "juantype");
+                    SPUtils.remove(XiangMuXiangQing.this, "juanId");
+                    SPUtils.remove(XiangMuXiangQing.this, "juanmake");
                 } else {
                     Toast.makeText(XiangMuXiangQing.this, "" + msg, Toast.LENGTH_SHORT).show();
                 }
@@ -717,6 +953,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+//        juan_id = (int) SPUtils.get(this, "juanId", 0);
+//        juan_type = (int) SPUtils.get(this, "juantype", 0);
+//        juanmake = (String) SPUtils.get(this, "juanmake", "");
+        SPUtils.remove(XiangMuXiangQing.this, "juantype");
+        SPUtils.remove(XiangMuXiangQing.this, "juanId");
+        SPUtils.remove(XiangMuXiangQing.this, "juanmake");
     }
 }

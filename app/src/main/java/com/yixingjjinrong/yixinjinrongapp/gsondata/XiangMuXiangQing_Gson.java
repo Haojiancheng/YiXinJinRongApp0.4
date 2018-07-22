@@ -1,8 +1,9 @@
 package com.yixingjjinrong.yixinjinrongapp.gsondata;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class XiangMuXiangQing_Gson {
+public class XiangMuXiangQing_Gson implements Serializable{
 
     /**
      * message : 成功了
@@ -38,7 +39,7 @@ public class XiangMuXiangQing_Gson {
         this.state = state;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable{
         /**
          * userMap : {"usertype":"1","usableSum":"188322.00"}
          * redList1 : {"ranaa":6,"ableTenderDate":"2018-06-28 15:51","paymentMode":"","borrowStatus":2,"borrowStatusStr":"立即出借","ran":6,"timeFlag":"0","borrowSum":"800元","rans":0,"surplus":"400.00","deadline":"3个月"}
@@ -83,7 +84,7 @@ public class XiangMuXiangQing_Gson {
             this.juan = juan;
         }
 
-        public static class UserMapBean {
+        public static class UserMapBean implements Serializable{
             /**
              * usertype : 1
              * usableSum : 188322.00
@@ -109,7 +110,7 @@ public class XiangMuXiangQing_Gson {
             }
         }
 
-        public static class RedList1Bean {
+        public static class RedList1Bean implements Serializable{
             /**
              * ranaa : 6.0
              * ableTenderDate : 2018-06-28 15:51
@@ -225,7 +226,7 @@ public class XiangMuXiangQing_Gson {
             }
         }
 
-        public static class JuanBean {
+        public static class JuanBean implements Serializable{
             /**
              * useCondition :
              * startTime : 2018-07-18

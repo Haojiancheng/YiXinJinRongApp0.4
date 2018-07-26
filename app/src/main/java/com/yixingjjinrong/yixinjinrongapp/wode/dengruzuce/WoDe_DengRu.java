@@ -149,6 +149,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
             js_request.put("username", shoujihao);
             js_request.put("password", mima);
             js_request.put("url", myurl);
+
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 //            Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -164,30 +165,30 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/Applogin.do");
+        RequestParams params = new RequestParams("http://192.168.1.61:8080/yxb_mobile/yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
-//        Log.e(">>>>登入", "" + params);
+        Log.e(">>>>登入", "" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-//                Log.e(">>>>登入", "" + result);
+                Log.e(">>>>登入", "" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
                 DengruData d_data = new Gson().fromJson(result, DengruData.class);
                 dengrufanhuizhi = d_data.getState(); //状态值
                 message = d_data.getMessage();
+                Log.e("登入Message", ""+message);
                 String user_token = d_data.getResult().getToken();
                 String loginId = d_data.getResult().getLoginId();
                 int user_id = d_data.getResult().getUserid();
-                Toast.makeText(context, ""+message, Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(WoDe_DengRu.this, ""+message, Toast.LENGTH_SHORT).show();
                 if (message.equals("登录成功")) {
                     EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id,loginId));
                     EventBus.getDefault().post(new User_id(user_id));
                     SPUtils.put(WoDe_DengRu.this, "isLogin", true);
                     SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
-//                    Log.e("sdfdf", ""+loginId );
+                    Log.e("sdfdf", ""+loginId );
                     finish();
                 } else {
                     Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();

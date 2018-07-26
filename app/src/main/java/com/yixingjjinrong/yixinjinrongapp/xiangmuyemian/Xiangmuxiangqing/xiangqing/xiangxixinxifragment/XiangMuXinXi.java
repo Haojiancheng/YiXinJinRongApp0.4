@@ -225,7 +225,7 @@ public class XiangMuXinXi extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams("http://192.168.1.219:8080/yxb_mobile/yxbApp/ProjectInformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/ProjectInformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {

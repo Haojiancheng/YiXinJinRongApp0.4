@@ -283,7 +283,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
 
-    private void getHttps() {
+    private void
+    getHttps() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 

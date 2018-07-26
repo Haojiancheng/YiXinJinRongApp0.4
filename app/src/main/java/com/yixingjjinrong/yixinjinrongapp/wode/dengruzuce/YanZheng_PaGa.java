@@ -54,6 +54,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private Context context;
     private String myurl;
     private ImageView zz_fh;
+    private TextView yy_yanzheng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,13 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         return Pattern.matches(REGEX_PASSWORD, password);
     }
     private void getyanZheng_Onclick() {
+        yy_yanzheng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getyuyinHttp();
+            }
+        });
+
         zz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +137,54 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             @Override
             public void onClick(View v) {
                 phonecode.setText("");
+            }
+        });
+    }
+
+    private void getyuyinHttp() {//语音验证码
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        myurl = getid(context);
+        try {
+            js_request.put("phone", get_phone);
+            js_request.put("url", myurl);
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+            Log.e("TAG", ">>>>SH!!" + sha1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            canshu.put("sign", sha1);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsoundSms.do");
+        params.setAsJsonContent(true);
+        params.setBodyContent(canshu.toString());
+        Log.e("TAG", ">>>>网址" + params);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e( "语音严重吗Gson",""+result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
             }
         });
     }
@@ -263,6 +319,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         zc_togglePwd=findViewById(R.id.zc_togglePwd);//显示或隐藏密码
         et_qc=findViewById(R.id.yanz_guanbi);//清除输入框
         zz_fh=findViewById(R.id.zz_fh);
+        yy_yanzheng=findViewById(R.id.yy_yanzheng);
     }
     public synchronized String getid(Context context) {
         TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);

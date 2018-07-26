@@ -4,7 +4,7 @@ public class ChengGongzhuce_Gson {
 
     /**
      * message : 注册成功!
-     * result : {"userid":11524,"enroll":"1"}
+     * result : {"loginId":"login:11966","token":"login:869381039260413","userid":11966,"enroll":"1"}
      * state : success
      */
 
@@ -38,12 +38,32 @@ public class ChengGongzhuce_Gson {
 
     public static class ResultBean {
         /**
-         * userid : 11524
+         * loginId : login:11966
+         * token : login:869381039260413
+         * userid : 11966
          * enroll : 1
          */
 
+        private String loginId;
+        private String token;
         private int userid;
         private String enroll;
+
+        public String getLoginId() {
+            return loginId;
+        }
+
+        public void setLoginId(String loginId) {
+            this.loginId = loginId;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
 
         public int getUserid() {
             return userid;

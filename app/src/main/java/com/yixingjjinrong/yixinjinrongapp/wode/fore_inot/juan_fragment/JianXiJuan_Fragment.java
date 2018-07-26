@@ -44,6 +44,8 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     private JiaXiJuan_adapter myadapter;
     private int user_id;
     private int a=1;
+    private String loginid;
+    private String token;
 
     @Nullable
     @Override
@@ -69,6 +71,8 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             js_request.put("activitype", "3");
             js_request.put("staut", "1");
             js_request.put("pageNumber", a);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -84,7 +88,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryAll.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryAll.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -119,6 +123,8 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     }
 
     private void getid() {
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        token = (String) SPUtils.get(getActivity(), "Token1", "");
         jiaxi_rview = getActivity().findViewById(R.id.jiaxi_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         jiaxi_rview.setLayoutManager(manager);

@@ -10,7 +10,9 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -20,6 +22,9 @@ public class ChongZhiOK extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_chong_zhi_ok);
         chongzok=findViewById(R.id.chongzok);
         final Intent intent=getIntent();
@@ -40,21 +45,25 @@ public class ChongZhiOK extends AutoLayoutActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 Log.e("onPageFinished返回的URL",url );
-                if(url.indexOf("http://192.168.1.79:8080/yxb_mobile/yxbApp/frontFuonlineUrlApp.do?") != -1)
+                if(url.indexOf("http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?") != -1)
                 {
-//http://192.168.1.79:8080/yxb_mobile/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=1007&amt=10000
-                    String r="http://192.168.1.79:8080/yxb_mobile/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=1007&amt=";
+                    //http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=12300
+                    String r="http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=";
                     Log.e("TAG", "包含该字符串"+r.length());
-                    String one = url.substring(78, 82);//substring是截取2个位置之间及start-end之间的字符串
+                    String one = url.substring(64, 68);//substring是截取2个位置之间及start-end之间的字符串
                     Log.e("one_截取", ""+one);
-                    String two = url.substring(91, 95);//substring是截取2个位置之间及start-end之间的字符串
+                    String two = url.substring(77, 81);//substring是截取2个位置之间及start-end之间的字符串
                     Log.e("two_截取", ""+two);
-                    String money = url.substring(100, url.length());
+                    String money = url.substring(86, url.length());
                     int my_money= Integer.parseInt(money)/100;
                     Log.e("我冲的钱",""+my_money);
 
                     if (one.equals("0000")&&two.equals("0000")){
                         Toast.makeText(ChongZhiOK.this, "成功", Toast.LENGTH_SHORT).show();
+                        Intent inte=new Intent(ChongZhiOK.this, ChongZhiSuccers.class);
+                        inte.putExtra("jine",String.valueOf(my_money).toString() );
+                        startActivity(inte);
+                        finish();
                     }else {
                         Toast.makeText(ChongZhiOK.this, "失败", Toast.LENGTH_SHORT).show();
                         Intent inte=new Intent(ChongZhiOK.this, ChongZhiShiBai.class);

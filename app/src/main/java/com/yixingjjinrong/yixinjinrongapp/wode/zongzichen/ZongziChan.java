@@ -2,12 +2,15 @@ package com.yixingjjinrong.yixinjinrongapp.wode.zongzichen;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DataItem;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DiscView;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ZongE_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -25,22 +28,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ZongziChan extends AutoLayoutActivity {
-    private DiscView rv;
+//    private DiscView rv;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
     private TextView zonge_z,zonge_daishou,zonge_keyong,zonge_dongjie;
-
+    private String loginid;
+    private String token;
+    private ImageView ze_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_zongzi_chan);
 
         getzzcID();
         gethttp();
 //        getquan();
-
+        ze_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getquan() {
@@ -55,6 +68,8 @@ public class ZongziChan extends AutoLayoutActivity {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -71,7 +86,7 @@ public class ZongziChan extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/userTotalAmount.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/userTotalAmount.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -123,11 +138,15 @@ public class ZongziChan extends AutoLayoutActivity {
 
     private void getzzcID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
-        rv = findViewById(R.id.disc);
+        loginid = (String) SPUtils.get(ZongziChan.this, "Loginid", "");
+        token = (String) SPUtils.get(ZongziChan.this, "Token1", "");
+        Log.e("loginid+token", "%%"+loginid+"^^"+token);
+//        rv = findViewById(R.id.disc);
         zonge_z=findViewById(R.id.zonge_z);
         zonge_daishou=findViewById(R.id.zonge_daishou);
         zonge_keyong=findViewById(R.id.zonge_keyong);
         zonge_dongjie=findViewById(R.id.zonge_dongjie);
+        ze_fh=findViewById(R.id.ze_fh);
 
     }
 }

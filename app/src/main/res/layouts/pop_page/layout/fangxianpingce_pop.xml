@@ -37,25 +37,30 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="193px"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="20px"
-            android:layout_marginTop="50px"
-            android:text="您还没有进行风险能力评测，根据监管要求，出借人需在出借前进行风险评测。" />
+            android:background="#f0f4f0"
+            android:paddingLeft="15px"
+            android:paddingRight="15px"
+            android:paddingTop="30px"
+            android:text="您还没有进行风险能力评测，根据监管要求，出借人需在出借前进行风险评测。"
+            android:textAlignment="textStart" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#dadada" />
         <TextView
+            android:id="@+id/txt_pc"
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center"
             android:text="立即评测"
+            android:background="#f0f4f0"
             android:textColor="#fe6623"
             android:textSize="34px" />
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/pc_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

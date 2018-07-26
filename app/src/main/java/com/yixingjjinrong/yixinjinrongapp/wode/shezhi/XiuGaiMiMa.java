@@ -16,10 +16,12 @@ import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiuGaiMiMa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -42,10 +44,15 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     private TextView xg_mima;
     public static final String REGEX_PASSWORD = "^(?=.*?[a-z])(?=.*?[0-9])[a-zA-Z0-9_]{6,16}$";
     private int user_ird;
+    private String loginid;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_xiugai_mima);
         getre_id();
         Bundle b = getIntent().getExtras();
@@ -56,6 +63,12 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
             public void onClick(View v) {
                 Intent intent_Zhaohuimima = new Intent(XiuGaiMiMa.this, ZhaoHuiMiMa.class);
                 startActivity(intent_Zhaohuimima);
+            }
+        });
+        re_fenhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -97,7 +110,8 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
             js_request.put("password", old_mima.getText().toString());
             js_request.put("newpwd", new_mima.getText().toString());
             js_request.put("userid", user_ird);
-
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -113,7 +127,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/updatePwd.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/updatePwd.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -153,6 +167,8 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     }
 
     private void getre_id() {
+        loginid = (String) SPUtils.get(XiuGaiMiMa.this, "Loginid", "");
+        token = (String) SPUtils.get(XiuGaiMiMa.this, "Token1", "");
         re_fenhui=findViewById(R.id.re_fenhui);
         xiugai_togglePwd=findViewById(R.id.xiugai_togglePwd);
         old_mima=findViewById(R.id.old_mima);

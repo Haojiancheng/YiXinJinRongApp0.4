@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
@@ -61,6 +62,9 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_wo_de__deng_ru);
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
@@ -139,16 +143,16 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
 
         String myurl = getid(context);
-        Log.e("唯一标识", "" + myurl);
+//        Log.e("唯一标识", "" + myurl);
 
         try {
             js_request.put("username", shoujihao);
             js_request.put("password", mima);
             js_request.put("url", myurl);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+//            Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+//            Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -160,14 +164,14 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/Applogin.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
-        Log.e(">>>>登入", "" + params);
+//        Log.e(">>>>登入", "" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e(">>>>登入", "" + result);
+//                Log.e(">>>>登入", "" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
                 DengruData d_data = new Gson().fromJson(result, DengruData.class);
@@ -176,12 +180,14 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 String user_token = d_data.getResult().getToken();
                 String loginId = d_data.getResult().getLoginId();
                 int user_id = d_data.getResult().getUserid();
+                Toast.makeText(context, ""+message, Toast.LENGTH_SHORT).show();
 
                 if (message.equals("登录成功")) {
-                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id));
+                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id,loginId));
                     EventBus.getDefault().post(new User_id(user_id));
                     SPUtils.put(WoDe_DengRu.this, "isLogin", true);
                     SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
+//                    Log.e("sdfdf", ""+loginId );
                     finish();
                 } else {
                     Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
@@ -204,7 +210,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 //                    // ...
 //                } else { // 其他错误
 //                    // ...
-                Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
 
 //                }
             }

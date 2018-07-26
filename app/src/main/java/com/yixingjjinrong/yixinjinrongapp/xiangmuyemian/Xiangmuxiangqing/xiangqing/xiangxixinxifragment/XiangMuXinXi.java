@@ -1,14 +1,18 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -34,7 +38,7 @@ import java.util.Date;
 
 public class XiangMuXinXi extends Fragment {
     private TextView tv_click, show, hidden;
-    private View hose_xx, car_xx, car_dbr, car_dbgs;
+    private View hose_xx, car_xx, car_dbr, car_dbgs, qy;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private String borr_id;
@@ -48,6 +52,12 @@ public class XiangMuXinXi extends Fragment {
     private Date mNewDate;
     private TextView car_pp, car_id, car_km, car_time, car_pailiang, car_ck, car_buy, car_money, car_cmoney;
     private TextView dbgs_name, dbgs_daima, dbgs_daibiaoman, dbgs_addass;
+    private XiangMuXinXi_Gson data;
+    private XiangMuXingXi_Car_gson cardata;
+    private TextView sx_pg, sc_zhuzhi, sc_cq;
+    private TextView qyrz, qy_rz, qywrz;
+    private View geren,qiye;
+    private TextView qy_name,qy_dm,qy_time,qy_zb,qy_hy,qy_dizhi,qy_bg,qy_fd,qy_shouru,qy_huanhuancishu,qy_yuqicishu,qy_lishiyuqi_jinge,qy_dangqian_jine,qy_6yue,qy_qita,qy_fanwei;
 
 
     @Nullable
@@ -69,6 +79,15 @@ public class XiangMuXinXi extends Fragment {
     }
 
     private void getxmxxid() {
+        //企业、个人
+        qiye=getActivity().findViewById(R.id.qiye);
+        geren=getActivity().findViewById(R.id.geren);
+        // 审查信息
+//        sx_pg,sc_zhuzhi,sc_cq;
+        qy = getActivity().findViewById(R.id.qy);
+        sx_pg = getActivity().findViewById(R.id.sx_pg);
+        sc_zhuzhi = getActivity().findViewById(R.id.sc_zhuzhi);
+        sc_cq = getActivity().findViewById(R.id.sc_cq);
 
         show = getActivity().findViewById(R.id.main_tv_show);
         hidden = getActivity().findViewById(R.id.main_tv_hidden);
@@ -84,7 +103,23 @@ public class XiangMuXinXi extends Fragment {
         end_time = getActivity().findViewById(R.id.end_time);
         yd_lilv = getActivity().findViewById(R.id.yd_lilv);
         man_hunyin = getActivity().findViewById(R.id.man_hunyin);
-
+        //法人信息,,,,,,,,,,,,,,;
+        qy_fanwei=getActivity().findViewById(R.id.qy_fanwei);
+        qy_name=getActivity().findViewById(R.id.qy_name);
+        qy_dm=getActivity().findViewById(R.id.qy_dm);
+        qy_time=getActivity().findViewById(R.id.qy_time);
+        qy_zb=getActivity().findViewById(R.id.qy_zb);
+        qy_hy=getActivity().findViewById(R.id.qy_hy);
+        qy_dizhi=getActivity().findViewById(R.id.qy_dizhi);
+        qy_bg=getActivity().findViewById(R.id.qy_bg);
+        qy_fd=getActivity().findViewById(R.id.qy_fd);
+        qy_shouru=getActivity().findViewById(R.id.qy_shouru);
+        qy_huanhuancishu=getActivity().findViewById(R.id.qy_huanhuancishu);
+        qy_yuqicishu=getActivity().findViewById(R.id.qy_yuqicishu);
+        qy_lishiyuqi_jinge=getActivity().findViewById(R.id.qy_lishiyuqi_jinge);
+        qy_dangqian_jine=getActivity().findViewById(R.id.qy_dangqian_jine);
+        qy_6yue=getActivity().findViewById(R.id.qy_6yue);
+        qy_qita=getActivity().findViewById(R.id.qy_qita);
 // ,,,,,,,,,个人信息,,,,,,,,,;
         zt_xingzhi = getActivity().findViewById(R.id.zt_xingzhi);
         man_name = getActivity().findViewById(R.id.man_name);
@@ -127,6 +162,11 @@ public class XiangMuXinXi extends Fragment {
         dbh_rz = getActivity().findViewById(R.id.dbh_rz);
         dbh_wrz = getActivity().findViewById(R.id.dbh_wrz);
         sh_yj = getActivity().findViewById(R.id.sh_yj);
+        //企业认证
+        qyrz = getActivity().findViewById(R.id.qyrz);
+        qy_rz = getActivity().findViewById(R.id.qy_rz);
+        qywrz = getActivity().findViewById(R.id.qy_wrz);
+
         //车辆、房产
         hose_xx = getActivity().findViewById(R.id.hose_xx);
         car_xx = getActivity().findViewById(R.id.car_xx);
@@ -185,7 +225,7 @@ public class XiangMuXinXi extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/ProjectInformation.do");
+        RequestParams params = new RequestParams("http://192.168.1.219:8080/yxb_mobile/yxbApp/ProjectInformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -193,9 +233,9 @@ public class XiangMuXinXi extends Fragment {
             public void onSuccess(String result) {
                 Log.e("TAG", "XXGSON>>>" + result);
                 //房产标GSON
-                XiangMuXinXi_Gson data = new Gson().fromJson(result, XiangMuXinXi_Gson.class);
+                data = new Gson().fromJson(result, XiangMuXinXi_Gson.class);
                 //车辆标GSON
-                XiangMuXingXi_Car_gson cardata = new Gson().fromJson(result, XiangMuXingXi_Car_gson.class);
+                cardata = new Gson().fromJson(result, XiangMuXingXi_Car_gson.class);
 
                 //TextView ,,,基本信息,,,,,,
                 if (mtpye.equals("4")) {
@@ -216,6 +256,15 @@ public class XiangMuXinXi extends Fragment {
                     dbgs_daibiaoman.setText(cardata.getResult().getNewRealName());
                     dbgs_addass.setText(cardata.getResult().getNewAddresss());
 
+                    //审查信息
+//                    sx_pg,sc_zhuzhi,sc_cq;
+                    //住址————》行驶证
+                    sc_zhuzhi.setText("行驶证认证");
+                    //产权————》购车合同
+                    sc_cq.setText("购车合同");
+                    //评估--》车辆证明
+                    sx_pg.setText("车辆证明");
+
                     //担保人
                     dbr_name.setText(cardata.getResult().getBondsman().getRealNamed());
                     dbr_idcard.setText(cardata.getResult().getBondsman().getIdNod());
@@ -223,15 +272,15 @@ public class XiangMuXinXi extends Fragment {
                     dbr_age.setText(cardata.getResult().getBondsman().getBirthd());
                     dbr_hunyin.setText(cardata.getResult().getBondsman().getMaritalStatusd());
                     dbr_xl.setText(cardata.getResult().getBondsman().getHighestEdud());
-                    dbr_huji.setText(cardata.getResult().getBondsman().getTrcityd());
-                    dbr_adriess.setText(cardata.getResult().getBondsman().getAddressd());
+                    dbr_huji.setText(cardata.getResult().getTrpro() + cardata.getResult().getTrcityd());
+                    dbr_adriess.setText(cardata.getResult().getAddressd());
                     dbr_shouru.setText(cardata.getResult().getBondsman().getMonthIncomed() + "元");
                     dbr_zhiye.setText(cardata.getResult().getBondsman().getProfessiond());
                     dbr_hangye.setText(cardata.getResult().getBondsman().getTradeTyped());
                     //车辆信息
                     //,,,,,,,,;
                     car_pp.setText(cardata.getResult().getCar().getCar_style());
-                    car_id.setText(cardata.getResult().getCar().getCarcode());
+                    car_id.setText(cardata.getResult().getCarcode());
                     car_km.setText(cardata.getResult().getCar().getCar_mileage() + "公里");
                     String car_register = cardata.getResult().getCar().getCar_register();
                     car_time.setText(car_register);
@@ -253,7 +302,19 @@ public class XiangMuXinXi extends Fragment {
                     man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
                     yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
-                    bx_cuoshi.setText(data.getResult().getMortgageType());
+                    hk_fangshi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            shoupopwindow();
+
+                        }
+                    });
+                    if (data.getResult().getMortgageType().equals("4")) {
+                        bx_cuoshi.setText("车俩抵押");
+                    } else {
+                        bx_cuoshi.setText("房产抵押");
+                    }
+
                     start_time.setText(data.getResult().getAbleTenderDate());
                     end_time.setText(data.getResult().getEndTenderDate());
                     tv_click = getActivity().findViewById(R.id.main_tv_click);
@@ -271,6 +332,32 @@ public class XiangMuXinXi extends Fragment {
                             }
                         }
                     });
+                    if (data.getResult().getBorrowFrom().equals("2")) {
+                        geren.setVisibility(View.GONE);
+                        qiye.setVisibility(View.VISIBLE);
+                    }else {
+                        geren.setVisibility(View.VISIBLE);
+                        qiye.setVisibility(View.GONE);
+                    }
+                    //法人信息,,,,,,,,,,,,,,;
+                    //,,,,,,,,,,,,,,;
+                    qy_name.setText(data.getResult().getCompanyName());
+                    qy_dm.setText(data.getResult().getOrganizationCode());
+                    qy_time.setText(data.getResult().getBuildTime());
+                    qy_zb.setText(data.getResult().getRegisteredCapital());
+                    qy_hy.setText(data.getResult().getCompanyBusiness());
+                    qy_dizhi.setText(data.getResult().getRegistAddress());
+                    qy_bg.setText(data.getResult().getRegistAddress());
+                    qy_fd.setText(data.getResult().getCompanyOwner());
+                    qy_shouru.setText(data.getResult().getCmonthIncome());
+                    qy_fd.setText(data.getResult().getCompanyOwner());
+                    qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
+                    qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                    qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
+                    qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");
+                    qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());
+                    qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());
+                    qy_fanwei.setText(data.getResult().getBusinessScope());
 //  TextView ,,,,,个人信息,,,,,,,,,,,;
                     man_name.setText(data.getResult().getRealName());
                     man_id.setText(data.getResult().getIdNo());
@@ -282,54 +369,109 @@ public class XiangMuXinXi extends Fragment {
                     man_zhiwei.setText(data.getResult().getRxx().getProfession());
                     man_hangye.setText(data.getResult().getRxx().getTradeType());
                     man_shouru.setText(data.getResult().getRxx().getMonthIncome());
-                    man_huanhuancishu.setText(data.getResult().getTimes().getTimes());
-                    man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes());
-                    lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney());
-                    dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney());
+                    man_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
+                    man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                    lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
+                    dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                     yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                     qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
 
-                    if (data.getResult().getAuthentication().getPerson_auth() == 1) {
-                        sf_rz.setVisibility(View.VISIBLE);
-                        sf_wrz.setVisibility(View.GONE);
+                    if (data.getResult().getBorrowFrom().equals("2")) {
+                        qy.setVisibility(View.VISIBLE);
+                        if (data.getResult().getAuthentication().getCompany_auth() == 1) {
+                            qy_rz.setVisibility(View.VISIBLE);
+                            qywrz.setVisibility(View.GONE);
+                        } else {
+                            qy_rz.setVisibility(View.GONE);
+                            qywrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getPerson_auth() == 1) {
+                            sf_rz.setVisibility(View.VISIBLE);
+                            sf_wrz.setVisibility(View.GONE);
+                        } else {
+                            sf_rz.setVisibility(View.GONE);
+                            sf_wrz.setVisibility(View.VISIBLE);
+                        }
+                        sc_zhuzhi.setText("注册资本");
+                        if (data.getResult().getAuthentication().getRegist_capital_auth() == 1) {
+                            zz_rz.setVisibility(View.VISIBLE);
+                            zz_wrz.setVisibility(View.GONE);
+                        } else {
+                            zz_rz.setVisibility(View.GONE);
+                            zz_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCredit_auth() == 1) {
+                            zxbg_rz.setVisibility(View.VISIBLE);
+                            zxbg_wrz.setVisibility(View.GONE);
+                        } else {
+                            zxbg_rz.setVisibility(View.GONE);
+                            zxbg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getBuycar_auth() == 1) {
+                            fwcq_rz.setVisibility(View.VISIBLE);
+                            fwcq_wrz.setVisibility(View.GONE);
+                        } else {
+                            fwcq_rz.setVisibility(View.GONE);
+                            fwcq_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCar_auth() == 1) {
+                            fcpg_rz.setVisibility(View.VISIBLE);
+                            fcpg_wrz.setVisibility(View.GONE);
+                        } else {
+                            fcpg_rz.setVisibility(View.GONE);
+                            fcpg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
+                            dbh_rz.setVisibility(View.VISIBLE);
+                            dbh_wrz.setVisibility(View.GONE);
+                        } else {
+                            dbh_rz.setVisibility(View.GONE);
+                            dbh_wrz.setVisibility(View.VISIBLE);
+                        }
                     } else {
-                        sf_rz.setVisibility(View.GONE);
-                        sf_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getAddress_auth() == 1) {
-                        zz_rz.setVisibility(View.VISIBLE);
-                        zz_wrz.setVisibility(View.GONE);
-                    } else {
-                        zz_rz.setVisibility(View.GONE);
-                        zz_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getCredit_auth() == 1) {
-                        zxbg_rz.setVisibility(View.VISIBLE);
-                        zxbg_wrz.setVisibility(View.GONE);
-                    } else {
-                        zxbg_rz.setVisibility(View.GONE);
-                        zxbg_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getHouse_right_auth() == 1) {
-                        fwcq_rz.setVisibility(View.VISIBLE);
-                        fwcq_wrz.setVisibility(View.GONE);
-                    } else {
-                        fwcq_rz.setVisibility(View.GONE);
-                        fwcq_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getHouse_evaluation() == 1) {
-                        fcpg_rz.setVisibility(View.VISIBLE);
-                        fcpg_wrz.setVisibility(View.GONE);
-                    } else {
-                        fcpg_rz.setVisibility(View.GONE);
-                        fcpg_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
-                        dbh_rz.setVisibility(View.VISIBLE);
-                        dbh_wrz.setVisibility(View.GONE);
-                    } else {
-                        dbh_rz.setVisibility(View.GONE);
-                        dbh_wrz.setVisibility(View.VISIBLE);
+
+                        if (data.getResult().getAuthentication().getPerson_auth() == 1) {
+                            sf_rz.setVisibility(View.VISIBLE);
+                            sf_wrz.setVisibility(View.GONE);
+                        } else {
+                            sf_rz.setVisibility(View.GONE);
+                            sf_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getGocar_auth() == 1) {
+                            zz_rz.setVisibility(View.VISIBLE);
+                            zz_wrz.setVisibility(View.GONE);
+                        } else {
+                            zz_rz.setVisibility(View.GONE);
+                            zz_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCredit_auth() == 1) {
+                            zxbg_rz.setVisibility(View.VISIBLE);
+                            zxbg_wrz.setVisibility(View.GONE);
+                        } else {
+                            zxbg_rz.setVisibility(View.GONE);
+                            zxbg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getBuycar_auth() == 1) {
+                            fwcq_rz.setVisibility(View.VISIBLE);
+                            fwcq_wrz.setVisibility(View.GONE);
+                        } else {
+                            fwcq_rz.setVisibility(View.GONE);
+                            fwcq_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCar_auth() == 1) {
+                            fcpg_rz.setVisibility(View.VISIBLE);
+                            fcpg_wrz.setVisibility(View.GONE);
+                        } else {
+                            fcpg_rz.setVisibility(View.GONE);
+                            fcpg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
+                            dbh_rz.setVisibility(View.VISIBLE);
+                            dbh_wrz.setVisibility(View.GONE);
+                        } else {
+                            dbh_rz.setVisibility(View.GONE);
+                            dbh_wrz.setVisibility(View.VISIBLE);
+                        }
                     }
                 } else {
                     car_xx.setVisibility(View.GONE);
@@ -342,11 +484,22 @@ public class XiangMuXinXi extends Fragment {
                     jk_qixian.setText(data.getResult().getDeadline());
                     jk_yongtu.setText(data.getResult().getBorrowPurpose());
                     hk_fangshi.setText(data.getResult().getRefund().getPaymentMode());
+                    hk_fangshi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            shoupopwindow();
+
+                        }
+                    });
                     hidden.setText(data.getResult().getBorrowInfo());
                     show.setText(data.getResult().getBorrowInfo());
                     yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                     hk_lanyuan.setText(data.getResult().getRepaysource());
-                    bx_cuoshi.setText(data.getResult().getMortgageType());
+                    if (data.getResult().getMortgageType().equals("4")) {
+                        bx_cuoshi.setText("车俩抵押");
+                    } else {
+                        bx_cuoshi.setText("房产抵押");
+                    }
                     start_time.setText(data.getResult().getAbleTenderDate());
                     end_time.setText(data.getResult().getEndTenderDate());
                     tv_click = getActivity().findViewById(R.id.main_tv_click);
@@ -364,6 +517,32 @@ public class XiangMuXinXi extends Fragment {
                             }
                         }
                     });
+                    if (data.getResult().getBorrowFrom().equals("2")) {
+                        geren.setVisibility(View.GONE);
+                        qiye.setVisibility(View.VISIBLE);
+                    }else {
+                        geren.setVisibility(View.VISIBLE);
+                        qiye.setVisibility(View.GONE);
+                    }
+                    //法人信息,,,,,,,,,,,,,,;
+                    //,,,,,,,,,,,,,,;
+                    qy_name.setText(data.getResult().getCompanyName());
+                    qy_dm.setText(data.getResult().getOrganizationCode());
+                    qy_time.setText(data.getResult().getBuildTime());
+                    qy_zb.setText(data.getResult().getRegisteredCapital());
+                    qy_hy.setText(data.getResult().getCompanyBusiness());
+                    qy_dizhi.setText(data.getResult().getRegistAddress());
+                    qy_bg.setText(data.getResult().getCompanyAddress());
+                    qy_fd.setText(data.getResult().getCompanyOwner());
+                    qy_shouru.setText(data.getResult().getCmonthIncome()+"元");
+                    qy_fd.setText(data.getResult().getCompanyOwner());
+                    qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
+                    qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                    qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
+                    qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");
+                    qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());
+                    qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());
+                    qy_fanwei.setText(data.getResult().getBusinessScope());
 //  TextView ,,,,,个人信息,,,,,,,,,,,;
                     man_name.setText(data.getResult().getRealName());
                     man_id.setText(data.getResult().getIdNo());
@@ -376,10 +555,10 @@ public class XiangMuXinXi extends Fragment {
                     man_hangye.setText(data.getResult().getRxx().getTradeType());
                     man_shouru.setText(data.getResult().getRxx().getMonthIncome());
                     man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
-                    man_huanhuancishu.setText(data.getResult().getTimes().getTimes());
-                    man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes());
-                    lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney());
-                    dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney());
+                    man_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
+                    man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                    lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
+                    dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                     yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                     qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
                     //房产信息
@@ -391,47 +570,102 @@ public class XiangMuXinXi extends Fragment {
                     xk_jg.setText(data.getResult().getHouse().getReferencePrice());
 
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-                    if (data.getResult().getAuthentication().getPerson_auth() == 1) {
-                        sf_rz.setVisibility(View.VISIBLE);
-                        sf_wrz.setVisibility(View.GONE);
+                    if (data.getResult().getBorrowFrom().equals("2")) {
+                        qy.setVisibility(View.VISIBLE);
+                        if (data.getResult().getAuthentication().getCompany_auth() == 1) {
+                            qy_rz.setVisibility(View.VISIBLE);
+                            qywrz.setVisibility(View.GONE);
+                        } else {
+                            qy_rz.setVisibility(View.GONE);
+                            qywrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getPerson_auth() == 1) {
+                            sf_rz.setVisibility(View.VISIBLE);
+                            sf_wrz.setVisibility(View.GONE);
+                        } else {
+                            sf_rz.setVisibility(View.GONE);
+                            sf_wrz.setVisibility(View.VISIBLE);
+                        }
+                        sc_zhuzhi.setText("注册资本");
+                        if (data.getResult().getAuthentication().getRegist_capital_auth() == 1) {
+                            zz_rz.setVisibility(View.VISIBLE);
+                            zz_wrz.setVisibility(View.GONE);
+                        } else {
+                            zz_rz.setVisibility(View.GONE);
+                            zz_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCredit_auth() == 1) {
+                            zxbg_rz.setVisibility(View.VISIBLE);
+                            zxbg_wrz.setVisibility(View.GONE);
+                        } else {
+                            zxbg_rz.setVisibility(View.GONE);
+                            zxbg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getHouse_right_auth() == 1) {
+                            fwcq_rz.setVisibility(View.VISIBLE);
+                            fwcq_wrz.setVisibility(View.GONE);
+                        } else {
+                            fwcq_rz.setVisibility(View.GONE);
+                            fwcq_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getHouse_evaluation() == 1) {
+                            fcpg_rz.setVisibility(View.VISIBLE);
+                            fcpg_wrz.setVisibility(View.GONE);
+                        } else {
+                            fcpg_rz.setVisibility(View.GONE);
+                            fcpg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
+                            dbh_rz.setVisibility(View.VISIBLE);
+                            dbh_wrz.setVisibility(View.GONE);
+                        } else {
+                            dbh_rz.setVisibility(View.GONE);
+                            dbh_wrz.setVisibility(View.VISIBLE);
+                        }
                     } else {
-                        sf_rz.setVisibility(View.GONE);
-                        sf_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getAddress_auth() == 1) {
-                        zz_rz.setVisibility(View.VISIBLE);
-                        zz_wrz.setVisibility(View.GONE);
-                    } else {
-                        zz_rz.setVisibility(View.GONE);
-                        zz_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getCredit_auth() == 1) {
-                        zxbg_rz.setVisibility(View.VISIBLE);
-                        zxbg_wrz.setVisibility(View.GONE);
-                    } else {
-                        zxbg_rz.setVisibility(View.GONE);
-                        zxbg_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getHouse_right_auth() == 1) {
-                        fwcq_rz.setVisibility(View.VISIBLE);
-                        fwcq_wrz.setVisibility(View.GONE);
-                    } else {
-                        fwcq_rz.setVisibility(View.GONE);
-                        fwcq_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getHouse_evaluation() == 1) {
-                        fcpg_rz.setVisibility(View.VISIBLE);
-                        fcpg_wrz.setVisibility(View.GONE);
-                    } else {
-                        fcpg_rz.setVisibility(View.GONE);
-                        fcpg_wrz.setVisibility(View.VISIBLE);
-                    }
-                    if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
-                        dbh_rz.setVisibility(View.VISIBLE);
-                        dbh_wrz.setVisibility(View.GONE);
-                    } else {
-                        dbh_rz.setVisibility(View.GONE);
-                        dbh_wrz.setVisibility(View.VISIBLE);
+
+                        if (data.getResult().getAuthentication().getPerson_auth() == 1) {
+                            sf_rz.setVisibility(View.VISIBLE);
+                            sf_wrz.setVisibility(View.GONE);
+                        } else {
+                            sf_rz.setVisibility(View.GONE);
+                            sf_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getAddress_auth() == 1) {
+                            zz_rz.setVisibility(View.VISIBLE);
+                            zz_wrz.setVisibility(View.GONE);
+                        } else {
+                            zz_rz.setVisibility(View.GONE);
+                            zz_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCredit_auth() == 1) {
+                            zxbg_rz.setVisibility(View.VISIBLE);
+                            zxbg_wrz.setVisibility(View.GONE);
+                        } else {
+                            zxbg_rz.setVisibility(View.GONE);
+                            zxbg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getBuycar_auth() == 1) {
+                            fwcq_rz.setVisibility(View.VISIBLE);
+                            fwcq_wrz.setVisibility(View.GONE);
+                        } else {
+                            fwcq_rz.setVisibility(View.GONE);
+                            fwcq_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getCar_auth() == 1) {
+                            fcpg_rz.setVisibility(View.VISIBLE);
+                            fcpg_wrz.setVisibility(View.GONE);
+                        } else {
+                            fcpg_rz.setVisibility(View.GONE);
+                            fcpg_wrz.setVisibility(View.VISIBLE);
+                        }
+                        if (data.getResult().getAuthentication().getDanbao_auth() == 1) {
+                            dbh_rz.setVisibility(View.VISIBLE);
+                            dbh_wrz.setVisibility(View.GONE);
+                        } else {
+                            dbh_rz.setVisibility(View.GONE);
+                            dbh_wrz.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
 
@@ -453,6 +687,23 @@ public class XiangMuXinXi extends Fragment {
 
             }
         });
+    }
+
+    private void shoupopwindow() {
+        View parent = ((ViewGroup) this.getActivity().findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(getActivity(), R.layout.kuankuan_pop, null);
+        TextView text_pop = popView.findViewById(R.id.text_pop);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow;
+        popWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popWindow.setBackgroundDrawable(new BitmapDrawable());
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
+        text_pop.setText(data.getResult().getRefund().getPaymentModezi());
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
     }
 
     private void initview() {

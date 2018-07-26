@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#fdfdfe"
     tools:context=".wode.dengruzuce.ZhaoHuiMiMa">
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="40px"
         android:layout_height="108px">
 
         <ImageView
-            android:id="@+id/zhucefanhui"
+            android:id="@+id/zh_fh"
             android:layout_width="38px"
             android:layout_height="38px"
             android:layout_alignParentStart="true"

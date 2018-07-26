@@ -2,9 +2,10 @@ package com.yixingjjinrong.yixinjinrongapp.gsondata;
 
 public class XiangMuJingDu_Gson {
 
+
     /**
      * message : 成功了
-     * result : {"amount":"500.00","auditFullTime":"","auditTime":"","borrowStatus":"2","deadline":"3","hadRepaymentMoneyMap":{"dhje":"","dhqs":"","yhje":"","yhqs":""},"publishTime":"2018-05-29 09:56:35"}
+     * result : {"amount":"1000.00","hadRepaymentMoneyMap":{"yhqs":"0","yhje":"0.00"},"borrowStatus":"2","notYetRepaymentMoneyMap":{"dhqs":"0","dhje":"0.00"},"publishTime":"2018-07-24 14:46:09","auditTime":"","auditFullTime":"","notYetRepaymentMoneys":{"dhqs":"3","dhje":"1022.50"},"deadline":"3"}
      * state : success
      */
 
@@ -38,22 +39,26 @@ public class XiangMuJingDu_Gson {
 
     public static class ResultBean {
         /**
-         * amount : 500.00
-         * auditFullTime : 
-         * auditTime : 
+         * amount : 1000.00
+         * hadRepaymentMoneyMap : {"yhqs":"0","yhje":"0.00"}
          * borrowStatus : 2
+         * notYetRepaymentMoneyMap : {"dhqs":"0","dhje":"0.00"}
+         * publishTime : 2018-07-24 14:46:09
+         * auditTime :
+         * auditFullTime :
+         * notYetRepaymentMoneys : {"dhqs":"3","dhje":"1022.50"}
          * deadline : 3
-         * hadRepaymentMoneyMap : {"dhje":"","dhqs":"","yhje":"","yhqs":""}
-         * publishTime : 2018-05-29 09:56:35
          */
 
         private String amount;
-        private String auditFullTime;
-        private String auditTime;
-        private String borrowStatus;
-        private String deadline;
         private HadRepaymentMoneyMapBean hadRepaymentMoneyMap;
+        private String borrowStatus;
+        private NotYetRepaymentMoneyMapBean notYetRepaymentMoneyMap;
         private String publishTime;
+        private String auditTime;
+        private String auditFullTime;
+        private NotYetRepaymentMoneysBean notYetRepaymentMoneys;
+        private String deadline;
 
         public String getAmount() {
             return amount;
@@ -61,38 +66,6 @@ public class XiangMuJingDu_Gson {
 
         public void setAmount(String amount) {
             this.amount = amount;
-        }
-
-        public String getAuditFullTime() {
-            return auditFullTime;
-        }
-
-        public void setAuditFullTime(String auditFullTime) {
-            this.auditFullTime = auditFullTime;
-        }
-
-        public String getAuditTime() {
-            return auditTime;
-        }
-
-        public void setAuditTime(String auditTime) {
-            this.auditTime = auditTime;
-        }
-
-        public String getBorrowStatus() {
-            return borrowStatus;
-        }
-
-        public void setBorrowStatus(String borrowStatus) {
-            this.borrowStatus = borrowStatus;
-        }
-
-        public String getDeadline() {
-            return deadline;
-        }
-
-        public void setDeadline(String deadline) {
-            this.deadline = deadline;
         }
 
         public HadRepaymentMoneyMapBean getHadRepaymentMoneyMap() {
@@ -103,6 +76,22 @@ public class XiangMuJingDu_Gson {
             this.hadRepaymentMoneyMap = hadRepaymentMoneyMap;
         }
 
+        public String getBorrowStatus() {
+            return borrowStatus;
+        }
+
+        public void setBorrowStatus(String borrowStatus) {
+            this.borrowStatus = borrowStatus;
+        }
+
+        public NotYetRepaymentMoneyMapBean getNotYetRepaymentMoneyMap() {
+            return notYetRepaymentMoneyMap;
+        }
+
+        public void setNotYetRepaymentMoneyMap(NotYetRepaymentMoneyMapBean notYetRepaymentMoneyMap) {
+            this.notYetRepaymentMoneyMap = notYetRepaymentMoneyMap;
+        }
+
         public String getPublishTime() {
             return publishTime;
         }
@@ -111,33 +100,53 @@ public class XiangMuJingDu_Gson {
             this.publishTime = publishTime;
         }
 
+        public String getAuditTime() {
+            return auditTime;
+        }
+
+        public void setAuditTime(String auditTime) {
+            this.auditTime = auditTime;
+        }
+
+        public String getAuditFullTime() {
+            return auditFullTime;
+        }
+
+        public void setAuditFullTime(String auditFullTime) {
+            this.auditFullTime = auditFullTime;
+        }
+
+        public NotYetRepaymentMoneysBean getNotYetRepaymentMoneys() {
+            return notYetRepaymentMoneys;
+        }
+
+        public void setNotYetRepaymentMoneys(NotYetRepaymentMoneysBean notYetRepaymentMoneys) {
+            this.notYetRepaymentMoneys = notYetRepaymentMoneys;
+        }
+
+        public String getDeadline() {
+            return deadline;
+        }
+
+        public void setDeadline(String deadline) {
+            this.deadline = deadline;
+        }
+
         public static class HadRepaymentMoneyMapBean {
             /**
-             * dhje : 
-             * dhqs : 
-             * yhje : 
-             * yhqs : 
+             * yhqs : 0
+             * yhje : 0.00
              */
 
-            private String dhje;
-            private String dhqs;
-            private String yhje;
             private String yhqs;
+            private String yhje;
 
-            public String getDhje() {
-                return dhje;
+            public String getYhqs() {
+                return yhqs;
             }
 
-            public void setDhje(String dhje) {
-                this.dhje = dhje;
-            }
-
-            public String getDhqs() {
-                return dhqs;
-            }
-
-            public void setDhqs(String dhqs) {
-                this.dhqs = dhqs;
+            public void setYhqs(String yhqs) {
+                this.yhqs = yhqs;
             }
 
             public String getYhje() {
@@ -147,13 +156,57 @@ public class XiangMuJingDu_Gson {
             public void setYhje(String yhje) {
                 this.yhje = yhje;
             }
+        }
 
-            public String getYhqs() {
-                return yhqs;
+        public static class NotYetRepaymentMoneyMapBean {
+            /**
+             * dhqs : 0
+             * dhje : 0.00
+             */
+
+            private String dhqs;
+            private String dhje;
+
+            public String getDhqs() {
+                return dhqs;
             }
 
-            public void setYhqs(String yhqs) {
-                this.yhqs = yhqs;
+            public void setDhqs(String dhqs) {
+                this.dhqs = dhqs;
+            }
+
+            public String getDhje() {
+                return dhje;
+            }
+
+            public void setDhje(String dhje) {
+                this.dhje = dhje;
+            }
+        }
+
+        public static class NotYetRepaymentMoneysBean {
+            /**
+             * dhqs : 3
+             * dhje : 1022.50
+             */
+
+            private String dhqs;
+            private String dhje;
+
+            public String getDhqs() {
+                return dhqs;
+            }
+
+            public void setDhqs(String dhqs) {
+                this.dhqs = dhqs;
+            }
+
+            public String getDhje() {
+                return dhje;
+            }
+
+            public void setDhje(String dhje) {
+                this.dhje = dhje;
             }
         }
     }

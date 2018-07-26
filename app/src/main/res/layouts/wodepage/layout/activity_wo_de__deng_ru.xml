@@ -9,13 +9,15 @@
     <LinearLayout
         android:id="@+id/beijinglogo"
         android:layout_width="match_parent"
-        android:layout_height="560px"
+        android:layout_height="520px"
         android:background="@drawable/beijing"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="108px">
+            android:layout_height="108px"
+            android:layout_marginTop="40px"
+            >
 
             <ImageView
                 android:id="@+id/dengrufanhui"

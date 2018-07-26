@@ -6,11 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Add_addass_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -31,7 +33,7 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
     private EditText add_name, add_phone, add_mainaddass;
     private TextView add_addass;
     private Button add_ok;
-
+    private ImageView tj_dz_fh;
     private CityPicker cityPicker;
     private String sha1;//SHA1加密
     private String base1;//Base64加
@@ -40,6 +42,9 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_add_addass);
         cityPicker = new CityPicker(AddAddass.this, this);
         getadd_id();
@@ -53,6 +58,12 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
             @Override
             public void onClick(View v) {
                 getaddHttP();
+            }
+        });
+        tj_dz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -82,7 +93,7 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/addAddressInfo.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addAddressInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -125,6 +136,7 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
         add_addass = findViewById(R.id.add_addass);
         add_mainaddass = findViewById(R.id.add_mainaddadd);
         add_ok=findViewById(R.id.add_ok);
+        tj_dz_fh=findViewById(R.id.tj_dz_fh);
     }
 
     @Override

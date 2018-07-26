@@ -35,14 +35,16 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.LoadingListener{
+public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.LoadingListener {
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private XRecyclerView xianjinjun_rview;
-    private List<XianJinJuan_gson.QueryVouchersListBean> list=new ArrayList<>();
+    private List<XianJinJuan_gson.QueryVouchersListBean> list = new ArrayList<>();
     private int user_id;
     private XianjinJuan_adapter myadapter;
-    private int a=1;
+    private int a = 1;
+    private String loginid;
+    private String token;
 
     @Nullable
     @Override
@@ -56,8 +58,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getfcdy_id();
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
-        Log.e("现金券user_id",""+user_id );
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+        Log.e("现金券user_id", "" + user_id);
         getHttp();
     }
 
@@ -69,6 +71,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
             js_request.put("activitype", "6");
             js_request.put("staut", "1");
             js_request.put("pageNumber", a);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -84,17 +88,17 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryAll.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryAll.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("现金券GSon",""+result );
+                Log.e("现金券GSon", "" + result);
                 XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                 list.addAll(data.getQueryVouchersList());
-                myadapter=new XianjinJuan_adapter(list);
+                myadapter = new XianjinJuan_adapter(list);
                 xianjinjun_rview.setAdapter(myadapter);
 
 
@@ -118,8 +122,10 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     }
 
     private void getfcdy_id() {
-        xianjinjun_rview=getActivity().findViewById(R.id.xianjinjuan_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        token = (String) SPUtils.get(getActivity(), "Token1", "");
+        xianjinjun_rview = getActivity().findViewById(R.id.xianjinjuan_rview);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         xianjinjun_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xianjinjun_rview.setLoadingListener(this);
@@ -127,6 +133,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         xianjinjun_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         xianjinjun_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -135,7 +142,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     @Override
     public void onRefresh() {
         myadapter.notifyDataSetChanged();
-        a=1;
+        a = 1;
         getHttp();
         xianjinjun_rview.refreshComplete();
     }

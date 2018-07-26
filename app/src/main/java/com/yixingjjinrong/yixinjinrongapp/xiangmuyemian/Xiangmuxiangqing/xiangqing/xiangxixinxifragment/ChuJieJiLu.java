@@ -12,12 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.IChuJieJiLu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ChuJieJiLu_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
@@ -31,13 +34,14 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChuJieJiLu extends Fragment {
-    private RecyclerView chujejilu_rview;
+public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListener{
+    private XRecyclerView chujejilu_rview;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private List<IChuJieJiLu_Gson.ResultBean.InvestListBean> list=new ArrayList<>();
     private ChuJieJiLu_Adapter adapter;
     private String borrowRandomId;
+    int a=1;
 
     @Nullable
     @Override
@@ -50,7 +54,16 @@ public class ChuJieJiLu extends Fragment {
         super.onActivityCreated(savedInstanceState);
         list.clear();
         initView();
-        getid_cjjl();
+        chujejilu_rview=getActivity().findViewById(R.id.chujejilu_rview);
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        chujejilu_rview.setLayoutManager(manager);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        chujejilu_rview.setLoadingListener(this);
+        chujejilu_rview.setPullRefreshEnabled(true);
+        chujejilu_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        chujejilu_rview.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
+        adapter=new ChuJieJiLu_Adapter(list);
+        chujejilu_rview.setAdapter(adapter);
         getHttp();
 
     }
@@ -58,7 +71,6 @@ public class ChuJieJiLu extends Fragment {
     private void getHttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
-
             js_request.put("borrowRandomId",borrowRandomId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
@@ -77,7 +89,7 @@ public class ChuJieJiLu extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/record.do");
+        RequestParams params = new RequestParams("http://192.168.1.219:8080/yxb_mobile/yxbApp/record.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -86,10 +98,8 @@ public class ChuJieJiLu extends Fragment {
                 Log.e("TAG出借记录》GSON", ""+result);
                 IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
                 list.addAll(date.getResult().getInvestList());
-                adapter=new ChuJieJiLu_Adapter(list);
-                chujejilu_rview.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
 
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -109,12 +119,7 @@ public class ChuJieJiLu extends Fragment {
         });
     }
 
-    private void getid_cjjl() {
-        chujejilu_rview=getActivity().findViewById(R.id.chujejilu_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
-        chujejilu_rview.setLayoutManager(manager);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-    }
+
 
     private void initView() {
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
@@ -145,5 +150,20 @@ public class ChuJieJiLu extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        adapter.notifyDataSetChanged();
+        a=1;
+        getHttp();
+        chujejilu_rview.refreshComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        a++;
+        getHttp();
+        chujejilu_rview.loadMoreComplete();
     }
 }

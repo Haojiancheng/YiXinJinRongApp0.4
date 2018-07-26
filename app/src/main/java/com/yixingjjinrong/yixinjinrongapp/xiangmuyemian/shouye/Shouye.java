@@ -90,7 +90,7 @@ public class Shouye extends Fragment {
     }
 
     private void getHttp() {
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/yxbAppIndex.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/yxbAppIndex.do");
         params.setAsJsonContent(true);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override

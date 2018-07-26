@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZiMIMA_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -42,11 +43,15 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private ImageView et_qc;
     private ToggleButton zh_togglePwd;
     public static final String REGEX_PASSWORD = "^(?=.*?[a-z])(?=.*?[0-9])[a-zA-Z0-9_]{6,16}$";
+    private ImageView zhyz_fh;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_zhaohui_mima_yanzheng);
 
         getzhaohuimima_Id();
@@ -64,6 +69,12 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     }
 
     private void getzhaohuimima_Onclik() {
+        zhyz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         zhaohui_yanzheng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +139,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/forgetPwd.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/forgetPwd.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -184,7 +195,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/sendsms.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsms.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -221,6 +232,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         zh_togglePwd=findViewById(R.id.zh_togglePwd);
         et_qc=findViewById(R.id.zh_guanbi);
         jinggao=findViewById(R.id.jingdao);
+        zhyz_fh=findViewById(R.id.zhyz_fh);
     }
     class TimeCount extends CountDownTimer {
 

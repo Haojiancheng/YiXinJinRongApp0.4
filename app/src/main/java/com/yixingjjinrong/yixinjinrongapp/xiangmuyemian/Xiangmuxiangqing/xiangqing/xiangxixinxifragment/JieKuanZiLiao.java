@@ -76,7 +76,7 @@ public class JieKuanZiLiao extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/Borrowingdata.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Borrowingdata.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {

@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ZiJInLiuShu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -34,14 +37,26 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
     private int a=1;
     private List<ZiJInLiuShu_gson.FundRecordlistBean> list=new ArrayList<>();
     private ZiJinLiuShui_adapter adapter;
+    private String loginid;
+    private String token;
+    private ImageView wo_zjls_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_zi_jinliushui);
         list.clear();
         getlsID();
         getlsHTTP();
+        wo_zjls_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getlsHTTP() {
@@ -49,6 +64,8 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         try {
             js_request.put("userId", user_id);
             js_request.put("pageNumber", 1);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
 //            js_request.put("pageNumber", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -65,7 +82,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/getFundrecordList.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/getFundrecordList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
 
@@ -100,12 +117,15 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
 
     private void getlsID() {
         user_id = (int) SPUtils.get(this,"userId",0);
+        loginid = (String) SPUtils.get(ZiJinliushui.this, "Loginid", "");
+        token = (String) SPUtils.get(ZiJinliushui.this, "Token1", "");
         xrview=findViewById(R.id.liushuirview);
         LinearLayoutManager manager=new LinearLayoutManager(this);
         xrview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xrview.setLoadingListener(this);
         xrview.setPullRefreshEnabled(true);
+        wo_zjls_fh=findViewById(R.id.wo_zjls_fh);
         xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         xrview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }

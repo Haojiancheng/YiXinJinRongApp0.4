@@ -90,5 +90,17 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
         }
         myadapter=new XiangMuJiaXiJuan_adapter(jiaXiBeanList);
         jiaxi_rview.setAdapter(myadapter);
+        myadapter.setonEveryItemClickListener(new XiangMuJiaXiJuan_adapter.OnEveryItemClickListener() {
+            @Override
+            public void onEveryClick(int position) {
+                int juanId= jiaXiBeanList.get(position).getId();
+                int juantype= jiaXiBeanList.get(position).getActivitype();
+                String juanmake=jiaXiBeanList.get(position).getRemark();
+                SPUtils.put(getActivity(), "juanId", juanId);
+                SPUtils.put(getActivity(), "juantype", juantype);
+                SPUtils.put(getActivity(), "juanmake", juanmake);
+                getActivity().finish();
+            }
+        });
     }
 }

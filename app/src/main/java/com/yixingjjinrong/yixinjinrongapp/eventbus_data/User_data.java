@@ -5,12 +5,14 @@ public class User_data {
     private String User_zhuangtai;
     private String userToken;
     private int user_id;
+    private String oginid;
 
-    public User_data(String phone, String user_zhuangtai, String userToken, int user_id) {
+    public User_data(String phone, String user_zhuangtai, String userToken, int user_id, String oginid) {
         this.phone = phone;
         User_zhuangtai = user_zhuangtai;
         this.userToken = userToken;
         this.user_id = user_id;
+        this.oginid = oginid;
     }
 
     public String getPhone() {
@@ -43,5 +45,13 @@ public class User_data {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getOginid() {
+        return oginid;
+    }
+
+    public void setOginid(String oginid) {
+        this.oginid = oginid;
     }
 }

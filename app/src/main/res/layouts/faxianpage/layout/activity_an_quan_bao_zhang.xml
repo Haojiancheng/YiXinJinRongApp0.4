@@ -9,7 +9,7 @@
 <WebView
     android:id="@+id/anquan_web"
     android:layout_width="match_parent"
-    android:layout_marginTop="10px"
+    android:layout_marginTop="40px"
     android:layout_height="match_parent"></WebView>
     
 </com.zhy.autolayout.AutoLinearLayout>

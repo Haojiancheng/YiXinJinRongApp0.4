@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.LoginFilter;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -111,8 +112,11 @@ public class Wode extends Fragment {
     public void myMethod(User_data event) {
         user_id = event.getUser_id();
         userToken = event.getUserToken();
+        loginid = event.getOginid();
+        Log.e("eventggfdg",""+loginid );
 //        getHttp();
         isLogin = (boolean) SPUtils.get(getActivity(), "isLogin", false);
+
         SPUtils.put(getActivity(), "isLogin", true);
         if (isLogin == true) {
 
@@ -120,6 +124,7 @@ public class Wode extends Fragment {
         } else {
             SPUtils.remove(getActivity(), "userId");
             SPUtils.remove(getActivity(), "Token1");
+            SPUtils.remove(getActivity(),"Loginid");
             getHttp();
         }
 
@@ -127,13 +132,13 @@ public class Wode extends Fragment {
 
     private void getHttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-        final String token = userToken;
+//        final String token = userToken;
         try {
             js_request.put("userId", user_id);
-            js_request.put("token", token);
-//            js_request.put("LoginId", loginid);
+            js_request.put("token", userToken);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e(">>>>base加密11111!!--", "" + js_request);
+            Log.e(">>>>token!!--", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -148,7 +153,7 @@ public class Wode extends Fragment {
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/userIndex.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/userIndex.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -280,6 +285,8 @@ public class Wode extends Fragment {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userid", String.valueOf(user_id));
+            js_request.put("token", userToken);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -296,7 +303,7 @@ public class Wode extends Fragment {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -336,6 +343,8 @@ public class Wode extends Fragment {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", userToken);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -352,7 +361,7 @@ public class Wode extends Fragment {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -516,7 +525,10 @@ public class Wode extends Fragment {
 
 
     private void getWodeid() {
+        user_id = (int) SPUtils.get(getActivity(),"userId",0);
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        userToken = (String) SPUtils.get(getActivity(), "Token1", "");
+
         dengru = getActivity().findViewById(R.id.dengru_chenggong);//登入状态
         weidengru = getActivity().findViewById(R.id.weidengru);//未登入状态
         shimingrenzheng_itme = getActivity().findViewById(R.id.shiming_my);//未实名itme
@@ -549,8 +561,18 @@ public class Wode extends Fragment {
         boolean isLogin= (boolean) SPUtils.get(getActivity(),"isLogin",false);
         if (isLogin==false){
             userToken="";
-            getHttp();
+
+            Log.e("onResume+loginid", ""+loginid);
+//            getHttp();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e("onStart", "开始执行………………");
+
+        getHttp();
     }
 
     @Override
@@ -570,6 +592,7 @@ public class Wode extends Fragment {
         }
         return super.onCreateAnimation(transit, enter, nextAnim);
     }
+
 
     @Override
     public void onDestroy() {

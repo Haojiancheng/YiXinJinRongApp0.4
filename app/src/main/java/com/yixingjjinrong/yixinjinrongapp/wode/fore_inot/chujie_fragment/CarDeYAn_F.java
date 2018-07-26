@@ -39,6 +39,8 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
     private int user_id;
     private List<CarDiYa_Gson.InvestListBean> list=new ArrayList<>();
     private Cardiya_adapter adapter;
+    private String loginid;
+    private String token;
 
     @Nullable
     @Override
@@ -61,6 +63,8 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
             js_request.put("borrowStatus", 1);
             js_request.put("pageNumber", a);
             js_request.put("guaranteeType", 1);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -76,7 +80,7 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/myInvestList.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/myInvestList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("车辆抵押", ">>>>网址" + params);
@@ -122,6 +126,8 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
 
     private void getcarId() {
         user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        token = (String) SPUtils.get(getActivity(), "Token1", "");
         carrview=getActivity().findViewById(R.id.car_daya);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         carrview.setLayoutManager(manager);

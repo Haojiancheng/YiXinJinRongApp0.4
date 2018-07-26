@@ -7,10 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JiFenDuiHuan_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -40,10 +42,14 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
     private List<JiFenDuiHuan_Gson.ResultBean.GoodsListBean> list=new ArrayList<>();
     private JiFenDuiHUan_adapter adapter;
     private TextView jifenjilu,duihuanjilu;
+    private ImageView jfdh_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_ji_fen_dui_huan);
         getduihuan_id();
         getduihuanHTTp();
@@ -64,6 +70,12 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
             public void onClick(View v) {
                 Intent inte=new Intent(JiFenDuiHuan.this, DuiHuanJILu.class);
                 startActivity(inte);
+            }
+        });
+        jfdh_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -90,7 +102,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/integralExchangeList.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/integralExchangeList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -128,6 +140,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(JiFenDuiHuan.this,"userId",0);
         user_jifen=findViewById(R.id.user_jifen);//用户积分
         jf_goods_rview=findViewById(R.id.jf_goods);
+        jfdh_fh=findViewById(R.id.jfdh_fh);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 //        //设置布局的排版方向
         jf_goods_rview.setLayoutManager(layoutManager);

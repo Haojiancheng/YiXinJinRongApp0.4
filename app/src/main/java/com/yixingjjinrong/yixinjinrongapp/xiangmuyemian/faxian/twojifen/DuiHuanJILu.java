@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DuiHuanJiLu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -28,7 +31,7 @@ import java.util.List;
 
 public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.LoadingListener {
     private XRecyclerView duihuan_xrview;
-
+  private ImageView dhjl_fh;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
@@ -39,9 +42,18 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_duihuan_jilu);
         getduihuanid();
         getfuihuanHTTp();
+        dhjl_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getfuihuanHTTp() {
@@ -67,7 +79,7 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/exchangeRecord.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/exchangeRecord.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -107,6 +119,7 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
         duihuan_xrview.setLoadingListener(this);
         duihuan_xrview.setPullRefreshEnabled(true);
         duihuan_xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        dhjl_fh=findViewById(R.id.dhjl_fh);
     }
 
     @Override

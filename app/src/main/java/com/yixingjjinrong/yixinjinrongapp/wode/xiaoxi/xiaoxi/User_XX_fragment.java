@@ -25,6 +25,7 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XX_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
     private XX_adapter adapter;
     int a=1;
     private XRecyclerView xxrview;
+    private String loginid;
+    private String token;
 
     @Nullable
     @Override
@@ -63,6 +66,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
         try {
             js_request.put("userId", user_id);
             js_request.put("pageNum", a);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -80,7 +85,7 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryMsgListByUserId.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryMsgListByUserId.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -127,6 +132,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
 
     private void getxiaoxiid() {
         user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        token = (String) SPUtils.get(getActivity(), "Token1", "");
         xxrview=getActivity().findViewById(R.id.xxrview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         xxrview.setLayoutManager(linearLayoutManager);

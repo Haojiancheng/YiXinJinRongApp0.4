@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
@@ -41,13 +42,27 @@ public class My_Content extends AutoLayoutActivity {
     private int user_id;
     private String riskType;
     private ImageView shouhuodi;
+    private String token1;
+    private String loginid;
+    private ImageView mycontentfanhui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_my_content);
         getmyconcentid();
         myphone.setText(telephone);
+        mycontentfanhui=findViewById(R.id.mycontentfanhui);
+        mycontentfanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         if (s_name.equals("1")) {
             shiming.setText("已认证");
             shiming.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +123,8 @@ public class My_Content extends AutoLayoutActivity {
             JSONObject js_request = new JSONObject();//服务器需要传参的json对象
             try {
                 js_request.put("userid", String.valueOf(user_id));
+                js_request.put("token", token1);
+                js_request.put("loginId", loginid);
                 base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
                 sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -124,7 +141,7 @@ public class My_Content extends AutoLayoutActivity {
                 e.printStackTrace();
             }
 
-            RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+            RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
             params.setAsJsonContent(true);
             params.setBodyContent(canshu.toString());
             Log.e("TAG", ">>>>网址" + params);
@@ -163,6 +180,8 @@ public class My_Content extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", token1);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -179,7 +198,7 @@ public class My_Content extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -221,6 +240,8 @@ public class My_Content extends AutoLayoutActivity {
 
     private void getmyconcentid() {
         user_id = (int) SPUtils.get(this, "userId", 0);
+        token1 = (String) SPUtils.get(this, "Token1", "");
+        loginid = (String) SPUtils.get(this, "Loginid", "");
         Intent intent = getIntent();//获取传来的intent对象
         //风险评测
         fx = intent.getStringExtra("fx");

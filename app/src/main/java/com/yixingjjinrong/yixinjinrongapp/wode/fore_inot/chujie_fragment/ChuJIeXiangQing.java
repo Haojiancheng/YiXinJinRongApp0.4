@@ -11,11 +11,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.OutXX_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.ChuJieXiangXing.Wo_HuikuanJIHua;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -33,13 +35,24 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
     private ImageView out_img;
     private TextView out_title,xq_huankuan,out_money,out_time,out_lv,out_jia,out_fujia,out_qishu,out_timea,out_huikuan,out_jiekuan,out_tishibook,out_hefabook,out_weituobook;
     private String type;
+    private ImageView wo_cjxq_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_chujie_xiangqing);
         getxpId();
         gethttp();
+        wo_cjxq_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void gethttp() {
@@ -65,7 +78,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/getInvestDetails.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/getInvestDetails.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -73,7 +86,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
             @Override
             public void onSuccess(String result) {
                 Log.e("出借详情GSon：",""+result );
-                OutXX_gson data = new Gson().fromJson(result, OutXX_gson.class);
+                final OutXX_gson data = new Gson().fromJson(result, OutXX_gson.class);
                 if (type.equals("fang")){
                     Glide.with(ChuJIeXiangQing.this).load(R.drawable.fangchandiya).into(out_img);
                 }else {
@@ -92,7 +105,15 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
                 xq_huankuan.setText(" "+data.getInvestDetails().getT_borrow_style());
                 out_qishu.setText(" "+data.getInvestDetails().getLine());
                 out_timea.setText(" "+data.getInvestDetails().getEndTenderDate());
-
+                out_huikuan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent it=new Intent(ChuJIeXiangQing.this, Wo_HuikuanJIHua.class);
+                        it.putExtra("bid", data.getInvestDetails().getBorrowId());
+                        it.putExtra("investid", data.getInvestDetails().getInvestid());
+                        startActivity(it);
+                    }
+                });
 
             }
 
@@ -115,11 +136,14 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
 
     private void getxpId() {
         user_id = (int) SPUtils.get(this,"userId",0);
+        String token1 = (String) SPUtils.get(this, "Token1", "");
+        String loginid = (String) SPUtils.get(this, "Loginid", "");
         Intent it=getIntent();
         borrowid = it.getStringExtra("borrowid");
         investid = it.getStringExtra("investid");
         type = it.getStringExtra("type");
         out_img=findViewById(R.id.out_img);
+        wo_cjxq_fh=findViewById(R.id.wo_cjxq_fh);
         //,,,,,,,,,,,,;
         out_title=findViewById(R.id.out_title);
         out_money=findViewById(R.id.out_money);

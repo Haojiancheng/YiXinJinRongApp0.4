@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.DataCleanManager;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -35,10 +36,14 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private Context context;
+    private ImageView shezhi_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_wode_shezhi);
 
         getSheZhi_Id();
@@ -83,6 +88,12 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 finish();
             }
         });
+        shezhi_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -114,7 +125,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/quitLogin.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/quitLogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -126,6 +137,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
 //                EventBus.getDefault().post(new UnLogin());
                 SPUtils.remove(WoDe_SheZhi.this,"userId");
+                SPUtils.remove(WoDe_SheZhi.this,"Loginid");
+
                 finish();
             }
 
@@ -157,5 +170,6 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         repassword=findViewById(R.id.repassword);//修改密码
         fankui=findViewById(R.id.fankui);//意见反馈
         hz=findViewById(R.id.hz);//缓存
+        shezhi_fh=findViewById(R.id.shezhi_fh);
     }
 }

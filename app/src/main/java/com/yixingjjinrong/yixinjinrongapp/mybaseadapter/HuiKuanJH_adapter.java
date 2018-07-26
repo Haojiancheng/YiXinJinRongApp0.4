@@ -33,8 +33,11 @@ public class HuiKuanJH_adapter extends RecyclerView.Adapter<HuiKuanJH_adapter.My
     @Override
     public void onBindViewHolder(@NonNull HuiKuanJH_adapter.MyViewHolder holder, int position) {
         holder.qici.setText(hkjhlist.get(position).getRepayPeriod());
-        holder.benjin.setText(String.valueOf(hkjhlist.get(position).getStillPrincipal()));
-        holder.lixi.setText(String.valueOf( hkjhlist.get(position).getStillInterest()));
+        java.text.DecimalFormat   df   =new   java.text.DecimalFormat("0.00");
+        String format = df.format(Double.parseDouble(String.valueOf(hkjhlist.get(position).getStillPrincipal())));
+        holder.benjin.setText(format);
+        String format1 = df.format(Double.parseDouble(String.valueOf( hkjhlist.get(position).getStillInterest())));
+        holder.lixi.setText(format1);
         if (s<=3){
             holder.riqi.setText("未放款");
         }else {

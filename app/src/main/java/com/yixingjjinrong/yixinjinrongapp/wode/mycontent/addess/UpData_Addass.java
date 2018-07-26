@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.UpData_addass_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -43,12 +45,17 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
+    private ImageView bj_dz_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_updata_addass);
         cityPicker = new CityPicker(UpData_Addass.this, this);
+        bj_dz_fh=findViewById(R.id.bj_dz_fh);
         getupdatainitview();
         sh_name.setText(addass_name);
         sh_phone.setText(addass_phone);
@@ -66,7 +73,12 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
                 getHttp();
             }
         });
-
+        bj_dz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getHttp() {
@@ -94,7 +106,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/updateAddressInfo.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/updateAddressInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);

@@ -5,8 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.xinxipilu.xinxipilufragment.FengXiangCuoShi;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.xinxipilu.xinxipilufragment.JiBanXinXi;
@@ -30,12 +33,24 @@ public class XinXiPiLu extends AutoLayoutActivity {
     private ShouFeiBiaoZhun mshouFeiBiaoZhun;//收费标准
     private YunYinShuJu myunYinShuJu;        //运营数据
     private ZhongDaShiJian mzhongDaShiJian;  //重大事件
+    private ImageView xxpl_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_xin_xi_pi_lu);
 //        getPiLuId();//获取资源ID
+        xxpl_fh=findViewById(R.id.xxpl_fh);
+        xxpl_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         getinitview();//获取视图
     }
 

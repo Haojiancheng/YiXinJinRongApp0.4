@@ -3,10 +3,13 @@ package com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YiRenZheng_GSON;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -26,13 +29,23 @@ public class YiShiMing extends AutoLayoutActivity {
     private int user_id;
     private String sha1;//SHA1加密
     private String base1;//Base64加密
+    private ImageView ysm_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_yi_shi_ming);
         getrid();
         gethttp();
+        ysm_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void gethttp() {
@@ -55,7 +68,7 @@ public class YiShiMing extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -91,5 +104,6 @@ public class YiShiMing extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(this, "userId", 0);
         rname=findViewById(R.id.rname);
         rcard=findViewById(R.id.rcard);
+        ysm_fh=findViewById(R.id.ysm_fh);
     }
 }

@@ -38,6 +38,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     private List<XiangMu_Gson.ResultBean> list = new ArrayList<>();
     private XiangMu_Adapter adapter;
     private int a = 1;
+    private XiangMu_Gson data;
 
 
     @Nullable
@@ -50,7 +51,16 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getId_xm();
+        xRecyclerView = getActivity().findViewById(R.id.xrecycview);
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        xRecyclerView.setLayoutManager(manager);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        xRecyclerView.setLoadingListener(this);
+        xRecyclerView.setPullRefreshEnabled(true);
+        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+       xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
+        adapter=new XiangMu_Adapter(list,getActivity());
+        xRecyclerView.setAdapter(adapter);
         getHttp();
     }
 
@@ -62,7 +72,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 //            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+//            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -76,19 +86,15 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        final RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/yxbAppProjectList.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/yxbAppProjectList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", "项目列表GSON>" + result);
-                XiangMu_Gson data = new Gson().fromJson(result, XiangMu_Gson.class);
-
+                data = new Gson().fromJson(result, XiangMu_Gson.class);
                 list.addAll(data.getResult());
-                adapter = new XiangMu_Adapter(list,getActivity());
-                xRecyclerView.setAdapter(adapter);
-
                 adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {
@@ -104,7 +110,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                     }
                 });
 
-//                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -125,23 +131,6 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
 
     }
 
-    private void getId_xm() {
-        xRecyclerView = getActivity().findViewById(R.id.xrecycview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
-        xRecyclerView.setLayoutManager(manager);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        xRecyclerView.setLoadingListener(this);
-        xRecyclerView.setPullRefreshEnabled(true);
-//        头部刷新样式
-//        xRecyclerView.setRefreshProgressStyle(5);
-//        加载更多样式
-//        xRecyclerView.setLoadingMoreProgressStyle(2);
-        xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
-        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-//        adapter=new XiangMu_Adapter(list);
-//        xRecyclerView.setAdapter(adapter);
-//        getHttp();
-    }
 
     @Override
     public void onRefresh() {
@@ -149,7 +138,6 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         a=1;
         getHttp();
         xRecyclerView.refreshComplete();
-
     }
 
     @Override

@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/web_fanhui"
+            android:id="@+id/web_fanhui_fh"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/fanhui"
@@ -28,7 +28,6 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:paddingTop="60px"
-            android:text="项目详情"
             android:textColor="#ffffff"
             android:textSize="38px" />
 

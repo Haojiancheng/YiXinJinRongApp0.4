@@ -5,16 +5,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,10 +37,16 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private String dengrufanhuizhi;
     private int userid1;
     private String myurl;
+    private String logid;
+    private String token;
+    private ImageView zhucefanhui;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_chenggong_zhuce);
         
         getchengg_id();
@@ -46,14 +55,21 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         final Intent intent = getIntent();
         if (intent != null) {
             shoujihao = intent.getStringExtra("Phone_my");
+            logid = intent.getStringExtra("logid");
+            token = intent.getStringExtra("token");
             myurl = intent.getStringExtra("url");
             password = intent.getStringExtra("password");
             Bundle b = getIntent().getExtras();
             userid1 = b.getInt("user_id");
             Log.e("成功注册：", "Phone_my:"+shoujihao+"__password:"+password+"__url:"+myurl);
         }
-        
-        
+
+        zhucefanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         wodezhanghu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +93,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", userid1);
+            js_request.put("token", token);
+            js_request.put("loginId", logid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -93,7 +111,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -156,7 +174,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/Applogin.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -169,8 +187,10 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                 dengrufanhuizhi = d_data.getState();
                 String  user_token=d_data.getResult().getToken();
                 int user_id=d_data.getResult().getUserid();
+                String loginId = d_data.getResult().getLoginId();
                 if (dengrufanhuizhi.equals("success")) {
-                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id));
+                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id,loginId));
+                    SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
                     finish();
                 }
                 
@@ -196,5 +216,6 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private void getchengg_id() {
         lijishiming=findViewById(R.id.lijishiming);
         wodezhanghu=findViewById(R.id.wodezhanghu);
+        zhucefanhui=findViewById(R.id.zhucefanhui);
     }
 }

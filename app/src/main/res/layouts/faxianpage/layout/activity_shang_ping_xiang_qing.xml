@@ -10,9 +10,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="110px"
+        android:layout_marginTop="40px"
         android:background="@drawable/mybackgrandcolor">
 
         <ImageView
+            android:id="@+id/dh_fh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

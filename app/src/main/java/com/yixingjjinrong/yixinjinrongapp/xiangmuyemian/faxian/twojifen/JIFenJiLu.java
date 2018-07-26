@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JiFenJiLu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -35,13 +38,23 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
     private int a = 1;
     List<JiFenJiLu_gson.ResultBean.ListBean> list=new ArrayList<>();
     private JiFenJiLu_adapter adapter;
+    private ImageView jfjl_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_jifen_jilu);
         getlilu_id();
         getjiluHTTp();
+        jfjl_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getjiluHTTp() {
@@ -67,7 +80,7 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/integralRecord.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/integralRecord.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -106,6 +119,7 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         jilu_xrview.setLoadingListener(this);
         jilu_xrview.setPullRefreshEnabled(true);
+        jfjl_fh=findViewById(R.id.jfjl_fh);
         jilu_xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
     }
 

@@ -5,9 +5,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment.JianXiJuan_Fragment;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment.XianJinJuan_Fragment;
@@ -27,11 +30,23 @@ public class Juan extends AutoLayoutActivity {
     private ArrayList<String> list_title = new ArrayList<>();  //定义要装fragment的列表
     private XianJinJuan_Fragment mxianjin;               //现金卷 fragment
     private JianXiJuan_Fragment mjiaxi;               //加息卷 fragment
+    private ImageView fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.juan);
+        fh=findViewById(R.id.fh);
+        fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         getid();
     }
 

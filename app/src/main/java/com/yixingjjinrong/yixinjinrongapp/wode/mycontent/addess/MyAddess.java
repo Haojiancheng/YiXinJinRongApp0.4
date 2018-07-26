@@ -7,11 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.MyAddass_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -35,7 +37,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private Button addass_instat;
-
+    private ImageView shouhuo_dz_fh;
     int a=1;
     private List<MyAddass_Gson.ResultBean.AddressListBean> list=new ArrayList<>();
     private Myaddass_adapter adapter;
@@ -43,6 +45,9 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_my_addess);
         getaddassid();
         getaddAssHTTP();
@@ -51,6 +56,12 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
             public void onClick(View v) {
                 Intent it=new Intent(MyAddess.this,AddAddass.class);
                 startActivity(it);
+            }
+        });
+        shouhuo_dz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -78,7 +89,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/addressInfoList.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addressInfoList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -122,6 +133,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         addass_rview.setPullRefreshEnabled(true);
         addass_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         addass_instat=findViewById(R.id.addass_instat);
+        shouhuo_dz_fh=findViewById(R.id.shouhuo_dz_fh);
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZhiOk_GSon;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
@@ -25,6 +26,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -44,15 +46,26 @@ public class ChongZhq extends AutoLayoutActivity {
     private int user_id;
     private Button cz_ok;
     private View yhcard;
+    private String loginid;
+    private String token;
+    private ImageView cz_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_chong_zhq);
         getczid();
         cz_keyong.setText("可用余额:  " + keyong + "元");
         getczHTTp();
-
+        cz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -61,6 +74,8 @@ public class ChongZhq extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -77,7 +92,7 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/fuRechgeInitMobileApp.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/fuRechgeInitMobileApp.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -195,6 +210,8 @@ public class ChongZhq extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -211,7 +228,7 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -254,6 +271,8 @@ public class ChongZhq extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userid", String.valueOf(user_id));
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -270,7 +289,7 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -310,6 +329,8 @@ public class ChongZhq extends AutoLayoutActivity {
         try {
             js_request.put("userId", user_id);
             js_request.put("money", cz_money.getText().toString());
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
 
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
@@ -327,7 +348,7 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/postOnlineCZFu.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/postOnlineCZFu.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -363,8 +384,9 @@ public class ChongZhq extends AutoLayoutActivity {
     private void getczid() {
         Intent itzc = getIntent();
         user_id = (int) SPUtils.get(this, "userId", 0);
+        loginid = (String) SPUtils.get(ChongZhq.this, "Loginid", "");
+        token = (String) SPUtils.get(ChongZhq.this, "Token1", "");
         keyong = itzc.getStringExtra("keyong2");
-        Log.e("ddddd+*9*+*", "" + keyong);
         yh_name = findViewById(R.id.yh_name);
         yh_number = findViewById(R.id.yh_number);
         cz_keyong = findViewById(R.id.cz_keyong);
@@ -372,7 +394,7 @@ public class ChongZhq extends AutoLayoutActivity {
         yh_img = findViewById(R.id.yh_img);
         cz_ok = findViewById(R.id.cz_ok);
         yhcard = findViewById(R.id.yhcard);
-
+        cz_fh=findViewById(R.id.cz_fh);
     }
 
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JieKuanZiLiao_Adapter extends RecyclerView.Adapter<JieKuanZiLiao_Adapter.MyViewHolder> {
-    private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list=new ArrayList<>();
+    private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list;
     private String urlpath;
 
     public JieKuanZiLiao_Adapter(List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list, String urlpath) {

@@ -4,9 +4,9 @@ public class OutXX_gson {
 
     /**
      * message : 成功了
-     * result : {"userId":11210,"borrowId":"2393","investId":"5280","guaranteeType":0}
+     * result : {"userId":11208,"borrowId":"2610","investId":"5851","guaranteeType":0}
      * state : success
-     * investDetails : {"t_borrow_style":"按月付息，到期还本","borrowTitle":"达拉斯加11111","endTenderDate":"2018-07-06 15:50 ","line":"0/3","annualRate":"5.0","guaranteeType":"0","id":"5280","borrowId":"2393","Interest":"5.0","borrowCode":"X18D10056","investAmount":"100.00","lastdate":"","deadline":"3个月","borrowRandomId":"0f328c58-c475-4bf9-8fce-ff26d7b4f09b"}
+     * investDetails : {"t_borrow_style":"按月付息，到期还本","borrowTitle":"测试888","endTenderDate":"2018-07-24 14:55 ","line":"0/3","annualRate":"9.0","guaranteeType":"0","id":"5851","borrowId":"2610","Interest":"","borrowCode":"X18D10080","investid":"5851","investAmount":"100.00","lastdate":"","deadline":"3个月","borrowRandomId":"0cb75c2b-cdb5-4628-a3a9-faf662cd6eb1"}
      */
 
     private String message;
@@ -49,19 +49,20 @@ public class OutXX_gson {
     public static class InvestDetailsBean {
         /**
          * t_borrow_style : 按月付息，到期还本
-         * borrowTitle : 达拉斯加11111
-         * endTenderDate : 2018-07-06 15:50
+         * borrowTitle : 测试888
+         * endTenderDate : 2018-07-24 14:55
          * line : 0/3
-         * annualRate : 5.0
+         * annualRate : 9.0
          * guaranteeType : 0
-         * id : 5280
-         * borrowId : 2393
-         * Interest : 5.0
-         * borrowCode : X18D10056
+         * id : 5851
+         * borrowId : 2610
+         * Interest :
+         * borrowCode : X18D10080
+         * investid : 5851
          * investAmount : 100.00
          * lastdate :
          * deadline : 3个月
-         * borrowRandomId : 0f328c58-c475-4bf9-8fce-ff26d7b4f09b
+         * borrowRandomId : 0cb75c2b-cdb5-4628-a3a9-faf662cd6eb1
          */
 
         private String t_borrow_style;
@@ -74,6 +75,7 @@ public class OutXX_gson {
         private String borrowId;
         private String Interest;
         private String borrowCode;
+        private String investid;
         private String investAmount;
         private String lastdate;
         private String deadline;
@@ -157,6 +159,14 @@ public class OutXX_gson {
 
         public void setBorrowCode(String borrowCode) {
             this.borrowCode = borrowCode;
+        }
+
+        public String getInvestid() {
+            return investid;
+        }
+
+        public void setInvestid(String investid) {
+            this.investid = investid;
         }
 
         public String getInvestAmount() {

@@ -86,7 +86,7 @@ public class HuiKuanJiHua extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/returnedmoney.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/returnedmoney.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -120,6 +120,9 @@ public class HuiKuanJiHua extends Fragment {
 
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+
+//        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+//        token = (String) SPUtils.get(getActivity(), "Token1", "");
         Log.e("项目回款计划", ""+borrowRandomId);
         MyScrollView huikuanjihuaSV=getActivity().findViewById(R.id.huikuanjihuaScrollView);
         huikuanjihuaSV.setScrollListener(new MyScrollView.ScrollListener() {

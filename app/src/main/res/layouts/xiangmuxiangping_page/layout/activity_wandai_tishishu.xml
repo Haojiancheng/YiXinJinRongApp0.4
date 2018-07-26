@@ -28,7 +28,6 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:paddingTop="60px"
-            android:text="项目详情"
             android:textColor="#ffffff"
             android:textSize="38px" />
 

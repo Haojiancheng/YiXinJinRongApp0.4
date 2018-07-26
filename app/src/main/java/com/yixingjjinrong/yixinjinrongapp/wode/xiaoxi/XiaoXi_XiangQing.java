@@ -8,11 +8,14 @@ import android.webkit.WebView;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XXxiangqing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -27,10 +30,15 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private WebView xxweb;
+    private String loginid;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_xiaoxi_xiangqing);
 
         getxx_xqid();
@@ -42,6 +50,8 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         try {
             js_request.put("userId", user_id);
             js_request.put("msgId", xx_ird);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -59,7 +69,7 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/getMsgDetailById.do");
+        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/getMsgDetailById.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -96,6 +106,8 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
     }
 
     private void getxx_xqid() {
+        loginid = (String) SPUtils.get(XiaoXi_XiangQing.this, "Loginid", "");
+        token = (String) SPUtils.get(XiaoXi_XiangQing.this, "Token1", "");
         Bundle b = getIntent().getExtras();
         xx_ird = b.getInt("xx_ird");
         user_id = (int) SPUtils.get(XiaoXi_XiangQing.this,"userId",0);

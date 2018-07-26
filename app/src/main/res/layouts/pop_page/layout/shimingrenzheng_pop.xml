@@ -1,103 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/guanbil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/l6"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/guanbi1"
-        />
+        android:layout_marginEnd="40px"
+        android:src="@drawable/guanbi1" />
 
     <LinearLayout
+        android:id="@+id/l6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/guanbil"
+        android:layout_marginBottom="20px"
         android:orientation="vertical">
 
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="210px"
-            android:background="@drawable/mybackgrandcolor"
-            android:orientation="vertical"
-            android:gravity="center"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:src="@drawable/shiming"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:text="实名认证"
-                android:layout_marginTop="24px"
-                android:textSize="34px"
-                android:textColor="#ffffff"
-                />
-        </LinearLayout>
-        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:text="为了保护您的账户安全，出借前需要进行实名验证"
-                android:textSize="24px"
-                android:textColor="#333333"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="* 请确保信息准确，以免影响您的出借、提现等操作"
-                android:textSize="22px"
-                android:textColor="#fe6623"
-                />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/guanbil"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/pop_myname"
-                android:layout_width="540px"
-                android:layout_height="80px"
-                android:layout_marginTop="34px"
-                android:background="@drawable/bt_biankuanghuise"
-                android:drawableStart="@drawable/zhenshixingming"
-                android:paddingLeft="20px"
-                android:hint="请输入您的真实姓名"
-                
-                />
-            <EditText
-                android:id="@+id/pop_myidcard"
-                android:layout_width="540px"
-                android:layout_height="80px"
-                android:layout_marginTop="40px"
-                android:background="@drawable/bt_biankuanghuise"
-                android:drawableStart="@drawable/shenfenzhenghao"
-                android:paddingLeft="20px"
-                android:hint="请输入18位身份证号"
-                />
-            <Button
-                android:id="@+id/pop_myb_t"
-                android:layout_width="540px"
-                android:layout_height="80px"
-                android:layout_marginTop="50px"
-                android:background="@drawable/bt_shape"
-                android:text="立即认证"
-                android:textColor="#ffffff"
-                android:textSize="30px"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="210px"
+                android:background="@drawable/mybackgrandcolor"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shiming" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24px"
+                    android:text="实名认证"
+                    android:textColor="#ffffff"
+                    android:textSize="34px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f6f9f6"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="为了保护您的账户安全，出借前需要进行实名验证"
+                    android:textColor="#333333"
+                    android:textSize="24px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="* 请确保信息准确，以免影响您的出借、提现等操作"
+                    android:textColor="#fe6623"
+                    android:textSize="22px" />
+
+                <EditText
+                    android:id="@+id/pop_myname"
+                    android:layout_width="540px"
+                    android:layout_height="80px"
+                    android:layout_marginTop="34px"
+                    android:background="@drawable/bt_biankuanghuise"
+                    android:drawableStart="@drawable/zhenshixingming"
+                    android:hint="请输入您的真实姓名"
+                    android:drawablePadding="18px"
+                    android:paddingLeft="20px"
+
+                    />
+
+                <EditText
+                    android:id="@+id/pop_myidcard"
+                    android:layout_width="540px"
+                    android:layout_height="80px"
+                    android:layout_marginTop="40px"
+                    android:background="@drawable/bt_biankuanghuise"
+                    android:drawableStart="@drawable/shenfenzhenghao"
+                    android:hint="请输入18位身份证号"
+                    android:drawablePadding="18px"
+                    android:paddingLeft="20px" />
+
+                <Button
+                    android:id="@+id/pop_myb_t"
+                    android:layout_width="540px"
+                    android:layout_height="80px"
+                    android:layout_marginTop="50px"
+                    android:layout_marginBottom="50px"
+                    android:background="@drawable/bt_shape"
+                    android:text="立即认证"
+                    android:textColor="#ffffff"
+                    android:textSize="30px" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
-    
-
 </com.zhy.autolayout.AutoRelativeLayout>

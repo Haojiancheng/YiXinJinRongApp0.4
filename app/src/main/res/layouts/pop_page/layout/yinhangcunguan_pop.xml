@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    >
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <LinearLayout
+        android:id="@+id/l4"
         android:layout_width="530px"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:background="@drawable/bt_huisebiankuang"
         android:orientation="vertical">
 
@@ -33,23 +33,24 @@
                 android:textSize="34px" />
 
         </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="193px"
-    android:orientation="vertical"
-    android:background="#ded0d0"
-    >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="20px"
-        android:layout_marginTop="50px"
 
-        android:text="平台已接入恒丰银行资金存管系统，充值、提现、出借等资金操作均需开通存管账户，支持多家银行储蓄卡。" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="193px"
+            android:background="#e4e0e0"
+            android:orientation="vertical">
 
-</LinearLayout>
-      
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="50px"
+
+                android:text="平台已接入恒丰银行资金存管系统，充值、提现、出借等资金操作均需开通存管账户，支持多家银行储蓄卡。" />
+
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
@@ -59,12 +60,22 @@
             android:id="@+id/ch_pop"
             android:layout_width="match_parent"
             android:layout_height="100px"
-            android:background="#ded0d0"
+            android:background="#e4e0e0"
             android:gravity="center"
             android:text="立即开通"
             android:textColor="#fe6623"
             android:textSize="34px" />
+
+
     </LinearLayout>
-    
-    
-</com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:id="@+id/pop_cg_X"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150px"
+        android:src="@drawable/guanbi" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

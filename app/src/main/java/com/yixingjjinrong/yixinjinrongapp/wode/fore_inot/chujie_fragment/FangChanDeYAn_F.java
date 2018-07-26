@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Fangchandiya_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.YaoQingXiangQing;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,6 +45,8 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
     private Fangchandiya_adapter adapter;
     private int a=1;
     private int user_id;
+    private String loginid;
+    private String token;
 
     @Nullable
     @Override
@@ -63,6 +66,8 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
 
     private void getfcdy_id() {
         user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+        token = (String) SPUtils.get(getActivity(), "Token1", "");
         rview_fcdy=getActivity().findViewById(R.id.fangchan_diya_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         rview_fcdy.setLayoutManager(manager);
@@ -85,6 +90,8 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
             js_request.put("borrowStatus", 1);
             js_request.put("pageNumber", a);
             js_request.put("guaranteeType", 0);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             Log.e("我的出借房产表参数：",""+js_request );
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -101,7 +108,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/myInvestList.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/myInvestList.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);

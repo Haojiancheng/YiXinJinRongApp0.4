@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
@@ -28,6 +29,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -45,19 +47,33 @@ public class TiXian extends AutoLayoutActivity {
     private String base1;//Base64加
     private int user_id;
     private String keyong;
+    private String loginid;
+    private String token;
+    private ImageView tx_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_ti_xian);
         getID();
         gethttp();
+        tx_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void gethttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -74,7 +90,7 @@ public class TiXian extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/withdrawInitMobilefApp.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/withdrawInitMobilefApp.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -194,6 +210,8 @@ public class TiXian extends AutoLayoutActivity {
         try {
             js_request.put("userId", user_id);
             js_request.put("money", t_cz_money.getText().toString());
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             Log.e("提现的金额", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
@@ -211,7 +229,7 @@ public class TiXian extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/addWithdrawInfoMobilefApp.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addWithdrawInfoMobilefApp.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -220,8 +238,8 @@ public class TiXian extends AutoLayoutActivity {
                 Log.e("ok提现：", result);
                 TiXianOk_GSON data = new Gson().fromJson(result, TiXianOk_GSON.class);
                 String html = data.getHtml();
-                Intent itcz = new Intent(TiXian.this, ChongZhiOK.class);
-                itcz.putExtra("HTML", html);
+                Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
+                itcz.putExtra("tixianhtml", html);
                 Log.e("提现HTML!:",""+html.toString() );
                 startActivity(itcz);
                 finish();
@@ -263,7 +281,7 @@ public class TiXian extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/queryUserAuthInfo.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -306,6 +324,7 @@ public class TiXian extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userid", String.valueOf(user_id));
+
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -322,7 +341,7 @@ public class TiXian extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/accountReg.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -360,6 +379,8 @@ public class TiXian extends AutoLayoutActivity {
     private void getID() {
         Intent itzc = getIntent();
         user_id = (int) SPUtils.get(this, "userId", 0);
+        loginid = (String) SPUtils.get(TiXian.this, "Loginid", "");
+        token = (String) SPUtils.get(TiXian.this, "Token1", "");
         keyong = itzc.getStringExtra("keyong2");
         Log.e("提现----》", "" + keyong);
         t_yh_img=findViewById(R.id.t_yh_img);
@@ -368,7 +389,7 @@ public class TiXian extends AutoLayoutActivity {
         t_cz_keyong=findViewById(R.id.t_cz_keyong);
         t_cz_money=findViewById(R.id.t_cz_money);
         cz_ok=findViewById(R.id.cz_ok);
-
+        tx_fh=findViewById(R.id.tx_fh);
         t_cz_keyong.setText(keyong);
     }
 }

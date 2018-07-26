@@ -15,6 +15,7 @@
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
+        android:fitsSystemWindows="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,6 +27,9 @@
         <meta-data
             android:name="design_height"
             android:value="1280" />
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -85,7 +89,9 @@
         <activity android:name=".wode.chongzhi.jieguo.ChongZhiShiBai" />
         <activity android:name=".wode.tixian.TiXian" />
         <activity android:name=".wode.tixian.TiXian_OK" />
-        <activity android:name=".wode.chongzhi.ZhiChiBanK"></activity>
+        <activity android:name=".wode.chongzhi.ZhiChiBanK" />
+        <activity android:name=".wode.fore_inot.chujie_fragment.ChuJieXiangXing.Wo_HuikuanJIHua" />
+        <activity android:name=".wode.chongzhi.jieguo.ChongZhiSuccers"></activity>
     </application>
 
 </manifest>

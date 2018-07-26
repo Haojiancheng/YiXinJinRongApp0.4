@@ -6,15 +6,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -30,16 +34,27 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private TextView jinggao;//错误消息
+    private String loginid;
+    private String token;
+    private ImageView sm_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_shi_mingrenzheng);
         Bundle b = getIntent().getExtras();
         user_ird = b.getInt("user_ird");
         getzhen_id();
         getonrenzheng();
-
+        sm_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getonrenzheng() {
@@ -59,6 +74,8 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
             js_request.put("userId", user_ird);
             js_request.put("idNo", zhen_id);
             js_request.put("realName", my_name);
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -75,7 +92,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/userAuth.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/userAuth.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -121,9 +138,12 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     }
 
     private void getzhen_id() {
+        loginid = (String) SPUtils.get(ShiMingrenzheng.this, "Loginid", "");
+        token = (String) SPUtils.get(ShiMingrenzheng.this, "Token1", "");
         zhen_name=findViewById(R.id.zhen_name);
         user_idcard=findViewById(R.id.user_idcard);
         renzheng_goin=findViewById(R.id.renzheng_goin);
         jinggao=findViewById(R.id.jinggao11);
+        sm_fh=findViewById(R.id.sm_fh);
     }
 }

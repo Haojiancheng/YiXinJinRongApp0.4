@@ -76,7 +76,7 @@ public class Faxian extends Fragment {
     }
 
     private void gethppt() {
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/discoveryIndex.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/discoveryIndex.do");
         params.setAsJsonContent(true);
 //        params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {

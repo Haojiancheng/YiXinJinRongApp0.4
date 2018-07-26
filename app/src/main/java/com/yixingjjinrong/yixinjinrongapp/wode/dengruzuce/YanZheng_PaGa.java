@@ -22,6 +22,7 @@ import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ChengGongzhuce_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -52,10 +53,14 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private TimeCount time;
     private Context context;
     private String myurl;
+    private ImageView zz_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        }
         setContentView(R.layout.activity_yanzheng__pa_ga);
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
@@ -69,6 +74,12 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         return Pattern.matches(REGEX_PASSWORD, password);
     }
     private void getyanZheng_Onclick() {
+        zz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         yanzheng_zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,13 +144,13 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             js_request.put("address","1");
             js_request.put("phonemap",user_yaoqingren.getText().toString());
             js_request.put("url", myurl);
-
+            Log.e("祖册参数", ""+js_request );
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
-
+            e.printStackTrace();
         }
         JSONObject canshu = new JSONObject();
         try {
@@ -149,7 +160,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/register.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/registerApp.do?");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -162,7 +173,10 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 
                 Intent intent_dengru=new Intent(YanZheng_PaGa.this,ChengGongZhuCe.class);
                 intent_dengru.putExtra("Phone_my",get_phone);
+                intent_dengru.putExtra("logid",date.getResult().getLoginId());
+                intent_dengru.putExtra("token",date.getResult().getToken());
                 intent_dengru.putExtra("password",user_mima.getText().toString());
+
                 intent_dengru.putExtra("url",myurl);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user_id",userid);
@@ -210,7 +224,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxb_mobile/yxbApp/sendsms.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsms.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -248,6 +262,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         user_yaoqingren=findViewById(R.id.yaoqingren);//yaoqingren
         zc_togglePwd=findViewById(R.id.zc_togglePwd);//显示或隐藏密码
         et_qc=findViewById(R.id.yanz_guanbi);//清除输入框
+        zz_fh=findViewById(R.id.zz_fh);
     }
     public synchronized String getid(Context context) {
         TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);

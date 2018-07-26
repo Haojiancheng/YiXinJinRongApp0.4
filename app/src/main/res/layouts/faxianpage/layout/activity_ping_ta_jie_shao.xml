@@ -11,9 +11,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="108px"
+        android:layout_marginTop="40px"
         android:background="@drawable/mybackgrandcolor">
 
         <ImageView
+            android:id="@+id/ptjs_fh"
             android:layout_width="38px"
             android:layout_height="38px"
             android:layout_alignParentStart="true"

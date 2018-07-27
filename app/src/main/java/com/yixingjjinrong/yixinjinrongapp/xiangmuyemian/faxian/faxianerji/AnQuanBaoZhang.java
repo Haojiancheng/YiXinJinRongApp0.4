@@ -30,13 +30,14 @@ public class AnQuanBaoZhang extends AutoLayoutActivity {
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
+        anquanweb.addJavascriptInterface(this, "android");
         // 设置允许JS弹窗
         anquanweb.loadUrl("file:///android_asset/anquan.html");
         anquanweb.setWebChromeClient(new WebChromeClient());
 
     }
     @JavascriptInterface
-    public void back() {
+    public void backq() {
         finish();
     }
 }

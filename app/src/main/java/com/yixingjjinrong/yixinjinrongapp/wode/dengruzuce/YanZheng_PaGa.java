@@ -29,6 +29,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -232,7 +233,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 intent_dengru.putExtra("logid",date.getResult().getLoginId());
                 intent_dengru.putExtra("token",date.getResult().getToken());
                 intent_dengru.putExtra("password",user_mima.getText().toString());
-
+                SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
+                SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
                 intent_dengru.putExtra("url",myurl);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user_id",userid);

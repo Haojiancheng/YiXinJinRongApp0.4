@@ -14,9 +14,10 @@
 
         <ImageView
             android:id="@+id/tx_fh"
-            android:layout_width="wrap_content"
+            android:layout_width="40px"
             android:layout_height="match_parent"
             android:layout_marginLeft="20px"
+            android:paddingRight="20px"
             android:paddingTop="20px"
             android:src="@drawable/fanhui" />
 
@@ -44,8 +45,8 @@
 
         <ImageView
             android:id="@+id/t_yh_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80px"
+            android:layout_height="80px"
             android:layout_marginLeft="30px"
             android:src="@drawable/touxiang" />
 

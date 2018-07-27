@@ -14,10 +14,11 @@
 
         <ImageView
             android:id="@+id/wo_zjls_fh"
-            android:layout_width="wrap_content"
+            android:layout_width="40px"
             android:layout_height="match_parent"
             android:src="@drawable/fanhui"
             android:paddingTop="20px"
+            android:paddingRight="20px"
             android:layout_marginLeft="20px"
             />
 

@@ -11,9 +11,10 @@
         android:layout_height="138px">
         <ImageView
             android:id="@+id/re_fenhui"
-            android:layout_width="wrap_content"
+            android:layout_width="40px"
             android:layout_height="match_parent"
             android:layout_marginLeft="30px"
+            android:paddingRight="20px"
             android:paddingTop="20px"
             android:src="@drawable/jiantou"
             />

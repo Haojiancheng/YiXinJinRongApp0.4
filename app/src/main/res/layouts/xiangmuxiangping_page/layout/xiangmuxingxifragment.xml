@@ -92,8 +92,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="13dp"
-                            android:text=""
                             android:lines="2"
+                            android:text=""
+                            android:textAlignment="textEnd"
                             android:textColor="#333333"
                             android:textSize="28px" />
 
@@ -753,7 +754,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="340px"
+                    android:layout_width="400px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
                     android:text="截止借款前6个月内借款人
@@ -778,7 +779,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="340px"
+                    android:layout_width="400px"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
                     android:text="借款人在其他网络借
@@ -1252,7 +1253,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="230px"
+                        android:layout_width="400px"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
                         android:text="截止借款6个月内借款人征信报告中的逾期情况"
@@ -1279,7 +1280,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="251px"
+                        android:layout_width="400px"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
                         android:text="借款人在其他网络借贷平台借款情"
@@ -2194,6 +2195,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/shencha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20px"

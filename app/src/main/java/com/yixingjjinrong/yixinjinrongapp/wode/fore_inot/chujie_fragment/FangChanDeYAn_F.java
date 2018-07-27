@@ -37,13 +37,13 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingListener{
+public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingListener {
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private XRecyclerView rview_fcdy;
-    private List<FangChanDiYa_Gson.InvestListBean> list=new ArrayList<>();
+    private List<FangChanDiYa_Gson.InvestListBean> list = new ArrayList<>();
     private Fangchandiya_adapter adapter;
-    private int a=1;
+    private int a = 1;
     private int user_id;
     private String loginid;
     private String token;
@@ -52,24 +52,26 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fangchandiyan_f, container, false);
-         return view;
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        list.clear();
         getfcdy_id();
+        adapter = new Fangchandiya_adapter(list);
+        rview_fcdy.setAdapter(adapter);
         getHttp();
 
     }
 
     private void getfcdy_id() {
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         token = (String) SPUtils.get(getActivity(), "Token1", "");
-        rview_fcdy=getActivity().findViewById(R.id.fangchan_diya_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        rview_fcdy = getActivity().findViewById(R.id.fangchan_diya_rview);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         rview_fcdy.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rview_fcdy.setLoadingListener(this);
@@ -77,10 +79,6 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         rview_fcdy.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         rview_fcdy.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }
-
-
-
-
 
 
     private void getHttp() {
@@ -92,7 +90,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
             js_request.put("guaranteeType", 0);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("我的出借房产表参数：",""+js_request );
+            Log.e("我的出借房产表参数：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -104,7 +102,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的出借房产表加密：",""+canshu );
+            Log.e("我的出借房产表加密：", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -118,15 +116,14 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
                 Log.e("TAG<>?<>Gsaonm", "" + result);
                 FangChanDiYa_Gson data = new Gson().fromJson(result, FangChanDiYa_Gson.class);
                 list.addAll(data.getInvestList());
-                adapter=new Fangchandiya_adapter(list);
-                rview_fcdy.setAdapter(adapter);
+
                 adapter.notifyDataSetChanged();
                 adapter.setonEveryItemClickListener(new Fangchandiya_adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {
                         String borrowid = String.valueOf(list.get(position).getBorrowId());
                         String investid = String.valueOf(list.get(position).getInvestid());
-                        Intent it=new Intent(getActivity(),ChuJIeXiangQing.class);
+                        Intent it = new Intent(getActivity(), ChuJIeXiangQing.class);
                         it.putExtra("borrowid", borrowid);
                         it.putExtra("investid", investid);
                         it.putExtra("type", "fang");
@@ -161,7 +158,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
     @Override
     public void onRefresh() {
         adapter.notifyDataSetChanged();
-        a=1;
+        a = 1;
         getHttp();
         rview_fcdy.refreshComplete();
     }

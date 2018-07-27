@@ -13,6 +13,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -65,6 +66,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
             AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
         }
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_wo_de__deng_ru);
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
@@ -165,7 +167,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams("http://192.168.1.61:8080/yxb_mobile/yxbApp/Applogin.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Applogin.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e(">>>>登入", "" + params);
@@ -179,10 +181,10 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 dengrufanhuizhi = d_data.getState(); //状态值
                 message = d_data.getMessage();
                 Log.e("登入Message", ""+message);
+                Toast.makeText(WoDe_DengRu.this, ""+message, Toast.LENGTH_SHORT).show();
                 String user_token = d_data.getResult().getToken();
                 String loginId = d_data.getResult().getLoginId();
                 int user_id = d_data.getResult().getUserid();
-                Toast.makeText(WoDe_DengRu.this, ""+message, Toast.LENGTH_SHORT).show();
                 if (message.equals("登录成功")) {
                     EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id,loginId));
                     EventBus.getDefault().post(new User_id(user_id));

@@ -93,7 +93,7 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
                 it.putExtra("HTML",html );
                 Log.e("我的页面银行存管HTML:",""+it);
                 startActivity(it);
-
+                finish();
                 Log.e("wangy",""+html );
             }
 

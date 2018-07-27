@@ -186,7 +186,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 String myjine = jinge.getText().toString();
                 double b1 = Double.parseDouble(myjine);
                 Log.e("s1", "" + b1);
-                double myshouyi = b1 * data.getResult().getRedList1().getRan() / 100;
+                double myshouyi = ( data.getResult().getRedList1().getRan()/12)/ 100;
                 Log.e("myshouyi", "" + myshouyi);
                 yujishouyi.setText("" + myshouyi);
             }

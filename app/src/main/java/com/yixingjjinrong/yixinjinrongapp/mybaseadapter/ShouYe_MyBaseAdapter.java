@@ -65,6 +65,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     holder1.first_chujie = convertView.findViewById(R.id.first_chujie);
                     holder1.first_yue=convertView.findViewById(R.id.first_yue);
                     holder1.view_first=convertView.findViewById(R.id.view_first);
+
                     convertView.setTag(holder1);
                 } else {
                     holder1 = (ViewHolder1) convertView.getTag();
@@ -94,7 +95,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
             case 0:
 
                 holder1.first_name.setText(list.get(position).getBorrowTitle()+"   "+list.get(position).getBorrowCode());
-                holder1.first_lv.setText((int) list.get(position).getSubsidies() + "");
+                holder1.first_lv.setText((int) list.get(position).getSubsidies() + ".0");
                 holder1.first_yue.setText(list.get(position).getAmount()+" 元");
                 if (list.get(position).getSubsidiesRate() == 0) {
                     holder1.first_fujialv.setText("");
@@ -113,7 +114,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                     String xiangmu_id = list.get(position).getBorrowRandomId();
                     Log.e("TAG", "+.." + xiangmu_id);
                     Intent it = new Intent(context, XiangMuXiangQing.class);
-                    String mortgageType = list.get(position).getMortgageType();
+                    String mortgageType = String.valueOf(list.get(position).getMortgageType()).toString();
                     it.putExtra("xiangmu_id", xiangmu_id);
                     it.putExtra("mortgageType", mortgageType);
                     context.startActivity(it);
@@ -158,7 +159,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                         String xiangmu_id = list.get(position).getBorrowRandomId();
                         Log.e("TAG", "+.." + xiangmu_id);
                         Intent it = new Intent(context, XiangMuXiangQing.class);
-                        String mortgageType = list.get(position).getMortgageType();
+                        String mortgageType = String.valueOf(list.get(position).getMortgageType()).toString();
                         it.putExtra("xiangmu_id", xiangmu_id);
                         it.putExtra("mortgageType", mortgageType);
                         context.startActivity(it);
@@ -168,7 +169,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
             case 1:
                 holder2.xiangmu_name.setText(list.get(position).getBorrowTitle());
                 holder2.xiangmu_code.setText(list.get(position).getBorrowCode());
-                holder2.years_lilv.setText((int) list.get(position).getSubsidies() + "");
+                holder2.years_lilv.setText((int) list.get(position).getSubsidies() + ".0");
                 if (list.get(position).getSubsidiesRate() == 0) {
                     holder2.fujia_lilv.setText("");
                     holder2.fujia_jiahao.setText("");
@@ -218,7 +219,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                         String xiangmu_id = list.get(position).getBorrowRandomId();
                         Log.e("TAG", "+.." + xiangmu_id);
                         Intent it = new Intent(context, XiangMuXiangQing.class);
-                        String mortgageType = list.get(position).getMortgageType();
+                        String mortgageType =String.valueOf(list.get(position).getMortgageType()).toString() ;
                         it.putExtra("xiangmu_id", xiangmu_id);
                         it.putExtra("mortgageType", mortgageType);
                         context.startActivity(it);
@@ -233,12 +234,14 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
         TextView first_name,first_lv,first_jia,first_fujialv,first_fujiabai,first_qixian,first_yue;
         Button first_chujie;
         View view_first;
+        ImageView xiangmu_src;
 
     }
 
     class ViewHolder2 {
         TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian;
         Button chujie;
+        ImageView xiangmu_src;
     }
 //    public class ViweHolder{
 //        TextView xiangmu_name,xiangmu_code,years_lilv,jiahao,fujia_lilv,fujia_jiahao,qixian;

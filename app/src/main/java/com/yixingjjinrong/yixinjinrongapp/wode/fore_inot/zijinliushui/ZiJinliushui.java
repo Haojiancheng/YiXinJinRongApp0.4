@@ -50,6 +50,8 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         setContentView(R.layout.activity_zi_jinliushui);
         list.clear();
         getlsID();
+        adapter=new ZiJinLiuShui_adapter(list);
+        xrview.setAdapter(adapter);
         getlsHTTP();
         wo_zjls_fh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +94,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
                 Log.e("我的资金流水GSon","" +result);
                 ZiJInLiuShu_gson data = new Gson().fromJson(result, ZiJInLiuShu_gson.class);
                 list.addAll(data.getFundRecordlist());
-                adapter=new ZiJinLiuShui_adapter(list);
-                xrview.setAdapter(adapter);
+
                 adapter.notifyDataSetChanged();
             }
 

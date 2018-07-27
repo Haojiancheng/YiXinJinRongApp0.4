@@ -136,6 +136,15 @@ public class XiangMuXiangQing_Gson implements Serializable{
             private double rans;
             private String surplus;
             private String deadline;
+            private String deadlines;
+
+            public String getDeadlines() {
+                return deadlines;
+            }
+
+            public void setDeadlines(String deadlines) {
+                this.deadlines = deadlines;
+            }
 
             public double getRanaa() {
                 return ranaa;

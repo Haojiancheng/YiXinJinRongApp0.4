@@ -135,7 +135,7 @@ public class Shouye extends Fragment {
                         String xiangmu_id = mylist.get(position).getBorrowRandomId();
                         Log.e("TAG", "+.." + xiangmu_id);
                         Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
-                        String mortgageType = mylist.get(position).getMortgageType();
+                        String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
                         it.putExtra("xiangmu_id", xiangmu_id);
                         it.putExtra("mortgageType", mortgageType);
                         startActivity(it);

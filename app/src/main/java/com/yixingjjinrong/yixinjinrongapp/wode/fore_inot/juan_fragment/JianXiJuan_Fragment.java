@@ -58,9 +58,13 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getid();
+        mlist.clear();
         user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        getid();
         Log.e("加息卷user_id", "" + user_id);
+        myadapter=new JiaXiJuan_adapter(mlist);
+        Log.e("条目数", mlist.size()+"");
+        jiaxi_rview.setAdapter(myadapter);
         getHttp();
     }
 
@@ -98,9 +102,6 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
                 Log.e("加息卷GSON", result);
                 JiaXiJuan_Gson data = new Gson().fromJson(result, JiaXiJuan_Gson.class);
                 mlist.addAll(data.getQueryVouchersList());
-                myadapter=new JiaXiJuan_adapter(mlist);
-                Log.e("条目数", mlist.size()+"");
-                jiaxi_rview.setAdapter(myadapter);
 
                 myadapter.notifyDataSetChanged();
             }
@@ -137,6 +138,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
 
     @Override
     public void onRefresh() {
+        mlist.clear();
         myadapter.notifyDataSetChanged();
         a=1;
         getHttp();

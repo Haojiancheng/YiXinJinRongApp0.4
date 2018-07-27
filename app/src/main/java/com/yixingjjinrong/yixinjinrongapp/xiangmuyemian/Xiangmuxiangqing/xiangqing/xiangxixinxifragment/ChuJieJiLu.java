@@ -42,6 +42,8 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
     private ChuJieJiLu_Adapter adapter;
     private String borrowRandomId;
     int a=1;
+    private String token1;
+    private String loginid;
 
     @Nullable
     @Override
@@ -72,6 +74,8 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("borrowRandomId",borrowRandomId);
+            js_request.put("token", token1);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -122,6 +126,8 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
 
 
     private void initView() {
+        token1 = (String) SPUtils.get(getActivity(), "Token1", "");
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         Log.e("项目出借记录", ""+borrowRandomId);
         MyScrollView chujiejiluSV=getActivity().findViewById(R.id.chujiejiluScrollView);

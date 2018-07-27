@@ -33,7 +33,9 @@ public class XiangMuJingDu extends Fragment {
     private ImageView fabuxiangmu, fb_xyb, muji, muji_xyb, fangkuan, fk_xyb, huankuan;
     private TextView fabuxiangmu_time, mujitime, fangkuan_time, yihuan_jine, yehuan_qi, daihuan_jine, daihua_qi;
     private String borrowRandomId;
-    
+    private String token1;
+    private String loginid;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class XiangMuJingDu extends Fragment {
         try {
 
             js_request.put("borrowRandomId", borrowRandomId);
+            js_request.put("token", token1);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -235,6 +239,8 @@ public class XiangMuJingDu extends Fragment {
 
     private void gethttpjingde_id() {
         //private ImageView ,,,,,,;
+        token1 = (String) SPUtils.get(getActivity(), "Token1", "");
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         fabuxiangmu = getActivity().findViewById(R.id.fabuxiangmu);
         fb_xyb = getActivity().findViewById(R.id.fb_xyb);
         muji = getActivity().findViewById(R.id.muji);

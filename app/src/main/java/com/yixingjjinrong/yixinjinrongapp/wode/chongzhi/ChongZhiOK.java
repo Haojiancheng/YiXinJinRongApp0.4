@@ -71,6 +71,12 @@ public class ChongZhiOK extends AutoLayoutActivity {
                         finish();
                     }
 
+                }else {
+                    Toast.makeText(ChongZhiOK.this, "失败", Toast.LENGTH_SHORT).show();
+                    Intent inte=new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
+                    startActivity(inte);
+                    finish();
+
                 }
             }
             @Override

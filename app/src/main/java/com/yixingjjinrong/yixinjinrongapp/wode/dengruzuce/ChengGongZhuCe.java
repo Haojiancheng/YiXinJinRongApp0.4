@@ -128,6 +128,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                     Bundle bundle = new Bundle();
                     bundle.putInt("user_ird", userid1);
                     it.putExtras(bundle);
+
                     startActivity(it);
                     finish();
                 }
@@ -216,6 +217,6 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private void getchengg_id() {
         lijishiming=findViewById(R.id.lijishiming);
         wodezhanghu=findViewById(R.id.wodezhanghu);
-        zhucefanhui=findViewById(R.id.zhucefanhui);
+        zhucefanhui=findViewById(R.id.zhucefanhui1);
     }
 }

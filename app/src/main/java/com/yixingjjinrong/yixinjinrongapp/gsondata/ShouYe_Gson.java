@@ -4,9 +4,10 @@ import java.util.List;
 
 public class ShouYe_Gson {
 
+
     /**
      * message : 查询成功
-     * result : {"bannerList":[{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241607397172.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608063343.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608346978.png","l_total_count":3,"tid":114,"hrefurl":""}],"borrowList":[{"borrowTitle":"企业房","borrowStatus":2,"schedules":"0.16%","mortgageType":"房产抵押","deadlineNew":"2个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-23 11:23 ","id":2259,"amount":"10,000,000.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"公司借款","borrowFrom":2,"borrowCode":"X18D10521","subsidies":6,"subsidiesRate":0,"investNumTotal":"9,983,100.00","borrowRandomId":"1de0c7e6-7c80-463d-8f35-96e631ee3fe3"},{"borrowTitle":"微信端资质证明2","borrowStatus":2,"schedules":"80.00%","mortgageType":"房产抵押","deadlineNew":"3个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-04 13:45 ","id":2191,"amount":"500.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"X18D10454","subsidies":6,"subsidiesRate":0,"investNumTotal":"100.00","borrowRandomId":"ab922a0f-15dd-4623-ad28-76b9b85fb1fc"},{"borrowTitle":"测试00010503","borrowStatus":2,"schedules":"20.00%","mortgageType":"房产抵押","deadlineNew":"3个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-03 14:50","id":2182,"amount":"500.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"X18D10445","subsidies":6,"subsidiesRate":0,"investNumTotal":"400.00","borrowRandomId":"f6933a11-1be7-4c42-b004-4d438cc72c47"}],"publicMsgList":[{"article_title":"app公告","article_pub_time":"2018-05-24","article_link":"","aid":208},{"article_title":"测试页数3","article_pub_time":"2018-01-31","article_link":"","aid":204}],"path":"http://192.168.1.84:8080/yxb_oms/"}
+     * result : {"bannerList":[{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241607397172.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608063343.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608346978.png","tid":114}],"borrowList":[{"ableTenderDate":"2018-07-27 11:45 ","amount":"30,000.00","annualRate":3,"borrowCode":"X18D10082","borrowFrom":1,"borrowRandomId":"9651146e-fb9d-492b-9fbc-e7f5b39fbb22","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"是","deadlineNew":"2个月","id":2616,"investNumTotal":"30,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-07-27 10:18 ","amount":"300,000.00","annualRate":3,"borrowCode":"X18D10081","borrowFrom":1,"borrowRandomId":"a068a4cb-ca7c-4f5b-8ef4-7864d396805a","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"资料","deadlineNew":"2个月","id":2615,"investNumTotal":"300,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-07-26 10:16 ","amount":"1,000.00","annualRate":9,"borrowCode":"Y18D10246","borrowFrom":1,"borrowRandomId":"9d03f128-1e96-4a98-a17f-86017654cee2","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"测试app借款详情","deadlineNew":"3个月","id":2614,"investNumTotal":"600.00","isDayThe":1,"mortgageType":4,"mortgageTypeStr":"车辆抵押","schedules":"40.00%","subsidies":3,"subsidiesRate":6,"timeFlag":0}],"path":"http://192.168.1.79:8080/yxb_oms/","publicMsgList":[{"aid":220,"article_link":"","article_pub_time":"2018-07-18","article_title":"风格的规定电饭锅"},{"aid":223,"article_link":"","article_pub_time":"2018-07-17","article_title":"新标发布公告"}]}
      * state : success
      */
 
@@ -40,10 +41,10 @@ public class ShouYe_Gson {
 
     public static class ResultBean {
         /**
-         * bannerList : [{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241607397172.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608063343.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608346978.png","l_total_count":3,"tid":114,"hrefurl":""}]
-         * borrowList : [{"borrowTitle":"企业房","borrowStatus":2,"schedules":"0.16%","mortgageType":"房产抵押","deadlineNew":"2个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-23 11:23 ","id":2259,"amount":"10,000,000.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"公司借款","borrowFrom":2,"borrowCode":"X18D10521","subsidies":6,"subsidiesRate":0,"investNumTotal":"9,983,100.00","borrowRandomId":"1de0c7e6-7c80-463d-8f35-96e631ee3fe3"},{"borrowTitle":"微信端资质证明2","borrowStatus":2,"schedules":"80.00%","mortgageType":"房产抵押","deadlineNew":"3个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-04 13:45 ","id":2191,"amount":"500.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"X18D10454","subsidies":6,"subsidiesRate":0,"investNumTotal":"100.00","borrowRandomId":"ab922a0f-15dd-4623-ad28-76b9b85fb1fc"},{"borrowTitle":"测试00010503","borrowStatus":2,"schedules":"20.00%","mortgageType":"房产抵押","deadlineNew":"3个月","timeFlag":0,"annualRate":6,"ableTenderDate":"2018-05-03 14:50","id":2182,"amount":"500.00","borrowStatusStr":"募集中","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"X18D10445","subsidies":6,"subsidiesRate":0,"investNumTotal":"400.00","borrowRandomId":"f6933a11-1be7-4c42-b004-4d438cc72c47"}]
-         * publicMsgList : [{"article_title":"app公告","article_pub_time":"2018-05-24","article_link":"","aid":208},{"article_title":"测试页数3","article_pub_time":"2018-01-31","article_link":"","aid":204}]
-         * path : http://192.168.1.84:8080/yxb_oms/
+         * bannerList : [{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241607397172.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608063343.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608346978.png","tid":114}]
+         * borrowList : [{"ableTenderDate":"2018-07-27 11:45 ","amount":"30,000.00","annualRate":3,"borrowCode":"X18D10082","borrowFrom":1,"borrowRandomId":"9651146e-fb9d-492b-9fbc-e7f5b39fbb22","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"是","deadlineNew":"2个月","id":2616,"investNumTotal":"30,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-07-27 10:18 ","amount":"300,000.00","annualRate":3,"borrowCode":"X18D10081","borrowFrom":1,"borrowRandomId":"a068a4cb-ca7c-4f5b-8ef4-7864d396805a","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"资料","deadlineNew":"2个月","id":2615,"investNumTotal":"300,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-07-26 10:16 ","amount":"1,000.00","annualRate":9,"borrowCode":"Y18D10246","borrowFrom":1,"borrowRandomId":"9d03f128-1e96-4a98-a17f-86017654cee2","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"测试app借款详情","deadlineNew":"3个月","id":2614,"investNumTotal":"600.00","isDayThe":1,"mortgageType":4,"mortgageTypeStr":"车辆抵押","schedules":"40.00%","subsidies":3,"subsidiesRate":6,"timeFlag":0}]
+         * path : http://192.168.1.79:8080/yxb_oms/
+         * publicMsgList : [{"aid":220,"article_link":"","article_pub_time":"2018-07-18","article_title":"风格的规定电饭锅"},{"aid":223,"article_link":"","article_pub_time":"2018-07-17","article_title":"新标发布公告"}]
          */
 
         private String path;
@@ -85,18 +86,26 @@ public class ShouYe_Gson {
 
         public static class BannerListBean {
             /**
+             * hrefurl :
              * l_name : 引导页app
-             * picurl : upload/imageManage/20180524/201805241607397172.png
              * l_total_count : 3
+             * picurl : upload/imageManage/20180524/201805241607397172.png
              * tid : 114
-             * hrefurl : 
              */
 
-            private String l_name;
-            private String picurl;
-            private int l_total_count;
-            private int tid;
             private String hrefurl;
+            private String l_name;
+            private int l_total_count;
+            private String picurl;
+            private int tid;
+
+            public String getHrefurl() {
+                return hrefurl;
+            }
+
+            public void setHrefurl(String hrefurl) {
+                this.hrefurl = hrefurl;
+            }
 
             public String getL_name() {
                 return l_name;
@@ -104,14 +113,6 @@ public class ShouYe_Gson {
 
             public void setL_name(String l_name) {
                 this.l_name = l_name;
-            }
-
-            public String getPicurl() {
-                return picurl;
-            }
-
-            public void setPicurl(String picurl) {
-                this.picurl = picurl;
             }
 
             public int getL_total_count() {
@@ -122,6 +123,14 @@ public class ShouYe_Gson {
                 this.l_total_count = l_total_count;
             }
 
+            public String getPicurl() {
+                return picurl;
+            }
+
+            public void setPicurl(String picurl) {
+                this.picurl = picurl;
+            }
+
             public int getTid() {
                 return tid;
             }
@@ -129,114 +138,52 @@ public class ShouYe_Gson {
             public void setTid(int tid) {
                 this.tid = tid;
             }
-
-            public String getHrefurl() {
-                return hrefurl;
-            }
-
-            public void setHrefurl(String hrefurl) {
-                this.hrefurl = hrefurl;
-            }
         }
 
         public static class BorrowListBean {
             /**
-             * borrowTitle : 企业房
+             * ableTenderDate : 2018-07-27 11:45
+             * amount : 30,000.00
+             * annualRate : 3.0
+             * borrowCode : X18D10082
+             * borrowFrom : 1
+             * borrowRandomId : 9651146e-fb9d-492b-9fbc-e7f5b39fbb22
+             * borrowSpe : 个人借款
              * borrowStatus : 2
-             * schedules : 0.16%
-             * mortgageType : 房产抵押
+             * borrowStatusStr : 立即出借
+             * borrowTitle : 是
              * deadlineNew : 2个月
-             * timeFlag : 0
-             * annualRate : 6.0
-             * ableTenderDate : 2018-05-23 11:23 
-             * id : 2259
-             * amount : 10,000,000.00
-             * borrowStatusStr : 募集中
+             * id : 2616
+             * investNumTotal : 30,000.00
              * isDayThe : 1
-             * borrowSpe : 公司借款
-             * borrowFrom : 2
-             * borrowCode : X18D10521
-             * subsidies : 6.0
+             * mortgageType : 1
+             * mortgageTypeStr : 房产抵押
+             * schedules : 0%
+             * subsidies : 3.0
              * subsidiesRate : 0.0
-             * investNumTotal : 9,983,100.00
-             * borrowRandomId : 1de0c7e6-7c80-463d-8f35-96e631ee3fe3
+             * timeFlag : 0
              */
 
-            private String borrowTitle;
-            private int borrowStatus;
-            private String schedules;
-            private String mortgageType;
-            private String deadlineNew;
-            private int timeFlag;
-            private double annualRate;
             private String ableTenderDate;
-            private int id;
             private String amount;
-            private String borrowStatusStr;
-            private int isDayThe;
-            private String borrowSpe;
-            private int borrowFrom;
+            private double annualRate;
             private String borrowCode;
+            private int borrowFrom;
+            private String borrowRandomId;
+            private String borrowSpe;
+            private int borrowStatus;
+            private String borrowStatusStr;
+            private String borrowTitle;
+            private String deadlineNew;
+            private int id;
+            private String investNumTotal;
+            private int isDayThe;
+            private int mortgageType;
+            private String mortgageTypeStr;
+            private String schedules;
             private double subsidies;
             private double subsidiesRate;
-            private String investNumTotal;
-            private String borrowRandomId;
-
-            public String getBorrowTitle() {
-                return borrowTitle;
-            }
-
-            public void setBorrowTitle(String borrowTitle) {
-                this.borrowTitle = borrowTitle;
-            }
-
-            public int getBorrowStatus() {
-                return borrowStatus;
-            }
-
-            public void setBorrowStatus(int borrowStatus) {
-                this.borrowStatus = borrowStatus;
-            }
-
-            public String getSchedules() {
-                return schedules;
-            }
-
-            public void setSchedules(String schedules) {
-                this.schedules = schedules;
-            }
-
-            public String getMortgageType() {
-                return mortgageType;
-            }
-
-            public void setMortgageType(String mortgageType) {
-                this.mortgageType = mortgageType;
-            }
-
-            public String getDeadlineNew() {
-                return deadlineNew;
-            }
-
-            public void setDeadlineNew(String deadlineNew) {
-                this.deadlineNew = deadlineNew;
-            }
-
-            public int getTimeFlag() {
-                return timeFlag;
-            }
-
-            public void setTimeFlag(int timeFlag) {
-                this.timeFlag = timeFlag;
-            }
-
-            public double getAnnualRate() {
-                return annualRate;
-            }
-
-            public void setAnnualRate(double annualRate) {
-                this.annualRate = annualRate;
-            }
+            private int timeFlag;
 
             public String getAbleTenderDate() {
                 return ableTenderDate;
@@ -244,14 +191,6 @@ public class ShouYe_Gson {
 
             public void setAbleTenderDate(String ableTenderDate) {
                 this.ableTenderDate = ableTenderDate;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
             }
 
             public String getAmount() {
@@ -262,28 +201,20 @@ public class ShouYe_Gson {
                 this.amount = amount;
             }
 
-            public String getBorrowStatusStr() {
-                return borrowStatusStr;
+            public double getAnnualRate() {
+                return annualRate;
             }
 
-            public void setBorrowStatusStr(String borrowStatusStr) {
-                this.borrowStatusStr = borrowStatusStr;
+            public void setAnnualRate(double annualRate) {
+                this.annualRate = annualRate;
             }
 
-            public int getIsDayThe() {
-                return isDayThe;
+            public String getBorrowCode() {
+                return borrowCode;
             }
 
-            public void setIsDayThe(int isDayThe) {
-                this.isDayThe = isDayThe;
-            }
-
-            public String getBorrowSpe() {
-                return borrowSpe;
-            }
-
-            public void setBorrowSpe(String borrowSpe) {
-                this.borrowSpe = borrowSpe;
+            public void setBorrowCode(String borrowCode) {
+                this.borrowCode = borrowCode;
             }
 
             public int getBorrowFrom() {
@@ -294,12 +225,100 @@ public class ShouYe_Gson {
                 this.borrowFrom = borrowFrom;
             }
 
-            public String getBorrowCode() {
-                return borrowCode;
+            public String getBorrowRandomId() {
+                return borrowRandomId;
             }
 
-            public void setBorrowCode(String borrowCode) {
-                this.borrowCode = borrowCode;
+            public void setBorrowRandomId(String borrowRandomId) {
+                this.borrowRandomId = borrowRandomId;
+            }
+
+            public String getBorrowSpe() {
+                return borrowSpe;
+            }
+
+            public void setBorrowSpe(String borrowSpe) {
+                this.borrowSpe = borrowSpe;
+            }
+
+            public int getBorrowStatus() {
+                return borrowStatus;
+            }
+
+            public void setBorrowStatus(int borrowStatus) {
+                this.borrowStatus = borrowStatus;
+            }
+
+            public String getBorrowStatusStr() {
+                return borrowStatusStr;
+            }
+
+            public void setBorrowStatusStr(String borrowStatusStr) {
+                this.borrowStatusStr = borrowStatusStr;
+            }
+
+            public String getBorrowTitle() {
+                return borrowTitle;
+            }
+
+            public void setBorrowTitle(String borrowTitle) {
+                this.borrowTitle = borrowTitle;
+            }
+
+            public String getDeadlineNew() {
+                return deadlineNew;
+            }
+
+            public void setDeadlineNew(String deadlineNew) {
+                this.deadlineNew = deadlineNew;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getInvestNumTotal() {
+                return investNumTotal;
+            }
+
+            public void setInvestNumTotal(String investNumTotal) {
+                this.investNumTotal = investNumTotal;
+            }
+
+            public int getIsDayThe() {
+                return isDayThe;
+            }
+
+            public void setIsDayThe(int isDayThe) {
+                this.isDayThe = isDayThe;
+            }
+
+            public int getMortgageType() {
+                return mortgageType;
+            }
+
+            public void setMortgageType(int mortgageType) {
+                this.mortgageType = mortgageType;
+            }
+
+            public String getMortgageTypeStr() {
+                return mortgageTypeStr;
+            }
+
+            public void setMortgageTypeStr(String mortgageTypeStr) {
+                this.mortgageTypeStr = mortgageTypeStr;
+            }
+
+            public String getSchedules() {
+                return schedules;
+            }
+
+            public void setSchedules(String schedules) {
+                this.schedules = schedules;
             }
 
             public double getSubsidies() {
@@ -318,50 +337,34 @@ public class ShouYe_Gson {
                 this.subsidiesRate = subsidiesRate;
             }
 
-            public String getInvestNumTotal() {
-                return investNumTotal;
+            public int getTimeFlag() {
+                return timeFlag;
             }
 
-            public void setInvestNumTotal(String investNumTotal) {
-                this.investNumTotal = investNumTotal;
-            }
-
-            public String getBorrowRandomId() {
-                return borrowRandomId;
-            }
-
-            public void setBorrowRandomId(String borrowRandomId) {
-                this.borrowRandomId = borrowRandomId;
+            public void setTimeFlag(int timeFlag) {
+                this.timeFlag = timeFlag;
             }
         }
 
         public static class PublicMsgListBean {
             /**
-             * article_title : app公告
-             * article_pub_time : 2018-05-24
-             * article_link : 
-             * aid : 208
+             * aid : 220
+             * article_link :
+             * article_pub_time : 2018-07-18
+             * article_title : 风格的规定电饭锅
              */
 
-            private String article_title;
-            private String article_pub_time;
-            private String article_link;
             private int aid;
+            private String article_link;
+            private String article_pub_time;
+            private String article_title;
 
-            public String getArticle_title() {
-                return article_title;
+            public int getAid() {
+                return aid;
             }
 
-            public void setArticle_title(String article_title) {
-                this.article_title = article_title;
-            }
-
-            public String getArticle_pub_time() {
-                return article_pub_time;
-            }
-
-            public void setArticle_pub_time(String article_pub_time) {
-                this.article_pub_time = article_pub_time;
+            public void setAid(int aid) {
+                this.aid = aid;
             }
 
             public String getArticle_link() {
@@ -372,12 +375,20 @@ public class ShouYe_Gson {
                 this.article_link = article_link;
             }
 
-            public int getAid() {
-                return aid;
+            public String getArticle_pub_time() {
+                return article_pub_time;
             }
 
-            public void setAid(int aid) {
-                this.aid = aid;
+            public void setArticle_pub_time(String article_pub_time) {
+                this.article_pub_time = article_pub_time;
+            }
+
+            public String getArticle_title() {
+                return article_title;
+            }
+
+            public void setArticle_title(String article_title) {
+                this.article_title = article_title;
             }
         }
     }

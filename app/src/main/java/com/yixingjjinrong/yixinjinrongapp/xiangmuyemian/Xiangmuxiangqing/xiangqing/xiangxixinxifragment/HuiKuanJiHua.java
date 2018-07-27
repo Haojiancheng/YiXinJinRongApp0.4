@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -38,6 +39,8 @@ public class HuiKuanJiHua extends Fragment {
     private List<HuiKuanJiHua_Gson.ResultBean.RepaymentListBean> hkjhlist=new ArrayList<>();
     private HuiKuanJH_adapter adapter;
     private String borrowRandomId;
+    private String token1;
+    private String loginid;
 
     @Nullable
     @Override
@@ -69,6 +72,8 @@ public class HuiKuanJiHua extends Fragment {
         try {
 
             js_request.put("borrowRandomId",borrowRandomId);
+            js_request.put("token", token1);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -94,6 +99,7 @@ public class HuiKuanJiHua extends Fragment {
             public void onSuccess(String result) {
                 Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
                 HuiKuanJiHua_Gson data=new Gson().fromJson(result,HuiKuanJiHua_Gson.class);
+                Toast.makeText(getActivity(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                 hkjhlist.addAll(data.getResult().getRepaymentList());
                 adapter=new HuiKuanJH_adapter(hkjhlist,data.getResult().getBorrowStatus());
                 hkjh_rview.setAdapter(adapter);
@@ -119,6 +125,8 @@ public class HuiKuanJiHua extends Fragment {
     }
 
     private void initview() {
+        token1 = (String) SPUtils.get(getActivity(), "Token1", "");
+        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
 
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");

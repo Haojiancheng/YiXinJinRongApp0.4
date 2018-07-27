@@ -29,19 +29,21 @@
         <!-- 甄选优质资产-->
         <div class="content-asset">
             <p class="asset-title"><span style="padding-right:0.16rem;">专业风控管理</span><span>甄选优质资产</span></p>
-            <img src="./img/shield.jpg" alt=""/>
+            <div class="asset-baozhang">
+                <img src="./img/shield.jpg" alt=""/>
+            </div>
             <!-- 贷前审查-->
             <div class="asset-examine">
                 <div class="examine-subtitle"><p class="subtitle-t">贷前审查</p><p class="subtitle-b"></p></div>
                 <div class="examine-one">
                     <img src="./img/trade.jpg" alt=""/>
-                    <p class="one-title">准入群体过滤</p>
-                    <p class="one-details">制定借款人准入细则,严格执行准入细则,对借款人资质进行审核,确保借款人有稳定、可信的还款能力。</p>
+                    <p class="one-title">高危行业过滤</p>
+                    <p class="one-details">制定高危行业准入标准,管理划分借款用户行业群体,过滤进入标准以下的行业。</p>
                 </div>
                 <div class="examine-two">
                     <img src="./img/group.jpg" alt=""/>
                     <p class="two-title">准入群体过滤</p>
-                    <p class="two-details">制定高危行业准入标准,管理划分借款用户行业群体,过滤进入标准以下的行业。</p>
+                    <p class="two-details">制定借款人准入细则,严格执行准入细则,对借款人资质进行审核,确保借款人有稳定、可信的还款能力。</p>
                 </div>
                 <div class="examine-three">
                     <img src="./img/pledge.jpg" alt=""/>
@@ -109,5 +111,17 @@
         win.addEventListener(resizeEvt, recalc, false);
         doc.addEventListener('DOMContentLoaded', recalc, false);
     })(document, window);
+
+    $("#backBtn").click(function(){
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+            window.webkit.messageHandlers.popToVC.postMessage(null);
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+
+            window.android.backq();
+        }
+        return false
+    });
+
 </script>
+
 </html>

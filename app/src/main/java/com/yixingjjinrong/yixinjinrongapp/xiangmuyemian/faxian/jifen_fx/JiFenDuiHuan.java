@@ -43,6 +43,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
     private JiFenDuiHUan_adapter adapter;
     private TextView jifenjilu,duihuanjilu;
     private ImageView jfdh_fh;
+    private TextView jfgl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,14 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
     }
 
     private void getoncolincl() {
+        jfgl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(JiFenDuiHuan.this,JiFenGongLv.class);
+                startActivity(it);
+            }
+        });
+
         jifenjilu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//积分记录
@@ -141,6 +150,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
         user_jifen=findViewById(R.id.user_jifen);//用户积分
         jf_goods_rview=findViewById(R.id.jf_goods);
         jfdh_fh=findViewById(R.id.jfdh_fh);
+        jfgl=findViewById(R.id.jfgl);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 //        //设置布局的排版方向
         jf_goods_rview.setLayoutManager(layoutManager);

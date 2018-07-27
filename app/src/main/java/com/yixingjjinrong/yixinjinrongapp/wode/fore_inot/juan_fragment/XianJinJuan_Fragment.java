@@ -60,6 +60,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         getfcdy_id();
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         Log.e("现金券user_id", "" + user_id);
+        myadapter = new XianjinJuan_adapter(list);
+        xianjinjun_rview.setAdapter(myadapter);
         getHttp();
     }
 
@@ -98,9 +100,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
                 Log.e("现金券GSon", "" + result);
                 XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                 list.addAll(data.getQueryVouchersList());
-                myadapter = new XianjinJuan_adapter(list);
-                xianjinjun_rview.setAdapter(myadapter);
 
+                myadapter.notifyDataSetChanged();
 
             }
 

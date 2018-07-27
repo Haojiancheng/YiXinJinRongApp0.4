@@ -53,6 +53,9 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getcarId();
+        list.clear();
+        adapter=new Cardiya_adapter(list,getActivity());
+        carrview.setAdapter(adapter);
         getcarHTTp();
     }
 
@@ -90,8 +93,7 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
                 Log.e("车辆抵押GSON:L","-"+result );
                 CarDiYa_Gson data = new Gson().fromJson(result, CarDiYa_Gson.class);
                 list.addAll(data.getInvestList());
-                adapter=new Cardiya_adapter(list,getActivity());
-                carrview.setAdapter(adapter);
+
                 adapter.setonEveryItemClickListener(new Cardiya_adapter.OnEveryItemClickListener() {
                     @Override
                     public void onEveryClick(int position) {

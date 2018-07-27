@@ -70,114 +70,153 @@
         }
         /*如何赚取积分*/
         .strategy-details .details-obtain{
-            position: absolute;
-            top:0.26rem;
-            bottom:0.26rem;
-            left: 0.26rem;
-            right: 0.26rem;
-            /*margin:0.26rem 0.35rem;*/
-            border:0.01rem solid #e9e9e9;
-            padding:0.3rem 0.24rem 0.3rem 0.2rem;
+            margin: 0.26rem auto;
+            border: 0.01rem solid #e9e9e9;
+            padding: 0.3rem 0.24rem 0.3rem 0.2rem;
             color: #333;
             font-size: 0.27rem;
-            height: 6.63rem;
-            box-shadow:0rem 0rem 0.04rem #ccc;
-            border-radius:3%;
+            /* height: 100%; */
+            width: 90%;
+            box-shadow: 0rem 0rem 0.04rem #ccc;
+            border-radius: 3%;
             background-color: #fffaf6;
+            margin-bottom: 0.2rem;
+        }
+        .strategy-details .obtain-motif{
+            width: 50%;
+            margin: auto;
         }
         .strategy-details .obtain-motif img{
-            width: 2.95rem;
+            width: 100%;
             display:block;
             height: auto;
-            margin: auto;
+            
             margin-top: 0.31rem;
             margin-bottom: 0.41rem;
 
         }
         .strategy-details .obtain-earn{
-
+            width: 100%;
+            /*height: 100%;*/
+            /*position: relative;*/
         }
         /*左*/
-        .strategy-details .obtain-earn .earn-digit{
-            width: 0.42rem;
-            position:absolute;
-            top:1.56rem;
-        }
-        .strategy-details .obtain-earn .earn-digit li{
-            width: 0.28rem;
-            height: 0.28rem;
-            background-color: #fe6623;
-            color: #fff;
-            text-align: center;
-            font-size: 0.2rem;
-            box-shadow:0.02rem 0.02rem 0.02rem #ccc;
-        }
-        .strategy-details .obtain-earn .earn-digit li:nth-child(1){
-            margin-bottom: 2.24rem;
-        }
+       /*  .strategy-details .obtain-earn .earn-digit{
+           width: 0.42rem;
+           position:absolute;
+           top:1.56rem;
+       }
+       .strategy-details .obtain-earn .earn-digit li{
+           width: 0.28rem;
+           height: 0.28rem;
+           background-color: #fe6623;
+           color: #fff;
+           text-align: center;
+           font-size: 0.2rem;
+           box-shadow:0.02rem 0.02rem 0.02rem #ccc;
+       }
+       .strategy-details .obtain-earn .earn-digit li:nth-child(1){
+           margin-bottom: 2.24rem;
+       } */
         /*右*/
         .strategy-details .obtain-earn .earn-state{
+            /* position:absolute;
             float: left;
             width: 100%;
-            padding-left: 0.54rem;
+            left: 0.54rem; */
+        }
+        .strategy-details .obtain-earn .earn-state li{
+            font-size: 0.27rem;
+            width: 100%;
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(1){
+            width: 100%;
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(1) div{
+            float: left;
+            /*width: 0.28rem;*/
+            width: 5%;
+           height: 0.28rem;
+           background-color: #fe6623;
+           color: #fff;
+           text-align: center;
+           font-size: 0.2rem;
+           box-shadow:0.02rem 0.02rem 0.02rem #ccc;
+           margin-top:0.05rem;
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(1) p{
+            float: left;
+            padding-left: 0.13rem;
+            width: 90%;
         }
         .strategy-details .obtain-earn .earn-state li:nth-child(2){
-
-
+            /*width: 4.11rem;*/
+            width: 60%;
+            margin: 0.31rem auto 0.34rem;
+            /*margin-bottom: 0.34rem;*/
         }
         .strategy-details .obtain-earn .earn-state li:nth-child(2) img{
-            width: 4.11rem;
+            width: 100%;
             display:block;
             height: auto;
             margin: auto;
-            margin-top: 0.31rem;
-            margin-bottom: 0.34rem;
+            
         }
-        .strategy-details .details-obtain .obtain-flow{
-            margin-top: 3.89rem;
-            margin-left: 0.18rem;
+        .strategy-details .obtain-earn .earn-state li:nth-child(3){
+            width: 100%;
         }
-        .strategy-details .details-obtain .obtain-flow .flow-way{
-            width: 1.38rem;
-            height: 1.38rem;
-            border-radius:50%;
-            border:0.04rem solid #fe6623;
-            text-align: center;
-            color: #f65c46;
-            padding-top:0.25rem;
+        .strategy-details .obtain-earn .earn-state li:nth-child(3) div{
             float: left;
+            /*width: 0.28rem;*/
+            width: 5%;
+           height: 0.28rem;
+           background-color: #fe6623;
+           color: #fff;
+           text-align: center;
+           font-size: 0.2rem;
+           box-shadow:0.02rem 0.02rem 0.02rem #ccc;
+           margin-top:0.05rem;
         }
-        .strategy-details .details-obtain .obtain-flow .flow-arrows{
-            width: 0.23rem;
-            /*height: 0.12rem;*/
-            margin-left: 0.3rem;
-            margin-right: 0.4rem;
-            margin-top: 0.5rem;
+        .strategy-details .obtain-earn .earn-state li:nth-child(3) p{
             float: left;
+            padding-left: 0.13rem;
+            width: 90%;
         }
-        .strategy-details .details-obtain .obtain-flow .flow-arrows img{
-        ;
+        .strategy-details .obtain-earn .earn-state li:nth-child(4){
+            /*width: 4.11rem;*/
+            width: 80%;
+            margin: 0.31rem auto 0.34rem;
+            /*margin-bottom: 0.34rem;*/
+        }
+        .strategy-details .obtain-earn .earn-state li:nth-child(4) img{
+            width: 100%;
+            display:block;
+            height: auto;
+            margin: auto;
+            
         }
         /*积分兑换规则*/
         .strategy-details .details-rule{
-            position: absolute;
-            top:7.17rem;
-            left: 0.26rem;
-            right: 0.26rem;
-            border:0.01rem solid #e9e9e9;
-            padding:0.3rem 0.24rem 0.3rem 0.2rem;
+            border: 0.01rem solid #e9e9e9;
+            padding: 0.3rem 0.24rem 0.3rem 0.2rem;
             color: #333;
             font-size: 0.27rem;
-            box-shadow:0rem 0rem 0.04rem #ccc;
-            border-radius:3%;
+            box-shadow: 0rem 0rem 0.04rem #ccc;
+            border-radius: 2%;
             background-color: #fffaf6;
-            margin-bottom: 0.26rem;
+            margin: 0.26rem auto;
+            width: 90%;
+        }
+        .strategy-details .details-rule .rule-motif{
+            width: 50%;
+            
+            margin: auto;
         }
         .strategy-details .details-rule .rule-motif img{
-            width: 2.95rem;
+            
             display:block;
             height: auto;
-            margin: auto;
+            width: 100%;
             margin-top: 0.31rem;
             margin-bottom: 0.41rem;
 

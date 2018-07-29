@@ -119,6 +119,32 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         mType = it.getStringExtra("mortgageType");
 
         getWebview();//各种提示书
+        if (Integer.valueOf(jinge.getText().toString().trim()) == 0) {
+            jianhao.setEnabled(false);
+            
+        } else {
+            jianhao.setEnabled(true);
+            jianhao.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    if (Integer.valueOf(jinge.getText().toString().trim()) <= 100) {//金额不能小于100
+                        Toast.makeText(XiangMuXiangQing.this, "起投金额不能小于100元", Toast.LENGTH_SHORT).show();
+                    } else {
+                        jinge.setText(Integer.valueOf(jinge.getText().toString()) - 100 + "");//减后的金额
+                    }
+                }
+            });
+
+            jiahao.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    jinge.setText(Integer.valueOf(jinge.getText().toString().trim()) + 100 + "");//加后的金额
+                }
+            });
+
+        }
 
         getHttps();
 
@@ -186,7 +212,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 String myjine = jinge.getText().toString();
                 double b1 = Double.parseDouble(myjine);
                 Log.e("s1", "" + b1);
-                double myshouyi = ( data.getResult().getRedList1().getRan()/12)/ 100;
+                //*Integer.valueOf(data.getResult().getRedList1().getDeadlines())
+                double myshouyi = (data.getResult().getRedList1().getRan() / 12)*b1 / 100;
                 Log.e("myshouyi", "" + myshouyi);
                 yujishouyi.setText("" + myshouyi);
             }
@@ -196,36 +223,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             }
         });
-        if (Integer.valueOf(jinge.getText().toString().trim()) == 0) {
-            jianhao.setEnabled(false);
-            jiahao.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    jinge.setText("100");
-                }
-            });
-        } else {
-            jianhao.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onClick(View v) {
-                    if (Integer.valueOf(jinge.getText().toString().trim()) <= 100) {//金额不能小于100
-                        Toast.makeText(XiangMuXiangQing.this, "起投金额不能小于100元", Toast.LENGTH_SHORT).show();
-                    } else {
-                        jinge.setText(Integer.valueOf(jinge.getText().toString()) - 100 + "");//减后的金额
-                    }
-                }
-            });
 
-            jiahao.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onClick(View v) {
-                    jinge.setText(Integer.valueOf(jinge.getText().toString().trim()) + 100 + "");//加后的金额
-                }
-            });
-
-        }
 
     }
 
@@ -242,7 +240,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void getID() {
-        xiangmu_fh=findViewById(R.id.xiangmu_fh);
+        xiangmu_fh = findViewById(R.id.xiangmu_fh);
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
         loginid = (String) SPUtils.get(this, "Loginid", "");
@@ -283,8 +281,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
 
-    private void
-    getHttps() {
+    private void getHttps() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -309,7 +306,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/couponinformation.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/couponinformation.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
@@ -607,7 +604,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         final View popView = View.inflate(this, R.layout.fangxianpingce_pop, null);
         TextView txt_pc = popView.findViewById(R.id.txt_pc);
-        ImageView pc_img=findViewById(R.id.pc_img);
+        ImageView pc_img = findViewById(R.id.pc_img);
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
 
@@ -941,7 +938,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Immediately.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/Immediately.do");
         params.setAsJsonContent(true);
         params.setCacheMaxAge(1000 * 70);
         params.setBodyContent(canshu.toString());

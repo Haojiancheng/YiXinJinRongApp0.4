@@ -316,7 +316,7 @@
                         android:layout_marginLeft="20px"
                         android:background="@drawable/bt_huisebiankuang"
                         android:layout_gravity="center"
-                        android:text="0"
+                        android:text="100"
                         android:inputType="number"
                         android:numeric="integer"
                         android:textColor="#333333"

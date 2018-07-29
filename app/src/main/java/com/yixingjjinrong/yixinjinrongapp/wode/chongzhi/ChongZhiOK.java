@@ -16,8 +16,11 @@ import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import java.util.ArrayList;
+
 public class ChongZhiOK extends AutoLayoutActivity {
     private WebView chongzok;
+    private ArrayList<String> ss = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +29,8 @@ public class ChongZhiOK extends AutoLayoutActivity {
             AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
         }
         setContentView(R.layout.activity_chong_zhi_ok);
-        chongzok=findViewById(R.id.chongzok);
-        final Intent intent=getIntent();
+        chongzok = findViewById(R.id.chongzok);
+        final Intent intent = getIntent();
         String html = intent.getStringExtra("HTML");
         Log.e("充值成功HTM：L", html);
         WebSettings webSettings = chongzok.getSettings();
@@ -44,41 +47,65 @@ public class ChongZhiOK extends AutoLayoutActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Log.e("onPageFinished返回的URL",url );
-                if(url.indexOf("http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?") != -1)
-                {
+                Log.e("onPageFinished返回的URL", url);
+                if (url.indexOf("http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?") != -1) {
                     //http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=12300
-                    String r="http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=";
-                    Log.e("TAG", "包含该字符串"+r.length());
-                    String one = url.substring(64, 68);//substring是截取2个位置之间及start-end之间的字符串
-                    Log.e("one_截取", ""+one);
-                    String two = url.substring(77, 81);//substring是截取2个位置之间及start-end之间的字符串
-                    Log.e("two_截取", ""+two);
-                    String money = url.substring(86, url.length());
-                    int my_money= Integer.parseInt(money)/100;
-                    Log.e("我冲的钱",""+my_money);
+//                    String r="http://newwei.yxb.com/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=";
+//                    url.split("[?]");
+//                    Log.e("TAG", "包含该字符串"+r.length());
+//                    String one = url.substring(64, 68);//substring是截取2个位置之间及start-end之间的字符串
+//                    Log.e("one_截取", ""+one);
+//                    String two = url.substring(77, 81);//substring是截取2个位置之间及start-end之间的字符串
+//                    Log.e("two_截取", ""+two);
+//                    String money = url.substring(86, url.length());
+//                    int my_money= Integer.parseInt(money)/100;
+//                    Log.e("我冲的钱",""+my_money);
+                    String[] sp = url.split("[?]");
+                    for (int i = 0; i < sp.length; i++) {
+//            Log.e("输出====",""+sp[1]);
+                        String str = sp[1].toString();
+                        String[] sp2 = str.split("[&]");
+                        for (int j = 0; j < sp2.length; j++) {
+//                    Log.e("输出====sp2",""+sp2[j]);
+                            String[] sp3 = sp2[j].toString().split("[=]");
+                            for (int a = 0; a < sp3.length; a++) {
+                                Log.e("输出====sp3[1]", "" + sp3[1]);
+                                Log.e("输出====sp3[0]", "" + sp3[0]);
+                                ss.add(sp3[1]);
 
-                    if (one.equals("0000")&&two.equals("0000")){
+                            }
+                        }
+                    }
+                    Log.e("ss==========", ss.toString());
+                    String receiveCode =  ss.get(1);//第一个
+
+                    String retCode =  ss.get(2);//第二个
+                    String mymoney =  ss.get(5);//充的钱
+                    int money= Integer.valueOf(mymoney);
+                    int y= money/100;
+
+                    if (receiveCode.equals("0000") && retCode.equals("0000")) {
                         Toast.makeText(ChongZhiOK.this, "成功", Toast.LENGTH_SHORT).show();
-                        Intent inte=new Intent(ChongZhiOK.this, ChongZhiSuccers.class);
-                        inte.putExtra("jine",String.valueOf(my_money).toString() );
+                        Intent inte = new Intent(ChongZhiOK.this, ChongZhiSuccers.class);
+                        inte.putExtra("jine", String.valueOf(y).toString());
                         startActivity(inte);
                         finish();
-                    }else {
+                    } else {
                         Toast.makeText(ChongZhiOK.this, "失败", Toast.LENGTH_SHORT).show();
-                        Intent inte=new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
+                        Intent inte = new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
                         startActivity(inte);
                         finish();
                     }
 
-                }else {
+                } else {
                     Toast.makeText(ChongZhiOK.this, "失败", Toast.LENGTH_SHORT).show();
-                    Intent inte=new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
+                    Intent inte = new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
                     startActivity(inte);
                     finish();
 
                 }
             }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);

@@ -32,11 +32,13 @@
             android:value="2.1" />
 
         <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.PingTaJieShao" />
@@ -49,8 +51,7 @@
         <activity
             android:name=".wode.dengruzuce.WoDe_DengRu"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".wode.dengruzuce.ZhuCe_PaGa" />
         <activity android:name=".wode.dengruzuce.YanZheng_PaGa" />
         <activity android:name=".wode.dengruzuce.ChengGongZhuCe" />
@@ -102,6 +103,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".wode.tixian.jieguo.Putforward_ok" />
+        <activity android:name=".wode.tixian.jieguo.Putforward_fail"></activity>
     </application>
 
 </manifest>

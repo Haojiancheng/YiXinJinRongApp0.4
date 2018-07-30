@@ -56,10 +56,8 @@ public class XiangMuXinXi extends Fragment {
     private XiangMuXingXi_Car_gson cardata;
     private TextView sx_pg, sc_zhuzhi, sc_cq;
     private TextView qyrz, qy_rz, qywrz;
-    private View geren,qiye,shencha;
+    private View geren,qiye;
     private TextView qy_name,qy_dm,qy_time,qy_zb,qy_hy,qy_dizhi,qy_bg,qy_fd,qy_shouru,qy_huanhuancishu,qy_yuqicishu,qy_lishiyuqi_jinge,qy_dangqian_jine,qy_6yue,qy_qita,qy_fanwei;
-    private String userToken;
-    private int user_id;
 
 
     @Nullable
@@ -76,7 +74,6 @@ public class XiangMuXinXi extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initview();
         getxmxxid();
-
 
         getHttp();
     }
@@ -151,7 +148,7 @@ public class XiangMuXinXi extends Fragment {
         fc_jiage = getActivity().findViewById(R.id.fc_jiage);
         xk_jg = getActivity().findViewById(R.id.xk_jg);
 
-//,,,,,,,,审查,,,,;        
+//,,,,,,,,审查,,,,;
         sf_rz = getActivity().findViewById(R.id.sf_rz);
         sf_wrz = getActivity().findViewById(R.id.sf_wrz);
         zz_rz = getActivity().findViewById(R.id.zz_rz);
@@ -205,8 +202,7 @@ public class XiangMuXinXi extends Fragment {
         car_buy = getActivity().findViewById(R.id.car_buy);
         car_money = getActivity().findViewById(R.id.car_money);
         car_cmoney = getActivity().findViewById(R.id.car_cmoney);
-//审查信息
-        shencha=getActivity().findViewById(R.id.shencha);
+
 
     }
 
@@ -236,11 +232,6 @@ public class XiangMuXinXi extends Fragment {
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", "XXGSON>>>" + result);
-                if (user_id==0){
-                    shencha.setVisibility(View.GONE);
-                }else {
-                    shencha.setVisibility(View.VISIBLE);
-                }
                 //房产标GSON
                 data = new Gson().fromJson(result, XiangMuXinXi_Gson.class);
                 //车辆标GSON
@@ -323,11 +314,7 @@ public class XiangMuXinXi extends Fragment {
                     } else {
                         bx_cuoshi.setText("房产抵押");
                     }
-                    if (data.getResult().getBorrowInfo().length()<30){
-                        tv_click.setVisibility(View.GONE);
-                    }else {
-                        tv_click.setVisibility(View.VISIBLE);
-                    }
+
                     start_time.setText(data.getResult().getAbleTenderDate());
                     end_time.setText(data.getResult().getEndTenderDate());
                     tv_click = getActivity().findViewById(R.id.main_tv_click);
@@ -364,12 +351,12 @@ public class XiangMuXinXi extends Fragment {
                     qy_fd.setText(data.getResult().getCompanyOwner());
                     qy_shouru.setText(data.getResult().getCmonthIncome());
                     qy_fd.setText(data.getResult().getCompanyOwner());
-                    qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");//企业平台历史还款次数
-                    qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");//企业平台历史逾期次数
-                    qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");//企业平台历史逾期金额
-                    qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");//企业平台当期逾期金额
-                    qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());//企业截止借款前6个月内借款人征信报告的逾期情况
-                    qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());//企业借款人在其他网络借贷平台借款情况
+                    qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
+                    qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                    qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
+                    qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");
+                    qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());
+                    qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());
                     qy_fanwei.setText(data.getResult().getBusinessScope());
 //  TextView ,,,,,个人信息,,,,,,,,,,,;
                     man_name.setText(data.getResult().getRealName());
@@ -722,7 +709,6 @@ public class XiangMuXinXi extends Fragment {
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
         mtpye = (String) SPUtils.get(getActivity(), "mtype1", "");
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
 
         MyScrollView xiangmuxingxiSV = getActivity().findViewById(R.id.xiangmuxinxScrollView);
         xiangmuxingxiSV.setScrollListener(new MyScrollView.ScrollListener() {

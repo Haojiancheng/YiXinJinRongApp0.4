@@ -24,7 +24,7 @@
             android:src="@drawable/fanhui" />
 
         <TextView
-            android:layout_width="230px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -121,7 +121,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="82px"
             android:background="@drawable/bt_shape"
-            android:text="进入我的账户"
+            android:text="项目列表"
             android:textColor="#ffffff"
             android:textSize="38px" />
 

@@ -532,10 +532,11 @@
         });
         return index
     }
-
-    var sendKey = function (json) {
+    var yxb_urlString = "";
+    function sendKey(json) {
          alert(JSON.stringify(json));
-    };
+         yxb_urlString = json;
+    }
 
     var yxb_http = "";
     function getYXBIP(yxb_http) {
@@ -681,11 +682,11 @@
             param["paramMap.mark"] = t12;
             param["paramMap.userCount"] = count8;
             
-            param["paramMap.userId"] = userIdString;
+            param["paramMap.userId"] = yxb_urlString;
             if (t1 && t2 && t3 && t4 && t5 && t6 && t7 && t8 && t9 && t10 && t11 && t12) {
               $.ajax({
                      type : "post",
-                     url : "http://192.168.1.120:8080/yxb_mobile/yxbApp/addUserInvestigation.do",
+                     url : "http://newwei.yxb.com/yxbApp/addUserInvestigation.do",
                      dataType : "jsonp",//数据类型为jsonp
                      jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
                      data: param,

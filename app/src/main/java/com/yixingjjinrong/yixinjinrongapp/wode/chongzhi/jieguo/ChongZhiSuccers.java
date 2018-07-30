@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,6 +39,8 @@ public class ChongZhiSuccers extends AutoLayoutActivity {
         bt_chong_agen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent it=new Intent(ChongZhiSuccers.this, ChongZhq.class);
+                startActivity(it);
                 finish();
             }
         });

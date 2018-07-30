@@ -212,8 +212,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 String myjine = jinge.getText().toString();
                 double b1 = Double.parseDouble(myjine);
                 Log.e("s1", "" + b1);
+
                 //*Integer.valueOf(data.getResult().getRedList1().getDeadlines())
-                double myshouyi = (data.getResult().getRedList1().getRan() / 12)*b1 / 100;
+                double myshouyi =b1* (data.getResult().getRedList1().getRan() / 12*Integer.valueOf(data.getResult().getRedList1().getDeadlines()))/ 100;
                 Log.e("myshouyi", "" + myshouyi);
                 yujishouyi.setText("" + myshouyi);
             }
@@ -366,7 +367,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         startActivity(itcz);
                     }
                 });
-                if (data.getResult().getRedList1().getRans() == 0) {
+                if (data.getResult().getRedList1().getRans() <= 0) {
                     xiangqing_fujia_lilv.setText("");
                     xiangqing_jiaohao.setText("");
                     xiangqing_fujia_bi.setText("");
@@ -1025,11 +1026,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-//        getHttps();
-//    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getHttps();
+    }
 
     @Override
     public void onDestroy() {

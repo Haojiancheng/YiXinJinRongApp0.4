@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".wode.chongzhi.jieguo.ChongZhiSuccers">
+    tools:context=".wode.tixian.jieguo.Putforward_fail">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="138px"
@@ -13,11 +13,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/cz_sucess_fh"
+            android:id="@+id/tx_sb_fh"
             android:layout_width="40px"
             android:layout_height="match_parent"
-            android:paddingRight="20px"
             android:layout_marginLeft="20px"
+            android:paddingRight="20px"
             android:paddingTop="20px"
             android:src="@drawable/fanhui" />
 
@@ -27,14 +27,14 @@
             android:layout_marginLeft="251px"
             android:gravity="center_horizontal"
             android:paddingTop="60px"
-            android:text="充值成功"
+            android:text="提现失败"
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/chenggong"
+        android:src="@drawable/shibai"
         android:layout_gravity="center"
         android:layout_marginTop="189px"
         />
@@ -43,62 +43,28 @@
         android:layout_height="wrap_content"
         android:textColor="#333"
         android:textSize="44px"
-        android:text="充值成功"
+        android:text="提现失败"
         android:layout_gravity="center"
         android:layout_marginTop="27px"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="40px"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="充值金额"
-            android:textColor="#999"
-            android:textSize="30px"
-
-            />
-        <TextView
-            android:id="@+id/chongzhiok_jinge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="34px"
-            android:textSize="30px"
-            android:text="54546"
-            android:textColor="#ef6623"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#444"
-            android:textSize="30px"
-            android:layout_marginLeft="5px"
-            android:text="元"
-            />
-    </LinearLayout>
 
     <Button
-        android:id="@+id/bt_chujie"
+        android:id="@+id/bt_account"
         android:layout_width="490px"
         android:layout_height="90px"
         android:background="@drawable/bt_shape"
-        android:text="立即出借"
+        android:text="账户中心"
         android:layout_marginTop="90px"
-
         android:layout_gravity="center"
         android:textColor="#fdfdfe" />
     <Button
-        android:id="@+id/bt_chong_agen"
+        android:id="@+id/continue_to_do_it"
         android:layout_width="490px"
         android:layout_height="90px"
         android:background="@drawable/bt_biankuang"
-        android:text="继续充值"
+        android:text="继续提现"
         android:layout_marginTop="36px"
         android:layout_gravity="center"
-        android:textColor="#ef6623" />
+        android:textColor="#fa7431" />
 
 </com.zhy.autolayout.AutoLinearLayout>

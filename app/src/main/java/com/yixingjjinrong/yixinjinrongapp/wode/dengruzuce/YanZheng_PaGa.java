@@ -69,7 +69,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
         getyanZheng_Id();
         getyanZheng_Onclick();
-        time = new TimeCount(10000, 1000);
+        time = new TimeCount(60000, 1000);
     }
    
     public static boolean isPassword(String password) {

@@ -179,7 +179,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("phone", phone);
-            js_request.put("type", 1);
+            js_request.put("type", 3);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");

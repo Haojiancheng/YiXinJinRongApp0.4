@@ -36,6 +36,7 @@ public class ZongziChan extends AutoLayoutActivity {
     private String loginid;
     private String token;
     private ImageView ze_fh;
+    private TextView hose_daishou,car_daishou;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,14 +99,20 @@ public class ZongziChan extends AutoLayoutActivity {
                 String forAmount = data.getUserMap().getForAmount();//总代收
                 String usableAmount = data.getUserMap().getUsableAmount();//可用余额
                 String freezeAmount = data.getUserMap().getFreezeAmount();//冻结金额
+
                 zonge_z.setText(accountSum);
                 zonge_daishou.setText(forAmount);
                 zonge_keyong.setText(usableAmount);
-                zonge_dongjie.setText(freezeAmount);
-               float i=Float.parseFloat(forAmount);
-               float u=Float.parseFloat(usableAmount);
-               float y=Float.parseFloat(freezeAmount);
-               float z=Float.parseFloat(accountSum);
+//                for (int i = 0; i < data.getListType().size(); i++) {
+//                    Log.e("gcfr",""+data.getListType().get(i).getMortgageType() );
+//                }
+
+//                zonge_dongjie.setText(data.getUserMap().);
+//                car_daishou.setText(data.getUserMap());
+//               float i=Float.parseFloat(forAmount);
+//               float u=Float.parseFloat(usableAmount);
+//               float y=Float.parseFloat(freezeAmount);
+//               float z=Float.parseFloat(accountSum);
 //                //总代收%
 //                zong = i/z*10;
 //                zong_floor = Math.floor(zong);
@@ -147,6 +154,8 @@ public class ZongziChan extends AutoLayoutActivity {
         zonge_keyong=findViewById(R.id.zonge_keyong);
         zonge_dongjie=findViewById(R.id.zonge_dongjie);
         ze_fh=findViewById(R.id.ze_fh);
+        hose_daishou=findViewById(R.id.hose_daishou);
+        car_daishou=findViewById(R.id.cae_daishou);
 
     }
 }

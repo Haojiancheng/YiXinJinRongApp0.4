@@ -95,9 +95,9 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
             case 0:
 
                 holder1.first_name.setText(list.get(position).getBorrowTitle()+"   "+list.get(position).getBorrowCode());
-                holder1.first_lv.setText((int) list.get(position).getSubsidies() + ".0");
+                holder1.first_lv.setText(String.valueOf(list.get(position).getSubsidies()));
                 holder1.first_yue.setText(list.get(position).getAmount()+" 元");
-                if (list.get(position).getSubsidiesRate() == 0) {
+                if (list.get(position).getSubsidiesRate() <= 0) {
                     holder1.first_fujialv.setText("");
                     holder1.first_jia.setText("");
                     holder1.first_fujiabai.setText("");
@@ -170,7 +170,7 @@ public class ShouYe_MyBaseAdapter extends BaseAdapter {
                 holder2.xiangmu_name.setText(list.get(position).getBorrowTitle());
                 holder2.xiangmu_code.setText(list.get(position).getBorrowCode());
                 holder2.years_lilv.setText((int) list.get(position).getSubsidies() + ".0");
-                if (list.get(position).getSubsidiesRate() == 0) {
+                if (list.get(position).getSubsidiesRate() <= 0) {
                     holder2.fujia_lilv.setText("");
                     holder2.fujia_jiahao.setText("");
                     holder2.jiahao.setText("");

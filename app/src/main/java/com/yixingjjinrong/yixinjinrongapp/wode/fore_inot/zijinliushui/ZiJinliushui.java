@@ -134,6 +134,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
     @Override
     public void onRefresh() {
         adapter.notifyDataSetChanged();
+        list.clear();
         a=1;
         getlsHTTP();
         xrview.refreshComplete();

@@ -68,7 +68,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
             Glide.with(context).load(R.drawable.cheliang).into(holder.xiangmu_src);
         }
 //        holder.xiangmu_src.setImageDrawable();
-        if (list.get(position).getSubsidiesRate() != 0) {
+        if (list.get(position).getSubsidiesRate() > 0) {
             holder.fujia_lilv.setText(String.valueOf(list.get(position).getSubsidiesRate()));
 
         } else {

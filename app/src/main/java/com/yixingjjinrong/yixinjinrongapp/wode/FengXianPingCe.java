@@ -52,22 +52,19 @@ public class FengXianPingCe extends AutoLayoutActivity {
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
         // 设置允许JS弹窗
-        pc_web.getSettings().setJavaScriptEnabled(true);
         pc_web.addJavascriptInterface(this, "android");
         JSONObject json = new JSONObject();
+
+        pc_web.loadUrl("file:///android_asset/index.html");
+        pc_web.getSettings().setJavaScriptEnabled(true);
+//        pc_web.loadUrl("javascript:sendKey("+"'"+String.valueOf(user_id)+"'"+")");
         try {
             json.put("userid",user_id );
             pc_web.loadUrl("javascript:sendKey(\""+json.toString()+ "\")");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        pc_web.loadUrl("file:///android_asset/index.html");
-//        pc_web.loadUrl("javascript:sendKey("+"'"+String.valueOf(user_id)+"'"+")");
-
-
-
         pc_web.setWebViewClient(new WebViewClient());
-        pc_web.setWebChromeClient(new WebChromeClient());
         pc_web.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

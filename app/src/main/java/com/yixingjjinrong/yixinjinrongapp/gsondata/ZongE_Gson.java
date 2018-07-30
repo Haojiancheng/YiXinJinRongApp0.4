@@ -4,11 +4,12 @@ import java.util.List;
 
 public class ZongE_Gson {
 
+
     /**
      * message : 成功了
-     * result : {"userId":11298}
-     * userMap : {"hasPaySum":"9891.00","hasRePayPrincipal":"0.00","otherEarnAmount":"0.00","usableAmount":"373698.50","freezeAmount":"124383.00","usableCreditLimit":"0.00","creditLimit":"0.00","forRePayInterest":"0.00","earnSum":"149.50","forPayPrincipal":"3100.00","hasPayPrincipal":"9800.00","hasPayInterest":"91.00","forAmount":"3158.5","forRePaySum":"0.00","hasRePaySum":"0.00","cashFreezeAmount":"0.00","forRePayPrincipal":"0.00","hasRePayInterest":"0.00","forPaySum":"3158.50","accountSum":"501240.00","forPayInterest":"58.50","rateEarnAmount":"149.50"}
-     * listType : [{"mortgageType":1,"forPaySum":303},{"mortgageType":4,"forPaySum":622.5}]
+     * result : {"userId":10985,"token":"login:869381039260413","loginId":"login:10985"}
+     * userMap : {"hasPaySum":"0.00","hasRePayPrincipal":"0.00","otherEarnAmount":"0.00","usableAmount":"10934.00","freezeAmount":"1133.00","usableCreditLimit":"0.00","creditLimit":"0.00","forRePayInterest":"0.00","earnSum":"0.00","forPayPrincipal":"0.00","hasPayPrincipal":"0.00","hasPayInterest":"0.00","forAmount":"0.0","forRePaySum":"0.00","hasRePaySum":"0.00","cashFreezeAmount":"0.00","forRePayPrincipal":"0.00","hasRePayInterest":"0.00","forPaySum":"0.00","accountSum":"12067.00","forPayInterest":"0.00","rateEarnAmount":"0.00"}
+     * listType : [{"mortgageType":4,"forPaySum":"0.00"},{"mortgageType":"1","forPaySum":"0.00"}]
      * state : success
      */
 
@@ -60,28 +61,28 @@ public class ZongE_Gson {
 
     public static class UserMapBean {
         /**
-         * hasPaySum : 9891.00
+         * hasPaySum : 0.00
          * hasRePayPrincipal : 0.00
          * otherEarnAmount : 0.00
-         * usableAmount : 373698.50
-         * freezeAmount : 124383.00
+         * usableAmount : 10934.00
+         * freezeAmount : 1133.00
          * usableCreditLimit : 0.00
          * creditLimit : 0.00
          * forRePayInterest : 0.00
-         * earnSum : 149.50
-         * forPayPrincipal : 3100.00
-         * hasPayPrincipal : 9800.00
-         * hasPayInterest : 91.00
-         * forAmount : 3158.5
+         * earnSum : 0.00
+         * forPayPrincipal : 0.00
+         * hasPayPrincipal : 0.00
+         * hasPayInterest : 0.00
+         * forAmount : 0.0
          * forRePaySum : 0.00
          * hasRePaySum : 0.00
          * cashFreezeAmount : 0.00
          * forRePayPrincipal : 0.00
          * hasRePayInterest : 0.00
-         * forPaySum : 3158.50
-         * accountSum : 501240.00
-         * forPayInterest : 58.50
-         * rateEarnAmount : 149.50
+         * forPaySum : 0.00
+         * accountSum : 12067.00
+         * forPayInterest : 0.00
+         * rateEarnAmount : 0.00
          */
 
         private String hasPaySum;
@@ -286,12 +287,12 @@ public class ZongE_Gson {
 
     public static class ListTypeBean {
         /**
-         * mortgageType : 1
-         * forPaySum : 303.0
+         * mortgageType : 4
+         * forPaySum : 0.00
          */
 
         private int mortgageType;
-        private double forPaySum;
+        private String forPaySum;
 
         public int getMortgageType() {
             return mortgageType;
@@ -301,11 +302,11 @@ public class ZongE_Gson {
             this.mortgageType = mortgageType;
         }
 
-        public double getForPaySum() {
+        public String getForPaySum() {
             return forPaySum;
         }
 
-        public void setForPaySum(double forPaySum) {
+        public void setForPaySum(String forPaySum) {
             this.forPaySum = forPaySum;
         }
     }

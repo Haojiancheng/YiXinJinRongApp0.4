@@ -52,7 +52,7 @@ public class ChuJie_OK extends AutoLayoutActivity {
         cjcg_zh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                EventBus.getDefault().post(new MyConten());
+                EventBus.getDefault().post(new LookMore());
                 finish();
             }
         });

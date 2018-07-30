@@ -332,6 +332,7 @@ public class ChongZhq extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", loginid);
 
+
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -347,7 +348,7 @@ public class ChongZhq extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        Log.e("js_",""+js_request );
         RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/postOnlineCZFu.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
@@ -359,7 +360,7 @@ public class ChongZhq extends AutoLayoutActivity {
                 String html = data.getHtml();
                 Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
                 itcz.putExtra("HTML", html);
-                Log.e("HTML!:", "" + html.toString());
+                Log.e("HTMLone:", "" + html.toString());
                 startActivity(itcz);
                 finish();
             }

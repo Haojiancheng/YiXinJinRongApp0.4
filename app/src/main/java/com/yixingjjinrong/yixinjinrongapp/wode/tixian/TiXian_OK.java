@@ -8,12 +8,19 @@ import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.GsonBean;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
+import com.yixingjjinrong.yixinjinrongapp.wode.tixian.jieguo.Putforward_fail;
+import com.yixingjjinrong.yixinjinrongapp.wode.tixian.jieguo.Putforward_ok;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.io.UnsupportedEncodingException;
@@ -68,7 +75,7 @@ public class TiXian_OK extends AutoLayoutActivity {
                 super.onPageFinished(view, url);
                 Log.e("提现返回的URL", "" + url);
                 //http://localhost:8080/yxb_mobile/yxbApp/frontWithdrawUrlApp.do?receiveCode=0000&receiveJson={%22amt%22:%2220000%22,%22login_id%22:%2217720181111%22,%22mchnt_cd%22:%220003310F0351795%22,%22mchnt_txn_ssn%22:%22ZJWD20180725142222457471%22,%22rem%22:%22%22,%22resp_code%22:%220000%22,%22resp_desc%22:%22??%22,%22signature%22:%22z+UJ+oZhZUhNvwtkRN0RUECIBgjtHOi6FHrGQrLLAGtMgX0rH+ZsZFtO1W1Cx20yezXhxAGAMv2YhhwxrD0H5KsDxee53Xx4rikWJhktQadpOJ1dtqka+rTaQeIy1Rz3WvCr/LjHp7SbEfH8ZZAiEU0AyCd2/xAAQCcIofD5BtY=%22}
-                if (url.indexOf("http://localhost:8080/yxb_mobile/yxbApp/frontWithdrawUrlApp.do?") != -1) {
+                if (url.indexOf(Urls.BASE_URL+"yxbApp/frontWithdrawUrlApp.do?") != -1) {
                     String[] sp = url.split("[?]");
                     for (int i = 0; i < sp.length; i++) {
 
@@ -96,6 +103,26 @@ public class TiXian_OK extends AutoLayoutActivity {
 
                     Log.e("readlly", docode + "\"" + "}");
                     Log.e("amt", data.getAmt() + "");
+                    String receiveCode = ss.get(1);//第一个
+
+                    String retCode = data.getResp_code();//第二个
+
+                    int amt = Integer.valueOf(data.getAmt());
+                    int y = amt / 100;
+                    if (receiveCode.equals("0000") && retCode.equals("0000")) {
+                        Toast.makeText(TiXian_OK.this, "成功", Toast.LENGTH_SHORT).show();
+                        Intent inte = new Intent(TiXian_OK.this, Putforward_ok.class);
+                        inte.putExtra("jine", String.valueOf(y).toString());
+                        startActivity(inte);
+                        finish();
+                    } else {
+                        Toast.makeText(TiXian_OK.this, "失败", Toast.LENGTH_SHORT).show();
+                        Intent inte = new Intent(TiXian_OK.this, Putforward_fail.class);
+                        startActivity(inte);
+                        finish();
+                    }
+
+
                 }
             }
         });

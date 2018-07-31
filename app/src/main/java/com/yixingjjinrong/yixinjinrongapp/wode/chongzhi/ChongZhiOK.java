@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -49,7 +51,7 @@ public class ChongZhiOK extends AutoLayoutActivity {
                 super.onPageFinished(view, url);
                 Log.e("onPageFinished返回的URL", url);
                 //http://192.168.1.79:8080/yxb_mobile/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=10000receiveCode=0000&retCode=0000&amt=10000
-                if (url.indexOf("yxbApp/frontFuonlineUrlApp.do?") != -1) {
+                if (url.indexOf(Urls.BASE_URL+"yxbApp/frontFuonlineUrlApp.do?") != -1) {
                     String[] sp = url.split("[?]");
                     for (int i = 0; i < sp.length; i++) {
 //            Log.e("输出====",""+sp[1]);
@@ -103,5 +105,19 @@ public class ChongZhiOK extends AutoLayoutActivity {
             }
         });
         chongzok.setWebChromeClient(new MyWebChromeClient());
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //清空所有Cookie
+        CookieSyncManager.createInstance(ChongZhiOK.this);  //Create a singleton CookieSyncManager within a context
+        CookieManager cookieManager = CookieManager.getInstance(); // the singleton CookieManager instance
+        cookieManager.removeAllCookie();// Removes all cookies.
+        CookieSyncManager.getInstance().sync(); // forces sync manager to sync now
+
+        chongzok.setWebChromeClient(null);
+        chongzok.setWebViewClient(null);
+        chongzok.getSettings().setJavaScriptEnabled(false);
+        chongzok.clearCache(true);
     }
 }

@@ -86,7 +86,7 @@ public class JieKuanZiLiao extends Fragment {
                 JieKuanZiLiao_Gson data=new Gson().fromJson(result,JieKuanZiLiao_Gson.class);
                 String urlpaht=data.getResult().getICIMAGE();
                 list.addAll(data.getResult().getQualificationList());
-                adapter=new JieKuanZiLiao_Adapter(list,urlpaht);
+                adapter=new JieKuanZiLiao_Adapter(list,urlpaht,getActivity());
                 jihuan_rview.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 

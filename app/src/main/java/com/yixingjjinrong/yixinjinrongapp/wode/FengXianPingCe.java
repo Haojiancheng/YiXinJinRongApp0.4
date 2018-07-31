@@ -38,7 +38,6 @@ public class FengXianPingCe extends AutoLayoutActivity {
         }
         setContentView(R.layout.activity_fengxian_pingce);
         pc_web=findViewById(R.id.pc_web);
-
         user_id = (int) SPUtils.get(this,"userId",0);
 
 

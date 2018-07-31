@@ -332,7 +332,6 @@ public class ChongZhq extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", loginid);
 
-
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");

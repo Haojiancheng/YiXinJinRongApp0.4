@@ -134,6 +134,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
 
     @Override
     public void onRefresh() {
+        list.clear();
         adapter.notifyDataSetChanged();
         a=1;
         getHttp();

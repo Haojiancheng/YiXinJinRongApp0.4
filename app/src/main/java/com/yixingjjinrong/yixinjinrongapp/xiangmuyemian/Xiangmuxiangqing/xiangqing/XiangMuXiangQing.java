@@ -445,6 +445,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void getchujieHttp() {
+        bt_lijichujie.setEnabled(false);
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -567,7 +568,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         dialog3.show();
                         break;
                     case 0:
-                        Toast.makeText(XiangMuXiangQing.this, "出借第一步【过】", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(XiangMuXiangQing.this, "请稍等…………", Toast.LENGTH_SHORT).show();
                         getchujieHttpTwo();
 
                         break;
@@ -616,9 +617,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(XiangMuXiangQing.this, FengXianPingCe.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("user_ird", user_id);
-                intent.putExtras(bundle);
                 startActivity(intent);
             }
 
@@ -946,11 +944,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
                 Log.e("立即出借GSon", result);
                 LJCJtwo_gson data = new Gson().fromJson(result, LJCJtwo_gson.class);
                 String msg = data.getResult().getMsg();
                 if (msg.equals("1")) {
-                    Toast.makeText(XiangMuXiangQing.this, "我擦", Toast.LENGTH_SHORT).show();
                     String toumoney = data.getResult().getInvestAmount();
                     String toutime = data.getResult().getInvestDate();
                     Intent it = new Intent(XiangMuXiangQing.this, ChuJie_OK.class);
@@ -960,8 +958,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     SPUtils.remove(XiangMuXiangQing.this, "juantype");
                     SPUtils.remove(XiangMuXiangQing.this, "juanId");
                     SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+                    bt_lijichujie.setEnabled(true);
                 } else {
                     Toast.makeText(XiangMuXiangQing.this, "" + msg, Toast.LENGTH_SHORT).show();
+                    bt_lijichujie.setEnabled(true);
                 }
 
 

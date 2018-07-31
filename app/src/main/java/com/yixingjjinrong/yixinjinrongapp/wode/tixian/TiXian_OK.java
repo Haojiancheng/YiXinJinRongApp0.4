@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.GsonBean;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
@@ -127,5 +130,19 @@ public class TiXian_OK extends AutoLayoutActivity {
             }
         });
         tixian_web.setWebChromeClient(new MyWebChromeClient());
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //清空所有Cookie
+        CookieSyncManager.createInstance(TiXian_OK.this);  //Create a singleton CookieSyncManager within a context
+        CookieManager cookieManager = CookieManager.getInstance(); // the singleton CookieManager instance
+        cookieManager.removeAllCookie();// Removes all cookies.
+        CookieSyncManager.getInstance().sync(); // forces sync manager to sync now
+
+        tixian_web.setWebChromeClient(null);
+        tixian_web.setWebViewClient(null);
+        tixian_web.getSettings().setJavaScriptEnabled(false);
+        tixian_web.clearCache(true);
     }
 }

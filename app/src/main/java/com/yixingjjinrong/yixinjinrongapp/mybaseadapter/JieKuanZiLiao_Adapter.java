@@ -1,7 +1,9 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JieKuanZiLiao_Gson;
 
@@ -20,10 +23,12 @@ import java.util.List;
 public class JieKuanZiLiao_Adapter extends RecyclerView.Adapter<JieKuanZiLiao_Adapter.MyViewHolder> {
     private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list;
     private String urlpath;
+    Context context;
 
-    public JieKuanZiLiao_Adapter(List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list, String urlpath) {
+    public JieKuanZiLiao_Adapter(List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list, String urlpath, Context context) {
         this.list = list;
         this.urlpath = urlpath;
+        this.context = context;
     }
 
     @NonNull
@@ -35,9 +40,11 @@ public class JieKuanZiLiao_Adapter extends RecyclerView.Adapter<JieKuanZiLiao_Ad
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JieKuanZiLiao_Adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.jkzl_tv.setText(list.get(position).getImgName());
         x.image().bind(holder.jkzl_iv,urlpath+list.get(position).getImgUrl());
+        Glide.with(context).load(urlpath+list.get(position).getImgUrl()).into(holder.jkzl_iv);
+        Log.e("图片", ""+urlpath+list.get(position).getImgUrl());
 
     }
 

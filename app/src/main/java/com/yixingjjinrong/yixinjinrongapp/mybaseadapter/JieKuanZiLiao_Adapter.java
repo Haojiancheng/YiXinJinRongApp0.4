@@ -1,6 +1,7 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JieKuanZiLiao_Gson;
 
 import org.xutils.x;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +44,11 @@ public class JieKuanZiLiao_Adapter extends RecyclerView.Adapter<JieKuanZiLiao_Ad
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.jkzl_tv.setText(list.get(position).getImgName());
-        x.image().bind(holder.jkzl_iv,urlpath+list.get(position).getImgUrl());
         Glide.with(context).load(urlpath+list.get(position).getImgUrl()).into(holder.jkzl_iv);
         Log.e("图片", ""+urlpath+list.get(position).getImgUrl());
 
     }
+
 
     @Override
     public int getItemCount() {

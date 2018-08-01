@@ -61,6 +61,7 @@ import com.zhy.autolayout.AutoLayoutActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -104,8 +105,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        EventBus.getDefault().register(this);//注册
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {   //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));  //需要在setContentView()方法后面执行
         }
         setContentView(R.layout.xiaomuxiangqing);
 
@@ -429,6 +430,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
+
             }
 
             @Override
@@ -606,7 +608,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         final View popView = View.inflate(this, R.layout.fangxianpingce_pop, null);
         TextView txt_pc = popView.findViewById(R.id.txt_pc);
-        ImageView pc_img = findViewById(R.id.pc_img);
+        ImageView pc_guanp = findViewById(R.id.pc_guanbi);
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
 
@@ -621,12 +623,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             }
 
         });
-        pc_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popWindow.dismiss();
-            }
-        });
+//        pc_guanp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                popWindow.dismiss();
+//            }
+//        });
         ColorDrawable dw = new ColorDrawable(0x30000000);
         popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);

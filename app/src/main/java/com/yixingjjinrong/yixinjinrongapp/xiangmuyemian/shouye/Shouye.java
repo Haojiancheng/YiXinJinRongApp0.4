@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.ImageResizerUtils;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYeMassage_Gson;
@@ -33,10 +34,12 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
+import org.apache.http.params.HttpParams;
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -92,6 +95,7 @@ public class Shouye extends Fragment {
     private void getHttp() {
         RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/yxbAppIndex.do");
         params.setAsJsonContent(true);
+
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -154,6 +158,7 @@ public class Shouye extends Fragment {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("抛出异常:\n" + ex.getMessage());
 
             }
 
@@ -211,10 +216,9 @@ public class Shouye extends Fragment {
     }
 
     private class GlideImageloader extends ImageLoader {
-
-
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
+//            ImageResizerUtils.ImageResizerNotWork(path, context,);
             Glide.with(context).load(path).into(imageView);
             Uri uri = Uri.parse((String) path);
             imageView.setImageURI(uri);

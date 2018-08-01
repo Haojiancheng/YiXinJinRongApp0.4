@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/beijinglogo"
         android:layout_width="match_parent"
-        android:layout_height="520px"
+        android:layout_height="500px"
         android:background="@drawable/beijing"
         android:orientation="vertical">
         <RelativeLayout

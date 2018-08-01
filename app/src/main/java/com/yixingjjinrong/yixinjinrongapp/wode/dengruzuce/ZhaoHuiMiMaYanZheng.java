@@ -124,6 +124,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             js_request.put("phone", phone);
             js_request.put("password", news_mima.getText().toString());
             js_request.put("code", ed_code.getText().toString());
+            Log.e("找回密码",""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");

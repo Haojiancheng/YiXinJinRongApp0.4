@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXingXi_Car_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 
@@ -56,8 +57,9 @@ public class XiangMuXinXi extends Fragment {
     private XiangMuXingXi_Car_gson cardata;
     private TextView sx_pg, sc_zhuzhi, sc_cq;
     private TextView qyrz, qy_rz, qywrz;
-    private View geren,qiye;
+    private View geren,qiye,shencha;
     private TextView qy_name,qy_dm,qy_time,qy_zb,qy_hy,qy_dizhi,qy_bg,qy_fd,qy_shouru,qy_huanhuancishu,qy_yuqicishu,qy_lishiyuqi_jinge,qy_dangqian_jine,qy_6yue,qy_qita,qy_fanwei;
+    private int user_id;
 
 
     @Nullable
@@ -79,6 +81,8 @@ public class XiangMuXinXi extends Fragment {
     }
 
     private void getxmxxid() {
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+
         //企业、个人
         qiye=getActivity().findViewById(R.id.qiye);
         geren=getActivity().findViewById(R.id.geren);
@@ -149,6 +153,7 @@ public class XiangMuXinXi extends Fragment {
         xk_jg = getActivity().findViewById(R.id.xk_jg);
 
 //,,,,,,,,审查,,,,;
+        shencha=getActivity().findViewById(R.id.shencha);
         sf_rz = getActivity().findViewById(R.id.sf_rz);
         sf_wrz = getActivity().findViewById(R.id.sf_wrz);
         zz_rz = getActivity().findViewById(R.id.zz_rz);
@@ -231,6 +236,13 @@ public class XiangMuXinXi extends Fragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                String s1 = String.valueOf(user_id);
+                Log.e("项目星系user_id", ""+s1);
+                if (s1.equals("0")){
+                    shencha.setVisibility(View.GONE);
+                }else {
+                    shencha.setVisibility(View.VISIBLE);
+                }
                 Log.e("TAG", "XXGSON>>>" + result);
                 //房产标GSON
                 data = new Gson().fromJson(result, XiangMuXinXi_Gson.class);
@@ -690,6 +702,7 @@ public class XiangMuXinXi extends Fragment {
     }
 
     private void shoupopwindow() {
+
         View parent = ((ViewGroup) this.getActivity().findViewById(android.R.id.content)).getChildAt(0);
         View popView = View.inflate(getActivity(), R.layout.kuankuan_pop, null);
         TextView text_pop = popView.findViewById(R.id.text_pop);

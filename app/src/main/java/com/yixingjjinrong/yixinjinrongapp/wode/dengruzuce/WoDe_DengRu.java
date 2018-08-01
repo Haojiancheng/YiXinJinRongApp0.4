@@ -284,7 +284,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     @Override
     public void requestPermissionsFail() {
         //权限请求不被用户允许。可以提示并退出或者提示权限的用途并重新发起权限申请。
-        finish();
+//        finish();
     }
 
     private void initViews() {

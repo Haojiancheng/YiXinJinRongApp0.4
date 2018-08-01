@@ -104,7 +104,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".wode.tixian.jieguo.Putforward_ok" />
-        <activity android:name=".wode.tixian.jieguo.Putforward_fail"></activity>
+        <activity android:name=".wode.tixian.jieguo.Putforward_fail" />
+        <activity android:name=".Guide_Pager"></activity>
     </application>
 
 </manifest>

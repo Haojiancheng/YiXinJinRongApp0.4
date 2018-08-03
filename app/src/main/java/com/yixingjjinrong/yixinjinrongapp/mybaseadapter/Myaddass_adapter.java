@@ -75,14 +75,13 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
         id = list.get(position).getId();
         int isDefault = list.get(position).getIsDefault();
         if (isDefault == 1) {
-            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi);
+            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
         }
-        holder.moren_dizhi.setOnClickListener(new View.OnClickListener() {
+        holder.moren_dizhi1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
                 try {
-
                     js_request.put("addressId", id);
                     base1 = Base64JiaMI.AES_Encode(js_request.toString());
 //            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
@@ -101,7 +100,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/setDefault.do");
+                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/setDefault.do");
                 params.setAsJsonContent(true);
                 params.setBodyContent(canshu.toString());
                 x.http().post(params, new Callback.CommonCallback<String>() {
@@ -111,7 +110,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                         MoRenAddass_gson mrdata = new Gson().fromJson(result, MoRenAddass_gson.class);
                         String message = mrdata.getMessage();
                         if (message.equals("设置默认地址成功")){
-                            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi);
+                            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
                             Toast.makeText(context, "设置默认地址成功", Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
                         }else {
@@ -173,7 +172,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxb_mobile/yxbApp/deleteAddressInfo.do");
+                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/deleteAddressInfo.do");
                 params.setAsJsonContent(true);
                 params.setBodyContent(canshu.toString());
                 x.http().post(params, new Callback.CommonCallback<String>() {
@@ -231,14 +230,14 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView addass_name, addass_phone, addass_addass, bianji, shanchu;
-        ImageView moren_dizhi;
+        ImageView moren_dizhi1;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             addass_addass = itemView.findViewById(R.id.addass_addess);
             addass_name = itemView.findViewById(R.id.addass_name);
             addass_phone = itemView.findViewById(R.id.addass_phone);
-            moren_dizhi = itemView.findViewById(R.id.moren_dizhi);
+            moren_dizhi1 = itemView.findViewById(R.id.moren_dizhi1);
             bianji = itemView.findViewById(R.id.g4);
             shanchu = itemView.findViewById(R.id.g6);
         }

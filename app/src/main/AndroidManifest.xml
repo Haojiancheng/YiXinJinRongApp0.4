@@ -32,13 +32,6 @@
             android:value="2.1" />
 
         <activity android:name=".MainActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.PingTaJieShao" />
@@ -105,7 +98,10 @@
         </activity>
         <activity android:name=".wode.tixian.jieguo.Putforward_ok" />
         <activity android:name=".wode.tixian.jieguo.Putforward_fail" />
-        <activity android:name=".Guide_Pager"></activity>
+        <activity android:name=".Guide_Pager" />
+        <activity android:name=".wode.contractResult.Contract_OK" />
+        <activity android:name=".wode.contractResult.Contract_loser" />
+        <activity android:name=".wode.contractResult.How_Do_I"></activity>
     </application>
 
 </manifest>

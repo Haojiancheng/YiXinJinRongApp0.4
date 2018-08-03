@@ -103,6 +103,7 @@ public class ZongziChan extends AutoLayoutActivity {
                 zonge_z.setText(accountSum);
                 zonge_daishou.setText(forAmount);
                 zonge_keyong.setText(usableAmount);
+                zonge_dongjie.setText(freezeAmount);
 //                for (int i = 0; i < data.getListType().size(); i++) {
 //                    Log.e("gcfr",""+data.getListType().get(i).getMortgageType() );
 //                }

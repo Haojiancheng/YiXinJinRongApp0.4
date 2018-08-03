@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
+import com.yixingjjinrong.yixinjinrongapp.wode.contractResult.Contract_OK;
+import com.yixingjjinrong.yixinjinrongapp.wode.contractResult.Contract_loser;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 
 import org.json.JSONException;
@@ -44,7 +46,7 @@ public class QianYueOk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content)); //需要在setContentView()方法后面执行
         }
         setContentView(R.layout.activity_qian_yue_ok);
         qy_web = findViewById(R.id.qy_web);
@@ -116,7 +118,7 @@ public class QianYueOk extends AppCompatActivity {
                             @Override
                             public void onSuccess(String result) {
                                 Log.e("签约成功Gson",""+result );
-                                Intent inte = new Intent(QianYueOk.this, ChongZhiSuccers.class);
+                                Intent inte = new Intent(QianYueOk.this, Contract_OK.class);
                                 startActivity(inte);
                                 finish();
                             }
@@ -155,7 +157,7 @@ public class QianYueOk extends AppCompatActivity {
                             @Override
                             public void onSuccess(String result) {
                                 Log.e("签约失败Gson", result);
-                                Intent inte = new Intent(QianYueOk.this, ChongZhiShiBai.class);
+                                Intent inte = new Intent(QianYueOk.this, Contract_loser.class);
                                 startActivity(inte);
                                 finish();
                             }

@@ -16,7 +16,7 @@
             android:layout_width="450px"
             android:layout_height="100px"
             android:background="@drawable/bt_biankuang"
-            android:text="登入/注册"
+            android:text="登录/注册"
             android:textSize="55px"
             android:textColor="#ffffff"
             />

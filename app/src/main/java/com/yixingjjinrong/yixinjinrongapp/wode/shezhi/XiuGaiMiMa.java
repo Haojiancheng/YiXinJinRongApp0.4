@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMaYanZheng;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.json.JSONException;
@@ -138,8 +139,12 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                 XiuGaiMiMa_Gson data = new Gson().fromJson(result, XiuGaiMiMa_Gson.class);
                 String token = data.getResult().getToken();
                 String state = data.getState();
+                Toast.makeText(XiuGaiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                 if (state.equals("success")){
 //                    EventBus.getDefault().post(new User_data("", "",token,Integer.parseInt("")));
+                    Toast.makeText(XiuGaiMiMa.this, "修改成功,请重新登入", Toast.LENGTH_SHORT).show();
+                    Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
+                    startActivity(it);
                     finish();
                 }
             }

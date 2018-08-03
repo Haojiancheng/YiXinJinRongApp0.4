@@ -2,14 +2,16 @@ package com.yixingjjinrong.yixinjinrongapp.gsondata;
 
 public class Yinhangka_Gson {
 
+
     /**
      * message : 成功了
-     * bankImage : images/bank1.png
-     * result : {"userId":11208}
+     * bankImage : http://192.168.1.79:8080/yxb_mobile/images/bankMobile/js.png
+     * result : {"userId":11298,"token":"login:864711326104376","loginId":"login:11298"}
      * state : success
-     * bankName : 中国工商银行
+     * bankName : 中国建设银行
      * msg :
-     * cardNum : 6222 **** **** 9005
+     * usableSum : 49058.00
+     * cardNum : 4367 **** **** 4415
      */
 
     private String message;
@@ -18,6 +20,7 @@ public class Yinhangka_Gson {
     private String state;
     private String bankName;
     private String msg;
+    private String usableSum;
     private String cardNum;
 
     public String getMessage() {
@@ -66,6 +69,14 @@ public class Yinhangka_Gson {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getUsableSum() {
+        return usableSum;
+    }
+
+    public void setUsableSum(String usableSum) {
+        this.usableSum = usableSum;
     }
 
     public String getCardNum() {

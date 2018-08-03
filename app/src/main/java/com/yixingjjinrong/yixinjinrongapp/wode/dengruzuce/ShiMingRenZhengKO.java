@@ -45,7 +45,6 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
         cunguan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ShiMingRenZhengKO.this, "cunguandddd", Toast.LENGTH_SHORT).show();
                 getchHTTP();
             }
         });
@@ -63,6 +62,7 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
             js_request.put("userid", user_id);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
+            Log.e("存管参数", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");

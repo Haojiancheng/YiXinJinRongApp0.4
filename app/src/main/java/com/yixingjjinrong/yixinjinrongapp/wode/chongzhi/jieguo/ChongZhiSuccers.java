@@ -48,6 +48,7 @@ public class ChongZhiSuccers extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
 //                EventBus.getDefault().post(new LookMore());
+                finish();
             }
         });
         cz_sucess_fh.setOnClickListener(new View.OnClickListener() {

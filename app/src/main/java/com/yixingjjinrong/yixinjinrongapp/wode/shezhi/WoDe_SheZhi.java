@@ -66,7 +66,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
                 startActivity(shezhi_tuichu);
-
+                finish();
             }
         });
         try {

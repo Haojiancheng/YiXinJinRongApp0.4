@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -42,7 +44,20 @@ public class YinHangCunGuan extends AutoLayoutActivity {
         // 设置允许JS弹窗
          webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         cg_wb.loadData(htlm.toString(), "text/html", "UTF-8"); // 加载定义的代码，并设定编码格式和字符集。
+        cg_wb.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                Log.e("onPageFinished返回的URL", url);
 
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+
+            }
+        });
         cg_wb.setWebChromeClient(new MyWebChromeClient());
     }
 

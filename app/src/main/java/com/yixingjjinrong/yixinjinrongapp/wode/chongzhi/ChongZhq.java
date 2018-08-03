@@ -58,7 +58,7 @@ public class ChongZhq extends AutoLayoutActivity {
         }
         setContentView(R.layout.activity_chong_zhq);
         getczid();
-        cz_keyong.setText("可用余额:  " + keyong + "元");
+
         getczHTTp();
         cz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,15 +100,22 @@ public class ChongZhq extends AutoLayoutActivity {
             public void onSuccess(String result) {
                 Log.e("充值GSON:", "" + result);
                 Yinhangka_Gson data = new Gson().fromJson(result, Yinhangka_Gson.class);
+                cz_keyong.setText("可用余额:  " + data.getUsableSum() + "元");
                 String msg = data.getMsg();
                 if (msg.equals("")) {
                     yh_name.setText(data.getBankName());
                     yh_number.setText(data.getCardNum());
                     x.image().bind(yh_img,  data.getBankImage());
+
+
                     cz_ok.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            getokHTTp();
+                            if (cz_money.getText().toString().equals("")){
+                                Toast.makeText(ChongZhq.this, "请输入金额", Toast.LENGTH_SHORT).show();
+                            }else {
+                                getokHTTp();
+                            }
                         }
                     });
                 } else {
@@ -160,7 +167,7 @@ public class ChongZhq extends AutoLayoutActivity {
 
                     }
                     if (msg.equals("sign_card")) {
-                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
                         AlertDialog dialog3 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                 .setTitle("提示")
                                 .setMessage("您还未没有签约")
@@ -382,11 +389,9 @@ public class ChongZhq extends AutoLayoutActivity {
     }
 
     private void getczid() {
-        Intent itzc = getIntent();
         user_id = (int) SPUtils.get(this, "userId", 0);
         loginid = (String) SPUtils.get(ChongZhq.this, "Loginid", "");
         token = (String) SPUtils.get(ChongZhq.this, "Token1", "");
-        keyong = itzc.getStringExtra("keyong2");
         yh_name = findViewById(R.id.yh_name);
         yh_number = findViewById(R.id.yh_number);
         cz_keyong = findViewById(R.id.cz_keyong);

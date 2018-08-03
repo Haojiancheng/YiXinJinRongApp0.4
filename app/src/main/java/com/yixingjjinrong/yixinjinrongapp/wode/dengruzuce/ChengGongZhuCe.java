@@ -127,6 +127,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                     Intent it=new Intent(ChengGongZhuCe.this,ShiMingrenzheng.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt("user_ird", userid1);
+                    SPUtils.put(ChengGongZhuCe.this, "userId", userid1);
                     it.putExtras(bundle);
 
                     startActivity(it);

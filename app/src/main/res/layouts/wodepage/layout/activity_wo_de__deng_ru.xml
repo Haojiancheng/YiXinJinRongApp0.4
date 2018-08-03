@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".wode.dengruzuce.WoDe_DengRu">
 
     <LinearLayout
@@ -32,7 +34,7 @@
                 android:layout_marginLeft="251px"
                 android:gravity="center_horizontal"
                 android:paddingTop="60px"
-                android:text="登入"
+                android:text="登录"
                 android:textColor="#ffffff"
                 android:textSize="38px" />
         </RelativeLayout>
@@ -148,7 +150,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bt_shape"
             android:layout_marginTop="90px"
-            android:text="登入"
+            android:text="登录"
             android:textSize="38px"
             android:textColor="#fdfdfc"
             />

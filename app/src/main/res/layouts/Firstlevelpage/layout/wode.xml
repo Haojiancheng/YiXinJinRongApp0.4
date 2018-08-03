@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
+    android:id="@+id/v1"
     android:orientation="vertical">
 
     <include
@@ -69,7 +70,8 @@
 
     <include
         android:id="@+id/shiming_my"
-        layout="@layout/shimingrenzheng_itme" />
+        layout="@layout/shimingrenzheng_itme"
+        android:visibility="gone"/>
 
     <include
         android:id="@+id/yinhangcunguan_my"
@@ -192,6 +194,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/wo_yaoqing"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

@@ -153,6 +153,8 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 String zhuangtai = data.getState().toString();
                 if (zhuangtai.equals("success")){
                     Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
+                    Intent it=new Intent(ZhaoHuiMiMaYanZheng.this,WoDe_DengRu.class);
+                    startActivity(it);
                     finish();
                 }else {
                     Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();

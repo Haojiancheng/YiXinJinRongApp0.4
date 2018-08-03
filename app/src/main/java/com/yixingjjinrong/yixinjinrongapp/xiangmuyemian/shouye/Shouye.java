@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -43,6 +44,7 @@ import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +67,7 @@ public class Shouye extends Fragment {
     private ShouYe_MyBaseAdapter adapter;
     private boolean isGetData = false;
     private ShouYe_Gson data;
+    private String[] mypic;
 
 
     @Nullable
@@ -94,8 +97,10 @@ public class Shouye extends Fragment {
 
     private void getHttp() {
         RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/yxbAppIndex.do");
-        params.setAsJsonContent(true);
 
+        params.setAsJsonContent(true);
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("请稍候...");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -107,10 +112,10 @@ public class Shouye extends Fragment {
                 for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                     picurl = data.getResult().getBannerList().get(i).getPicurl();
                     Log.e("TAG", "url:" + picurl);
+                    mypic = new String[data.getResult().getBannerList().size()];
                 }
-                String[] mypic = new String[data.getResult().getBannerList().size()];
                 for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                    picpath = paht + picurl;//地址
+                    picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
                     Log.e("TAG", "url:" + picpath);
 
                     mypic[i] = picpath;
@@ -154,6 +159,7 @@ public class Shouye extends Fragment {
                 }
                 getgonggao();
 
+
             }
 
             @Override
@@ -169,7 +175,7 @@ public class Shouye extends Fragment {
 
             @Override
             public void onFinished() {
-
+                progressDialog.cancel();
             }
         });
     }
@@ -218,7 +224,6 @@ public class Shouye extends Fragment {
     private class GlideImageloader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
-//            ImageResizerUtils.ImageResizerNotWork(path, context,);
             Glide.with(context).load(path).into(imageView);
             Uri uri = Uri.parse((String) path);
             imageView.setImageURI(uri);

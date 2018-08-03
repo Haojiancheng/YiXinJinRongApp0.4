@@ -103,7 +103,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 shoujihao = dengru_phone.getText().toString();
                 mima = dengru_mima.getText().toString();
                 if (shoujihao.isEmpty() || mima.isEmpty()) {
-                    Toast.makeText(WoDe_DengRu.this, "用户名或密码有误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WoDe_DengRu.this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
 //                    Toast.makeText(WoDe_DengRu.this, "成功", Toast.LENGTH_SHORT).show();
                     getHttp();
@@ -289,7 +289,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
     private void initViews() {
         //已经拥有所需权限，可以放心操作任何东西了
-        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
 
     }
 

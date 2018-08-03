@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengShouJiHao_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -34,7 +36,8 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
     private String base1;//Base64加
     private String myphone;
     private String phonezhuangtai;
-    private TextView zz_h5,zz_dr;
+    private TextView zz_h5, zz_dr;
+    private CheckBox zc_check;//复选框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         zz_dr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(ZhuCe_PaGa.this,WoDe_DengRu.class);
+                Intent it = new Intent(ZhuCe_PaGa.this, WoDe_DengRu.class);
                 startActivity(it);
                 finish();
             }
@@ -78,20 +81,20 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 myphone = zhucephone.getText().toString();
-                if (myphone.length() < 11) {
-                    Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
-                } else if (myphone.length() > 11) {
-                    Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
+
+                if (myphone.equals("")) {
+                    Toast.makeText(ZhuCe_PaGa.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-
-                    if (myphone.isEmpty()) {
-                        Toast.makeText(ZhuCe_PaGa.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
+                    if (myphone.length() < 11) {
+                        Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
+                    } else if (myphone.length() > 11) {
+                        Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
                     } else {
-                        getHttp();
-
-//                        Intent zhuce_page=new Intent(ZhuCe_PaGa.this,YanZheng_PaGa.class);
-//                        zhuce_page.putExtra("user_Phone",zhucephone.getText().toString());
-//                        startActivity(zhuce_page);
+                        if (zc_check.isChecked()) {
+                            getHttp();
+                        } else {
+                            Toast.makeText(ZhuCe_PaGa.this, "请先阅读注册协议", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }
@@ -165,11 +168,13 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
     }
 
     private void getzhuce_pagerId() {
+        zc_check = findViewById(R.id.zc_check);
         zhuce_fanhui = findViewById(R.id.zhucefanhui);
         zhuce_xiayibu = findViewById(R.id.zhuce_xiayibu);
         zhucephone = findViewById(R.id.zucePhone);//需要注册的手机号
         zhuceqingchu = findViewById(R.id.zhuce_qingchu);//清除手机号
         zz_h5 = findViewById(R.id.zz_h5);
-        zz_dr=findViewById(R.id.zz_dr);
+        zz_dr = findViewById(R.id.zz_dr);
+        zhucephone.addTextChangedListener(new MaxLengthWatcher(11, zhucephone));
     }
 }

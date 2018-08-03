@@ -97,9 +97,9 @@ public class HuiKuanJiHua extends Fragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
+//                Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
                 HuiKuanJiHua_Gson data=new Gson().fromJson(result,HuiKuanJiHua_Gson.class);
-                Toast.makeText(getActivity(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                 hkjhlist.addAll(data.getResult().getRepaymentList());
                 adapter=new HuiKuanJH_adapter(hkjhlist,data.getResult().getBorrowStatus());
                 hkjh_rview.setAdapter(adapter);

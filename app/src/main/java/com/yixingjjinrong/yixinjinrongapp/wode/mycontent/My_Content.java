@@ -154,7 +154,7 @@ public class My_Content extends AutoLayoutActivity {
                     Intent it=new Intent(My_Content.this, YinHangCunGuan.class);
                     it.putExtra("HTML",html );
                     startActivity(it);
-                    Toast.makeText(My_Content.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(My_Content.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.e("wangy",""+html );
                 }
 

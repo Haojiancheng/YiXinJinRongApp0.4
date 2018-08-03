@@ -58,7 +58,7 @@ public class MainActivity extends AutoLayoutActivity {
         mbottomBar = findViewById(R.id.bottom_tab_bar);
         mbottomBar.init(getSupportFragmentManager(), 768, 1280)
                 .setImgSize(53, 33)
-                .setFontSize(18)
+                .setFontSize(12)
                 .setChangeColor(Color.parseColor("#fe6623"), Color.parseColor("#999999"))
                 .setTabPadding(10, 7, 10)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
                 .addTabItem("首页", R.drawable.shouyedianji, R.drawable.shouye, Shouye.class)

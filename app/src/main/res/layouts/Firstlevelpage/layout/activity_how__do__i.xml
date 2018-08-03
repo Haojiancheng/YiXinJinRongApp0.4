@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yixingjjinrong.yixinjinrongapp.wode.contractResult.How_Do_I">
+
+    <ImageView
+        android:id="@+id/guanbi_why"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:paddingEnd="30px"
+        android:layout_marginTop="41dp"
+        android:src="@drawable/guanbi2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="108px"
+            android:text="签约不成功怎么办？"
+            android:textColor="#222222"
+            android:textSize="30px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="40px"
+            android:text="签约失败原因"
+            android:textColor="#666666"
+            android:textSize="26px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="10px"
+            android:text="1.在手机签约页面输入银行卡的预留手机号错误,发生此情况需前往相应银行柜台核对或办理银行卡的预留手机号变更,然后再将正确的银行卡预留手机号重新进行签约;"
+            android:textAlignment="textStart"
+            android:textColor="#666666"
+            android:textSize="26px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="10px"
+            android:text="2.银行卡是富友不支持的银行,这种情况就要更换银行卡,具体可查询富友所支持的银行."
+            android:textAlignment="textStart"
+            android:textColor="#666666"
+            android:textSize="26px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="92px"
+            android:text="温馨提示："
+            android:textColor="#999999"
+            android:textSize="22px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="10px"
+            android:text="签约失败只会影响银行卡在手机上进行快速充值,用户仍然可以用PC网站进行充值.另外,工资卡在富友往往签约不成功,原因是工资卡集体办理时预留手机号可能是财务手机号,与出借人注册手机号并不一致,所以还需要本人持有效证件与银行卡前往银行的营业厅办理预留手机号变更."
+            android:textAlignment="textStart"
+            android:textColor="#999999"
+            android:textSize="22px" />
+    </LinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

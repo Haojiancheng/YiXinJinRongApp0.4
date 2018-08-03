@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="30px"
-                        android:layout_weight="2"
+                        android:layout_weight="1.5"
                         android:src="@drawable/anquanbaozhang" />
 
                     <TextView
@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="30px"
-                        android:layout_weight="2"
+                        android:layout_weight="1.5"
                         android:src="@drawable/xinxianquan" />
 
                     <TextView
@@ -145,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="30px"
-                        android:layout_weight="2"
+                        android:layout_weight="1.5"
                         android:src="@drawable/youzhixiangmu" />
 
                     <TextView

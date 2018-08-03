@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -23,8 +24,10 @@ import android.widget.ToggleButton;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ChengGongzhuce_Gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengMa_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
@@ -38,14 +41,19 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.regex.Pattern;
 
-public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInterface{
-    private Button yanzheng_zhuce,huoqu_yanzhengma;
+public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInterface {
+    private Button yanzheng_zhuce, huoqu_yanzhengma;
     private ToggleButton zc_togglePwd;
     private TextView huode_phone;
     private String get_phone;
-    private EditText phonecode,user_mima,user_yaoqingren;
+    private EditText phonecode, user_mima, user_yaoqingren;
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private ImageView et_qc;//清除输入框
@@ -56,6 +64,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private String myurl;
     private ImageView zz_fh;
     private TextView yy_yanzheng;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +79,13 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         getyanZheng_Id();
         getyanZheng_Onclick();
         time = new TimeCount(60000, 1000);
+//        huoqu_yanzhengma.setEnabled(true);
     }
-   
+
     public static boolean isPassword(String password) {
         return Pattern.matches(REGEX_PASSWORD, password);
     }
+
     private void getyanZheng_Onclick() {
         yy_yanzheng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +103,19 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         yanzheng_zhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               
+
                 int lenght = user_mima.getText().toString().trim().length();
 //                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
-                if (lenght<6||lenght>18 || !isPassword(user_mima.getText().toString())){
-                    Toast.makeText(YanZheng_PaGa.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
-                }else{
-                    gethttp_zhuce();
+                if (user_mima.getText().toString().equals("")) {
+                    Toast.makeText(YanZheng_PaGa.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (lenght < 6 || lenght > 18 || !isPassword(user_mima.getText().toString())) {
+                        Toast.makeText(YanZheng_PaGa.this, "6-18位字母和数字组合", Toast.LENGTH_SHORT).show();
+                    } else {
+                        gethttp_zhuce();
 
+                    }
                 }
-                
             }
         });
         Intent intent = getIntent();
@@ -115,9 +129,10 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             public void onClick(View v) {
                 time.start();
                 getHttP_YAnzhengMA();
-                
+
             }
         });
+
 
         zc_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -133,7 +148,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 }
             }
         });
-        
+
         et_qc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,12 +157,32 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         });
     }
 
+    public static String getIP(Context context) {
+
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && (inetAddress instanceof Inet4Address)) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     private void getyuyinHttp() {//语音验证码
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        String ip = getIP(YanZheng_PaGa.this);
         myurl = getid(context);
         try {
             js_request.put("phone", get_phone);
-            js_request.put("url", myurl);
+            js_request.put("ip", ip);
+
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -163,14 +198,14 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsoundSms.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/sendsoundSms.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e( "语音严重吗Gson",""+result);
+                Log.e("语音严重吗Gson", "" + result);
             }
 
             @Override
@@ -193,15 +228,15 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private void gethttp_zhuce() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         myurl = getid(context);
-        Log.e("唯一标识",""+ myurl);
+        Log.e("唯一标识", "" + myurl);
         try {
             js_request.put("phone", get_phone);
             js_request.put("password", user_mima.getText().toString());
-            js_request.put("phonecode",phonecode.getText().toString());
-            js_request.put("address","1");
-            js_request.put("phonemap",user_yaoqingren.getText().toString());
+            js_request.put("phonecode", phonecode.getText().toString());
+            js_request.put("address", "1");
+            js_request.put("phonemap", user_yaoqingren.getText().toString());
             js_request.put("url", myurl);
-            Log.e("祖册参数", ""+js_request );
+            Log.e("祖册参数", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -217,7 +252,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/registerApp.do?");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/registerApp.do?");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -225,20 +260,20 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", ">>>>z成功" + result);
-                ChengGongzhuce_Gson date=new Gson().fromJson(result,ChengGongzhuce_Gson.class);
-               int userid= date.getResult().getUserid();
-                
-                Intent intent_dengru=new Intent(YanZheng_PaGa.this,ChengGongZhuCe.class);
-                intent_dengru.putExtra("Phone_my",get_phone);
-                intent_dengru.putExtra("logid",date.getResult().getLoginId());
-                intent_dengru.putExtra("token",date.getResult().getToken());
-                intent_dengru.putExtra("password",user_mima.getText().toString());
+                ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
+                int userid = date.getResult().getUserid();
+                Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
+                intent_dengru.putExtra("Phone_my", get_phone);
+                intent_dengru.putExtra("logid", date.getResult().getLoginId());
+                intent_dengru.putExtra("token", date.getResult().getToken());
+                intent_dengru.putExtra("password", user_mima.getText().toString());
                 SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
                 SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
-                intent_dengru.putExtra("url",myurl);
+                intent_dengru.putExtra("url", myurl);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("user_id",userid);
-                Log.e("验证注册：", "Phone_my:"+get_phone+"__password:"+user_mima.getText().toString()+"__url:"+myurl);
+                bundle.putSerializable("user_id", userid);
+                Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
                 intent_dengru.putExtras(bundle);
                 startActivity(intent_dengru);
                 finish();
@@ -259,7 +294,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
             }
         });
-        
+
     }
 
     private void getHttP_YAnzhengMA() {
@@ -272,7 +307,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
-            
+
         }
         JSONObject canshu = new JSONObject();
         try {
@@ -282,7 +317,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsms.do");
+        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/sendsms.do");
         params.setAsJsonContent(true);
         params.setBodyContent(canshu.toString());
         Log.e("TAG", ">>>>网址" + params);
@@ -290,7 +325,13 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             @Override
             public void onSuccess(String result) {
                 Log.e("TAG", ">>>>成功" + result);
-                
+                YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
+                Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
+                message = data.getMessage();
+//                if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")){
+//                    huoqu_yanzhengma.setText("明天再试");
+//                    huoqu_yanzhengma.setBackgroundResource(R.color.gray);
+//                }
             }
 
             @Override
@@ -312,25 +353,28 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     }
 
     private void getyanZheng_Id() {
-        yanzheng_zhuce=findViewById(R.id.yanzheng_zhuce);
-        huode_phone=findViewById(R.id.huode_Phone);//获得手机号
-        huoqu_yanzhengma=findViewById(R.id.huoqu_yanzhengma);//获取验证码
-        phonecode=findViewById(R.id.edit_phonecode);//手机验证码
-        user_mima=findViewById(R.id.user_mima);//用户密码
-        user_yaoqingren=findViewById(R.id.yaoqingren);//yaoqingren
-        zc_togglePwd=findViewById(R.id.zc_togglePwd);//显示或隐藏密码
-        et_qc=findViewById(R.id.yanz_guanbi);//清除输入框
-        zz_fh=findViewById(R.id.zz_fh);
-        yy_yanzheng=findViewById(R.id.yy_yanzheng);
+        yanzheng_zhuce = findViewById(R.id.yanzheng_zhuce);
+        huode_phone = findViewById(R.id.huode_Phone);//获得手机号
+        huoqu_yanzhengma = findViewById(R.id.huoqu_yanzhengma);//获取验证码
+        phonecode = findViewById(R.id.edit_phonecode);//手机验证码
+        user_mima = findViewById(R.id.user_mima);//用户密码
+        user_yaoqingren = findViewById(R.id.yaoqingren);//yaoqingren
+        zc_togglePwd = findViewById(R.id.zc_togglePwd);//显示或隐藏密码
+        et_qc = findViewById(R.id.yanz_guanbi);//清除输入框
+        zz_fh = findViewById(R.id.zz_fh);
+        yy_yanzheng = findViewById(R.id.yy_yanzheng);
+        phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
     }
+
     public synchronized String getid(Context context) {
-        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
+        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("MissingPermission") String ID = TelephonyMgr.getDeviceId();
         return ID;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)){
+        if (mPermissionHelper.requestPermissionsResult(requestCode, permissions, grantResults)) {
             //权限请求结果，并已经处理了该回调
             return;
         }
@@ -365,7 +409,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         finish();
     }
 
-    private void initViews(){
+    private void initViews() {
         //已经拥有所需权限，可以放心操作任何东西了
         Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
 
@@ -381,7 +425,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         public void onTick(long millisUntilFinished) {
 //            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#B6B6D8"));
             huoqu_yanzhengma.setClickable(false);
-            huoqu_yanzhengma.setText("("+millisUntilFinished / 1000 +") 秒后可重新发送");
+            huoqu_yanzhengma.setText("(" + millisUntilFinished / 1000 + ") 秒后可重新发送");
         }
 
         @Override

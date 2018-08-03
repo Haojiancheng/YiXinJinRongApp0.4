@@ -84,7 +84,7 @@
                 android:background="@null"
                 android:drawablePadding="18px"
 
-                android:hint="6-18位字母和=数字组合"
+                android:hint="6-18位字母和数字组合"
                 android:inputType="textPassword"
                 app:errorTextAppearance="@style/ErrorAppearance" />
         </android.support.design.widget.TextInputLayout>

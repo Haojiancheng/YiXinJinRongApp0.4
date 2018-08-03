@@ -1,14 +1,11 @@
 package com.yixingjjinrong.yixinjinrongapp.wode;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings;
@@ -17,10 +14,10 @@ import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -51,18 +48,12 @@ public class FengXianPingCe extends AutoLayoutActivity {
         webSettings.setDomStorageEnabled(true);
         webSettings.setDatabaseEnabled(true);
         // 设置允许JS弹窗
-        pc_web.addJavascriptInterface(this, "android");
-        JSONObject json = new JSONObject();
-
-        pc_web.loadUrl("file:///android_asset/index.html");
+        pc_web.loadUrl("file:///android_asset/index.html?userid="+user_id);
+        pc_web.addJavascriptInterface(this,"android" );
         pc_web.getSettings().setJavaScriptEnabled(true);
 //        pc_web.loadUrl("javascript:sendKey("+"'"+String.valueOf(user_id)+"'"+")");
-        try {
-            json.put("userid",user_id );
-            pc_web.loadUrl("javascript:sendKey(\""+json.toString()+ "\")");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+
         pc_web.setWebViewClient(new WebViewClient());
         pc_web.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -81,8 +72,9 @@ public class FengXianPingCe extends AutoLayoutActivity {
 
     @JavascriptInterface
     public void backq() {
-        Toast.makeText(this, "调用back()",Toast.LENGTH_LONG ).show();
         finish();
     }
+
+
 
 }

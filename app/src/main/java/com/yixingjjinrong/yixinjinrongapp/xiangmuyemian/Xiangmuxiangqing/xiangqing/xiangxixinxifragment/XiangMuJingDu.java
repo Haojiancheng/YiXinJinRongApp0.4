@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -20,12 +21,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class XiangMuJingDu extends Fragment {
     private String sha1;//SHA1加密
@@ -75,166 +81,164 @@ public class XiangMuJingDu extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams( Urls.BASE_URL+"yxbApp/progress.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("项目进度GSOn", "" + result);
-                XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
-                if (data.getResult().getBorrowStatus().equals("2")) {
-                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                    yihuan_jine.setText("已还金额  0.00");
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneys().getDhje());
-                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneys().getDhqs()+ "期)");
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/progress.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("项目进度GSOn", "" + result);
+                        XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
+                        String message = data.getMessage();
+                        if (message.equals("用户未登录。")) {
+                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (data.getResult().getBorrowStatus().equals("2")) {
+                                fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                yihuan_jine.setText("已还金额  0.00");
+                                yehuan_qi.setText("(" + 0 + "期)");
+                                daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneys().getDhje());
+                                daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneys().getDhqs() + "期)");
 
 
-                }
-                if (data.getResult().getBorrowStatus().equals("3")){
-                if (data.getResult().getAuditFullTime() != "") {
-                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                    mujitime.setText("完成时间  " + data.getResult().getAuditFullTime().toString());
-                    yihuan_jine.setText("已还金额  0.00");
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                    daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneys().getDhje());
-                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneys().getDhqs() + "期)");
+                            }
+                            if (data.getResult().getBorrowStatus().equals("3")) {
+                                if (data.getResult().getAuditFullTime() != "") {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    mujitime.setText("完成时间  " + data.getResult().getAuditFullTime().toString());
+                                    yihuan_jine.setText("已还金额  0.00");
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                    daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneys().getDhje());
+                                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneys().getDhqs() + "期)");
 
-                } else {
-                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                } else {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
 //                    mujitime.setText("完成时间  "+"正在募集中...");
-                    yihuan_jine.setText("已还金额  0.00");
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                }
-                }
-                if (data.getResult().getBorrowStatus().equals("4")){
-                    
-                if (data.getResult().getAuditTime() != "") {
-                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
-                    fangkuan_time.setText("起息时间  " + data.getResult().getAuditTime());
-                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
-                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
-                    yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                    yehuan_qi.setText("(" + 0 + "期)");
-                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
-                        yihuan_jine.setText("已还金额 0.00");
-                        yehuan_qi.setText("(" + 0 + "期)");
-                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
-                    } else {
-                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
-                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                    }
+                                    yihuan_jine.setText("已还金额  0.00");
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                }
+                            }
+                            if (data.getResult().getBorrowStatus().equals("4")) {
 
-                } else {
-                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
-                    fangkuan_time.setText("起息时间  募集完成放款后起息" );
-                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
-                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
-                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
-                        yihuan_jine.setText("已还金额 0.00");
-                        yehuan_qi.setText("(" + 0 + "期)");
-                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
-                    } else {
-                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
-                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                    }
-                }
-                }
-                if (data.getResult().getBorrowStatus().equals("5")){
-                    if (data.getResult().getAuditTime() != "") {
-                        fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                        muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                        muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                        mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
-                        fangkuan_time.setText("起息时间  " + data.getResult().getAuditTime());
-                        fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
-                        fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                        huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
-                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                        yehuan_qi.setText("(" + 0 + "期)");
-                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                        if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
-                            yihuan_jine.setText("已还金额 0.00");
-                            yehuan_qi.setText("(" + 0 + "期)");
-                            daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                            daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
-                        } else {
-                            yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                            yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
-                            daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                            daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                if (data.getResult().getAuditTime() != "") {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
+                                    fangkuan_time.setText("起息时间  " + data.getResult().getAuditTime());
+                                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
+                                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
+                                    yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
+                                        yihuan_jine.setText("已还金额 0.00");
+                                        yehuan_qi.setText("(" + 0 + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
+                                    } else {
+                                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    }
+
+                                } else {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
+                                    fangkuan_time.setText("起息时间  募集完成放款后起息");
+                                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
+                                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
+                                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
+                                        yihuan_jine.setText("已还金额 0.00");
+                                        yehuan_qi.setText("(" + 0 + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
+                                    } else {
+                                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    }
+                                }
+                            }
+                            if (data.getResult().getBorrowStatus().equals("5")) {
+                                if (data.getResult().getAuditTime() != "") {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
+                                    fangkuan_time.setText("起息时间  " + data.getResult().getAuditTime());
+                                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
+                                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
+                                    yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                    yehuan_qi.setText("(" + 0 + "期)");
+                                    daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                    daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
+                                        yihuan_jine.setText("已还金额 0.00");
+                                        yehuan_qi.setText("(" + 0 + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
+                                    } else {
+                                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    }
+
+                                } else {
+                                    fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
+                                    muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
+                                    muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
+                                    fangkuan_time.setText("起息时间  募集完成放款后起息");
+                                    fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
+                                    fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
+                                    huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
+                                    if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
+                                        yihuan_jine.setText("已还金额 0.00");
+                                        yehuan_qi.setText("(" + 0 + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
+                                        daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
+                                    } else {
+                                        yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
+                                        yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
+                                        daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
+                                        daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
+                                    }
+                                }
+                            }
                         }
-
-                    } else {
-                        fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
-                        muji.setImageDrawable(getResources().getDrawable(R.drawable.mujiwancheng));
-                        muji_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                        mujitime.setText("开始时间  " + data.getResult().getAuditFullTime());
-                        fangkuan_time.setText("起息时间  募集完成放款后起息" );
-                        fangkuan.setImageDrawable(getResources().getDrawable(R.drawable.fangkuanwancheng));
-                        fk_xyb.setImageDrawable(getResources().getDrawable(R.drawable.jinxingwancheng));
-                        huankuan.setImageDrawable(getResources().getDrawable(R.drawable.huankuanwancheng));
-                        if (data.getResult().getHadRepaymentMoneyMap().getYhje() == "" && data.getResult().getHadRepaymentMoneyMap().getYhqs() == "") {
-                            yihuan_jine.setText("已还金额 0.00");
-                            yehuan_qi.setText("(" + 0 + "期)");
-                            daihuan_jine.setText("待还金额 " + data.getResult().getAmount());
-                            daihua_qi.setText("(" + data.getResult().getDeadline() + "期)");
-                        } else {
-                            yihuan_jine.setText("已还金额 " + data.getResult().getHadRepaymentMoneyMap().getYhje());
-                            yehuan_qi.setText("(" + data.getResult().getHadRepaymentMoneyMap().getYhqs() + "期)");
-                            daihuan_jine.setText("待还金额 " + data.getResult().getNotYetRepaymentMoneyMap().getDhje());
-                            daihua_qi.setText("(" + data.getResult().getNotYetRepaymentMoneyMap().getDhqs() + "期)");
-                        }
                     }
-                }
+                });
 
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void gethttpjingde_id() {

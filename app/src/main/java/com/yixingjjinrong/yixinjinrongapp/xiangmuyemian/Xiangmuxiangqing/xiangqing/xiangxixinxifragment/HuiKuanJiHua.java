@@ -22,6 +22,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,9 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.MediaType;
+
 public class HuiKuanJiHua extends Fragment {
     private String sha1;//SHA1加密
     private String base1;//Base64加
@@ -41,6 +46,7 @@ public class HuiKuanJiHua extends Fragment {
     private String borrowRandomId;
     private String token1;
     private String loginid;
+    private int user_id;
 
     @Nullable
     @Override
@@ -54,8 +60,14 @@ public class HuiKuanJiHua extends Fragment {
         hkjhlist.clear();
         initview();
         getid_kh();
-        
-        getHttp();
+
+        String s = String.valueOf(user_id);
+        if (s.equals("0")) {
+            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+        } else {
+
+            getHttp();
+        }
 
     }
 
@@ -91,44 +103,42 @@ public class HuiKuanJiHua extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/returnedmoney.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-//                Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
-                HuiKuanJiHua_Gson data=new Gson().fromJson(result,HuiKuanJiHua_Gson.class);
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/returnedmoney.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("回款计划Gason", "<><>,>?>?GSOn" + response);
+                        HuiKuanJiHua_Gson data = new Gson().fromJson(response, HuiKuanJiHua_Gson.class);
+                        String message = data.getMessage();
+                        if (message.equals("用户未登录。")) {
+                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                        } else {
 //                Toast.makeText(getActivity(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                hkjhlist.addAll(data.getResult().getRepaymentList());
-                adapter=new HuiKuanJH_adapter(hkjhlist,data.getResult().getBorrowStatus());
-                hkjh_rview.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                            hkjhlist.addAll(data.getResult().getRepaymentList());
+                            adapter = new HuiKuanJH_adapter(hkjhlist, data.getResult().getBorrowStatus());
+                            hkjh_rview.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
 
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void initview() {
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
-
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
 //        token = (String) SPUtils.get(getActivity(), "Token1", "");
         Log.e("项目回款计划", ""+borrowRandomId);

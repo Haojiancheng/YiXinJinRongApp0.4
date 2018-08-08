@@ -26,6 +26,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +37,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingListener{
     private int user_id;
@@ -84,49 +89,39 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryMsgListByUserId.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryMsgListByUserId.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("我的消息GSON:",result );
-                User_XiaoXi_GSON data = new Gson().fromJson(result, User_XiaoXi_GSON.class);
-                list.addAll(data.getResult());
-                adapter=new XX_adapter(list);
-                xxrview.setAdapter(adapter);
-                adapter.setonEveryItemClickListener(new XX_adapter.OnEveryItemClickListener() {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onEveryClick(int position) {
-                        Toast.makeText(getActivity(), "点击了"+list.get(position).getMailTitle(), Toast.LENGTH_SHORT).show();
-                        Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("xx_ird", list.get(position).getId());
-                        it.putExtras(bundle);
-                        startActivity(it);
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("我的消息GSON:",result );
+                        User_XiaoXi_GSON data = new Gson().fromJson(result, User_XiaoXi_GSON.class);
+                        list.addAll(data.getResult());
+                        adapter=new XX_adapter(list);
+                        xxrview.setAdapter(adapter);
+                        adapter.setonEveryItemClickListener(new XX_adapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                Toast.makeText(getActivity(), "点击了"+list.get(position).getMailTitle(), Toast.LENGTH_SHORT).show();
+                                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("xx_ird", list.get(position).getId());
+                                it.putExtras(bundle);
+                                startActivity(it);
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
                     }
                 });
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
 
     }
 

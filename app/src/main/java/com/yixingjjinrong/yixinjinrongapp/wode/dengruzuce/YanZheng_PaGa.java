@@ -34,6 +34,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +49,9 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInterface {
     private Button yanzheng_zhuce, huoqu_yanzhengma;
@@ -110,6 +115,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     Toast.makeText(YanZheng_PaGa.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     if (lenght < 6 || lenght > 18 || !isPassword(user_mima.getText().toString())) {
+
                         Toast.makeText(YanZheng_PaGa.this, "6-18位字母和数字组合", Toast.LENGTH_SHORT).show();
                     } else {
                         gethttp_zhuce();
@@ -198,31 +204,24 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/sendsoundSms.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("语音严重吗Gson", "" + result);
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/sendsoundSms.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("语音严重吗Gson", "" + response);
+                    }
+                });
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void gethttp_zhuce() {
@@ -252,49 +251,40 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/registerApp.do?");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", ">>>>z成功" + result);
-                ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
-                int userid = date.getResult().getUserid();
-                Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
-                Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
-                intent_dengru.putExtra("Phone_my", get_phone);
-                intent_dengru.putExtra("logid", date.getResult().getLoginId());
-                intent_dengru.putExtra("token", date.getResult().getToken());
-                intent_dengru.putExtra("password", user_mima.getText().toString());
-                SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
-                SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
-                intent_dengru.putExtra("url", myurl);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("user_id", userid);
-                Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
-                intent_dengru.putExtras(bundle);
-                startActivity(intent_dengru);
-                finish();
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/registerApp.do?")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", ">>>>z成功" + result);
+                        ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
+                        int userid = date.getResult().getUserid();
+                        Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
+                        intent_dengru.putExtra("Phone_my", get_phone);
+                        intent_dengru.putExtra("logid", date.getResult().getLoginId());
+                        intent_dengru.putExtra("token", date.getResult().getToken());
+                        intent_dengru.putExtra("password", user_mima.getText().toString());
+                        SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
+                        SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
+                        intent_dengru.putExtra("url", myurl);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user_id", userid);
+                        Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
+                        intent_dengru.putExtras(bundle);
+                        startActivity(intent_dengru);
+                        finish();
+                    }
+                });
     }
 
     private void getHttP_YAnzhengMA() {
@@ -317,39 +307,30 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/sendsms.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", ">>>>成功" + result);
-                YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
-                Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
-                message = data.getMessage();
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/sendsms.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", ">>>>成功" + result);
+                        YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
+                        Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
+                        message = data.getMessage();
 //                if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")){
 //                    huoqu_yanzhengma.setText("明天再试");
 //                    huoqu_yanzhengma.setBackgroundResource(R.color.gray);
 //                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                    }
+                });
     }
 
     private void getyanZheng_Id() {
@@ -364,6 +345,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         zz_fh = findViewById(R.id.zz_fh);
         yy_yanzheng = findViewById(R.id.yy_yanzheng);
         phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
+        user_mima.addTextChangedListener(new MaxLengthWatcher(18,user_mima));
     }
 
     public synchronized String getid(Context context) {

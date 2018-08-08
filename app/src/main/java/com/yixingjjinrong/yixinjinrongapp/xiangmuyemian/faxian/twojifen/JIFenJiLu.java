@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiFenJiLu_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.LoadingListener{
     private XRecyclerView jilu_xrview;
@@ -80,35 +85,28 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/integralRecord.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-             Log.e("积分记录列表GSON:",""+result);
-                JiFenJiLu_gson data = new Gson().fromJson(result, JiFenJiLu_gson.class);
-                list.addAll(data.getResult().getList());
-                adapter=new JiFenJiLu_adapter(list);
-                jilu_xrview.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/integralRecord.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("积分记录列表GSON:",""+result);
+                        JiFenJiLu_gson data = new Gson().fromJson(result, JiFenJiLu_gson.class);
+                        list.addAll(data.getResult().getList());
+                        adapter=new JiFenJiLu_adapter(list);
+                        jilu_xrview.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     private void getlilu_id() {

@@ -24,6 +24,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Fangchandiya_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.YaoQingXiangQing;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +38,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingListener {
     private String sha1;//SHA1加密
@@ -106,48 +111,40 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/myInvestList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG<>?<>Gsaonm", "" + result);
-                FangChanDiYa_Gson data = new Gson().fromJson(result, FangChanDiYa_Gson.class);
-                list.addAll(data.getInvestList());
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/myInvestList.do")
+                .content(canshu.toString())
 
-                adapter.notifyDataSetChanged();
-                adapter.setonEveryItemClickListener(new Fangchandiya_adapter.OnEveryItemClickListener() {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onEveryClick(int position) {
-                        String borrowid = String.valueOf(list.get(position).getBorrowId());
-                        String investid = String.valueOf(list.get(position).getInvestid());
-                        Intent it = new Intent(getActivity(), ChuJIeXiangQing.class);
-                        it.putExtra("borrowid", borrowid);
-                        it.putExtra("investid", investid);
-                        it.putExtra("type", "fang");
-                        startActivity(it);
+                    public void onError(Call call, Exception e, int id) {
 
                     }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG<>?<>Gsaonm", "" + result);
+                        FangChanDiYa_Gson data = new Gson().fromJson(result, FangChanDiYa_Gson.class);
+                        list.addAll(data.getInvestList());
+
+                        adapter.notifyDataSetChanged();
+                        adapter.setonEveryItemClickListener(new Fangchandiya_adapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                String borrowid = String.valueOf(list.get(position).getBorrowId());
+                                String investid = String.valueOf(list.get(position).getInvestid());
+                                Intent it = new Intent(getActivity(), ChuJIeXiangQing.class);
+                                it.putExtra("borrowid", borrowid);
+                                it.putExtra("investid", investid);
+                                it.putExtra("type", "fang");
+                                startActivity(it);
+
+                            }
+                        });
+                    }
                 });
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     @Override

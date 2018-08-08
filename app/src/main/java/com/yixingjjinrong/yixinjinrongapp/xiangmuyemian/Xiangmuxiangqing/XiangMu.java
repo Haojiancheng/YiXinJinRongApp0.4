@@ -21,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     private XRecyclerView xRecyclerView;
@@ -86,48 +91,41 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        final RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/yxbAppProjectList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", "项目列表GSON>" + result);
-                data = new Gson().fromJson(result, XiangMu_Gson.class);
-                list.addAll(data.getResult());
-                adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
-                    @Override
-                    public void onEveryClick(int position) {
-                        String mtype = String.valueOf(list.get(position).getMortgageType());
-                        String xiangmu_id = list.get(position).getBorrowRandomId();
-                        Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
-                        intent.putExtra("xiangmu_id", xiangmu_id);
-                        intent.putExtra("mortgageType", mtype);
-                        intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/yxbAppProjectList.do")
+                .content(canshu.toString())
 
-                        Log.e("TASG","立即出借id:"+xiangmu_id);
-                        startActivity(intent);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", "项目列表GSON>" + result);
+                        data = new Gson().fromJson(result, XiangMu_Gson.class);
+                        list.addAll(data.getResult());
+                        adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                String mtype = String.valueOf(list.get(position).getMortgageType());
+                                String xiangmu_id = list.get(position).getBorrowRandomId();
+                                Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
+                                intent.putExtra("xiangmu_id", xiangmu_id);
+                                intent.putExtra("mortgageType", mtype);
+                                intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
+
+                                Log.e("TASG","立即出借id:"+xiangmu_id);
+                                startActivity(intent);
+                            }
+                        });
+
+                        adapter.notifyDataSetChanged();
                     }
                 });
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
 
     }
 

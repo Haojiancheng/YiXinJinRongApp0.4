@@ -31,6 +31,8 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.xinxip
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.JiFenDuiHuan;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +42,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class Faxian extends Fragment {
     private TextView pingtaijieshao12, anquanbaozhang, xingxipilu, wangdaiketang, fx_gengduo;
@@ -76,84 +81,75 @@ public class Faxian extends Fragment {
     }
 
     private void gethppt() {
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/discoveryIndex.do");
-        params.setAsJsonContent(true);
-//        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", "" + result);
-                FaXian_Data data = new Gson().fromJson(result, FaXian_Data.class);
-                String paht = data.getResult().getPath();
-
-                /**
-                 * RecyclerView
-                 */
-                list.addAll(data.getResult().getGoodsList());
-                adapter = new FaXianBasrAdapter(list, picpath);
-                myrecview.setAdapter(adapter);
-
-                adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/discoveryIndex.do")
+                .content("")
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onEveryClick(int position) {
-                        String awardType = String.valueOf(list.get(position).getAwardType());
-                        //跳实物
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", "" + result);
+                        FaXian_Data data = new Gson().fromJson(result, FaXian_Data.class);
+                        String paht = data.getResult().getPath();
+
+                        /**
+                         * RecyclerView
+                         */
+                        list.addAll(data.getResult().getGoodsList());
+                        adapter = new FaXianBasrAdapter(list, paht);
+                        myrecview.setAdapter(adapter);
+
+                        adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                String awardType = String.valueOf(list.get(position).getAwardType());
+                                //跳实物
 
 
-                        //跳兑换券
+                                //跳兑换券
+
+
+                            }
+                        });
+
+
+                        Log.e("TAG", "Path:" + paht);
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+                            picurl = data.getResult().getBannerList().get(i).getPicurl();
+                            Log.e("TAG", "url:" + picurl);
+
+                        }
+                        String[] mypic = new String[data.getResult().getBannerList().size()];
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+                            picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
+                            Log.e("TAG", "url:" + picpath);
+
+                            mypic[i] = picpath;
+
+                        }
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+
+
+                            Log.e("TAG", ">>>URL:" + mypic[i].toString());
+                        }
+                        fanxian_banner = getActivity().findViewById(R.id.faxian_banner);
+                        List<String> list3 = new ArrayList<>();
+                        for (String s2 : mypic) {
+                            list3.add(s2);
+                        }
+                        fanxian_banner.setImageLoader(new GlideImageloader());
+                        fanxian_banner.setImages(list3);
+                        fanxian_banner.start();
 
 
                     }
                 });
-
-
-                Log.e("TAG", "Path:" + paht);
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                    picurl = data.getResult().getBannerList().get(i).getPicurl();
-                    Log.e("TAG", "url:" + picurl);
-
-                }
-                String[] mypic = new String[data.getResult().getBannerList().size()];
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                    picpath = paht + picurl;//地址
-                    Log.e("TAG", "url:" + picpath);
-
-                    mypic[i] = picpath;
-
-                }
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-
-
-                    Log.e("TAG", ">>>URL:" + mypic[i].toString());
-                }
-                fanxian_banner = getActivity().findViewById(R.id.faxian_banner);
-                List<String> list3 = new ArrayList<>();
-                for (String s2 : mypic) {
-                    list3.add(s2);
-                }
-                fanxian_banner.setImageLoader(new GlideImageloader());
-                fanxian_banner.setImages(list3);
-                fanxian_banner.start();
-
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private class GlideImageloader extends ImageLoader {

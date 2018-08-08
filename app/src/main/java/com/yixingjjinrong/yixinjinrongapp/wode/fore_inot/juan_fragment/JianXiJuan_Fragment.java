@@ -22,6 +22,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +37,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.LoadingListener{
     private String sha1;//SHA1加密
@@ -92,35 +97,27 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryAll.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("加息卷GSON", result);
-                JiaXiJuan_Gson data = new Gson().fromJson(result, JiaXiJuan_Gson.class);
-                mlist.addAll(data.getQueryVouchersList());
+        OkHttpUtils.postString()
+                .url("http://192.168.1.219:8080/yxb_mobile/yxbApp/couponinformation.do")
+                .content(canshu.toString())
 
-                myadapter.notifyDataSetChanged();
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("加息卷GSON", response);
+                        JiaXiJuan_Gson data = new Gson().fromJson(response, JiaXiJuan_Gson.class);
+                        mlist.addAll(data.getQueryVouchersList());
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                        myadapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     private void getid() {

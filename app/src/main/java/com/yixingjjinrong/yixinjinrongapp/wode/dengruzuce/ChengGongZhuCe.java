@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
@@ -26,6 +28,9 @@ import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ChengGongZhuCe extends AutoLayoutActivity {
     private Button lijishiming,wodezhanghu;
@@ -110,47 +115,37 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/queryUserAuthInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("是否可实名GSON：", result);
-                ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-                String message = data.getMessage().toString();
-                Toast.makeText(ChengGongZhuCe.this, ""+message, Toast.LENGTH_SHORT).show();
-                String jieguo = data.getState().toString();
-                if (jieguo.equals("success")){
-                    Intent it=new Intent(ChengGongZhuCe.this,ShiMingrenzheng.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("user_ird", userid1);
-                    SPUtils.put(ChengGongZhuCe.this, "userId", userid1);
-                    it.putExtras(bundle);
+                    }
 
-                    startActivity(it);
-                    finish();
-                }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("是否可实名GSON：", response);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
+                        Toast.makeText(ChengGongZhuCe.this, ""+message, Toast.LENGTH_SHORT).show();
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")){
+                            Intent it=new Intent(ChengGongZhuCe.this,ShiMingrenzheng.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("user_ird", userid1);
+                            SPUtils.put(ChengGongZhuCe.this, "userId", userid1);
+                            it.putExtras(bundle);
 
-            }
+                            startActivity(it);
+                            finish();
+                        }
+                    }
+                });
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getHttp_zhucechenggong() {
@@ -159,7 +154,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             js_request.put("username", shoujihao);
             js_request.put("password", password);
             js_request.put("url", myurl);
-            Log.e("成功注册(登入)：", ""+js_request);
+            Log.e("成功注册(登入)：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -175,44 +170,34 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/Applogin.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Applogin.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", ">>>>GSON" + result);
-                DengruData d_data = new Gson().fromJson(result, DengruData.class);
-                //状态值
-                dengrufanhuizhi = d_data.getState();
-                String  user_token=d_data.getResult().getToken();
-                int user_id=d_data.getResult().getUserid();
-                String loginId = d_data.getResult().getLoginId();
-                if (dengrufanhuizhi.equals("success")) {
-                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi,user_token,user_id,loginId));
-                    SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
-                    finish();
-                }
-                
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", ">>>>GSON" + response);
+                        DengruData d_data = new Gson().fromJson(response, DengruData.class);
+                        //状态值
+                        dengrufanhuizhi = d_data.getState();
+                        String user_token = d_data.getResult().getToken();
+                        int user_id = d_data.getResult().getUserid();
+                        String loginId = d_data.getResult().getLoginId();
+                        if (dengrufanhuizhi.equals("success")) {
+                            EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
+                            SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
+                            finish();
+                        }
+                    }
+                });
     }
 
     private void getchengg_id() {

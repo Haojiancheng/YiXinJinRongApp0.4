@@ -21,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Wo_HUiKuanJIHUa_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class Wo_HuikuanJIHua extends AutoLayoutActivity {
     private RecyclerView wo_rvoew;
@@ -83,37 +88,29 @@ public class Wo_HuikuanJIHua extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/getInvestList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/getInvestList.do")
+                .content(canshu.toString())
 
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
-                Wo_HUiKuanJIHua_gson data=new Gson().fromJson(result,Wo_HUiKuanJIHua_gson.class);
-                list.addAll(data.getRepayList());
-                adapter=new Wo_HUiKuanJIHUa_adapter(list);
-                wo_rvoew.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
+                        Wo_HUiKuanJIHua_gson data=new Gson().fromJson(result,Wo_HUiKuanJIHua_gson.class);
+                        list.addAll(data.getRepayList());
+                        adapter=new Wo_HUiKuanJIHUa_adapter(list);
+                        wo_rvoew.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getid() {

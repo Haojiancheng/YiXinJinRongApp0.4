@@ -21,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,8 @@ import java.util.ArrayList;
 
 import me.leefeng.citypicker.CityPicker;
 import me.leefeng.citypicker.CityPickerListener;
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class UpData_Addass extends AutoLayoutActivity implements CityPickerListener {
     private EditText sh_name, sh_phone, sh_mainaddass;
@@ -105,40 +109,31 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/updateAddressInfo.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/updateAddressInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("更改收货地址GSON", ""+result);
-                UpData_addass_gson data = new Gson().fromJson(result, UpData_addass_gson.class);
-                String message = data.getMessage();
-                if (message.equals("更新地址成功")){
-                    Toast.makeText(UpData_Addass.this, ""+message, Toast.LENGTH_SHORT).show();
-                    finish();
-                }else {
-                    Toast.makeText(UpData_Addass.this, ""+message, Toast.LENGTH_SHORT).show();
-                }
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("更改收货地址GSON", ""+result);
+                        UpData_addass_gson data = new Gson().fromJson(result, UpData_addass_gson.class);
+                        String message = data.getMessage();
+                        if (message.equals("更新地址成功")){
+                            Toast.makeText(UpData_Addass.this, ""+message, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else {
+                            Toast.makeText(UpData_Addass.this, ""+message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void getupdatainitview() {

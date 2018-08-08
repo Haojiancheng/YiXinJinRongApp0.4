@@ -34,6 +34,8 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqi
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.apache.http.params.HttpParams;
 import org.greenrobot.eventbus.EventBus;
@@ -48,6 +50,9 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.MediaType;
+
 public class Shouye extends Fragment {
 
     //公告栏
@@ -55,7 +60,6 @@ public class Shouye extends Fragment {
     //更多项目的跳转
     private TextView gengduo;
     private Banner bann;
-    //    private String[] images = {};
     private String picurl;
     private String picpath;
     private String sha1;//SHA1加密
@@ -96,88 +100,76 @@ public class Shouye extends Fragment {
     }
 
     private void getHttp() {
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/yxbAppIndex.do");
-
-        params.setAsJsonContent(true);
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("请稍候...");
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", "" + result);
-                data = new Gson().fromJson(result, ShouYe_Gson.class);
-                String paht = data.getResult().getPath();
-                Log.e("TAG", "Path:" + paht);
-
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                    picurl = data.getResult().getBannerList().get(i).getPicurl();
-                    Log.e("TAG", "url:" + picurl);
-                    mypic = new String[data.getResult().getBannerList().size()];
-                }
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                    picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
-                    Log.e("TAG", "url:" + picpath);
-
-                    mypic[i] = picpath;
-
-                }
-                for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-
-
-                    Log.e("TAG", ">>>URL:" + mypic[i].toString());
-                }
-                bann = getActivity().findViewById(R.id.shouyetobbanner);
-                List<String> list3 = new ArrayList<>();
-                for (String s2 : mypic) {
-                    list3.add(s2);
-                }
-                bann.setImageLoader(new GlideImageloader());
-                bann.setImages(list3);
-                bann.start();
-
-                mylist.addAll(data.getResult().getBorrowList());
-                adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
-                mylistview.setAdapter(adapter);
-                mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/yxbAppIndex.do")
+                .content("")
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String xiangmu_id = mylist.get(position).getBorrowRandomId();
-                        Log.e("TAG", "+.." + xiangmu_id);
-                        Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
-                        String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
-                        it.putExtra("xiangmu_id", xiangmu_id);
-                        it.putExtra("mortgageType", mortgageType);
-                        startActivity(it);
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", "" + response);
+                        data = new Gson().fromJson(response, ShouYe_Gson.class);
+                        String paht = data.getResult().getPath();
+                        Log.e("TAG", "Path:" + paht);
+
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+                            picurl = data.getResult().getBannerList().get(i).getPicurl();
+                            Log.e("TAG", "url:" + picurl);
+                            mypic = new String[data.getResult().getBannerList().size()];
+                        }
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+                            picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
+                            Log.e("TAG", "url:" + picpath);
+
+                            mypic[i] = picpath;
+
+                        }
+                        for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
+
+
+                            Log.e("TAG", ">>>URL:" + mypic[i].toString());
+                        }
+                        bann = getActivity().findViewById(R.id.shouyetobbanner);
+                        List<String> list3 = new ArrayList<>();
+//                        for (String s2 : mypic) {
+//                            list3.add(s2);
+//                        }
+                        bann.setImageLoader(new GlideImageloader());
+                        bann.setImages(list3);
+                        bann.start();
+
+                        mylist.addAll(data.getResult().getBorrowList());
+                        adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
+                        mylistview.setAdapter(adapter);
+                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                String xiangmu_id = mylist.get(position).getBorrowRandomId();
+                                Log.e("TAG", "+.." + xiangmu_id);
+                                Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
+                                String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
+                                it.putExtra("xiangmu_id", xiangmu_id);
+                                it.putExtra("mortgageType", mortgageType);
+                                startActivity(it);
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
+                        for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
+                            mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());
+                        }
+                        for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
+                            mymassegtime.add(data.getResult().getPublicMsgList().get(i).getArticle_pub_time());
+                        }
+                        getgonggao();
                     }
                 });
-                adapter.notifyDataSetChanged();
-                for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
-                    mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());
-                }
-                for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
-                    mymassegtime.add(data.getResult().getPublicMsgList().get(i).getArticle_pub_time());
-                }
-                getgonggao();
 
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                LogUtil.e("抛出异常:\n" + ex.getMessage());
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-                progressDialog.cancel();
-            }
-        });
     }
 
     private void getgonggao() {

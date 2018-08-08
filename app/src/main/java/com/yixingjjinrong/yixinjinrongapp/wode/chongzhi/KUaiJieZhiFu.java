@@ -21,12 +21,17 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.autolayout.AutoLinearLayout;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class KUaiJieZhiFu extends AutoLayoutActivity {
     private TextView zclb;
@@ -98,36 +103,29 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/signCardApp.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("开通快捷支付Gson",result );
-                QianYue_gson data = new Gson().fromJson(result, QianYue_gson.class);
-                String html = data.getHtml();
-                Intent itcz = new Intent(KUaiJieZhiFu.this, QianYueOk.class);
-                itcz.putExtra("HTML", html);
-                Log.e("HTML!:",""+html.toString() );
-                startActivity(itcz);
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/signCardApp.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("开通快捷支付Gson",response );
+                        QianYue_gson data = new Gson().fromJson(response, QianYue_gson.class);
+                        String html = data.getHtml();
+                        Intent itcz = new Intent(KUaiJieZhiFu.this, QianYueOk.class);
+                        itcz.putExtra("HTML", html);
+                        Log.e("HTML!:",""+html.toString() );
+                        startActivity(itcz);
+                    }
+                });
     }
 
     private void getqyid() {

@@ -35,6 +35,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
@@ -43,6 +45,9 @@ import org.xutils.common.Callback;
 import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterface {
     private ImageView fanhui_dengru, dengru_guanbi;//返回键
@@ -167,69 +172,46 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Applogin.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e(">>>>登入", "" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e(">>>>登入", "" + result);
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/Applogin.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.e("我的登入", "" + e);
+                        Toast.makeText(WoDe_DengRu.this, "网络连接超时，请稍后再试", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e(">>>>登入", "" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
-                DengruData d_data = new Gson().fromJson(result, DengruData.class);
-                dengrufanhuizhi = d_data.getState(); //状态值
-                message = d_data.getMessage();
-                Log.e("登入Message", ""+message);
-                Toast.makeText(WoDe_DengRu.this, ""+message, Toast.LENGTH_SHORT).show();
-                String user_token = d_data.getResult().getToken();
-                String loginId = d_data.getResult().getLoginId();
-                int user_id = d_data.getResult().getUserid();
-                if (message.equals("登录成功")) {
-                    EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id,loginId));
-                    EventBus.getDefault().post(new User_id(user_id));
-                    SPUtils.put(WoDe_DengRu.this, "isLogin", true);
-                    SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
-                    Log.e("sdfdf", ""+loginId );
-                    finish();
-                } else {
-                    Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
-                }
+                        DengruData d_data = new Gson().fromJson(result, DengruData.class);
+                        Log.e("登入Message", "" + message);
 
+                        if (d_data.getMessage().equals("登录成功")) {
+                            dengrufanhuizhi = d_data.getState(); //状态值
+                            message = d_data.getMessage();
+                            String user_token = d_data.getResult().getToken();
+                            String loginId = d_data.getResult().getLoginId();
+                            int user_id = d_data.getResult().getUserid();
+                                EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
+                                EventBus.getDefault().post(new User_id(user_id));
+                                SPUtils.put(WoDe_DengRu.this, "isLogin", true);
+                                SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
+                                Log.e("sdfdf", "" + loginId);
+                                finish();
 
-//                }
-            }
+                        }else {
+                            Toast.makeText(WoDe_DengRu.this, ""+d_data.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-//                Toast.makeText(x.app(), "网络连接失败", Toast.LENGTH_LONG).show();
-//                if (ex instanceof HttpException) { // 网络错误
-//                    HttpException httpEx = (HttpException) ex;
-//                    int responseCode = httpEx.getCode();
-//                    String responseMsg = httpEx.getMessage();
-//                    String errorResult = httpEx.getResult();
-//                    Log.e("TAG", ">>>>" + responseMsg);
-//                    Log.e("TAG", ">>>>" + errorResult);
-//                    // ...
-//                } else { // 其他错误
-//                    // ...
-//                Toast.makeText(WoDe_DengRu.this, "" + message, Toast.LENGTH_SHORT).show();
-
-//                }
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
-
+                    }
+                });
     }
 
 

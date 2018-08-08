@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +22,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ZhuCe_PaGa extends AutoLayoutActivity {
     private ImageView zhuce_fanhui, zhuceqingchu;//返回按钮,清除手机号
@@ -51,6 +57,27 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         getZhuCeOnClik();
     }
 
+    public static boolean isMobileNo(String mobiles) {
+        /*
+         * 移动号码段:139、138、137、136、135、134、150、151、152、157、158、159、182、183、184、187、188、147
+         * 联通号码段:130、131、132、185、186、145、171/176/175
+         * 电信号码段:133、153、180、181、189、173、177
+         */
+        String telRegex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17([1-3]|[5-9]))|(18[0-9]))\\d{8}$";
+        /**
+         * (13[0-9])代表13号段 130-139
+         * (14[5|7])代表14号段 145、147
+         * (15([0-3]|[5-9]))代表15号段 150-153 155-159
+         * (17([1-3][5-8]))代表17号段 171-173 175-179 虚拟运营商170屏蔽
+         * (18[0-9]))代表18号段 180-189
+         * d{8}代表后面可以是0-9的数字，有8位
+         */
+        if (TextUtils.isEmpty(mobiles)) {
+            return false;
+        } else {
+            return mobiles.matches(telRegex);
+        }
+    }
 
     private void getZhuCeOnClik() {
         zz_dr.setOnClickListener(new View.OnClickListener() {
@@ -85,9 +112,9 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 if (myphone.equals("")) {
                     Toast.makeText(ZhuCe_PaGa.this, "手机号不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (myphone.length() < 11) {
+                    if (myphone.length() < 11||isMobileNo(myphone)==false) {
                         Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
-                    } else if (myphone.length() > 11) {
+                    } else if (myphone.length() > 11||isMobileNo(myphone)==false) {
                         Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
                     } else {
                         if (zc_check.isChecked()) {
@@ -130,40 +157,33 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/PhoneVerify.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", "Gson:" + result);
-                YanZhengShouJiHao_Data data = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
-                phonezhuangtai = data.getResult().getMapPhone();
-                if (phonezhuangtai.equals("1")) {
-                    Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
-                    zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
-                    startActivity(zhuce_page);
-                    finish();
-                } else {
-                    Toast.makeText(ZhuCe_PaGa.this, "该手机号已注册，请登入", Toast.LENGTH_SHORT).show();
-                }
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/PhoneVerify.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", "Gson:" + result);
+                        YanZhengShouJiHao_Data data = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
+                        phonezhuangtai = data.getResult().getMapPhone();
+                        if (phonezhuangtai.equals("1")) {
+                            Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
+                            zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
+                            startActivity(zhuce_page);
+                            finish();
+                        } else {
+                            Toast.makeText(ZhuCe_PaGa.this, "该手机号已注册，请登入", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
     }
 

@@ -119,7 +119,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/layouy_text"
                         android:layout_marginRight="30px"
-                        android:onClick="ToInterest"
                         android:text="【展开】"
                         android:textColor="#009ACD"
                         android:textSize="24px" />

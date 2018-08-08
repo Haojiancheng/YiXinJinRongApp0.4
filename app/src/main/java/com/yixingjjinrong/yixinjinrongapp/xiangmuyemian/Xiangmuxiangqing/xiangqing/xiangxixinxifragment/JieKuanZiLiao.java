@@ -21,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JieKuanZiLiao_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class JieKuanZiLiao extends Fragment {
     private RecyclerView jihuan_rview;
@@ -76,39 +81,29 @@ public class JieKuanZiLiao extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/Borrowingdata.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG","《借款资料》GSOn"+result);
-                JieKuanZiLiao_Gson data=new Gson().fromJson(result,JieKuanZiLiao_Gson.class);
-                String urlpaht=data.getResult().getICIMAGE();
-                list.addAll(data.getResult().getQualificationList());
-                adapter=new JieKuanZiLiao_Adapter(list,urlpaht,getActivity());
-                jihuan_rview.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/Borrowingdata.do")
+                .content(canshu.toString())
 
-                
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-        
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG","《借款资料》GSOn"+result);
+                        JieKuanZiLiao_Gson data=new Gson().fromJson(result,JieKuanZiLiao_Gson.class);
+                        String urlpaht=data.getResult().getICIMAGE();
+                        list.addAll(data.getResult().getQualificationList());
+                        adapter=new JieKuanZiLiao_Adapter(list,urlpaht,getActivity());
+                        jihuan_rview.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     private void getjk_id() {

@@ -19,12 +19,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.ChuJieXiangXing.Wo_HuikuanJIHua;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ChuJIeXiangQing extends AutoLayoutActivity {
     private String sha1;//SHA1加密
@@ -78,60 +83,53 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/getInvestDetails.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("出借详情GSon：",""+result );
-                final OutXX_gson data = new Gson().fromJson(result, OutXX_gson.class);
-                if (type.equals("fang")){
-                    Glide.with(ChuJIeXiangQing.this).load(R.drawable.fangchandiya).into(out_img);
-                }else {
-                    Glide.with(ChuJIeXiangQing.this).load(R.drawable.cheliang).into(out_img);
-                }
-                out_title.setText(" "+data.getInvestDetails().getBorrowTitle()+data.getInvestDetails().getBorrowCode());
-                out_money.setText(" "+data.getInvestDetails().getInvestAmount());
-                out_time.setText(" "+data.getInvestDetails().getDeadline());
-                out_lv.setText(" "+data.getInvestDetails().getAnnualRate()+"%");
-                if (data.getInvestDetails().getInterest().equals("")){
-                    out_jia.setVisibility(View.GONE);
-                    out_fujia.setVisibility(View.GONE);
-                }else {
-                    out_fujia.setText(data.getInvestDetails().getInterest()+"%");
-                }
-                xq_huankuan.setText(" "+data.getInvestDetails().getT_borrow_style());
-                out_qishu.setText(" "+data.getInvestDetails().getLine());
-                out_timea.setText(" "+data.getInvestDetails().getEndTenderDate());
-                out_huikuan.setOnClickListener(new View.OnClickListener() {
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/getInvestDetails.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onClick(View v) {
-                        Intent it=new Intent(ChuJIeXiangQing.this, Wo_HuikuanJIHua.class);
-                        it.putExtra("bid", data.getInvestDetails().getBorrowId());
-                        it.putExtra("investid", data.getInvestDetails().getInvestid());
-                        startActivity(it);
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("出借详情GSon：",""+result );
+                        final OutXX_gson data = new Gson().fromJson(result, OutXX_gson.class);
+                        if (type.equals("fang")){
+                            Glide.with(ChuJIeXiangQing.this).load(R.drawable.fangchandiya).into(out_img);
+                        }else {
+                            Glide.with(ChuJIeXiangQing.this).load(R.drawable.cheliang).into(out_img);
+                        }
+                        out_title.setText(" "+data.getInvestDetails().getBorrowTitle()+data.getInvestDetails().getBorrowCode());
+                        out_money.setText(" "+data.getInvestDetails().getInvestAmount());
+                        out_time.setText(" "+data.getInvestDetails().getDeadline());
+                        out_lv.setText(" "+data.getInvestDetails().getAnnualRate()+"%");
+                        if (data.getInvestDetails().getInterest().equals("")){
+                            out_jia.setVisibility(View.GONE);
+                            out_fujia.setVisibility(View.GONE);
+                        }else {
+                            out_fujia.setText(data.getInvestDetails().getInterest()+"%");
+                        }
+                        xq_huankuan.setText(" "+data.getInvestDetails().getT_borrow_style());
+                        out_qishu.setText(" "+data.getInvestDetails().getLine());
+                        out_timea.setText(" "+data.getInvestDetails().getEndTenderDate());
+                        out_huikuan.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent it=new Intent(ChuJIeXiangQing.this, Wo_HuikuanJIHua.class);
+                                it.putExtra("bid", data.getInvestDetails().getBorrowId());
+                                it.putExtra("investid", data.getInvestDetails().getInvestid());
+                                startActivity(it);
+                            }
+                        });
                     }
                 });
 
-            }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getxpId() {

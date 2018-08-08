@@ -22,6 +22,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Yaoqing_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class YaoQingXiangQing extends AutoLayoutActivity {
 
@@ -89,47 +94,38 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/myInvite.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/myInvite.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("我的邀请详情Gson",""+result );
-                YaoQingXiangQing_Gson data = new Gson().fromJson(result, YaoQingXiangQing_Gson.class);
-                int inviteAmount = data.getQueryAwardList().size();//邀请人数
-                String totalEarn = data.getTotalEarn();//总收益
-                xq_mycount_money.setText(totalEarn);//接到的钱
-                xq_mymancount.setText(""+inviteAmount);//接到的人数
-                if(inviteAmount==0){
-                    wushuju.setVisibility(View.VISIBLE);
-                    youshuju.setVisibility(View.GONE);
-                }else {
-                    wushuju.setVisibility(View.GONE);
-                    youshuju.setVisibility(View.VISIBLE);
-                    list.addAll(data.getQueryAwardList());
-                    adapter=new Yaoqing_adapter(list);
-                    yaoqing_rview.setAdapter(adapter);
-                }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("我的邀请详情Gson",""+result );
+                        YaoQingXiangQing_Gson data = new Gson().fromJson(result, YaoQingXiangQing_Gson.class);
+                        int inviteAmount = data.getQueryAwardList().size();//邀请人数
+                        String totalEarn = data.getTotalEarn();//总收益
+                        xq_mycount_money.setText(totalEarn);//接到的钱
+                        xq_mymancount.setText(""+inviteAmount);//接到的人数
+                        if(inviteAmount==0){
+                            wushuju.setVisibility(View.VISIBLE);
+                            youshuju.setVisibility(View.GONE);
+                        }else {
+                            wushuju.setVisibility(View.GONE);
+                            youshuju.setVisibility(View.VISIBLE);
+                            list.addAll(data.getQueryAwardList());
+                            adapter=new Yaoqing_adapter(list);
+                            yaoqing_rview.setAdapter(adapter);
+                        }
+                    }
+                });
     }
 
     private void getinterview() {

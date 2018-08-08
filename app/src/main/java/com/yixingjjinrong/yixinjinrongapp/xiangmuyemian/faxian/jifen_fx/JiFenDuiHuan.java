@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -23,6 +24,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen.DuiHuanJILu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen.JIFenJiLu;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +35,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class JiFenDuiHuan extends AutoLayoutActivity {
     private int user_id;
@@ -59,26 +65,39 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
     }
 
     private void getoncolincl() {
+
         jfgl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(JiFenDuiHuan.this,JiFenGongLv.class);
-                startActivity(it);
+
+                    Intent it = new Intent(JiFenDuiHuan.this, JiFenGongLv.class);
+                    startActivity(it);
+
             }
         });
 
         jifenjilu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//积分记录
-                Intent inte=new Intent(JiFenDuiHuan.this, JIFenJiLu.class);
-                startActivity(inte);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+                    Toast.makeText(JiFenDuiHuan.this, "请先登入再查看", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent inte = new Intent(JiFenDuiHuan.this, JIFenJiLu.class);
+                    startActivity(inte);
+                }
             }
         });
         duihuanjilu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inte=new Intent(JiFenDuiHuan.this, DuiHuanJILu.class);
-                startActivity(inte);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+                    Toast.makeText(JiFenDuiHuan.this, "请先登入再查看", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent inte = new Intent(JiFenDuiHuan.this, DuiHuanJILu.class);
+                    startActivity(inte);
+                }
             }
         });
         jfdh_fh.setOnClickListener(new View.OnClickListener() {
@@ -110,39 +129,35 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/integralExchangeList.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/integralExchangeList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("积分兑换GSOn:",result );
-                JiFenDuiHuan_Gson data = new Gson().fromJson(result, JiFenDuiHuan_Gson.class);
-                String paht = data.getResult().getPath();
-                user_jifen.setText(String.valueOf(data.getResult().getIntegral()));
-                list.addAll(data.getResult().getGoodsList());
-                adapter=new JiFenDuiHUan_adapter(list,paht);
-                jf_goods_rview.setAdapter(adapter);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("积分兑换GSOn:",result );
+                        JiFenDuiHuan_Gson data = new Gson().fromJson(result, JiFenDuiHuan_Gson.class);
+                        if (data.getMessage().equals("成功了")) {
 
-            }
+                            String paht = data.getResult().getPath();
+                            user_jifen.setText(String.valueOf(data.getResult().getIntegral()));
+                            list.addAll(data.getResult().getGoodsList());
+                            adapter = new JiFenDuiHUan_adapter(list, paht);
+                            jf_goods_rview.setAdapter(adapter);
+                        }else {
+                            Toast.makeText(JiFenDuiHuan.this, ""+data.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getduihuan_id() {

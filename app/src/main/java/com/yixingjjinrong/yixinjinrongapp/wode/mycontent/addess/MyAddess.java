@@ -21,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Myaddass_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class MyAddess extends AutoLayoutActivity implements XRecyclerView.LoadingListener{
     private XRecyclerView addass_rview;
@@ -88,40 +93,31 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/addressInfoList.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addressInfoList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("我的地址GSON", ""+result);
-                MyAddass_Gson data = new Gson().fromJson(result, MyAddass_Gson.class);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                list.addAll(data.getResult().getAddressList());
+                    }
 
-                adapter=new Myaddass_adapter(list,MyAddess.this);
-                addass_rview.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("我的地址GSON", ""+result);
+                        MyAddass_Gson data = new Gson().fromJson(result, MyAddass_Gson.class);
 
-            }
+                        list.addAll(data.getResult().getAddressList());
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                        adapter=new Myaddass_adapter(list,MyAddess.this);
+                        addass_rview.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getaddassid() {

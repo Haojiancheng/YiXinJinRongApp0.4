@@ -17,12 +17,17 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class XiaoXi_XiangQing extends AutoLayoutActivity {
     private int xx_ird;
@@ -68,41 +73,33 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/getMsgDetailById.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/getMsgDetailById.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("消息详情GSON：",""+result);
-                XXxiangqing_gson data = new Gson().fromJson(result, XXxiangqing_gson.class);
-                String result1 = data.getResult();
-                WebSettings webSettings = xxweb.getSettings();
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                webSettings.setJavaScriptEnabled(true);
-                // 设置允许JS弹窗
-                webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+                    }
 
-                xxweb.loadUrl(result1);
-            }
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("消息详情GSON：",""+result);
+                        XXxiangqing_gson data = new Gson().fromJson(result, XXxiangqing_gson.class);
+                        String result1 = data.getResult();
+                        WebSettings webSettings = xxweb.getSettings();
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                        webSettings.setJavaScriptEnabled(true);
+                        // 设置允许JS弹窗
+                        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
-            }
+                        xxweb.loadUrl(result1);
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getxx_xqid() {

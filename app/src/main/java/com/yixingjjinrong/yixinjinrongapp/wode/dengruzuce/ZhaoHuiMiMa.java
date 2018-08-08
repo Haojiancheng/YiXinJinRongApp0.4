@@ -18,12 +18,17 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ZhaoHuiMIma_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ZhaoHuiMiMa extends AutoLayoutActivity {
     private Button zhaohuimima_xiayibu;//找回密码下一步
@@ -97,43 +102,35 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams( Urls.BASE_URL+"yxbApp/PhoneVerify.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("ssss",""+result );
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/PhoneVerify.do")
+                .content(canshu.toString())
 
-                ZhaoHuiMIma_Gson data = new Gson().fromJson(result, ZhaoHuiMIma_Gson.class);
-                  Log.e("ddddd", ""+data.getMessage());
-                if (data.getMessage().equals("该手机已注册!")){
-                    Intent zhaohuimima_it = new Intent(ZhaoHuiMiMa.this, ZhaoHuiMiMaYanZheng.class);
-                    zhaohuimima_it.putExtra("phone", myphonet.getText().toString());
-                    startActivity(zhaohuimima_it);
-                    finish();
-                }else {
-                    Toast.makeText(ZhaoHuiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
+                    }
 
-            }
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("ssss",""+result );
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                        ZhaoHuiMIma_Gson data = new Gson().fromJson(result, ZhaoHuiMIma_Gson.class);
+                        Log.e("ddddd", ""+data.getMessage());
+                        if (data.getMessage().equals("该手机已注册!")){
+                            Intent zhaohuimima_it = new Intent(ZhaoHuiMiMa.this, ZhaoHuiMiMaYanZheng.class);
+                            zhaohuimima_it.putExtra("phone", myphonet.getText().toString());
+                            startActivity(zhaohuimima_it);
+                            finish();
+                        }else {
+                            Toast.makeText(ZhaoHuiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getzhaohuimimaId() {

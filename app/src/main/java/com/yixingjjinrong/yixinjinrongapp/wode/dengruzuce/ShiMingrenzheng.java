@@ -24,6 +24,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,9 @@ import org.xutils.x;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ShiMingrenzheng extends AutoLayoutActivity {
     private EditText zhen_name,user_idcard;
@@ -49,10 +54,10 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
         setContentView(R.layout.activity_shi_mingrenzheng);
+        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) { //适配华为手机虚拟键遮挡tab的问题
+            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));//需要在setContentView()方法后面执行
+        }
         Bundle b = getIntent().getExtras();
         user_ird = b.getInt("user_ird");
         getzhen_id();
@@ -101,49 +106,39 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/userAuth.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/userAuth.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("实名认证的GSOn", ""+result);
-                ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
-                String message = data.getMessage().toString();
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("实名认证的GSOn", ""+result);
+                        ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
+                        String message = data.getMessage().toString();
 //                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
 
-                String zhuangtai = data.getState();
-                Log.e("实名认证", zhuangtai);
-                if (zhuangtai.equals("success")){
+                        String zhuangtai = data.getState();
+                        Log.e("实名认证", zhuangtai);
+                        if (zhuangtai.equals("success")){
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
-                    Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    jinggao.setVisibility(View.VISIBLE);
-                    jinggao.setText(message);
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                            Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            jinggao.setVisibility(View.VISIBLE);
+                            jinggao.setText(message);
+                        }
+                    }
+                });
 
 
     }

@@ -13,6 +13,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.MyConten;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -22,6 +23,7 @@ public class ChuJie_OK extends AutoLayoutActivity {
     private TextView cj_money,cj_time;
     private ImageView cjcg_fh;
     private Button jxcj,cjcg_zh;
+//    private String borid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class ChuJie_OK extends AutoLayoutActivity {
         jxcj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//继续出借
+
                 finish();
             }
         });
@@ -62,6 +65,7 @@ public class ChuJie_OK extends AutoLayoutActivity {
         Intent it=getIntent();
         String mycj_money = it.getStringExtra("money");
         String mycj_time = it.getStringExtra("time");
+//        borid = it.getStringExtra("borid");
         cj_money=findViewById(R.id.cj_money);
         cj_time=findViewById(R.id.cj_time);
         cjcg_fh=findViewById(R.id.cjcg_fh);

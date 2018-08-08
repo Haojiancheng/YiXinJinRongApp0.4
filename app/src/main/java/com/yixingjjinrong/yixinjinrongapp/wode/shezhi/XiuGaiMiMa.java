@@ -26,6 +26,8 @@ import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMaYanZheng;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,9 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class XiuGaiMiMa extends AutoLayoutActivity {
     private ImageView re_fenhui;//返回
@@ -128,43 +133,34 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/updatePwd.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("=反回的GSON",""+result );
-                XiuGaiMiMa_Gson data = new Gson().fromJson(result, XiuGaiMiMa_Gson.class);
-                String token = data.getResult().getToken();
-                String state = data.getState();
-                Toast.makeText(XiuGaiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                if (state.equals("success")){
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/updatePwd.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("=反回的GSON",""+result );
+                        XiuGaiMiMa_Gson data = new Gson().fromJson(result, XiuGaiMiMa_Gson.class);
+                        String token = data.getResult().getToken();
+                        String state = data.getState();
+                        Toast.makeText(XiuGaiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                        if (state.equals("success")){
 //                    EventBus.getDefault().post(new User_data("", "",token,Integer.parseInt("")));
-                    Toast.makeText(XiuGaiMiMa.this, "修改成功,请重新登入", Toast.LENGTH_SHORT).show();
-                    Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
-                    startActivity(it);
-                    finish();
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                            Toast.makeText(XiuGaiMiMa.this, "修改成功,请重新登入", Toast.LENGTH_SHORT).show();
+                            Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
+                            startActivity(it);
+                            finish();
+                        }
+                    }
+                });
     }
 
     public static boolean isPassword(String password) {

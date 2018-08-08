@@ -51,6 +51,8 @@ import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
 import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.MyYaoQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -60,6 +62,9 @@ import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
@@ -200,95 +205,92 @@ public class Wode extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/userIndex.do")
+                .content(canshu.toString())
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/userIndex.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", ">>>Gson" + result);
-                User_Gson data = new Gson().fromJson(result, User_Gson.class);
-                phone = data.getUserMap().getPhone();
-                myphone.setText(phone);//手机号
-                //邀请人数
-                inviteAmount = data.getUserMap().getInviteAmount();
-                //邀请总金额
-                totalEarn = data.getUserMap().getTotalEarn();
-                String zhuangtaima = data.getState();
-//                Log.e("state",zhuangtaima);
-                if (zhuangtaima.equals("success")) {
-                    weidengru.setVisibility(View.GONE); //显示布局
-                    dengru.setVisibility(View.VISIBLE);//影藏布局
-                    wozonge.setText(data.getUserMap().getAccountSum());//总额
-                    keyong = data.getUserMap().getUsableAmount();
-                    keyongyue.setText(keyong);//可用余额
-                    yonghudengji.setText("LV:" + data.getUserMap().getLevelname());//等级
-                    yaoqing.setText(data.getUserMap().getInviteAmount());//我的邀请
-                    //风险评测
-                    fx = data.getUserMap().getRisk();
-                    //实名认证
-                    s_name = data.getUserMap().getAuth();
-                    //银行存管
-                    blank = data.getUserMap().getCg();
-                    String daijingjuan = data.getUserMap().getDjq();//代金券
-                    String jiaxijuan = data.getUserMap().getJxq();//加息劵
-                    String my_message = data.getUserMap().getMails();//我的消息
-                    //测评结果
-                    riskType = data.getUserMap().getRiskType();
-                    if (s_name.equals("0")) {
-                        shimingrenzheng_itme.setVisibility(View.VISIBLE);
-                        yinhangcunguan_itme.setVisibility(View.GONE);
-                        fengxianpingce_itme.setVisibility(View.GONE);
+                    }
 
-                    } else {
-                        shimingrenzheng_itme.setVisibility(View.GONE);
-                        if (blank.equals("0")) {
-                            yinhangcunguan_itme.setVisibility(View.VISIBLE);
-                            fengxianpingce_itme.setVisibility(View.GONE);
-
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG", ">>>Gson" + result);
+                        User_Gson data = new Gson().fromJson(result, User_Gson.class);
+                        String message = data.getMessage();
+                        if (message.equals("用户未登录。")) {
+                            weidengru.setVisibility(View.VISIBLE); //显示布局
+                            dengru.setVisibility(View.GONE);//影藏布局
+                            user_id=0;
+                            keyongyue.setText("0.00");
+                            yaoqing.setText("0");
+                            Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
                         } else {
-                            shimingrenzheng_itme.setVisibility(View.GONE);
-                            yinhangcunguan_itme.setVisibility(View.GONE);
-                            if (fx.equals("0")) {
-                                fengxianpingce_itme.setVisibility(View.VISIBLE);
+                            phone = data.getUserMap().getPhone();
+                            myphone.setText(phone);//手机号
+                            //邀请人数
+                            inviteAmount = data.getUserMap().getInviteAmount();
+                            //邀请总金额
+                            totalEarn = data.getUserMap().getTotalEarn();
+                            String zhuangtaima = data.getState();
+             //                Log.e("state",zhuangtaima);
+                            if (zhuangtaima.equals("success")) {
+                                weidengru.setVisibility(View.GONE); //显示布局
+                                dengru.setVisibility(View.VISIBLE);//影藏布局
+                                wozonge.setText(data.getUserMap().getAccountSum());//总额
+                                keyong = data.getUserMap().getUsableAmount();
+                                keyongyue.setText(keyong);//可用余额
+                                yonghudengji.setText("LV:" + data.getUserMap().getLevelname());//等级
+                                yaoqing.setText(data.getUserMap().getInviteAmount());//我的邀请
+                                //风险评测
+                                fx = data.getUserMap().getRisk();
+                                //实名认证
+                                s_name = data.getUserMap().getAuth();
+                                //银行存管
+                                blank = data.getUserMap().getCg();
+                                String daijingjuan = data.getUserMap().getDjq();//代金券
+                                String jiaxijuan = data.getUserMap().getJxq();//加息劵
+                                String my_message = data.getUserMap().getMails();//我的消息
+                                //测评结果
+                                riskType = data.getUserMap().getRiskType();
+                                if (s_name.equals("0")) {
+                                    shimingrenzheng_itme.setVisibility(View.VISIBLE);
+                                    yinhangcunguan_itme.setVisibility(View.GONE);
+                                    fengxianpingce_itme.setVisibility(View.GONE);
+
+                                } else {
+                                    shimingrenzheng_itme.setVisibility(View.GONE);
+                                    if (blank.equals("0")) {
+                                        yinhangcunguan_itme.setVisibility(View.VISIBLE);
+                                        fengxianpingce_itme.setVisibility(View.GONE);
+
+                                    } else {
+                                        shimingrenzheng_itme.setVisibility(View.GONE);
+                                        yinhangcunguan_itme.setVisibility(View.GONE);
+                                        if (fx.equals("0")) {
+                                            fengxianpingce_itme.setVisibility(View.VISIBLE);
+
+                                        } else {
+                                            shimingrenzheng_itme.setVisibility(View.GONE);
+                                            yinhangcunguan_itme.setVisibility(View.GONE);
+                                            fengxianpingce_itme.setVisibility(View.GONE);
+                                        }
+
+                                    }
+                                }
+
 
                             } else {
-                                shimingrenzheng_itme.setVisibility(View.GONE);
-                                yinhangcunguan_itme.setVisibility(View.GONE);
-                                fengxianpingce_itme.setVisibility(View.GONE);
                             }
+                            SPUtils.put(getActivity(), "userId", user_id);
+                            SPUtils.put(getActivity(), "Token1", userToken);
 
                         }
                     }
-
-
-                } else {
-                }
-                SPUtils.put(getActivity(), "userId", user_id);
-                SPUtils.put(getActivity(), "Token1", userToken);
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                weidengru.setVisibility(View.VISIBLE); //显示布局
-                dengru.setVisibility(View.GONE);//影藏布局
-                keyongyue.setText("0.00");
-                yaoqing.setText("0");
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                });
 
     }
 
@@ -313,40 +315,32 @@ public class Wode extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/accountReg.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("存管GSON:", "" + result);
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent it = new Intent(getActivity(), YinHangCunGuan.class);
-                it.putExtra("HTML", html);
-                Log.e("我的页面银行存管HTML:", "" + it);
-                startActivity(it);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                Log.e("wangy", "" + html);
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("存管GSON:", "" + response);
+                        CunGuan_gson data = new Gson().fromJson(response, CunGuan_gson.class);
+                        String html = data.getResult().getHtml();
+                        Intent it = new Intent(getActivity(), YinHangCunGuan.class);
+                        it.putExtra("HTML", html);
+                        Log.e("我的页面银行存管HTML:", "" + it);
+                        startActivity(it);
 
-            }
+                        Log.e("wangy", "" + html);
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getshimingHTTp() {
@@ -371,44 +365,34 @@ public class Wode extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("是否可实名GSON：", result);
-                ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-                String message = data.getMessage().toString();
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("是否可实名GSON：", result);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
 //                Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
-                String jieguo = data.getState().toString();
-                if (jieguo.equals("success")) {
-                    Intent it = new Intent(getActivity(), ShiMingrenzheng.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("user_ird", user_id);
-                    it.putExtras(bundle);
-                    startActivity(it);
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")) {
+                            Intent it = new Intent(getActivity(), ShiMingrenzheng.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("user_ird", user_id);
+                            it.putExtras(bundle);
+                            startActivity(it);
+                        }
+                    }
+                });
 
     }
 
@@ -560,6 +544,7 @@ public class Wode extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
+                Log.e("ddddddd",s );
                 if (s.equals("0")) {
                     Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
                 } else {

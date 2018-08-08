@@ -25,6 +25,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.GG_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 
 import org.json.JSONException;
@@ -35,6 +37,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingListener{
     private int user_id;
@@ -86,49 +91,40 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryPublicMsgList.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryPublicMsgList.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("哦公告GSon:",""+result );
-                GG_GSON data = new Gson().fromJson(result, GG_GSON.class);
-                list.addAll(data.getResult());
-                adapter=new GG_adapter(list);
-                gg_xview.setAdapter(adapter);
-                adapter.setonEveryItemClickListener(new GG_adapter.OnEveryItemClickListener() {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
                     @Override
-                    public void onEveryClick(int position) {
-                        Toast.makeText(getActivity(), "点击了"+list.get(position).getLanmu_name(), Toast.LENGTH_SHORT).show();
-                        Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("xx_ird", list.get(position).getId());
-                        it.putExtras(bundle);
-                        startActivity(it);
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("哦公告GSon:",""+result );
+                        GG_GSON data = new Gson().fromJson(result, GG_GSON.class);
+                        list.addAll(data.getResult());
+                        adapter=new GG_adapter(list);
+                        gg_xview.setAdapter(adapter);
+                        adapter.setonEveryItemClickListener(new GG_adapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                Toast.makeText(getActivity(), "点击了"+list.get(position).getLanmu_name(), Toast.LENGTH_SHORT).show();
+                                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("xx_ird", list.get(position).getId());
+                                it.putExtras(bundle);
+                                startActivity(it);
+                            }
+                        });
+                        adapter.notifyDataSetChanged();
                     }
                 });
-                adapter.notifyDataSetChanged();
 
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
 
     }
 

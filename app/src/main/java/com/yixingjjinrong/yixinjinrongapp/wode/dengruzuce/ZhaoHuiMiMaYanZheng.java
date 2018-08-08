@@ -23,6 +23,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZiMIMA_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,9 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.regex.Pattern;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private Button queding_zhaohui,zhaohui_yanzheng;//找回密码——确定
@@ -140,42 +145,35 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/forgetPwd.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("找回密码的GSON",""+result );
-                ChongZiMIMA_Gson data = new Gson().fromJson(result, ChongZiMIMA_Gson.class);
-                String message = data.getMessage().toString();
-                String zhuangtai = data.getState().toString();
-                if (zhuangtai.equals("success")){
-                    Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
-                    Intent it=new Intent(ZhaoHuiMiMaYanZheng.this,WoDe_DengRu.class);
-                    startActivity(it);
-                    finish();
-                }else {
-                    Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
-                }
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/forgetPwd.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("找回密码的GSON",""+result );
+                        ChongZiMIMA_Gson data = new Gson().fromJson(result, ChongZiMIMA_Gson.class);
+                        String message = data.getMessage().toString();
+                        String zhuangtai = data.getState().toString();
+                        if (zhuangtai.equals("success")){
+                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
+                            Intent it=new Intent(ZhaoHuiMiMaYanZheng.this,WoDe_DengRu.class);
+                            startActivity(it);
+                            finish();
+                        }else {
+                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getHttP_YAnzhengMA() {
@@ -198,32 +196,25 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/sendsms.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG", ">>>>成功" + result);
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/sendsms.do")
+                .content(canshu.toString())
 
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", ">>>>成功" + response);
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                    }
+                });
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getzhaohuimima_Id() {

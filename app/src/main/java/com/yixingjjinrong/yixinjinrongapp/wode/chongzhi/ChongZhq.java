@@ -29,12 +29,17 @@ import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ChongZhq extends AutoLayoutActivity {
     private String sha1;//SHA1加密
@@ -92,125 +97,116 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/fuRechgeInitMobileApp.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("充值GSON:", "" + result);
-                Yinhangka_Gson data = new Gson().fromJson(result, Yinhangka_Gson.class);
-                cz_keyong.setText("可用余额:  " + data.getUsableSum() + "元");
-                String msg = data.getMsg();
-                if (msg.equals("")) {
-                    yh_name.setText(data.getBankName());
-                    yh_number.setText(data.getCardNum());
-                    x.image().bind(yh_img,  data.getBankImage());
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/fuRechgeInitMobileApp.do")
+                .content(canshu.toString())
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("充值GSON:", "" + response);
+                        Yinhangka_Gson data = new Gson().fromJson(response, Yinhangka_Gson.class);
+                        cz_keyong.setText("可用余额:  " + data.getUsableSum() + "元");
+                        String msg = data.getMsg();
+                        if (msg.equals("")) {
+                            yh_name.setText(data.getBankName());
+                            yh_number.setText(data.getCardNum());
+                            x.image().bind(yh_img, data.getBankImage());
 
 
-                    cz_ok.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (cz_money.getText().toString().equals("")){
-                                Toast.makeText(ChongZhq.this, "请输入金额", Toast.LENGTH_SHORT).show();
-                            }else {
-                                getokHTTp();
+                            cz_ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (cz_money.getText().toString().equals("")) {
+                                        Toast.makeText(ChongZhq.this, "请输入金额", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        getokHTTp();
+                                    }
+                                }
+                            });
+                        } else {
+
+
+                            yhcard.setVisibility(View.GONE);//影藏布局
+                            if (msg.equals("auth")) {
+                                Toast.makeText(ChongZhq.this, "没有实名认证", Toast.LENGTH_SHORT).show();
+                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未实名认证，是否实名认证")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                getshimingHTTp();
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog1.show();
                             }
-                        }
-                    });
-                } else {
+                            if (msg.equals("bank_link")) {
+                                Toast.makeText(ChongZhq.this, "没有富友开户", Toast.LENGTH_SHORT).show();
+                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未开通银行存管，是否开通")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                getchHTTP();
+                                                Toast.makeText(ChongZhq.this, "请开通", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog1.show();
 
-
-                    yhcard.setVisibility(View.GONE);//影藏布局
-                    if (msg.equals("auth")) {
-                        Toast.makeText(ChongZhq.this, "没有实名认证", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未实名认证，是否实名认证")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getshimingHTTp();
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog1.show();
-                    }
-                    if (msg.equals("bank_link")) {
-                        Toast.makeText(ChongZhq.this, "没有富友开户", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未开通银行存管，是否开通")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getchHTTP();
-                                        Toast.makeText(ChongZhq.this, "请开通", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog1.show();
-
-                    }
-                    if (msg.equals("sign_card")) {
+                            }
+                            if (msg.equals("sign_card")) {
 //                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog3 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未没有签约")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(ChongZhq.this, "请签约", Toast.LENGTH_SHORT).show();
-                                        Intent it = new Intent(ChongZhq.this, KUaiJieZhiFu.class);
-                                        startActivity(it);
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog3.show();
+                                AlertDialog dialog3 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未没有签约")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Toast.makeText(ChongZhq.this, "请签约", Toast.LENGTH_SHORT).show();
+                                                Intent it = new Intent(ChongZhq.this, KUaiJieZhiFu.class);
+                                                startActivity(it);
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog3.show();
 
+                            }
+
+
+                        }
                     }
-
-
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                });
     }
 
     private void getshimingHTTp() {
@@ -235,43 +231,33 @@ public class ChongZhq extends AutoLayoutActivity {
             e.printStackTrace();
         }
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("是否可实名GSON：", result);
-                ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-                String message = data.getMessage().toString();
-                Toast.makeText(ChongZhq.this, "" + message, Toast.LENGTH_SHORT).show();
-                String jieguo = data.getState().toString();
-                if (jieguo.equals("success")) {
-                    Intent it = new Intent(ChongZhq.this, ShiMingrenzheng.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("user_ird", user_id);
-                    it.putExtras(bundle);
-                    startActivity(it);
-                }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("是否可实名GSON：", response);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
+                        Toast.makeText(ChongZhq.this, "" + message, Toast.LENGTH_SHORT).show();
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")) {
+                            Intent it = new Intent(ChongZhq.this, ShiMingrenzheng.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("user_ird", user_id);
+                            it.putExtras(bundle);
+                            startActivity(it);
+                        }
+                    }
+                });
     }
 
     private void getchHTTP() {
@@ -295,40 +281,32 @@ public class ChongZhq extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/accountReg.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("存管GSON:",""+result );
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent it=new Intent(ChongZhq.this, YinHangCunGuan.class);
-                it.putExtra("HTML",html );
-                Log.e("我的页面银行存管HTML:",""+it);
-                startActivity(it);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                Log.e("wangy",""+html );
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("存管GSON:", "" + result);
+                        CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                        String html = data.getResult().getHtml();
+                        Intent it = new Intent(ChongZhq.this, YinHangCunGuan.class);
+                        it.putExtra("HTML", html);
+                        Log.e("我的页面银行存管HTML:", "" + it);
+                        startActivity(it);
 
-            }
+                        Log.e("wangy", "" + html);
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getokHTTp() {
@@ -354,38 +332,31 @@ public class ChongZhq extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("js_",""+js_request );
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/postOnlineCZFu.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("ok充值：", result);
-                ChongZhiOk_GSon data = new Gson().fromJson(result, ChongZhiOk_GSon.class);
-                String html = data.getHtml();
-                Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
-                itcz.putExtra("HTML", html);
-                Log.e("HTMLone:", "" + html.toString());
-                startActivity(itcz);
-                finish();
-            }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/postOnlineCZFu.do")
+                .content(canshu.toString())
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("ok充值：", result);
+                        ChongZhiOk_GSon data = new Gson().fromJson(result, ChongZhiOk_GSon.class);
+                        String html = data.getHtml();
+                        Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
+                        itcz.putExtra("HTML", html);
+                        Log.e("HTMLone:", "" + html.toString());
+                        startActivity(itcz);
+                        finish();
+                    }
+                });
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getczid() {
@@ -399,7 +370,7 @@ public class ChongZhq extends AutoLayoutActivity {
         yh_img = findViewById(R.id.yh_img);
         cz_ok = findViewById(R.id.cz_ok);
         yhcard = findViewById(R.id.yhcard);
-        cz_fh=findViewById(R.id.cz_fh);
+        cz_fh = findViewById(R.id.cz_fh);
     }
 
 }

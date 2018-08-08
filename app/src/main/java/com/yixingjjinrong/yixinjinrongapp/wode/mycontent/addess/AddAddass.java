@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,8 @@ import org.xutils.x;
 
 import me.leefeng.citypicker.CityPicker;
 import me.leefeng.citypicker.CityPickerListener;
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
     private EditText add_name, add_phone, add_mainaddass;
@@ -92,41 +96,32 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/addAddressInfo.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addAddressInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("添加收货地址GSOn：",""+result );
-                Add_addass_gson add = new Gson().fromJson(result, Add_addass_gson.class);
-                String message = add.getMessage();
-                if (message.equals("添加地址成功")){
-                    Toast.makeText(AddAddass.this, ""+message, Toast.LENGTH_SHORT).show();
-                    finish();
-                }else {
-                    Toast.makeText(AddAddass.this, ""+message, Toast.LENGTH_SHORT).show();
-                }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("添加收货地址GSOn：",""+result );
+                        Add_addass_gson add = new Gson().fromJson(result, Add_addass_gson.class);
+                        String message = add.getMessage();
+                        if (message.equals("添加地址成功")){
+                            Toast.makeText(AddAddass.this, ""+message, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else {
+                            Toast.makeText(AddAddass.this, ""+message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getadd_id() {

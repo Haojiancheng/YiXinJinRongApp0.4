@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -24,6 +25,8 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +36,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListener{
     private XRecyclerView chujejilu_rview;
@@ -93,34 +99,33 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL+"yxbApp/record.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("TAG出借记录》GSON", ""+result);
-                IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
-                list.addAll(date.getResult().getInvestList());
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL+"yxbApp/record.do")
+                .content(canshu.toString())
 
-                adapter.notifyDataSetChanged();
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("TAG出借记录》GSON", "" + result);
+                        IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
+                        String message = date.getMessage();
+                        if (message.equals("用户未登录。")) {
+                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                        } else {
+                            list.addAll(date.getResult().getInvestList());
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
 
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
 

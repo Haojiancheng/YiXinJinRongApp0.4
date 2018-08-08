@@ -20,12 +20,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class FanKui extends AutoLayoutActivity {
     private EditText et_content = null, fk_phone;
@@ -99,36 +104,26 @@ public class FanKui extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/contre.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("意见反馈GSON", "" + result);
-                FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
-                String message = data.getMessage();
-                Toast.makeText(FanKui.this, ""+message, Toast.LENGTH_SHORT).show();
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/contre.do")
+                .content(canshu.toString())
 
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("意见反馈GSON", "" + result);
+                        FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
+                        String message = data.getMessage();
+                        Toast.makeText(FanKui.this, ""+message, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 

@@ -19,12 +19,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class WoDe_SheZhi extends AutoLayoutActivity {
     private Button user_tuichu;//退出按钮
@@ -124,40 +129,31 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/quitLogin.do")
+                .content(canshu.toString())
 
-        final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/quitLogin.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("退出登入的GSON:", result);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("退出登入的GSON:", response);
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
-                SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
+                        SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
 //                EventBus.getDefault().post(new UnLogin());
-                SPUtils.remove(WoDe_SheZhi.this,"userId");
-                SPUtils.remove(WoDe_SheZhi.this,"Loginid");
+                        SPUtils.remove(WoDe_SheZhi.this,"userId");
+                        SPUtils.remove(WoDe_SheZhi.this,"Loginid");
 
-                finish();
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+                        finish();
+                    }
+                });
     }
     public synchronized String getid(Context context) {
         TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);

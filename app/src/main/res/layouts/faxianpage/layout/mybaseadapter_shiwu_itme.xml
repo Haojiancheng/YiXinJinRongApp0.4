@@ -20,6 +20,12 @@
             android:layout_gravity="center_horizontal"
             android:background="#f5f5f5"
             android:src="@drawable/xiaomi"
+            android:paddingTop="20px"
+            android:paddingBottom="20px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
             tools:ignore="PxUsage" />
 
         <TextView

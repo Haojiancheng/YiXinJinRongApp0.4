@@ -18,12 +18,17 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class ShiMingRenZhengKO extends AutoLayoutActivity {
     private Button cunguan;
@@ -78,40 +83,31 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/accountReg.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("存管GSON:",""+result );
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent it=new Intent(ShiMingRenZhengKO.this, YinHangCunGuan.class);
-                it.putExtra("HTML",html );
-                Log.e("我的页面银行存管HTML:",""+it);
-                startActivity(it);
-                finish();
-                Log.e("wangy",""+html );
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("存管GSON:",""+result );
+                        CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                        String html = data.getResult().getHtml();
+                        Intent it=new Intent(ShiMingRenZhengKO.this, YinHangCunGuan.class);
+                        it.putExtra("HTML",html );
+                        Log.e("我的页面银行存管HTML:",""+it);
+                        startActivity(it);
+                        finish();
+                        Log.e("wangy",""+html );
+                    }
+                });
     }
 
     private void getokid() {

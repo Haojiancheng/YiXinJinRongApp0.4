@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,8 @@ import java.util.Date;
 import java.util.List;
 
 public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
-    private List<FaXian_Data.ResultBean.GoodsListBean> list=new ArrayList<>();
-    private String picpath;
+    private List<FaXian_Data.ResultBean.GoodsListBean> list;
+    private String paht;
 
 
     private OnEveryItemClickListener onEveryItemClickListener;
@@ -34,7 +35,7 @@ public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.My
 
     public FaXianBasrAdapter(List<FaXian_Data.ResultBean.GoodsListBean> list,String picpath) {
         this.list = list;
-        this.picpath=picpath;
+        this.paht=picpath;
     }
 
     @NonNull
@@ -60,7 +61,8 @@ public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.My
         }else if (list.get(position).getPicUrl().equals("代金券")){
             holder.shiwu_iv.setImageResource(R.drawable.xianjinquan);
         }else {
-            x.image().bind(holder.shiwu_iv,picpath+list.get(position).getPicUrl());
+            x.image().bind(holder.shiwu_iv,paht+list.get(position).getPicUrl());
+            Log.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
         }
         holder.shiwu_iv.setOnClickListener(new View.OnClickListener() {
             @Override

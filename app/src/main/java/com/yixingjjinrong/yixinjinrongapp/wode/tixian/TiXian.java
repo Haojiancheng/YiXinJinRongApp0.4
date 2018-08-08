@@ -31,12 +31,17 @@ import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class TiXian extends AutoLayoutActivity {
     private ImageView t_yh_img;
@@ -89,120 +94,112 @@ public class TiXian extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/withdrawInitMobilefApp.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/withdrawInitMobilefApp.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("提现GSon",result );
-                TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
-                String msg = data.getMsg();
-                if (msg.equals("")) {
-                    t_yh_name.setText(data.getBankName());
-                    t_yh_number.setText(data.getCardNum());
-                    x.image().bind(t_yh_img, data.getImage());
-                    cz_ok.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {//可以提现，下一步
-                            getokHTTp();
-                        }
-                    });
-                } else {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("提现GSon",result );
+                        TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
+                        String msg = data.getMsg();
+                        if (msg.equals("")) {
+                            t_yh_name.setText(data.getBankName());
+                            t_yh_number.setText(data.getCardNum());
+                            x.image().bind(t_yh_img, data.getImage());
+                            cz_ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {//可以提现，下一步
+                                    getokHTTp();
+                                }
+                            });
+                        } else {
 
 
 //                    t_yhcard.setVisibility(View.GONE);//影藏布局
-                    if (msg.equals("auth")) {
-                        Toast.makeText(TiXian.this, "没有实名认证", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未实名认证，是否实名认证")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getshimingHTTp();
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog1.show();
+                            if (msg.equals("auth")) {
+                                Toast.makeText(TiXian.this, "没有实名认证", Toast.LENGTH_SHORT).show();
+                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未实名认证，是否实名认证")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                getshimingHTTp();
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog1.show();
 
+                            }
+                            if (msg.equals("bank_link")) {
+                                Toast.makeText(TiXian.this, "没有富友开户", Toast.LENGTH_SHORT).show();
+                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未开通银行存管，是否开通")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                getchHTTP();
+                                                Toast.makeText(TiXian.this, "请开通", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog1.show();
+
+                            }
+                            if (msg.equals("sign_card")) {
+                                Toast.makeText(TiXian.this, "没有签约", Toast.LENGTH_SHORT).show();
+                                AlertDialog dialog3 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                        .setTitle("提示")
+                                        .setMessage("您还未没有签约")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Toast.makeText(TiXian.this, "请签约", Toast.LENGTH_SHORT).show();
+                                                Intent it = new Intent(TiXian.this, KUaiJieZhiFu.class);
+                                                startActivity(it);
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                dialog3.show();
+
+                            }
+
+
+                        }
                     }
-                    if (msg.equals("bank_link")) {
-                        Toast.makeText(TiXian.this, "没有富友开户", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未开通银行存管，是否开通")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getchHTTP();
-                                        Toast.makeText(TiXian.this, "请开通", Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog1.show();
+                });
 
-                    }
-                    if (msg.equals("sign_card")) {
-                        Toast.makeText(TiXian.this, "没有签约", Toast.LENGTH_SHORT).show();
-                        AlertDialog dialog3 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-                                .setTitle("提示")
-                                .setMessage("您还未没有签约")
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Toast.makeText(TiXian.this, "请签约", Toast.LENGTH_SHORT).show();
-                                        Intent it = new Intent(TiXian.this, KUaiJieZhiFu.class);
-                                        startActivity(it);
-                                        finish();
-                                    }
-                                })
-                                .create();
-                        dialog3.show();
-
-                    }
-
-
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     private void getokHTTp() {
@@ -228,39 +225,32 @@ public class TiXian extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/addWithdrawInfoMobilefApp.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/addWithdrawInfoMobilefApp.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("ok提现：", result);
-                TiXianOk_GSON data = new Gson().fromJson(result, TiXianOk_GSON.class);
-                Toast.makeText(TiXian.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                String html = data.getHtml();
-                Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
-                itcz.putExtra("tixianhtml", html);
-                Log.e("提现HTML!:",""+html.toString() );
-                startActivity(itcz);
-                finish();
-            }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    }
 
-            }
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("ok提现：", result);
+                        TiXianOk_GSON data = new Gson().fromJson(result, TiXianOk_GSON.class);
+                        Toast.makeText(TiXian.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                        String html = data.getHtml();
+                        Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
+                        itcz.putExtra("tixianhtml", html);
+                        Log.e("提现HTML!:",""+html.toString() );
+                        startActivity(itcz);
+                        finish();
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
     private void getshimingHTTp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -283,44 +273,34 @@ public class TiXian extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("是否可实名GSON：", result);
-                ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-                String message = data.getMessage().toString();
-                Toast.makeText(TiXian.this, "" + message, Toast.LENGTH_SHORT).show();
-                String jieguo = data.getState().toString();
-                if (jieguo.equals("success")) {
-                    Intent it = new Intent(TiXian.this, ShiMingrenzheng.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("user_ird", user_id);
-                    it.putExtras(bundle);
-                    startActivity(it);
-                }
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("是否可实名GSON：", result);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
+                        Toast.makeText(TiXian.this, "" + message, Toast.LENGTH_SHORT).show();
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")) {
+                            Intent it = new Intent(TiXian.this, ShiMingrenzheng.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("user_ird", user_id);
+                            it.putExtras(bundle);
+                            startActivity(it);
+                        }
+                    }
+                });
     }
 
     private void getchHTTP() {
@@ -344,40 +324,31 @@ public class TiXian extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/accountReg.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("存管GSON:",""+result );
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent it=new Intent(TiXian.this, YinHangCunGuan.class);
-                it.putExtra("HTML",html );
-                Log.e("我的页面银行存管HTML:",""+it);
-                startActivity(it);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                Log.e("wangy",""+html );
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("存管GSON:",""+result );
+                        CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                        String html = data.getResult().getHtml();
+                        Intent it=new Intent(TiXian.this, YinHangCunGuan.class);
+                        it.putExtra("HTML",html );
+                        Log.e("我的页面银行存管HTML:",""+it);
+                        startActivity(it);
 
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                        Log.e("wangy",""+html );
+                    }
+                });
     }
 
     private void getID() {

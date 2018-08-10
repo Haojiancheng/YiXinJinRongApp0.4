@@ -445,7 +445,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("我的--》juan_type", "" + juan_type);
                         Log.e("我的--》juan_id", "" + juan_id);
                         Log.e("我的--》juanmake", "" + juanmake);
-                        if (data.getResult().getJuan().size() != 0) {
+                        if (data.getResult().getJuan().size() != 0||data.getResult().getJuan().equals(null)) {
                             youhuijuan.setText("未使用");
                             youhuijuan.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -538,6 +538,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog.setCanceledOnTouchOutside(false);
                                 dialog.show();
                                 break;
                             case 3:
@@ -560,6 +561,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
                                 break;
                             case 5:
@@ -583,6 +585,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog2.setCanceledOnTouchOutside(false);
                                 dialog2.show();
                                 break;
                             case 4:
@@ -605,6 +608,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog3.setCanceledOnTouchOutside(false);
                                 dialog3.show();
                                 break;
                             case 0:

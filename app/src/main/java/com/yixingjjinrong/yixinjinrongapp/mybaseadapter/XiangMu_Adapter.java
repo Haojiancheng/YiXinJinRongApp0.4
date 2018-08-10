@@ -163,7 +163,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            xiangmu_name = itemView.findViewById(R.id.xiangmu_name);
+            xiangmu_name = itemView.findViewById(R.id.xiangmu_name1);
             xiangmu_code = itemView.findViewById(R.id.xiangmu_code);
             years_lilv = itemView.findViewById(R.id.years_lilv);
             jiahao = itemView.findViewById(R.id.jiahao);

@@ -153,6 +153,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
                             }
                             if (msg.equals("bank_link")) {
@@ -175,6 +176,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
 
                             }
@@ -199,6 +201,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog3.setCanceledOnTouchOutside(false);
                                 dialog3.show();
 
                             }

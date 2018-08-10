@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/shouye_two"
         android:layout_width="match_parent"
         android:layout_height="300px"
         android:layout_marginTop="30px"
@@ -27,7 +28,7 @@
                 android:src="@drawable/fangchandiya" />
 
             <TextView
-                android:id="@+id/xiangmu_name"
+                android:id="@+id/xiangmu_name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14px"

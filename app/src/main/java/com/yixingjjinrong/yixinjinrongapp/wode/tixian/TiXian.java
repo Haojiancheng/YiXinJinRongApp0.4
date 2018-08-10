@@ -144,6 +144,7 @@ public class TiXian extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
 
                             }
@@ -167,6 +168,7 @@ public class TiXian extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
 
                             }
@@ -191,6 +193,7 @@ public class TiXian extends AutoLayoutActivity {
                                             }
                                         })
                                         .create();
+                                dialog3.setCanceledOnTouchOutside(false);
                                 dialog3.show();
 
                             }

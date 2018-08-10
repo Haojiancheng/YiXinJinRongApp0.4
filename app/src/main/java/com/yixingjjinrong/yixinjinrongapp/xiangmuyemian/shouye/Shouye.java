@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.ImageResizerUtils;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -29,6 +32,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
@@ -67,7 +71,7 @@ public class Shouye extends Fragment {
     private String picpath;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-    private ListView mylistview;
+    private RecyclerView mylistview;
     private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist = new ArrayList<>();
     private List<String> mymasseg=new ArrayList<>();
     private List<String> mymassegtime=new ArrayList<>();
@@ -93,13 +97,17 @@ public class Shouye extends Fragment {
         getgengduoxiangmu();
 
         getHttp();
-
+        adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
+        mylistview.setAdapter(adapter);
 
     }
 
 
     private void getshouyeid() {
         mylistview = getActivity().findViewById(R.id.mylist);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        mylistview.setLayoutManager(manager);
+
     }
 
     private void getHttp() {
@@ -157,20 +165,20 @@ public class Shouye extends Fragment {
                         });
 
                         mylist.addAll(data.getResult().getBorrowList());
-                        adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
-                        mylistview.setAdapter(adapter);
-                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                String xiangmu_id = mylist.get(position).getBorrowRandomId();
-                                Log.e("TAG", "+.." + xiangmu_id);
-                                Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
-                                String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
-                                it.putExtra("xiangmu_id", xiangmu_id);
-                                it.putExtra("mortgageType", mortgageType);
-                                startActivity(it);
-                            }
-                        });
+
+//                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                String xiangmu_id = mylist.get(position).getBorrowRandomId();
+//                                Log.e("TAG+..", "" + xiangmu_id);
+//                                Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
+//                                String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
+//                                SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
+//                                it.putExtra("bt_name", mylist.get(position).getBorrowStatusStr());
+//                                it.putExtra("mortgageType", mortgageType);
+//                                startActivity(it);
+//                            }
+//                        });
                         adapter.notifyDataSetChanged();
                         for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
                             mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());

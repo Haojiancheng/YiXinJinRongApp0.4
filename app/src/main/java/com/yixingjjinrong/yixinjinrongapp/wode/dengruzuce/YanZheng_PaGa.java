@@ -70,6 +70,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private ImageView zz_fh;
     private TextView yy_yanzheng;
     private String message;
+    private String jsessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
         getyanZheng_Id();
         getyanZheng_Onclick();
-        time = new TimeCount(60000, 1000);
+
 //        huoqu_yanzhengma.setEnabled(true);
     }
 
@@ -133,7 +134,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         huoqu_yanzhengma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                time.start();
+
                 getHttP_YAnzhengMA();
 
             }
@@ -254,7 +255,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         OkHttpUtils.postString()
                 .url(Urls.BASE_URL + "yxbApp/registerApp.do?")
                 .content(canshu.toString())
-
+                .addHeader("Cookie", "JSESSIONID=" + jsessionId)
+                // js_request.put("jsessionId", jsessionId);
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
@@ -267,22 +269,26 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     public void onResponse(String result, int id) {
                         Log.e("TAG", ">>>>z成功" + result);
                         ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
-                        int userid = date.getResult().getUserid();
-                        Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
-                        intent_dengru.putExtra("Phone_my", get_phone);
-                        intent_dengru.putExtra("logid", date.getResult().getLoginId());
-                        intent_dengru.putExtra("token", date.getResult().getToken());
-                        intent_dengru.putExtra("password", user_mima.getText().toString());
-                        SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
-                        SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
-                        intent_dengru.putExtra("url", myurl);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user_id", userid);
-                        Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
-                        intent_dengru.putExtras(bundle);
-                        startActivity(intent_dengru);
-                        finish();
+                        if (date.getMessage().equals("注册成功!")) {
+                            int userid = date.getResult().getUserid();
+                            Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
+                            intent_dengru.putExtra("Phone_my", get_phone);
+                            intent_dengru.putExtra("logid", date.getResult().getLoginId());
+                            intent_dengru.putExtra("token", date.getResult().getToken());
+                            intent_dengru.putExtra("password", user_mima.getText().toString());
+                            SPUtils.put(YanZheng_PaGa.this, "Loginid", date.getResult().getLoginId());
+                            SPUtils.put(YanZheng_PaGa.this, "Token1", date.getResult().getToken());
+                            intent_dengru.putExtra("url", myurl);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("user_id", userid);
+                            Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
+                            intent_dengru.putExtras(bundle);
+                            startActivity(intent_dengru);
+                            finish();
+                        } else {
+                            Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
@@ -322,13 +328,22 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     @Override
                     public void onResponse(String result, int id) {
                         Log.e("TAG", ">>>>成功" + result);
+
                         YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
-                        Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
-                        message = data.getMessage();
-//                if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")){
-//                    huoqu_yanzhengma.setText("明天再试");
-//                    huoqu_yanzhengma.setBackgroundResource(R.color.gray);
-//                }
+                        if (data.getMessage().equals("发送短信成功")) {
+
+                            message = data.getMessage();
+                            jsessionId = data.getResult().getJsessionId();
+                            Log.e("jsessionId",""+ jsessionId);
+                            time = new TimeCount(60000, 1000);
+                            time.start();
+                        } else {
+                            Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")) {
+                                huoqu_yanzhengma.setText("明天再试");
+                                huoqu_yanzhengma.setBackgroundResource(R.color.gray);
+                            }
+                        }
                     }
                 });
     }
@@ -345,7 +360,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         zz_fh = findViewById(R.id.zz_fh);
         yy_yanzheng = findViewById(R.id.yy_yanzheng);
         phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
-        user_mima.addTextChangedListener(new MaxLengthWatcher(18,user_mima));
+        user_mima.addTextChangedListener(new MaxLengthWatcher(18, user_mima));
     }
 
     public synchronized String getid(Context context) {
@@ -393,7 +408,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
     private void initViews() {
         //已经拥有所需权限，可以放心操作任何东西了
-        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
 
     }
 

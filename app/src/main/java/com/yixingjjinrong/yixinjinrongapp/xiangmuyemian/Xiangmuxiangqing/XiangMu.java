@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -114,10 +115,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                                 String mtype = String.valueOf(list.get(position).getMortgageType());
                                 String xiangmu_id = list.get(position).getBorrowRandomId();
                                 Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
-                                intent.putExtra("xiangmu_id", xiangmu_id);
                                 intent.putExtra("mortgageType", mtype);
                                 intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
-
+                                SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
                                 Log.e("TASG","立即出借id:"+xiangmu_id);
                                 startActivity(intent);
                             }

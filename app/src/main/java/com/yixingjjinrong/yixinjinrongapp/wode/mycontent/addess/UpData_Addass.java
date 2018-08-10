@@ -50,6 +50,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
     private String base1;//Base64加
     private int user_id;
     private ImageView bj_dz_fh;
+    private String main_add1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
         sh_phone.setText(addass_phone);
         sh_addass.setText(addass_addass);
         sh_mainaddass.setText(addass_addass);
+        sh_mainaddass.setText(main_add1);
         sh_addass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +94,8 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
             js_request.put("phone", sh_phone.getText().toString());
             js_request.put("name", sh_name.getText().toString());
             js_request.put("addressId", addass_id);
-            js_request.put("address", sh_addass.getText().toString()+sh_mainaddass.getText().toString());
+            js_request.put("addressDetail", sh_mainaddass.getText().toString());
+            js_request.put("address", sh_addass.getText().toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -143,6 +146,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
         addass_phone = intent.getStringExtra("addass_phone");
         addass_addass = intent.getStringExtra("addass_addass");
         addass_id = intent.getStringExtra("addass_id");
+        main_add1 = intent.getStringExtra("main_addass");
         sh_name = findViewById(R.id.sh_name);
         sh_phone = findViewById(R.id.sh_phone);
         sh_addass = findViewById(R.id.sh_addass);

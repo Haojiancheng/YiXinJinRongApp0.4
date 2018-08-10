@@ -42,6 +42,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.AndroidBug54971Workaround;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
@@ -74,6 +75,7 @@ import org.xutils.x;
 import java.net.URL;
 import java.util.ArrayList;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -110,24 +112,30 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private String popidcard;
     private String loginid;
     private ImageView xiangmu_fh;
-
     private PopupWindow popview;
+    private PromptDialog promptDialog;
+    private View detailedinformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        EventBus.getDefault().register(this);//注册
-        setContentView(R.layout.xiaomuxiangqing);
         if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {   //适配华为手机虚拟键遮挡tab的问题
             AndroidWorkaround.assistActivity(findViewById(android.R.id.content));  //需要在setContentView()方法后面执行
         }
+
+        setContentView(R.layout.xiaomuxiangqing);
+
+
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         getID();//获取资源ID
         initView();
-
+        detailedinformation.setVisibility(View.GONE);
 
         Intent it = getIntent();
-        id = it.getStringExtra("xiangmu_id");
+
         Log.e("立即出借borrid", "" + id);
         mType = it.getStringExtra("mortgageType");
 
@@ -295,10 +303,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
         loginid = (String) SPUtils.get(this, "Loginid", "");
+        id = (String) SPUtils.get(this, "borroFwRandomId", "");
         juan_id = (int) SPUtils.get(this, "juanId", 0);
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
-
+        detailedinformation = findViewById(R.id.detailedinformation);
         Log.e("userid", "id:" + user_id);
         yujishouyi = findViewById(R.id.yujishouyi);
         jianhao = findViewById(R.id.bt_jianhao);
@@ -327,14 +336,15 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     private void getHttps() {
+
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
             js_request.put("borrowRandomId", id);
-            SPUtils.put(this, "borroFwRandomId", id);
+//            SPUtils.put(this, "borroFwRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             js_request.put("userId", user_id);
-            Log.e("TAG", "id" + user_id);
+//            Log.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -360,7 +370,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
                     }
 
                     @Override
@@ -368,6 +378,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("8888Gson:", "" + result);
 
                         data = new Gson().fromJson(result, XiangMuXiangQing_Gson.class);
+                        promptDialog.dismiss();
+                        detailedinformation.setVisibility(View.VISIBLE);
                         getjinge();//获取输入金额
                         xiangqing_zonge.setText(data.getResult().getRedList1().getBorrowSum());
                         xiangqing_qixian.setText(data.getResult().getRedList1().getDeadline());
@@ -430,25 +442,25 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                        if (s.equals("0")) {
 //                            youhuijuan.setText("暂无可用优惠券");
 //                        } else {
-                            Log.e("我的--》juan_type", "" + juan_type);
-                            Log.e("我的--》juan_id", "" + juan_id);
-                            Log.e("我的--》juanmake", "" + juanmake);
-                            if (data.getResult().getJuan().size() != 0) {
-                                youhuijuan.setText("未使用");
-                                youhuijuan.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
-                                        ti.putExtra("juan", data.getResult());
-                                        startActivity(ti);
+                        Log.e("我的--》juan_type", "" + juan_type);
+                        Log.e("我的--》juan_id", "" + juan_id);
+                        Log.e("我的--》juanmake", "" + juanmake);
+                        if (data.getResult().getJuan().size() != 0) {
+                            youhuijuan.setText("未使用");
+                            youhuijuan.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
+                                    ti.putExtra("juan", data.getResult());
+                                    startActivity(ti);
 
-                                    }
-                                });
+                                }
+                            });
 
 //                                youhuijuan.setText(juanmake);
-                            } else {
-                                youhuijuan.setText("暂无可用优惠券");
-                            }
+                        } else {
+                            youhuijuan.setText("暂无可用优惠券");
+                        }
 
 //                        }
                     }
@@ -459,6 +471,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     private void getchujieHttp() {
 //        bt_lijichujie.setEnabled(false);
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -495,7 +508,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Toast.makeText(XiangMuXiangQing.this, "网络异常，请稍后再试", Toast.LENGTH_SHORT).show();
+                        promptDialog.dismiss();
                     }
 
                     @Override
@@ -503,7 +517,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("立即出借GSon", response);
                         LJCJONR_GSon data = new Gson().fromJson(response, LJCJONR_GSon.class);
                         int aaa = data.getMsg().getAaa();
-
                         switch (aaa) {
                             case 2:
 //                        Toast.makeText(XiangMuXiangQing.this, "未实名认证", Toast.LENGTH_SHORT).show();
@@ -513,12 +526,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                             }
                                         })
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-
+                                                promptDialog.dismiss();
                                                 showpopwindow();
 //                                        Toast.makeText(XiangMuXiangQing.this, "请实名", Toast.LENGTH_SHORT).show();
                                             }
@@ -534,11 +548,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                             }
                                         })
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                                 cGpop();
 //                                        Toast.makeText(XiangMuXiangQing.this, "请开通", Toast.LENGTH_SHORT).show();
                                             }
@@ -554,12 +570,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-
+                                                promptDialog.dismiss();
                                             }
                                         })
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                                 Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
 //                                        Toast.makeText(XiangMuXiangQing.this, "请签约", Toast.LENGTH_SHORT).show();
@@ -576,11 +593,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                             }
                                         })
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
+                                                promptDialog.dismiss();
                                                 fxpop();
 //                                        Toast.makeText(XiangMuXiangQing.this, "请风险评测", Toast.LENGTH_SHORT).show();
                                             }
@@ -696,40 +715,32 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/accountReg.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/accountReg.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("存管GSON:", "" + result);
-                CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                String html = data.getResult().getHtml();
-                Intent it = new Intent(XiangMuXiangQing.this, YinHangCunGuan.class);
-                it.putExtra("HTML", html);
-                Log.e("我的页面银行存管HTML:", "" + it);
-                startActivity(it);
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-                Log.e("wangy", "" + html);
-            }
+                    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("存管GSON:", "" + result);
+                        CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
+                        String html = data.getResult().getHtml();
+                        Intent it = new Intent(XiangMuXiangQing.this, YinHangCunGuan.class);
+                        it.putExtra("HTML", html);
+                        Log.e("我的页面银行存管HTML:", "" + it);
+                        startActivity(it);
 
-            }
+                        Log.e("wangy", "" + html);
+                    }
+                });
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
     }
 
     @SuppressLint("WrongConstant")
@@ -817,45 +828,35 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("是否可实名GSON：", result);
-                ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-                String message = data.getMessage().toString();
-                Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
-                String jieguo = data.getState().toString();
-                if (jieguo.equals("success")) {
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("是否可实名GSON：", result);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
+                        Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")) {
 //                    Intent it = new Intent(XiangMuXiangQing.this, ShiMingrenzheng.class);
 //                    Bundle bundle = new Bundle();
 //                    bundle.putInt("user_ird", user_id);
 //                    it.putExtras(bundle);
 //                    startActivity(it);
-                    getsmHttp();
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                            getsmHttp();
+                        }
+                    }
+                });
     }
 
     private void getsmHttp() {
@@ -881,49 +882,38 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/userAuth.do")
+                .content(canshu.toString())
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-        RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/userAuth.do");
-        params.setAsJsonContent(true);
-        params.setBodyContent(canshu.toString());
-        Log.e("TAG", ">>>>网址" + params);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e("实名认证的GSOn", "" + result);
-                ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
-                String message = data.getMessage().toString();
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("实名认证的GSOn", "" + result);
+                        ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
+                        String message = data.getMessage().toString();
 //                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
 
-                String zhuangtai = data.getState();
-                Log.e("实名认证", zhuangtai);
-                if (zhuangtai.equals("success")) {
+                        String zhuangtai = data.getState();
+                        Log.e("实名认证", zhuangtai);
+                        if (zhuangtai.equals("success")) {
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
-                    Intent intent = new Intent(XiangMuXiangQing.this, ShiMingRenZhengKO.class);
-                    startActivity(intent);
-                } else {
+                            Intent intent = new Intent(XiangMuXiangQing.this, ShiMingRenZhengKO.class);
+                            startActivity(intent);
+                        } else {
 //                        jinggao.setVisibility(View.VISIBLE);
 //                        jinggao.setText(message);
-                    Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+                            Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
 
     }
@@ -935,6 +925,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        promptDialog.dismiss();
                     }
                 })
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -949,6 +940,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void getchujieHttpTwo() {
+
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -961,7 +953,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("activityId", juan_id);
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
-
+//Yixinjinrong201806
             Log.e("TAG", "id" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAGjs_request", "" + js_request);
@@ -988,7 +980,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Toast.makeText(XiangMuXiangQing.this, "网络异常，请稍后再试", Toast.LENGTH_SHORT).show();
+                        promptDialog.dismiss();
                     }
 
                     @Override
@@ -996,20 +989,25 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("立即出借GSon", result);
                         LJCJtwo_gson data = new Gson().fromJson(result, LJCJtwo_gson.class);
                         String msg = data.getResult().getMsg();
+
                         if (msg.equals("1")) {
                             String toumoney = data.getResult().getInvestAmount();
                             String toutime = data.getResult().getInvestDate();
                             Intent it = new Intent(XiangMuXiangQing.this, ChuJie_OK.class);
                             it.putExtra("money", toumoney);
                             it.putExtra("time", toutime);
+                            it.putExtra("mortgageType", mType);
                             startActivity(it);
                             SPUtils.remove(XiangMuXiangQing.this, "juantype");
                             SPUtils.remove(XiangMuXiangQing.this, "juanId");
                             SPUtils.remove(XiangMuXiangQing.this, "juanmake");
                             bt_lijichujie.setEnabled(true);
+                            promptDialog.dismiss();
+                            finish();
                         } else {
                             Toast.makeText(XiangMuXiangQing.this, "" + msg, Toast.LENGTH_SHORT).show();
                             bt_lijichujie.setEnabled(true);
+                            promptDialog.dismiss();
                         }
                     }
                 });
@@ -1069,15 +1067,15 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //        Log.e("我的--》juan_type", "" + juan_type);
 //        Log.e("我的--》juan_id", "" + juan_id);
 //        Log.e("我的--》juanmake", "" + juanmake);
-
+        youhuijuan.setText(juanmake);
 
     }
 
     @Override
     protected void onRestart() {
+
         super.onRestart();
-        getHttps();
-        youhuijuan.setText(juanmake);
+//        getHttps();
     }
 
     @Override

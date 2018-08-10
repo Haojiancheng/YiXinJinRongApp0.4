@@ -72,7 +72,6 @@
             android:layout_height="wrap_content"
             android:textSize="34px"
             android:textColor="#333"
-            android:text="王**"
             android:layout_marginLeft="26px"
             android:layout_gravity="center_vertical"
             />
@@ -100,7 +99,6 @@
             android:layout_height="wrap_content"
             android:textSize="34px"
             android:textColor="#333"
-            android:text="1056516"
             android:layout_marginLeft="26px"
             android:layout_gravity="center_vertical"
             />

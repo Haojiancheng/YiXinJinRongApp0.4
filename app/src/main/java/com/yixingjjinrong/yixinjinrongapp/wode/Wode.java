@@ -19,15 +19,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.Myuser_id;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.UnLogin;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
@@ -36,8 +33,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.User_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ChengGongZhuCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
@@ -50,19 +47,13 @@ import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
 import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.MyYaoQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
-
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -124,7 +115,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     getshimingHTTp();
                 }
@@ -135,7 +126,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     getchHTTP();
                 }
@@ -146,7 +137,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent intent = new Intent(getActivity(), FengXianPingCe.class);
                     Bundle bundle = new Bundle();
@@ -227,7 +218,7 @@ public class Wode extends Fragment {
                             user_id=0;
                             keyongyue.setText("0.00");
                             yaoqing.setText("0");
-                            Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
                         } else {
                             phone = data.getUserMap().getPhone();
                             myphone.setText(phone);//手机号
@@ -416,7 +407,7 @@ public class Wode extends Fragment {
                 String s = String.valueOf(user_id);
                 Log.e("出借user_id",""+s );
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent intentwode_chujie = new Intent(getActivity(), WoDe_ChuJie.class);
                     startActivity(intentwode_chujie);
@@ -430,7 +421,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
                     startActivity(it);
@@ -442,7 +433,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
                     startActivity(it);
@@ -477,7 +468,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent itcz = new Intent(getActivity(), ChongZhq.class);
                     itcz.putExtra("keyong2", keyong);
@@ -498,7 +489,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), ZiJinliushui.class);
                     startActivity(it);
@@ -524,7 +515,7 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), MyYaoQing.class);
                     it.putExtra("mancount", inviteAmount);
@@ -546,7 +537,7 @@ public class Wode extends Fragment {
                 String s = String.valueOf(user_id);
                 Log.e("ddddddd",s );
                 if (s.equals("0")) {
-                    Toast.makeText(getActivity(), "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent itcz = new Intent(getActivity(), TiXian.class);
                     itcz.putExtra("keyong2", keyong);

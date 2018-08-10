@@ -23,7 +23,8 @@ public class ChuJie_OK extends AutoLayoutActivity {
     private TextView cj_money,cj_time;
     private ImageView cjcg_fh;
     private Button jxcj,cjcg_zh;
-//    private String borid;
+    private String mortgageType;
+    //    private String borid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +49,15 @@ public class ChuJie_OK extends AutoLayoutActivity {
         jxcj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//继续出借
-
+          Intent intent=new Intent(ChuJie_OK.this,XiangMuXiangQing.class);
+                intent.putExtra("mortgageType", mortgageType);
+                startActivity(intent);
                 finish();
             }
         });
         cjcg_zh.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                EventBus.getDefault().post(new LookMore());
+            public void onClick(View v) {//项目列表
                 finish();
             }
         });
@@ -65,6 +67,7 @@ public class ChuJie_OK extends AutoLayoutActivity {
         Intent it=getIntent();
         String mycj_money = it.getStringExtra("money");
         String mycj_time = it.getStringExtra("time");
+        mortgageType = it.getStringExtra("mortgageType");
 //        borid = it.getStringExtra("borid");
         cj_money=findViewById(R.id.cj_money);
         cj_time=findViewById(R.id.cj_time);

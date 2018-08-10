@@ -25,6 +25,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShanChuDiZhi_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.UpData_Addass;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
 
 public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyViewHolder> {
     private String sha1;//SHA1加密
@@ -71,7 +76,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
     public void onBindViewHolder(@NonNull final Myaddass_adapter.MyViewHolder holder, final int position) {
         holder.addass_name.setText(list.get(position).getReceiverName());
         holder.addass_phone.setText(list.get(position).getReceiverPhone());
-        holder.addass_addass.setText(list.get(position).getReceiverAddress());
+        holder.addass_addass.setText(list.get(position).getReceiverAddress() + list.get(position).getAddressDetail());
         id = list.get(position).getId();
         int isDefault = list.get(position).getIsDefault();
         if (isDefault == 1) {
@@ -100,49 +105,42 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/setDefault.do");
-                params.setAsJsonContent(true);
-                params.setBodyContent(canshu.toString());
-                x.http().post(params, new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Log.e("设置为默认地址GSON:",result );
-                        MoRenAddass_gson mrdata = new Gson().fromJson(result, MoRenAddass_gson.class);
-                        String message = mrdata.getMessage();
-                        if (message.equals("设置默认地址成功")){
-                            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
-                            Toast.makeText(context, "设置默认地址成功", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
-                        }else {
-                            Toast.makeText(context, ""+message, Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                OkHttpUtils.postString()
+                        .url(Urls.BASE_URL + "yxbApp/setDefault.do")
+                        .content(canshu.toString())
+                        .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                        .build()
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
 
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
+                            }
 
-                    }
-
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });
+                            @Override
+                            public void onResponse(String result, int id) {
+                                Log.e("设置为默认地址GSON:", result);
+                                MoRenAddass_gson mrdata = new Gson().fromJson(result, MoRenAddass_gson.class);
+                                String message = mrdata.getMessage();
+                                if (message.equals("设置默认地址成功")) {
+                                    Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
+                                    Toast.makeText(context, "设置默认地址成功", Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                } else {
+                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
 
         holder.bianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(context, UpData_Addass.class);
+                Intent it = new Intent(context, UpData_Addass.class);
                 it.putExtra("addass_name", list.get(position).getReceiverName());
                 it.putExtra("addass_phone", list.get(position).getReceiverPhone());
                 it.putExtra("addass_addass", list.get(position).getReceiverAddress());
+                it.putExtra("main_addass", list.get(position).getAddressDetail());
                 it.putExtra("addass_id", String.valueOf(id));
                 context.startActivity(it);
 
@@ -156,9 +154,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
 
                     js_request.put("addressId", id);
                     base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
                     sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -172,46 +168,37 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                final RequestParams params = new RequestParams(Urls.BASE_URL + "yxbApp/deleteAddressInfo.do");
-                params.setAsJsonContent(true);
-                params.setBodyContent(canshu.toString());
-                x.http().post(params, new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Log.e("删除收货地址GSON:", result);
-                        ShanChuDiZhi_gson data = new Gson().fromJson(result, ShanChuDiZhi_gson.class);
-                        message = data.getMessage();
-                        if (message.equals("删除地址成功")) {
-                            Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
-                            removeData(position);
-                        } else {
-                            Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                OkHttpUtils.postString()
+                        .url(Urls.BASE_URL + "yxbApp/deleteAddressInfo.do")
+                        .content(canshu.toString())
 
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
+                        .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                        .build()
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
 
-                    }
+                            }
 
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });
-
+                            @Override
+                            public void onResponse(String result, int id) {
+                                Log.e("删除收货地址GSON:", result);
+                                ShanChuDiZhi_gson data = new Gson().fromJson(result, ShanChuDiZhi_gson.class);
+                                message = data.getMessage();
+                                if (message.equals("删除地址成功")) {
+                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                    removeData(position);
+                                } else {
+                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
 
             }
         });
 
 
     }
-
 
 
     @Override

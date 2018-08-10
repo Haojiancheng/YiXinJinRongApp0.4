@@ -31,8 +31,11 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.xiaoxi.ShouYe_GongGao;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -78,7 +81,7 @@ public class Shouye extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shouye, container, false);
-        
+
         return view;
     }
 
@@ -90,10 +93,10 @@ public class Shouye extends Fragment {
         getgengduoxiangmu();
 
         getHttp();
-        
+
 
     }
-  
+
 
     private void getshouyeid() {
         mylistview = getActivity().findViewById(R.id.mylist);
@@ -137,12 +140,21 @@ public class Shouye extends Fragment {
                         }
                         bann = getActivity().findViewById(R.id.shouyetobbanner);
                         List<String> list3 = new ArrayList<>();
-//                        for (String s2 : mypic) {
-//                            list3.add(s2);
-//                        }
+                        for (String s2 : mypic) {
+                            list3.add(s2);
+                        }
                         bann.setImageLoader(new GlideImageloader());
                         bann.setImages(list3);
                         bann.start();
+                        bann.setOnBannerListener(new OnBannerListener() {
+                            @Override
+                            public void OnBannerClick(int position) {
+                                String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+                                Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
+                                it.putExtra("h5", hrefurl);
+                                startActivity(it);
+                            }
+                        });
 
                         mylist.addAll(data.getResult().getBorrowList());
                         adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
@@ -186,7 +198,7 @@ public class Shouye extends Fragment {
             @Override
             public void onNotieClick(int position, String notice) {
                 int article_link = data.getResult().getPublicMsgList().get(position).getAid();
-                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                Intent it = new Intent(getActivity(), ShouYe_GongGao.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("xx_ird", article_link);
                 it.putExtras(bundle);
@@ -230,7 +242,7 @@ public class Shouye extends Fragment {
             //   这里可以做网络请求或者需要的数据刷新操作
             getHttp();
 
-            
+
         } else {
             isGetData = false;
         }

@@ -2,14 +2,15 @@ package com.yixingjjinrong.yixinjinrongapp.gsondata;
 
 public class YanZhengMa_gson {
 
+
     /**
-     * message : 验证码发送次数达到上限，请明天再试
-     * result : null
-     * state : wrong
+     * message : 发送短信成功
+     * result : {"jsessionId":"B71DC4450A43F45DA82989AEDC9FD8F2","succeed":"1"}
+     * state : success
      */
 
     private String message;
-    private Object result;
+    private ResultBean result;
     private String state;
 
     public String getMessage() {
@@ -20,11 +21,11 @@ public class YanZhengMa_gson {
         this.message = message;
     }
 
-    public Object getResult() {
+    public ResultBean getResult() {
         return result;
     }
 
-    public void setResult(Object result) {
+    public void setResult(ResultBean result) {
         this.result = result;
     }
 
@@ -34,5 +35,31 @@ public class YanZhengMa_gson {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public static class ResultBean {
+        /**
+         * jsessionId : B71DC4450A43F45DA82989AEDC9FD8F2
+         * succeed : 1
+         */
+
+        private String jsessionId;
+        private String succeed;
+
+        public String getJsessionId() {
+            return jsessionId;
+        }
+
+        public void setJsessionId(String jsessionId) {
+            this.jsessionId = jsessionId;
+        }
+
+        public String getSucceed() {
+            return succeed;
+        }
+
+        public void setSucceed(String succeed) {
+            this.succeed = succeed;
+        }
     }
 }

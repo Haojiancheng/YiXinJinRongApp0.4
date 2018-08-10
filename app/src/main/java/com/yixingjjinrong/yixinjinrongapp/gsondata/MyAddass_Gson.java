@@ -6,7 +6,7 @@ public class MyAddass_Gson {
 
     /**
      * message : 查询成功
-     * result : {"addressList":[{"id":137,"createTime":"2018-03-23 12:11:49","status":1,"isDefault":1,"userId":11208,"receiverName":"Dddddddd","receiverAddress":"北京市东城区Lkjljl","receiverPhone":"17755555555"}]}
+     * result : {"addressList":[{"id":176,"createTime":"2018-08-09 14:41:19","isDefault":1,"userId":11298,"receiverName":"贺培勇","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"我家我家","receiverPhone":"18539396112"},{"id":175,"createTime":"2018-08-09 14:34:27","isDefault":0,"userId":11298,"receiverName":"贺培勇","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"逆袭wohyizhzy","receiverPhone":"18620180301"},{"id":177,"createTime":"2018-08-09 14:41:43","isDefault":0,"userId":11298,"receiverName":"贺培勇3","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"哈哈哈哈","receiverPhone":"18539396112"},{"id":178,"createTime":"2018-08-09 14:44:39","isDefault":0,"userId":11298,"receiverName":"贺培勇1111","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"噢所以影子一样","receiverPhone":"18533333333"}]}
      * state : success
      */
 
@@ -51,23 +51,25 @@ public class MyAddass_Gson {
 
         public static class AddressListBean {
             /**
-             * id : 137
-             * createTime : 2018-03-23 12:11:49
-             * status : 1
+             * id : 176
+             * createTime : 2018-08-09 14:41:19
              * isDefault : 1
-             * userId : 11208
-             * receiverName : Dddddddd
-             * receiverAddress : 北京市东城区Lkjljl
-             * receiverPhone : 17755555555
+             * userId : 11298
+             * receiverName : 贺培勇
+             * STATUS : 1
+             * receiverAddress : 北京市东城区
+             * addressDetail : 我家我家
+             * receiverPhone : 18539396112
              */
 
             private int id;
             private String createTime;
-            private int status;
             private int isDefault;
             private int userId;
             private String receiverName;
+            private int STATUS;
             private String receiverAddress;
+            private String addressDetail;
             private String receiverPhone;
 
             public int getId() {
@@ -84,14 +86,6 @@ public class MyAddass_Gson {
 
             public void setCreateTime(String createTime) {
                 this.createTime = createTime;
-            }
-
-            public int getStatus() {
-                return status;
-            }
-
-            public void setStatus(int status) {
-                this.status = status;
             }
 
             public int getIsDefault() {
@@ -118,12 +112,28 @@ public class MyAddass_Gson {
                 this.receiverName = receiverName;
             }
 
+            public int getSTATUS() {
+                return STATUS;
+            }
+
+            public void setSTATUS(int STATUS) {
+                this.STATUS = STATUS;
+            }
+
             public String getReceiverAddress() {
                 return receiverAddress;
             }
 
             public void setReceiverAddress(String receiverAddress) {
                 this.receiverAddress = receiverAddress;
+            }
+
+            public String getAddressDetail() {
+                return addressDetail;
+            }
+
+            public void setAddressDetail(String addressDetail) {
+                this.addressDetail = addressDetail;
             }
 
             public String getReceiverPhone() {

@@ -3,72 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="138px"
-        android:background="@drawable/mybackgrandcolor"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/xiangmu_fh"
-            android:layout_width="40px"
-            android:layout_height="match_parent"
-            android:src="@drawable/fanhui"
-            android:paddingRight="20px"
-            android:paddingTop="20px"
-            android:layout_marginLeft="20px"
-            />
-
-        <TextView
-            android:layout_width="260px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="251px"
-            android:gravity="center_horizontal"
-            android:paddingTop="60px"
-            android:text="项目详情"
-            android:textColor="#ffffff"
-            android:textSize="38px" />
-
-        <TextView
-            android:id="@+id/jiekuanxieyi"
-            android:layout_width="220px"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
-            android:paddingTop="80px"
-            android:text="《借款协议范本》"
-            android:textColor="#ffffff"
-            android:textSize="22px" />
-    </RelativeLayout>
-
-    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PullUpToLoadMore
-        android:id="@+id/ptlm"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-
-        <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="138px"
+            android:background="@drawable/mybackgrandcolor"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/xiangmu_fh"
+                android:layout_width="40px"
+                android:layout_height="match_parent"
+                android:src="@drawable/fanhui"
+                android:paddingRight="20px"
+                android:paddingTop="20px"
+                android:layout_marginLeft="20px"
+                />
 
-            <include layout="@layout/xiangmuxiangqinglijichujie"></include>
+            <TextView
+                android:layout_width="260px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="251px"
+                android:gravity="center_horizontal"
+                android:paddingTop="60px"
+                android:text="项目详情"
+                android:textColor="#ffffff"
+                android:textSize="38px" />
 
+            <TextView
+                android:id="@+id/jiekuanxieyi"
+                android:layout_width="220px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:paddingTop="80px"
+                android:text="《借款协议范本》"
+                android:textColor="#ffffff"
+                android:textSize="22px" />
+        </RelativeLayout>
 
-        </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+        <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PullUpToLoadMore
+            android:id="@+id/ptlm"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
 
-        <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-            <include layout="@layout/xiangmuxiangxingxiangxixinxi"></include>
+                android:fillViewport="true">
 
-        </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
-    </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PullUpToLoadMore>
+                <include layout="@layout/xiangmuxiangqinglijichujie"></include>
 
+            </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+
+            <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <include layout="@layout/xiangmuxiangxingxiangxixinxi"></include>
+
+            </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+        </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PullUpToLoadMore>
 
 </com.zhy.autolayout.AutoLinearLayout> 

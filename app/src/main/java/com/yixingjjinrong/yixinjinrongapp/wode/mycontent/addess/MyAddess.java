@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -109,12 +110,17 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
                     public void onResponse(String result, int id) {
                         Log.e("我的地址GSON", ""+result);
                         MyAddass_Gson data = new Gson().fromJson(result, MyAddass_Gson.class);
+                        if (data.getMessage().equals("查询成功")) {
 
-                        list.addAll(data.getResult().getAddressList());
+                            list.addAll(data.getResult().getAddressList());
 
-                        adapter=new Myaddass_adapter(list,MyAddess.this);
-                        addass_rview.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
+                            adapter = new Myaddass_adapter(list, MyAddess.this);
+                            addass_rview.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }else {
+                            Toast.makeText(MyAddess.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
 

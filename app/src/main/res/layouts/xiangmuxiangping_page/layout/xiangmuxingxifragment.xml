@@ -91,9 +91,8 @@
                             android:id="@+id/main_tv_hidden"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="13dp"
-                            android:lines="2"
-                            android:text=""
+                            android:layout_marginEnd="25px"
+                            android:lines="3"
                             android:textAlignment="textEnd"
                             android:textColor="#333333"
                             android:textSize="28px" />
@@ -104,7 +103,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="25px"
-                            android:text="个人资金周转借款 Y17D1000个人资金周转借款 Y17D1000个人资金周转借款 Y17D1000金周转借款 Y17D1000个人资金周转借款 Y17D1000金周转借款 Y17D1000个人资金周转借款 Y17D1000金周转借款 Y17D1000个人资金周转借款 Y17D1000"
                             android:textColor="#333333"
                             android:textSize="28px"
                             android:visibility="gone" />

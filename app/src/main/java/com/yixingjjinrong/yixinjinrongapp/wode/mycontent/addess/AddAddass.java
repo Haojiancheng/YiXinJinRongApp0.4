@@ -78,7 +78,8 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
             js_request.put("userId", user_id);
             js_request.put("phone", add_phone.getText().toString());
             js_request.put("name", add_name.getText().toString());
-            js_request.put("address", add_addass.getText().toString()+add_mainaddass.getText().toString());
+            js_request.put("addressDetail",add_mainaddass.getText().toString());
+            js_request.put("address", add_addass.getText().toString());
             Log.e("添加：name", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);

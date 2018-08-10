@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -88,10 +89,15 @@ public class YiShiMing extends AutoLayoutActivity {
                     public void onResponse(String result, int id) {
                         Log.e("已认证GSON:",result );
                         YiRenZheng_GSON data = new Gson().fromJson(result, YiRenZheng_GSON.class);
-                        String realName = data.getResult().getRealName();
-                        String idNo = data.getResult().getIdNo();
-                        rname.setText(realName);
-                        rcard.setText(idNo);
+                        if (data.getMessage().equals("已经认证")) {
+                            String realName = data.getResult().getRealName();
+                            String idNo = data.getResult().getIdNo();
+                            rname.setText(realName);
+                            rcard.setText(idNo);
+                        }else {
+                            Toast.makeText(YiShiMing.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
                 });
 

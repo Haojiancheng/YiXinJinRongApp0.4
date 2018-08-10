@@ -74,7 +74,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.5.0'
     implementation 'com.zhy:okhttputils:2.6.2'
     implementation 'com.squareup.okio:okio:1.11.0'
-
+    implementation 'com.github.limxing:Android-PromptDialog:1.1.3'
 
 
 }

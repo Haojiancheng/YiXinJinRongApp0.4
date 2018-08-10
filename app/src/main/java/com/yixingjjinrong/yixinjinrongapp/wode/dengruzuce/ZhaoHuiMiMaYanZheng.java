@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZiMIMA_Gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengMa_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -49,6 +50,8 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private ToggleButton zh_togglePwd;
     public static final String REGEX_PASSWORD = "^(?=.*?[a-z])(?=.*?[0-9])[a-zA-Z0-9_]{6,16}$";
     private ImageView zhyz_fh;
+    private String message;
+    private String jsessionId;
 
 
     @Override
@@ -66,7 +69,6 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         String maskNumber = mobile.substring(0,3)+"****"+mobile.substring(7,mobile.length());
         phonet.setText("正在为"+maskNumber+"找回登入密码");
         getzhaohuimima_Onclik();
-        time = new TimeCount(60000, 1000);
 
     }
     public static boolean isPassword(String password) {
@@ -84,7 +86,6 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
 
-                time.start();
                 getHttP_YAnzhengMA();
             }
         });
@@ -148,7 +149,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         OkHttpUtils.postString()
                 .url(Urls.BASE_URL+"yxbApp/forgetPwd.do")
                 .content(canshu.toString())
-
+                .addHeader("Cookie", "JSESSIONID=" + jsessionId)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
@@ -211,7 +212,21 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         Log.e("TAG", ">>>>成功" + response);
+                        YanZhengMa_gson data = new Gson().fromJson(response, YanZhengMa_gson.class);
+                        if (data.getMessage().equals("发送短信成功")) {
 
+                            message = data.getMessage();
+                            jsessionId = data.getResult().getJsessionId();
+                            Log.e("jsessionId",""+ jsessionId);
+                            time = new TimeCount(60000, 1000);
+                            time.start();
+                        } else {
+                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")) {
+                               zhaohui_yanzheng .setText("明天再试");
+                                zhaohui_yanzheng.setBackgroundResource(R.color.gray);
+                            }
+                        }
                     }
                 });
 

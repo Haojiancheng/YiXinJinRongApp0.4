@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.URL;
 import java.util.Date;
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -226,7 +229,7 @@ public class XiangMuXinXi extends Fragment {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url("http://192.168.1.219:8080/yxb_mobile/yxbApp/ProjectInformation.do")
+                .url(Urls.BASE_URL+"yxbApp/ProjectInformation.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -332,6 +335,20 @@ public class XiangMuXinXi extends Fragment {
 
                             start_time.setText(data.getResult().getAbleTenderDate());
                             end_time.setText(data.getResult().getEndTenderDate());
+                            hidden.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                                @Override
+                                public boolean onPreDraw() {
+                                    hidden.getViewTreeObserver().removeOnPreDrawListener(this);
+                                    Log.e("行数", ""+hidden.getLineCount());
+                                    if (hidden.getLineCount()<=3){
+                                        tv_click.setVisibility(View.GONE);
+                                    }else {
+                                        tv_click.setVisibility(View.VISIBLE);
+                                    }
+                                    return false;
+                                }
+                            });
+
                             tv_click = getActivity().findViewById(R.id.main_tv_click);
                             tv_click.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -518,6 +535,20 @@ public class XiangMuXinXi extends Fragment {
                             start_time.setText(data.getResult().getAbleTenderDate());
                             end_time.setText(data.getResult().getEndTenderDate());
                             tv_click = getActivity().findViewById(R.id.main_tv_click);
+                            hidden.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                                @Override
+                                public boolean onPreDraw() {
+                                    hidden.getViewTreeObserver().removeOnPreDrawListener(this);
+                                    Log.e("行数", ""+hidden.getLineCount());
+                                    if (hidden.getLineCount()<=3){
+                                        tv_click.setVisibility(View.GONE);
+                                    }else {
+                                        tv_click.setVisibility(View.VISIBLE);
+                                    }
+                                    return false;
+                                }
+                            });
+
                             tv_click.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

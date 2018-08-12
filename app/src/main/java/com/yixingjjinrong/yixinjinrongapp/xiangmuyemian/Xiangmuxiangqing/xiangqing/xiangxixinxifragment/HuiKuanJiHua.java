@@ -55,12 +55,8 @@ public class HuiKuanJiHua extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        hkjhlist.clear();
-        initview();
-        getid_kh();
-
+    public void onResume() {
+        super.onResume();
         String s = String.valueOf(user_id);
         if (s.equals("0")) {
             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
@@ -68,7 +64,14 @@ public class HuiKuanJiHua extends Fragment {
 
             getHttp();
         }
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        hkjhlist.clear();
+        initview();
+        getid_kh();
     }
 
     private void getid_kh() {

@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ public class Juan extends AutoLayoutActivity {
     private XianJinJuan_Fragment mxianjin;               //现金卷 fragment
     private JianXiJuan_Fragment mjiaxi;               //加息卷 fragment
     private ImageView fh;
+    private String tage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,15 @@ public class Juan extends AutoLayoutActivity {
                 finish();
             }
         });
-
+        Intent it=getIntent();
+        tage = it.getStringExtra("tage");
         getid();
+        if (tage.equals("1")){
+            viewPager.setCurrentItem(1);
+        }else {
+            viewPager.setCurrentItem(0);
+        }
+       
     }
 
     private void getid() {
@@ -57,7 +66,7 @@ public class Juan extends AutoLayoutActivity {
         mjiaxi = new JianXiJuan_Fragment();
         list_fragment.add(mjiaxi);
         list_fragment.add(mxianjin);
-
+        
 
         list_title.add("加息卷");
         list_title.add("现金卷");

@@ -445,20 +445,24 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("我的--》juan_type", "" + juan_type);
                         Log.e("我的--》juan_id", "" + juan_id);
                         Log.e("我的--》juanmake", "" + juanmake);
-                        if (data.getResult().getJuan().size() != 0||data.getResult().getJuan().equals(null)) {
-                            youhuijuan.setText("未使用");
-                            youhuijuan.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
-                                    ti.putExtra("juan", data.getResult());
-                                    startActivity(ti);
+                        if (data.getResult().getJuan()!=null) {
+                            if (data.getResult().getJuan().size() != 0) {
+                                youhuijuan.setText("未使用");
+                                youhuijuan.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
+                                        ti.putExtra("juan", data.getResult());
+                                        startActivity(ti);
 
-                                }
-                            });
+                                    }
+                                });
 
 //                                youhuijuan.setText(juanmake);
-                        } else {
+                            } else {
+                                youhuijuan.setText("暂无可用优惠券");
+                            }
+                        }else {
                             youhuijuan.setText("暂无可用优惠券");
                         }
 

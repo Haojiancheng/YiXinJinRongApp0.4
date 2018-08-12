@@ -41,6 +41,7 @@ public class XiangMuJingDu extends Fragment {
     private String borrowRandomId;
     private String token1;
     private String loginid;
+    private int user_id;
 
     @Nullable
     @Override
@@ -54,7 +55,19 @@ public class XiangMuJingDu extends Fragment {
 
         initview();
         gethttpjingde_id();
-        gethttp_jingdu();
+       
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String s = String.valueOf(user_id);
+        if (s.equals("0")) {
+            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+        } else {
+
+            gethttp_jingdu();
+        }
     }
 
     private void gethttp_jingdu() {
@@ -82,7 +95,7 @@ public class XiangMuJingDu extends Fragment {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/progress.do")
+                .url(Urls.BASE_URL + "yxbApp/progress.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -243,6 +256,7 @@ public class XiangMuJingDu extends Fragment {
 
     private void gethttpjingde_id() {
         //private ImageView ,,,,,,;
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         fabuxiangmu = getActivity().findViewById(R.id.fabuxiangmu);
@@ -265,8 +279,8 @@ public class XiangMuJingDu extends Fragment {
     }
 
     private void initview() {
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
-        Log.e("项目进度类型", ""+borrowRandomId);
+        borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
+        Log.e("项目进度类型", "" + borrowRandomId);
         MyScrollView xiangmujinduSV = getActivity().findViewById(R.id.xiangmujingduScrollView);
         xiangmujinduSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

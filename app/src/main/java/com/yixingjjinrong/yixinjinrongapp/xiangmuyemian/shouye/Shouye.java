@@ -97,8 +97,7 @@ public class Shouye extends Fragment {
         getgengduoxiangmu();
 
         getHttp();
-        adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
-        mylistview.setAdapter(adapter);
+       
 
     }
 
@@ -165,6 +164,8 @@ public class Shouye extends Fragment {
                         });
 
                         mylist.addAll(data.getResult().getBorrowList());
+                        adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
+                        mylistview.setAdapter(adapter);
 
 //                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                            @Override

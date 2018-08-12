@@ -424,6 +424,7 @@ public class Wode extends Fragment {
                     ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
+                    it.putExtra("tage","1");
                     startActivity(it);
                 }
             }
@@ -436,6 +437,7 @@ public class Wode extends Fragment {
                     ToastUtils.showToast( getActivity() , "请先登入" );
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
+                    it.putExtra("tage","0");
                     startActivity(it);
                 }
             }

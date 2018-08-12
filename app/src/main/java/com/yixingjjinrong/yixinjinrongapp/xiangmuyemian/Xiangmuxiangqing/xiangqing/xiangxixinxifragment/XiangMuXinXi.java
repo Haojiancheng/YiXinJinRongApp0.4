@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -33,6 +34,8 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.Date;
+
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -59,7 +62,8 @@ public class XiangMuXinXi extends Fragment {
     private View geren,qiye,shencha;
     private TextView qy_name,qy_dm,qy_time,qy_zb,qy_hy,qy_dizhi,qy_bg,qy_fd,qy_shouru,qy_huanhuancishu,qy_yuqicishu,qy_lishiyuqi_jinge,qy_dangqian_jine,qy_6yue,qy_qita,qy_fanwei;
     private int user_id;
-
+    private View xx_view;
+    private PromptDialog promptDialog;
 
     @Nullable
     @Override
@@ -75,12 +79,15 @@ public class XiangMuXinXi extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initview();
         getxmxxid();
+//        xx_view.setVisibility(View.GONE);
+//        promptDialog = new PromptDialog(getActivity());
+//        promptDialog.showLoading("");
         getHttp();
     }
 
     private void getxmxxid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
-
+        xx_view=getActivity().findViewById(R.id.xx_view);
         //企业、个人
         qiye=getActivity().findViewById(R.id.qiye);
         geren=getActivity().findViewById(R.id.geren);
@@ -237,11 +244,14 @@ public class XiangMuXinXi extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+//                        promptDialog.dismiss();
+                        
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
+//                        promptDialog.dismiss();
+                        xx_view.setVisibility(View.VISIBLE);
                         String s1 = String.valueOf(user_id);
                         Log.e("项目星系user_id", ""+s1);
                         if (s1.equals("0")){

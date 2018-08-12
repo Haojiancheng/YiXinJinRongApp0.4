@@ -24,8 +24,7 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     public static final int TYPE_ONE = 1;
     public static final int TYPE_TWO = 2;
     Context context;
-    private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist = new ArrayList<>();
-
+    private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist;
     public ShouYe_MyBaseAdapter(Context context, List<ShouYe_Gson.ResultBean.BorrowListBean> mylist) {
         this.context = context;
         this.mylist = mylist;
@@ -201,7 +200,12 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mylist.size();
+        if (mylist.size()==0){
+            return mylist.size();
+        }else if (mylist.size()!=0&&mylist.size()>=3){
+            return 3; 
+        }
+        return 0;
     }
 
     @Override

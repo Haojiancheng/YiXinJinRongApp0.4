@@ -71,6 +71,7 @@
     <include
         android:id="@+id/shiming_my"
         layout="@layout/shimingrenzheng_itme"
+        android:visibility="gone"
         />
 
     <include

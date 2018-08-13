@@ -1,6 +1,5 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,25 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.ImageResizerUtils;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
-import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYeMassage_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
-import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
-import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
-import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.myView.NoticeView;
@@ -44,16 +36,8 @@ import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.apache.http.params.HttpParams;
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +63,8 @@ public class Shouye extends Fragment {
     private boolean isGetData = false;
     private ShouYe_Gson data;
     private String[] mypic;
+    private Button bt_first_chujie;
+    private View first_viwe;
 
 
     @Nullable
@@ -103,6 +89,8 @@ public class Shouye extends Fragment {
 
 
     private void getshouyeid() {
+        first_viwe=getActivity().findViewById(R.id.first_viwe);
+        bt_first_chujie=getActivity().findViewById(R.id.first_chujie);
         mylistview = getActivity().findViewById(R.id.mylist);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         mylistview.setLayoutManager(manager);
@@ -136,13 +124,9 @@ public class Shouye extends Fragment {
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                             picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
                             Log.e("TAG", "url:" + picpath);
-
                             mypic[i] = picpath;
-
                         }
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-
-
                             Log.e("TAG", ">>>URL:" + mypic[i].toString());
                         }
                         bann = getActivity().findViewById(R.id.shouyetobbanner);
@@ -166,20 +150,20 @@ public class Shouye extends Fragment {
                         mylist.addAll(data.getResult().getBorrowList());
                         adapter = new ShouYe_MyBaseAdapter(getActivity(), mylist);
                         mylistview.setAdapter(adapter);
+                        adapter.setonEveryItemClickListener(new ShouYe_MyBaseAdapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                String mtype = String.valueOf(mylist.get(position).getMortgageType());
+                                String xiangmu_id = mylist.get(position).getBorrowRandomId();
+                                Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
+                                intent.putExtra("mortgageType", mtype);
+                                intent.putExtra("bt_name", mylist.get(position).getBorrowStatusStr());
+                                SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
+                                Log.e("TASG","立即出借id:"+xiangmu_id);
+                                startActivity(intent);
+                            }
+                        });
 
-//                        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                            @Override
-//                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                String xiangmu_id = mylist.get(position).getBorrowRandomId();
-//                                Log.e("TAG+..", "" + xiangmu_id);
-//                                Intent it = new Intent(getActivity(), XiangMuXiangQing.class);
-//                                String mortgageType = String.valueOf(mylist.get(position).getMortgageType()).toString();
-//                                SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
-//                                it.putExtra("bt_name", mylist.get(position).getBorrowStatusStr());
-//                                it.putExtra("mortgageType", mortgageType);
-//                                startActivity(it);
-//                            }
-//                        });
                         adapter.notifyDataSetChanged();
                         for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
                             mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());

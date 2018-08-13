@@ -3,7 +3,6 @@ package com.yixingjjinrong.yixinjinrongapp.wode.tixian;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,20 +23,16 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXian_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
-import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import okhttp3.Call;
@@ -118,7 +113,15 @@ public class TiXian extends AutoLayoutActivity {
                             cz_ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {//可以提现，下一步
-                                    getokHTTp();
+                                    if (t_cz_money.getText().toString().equals("")) {
+                                        ToastUtils.showToast(TiXian.this, "提现金额不为空");
+                                    } else {
+                                        if (Integer.valueOf(t_cz_money.getText().toString().trim()) <100) {//金额不能小于100
+                                            ToastUtils.showToast(TiXian.this, "提现金额不能小于100元");
+                                        } else {
+                                            getokHTTp();
+                                        }
+                                    }
                                 }
                             });
                         } else {
@@ -127,7 +130,7 @@ public class TiXian extends AutoLayoutActivity {
 //                    t_yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
                                 Toast.makeText(TiXian.this, "没有实名认证", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未实名认证，是否实名认证")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -150,7 +153,7 @@ public class TiXian extends AutoLayoutActivity {
                             }
                             if (msg.equals("bank_link")) {
                                 Toast.makeText(TiXian.this, "没有富友开户", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -174,7 +177,7 @@ public class TiXian extends AutoLayoutActivity {
                             }
                             if (msg.equals("sign_card")) {
                                 Toast.makeText(TiXian.this, "没有签约", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog3 = new AlertDialog.Builder(TiXian.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog3 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未没有签约")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -186,7 +189,6 @@ public class TiXian extends AutoLayoutActivity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Toast.makeText(TiXian.this, "请签约", Toast.LENGTH_SHORT).show();
                                                 Intent it = new Intent(TiXian.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
                                                 finish();
@@ -244,13 +246,16 @@ public class TiXian extends AutoLayoutActivity {
                     public void onResponse(String result, int id) {
                         Log.e("ok提现：", result);
                         TiXianOk_GSON data = new Gson().fromJson(result, TiXianOk_GSON.class);
-                        Toast.makeText(TiXian.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                        String html = data.getHtml();
-                        Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
-                        itcz.putExtra("tixianhtml", html);
-                        Log.e("提现HTML!:",""+html.toString() );
-                        startActivity(itcz);
-                        finish();
+                        if (data.getMessage().equals("提现成功！")) {
+                            String html = data.getHtml();
+                            Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
+                            itcz.putExtra("tixianhtml", html);
+                            Log.e("提现HTML!:", "" + html.toString());
+                            startActivity(itcz);
+                            finish();
+                        }else {
+                            ToastUtils.showToast(TiXian.this,""+data.getMessage() );
+                        }
                     }
                 });
 

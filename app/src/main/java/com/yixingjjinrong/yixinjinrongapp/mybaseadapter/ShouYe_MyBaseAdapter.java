@@ -193,6 +193,14 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     }
                 }
             });
+            ((MyViewHolder2) holder).view_two.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onEveryItemClickListener != null) {
+                        onEveryItemClickListener.onEveryClick(position);
+                    }
+                }
+            });
 
         }
 

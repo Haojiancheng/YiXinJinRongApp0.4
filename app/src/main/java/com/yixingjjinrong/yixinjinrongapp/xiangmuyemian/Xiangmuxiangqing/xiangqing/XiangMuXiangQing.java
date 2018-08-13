@@ -21,12 +21,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -42,15 +40,13 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
-import com.yixingjjinrong.yixinjinrongapp.utils.AndroidBug54971Workaround;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
-import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.ChuJie_OK;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
@@ -67,12 +63,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import me.leefeng.promptlibrary.PromptDialog;
@@ -153,7 +144,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         jinge.setText("0");
                     } else {
                         if (Integer.valueOf(jinge.getText().toString().trim()) <= 100) {//金额不能小于100
-                            Toast.makeText(XiangMuXiangQing.this, "起投金额不能小于100元", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(XiangMuXiangQing.this, "起投金额不能小于100元");
                         } else {
                             jinge.setText(Integer.valueOf(jinge.getText().toString()) - 100 + "");//减后的金额
                         }
@@ -187,7 +178,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(XiangMuXiangQing.this, "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
                 } else {
                     Intent itcz = new Intent(XiangMuXiangQing.this, ChongZhq.class);
                     itcz.putExtra("keyong2", data.getResult().getRedList1().getBorrowSum());
@@ -201,13 +192,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    Toast.makeText(XiangMuXiangQing.this, "请先登入", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
                 } else {
 
                     if (cb_fuxuankuang.isChecked()) {
                         getchujieHttp();
                     } else {
-                        Toast.makeText(XiangMuXiangQing.this, "请先阅读并勾选协议", Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(XiangMuXiangQing.this, "请先阅读并勾选协议");
                     }
                 }
 
@@ -512,7 +503,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(XiangMuXiangQing.this, "网络异常，请稍后再试", Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast( XiangMuXiangQing.this, "网络异常，请稍后再试" );
                         promptDialog.dismiss();
                     }
 
@@ -523,8 +514,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         int aaa = data.getMsg().getAaa();
                         switch (aaa) {
                             case 2:
-//                        Toast.makeText(XiangMuXiangQing.this, "未实名认证", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+//                        st.makeText(XiangMuXiangQing.this, "未实名认证", st.LENGTH_SHORT).show();
+                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
                                         .setMessage("您还未实名认证，是否认证")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -538,7 +529,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
                                                 showpopwindow();
-//                                        Toast.makeText(XiangMuXiangQing.this, "请实名", Toast.LENGTH_SHORT).show();
+//                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
                                             }
                                         })
                                         .create();
@@ -546,7 +537,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 dialog.show();
                                 break;
                             case 3:
-//                        Toast.makeText(XiangMuXiangQing.this, "未开通银行存管", Toast.LENGTH_SHORT).show();
+//                        st.makeText(XiangMuXiangQing.this, "未开通银行存管", st.LENGTH_SHORT).show();
                                 AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
@@ -561,7 +552,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
                                                 cGpop();
-//                                        Toast.makeText(XiangMuXiangQing.this, "请开通", Toast.LENGTH_SHORT).show();
+//                                        st.makeText(XiangMuXiangQing.this, "请开通", st.LENGTH_SHORT).show();
                                             }
                                         })
                                         .create();
@@ -569,7 +560,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 dialog1.show();
                                 break;
                             case 5:
-//                        Toast.makeText(XiangMuXiangQing.this, "未签约", Toast.LENGTH_SHORT).show();
+//                        st.makeText(XiangMuXiangQing.this, "未签约", st.LENGTH_SHORT).show();
                                 AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                         .setTitle("提示")
                                         .setMessage("您还未未签约，是否签约")
@@ -585,7 +576,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                                 promptDialog.dismiss();
                                                 Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
-//                                        Toast.makeText(XiangMuXiangQing.this, "请签约", Toast.LENGTH_SHORT).show();
+//                                        st.makeText(XiangMuXiangQing.this, "请签约", st.LENGTH_SHORT).show();
                                             }
                                         })
                                         .create();
@@ -593,7 +584,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 dialog2.show();
                                 break;
                             case 4:
-//                        Toast.makeText(XiangMuXiangQing.this, "未风险评测", Toast.LENGTH_SHORT).show();
+//                        st.makeText(XiangMuXiangQing.this, "未风险评测", st.LENGTH_SHORT).show();
                                 AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
                                         .setTitle("提示")
                                         .setMessage("您还未风险评测，是否风险评测")
@@ -608,7 +599,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
                                                 fxpop();
-//                                        Toast.makeText(XiangMuXiangQing.this, "请风险评测", Toast.LENGTH_SHORT).show();
+//                                        st.makeText(XiangMuXiangQing.this, "请风险评测", st.LENGTH_SHORT).show();
                                             }
                                         })
                                         .create();
@@ -616,23 +607,21 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 dialog3.show();
                                 break;
                             case 0:
-//                        Toast.makeText(XiangMuXiangQing.this, "请稍等…………", Toast.LENGTH_SHORT).show();
+//                        st.makeText(XiangMuXiangQing.this, "请稍等…………", st.LENGTH_SHORT).show();
                                 getchujieHttpTwo();
 
                                 break;
                             case 9://小于100
-                                Toast.makeText(XiangMuXiangQing.this, "投资金额不能小于100", Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(XiangMuXiangQing.this, "投资金额不能小于100");
                                 break;
                             case 8://不是100的倍数
-                                Toast.makeText(XiangMuXiangQing.this, "投资金额只能是100的倍数", Toast.LENGTH_SHORT).show();
+                                ToastUtils.showToast(XiangMuXiangQing.this, "投资金额只能是100的倍数");
                                 break;
                             case 11:
                                 shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                Toast.makeText(XiangMuXiangQing.this, "当前项目风险等级高于您的风险评测等级，请问确认出借吗？", Toast.LENGTH_SHORT).show();
                                 break;
                             case 10:
                                 shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                Toast.makeText(XiangMuXiangQing.this, "当前项目风险等级高于您的风险评测等级，请问确认出借吗？", Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }
@@ -853,7 +842,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-                        Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
 //                    Intent it = new Intent(XiangMuXiangQing.this, ShiMingrenzheng.class);
@@ -918,7 +907,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         } else {
 //                        jinggao.setVisibility(View.VISIBLE);
 //                        jinggao.setText(message);
-                            Toast.makeText(XiangMuXiangQing.this, "" + message, Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
                         }
                     }
                 });
@@ -988,7 +977,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(XiangMuXiangQing.this, "网络异常，请稍后再试", Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(XiangMuXiangQing.this, "网络异常，请稍后再试");
                         promptDialog.dismiss();
                     }
 
@@ -1013,7 +1002,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             promptDialog.dismiss();
                             finish();
                         } else {
-                            Toast.makeText(XiangMuXiangQing.this, "" + msg, Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(XiangMuXiangQing.this, "" + msg);
                             bt_lijichujie.setEnabled(true);
                             promptDialog.dismiss();
                         }

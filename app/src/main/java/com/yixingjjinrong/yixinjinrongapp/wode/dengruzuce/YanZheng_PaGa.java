@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -33,15 +32,13 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -220,6 +217,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     @Override
                     public void onResponse(String response, int id) {
                         Log.e("语音严重吗Gson", "" + response);
+                        ToastUtils.showToast(YanZheng_PaGa.this, "成功");
                     }
                 });
 

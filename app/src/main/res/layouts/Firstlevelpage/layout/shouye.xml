@@ -3,9 +3,11 @@
     android:id="@+id/shouye_frament"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     android:background="#f0f0f0">
 
-    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+    <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -201,7 +203,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+    </ScrollView>
 
 
 </com.zhy.autolayout.AutoRelativeLayout>

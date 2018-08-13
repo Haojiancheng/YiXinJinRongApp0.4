@@ -1,7 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.mycontent;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,9 +28,6 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -88,6 +84,13 @@ public class My_Content extends AutoLayoutActivity {
         }
         if (blank.equals("1")) {
             cunguan.setText("已开通");
+            cunguan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it=new Intent(My_Content.this, YiShiMing.class);
+                    startActivity(it);
+                }
+            });
         } else {
             cunguan.setText("未开通");
 

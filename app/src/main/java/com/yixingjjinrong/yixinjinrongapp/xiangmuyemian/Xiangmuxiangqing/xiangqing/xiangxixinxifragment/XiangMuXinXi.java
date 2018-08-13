@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -32,7 +31,6 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.Date;
 
 import me.leefeng.promptlibrary.PromptDialog;
@@ -251,7 +249,7 @@ public class XiangMuXinXi extends Fragment {
                     @Override
                     public void onResponse(String result, int id) {
 //                        promptDialog.dismiss();
-                        xx_view.setVisibility(View.VISIBLE);
+//                        xx_view.setVisibility(View.VISIBLE);
                         String s1 = String.valueOf(user_id);
                         Log.e("项目星系user_id", ""+s1);
                         if (s1.equals("0")){
@@ -778,6 +776,4 @@ public class XiangMuXinXi extends Fragment {
             }
         });
     }
-
-
 }

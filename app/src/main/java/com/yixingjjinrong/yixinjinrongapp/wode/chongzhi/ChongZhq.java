@@ -3,7 +3,6 @@ package com.yixingjjinrong.yixinjinrongapp.wode.chongzhi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,18 +23,15 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
-import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import okhttp3.Call;
@@ -126,7 +122,11 @@ public class ChongZhq extends AutoLayoutActivity {
                                     if (cz_money.getText().toString().equals("")) {
                                         Toast.makeText(ChongZhq.this, "请输入金额", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        getokHTTp();
+                                        if (Integer.valueOf(cz_money.getText().toString().trim()) < 100) {//金额不能小于100
+                                            ToastUtils.showToast(ChongZhq.this, "充值金额不能小于100元");
+                                        } else {
+                                            getokHTTp();
+                                        }
                                     }
                                 }
                             });
@@ -136,7 +136,7 @@ public class ChongZhq extends AutoLayoutActivity {
                             yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
                                 Toast.makeText(ChongZhq.this, "没有实名认证", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
                                         .setTitle("提示")
                                         .setMessage("您还未实名认证，是否实名认证")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -158,7 +158,7 @@ public class ChongZhq extends AutoLayoutActivity {
                             }
                             if (msg.equals("bank_link")) {
                                 Toast.makeText(ChongZhq.this, "没有富友开户", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -171,7 +171,6 @@ public class ChongZhq extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getchHTTP();
-                                                Toast.makeText(ChongZhq.this, "请开通", Toast.LENGTH_SHORT).show();
                                                 finish();
                                             }
                                         })
@@ -182,7 +181,7 @@ public class ChongZhq extends AutoLayoutActivity {
                             }
                             if (msg.equals("sign_card")) {
 //                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
-                                AlertDialog dialog3 = new AlertDialog.Builder(ChongZhq.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog3 = new AlertDialog.Builder(ChongZhq.this)
                                         .setTitle("提示")
                                         .setMessage("您还未没有签约")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -194,7 +193,6 @@ public class ChongZhq extends AutoLayoutActivity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Toast.makeText(ChongZhq.this, "请签约", Toast.LENGTH_SHORT).show();
                                                 Intent it = new Intent(ChongZhq.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
                                                 finish();

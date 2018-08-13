@@ -2,12 +2,9 @@ package com.yixingjjinrong.yixinjinrongapp.wode;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Html;
-import android.text.LoginFilter;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -49,11 +46,13 @@ import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.MyYaoQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import okhttp3.Call;
 import okhttp3.MediaType;
 

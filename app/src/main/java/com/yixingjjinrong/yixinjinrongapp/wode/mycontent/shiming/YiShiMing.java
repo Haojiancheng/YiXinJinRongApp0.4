@@ -1,6 +1,5 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,15 +16,11 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
-import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -36,6 +31,8 @@ public class YiShiMing extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private ImageView ysm_fh;
+    private String loginid;
+    private String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +55,8 @@ public class YiShiMing extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
+            js_request.put("token", userToken);
+            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -105,6 +104,8 @@ public class YiShiMing extends AutoLayoutActivity {
 
     private void getrid() {
         user_id = (int) SPUtils.get(this, "userId", 0);
+        loginid = (String) SPUtils.get(this, "Loginid", "");
+        userToken = (String) SPUtils.get(this, "Token1", "");
         rname=findViewById(R.id.rname);
         rcard=findViewById(R.id.rcard);
         ysm_fh=findViewById(R.id.ysm_fh);

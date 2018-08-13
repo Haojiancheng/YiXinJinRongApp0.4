@@ -183,8 +183,6 @@
             android:layout_marginRight="30px"
             android:drawablePadding="18px"
             android:hint="推荐人手机号/邀请码（选填）"
-            android:inputType="textPassword"
-
             app:errorTextAppearance="@style/ErrorAppearance" />
     </android.support.design.widget.TextInputLayout>
     <RelativeLayout

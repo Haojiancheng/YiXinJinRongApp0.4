@@ -96,11 +96,12 @@
 
                 <ToggleButton
                     android:id="@+id/wode_togglePwd"
-                    android:layout_width="40px"
+                    android:layout_width="30px"
                     android:layout_height="30px"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/zhengyan"
                     android:padding="10dp"
+                    android:layout_marginLeft="30px"
                     android:textOff=""
                     android:textOn="" />
             </LinearLayout>

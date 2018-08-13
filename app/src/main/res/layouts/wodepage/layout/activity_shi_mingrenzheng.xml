@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f4f4f4"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     tools:context=".wode.dengruzuce.ShiMingrenzheng">
     <RelativeLayout
         android:layout_width="match_parent"

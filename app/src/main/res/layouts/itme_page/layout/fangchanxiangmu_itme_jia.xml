@@ -138,9 +138,9 @@
 
                 <TextView
                     android:id="@+id/qixian"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40px"
+                    android:layout_marginLeft="20px"
                     android:layout_marginTop="46px"
                     android:text="3个月"
                     android:textColor="#333333"
@@ -149,7 +149,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35px"
+                    android:layout_marginLeft="20px"
                     android:layout_marginTop="24px"
                     android:text="借款期限"
                     android:textColor="#999999"

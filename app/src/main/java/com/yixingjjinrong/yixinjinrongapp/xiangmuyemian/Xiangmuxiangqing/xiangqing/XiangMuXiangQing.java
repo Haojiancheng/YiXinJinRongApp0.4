@@ -27,9 +27,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
-import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
@@ -105,19 +105,20 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private ImageView xiangmu_fh;
     private PopupWindow popview;
     private PromptDialog promptDialog;
-    private View detailedinformation;
+    private View detailedinformation,xiala_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        EventBus.getDefault().register(this);//注册
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {   //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));  //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {   //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));  //需要在setContentView()方法后面执行
+//        }
 
         setContentView(R.layout.xiaomuxiangqing);
-
+        ImmersionBar.with(this)
+                .init();
 
         promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
@@ -299,6 +300,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
         detailedinformation = findViewById(R.id.detailedinformation);
+        xiala_view=findViewById(R.id.xiale_view);
+
         Log.e("userid", "id:" + user_id);
         yujishouyi = findViewById(R.id.yujishouyi);
         jianhao = findViewById(R.id.bt_jianhao);
@@ -1081,5 +1084,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         SPUtils.remove(XiangMuXiangQing.this, "juantype");
         SPUtils.remove(XiangMuXiangQing.this, "juanId");
         SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

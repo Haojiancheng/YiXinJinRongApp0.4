@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -656,7 +657,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
-                    android:text="平台历史还款次数"
+                    android:text="平台历史还款期数"
                     android:textColor="#999999"
                     android:textSize="28px" />
 
@@ -681,7 +682,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
-                    android:text="平台历史逾期次数"
+                    android:text="平台历史逾期期数"
                     android:textColor="#999999"
                     android:textSize="28px" />
 
@@ -1154,7 +1155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
-                        android:text="平台历史还款次数"
+                        android:text="平台历史还款期数"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
@@ -1179,7 +1180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
-                        android:text="平台历史逾期次数"
+                        android:text="平台历史逾期期数"
                         android:textColor="#999999"
                         android:textSize="28px" />
 

@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,23 +15,17 @@ import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,9 +104,15 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
                     public void onResponse(String result, int id) {
                         Log.e("现金券GSon", "" + result);
                         XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
-                        list.addAll(data.getQueryVouchersList());
+                        if (data.getMessage().equals("成功了")) {
 
-                        myadapter.notifyDataSetChanged();
+
+                            list.addAll(data.getQueryVouchersList());
+
+                            myadapter.notifyDataSetChanged();
+                        }else {
+                            ToastUtils.showToast(getActivity(),data.getMessage() );
+                        }
                     }
                 });
 

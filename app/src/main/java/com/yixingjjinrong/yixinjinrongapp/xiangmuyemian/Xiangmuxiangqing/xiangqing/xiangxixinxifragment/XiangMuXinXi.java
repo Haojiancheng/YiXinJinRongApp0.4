@@ -57,10 +57,10 @@ public class XiangMuXinXi extends Fragment {
     private XiangMuXingXi_Car_gson cardata;
     private TextView sx_pg, sc_zhuzhi, sc_cq;
     private TextView qyrz, qy_rz, qywrz;
-    private View geren,qiye,shencha;
-    private TextView qy_name,qy_dm,qy_time,qy_zb,qy_hy,qy_dizhi,qy_bg,qy_fd,qy_shouru,qy_huanhuancishu,qy_yuqicishu,qy_lishiyuqi_jinge,qy_dangqian_jine,qy_6yue,qy_qita,qy_fanwei;
+    private View geren, qiye, shencha;
+    private TextView qy_name, qy_dm, qy_time, qy_zb, qy_hy, qy_dizhi, qy_bg, qy_fd, qy_shouru, qy_huanhuancishu, qy_yuqicishu, qy_lishiyuqi_jinge, qy_dangqian_jine, qy_6yue, qy_qita, qy_fanwei;
     private int user_id;
-    private View xx_view;
+    private View xx_view, xiale_view;
     private PromptDialog promptDialog;
 
     @Nullable
@@ -85,10 +85,11 @@ public class XiangMuXinXi extends Fragment {
 
     private void getxmxxid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
-        xx_view=getActivity().findViewById(R.id.xx_view);
+        xx_view = getActivity().findViewById(R.id.xx_view);
+//        xiale_view = getActivity().findViewById(R.id.xiale_view);
         //企业、个人
-        qiye=getActivity().findViewById(R.id.qiye);
-        geren=getActivity().findViewById(R.id.geren);
+        qiye = getActivity().findViewById(R.id.qiye);
+        geren = getActivity().findViewById(R.id.geren);
         // 审查信息
 //        sx_pg,sc_zhuzhi,sc_cq;
         qy = getActivity().findViewById(R.id.qy);
@@ -111,22 +112,22 @@ public class XiangMuXinXi extends Fragment {
         yd_lilv = getActivity().findViewById(R.id.yd_lilv);
         man_hunyin = getActivity().findViewById(R.id.man_hunyin);
         //法人信息,,,,,,,,,,,,,,;
-        qy_fanwei=getActivity().findViewById(R.id.qy_fanwei);
-        qy_name=getActivity().findViewById(R.id.qy_name);
-        qy_dm=getActivity().findViewById(R.id.qy_dm);
-        qy_time=getActivity().findViewById(R.id.qy_time);
-        qy_zb=getActivity().findViewById(R.id.qy_zb);
-        qy_hy=getActivity().findViewById(R.id.qy_hy);
-        qy_dizhi=getActivity().findViewById(R.id.qy_dizhi);
-        qy_bg=getActivity().findViewById(R.id.qy_bg);
-        qy_fd=getActivity().findViewById(R.id.qy_fd);
-        qy_shouru=getActivity().findViewById(R.id.qy_shouru);
-        qy_huanhuancishu=getActivity().findViewById(R.id.qy_huanhuancishu);
-        qy_yuqicishu=getActivity().findViewById(R.id.qy_yuqicishu);
-        qy_lishiyuqi_jinge=getActivity().findViewById(R.id.qy_lishiyuqi_jinge);
-        qy_dangqian_jine=getActivity().findViewById(R.id.qy_dangqian_jine);
-        qy_6yue=getActivity().findViewById(R.id.qy_6yue);
-        qy_qita=getActivity().findViewById(R.id.qy_qita);
+        qy_fanwei = getActivity().findViewById(R.id.qy_fanwei);
+        qy_name = getActivity().findViewById(R.id.qy_name);
+        qy_dm = getActivity().findViewById(R.id.qy_dm);
+        qy_time = getActivity().findViewById(R.id.qy_time);
+        qy_zb = getActivity().findViewById(R.id.qy_zb);
+        qy_hy = getActivity().findViewById(R.id.qy_hy);
+        qy_dizhi = getActivity().findViewById(R.id.qy_dizhi);
+        qy_bg = getActivity().findViewById(R.id.qy_bg);
+        qy_fd = getActivity().findViewById(R.id.qy_fd);
+        qy_shouru = getActivity().findViewById(R.id.qy_shouru);
+        qy_huanhuancishu = getActivity().findViewById(R.id.qy_huanhuancishu);
+        qy_yuqicishu = getActivity().findViewById(R.id.qy_yuqicishu);
+        qy_lishiyuqi_jinge = getActivity().findViewById(R.id.qy_lishiyuqi_jinge);
+        qy_dangqian_jine = getActivity().findViewById(R.id.qy_dangqian_jine);
+        qy_6yue = getActivity().findViewById(R.id.qy_6yue);
+        qy_qita = getActivity().findViewById(R.id.qy_qita);
 // ,,,,,,,,,个人信息,,,,,,,,,;
         zt_xingzhi = getActivity().findViewById(R.id.zt_xingzhi);
         man_name = getActivity().findViewById(R.id.man_name);
@@ -156,7 +157,7 @@ public class XiangMuXinXi extends Fragment {
         xk_jg = getActivity().findViewById(R.id.xk_jg);
 
 //,,,,,,,,审查,,,,;
-        shencha=getActivity().findViewById(R.id.shencha);
+        shencha = getActivity().findViewById(R.id.shencha);
         sf_rz = getActivity().findViewById(R.id.sf_rz);
         sf_wrz = getActivity().findViewById(R.id.sf_wrz);
         zz_rz = getActivity().findViewById(R.id.zz_rz);
@@ -243,7 +244,7 @@ public class XiangMuXinXi extends Fragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
 //                        promptDialog.dismiss();
-                        
+
                     }
 
                     @Override
@@ -251,10 +252,10 @@ public class XiangMuXinXi extends Fragment {
 //                        promptDialog.dismiss();
 //                        xx_view.setVisibility(View.VISIBLE);
                         String s1 = String.valueOf(user_id);
-                        Log.e("项目星系user_id", ""+s1);
-                        if (s1.equals("0")){
+                        Log.e("项目星系user_id", "" + s1);
+                        if (s1.equals("0")) {
                             shencha.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             shencha.setVisibility(View.VISIBLE);
                         }
                         Log.e("TAG", "XXGSON>>>" + result);
@@ -347,10 +348,10 @@ public class XiangMuXinXi extends Fragment {
                                 @Override
                                 public boolean onPreDraw() {
                                     hidden.getViewTreeObserver().removeOnPreDrawListener(this);
-                                    Log.e("行数", ""+hidden.getLineCount());
-                                    if (hidden.getLineCount()<=3){
+//                                    Log.e("行数", ""+hidden.getLineCount());
+                                    if (hidden.getLineCount() <= 3) {
                                         tv_click.setVisibility(View.GONE);
-                                    }else {
+                                    } else {
                                         tv_click.setVisibility(View.VISIBLE);
                                     }
                                     return false;
@@ -375,7 +376,7 @@ public class XiangMuXinXi extends Fragment {
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 geren.setVisibility(View.GONE);
                                 qiye.setVisibility(View.VISIBLE);
-                            }else {
+                            } else {
                                 geren.setVisibility(View.VISIBLE);
                                 qiye.setVisibility(View.GONE);
                             }
@@ -391,10 +392,10 @@ public class XiangMuXinXi extends Fragment {
                             qy_fd.setText(data.getResult().getCompanyOwner());
                             qy_shouru.setText(data.getResult().getCmonthIncome());
                             qy_fd.setText(data.getResult().getCompanyOwner());
-                            qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
-                            qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                            qy_huanhuancishu.setText(data.getResult().getPeriods().getPeriods() + "期");
+                            qy_yuqicishu.setText(data.getResult().getOverTimess().getOverTimes() + "期");
                             qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
-                            qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");
+                            qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                             qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());
                             qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());
                             qy_fanwei.setText(data.getResult().getBusinessScope());
@@ -409,8 +410,8 @@ public class XiangMuXinXi extends Fragment {
                             man_zhiwei.setText(data.getResult().getRxx().getProfession());
                             man_hangye.setText(data.getResult().getRxx().getTradeType());
                             man_shouru.setText(data.getResult().getRxx().getMonthIncome());
-                            man_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
-                            man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                            man_huanhuancishu.setText(data.getResult().getPeriods().getPeriods() + "期");
+                            man_yuqicishu.setText(data.getResult().getOverTimess().getOverTimes() + "期");
                             lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
                             dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                             yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
@@ -547,10 +548,10 @@ public class XiangMuXinXi extends Fragment {
                                 @Override
                                 public boolean onPreDraw() {
                                     hidden.getViewTreeObserver().removeOnPreDrawListener(this);
-                                    Log.e("行数", ""+hidden.getLineCount());
-                                    if (hidden.getLineCount()<=3){
+                                    Log.e("行数", "" + hidden.getLineCount());
+                                    if (hidden.getLineCount() <= 3) {
                                         tv_click.setVisibility(View.GONE);
-                                    }else {
+                                    } else {
                                         tv_click.setVisibility(View.VISIBLE);
                                     }
                                     return false;
@@ -574,7 +575,7 @@ public class XiangMuXinXi extends Fragment {
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 geren.setVisibility(View.GONE);
                                 qiye.setVisibility(View.VISIBLE);
-                            }else {
+                            } else {
                                 geren.setVisibility(View.VISIBLE);
                                 qiye.setVisibility(View.GONE);
                             }
@@ -588,12 +589,12 @@ public class XiangMuXinXi extends Fragment {
                             qy_dizhi.setText(data.getResult().getRegistAddress());
                             qy_bg.setText(data.getResult().getCompanyAddress());
                             qy_fd.setText(data.getResult().getCompanyOwner());
-                            qy_shouru.setText(data.getResult().getCmonthIncome()+"元");
+                            qy_shouru.setText(data.getResult().getCmonthIncome() + "元");
                             qy_fd.setText(data.getResult().getCompanyOwner());
-                            qy_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
-                            qy_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                            qy_huanhuancishu.setText(data.getResult().getPeriods().getPeriods() + "期");
+                            qy_yuqicishu.setText(data.getResult().getOverTimess().getOverTimes() + "期");
                             qy_lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
-                            qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney()+"元");
+                            qy_dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                             qy_6yue.setText(data.getResult().getRxx().getOverdueStatus());
                             qy_qita.setText(data.getResult().getRxx().getOtherWebStatus());
                             qy_fanwei.setText(data.getResult().getBusinessScope());
@@ -609,8 +610,8 @@ public class XiangMuXinXi extends Fragment {
                             man_hangye.setText(data.getResult().getRxx().getTradeType());
                             man_shouru.setText(data.getResult().getRxx().getMonthIncome());
                             man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
-                            man_huanhuancishu.setText(data.getResult().getTimes().getTimes() + "次");
-                            man_yuqicishu.setText(data.getResult().getOverTimes().getOverTimes() + "次");
+                            man_huanhuancishu.setText(data.getResult().getPeriods().getPeriods() + "期");
+                            man_yuqicishu.setText(data.getResult().getOverTimess().getOverTimes() + "期");
                             lishiyuqi_jinge.setText(data.getResult().getOverMoney().getOverMoney() + "元");
                             dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                             yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
@@ -758,7 +759,8 @@ public class XiangMuXinXi extends Fragment {
 
             @Override
             public void onScrollToTop() {
-
+//                ToastUtils.showToast(getActivity(), "ff");
+//                xiale_view.setVisibility(View.VISIBLE);
             }
 
             @Override

@@ -5,7 +5,7 @@ public class XiangMuXinXi_Gson {
 
     /**
      * message : 成功了
-     * result : {"car":null,"addressd":"","borrowInfo":"发斯蒂芬是在是v是","companyAddress":"西大望路***********","regCode":"912***********535R","companyBusiness":"互联网","bondsman":{"professiond":"","addressd":"","monthIncomed":"","idNod":"","tradeTyped":"","sexd":"","trcityd":"","realNamed":"","birthd":"","highestEdud":"","maritalStatusd":""},"borrowSum":"90000.00元","trcityd":"","house":{"houseAddress":"北京市朝阳区***********","referencePrice":"10,000元","constructionArea":"80平方米","useYears":"90年","communityName":"幸福","evaluationPrice":"10,000元"},"Addresss":"","registeredCapital":"100000.00","cmonthIncome":"10000000.00","c_name":"北京***********担保公司","ableTenderDate":"2018-06-14 13:54 ","times":{"times":"3"},"refund":{"paymentMode":"按月付息，到期还本","paymentModezhi":"2","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。"},"overMoney":{"overMoney":"0.00"},"buildTime":"2018-06-12","overTimes":{"overTimes":"0"},"trcity":"石嘴山","auditOpinion":"史蒂芬孙分","idNo":"422***********3270","houseAddress":"北京市朝阳区***********","businessScope":"啊","endTenderDate":"2018-06-16 13:54 ","ProjectName":"预热标","registAddress":"北京市朝阳区******","mortgageType":"1","newRealName":"孙**","trpro":"宁夏","carcode":"","companyName":"广州****有限公司","borrowPurpose":"大多数","companyOwner":"梁*","organizationCode":"914****HX57","guaranteeType":"0","rxx":{"overdueStatus":"ad","tradeType":"asd","sex":"男","otherWebStatus":"asd","monthIncome":"1111.00元","profession":"asd ","age":"47","highestEdu":"初中","maritalStatus":"未婚"},"ran":6,"RealNameq":"","address":"das ***********","authentication":{"gocar_auth":0,"id":490,"person_auth":1,"house_evaluation":1,"borrowId":2280,"car_auth":0,"buycar_auth":0,"regist_capital_auth":1,"house_right_auth":1,"danbao_auth":1,"address_auth":0,"company_auth":1,"credit_auth":1},"borrowFrom":"2","realName":"梁***","repaysource":"热汤发鬼地方个混","newAddresss":"北京市远洋国******","overMoneys":{"overMoney":"0.00"},"deadline":"3个月"}
+     * result : {"addressd":"","car":null,"borrowInfo":"测试","periods":{"periods":"41"},"companyAddress":"","regCode":"123***********89","companyBusiness":"","bondsman":{"professiond":"","addressd":"","monthIncomed":"","idNod":"","tradeTyped":"","sexd":"","professionds":"","trcityd":"","realNamed":"","birthd":"","highestEdud":"","maritalStatusd":""},"borrowSum":"125500.00元","trcityd":"","house":{"houseAddress":"昌平区***********","referencePrice":"127万","constructionArea":"100平方米","useYears":"100年","communityName":"昌艺园","evaluationPrice":"136万"},"registeredCapital":"","cmonthIncome":"","c_name":"不想起***********名字","ableTenderDate":"2018-08-06 10:50 ","times":{"times":"18"},"refund":{"paymentMode":"按月付息，到期还本","paymentModezhi":"2","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。"},"overMoney":{"overMoney":"0.00"},"buildTime":"","overTimes":{"overTimes":"0"},"trcity":"河池","auditOpinion":"1","idNo":"433***********2414","houseAddress":"昌平区***********","businessScope":"","endTenderDate":"2018-08-07 10:42 ","ProjectName":"测试0806001","registAddress":"","mortgageType":"1","overTimess":{"overTimes":"0"},"newRealName":"***实","trpro":"广西","carcode":"","companyName":"","borrowPurpose":"测试","companyOwner":"","organizationCode":"","guaranteeType":"0","rxx":{"overdueStatus":"无","tradeType":"java","sex":"男","otherWebStatus":"无","monthIncome":"100.00元","profession":"计算机","age":"52","highestEdu":"大专","maritalStatus":"未婚"},"ran":9.5,"address":"不知道********道","authentication":{"gocar_auth":0,"id":890,"person_auth":1,"house_evaluation":1,"borrowId":2679,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":1,"danbao_auth":1,"address_auth":1,"company_auth":0,"credit_auth":1},"borrowFrom":"1","realName":"**高","repaysource":"不认人","newAddresss":"巴萨看********间","overMoneys":{"overMoney":"0.00"},"deadline":"4个月"}
      * state : success
      */
 
@@ -39,59 +39,60 @@ public class XiangMuXinXi_Gson {
 
     public static class ResultBean {
         /**
-         * car : null
          * addressd :
-         * borrowInfo : 发斯蒂芬是在是v是
-         * companyAddress : 西大望路***********
-         * regCode : 912***********535R
-         * companyBusiness : 互联网
-         * bondsman : {"professiond":"","addressd":"","monthIncomed":"","idNod":"","tradeTyped":"","sexd":"","trcityd":"","realNamed":"","birthd":"","highestEdud":"","maritalStatusd":""}
-         * borrowSum : 90000.00元
+         * car : null
+         * borrowInfo : 测试
+         * periods : {"periods":"41"}
+         * companyAddress :
+         * regCode : 123***********89
+         * companyBusiness :
+         * bondsman : {"professiond":"","addressd":"","monthIncomed":"","idNod":"","tradeTyped":"","sexd":"","professionds":"","trcityd":"","realNamed":"","birthd":"","highestEdud":"","maritalStatusd":""}
+         * borrowSum : 125500.00元
          * trcityd :
-         * house : {"houseAddress":"北京市朝阳区***********","referencePrice":"10,000元","constructionArea":"80平方米","useYears":"90年","communityName":"幸福","evaluationPrice":"10,000元"}
-         * Addresss :
-         * registeredCapital : 100000.00
-         * cmonthIncome : 10000000.00
-         * c_name : 北京***********担保公司
-         * ableTenderDate : 2018-06-14 13:54
-         * times : {"times":"3"}
+         * house : {"houseAddress":"昌平区***********","referencePrice":"127万","constructionArea":"100平方米","useYears":"100年","communityName":"昌艺园","evaluationPrice":"136万"}
+         * registeredCapital :
+         * cmonthIncome :
+         * c_name : 不想起***********名字
+         * ableTenderDate : 2018-08-06 10:50
+         * times : {"times":"18"}
          * refund : {"paymentMode":"按月付息，到期还本","paymentModezhi":"2","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。"}
          * overMoney : {"overMoney":"0.00"}
-         * buildTime : 2018-06-12
+         * buildTime :
          * overTimes : {"overTimes":"0"}
-         * trcity : 石嘴山
-         * auditOpinion : 史蒂芬孙分
-         * idNo : 422***********3270
-         * houseAddress : 北京市朝阳区***********
-         * businessScope : 啊
-         * endTenderDate : 2018-06-16 13:54
-         * ProjectName : 预热标
-         * registAddress : 北京市朝阳区******
+         * trcity : 河池
+         * auditOpinion : 1
+         * idNo : 433***********2414
+         * houseAddress : 昌平区***********
+         * businessScope :
+         * endTenderDate : 2018-08-07 10:42
+         * ProjectName : 测试0806001
+         * registAddress :
          * mortgageType : 1
-         * newRealName : 孙**
-         * trpro : 宁夏
+         * overTimess : {"overTimes":"0"}
+         * newRealName : ***实
+         * trpro : 广西
          * carcode :
-         * companyName : 广州****有限公司
-         * borrowPurpose : 大多数
-         * companyOwner : 梁*
-         * organizationCode : 914****HX57
+         * companyName :
+         * borrowPurpose : 测试
+         * companyOwner :
+         * organizationCode :
          * guaranteeType : 0
-         * rxx : {"overdueStatus":"ad","tradeType":"asd","sex":"男","otherWebStatus":"asd","monthIncome":"1111.00元","profession":"asd ","age":"47","highestEdu":"初中","maritalStatus":"未婚"}
-         * ran : 6.0
-         * RealNameq :
-         * address : das ***********
-         * authentication : {"gocar_auth":0,"id":490,"person_auth":1,"house_evaluation":1,"borrowId":2280,"car_auth":0,"buycar_auth":0,"regist_capital_auth":1,"house_right_auth":1,"danbao_auth":1,"address_auth":0,"company_auth":1,"credit_auth":1}
-         * borrowFrom : 2
-         * realName : 梁***
-         * repaysource : 热汤发鬼地方个混
-         * newAddresss : 北京市远洋国******
+         * rxx : {"overdueStatus":"无","tradeType":"java","sex":"男","otherWebStatus":"无","monthIncome":"100.00元","profession":"计算机","age":"52","highestEdu":"大专","maritalStatus":"未婚"}
+         * ran : 9.5
+         * address : 不知道********道
+         * authentication : {"gocar_auth":0,"id":890,"person_auth":1,"house_evaluation":1,"borrowId":2679,"car_auth":0,"buycar_auth":0,"regist_capital_auth":0,"house_right_auth":1,"danbao_auth":1,"address_auth":1,"company_auth":0,"credit_auth":1}
+         * borrowFrom : 1
+         * realName : **高
+         * repaysource : 不认人
+         * newAddresss : 巴萨看********间
          * overMoneys : {"overMoney":"0.00"}
-         * deadline : 3个月
+         * deadline : 4个月
          */
 
-        private Object car;
         private String addressd;
+        private Object car;
         private String borrowInfo;
+        private PeriodsBean periods;
         private String companyAddress;
         private String regCode;
         private String companyBusiness;
@@ -99,7 +100,6 @@ public class XiangMuXinXi_Gson {
         private String borrowSum;
         private String trcityd;
         private HouseBean house;
-        private String Addresss;
         private String registeredCapital;
         private String cmonthIncome;
         private String c_name;
@@ -118,6 +118,7 @@ public class XiangMuXinXi_Gson {
         private String ProjectName;
         private String registAddress;
         private String mortgageType;
+        private OverTimessBean overTimess;
         private String newRealName;
         private String trpro;
         private String carcode;
@@ -128,7 +129,6 @@ public class XiangMuXinXi_Gson {
         private String guaranteeType;
         private RxxBean rxx;
         private double ran;
-        private String RealNameq;
         private String address;
         private AuthenticationBean authentication;
         private String borrowFrom;
@@ -138,14 +138,6 @@ public class XiangMuXinXi_Gson {
         private OverMoneysBean overMoneys;
         private String deadline;
 
-        public Object getCar() {
-            return car;
-        }
-
-        public void setCar(Object car) {
-            this.car = car;
-        }
-
         public String getAddressd() {
             return addressd;
         }
@@ -154,12 +146,28 @@ public class XiangMuXinXi_Gson {
             this.addressd = addressd;
         }
 
+        public Object getCar() {
+            return car;
+        }
+
+        public void setCar(Object car) {
+            this.car = car;
+        }
+
         public String getBorrowInfo() {
             return borrowInfo;
         }
 
         public void setBorrowInfo(String borrowInfo) {
             this.borrowInfo = borrowInfo;
+        }
+
+        public PeriodsBean getPeriods() {
+            return periods;
+        }
+
+        public void setPeriods(PeriodsBean periods) {
+            this.periods = periods;
         }
 
         public String getCompanyAddress() {
@@ -216,14 +224,6 @@ public class XiangMuXinXi_Gson {
 
         public void setHouse(HouseBean house) {
             this.house = house;
-        }
-
-        public String getAddresss() {
-            return Addresss;
-        }
-
-        public void setAddresss(String Addresss) {
-            this.Addresss = Addresss;
         }
 
         public String getRegisteredCapital() {
@@ -370,6 +370,14 @@ public class XiangMuXinXi_Gson {
             this.mortgageType = mortgageType;
         }
 
+        public OverTimessBean getOverTimess() {
+            return overTimess;
+        }
+
+        public void setOverTimess(OverTimessBean overTimess) {
+            this.overTimess = overTimess;
+        }
+
         public String getNewRealName() {
             return newRealName;
         }
@@ -450,14 +458,6 @@ public class XiangMuXinXi_Gson {
             this.ran = ran;
         }
 
-        public String getRealNameq() {
-            return RealNameq;
-        }
-
-        public void setRealNameq(String RealNameq) {
-            this.RealNameq = RealNameq;
-        }
-
         public String getAddress() {
             return address;
         }
@@ -522,6 +522,22 @@ public class XiangMuXinXi_Gson {
             this.deadline = deadline;
         }
 
+        public static class PeriodsBean {
+            /**
+             * periods : 41
+             */
+
+            private String periods;
+
+            public String getPeriods() {
+                return periods;
+            }
+
+            public void setPeriods(String periods) {
+                this.periods = periods;
+            }
+        }
+
         public static class BondsmanBean {
             /**
              * professiond :
@@ -530,6 +546,7 @@ public class XiangMuXinXi_Gson {
              * idNod :
              * tradeTyped :
              * sexd :
+             * professionds :
              * trcityd :
              * realNamed :
              * birthd :
@@ -543,6 +560,7 @@ public class XiangMuXinXi_Gson {
             private String idNod;
             private String tradeTyped;
             private String sexd;
+            private String professionds;
             private String trcityd;
             private String realNamed;
             private String birthd;
@@ -597,6 +615,14 @@ public class XiangMuXinXi_Gson {
                 this.sexd = sexd;
             }
 
+            public String getProfessionds() {
+                return professionds;
+            }
+
+            public void setProfessionds(String professionds) {
+                this.professionds = professionds;
+            }
+
             public String getTrcityd() {
                 return trcityd;
             }
@@ -640,12 +666,12 @@ public class XiangMuXinXi_Gson {
 
         public static class HouseBean {
             /**
-             * houseAddress : 北京市朝阳区***********
-             * referencePrice : 10,000元
-             * constructionArea : 80平方米
-             * useYears : 90年
-             * communityName : 幸福
-             * evaluationPrice : 10,000元
+             * houseAddress : 昌平区***********
+             * referencePrice : 127万
+             * constructionArea : 100平方米
+             * useYears : 100年
+             * communityName : 昌艺园
+             * evaluationPrice : 136万
              */
 
             private String houseAddress;
@@ -706,7 +732,7 @@ public class XiangMuXinXi_Gson {
 
         public static class TimesBean {
             /**
-             * times : 3
+             * times : 18
              */
 
             private String times;
@@ -788,16 +814,32 @@ public class XiangMuXinXi_Gson {
             }
         }
 
+        public static class OverTimessBean {
+            /**
+             * overTimes : 0
+             */
+
+            private String overTimes;
+
+            public String getOverTimes() {
+                return overTimes;
+            }
+
+            public void setOverTimes(String overTimes) {
+                this.overTimes = overTimes;
+            }
+        }
+
         public static class RxxBean {
             /**
-             * overdueStatus : ad
-             * tradeType : asd
+             * overdueStatus : 无
+             * tradeType : java
              * sex : 男
-             * otherWebStatus : asd
-             * monthIncome : 1111.00元
-             * profession : asd
-             * age : 47
-             * highestEdu : 初中
+             * otherWebStatus : 无
+             * monthIncome : 100.00元
+             * profession : 计算机
+             * age : 52
+             * highestEdu : 大专
              * maritalStatus : 未婚
              */
 
@@ -887,17 +929,17 @@ public class XiangMuXinXi_Gson {
         public static class AuthenticationBean {
             /**
              * gocar_auth : 0
-             * id : 490
+             * id : 890
              * person_auth : 1
              * house_evaluation : 1
-             * borrowId : 2280
+             * borrowId : 2679
              * car_auth : 0
              * buycar_auth : 0
-             * regist_capital_auth : 1
+             * regist_capital_auth : 0
              * house_right_auth : 1
              * danbao_auth : 1
-             * address_auth : 0
-             * company_auth : 1
+             * address_auth : 1
+             * company_auth : 0
              * credit_auth : 1
              */
 

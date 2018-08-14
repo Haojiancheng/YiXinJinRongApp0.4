@@ -1,34 +1,40 @@
 package com.yixingjjinrong.yixinjinrongapp;
 
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.hjm.bottomtabbar.BottomTabBar;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.MyConten;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.Wode;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.Faxian;
-
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.Faxian;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.Shouye;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.lang.reflect.Method;
-
 public class MainActivity extends AutoLayoutActivity {
     private BottomTabBar mbottomBar;
     private IntentFilter filter;
     private View decorView;
+    /**
+     * 双击退出功能是否生效（默认ture）
+     */
+    private boolean DOUBLECLICK_EXIT = true;
+
+    /**
+     * 双击退出函数
+     */
+    private long firstTime = 0;
+
+
     //Fragment的跳转
 //   private FragmentManager fManager;
 
@@ -50,6 +56,24 @@ public class MainActivity extends AutoLayoutActivity {
     protected void onStart() {
 
         super.onStart();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (DOUBLECLICK_EXIT) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (System.currentTimeMillis() - firstTime > 2000) {
+                    ToastUtils.showToast(this, "再按一次退出程序");
+                    firstTime = System.currentTimeMillis();
+                } else {
+                    finish();
+                    System.exit(0);
+                }
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+
     }
 
 

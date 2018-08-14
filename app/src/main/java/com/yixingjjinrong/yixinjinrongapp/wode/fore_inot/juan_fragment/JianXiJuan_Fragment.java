@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
@@ -25,15 +23,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,15 +89,14 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url("http://192.168.1.219:8080/yxb_mobile/yxbApp/couponinformation.do")
+                .url(Urls.BASE_URL+"yxbApp/couponinformation.do")
                 .content(canshu.toString())
-
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                         Log.e("加息卷roon",""+e );
                     }
 
                     @Override

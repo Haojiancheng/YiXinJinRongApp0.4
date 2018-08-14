@@ -25,6 +25,7 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -40,7 +41,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListener{
+public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingListener{
     private XRecyclerView chujejilu_rview;
     private String sha1;//SHA1加密
     private String base1;//Base64加
@@ -51,15 +52,11 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
     private String token1;
     private String loginid;
 
-    @Nullable
+  
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.chujiejilufragment, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void onCreateViewLazy(Bundle savedInstanceState) {
+        super.onCreateViewLazy(savedInstanceState);
+        setContentView(R.layout.chujiejilufragment);
         list.clear();
         initView();
         chujejilu_rview=getActivity().findViewById(R.id.chujejilu_rview);
@@ -73,7 +70,6 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
         adapter=new ChuJieJiLu_Adapter(list);
         chujejilu_rview.setAdapter(adapter);
         getHttp();
-
     }
 
     private void getHttp() {
@@ -135,7 +131,7 @@ public class ChuJieJiLu extends Fragment implements XRecyclerView.LoadingListene
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         Log.e("项目出借记录", ""+borrowRandomId);
-        MyScrollView chujiejiluSV=getActivity().findViewById(R.id.chujiejiluScrollView);
+        MyScrollView chujiejiluSV= (MyScrollView) findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {

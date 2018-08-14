@@ -116,9 +116,16 @@ public class ZongziChan extends AutoLayoutActivity {
                         zonge_daishou.setText(forAmount);
                         zonge_keyong.setText(usableAmount);
                         zonge_dongjie.setText(freezeAmount);
-//                for (int i = 0; i < data.getListType().size(); i++) {
-//                    Log.e("gcfr",""+data.getListType().get(i).getMortgageType() );
-//                }
+                for (int i = 0; i < data.getListType().size(); i++) {
+                    int type= data.getListType().get(i).getMortgageType();
+                    if(type==1){
+                        hose_daishou.setText(data.getListType().get(i).getForPaySum());
+                    }else if(type==4){
+                        car_daishou.setText(data.getListType().get(i).getForPaySum());
+                    }
+                            
+                    Log.e("gcfr",""+data.getListType().get(i).getMortgageType() );
+                }
 
 //                zonge_dongjie.setText(data.getUserMap().);
 //                car_daishou.setText(data.getUserMap());
@@ -153,6 +160,8 @@ public class ZongziChan extends AutoLayoutActivity {
         ze_fh=findViewById(R.id.ze_fh);
         hose_daishou=findViewById(R.id.hose_daishou);
         car_daishou=findViewById(R.id.cae_daishou);
+        
+        
 
     }
 }

@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -33,7 +34,7 @@ import org.xutils.x;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class XiangMuJingDu extends Fragment {
+public class XiangMuJingDu extends LazyFragment {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private ImageView fabuxiangmu, fb_xyb, muji, muji_xyb, fangkuan, fk_xyb, huankuan;
@@ -42,25 +43,13 @@ public class XiangMuJingDu extends Fragment {
     private String token1;
     private String loginid;
     private int user_id;
-
-    @Nullable
+    
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.xiangmujindufragment, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    protected void onCreateViewLazy(Bundle savedInstanceState) {
+        super.onCreateViewLazy(savedInstanceState);
+        setContentView(R.layout.xiangmujindufragment);
         initview();
         gethttpjingde_id();
-       
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         String s = String.valueOf(user_id);
         if (s.equals("0")) {
             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
@@ -69,6 +58,9 @@ public class XiangMuJingDu extends Fragment {
             gethttp_jingdu();
         }
     }
+
+
+   
 
     private void gethttp_jingdu() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -281,7 +273,7 @@ public class XiangMuJingDu extends Fragment {
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
         Log.e("项目进度类型", "" + borrowRandomId);
-        MyScrollView xiangmujinduSV = getActivity().findViewById(R.id.xiangmujingduScrollView);
+        MyScrollView xiangmujinduSV= (MyScrollView) findViewById(R.id.xiangmujingduScrollView);
         xiangmujinduSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {

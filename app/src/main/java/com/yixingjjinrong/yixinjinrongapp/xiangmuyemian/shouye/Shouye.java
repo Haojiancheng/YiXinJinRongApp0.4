@@ -165,6 +165,8 @@ public class Shouye extends Fragment {
                         });
 
                         adapter.notifyDataSetChanged();
+                        mymasseg.clear();
+                        mymassegtime.clear();
                         for (int i = 0; i < data.getResult().getPublicMsgList().size(); i++) {
                             mymasseg.add(data.getResult().getPublicMsgList().get(i).getArticle_title());
                         }
@@ -187,6 +189,13 @@ public class Shouye extends Fragment {
 
         noticeView.addNotice(notices);
         noticeView.startFlipping();
+
+        //时间
+        List<String> notTime = new ArrayList<>();
+        notTime.addAll(mymassegtime);
+        noticeTime.addNotice(notTime);
+        noticeTime.startFlipping();
+        
         noticeView.setOnNoticeClickListener(new NoticeView.OnNoticeClickListener() {
             @Override
             public void onNotieClick(int position, String notice) {
@@ -200,11 +209,7 @@ public class Shouye extends Fragment {
             }
         });
 
-        //时间
-        List<String> notTime = new ArrayList<>();
-        notTime.addAll(mymassegtime);
-        noticeTime.addNotice(notTime);
-        noticeTime.startFlipping();
+        
     }
 
     private void getgengduoxiangmu() {

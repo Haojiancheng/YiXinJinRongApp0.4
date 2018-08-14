@@ -13,11 +13,12 @@ import android.widget.ViewFlipper;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NoticeView extends ViewFlipper implements View.OnClickListener {
     private Context mContext;
-    private List<String> mNotices;
+    private List<String> mNotices=new ArrayList<>();
     private TextView textView;
 
     public NoticeView(Context context) {
@@ -48,7 +49,8 @@ public class NoticeView extends ViewFlipper implements View.OnClickListener {
      */
 
     public void addNotice(List<String> notices) {
-        mNotices = notices;
+        mNotices.clear();
+        mNotices.addAll(notices);
         removeAllViews();
         for (int i = 0; i < mNotices.size(); i++) {
             // 根据公告内容构建一个TextView
@@ -67,15 +69,19 @@ public class NoticeView extends ViewFlipper implements View.OnClickListener {
             // 添加到ViewFlipper
             NoticeView.this.addView(textView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         }
+        notices.clear();
     }
 
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
-        String notice = mNotices.get(position);
-        if (mOnNoticeClickListener != null) {
-            mOnNoticeClickListener.onNotieClick(position, notice);
+        if(position<mNotices.size()){
+            String notice = mNotices.get(position);
+            if (mOnNoticeClickListener != null) {
+                mOnNoticeClickListener.onNotieClick(position, notice);
+            }
         }
+        
     }
     /**
      * 通知点击监听接口

@@ -25,6 +25,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -37,7 +38,7 @@ import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class XiangMuXinXi extends Fragment {
+public class XiangMuXinXi extends LazyFragment {
     private TextView tv_click, show, hidden;
     private View hose_xx, car_xx, car_dbr, car_dbgs, qy;
     private String sha1;//SHA1加密
@@ -63,18 +64,10 @@ public class XiangMuXinXi extends Fragment {
     private View xx_view, xiale_view;
     private PromptDialog promptDialog;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.xiangmuxingxifragment, container, false);
-
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void onCreateViewLazy(Bundle savedInstanceState) {
+        super.onCreateViewLazy(savedInstanceState);
+        setContentView(R.layout.xiangmuxingxifragment);
         initview();
         getxmxxid();
 //        xx_view.setVisibility(View.GONE);
@@ -82,6 +75,7 @@ public class XiangMuXinXi extends Fragment {
 //        promptDialog.showLoading("");
         getHttp();
     }
+
 
     private void getxmxxid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
@@ -235,7 +229,7 @@ public class XiangMuXinXi extends Fragment {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/ProjectInformation.do")
+                .url(Urls.BASE_URL+"1yxbApp/ProjectInformation.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -749,8 +743,7 @@ public class XiangMuXinXi extends Fragment {
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
         mtpye = (String) SPUtils.get(getActivity(), "mtype1", "");
-
-        MyScrollView xiangmuxingxiSV = getActivity().findViewById(R.id.xiangmuxinxScrollView);
+        MyScrollView xiangmuxingxiSV= (MyScrollView) findViewById(R.id.xiangmuxinxScrollView);
         xiangmuxingxiSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {

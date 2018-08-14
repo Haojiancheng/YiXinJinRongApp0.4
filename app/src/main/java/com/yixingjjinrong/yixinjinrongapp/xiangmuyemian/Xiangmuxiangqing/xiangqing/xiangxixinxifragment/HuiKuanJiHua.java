@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -37,7 +38,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class HuiKuanJiHua extends Fragment {
+public class HuiKuanJiHua extends LazyFragment {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private RecyclerView hkjh_rview;//RecyclerView
@@ -48,15 +49,14 @@ public class HuiKuanJiHua extends Fragment {
     private String loginid;
     private int user_id;
 
-    @Nullable
+    
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.huikuanjihuafragment, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+    protected void onCreateViewLazy(Bundle savedInstanceState) {
+        super.onCreateViewLazy(savedInstanceState);
+        setContentView(R.layout.huikuanjihuafragment);
+        hkjhlist.clear();
+        initview();
+        getid_kh();
         String s = String.valueOf(user_id);
         if (s.equals("0")) {
             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
@@ -64,15 +64,11 @@ public class HuiKuanJiHua extends Fragment {
 
             getHttp();
         }
+       
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        hkjhlist.clear();
-        initview();
-        getid_kh();
-    }
+   
+   
 
     private void getid_kh() {
         hkjh_rview=getActivity().findViewById(R.id.hkjh_rview);
@@ -145,7 +141,7 @@ public class HuiKuanJiHua extends Fragment {
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
 //        token = (String) SPUtils.get(getActivity(), "Token1", "");
         Log.e("项目回款计划", ""+borrowRandomId);
-        MyScrollView huikuanjihuaSV=getActivity().findViewById(R.id.huikuanjihuaScrollView);
+        MyScrollView huikuanjihuaSV= (MyScrollView) findViewById(R.id.huikuanjihuaScrollView);
         huikuanjihuaSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {

@@ -63,8 +63,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xRecyclerView.setLoadingListener(this);
         xRecyclerView.setPullRefreshEnabled(true);
+        xRecyclerView.setLoadingMoreEnabled(true);
         xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-       xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
+       xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         adapter=new XiangMu_Adapter(list,getActivity());
         xRecyclerView.setAdapter(adapter);
         getHttp();

@@ -4,18 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    >
-
-    <com.hjm.bottomtabbar.BottomTabBar
-        android:id="@+id/bottom_tab_bar"
+    <FrameLayout
+        android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        hjm:tab_selected_color="#fe6623"
-        hjm:tab_unselected_color="#999999">
+        android:layout_weight="1" />
 
-    </com.hjm.bottomtabbar.BottomTabBar>
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="98px"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radiobutton1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radiobutton_img1"
+            android:gravity="center_horizontal"
+            android:text="首页"
+            android:textSize="25px"
+            android:layout_marginTop="16px"
+            android:textColor="@drawable/radiobutton_text" />
+
+        <RadioButton
+            android:id="@+id/radiobutton2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radiobutton_img2"
+            android:gravity="center_horizontal"
+            android:text="项目"
+            android:textSize="25px"
+            android:layout_marginTop="16px"
+            android:textColor="@drawable/radiobutton_text" />
+
+        <RadioButton
+            android:id="@+id/radiobutton3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radiobutton_img3"
+            android:gravity="center_horizontal"
+            android:text="发现"
+            android:textSize="25px"
+            android:layout_marginTop="16px"
+            android:textColor="@drawable/radiobutton_text" />
+
+        <RadioButton
+            android:id="@+id/radiobutton4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/radiobutton_img4"
+            android:gravity="center_horizontal"
+            android:text="我的"
+            android:textSize="25px"
+            android:layout_marginTop="16px"
+            android:textColor="@drawable/radiobutton_text" />
+    </RadioGroup>
+
+    <!--<com.hjm.bottomtabbar.BottomTabBar-->
+    <!--android:id="@+id/bottom_tab_bar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--hjm:tab_selected_color="#fe6623"-->
+    <!--hjm:tab_unselected_color="#999999">-->
+
+    <!--</com.hjm.bottomtabbar.BottomTabBar>-->
 
 </com.zhy.autolayout.AutoLinearLayout>

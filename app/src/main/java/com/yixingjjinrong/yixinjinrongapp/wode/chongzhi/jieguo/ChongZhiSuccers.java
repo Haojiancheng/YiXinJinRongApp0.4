@@ -10,10 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore2;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,8 +55,11 @@ public class ChongZhiSuccers extends AutoLayoutActivity {
         bt_chujie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                EventBus.getDefault().post(new LookMore());
+                Intent it=new Intent(ChongZhiSuccers.this, MainActivity.class);
+                it.putExtra("id","1");
+                startActivity(it);
                 finish();
+                
             }
         });
         cz_sucess_fh.setOnClickListener(new View.OnClickListener() {

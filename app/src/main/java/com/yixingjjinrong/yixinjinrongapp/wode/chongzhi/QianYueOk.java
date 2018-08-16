@@ -100,7 +100,6 @@ public class QianYueOk extends AppCompatActivity {
                     myphone = ss.get(5);
                     Log.e("大会不为广大", "phone" + myphone + "receiveCode" + receiveCode + "retCode" + retCode);
                     if (receiveCode.equals("0000") && retCode.equals("0000")) {
-                        Toast.makeText(QianYueOk.this, "成功", Toast.LENGTH_SHORT).show();
                         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
                         try {
                             js_request.put("receiveCode", receiveCode);
@@ -140,7 +139,6 @@ public class QianYueOk extends AppCompatActivity {
                         });
 
                     } else {
-                        Toast.makeText(QianYueOk.this, "失败", Toast.LENGTH_SHORT).show();
                         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
                         try {
                             js_request.put("receiveCode", receiveCode);

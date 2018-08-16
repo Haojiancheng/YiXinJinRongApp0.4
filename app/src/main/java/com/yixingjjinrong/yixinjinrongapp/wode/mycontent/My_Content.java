@@ -18,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
@@ -58,7 +59,7 @@ public class My_Content extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getmyconcentid();
         myphone.setText(telephone);
@@ -169,13 +170,18 @@ public class My_Content extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String result, int id) {
                         Log.e("存管GSON:",""+result );
+
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
-                        String html = data.getResult().getHtml();
-                        Intent it=new Intent(My_Content.this, YinHangCunGuan.class);
-                        it.putExtra("HTML",html );
-                        startActivity(it);
+                        if (data.getMessage().equals("存管账号开通成功")) {
+                            String html = data.getResult().getHtml();
+                            Intent it = new Intent(My_Content.this, YinHangCunGuan.class);
+                            it.putExtra("HTML", html);
+                            startActivity(it);
 //                    Toast.makeText(My_Content.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.e("wangy",""+html );
+                            Log.e("wangy", "" + html);
+                        }else {
+                            ToastUtils.showToast(My_Content.this,data.getMessage() );
+                        }
                     }
                 });
 
@@ -219,15 +225,17 @@ public class My_Content extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-
-                        Toast.makeText(My_Content.this, "" + message, Toast.LENGTH_SHORT).show();
-                        String jieguo = data.getState().toString();
-                        if (jieguo.equals("success")) {
-                            Intent it = new Intent(My_Content.this, ShiMingrenzheng.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("user_ird", user_id);
-                            it.putExtras(bundle);
-                            startActivity(it);
+                        if (message.equals("可以认证")) {
+                            String jieguo = data.getState().toString();
+                            if (jieguo.equals("success")) {
+                                Intent it = new Intent(My_Content.this, ShiMingrenzheng.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("user_ird", user_id);
+                                it.putExtras(bundle);
+                                startActivity(it);
+                            }
+                        }else {
+                            ToastUtils.showToast(My_Content.this,message );
                         }
                     }
                 });

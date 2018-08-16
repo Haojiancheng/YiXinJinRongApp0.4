@@ -29,7 +29,7 @@ public class MyYaoQing extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getinterview();
         getonclonk();

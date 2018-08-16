@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.GsonBean;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
@@ -113,13 +114,11 @@ public class TiXian_OK extends AutoLayoutActivity {
                     int amt = Integer.valueOf(data.getAmt());
                     int y = amt / 100;
                     if (receiveCode.equals("0000") && retCode.equals("0000")) {
-                        Toast.makeText(TiXian_OK.this, "成功", Toast.LENGTH_SHORT).show();
                         Intent inte = new Intent(TiXian_OK.this, Putforward_ok.class);
                         inte.putExtra("jine", String.valueOf(y).toString());
                         startActivity(inte);
                         finish();
                     } else {
-                        Toast.makeText(TiXian_OK.this, "失败", Toast.LENGTH_SHORT).show();
                         Intent inte = new Intent(TiXian_OK.this, Putforward_fail.class);
                         startActivity(inte);
                         finish();

@@ -77,13 +77,11 @@ public class ChongZhiOK extends AutoLayoutActivity {
                     int y = money / 100;
 
                     if (receiveCode.equals("0000") && retCode.equals("0000")) {
-                        Toast.makeText(ChongZhiOK.this, "成功", Toast.LENGTH_SHORT).show();
                         Intent inte = new Intent(ChongZhiOK.this, ChongZhiSuccers.class);
                         inte.putExtra("jine", String.valueOf(y).toString());
                         startActivity(inte);
                         finish();
                     } else {
-                        Toast.makeText(ChongZhiOK.this, "失败", Toast.LENGTH_SHORT).show();
                         Intent inte = new Intent(ChongZhiOK.this, ChongZhiShiBai.class);
                         startActivity(inte);
                         finish();

@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiuGaiMiMa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMaYanZheng;
@@ -59,11 +60,10 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
 //        }
         setContentView(R.layout.activity_xiugai_mima);
-
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getre_id();
         Bundle b = getIntent().getExtras();
@@ -91,7 +91,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                 int lenght = new_mima.getText().toString().trim().length();
 //                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
                 if (lenght<6||lenght>18 || !isPassword(new_mima.getText().toString())){
-                    Toast.makeText(XiuGaiMiMa.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(XiuGaiMiMa.this,"6-18位字母和数字组合");
                 }else{
                     gethttp_repassword();
 
@@ -156,10 +156,10 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                         XiuGaiMiMa_Gson data = new Gson().fromJson(result, XiuGaiMiMa_Gson.class);
                         String token = data.getResult().getToken();
                         String state = data.getState();
-                        Toast.makeText(XiuGaiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(XiuGaiMiMa.this, ""+data.getMessage());
                         if (state.equals("success")){
 //                    EventBus.getDefault().post(new User_data("", "",token,Integer.parseInt("")));
-                            Toast.makeText(XiuGaiMiMa.this, "修改成功,请重新登入", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(XiuGaiMiMa.this, "修改成功,请重新登入");
                             Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
                             startActivity(it);
                             finish();

@@ -117,7 +117,7 @@ public class TiXian extends AutoLayoutActivity {
                             t_yh_number.setText(data.getCardNum());
                             x.image().bind(t_yh_img, data.getImage());
                             data.getFreeMoney();
-                            t_cz_keyong.setText(""+data.getFreeMoney());
+                            t_cz_keyong.setText("可提现金额:  "+data.getFreeMoney()+"元");
                             cz_ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {//可以提现，下一步
@@ -138,7 +138,6 @@ public class TiXian extends AutoLayoutActivity {
 
 //                    t_yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
-                                Toast.makeText(TiXian.this, "没有实名认证", Toast.LENGTH_SHORT).show();
                                 AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未实名认证，是否实名认证")
@@ -161,7 +160,6 @@ public class TiXian extends AutoLayoutActivity {
 
                             }
                             if (msg.equals("bank_link")) {
-                                Toast.makeText(TiXian.this, "没有富友开户", Toast.LENGTH_SHORT).show();
                                 AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
@@ -175,7 +173,6 @@ public class TiXian extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getchHTTP();
-                                                Toast.makeText(TiXian.this, "请开通", Toast.LENGTH_SHORT).show();
                                                 finish();
                                             }
                                         })
@@ -185,7 +182,6 @@ public class TiXian extends AutoLayoutActivity {
 
                             }
                             if (msg.equals("sign_card")) {
-                                Toast.makeText(TiXian.this, "没有签约", Toast.LENGTH_SHORT).show();
                                 AlertDialog dialog3 = new AlertDialog.Builder(TiXian.this)
                                         .setTitle("提示")
                                         .setMessage("您还未没有签约")
@@ -307,7 +303,6 @@ public class TiXian extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-                        Toast.makeText(TiXian.this, "" + message, Toast.LENGTH_SHORT).show();
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
                             Intent it = new Intent(TiXian.this, ShiMingrenzheng.class);

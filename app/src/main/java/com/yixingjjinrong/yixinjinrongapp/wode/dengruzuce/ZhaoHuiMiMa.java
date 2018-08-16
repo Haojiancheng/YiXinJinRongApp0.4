@@ -44,7 +44,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getzhaohuimimaId();
         getzhaohuimimaOnCilk();
@@ -71,7 +71,6 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
             }
         });
-
 
         zh_fh.setOnClickListener(new View.OnClickListener() {
             @Override

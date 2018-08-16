@@ -111,7 +111,6 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
                         adapter.setonEveryItemClickListener(new XX_adapter.OnEveryItemClickListener() {
                             @Override
                             public void onEveryClick(int position) {
-                                Toast.makeText(getActivity(), "点击了"+list.get(position).getMailTitle(), Toast.LENGTH_SHORT).show();
                                 Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putInt("xx_ird", list.get(position).getId());

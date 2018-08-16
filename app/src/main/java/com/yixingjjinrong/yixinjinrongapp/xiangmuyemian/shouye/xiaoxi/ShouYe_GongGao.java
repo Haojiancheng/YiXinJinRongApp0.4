@@ -44,7 +44,7 @@ public class ShouYe_GongGao extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getid();
         gethttp();

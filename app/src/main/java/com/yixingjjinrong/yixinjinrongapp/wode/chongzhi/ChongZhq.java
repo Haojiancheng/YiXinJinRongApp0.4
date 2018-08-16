@@ -126,7 +126,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                 @Override
                                 public void onClick(View v) {
                                     if (cz_money.getText().toString().equals("")) {
-                                        Toast.makeText(ChongZhq.this, "请输入金额", Toast.LENGTH_SHORT).show();
+                                        ToastUtils.showToast(ChongZhq.this, "请输入金额");
                                     } else {
                                         if (Integer.valueOf(cz_money.getText().toString().trim()) < 100) {//金额不能小于100
                                             ToastUtils.showToast(ChongZhq.this, "充值金额不能小于100元");
@@ -141,7 +141,6 @@ public class ChongZhq extends AutoLayoutActivity {
 
                             yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
-                                Toast.makeText(ChongZhq.this, "没有实名认证", Toast.LENGTH_SHORT).show();
                                 AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
                                         .setTitle("提示")
                                         .setMessage("您还未实名认证，是否实名认证")
@@ -163,7 +162,6 @@ public class ChongZhq extends AutoLayoutActivity {
                                 dialog1.show();
                             }
                             if (msg.equals("bank_link")) {
-                                Toast.makeText(ChongZhq.this, "没有富友开户", Toast.LENGTH_SHORT).show();
                                 AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
@@ -254,7 +252,6 @@ public class ChongZhq extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", response);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-                        Toast.makeText(ChongZhq.this, "" + message, Toast.LENGTH_SHORT).show();
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
                             Intent it = new Intent(ChongZhq.this, ShiMingrenzheng.class);

@@ -45,7 +45,7 @@ public class Juan extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         fh=findViewById(R.id.fh);
         fh.setOnClickListener(new View.OnClickListener() {

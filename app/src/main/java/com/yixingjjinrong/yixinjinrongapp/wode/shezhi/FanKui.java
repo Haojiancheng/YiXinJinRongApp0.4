@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.FanKui_ok_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -50,7 +51,7 @@ public class FanKui extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         getid();
         fanhui_yijianfk.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +125,7 @@ public class FanKui extends AutoLayoutActivity {
                         Log.e("意见反馈GSON", "" + result);
                         FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
                         String message = data.getMessage();
-                        Toast.makeText(FanKui.this, ""+message, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(FanKui.this, ""+message);
                     }
                 });
 

@@ -99,7 +99,8 @@ public class Shouye extends Fragment {
         mylistview = getActivity().findViewById(R.id.mylist);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         mylistview.setLayoutManager(manager);
-
+        mylistview.setHasFixedSize(true);
+        mylistview.setNestedScrollingEnabled(false);
     }
 
     private void getHttp() {
@@ -141,6 +142,7 @@ public class Shouye extends Fragment {
                         }
                         bann.setImageLoader(new GlideImageloader());
                         bann.setImages(list3);
+                        bann.setDelayTime(5000);
                         bann.start();
                         bann.setOnBannerListener(new OnBannerListener() {
                             @Override
@@ -208,6 +210,7 @@ public class Shouye extends Fragment {
                 Intent it = new Intent(getActivity(), ShouYe_GongGao.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("xx_ird", article_link);
+                it.putExtra("nottile", data.getResult().getPublicMsgList().get(position).getArticle_title());
                 it.putExtras(bundle);
                 startActivity(it);
 

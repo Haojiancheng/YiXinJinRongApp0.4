@@ -64,7 +64,7 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .keyboardEnable(true)
+                .statusBarDarkFont(true)
                 .init();
         list.clear();
         yqxq_fh=findViewById(R.id.yqxq_fh);

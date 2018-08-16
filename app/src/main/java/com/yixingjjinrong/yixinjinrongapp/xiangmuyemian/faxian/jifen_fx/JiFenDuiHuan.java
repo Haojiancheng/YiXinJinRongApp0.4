@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -54,10 +55,15 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_ji_fen_dui_huan);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         getduihuan_id();
         getduihuanHTTp();
 

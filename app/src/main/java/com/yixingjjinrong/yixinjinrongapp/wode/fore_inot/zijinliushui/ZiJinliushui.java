@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -49,10 +50,15 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_zi_jinliushui);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         list.clear();
         getlsID();
         adapter=new ZiJinLiuShui_adapter(list);

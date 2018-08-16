@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -21,6 +22,10 @@ public class Contract_loser extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract_loser);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
         getid();
         getonclock();
 

@@ -7,6 +7,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -16,10 +17,15 @@ public class AnQuanBaoZhang extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_an_quan_bao_zhang);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .statusBarDarkFont(true)
+                .init();
         anquanweb=findViewById(R.id.anquan_web);
         WebSettings webSettings = anquanweb.getSettings();
         webSettings.setJavaScriptEnabled(true);

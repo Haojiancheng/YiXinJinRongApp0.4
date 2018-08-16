@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -21,6 +22,11 @@ public class Putforward_ok extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_putforward_ok);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         putforward_money=findViewById(R.id.putforward_money);
         tx_sucess_fh=findViewById(R.id.tx_sucess_fh);
         tx_zhanghu=findViewById(R.id.tx_zhanghu);

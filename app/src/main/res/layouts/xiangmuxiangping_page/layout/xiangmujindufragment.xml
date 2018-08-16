@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:background="#f0f0f0"
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/jindu_view1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical"></LinearLayout>
 
     <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
         android:id="@+id/xiangmujingduScrollView"
@@ -11,7 +17,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20px">
 
+
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -219,8 +227,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/yihuan_jine"
                             android:layout_width="wrap_content"
@@ -229,21 +237,23 @@
                             android:text="已还金额 0.00"
                             android:textColor="#999999"
                             android:textSize="24px" />
+
                         <TextView
                             android:id="@+id/yehuan_qi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="8px"
                             android:layout_marginTop="20px"
                             android:text="(0期)"
                             android:textColor="#999999"
-                            android:layout_marginLeft="8px"
                             android:textSize="24px" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/daihuan_jine"
                             android:layout_width="wrap_content"
@@ -252,17 +262,18 @@
                             android:text="待还金额 0.00"
                             android:textColor="#999999"
                             android:textSize="24px" />
+
                         <TextView
                             android:id="@+id/daihua_qi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="8px"
                             android:layout_marginTop="20px"
                             android:text="(12期)"
                             android:textColor="#999999"
-                            android:layout_marginLeft="8px"
                             android:textSize="24px" />
                     </LinearLayout>
-      
+
 
                 </LinearLayout>
 

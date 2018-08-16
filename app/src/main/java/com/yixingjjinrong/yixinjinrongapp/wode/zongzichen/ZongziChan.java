@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DataItem;
 import com.yixingjjinrong.yixinjinrongapp.MyView.DiscView;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -46,10 +47,15 @@ public class ZongziChan extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_zongzi_chan);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
 
         getzzcID();
         gethttp();

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -20,6 +21,11 @@ public class Putforward_fail extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_putforward_fail);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         tx_sb_fh=findViewById(R.id.tx_sb_fh);
         bt_account=findViewById(R.id.bt_account);
         continue_to_do_it=findViewById(R.id.continue_to_do_it);

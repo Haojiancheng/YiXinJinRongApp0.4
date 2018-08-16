@@ -36,9 +36,8 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/chujie_tab"
         android:layout_width="match_parent"
-        android:layout_height="100px"
+        android:layout_height="80px"
         android:background="#fdfdfe"
-        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
         app:tabIndicatorColor="#fe6623"
         app:tabIndicatorHeight="4px"
         app:tabMode="scrollable"

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -68,11 +69,16 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_wo_de__deng_ru);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .keyboardEnable(true)
+                .init();
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
         isLogin = (boolean) SPUtils.get(this, "isLogin", false);

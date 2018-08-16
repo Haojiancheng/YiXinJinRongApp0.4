@@ -147,7 +147,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url("http://192.168.1.239:8080/yxb_mobile/yxbApp/forgetPwd.do")
+                .url(Urls.BASE_URL+"yxbApp/forgetPwd.do")
                 .content(canshu.toString())
                 .addHeader("Cookie", "JSESSIONID=" + jsessionId)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -198,7 +198,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url("http://192.168.1.239:8080/yxb_mobile/yxbApp/sendsms.do")
+                .url(Urls.BASE_URL+"yxbApp/sendsms.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))

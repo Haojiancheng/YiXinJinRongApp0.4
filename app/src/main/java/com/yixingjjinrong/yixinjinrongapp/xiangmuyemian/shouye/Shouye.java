@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
@@ -71,7 +72,11 @@ public class Shouye extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shouye, container, false);
-
+//        ImmersionBar.with(this)
+//                .transparentBar()
+//                .fullScreen(false)
+//                .keyboardEnable(true)
+//                .init();
         return view;
     }
 

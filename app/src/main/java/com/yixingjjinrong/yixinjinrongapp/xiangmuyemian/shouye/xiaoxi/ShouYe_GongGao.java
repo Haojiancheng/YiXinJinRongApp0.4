@@ -3,12 +3,15 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.xiaoxi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Shouyegg;
@@ -16,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
+import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -25,19 +29,32 @@ import org.json.JSONObject;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class ShouYe_GongGao extends AppCompatActivity {
+public class ShouYe_GongGao extends AutoLayoutActivity {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int xx_ird;
     private String result;
     private WebView sy_view ;
+    private ImageView gonggao_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shouye_gonggao);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .keyboardEnable(true)
+                .init();
         getid();
         gethttp();
+
+        gonggao_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void gethttp() {
@@ -104,6 +121,7 @@ public class ShouYe_GongGao extends AppCompatActivity {
         xx_ird = b.getInt("xx_ird");
 
         sy_view= findViewById(R.id.sy_view);
+        gonggao_fh=findViewById(R.id.gonggao_fh);
     }
     @Override
     protected void onDestroy() {

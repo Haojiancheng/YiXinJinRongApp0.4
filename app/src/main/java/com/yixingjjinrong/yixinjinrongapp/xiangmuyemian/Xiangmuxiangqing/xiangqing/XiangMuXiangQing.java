@@ -118,6 +118,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
         setContentView(R.layout.xiaomuxiangqing);
         ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
                 .init();
 
         promptDialog = new PromptDialog(this);

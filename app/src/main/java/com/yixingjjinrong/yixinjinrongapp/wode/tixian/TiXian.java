@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -54,10 +55,15 @@ public class TiXian extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_ti_xian);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         getID();
         gethttp();
         tx_fh.setOnClickListener(new View.OnClickListener() {
@@ -104,12 +110,14 @@ public class TiXian extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String result, int id) {
                         Log.e("提现GSon",result );
-                        TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
+                        final TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
                         String msg = data.getMsg();
                         if (msg.equals("")) {
                             t_yh_name.setText(data.getBankName());
                             t_yh_number.setText(data.getCardNum());
                             x.image().bind(t_yh_img, data.getImage());
+                            data.getFreeMoney();
+                            t_cz_keyong.setText(""+data.getFreeMoney());
                             cz_ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {//可以提现，下一步
@@ -122,6 +130,7 @@ public class TiXian extends AutoLayoutActivity {
                                             getokHTTp();
                                         }
                                     }
+
                                 }
                             });
                         } else {
@@ -373,6 +382,6 @@ public class TiXian extends AutoLayoutActivity {
         t_cz_money=findViewById(R.id.t_cz_money);
         cz_ok=findViewById(R.id.cz_ok);
         tx_fh=findViewById(R.id.tx_fh);
-        t_cz_keyong.setText(keyong);
+
     }
 }

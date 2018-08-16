@@ -3,24 +3,41 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
+import com.zhy.autolayout.AutoLayoutActivity;
 
-public class ShouYe_HuoDong extends AppCompatActivity {
+public class ShouYe_HuoDong extends AutoLayoutActivity {
     private WebView hd_web;
     private String web_url;
+    private ImageView huodong_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shou_ye_huo_dong);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .keyboardEnable(true)
+                .init();
         getid();
         getweb();
+
+        huodong_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getweb() {
@@ -44,6 +61,8 @@ public class ShouYe_HuoDong extends AppCompatActivity {
         Intent it=getIntent();
         web_url = it.getStringExtra("h5");
         hd_web=findViewById(R.id.hd_web);
+        huodong_fh=findViewById(R.id.huodong_fh);
+
     }
     @Override
     protected void onDestroy() {

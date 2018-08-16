@@ -21,7 +21,6 @@ import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JieKuanZiLiao_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -37,24 +36,28 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class JieKuanZiLiao extends LazyFragment {
+public class JieKuanZiLiao extends Fragment {
     private RecyclerView jihuan_rview;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list=new ArrayList<>();
     private JieKuanZiLiao_Adapter adapter;
     private String borrowRandomId;
-   
+
+    @Nullable
     @Override
-    protected void onCreateViewLazy(Bundle savedInstanceState) {
-        super.onCreateViewLazy(savedInstanceState);
-        setContentView(R.layout.jiekuanziliaofragment);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.jiekuanziliaofragment, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         list.clear();
         initview();
         getjk_id();
         getHttp_jkzl();
     }
-
 
     private void getHttp_jkzl() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -107,18 +110,18 @@ public class JieKuanZiLiao extends LazyFragment {
         jihuan_rview=getActivity().findViewById(R.id.jihuan_rview);
         GridLayoutManager gm = new GridLayoutManager(getActivity(),3);
         jihuan_rview.setLayoutManager(gm);
-        
+
 
     }
 
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         Log.e("项目借款资料", ""+borrowRandomId);
-        MyScrollView jiekuanziliaoSV= (MyScrollView) findViewById(R.id.jiekuanziliaoScrollView);
+        MyScrollView jiekuanziliaoSV=getActivity().findViewById(R.id.jiekuanziliaoScrollView);
         jiekuanziliaoSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {
-                
+
             }
 
             @Override

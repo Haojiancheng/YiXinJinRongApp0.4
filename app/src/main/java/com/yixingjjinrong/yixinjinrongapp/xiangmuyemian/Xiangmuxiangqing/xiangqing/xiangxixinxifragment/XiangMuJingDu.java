@@ -43,6 +43,7 @@ public class XiangMuJingDu extends LazyFragment {
     private String token1;
     private String loginid;
     private int user_id;
+    private View jindu_view;
     
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
@@ -51,11 +52,13 @@ public class XiangMuJingDu extends LazyFragment {
         initview();
         gethttpjingde_id();
         String s = String.valueOf(user_id);
+        Log.e("xianmjingduid",s );
         if (s.equals("0")) {
             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
-        } else {
 
+        } else {
             gethttp_jingdu();
+
         }
     }
 
@@ -104,8 +107,10 @@ public class XiangMuJingDu extends LazyFragment {
                         XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
+                            jindu_view.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
                         } else {
+                            jindu_view.setVisibility(View.GONE);
                             if (data.getResult().getBorrowStatus().equals("2")) {
                                 fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
                                 yihuan_jine.setText("已还金额  0.00");
@@ -258,7 +263,7 @@ public class XiangMuJingDu extends LazyFragment {
         fangkuan = getActivity().findViewById(R.id.fangkuan);
         fk_xyb = getActivity().findViewById(R.id.fk_xyb);
         huankuan = getActivity().findViewById(R.id.huankuan);
-
+        jindu_view=getActivity().findViewById(R.id.jindu_view1);
         // TextView,,,,,,;
         fabuxiangmu_time = getActivity().findViewById(R.id.fabuxiangmu_time);
         mujitime = getActivity().findViewById(R.id.mujitime);

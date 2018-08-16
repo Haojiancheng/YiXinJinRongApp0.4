@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/huodong_fh"
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/jiantou"/>
+
+        <TextView
+            android:layout_width="260px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="251px"
+            android:gravity="center_horizontal"
+            android:paddingTop="60px"
+            android:text="活动"
+            android:textColor="#363636"
+            android:textSize="38px"  />
+    </RelativeLayout>
 
     <WebView
         android:id="@+id/hd_web"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></WebView>
-</android.support.constraint.ConstraintLayout>
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,12 +1,14 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.chongzhi;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,6 +72,7 @@ public class ChongZhq extends AutoLayoutActivity {
         cz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hintKbTwo();
                 finish();
             }
         });
@@ -363,6 +366,15 @@ public class ChongZhq extends AutoLayoutActivity {
 
     }
 
+    //此方法只是关闭软键盘 可以在finish之前调用一下
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
     private void getczid() {
         user_id = (int) SPUtils.get(this, "userId", 0);
         loginid = (String) SPUtils.get(ChongZhq.this, "Loginid", "");

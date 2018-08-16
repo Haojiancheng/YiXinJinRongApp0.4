@@ -1,11 +1,13 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.tixian;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -55,8 +57,8 @@ public class TiXian extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {               //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));//需要在setContentView()方法后面执行
 //        }
         setContentView(R.layout.activity_ti_xian);
         ImmersionBar.with(this)
@@ -69,6 +71,7 @@ public class TiXian extends AutoLayoutActivity {
         tx_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hintKbTwo();
                 finish();
             }
         });
@@ -361,6 +364,15 @@ public class TiXian extends AutoLayoutActivity {
                         Log.e("wangy",""+html );
                     }
                 });
+    }
+    //此方法只是关闭软键盘 可以在finish之前调用一下
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
     private void getID() {

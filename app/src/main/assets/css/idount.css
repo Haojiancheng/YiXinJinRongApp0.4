@@ -233,13 +233,16 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
-#max{
+.max{
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+  -webkit-backface-visibility: hidden;
+  z-index:1;
 }
 .bulletin-header{
     height:0.88rem;
@@ -448,6 +451,7 @@ html, body {
     top:0.88rem;
     overflow: auto;
     border-top: 0.2rem solid #f1f1f1;
+    
 }
 .toup2{
     border: 0;
@@ -461,6 +465,7 @@ html, body {
 }
 .sto1{
     font-size: 0;
+    margin-bottom:0.8rem
 }
 .dan_kuan{
     position: absolute;
@@ -569,6 +574,9 @@ html, body {
     margin-right: 0.28rem;
     background: url("../img/fxcp_icon02.png") center no-repeat;
     background-size: contain;
+}
+.fxcp_list02>li>ul>li:last-child{
+	margin-right:0
 }
 .fxcp_list02>li>ul>li.on{
     background: url("../img/fxcp_icon01.png") center no-repeat;

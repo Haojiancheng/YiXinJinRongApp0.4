@@ -16,6 +16,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.YiRenZheng_GSON;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -87,7 +88,8 @@ public class YiShiMing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Log.e("已实名roow",""+e );
+                        ToastUtils.showToast(YiShiMing.this, "网络连接失败");
                     }
 
                     @Override

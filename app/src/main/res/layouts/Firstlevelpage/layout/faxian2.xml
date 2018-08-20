@@ -37,6 +37,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/pintaijieshao1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -52,7 +53,7 @@
                     android:src="@drawable/pingtaijieshao" />
 
                 <TextView
-                    android:id="@+id/pintaijieshao1"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
@@ -68,7 +69,7 @@
                 android:background="#dadada" />
 
             <LinearLayout
-
+                android:id="@+id/anquanbaozhang"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -82,7 +83,7 @@
                     android:src="@drawable/anquan" />
 
                 <TextView
-                    android:id="@+id/anquanbaozhang"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
@@ -109,7 +110,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-
+                android:id="@+id/xinxipilu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -126,7 +127,7 @@
                     tools:ignore="PxUsage" />
 
                 <TextView
-                    android:id="@+id/xinxipilu"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
@@ -142,7 +143,7 @@
                 android:background="#dadada" />
 
             <LinearLayout
-
+                android:id="@+id/wangdaiketang"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -156,7 +157,7 @@
                     android:src="@drawable/wangdaiketang" />
 
                 <TextView
-                    android:id="@+id/wangdaiketang"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"

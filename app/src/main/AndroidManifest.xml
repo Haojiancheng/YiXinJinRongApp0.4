@@ -102,7 +102,9 @@
         <activity android:name=".wode.contractResult.Contract_loser" />
         <activity android:name=".wode.contractResult.How_Do_I" />
         <activity android:name=".xiangmuyemian.shouye.xiaoxi.ShouYe_GongGao" />
-        <activity android:name=".xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong"></activity>
+        <activity android:name=".xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong" />
+        <activity android:name=".wode.yinghancunguan_jieguo.CunGuan_succser" />
+        <activity android:name=".wode.yinghancunguan_jieguo.CunGuan_lose"></activity>
     </application>
 
 </manifest>

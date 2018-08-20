@@ -27,9 +27,11 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.MyConten;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
@@ -205,15 +207,17 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                             String user_token = d_data.getResult().getToken();
                             String loginId = d_data.getResult().getLoginId();
                             int user_id = d_data.getResult().getUserid();
-                                EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
-                                EventBus.getDefault().post(new User_id(user_id));
-                                SPUtils.put(WoDe_DengRu.this, "isLogin", true);
-                                SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
-                                Log.e("sdfdf", "" + loginId);
-                                finish();
+                            EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
+                            EventBus.getDefault().post(new User_id(user_id));
+                            SPUtils.put(WoDe_DengRu.this, "isLogin", true);
+                            SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
+                            SPUtils.put(WoDe_DengRu.this, "userId", user_id);
+                            SPUtils.put(WoDe_DengRu.this, "Token1", user_token);
+                            Log.e("sdfdf", "" + loginId);
+                            finish();
 
-                        }else {
-                            Toast.makeText(WoDe_DengRu.this, ""+d_data.getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(WoDe_DengRu.this, "" + d_data.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }

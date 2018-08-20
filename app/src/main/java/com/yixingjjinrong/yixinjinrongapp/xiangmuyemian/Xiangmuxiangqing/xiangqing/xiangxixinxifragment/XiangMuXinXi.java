@@ -88,6 +88,7 @@ public class XiangMuXinXi extends Fragment {
         xx_view = getActivity().findViewById(R.id.xx_view);
 //        xiale_view = getActivity().findViewById(R.id.xiale_view);
         //企业、个人
+        tv_click = getActivity().findViewById(R.id.main_tv_click);
         qiye = getActivity().findViewById(R.id.qiye);
         geren = getActivity().findViewById(R.id.geren);
         // 审查信息
@@ -147,7 +148,7 @@ public class XiangMuXinXi extends Fragment {
         yuqi_qingkuang = getActivity().findViewById(R.id.yuqi_qingkuang);
         qita_pingtai = getActivity().findViewById(R.id.qita_pingtai);
         qita_pingtai = getActivity().findViewById(R.id.qita_pingtai);
-
+        tv_click = getActivity().findViewById(R.id.main_tv_click);
 //       ,,,房产信息,,;
         fangchan_dizhi = getActivity().findViewById(R.id.fangchan_dizhi);
         xq_mingcheng = getActivity().findViewById(R.id.xq_mingcheng);
@@ -217,6 +218,8 @@ public class XiangMuXinXi extends Fragment {
 
 
     private void getHttp() {
+//        promptDialog = new PromptDialog(getActivity());
+//        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("borrowRandomId", borrowRandomId);
@@ -357,22 +360,25 @@ public class XiangMuXinXi extends Fragment {
                                     return false;
                                 }
                             });
+                            if (tv_click!=null) {
 
-                            tv_click = getActivity().findViewById(R.id.main_tv_click);
-                            tv_click.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (hidden.getVisibility() == View.VISIBLE) {
-                                        hidden.setVisibility(View.GONE);
-                                        show.setVisibility(View.VISIBLE);
-                                        tv_click.setText("【收起】");
-                                    } else {
-                                        hidden.setVisibility(View.VISIBLE);
-                                        show.setVisibility(View.GONE);
-                                        tv_click.setText("【展开】");
+                                tv_click.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if (hidden.getVisibility() == View.VISIBLE) {
+                                            hidden.setVisibility(View.GONE);
+                                            show.setVisibility(View.VISIBLE);
+                                            tv_click.setText("【收起】");
+                                        } else {
+                                            hidden.setVisibility(View.VISIBLE);
+                                            show.setVisibility(View.GONE);
+                                            tv_click.setText("【展开】");
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }else {
+                                tv_click.setVisibility(View.GONE);
+                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 geren.setVisibility(View.GONE);
                                 qiye.setVisibility(View.VISIBLE);
@@ -543,7 +549,7 @@ public class XiangMuXinXi extends Fragment {
                             }
                             start_time.setText(data.getResult().getAbleTenderDate());
                             end_time.setText(data.getResult().getEndTenderDate());
-                            tv_click = getActivity().findViewById(R.id.main_tv_click);
+
                             hidden.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                                 @Override
                                 public boolean onPreDraw() {
@@ -558,20 +564,25 @@ public class XiangMuXinXi extends Fragment {
                                 }
                             });
 
-                            tv_click.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (hidden.getVisibility() == View.VISIBLE) {
-                                        hidden.setVisibility(View.GONE);
-                                        show.setVisibility(View.VISIBLE);
-                                        tv_click.setText("【收起】");
-                                    } else {
-                                        hidden.setVisibility(View.VISIBLE);
-                                        show.setVisibility(View.GONE);
-                                        tv_click.setText("【展开】");
+                            if (tv_click!=null) {
+
+                                tv_click.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        if (hidden.getVisibility() == View.VISIBLE) {
+                                            hidden.setVisibility(View.GONE);
+                                            show.setVisibility(View.VISIBLE);
+                                            tv_click.setText("【收起】");
+                                        } else {
+                                            hidden.setVisibility(View.VISIBLE);
+                                            show.setVisibility(View.GONE);
+                                            tv_click.setText("【展开】");
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }else {
+                                tv_click.setVisibility(View.GONE);
+                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 geren.setVisibility(View.GONE);
                                 qiye.setVisibility(View.VISIBLE);

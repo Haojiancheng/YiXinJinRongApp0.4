@@ -24,6 +24,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.FaXian_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.FaXianBasrAdapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.AnQuanBaoZhang;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.PingTaJieShao;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.WangDaiKeTang;
@@ -47,7 +49,8 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class Faxian extends Fragment {
-    private TextView pingtaijieshao12, anquanbaozhang, xingxipilu, wangdaiketang, fx_gengduo;
+    private TextView  fx_gengduo;
+    private View pingtaijieshao12, anquanbaozhang, xingxipilu, wangdaiketang;
     private Banner fanxian_banner;
     private String sha1;//SHA1加密
     private String base1;//Base64加
@@ -57,6 +60,7 @@ public class Faxian extends Fragment {
     private RecyclerView myrecview;
     private FaXianBasrAdapter adapter;
     private List<FaXian_Data.ResultBean.GoodsListBean> list = new ArrayList<>();
+    private int user_id;
 
 
     @Nullable
@@ -145,6 +149,7 @@ public class Faxian extends Fragment {
                         }
                         fanxian_banner.setImageLoader(new GlideImageloader());
                         fanxian_banner.setImages(list3);
+                        fanxian_banner.setDelayTime(5000);
                         fanxian_banner.start();
 
 
@@ -193,8 +198,14 @@ public class Faxian extends Fragment {
         fx_gengduo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(getActivity(), JiFenDuiHuan.class);
-                startActivity(it);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+                    Intent it = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(it);
+                }else {
+                    Intent it = new Intent(getActivity(), JiFenDuiHuan.class);
+                    startActivity(it);
+                }
             }
         });
     }
@@ -206,6 +217,7 @@ public class Faxian extends Fragment {
         wangdaiketang = getActivity().findViewById(R.id.wangdaiketang);
         fx_gengduo = getActivity().findViewById(R.id.fx_gengduo);
         myrecview = getActivity().findViewById(R.id.myrecycerview);
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
     }
 
 

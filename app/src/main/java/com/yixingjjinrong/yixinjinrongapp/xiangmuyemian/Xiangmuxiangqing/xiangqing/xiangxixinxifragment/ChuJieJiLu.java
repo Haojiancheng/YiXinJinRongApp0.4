@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ChuJieJiLu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
@@ -38,6 +41,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -51,8 +55,10 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
     int a=1;
     private String token1;
     private String loginid;
+    private View cjjl_dengruchakan;
+    private PromptDialog promptDialog;
 
-  
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -73,6 +79,8 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
     }
 
     private void getHttp() {
+        promptDialog = new PromptDialog(getActivity());
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("borrowRandomId",borrowRandomId);
@@ -104,17 +112,29 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(getActivity(),"网络异常" );
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
+                        promptDialog.dismiss();
                         Log.e("TAG出借记录》GSON", "" + result);
                         IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
                         String message = date.getMessage();
                         if (message.equals("用户未登录。")) {
                             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                            cjjl_dengruchakan.setVisibility(View.VISIBLE);
+                            cjjl_dengruchakan.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                                    startActivity(it);
+                                    getActivity().finish();
+                                }
+                            });
                         } else {
+                            cjjl_dengruchakan.setVisibility(View.GONE);
                             list.addAll(date.getResult().getInvestList());
 
                             adapter.notifyDataSetChanged();
@@ -130,6 +150,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+        cjjl_dengruchakan=getActivity().findViewById(R.id.cjjl_dengruchakan);
         Log.e("项目出借记录", ""+borrowRandomId);
         MyScrollView chujiejiluSV= (MyScrollView) findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {

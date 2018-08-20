@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
@@ -35,6 +38,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -48,8 +52,10 @@ public class HuiKuanJiHua extends LazyFragment {
     private String token1;
     private String loginid;
     private int user_id;
+    private View  h_dengruchakan,w_dongru_chakan;
+    private PromptDialog promptDialog;
 
-    
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -59,9 +65,18 @@ public class HuiKuanJiHua extends LazyFragment {
         getid_kh();
         String s = String.valueOf(user_id);
         if (s.equals("0")) {
-            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+            h_dengruchakan.setVisibility(View.VISIBLE);
+            w_dongru_chakan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(it);
+                    getActivity().finish();
+                }
+            });
         } else {
-
+            h_dengruchakan.setVisibility(View.GONE);
             getHttp();
         }
        
@@ -75,10 +90,13 @@ public class HuiKuanJiHua extends LazyFragment {
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         hkjh_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-
+        h_dengruchakan=getActivity().findViewById(R.id.h_dengruchakan);
+        w_dongru_chakan=getActivity().findViewById(R.id.w_dongru_chakan);
     }
 
     private void getHttp() {
+        promptDialog = new PromptDialog(getActivity());
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -111,11 +129,13 @@ public class HuiKuanJiHua extends LazyFragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(getActivity(),"网络异常" );
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
+                        promptDialog.dismiss();
                         Log.e("回款计划Gason", "<><>,>?>?GSOn" + response);
                         HuiKuanJiHua_Gson data = new Gson().fromJson(response, HuiKuanJiHua_Gson.class);
                         String message = data.getMessage();

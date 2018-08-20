@@ -16,7 +16,7 @@
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
-        android:layout_height="98px"
+        android:layout_height="88px"
         android:orientation="horizontal">
 
         <RadioButton
@@ -26,9 +26,9 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/radiobutton_img1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="首页"
-            android:textSize="25px"
+            android:textSize="22px"
             android:layout_marginTop="16px"
             android:textColor="@drawable/radiobutton_text" />
 
@@ -39,9 +39,9 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/radiobutton_img2"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="项目"
-            android:textSize="25px"
+            android:textSize="22px"
             android:layout_marginTop="16px"
             android:textColor="@drawable/radiobutton_text" />
 
@@ -52,9 +52,9 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/radiobutton_img3"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="发现"
-            android:textSize="25px"
+            android:textSize="22px"
             android:layout_marginTop="16px"
             android:textColor="@drawable/radiobutton_text" />
 
@@ -65,9 +65,9 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@drawable/radiobutton_img4"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="我的"
-            android:textSize="25px"
+            android:textSize="22px"
             android:layout_marginTop="16px"
             android:textColor="@drawable/radiobutton_text" />
     </RadioGroup>

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".wode.chongzhi.jieguo.ChongZhiShiBai">
-
+    tools:context="com.yixingjjinrong.yixinjinrongapp.wode.yinghancunguan_jieguo.CunGuan_succser">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="138px"
@@ -14,11 +13,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/cz_sb_fh"
+            android:id="@+id/kaitongok_fh"
             android:layout_width="40px"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20px"
             android:paddingRight="20px"
+            android:layout_marginLeft="20px"
             android:paddingTop="20px"
             android:src="@drawable/fanhui" />
 
@@ -28,14 +27,14 @@
             android:layout_marginLeft="251px"
             android:gravity="center_horizontal"
             android:paddingTop="60px"
-            android:text="充值失败"
+            android:text="开通成功"
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shibai"
+        android:src="@drawable/chenggong"
         android:layout_gravity="center"
         android:layout_marginTop="189px"
         />
@@ -44,27 +43,47 @@
         android:layout_height="wrap_content"
         android:textColor="#333"
         android:textSize="44px"
-        android:text="充值失败"
+        android:text="开通成功"
         android:layout_gravity="center"
         android:layout_marginTop="27px"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="40px"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尊敬的用户,您好!恭喜您成功开通存管账户,特赠送您199元红包,助力您的财富之旅,可前往'我的账户'-'优惠券'中查看.先安全再投资,就在亿信宝."
+            android:textColor="#c74e4e"
+            android:textSize="30px"
+            android:layout_marginStart="30px"
+            android:layout_marginEnd="30px"
+            />
+
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/bt_onesagen"
+        android:id="@+id/kt_ok_myconten"
         android:layout_width="490px"
         android:layout_height="90px"
         android:background="@drawable/bt_shape"
-        android:text="继续充值"
+        android:text="个人中心"
         android:layout_marginTop="90px"
+
         android:layout_gravity="center"
         android:textColor="#fdfdfe" />
     <Button
-        android:id="@+id/bt_fanhui"
+        android:id="@+id/kt_ok_reback"
         android:layout_width="490px"
         android:layout_height="90px"
         android:background="@drawable/bt_biankuang"
-        android:text="账户中心"
+        android:text="返回"
         android:layout_marginTop="36px"
         android:layout_gravity="center"
-        android:textColor="#f46e15" />
-
+        android:textColor="#ef6623" />
 </com.zhy.autolayout.AutoLinearLayout>

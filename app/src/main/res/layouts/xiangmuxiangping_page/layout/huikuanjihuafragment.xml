@@ -5,12 +5,18 @@
     android:orientation="vertical"
     android:background="#f0f0f0"
     >
+    <include
+        android:id="@+id/h_dengruchakan"
+        layout="@layout/dengru_chakan"
+        android:visibility="gone"
+        />
     <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/huikuanjihuaScrollView"
         android:layout_marginTop="20px"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,11 +24,13 @@
             android:background="#fdfdfe"
             android:layout_marginTop="20px"
             >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="96px"
                 android:orientation="horizontal"
                 >
+
                 <TextView
                     android:layout_width="0px"
                     android:layout_height="match_parent" 
@@ -65,6 +73,7 @@
                 android:layout_height="1px"
                 android:background="#e1e8f1"
                 />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/hkjh_rview"
                 android:layout_width="match_parent"

@@ -241,6 +241,12 @@ public class Shouye extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getHttp();
+    }
+
+    @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         //   进入当前Fragment
         if (enter && !isGetData) {

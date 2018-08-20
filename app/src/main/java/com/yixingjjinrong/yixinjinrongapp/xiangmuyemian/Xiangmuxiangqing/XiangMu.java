@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -34,10 +35,11 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
+public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
     private XRecyclerView xRecyclerView;
     private String sha1;//SHA1加密
     private String base1;//Base64加
@@ -45,6 +47,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     private XiangMu_Adapter adapter;
     private int a = 1;
     private XiangMu_Gson data;
+    private PromptDialog promptDialog;
 
 
     @Nullable
@@ -58,20 +61,24 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         xRecyclerView = getActivity().findViewById(R.id.xrecycview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         xRecyclerView.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xRecyclerView.setLoadingListener(this);
         xRecyclerView.setPullRefreshEnabled(true);
         xRecyclerView.setLoadingMoreEnabled(true);
         xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-       xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        adapter=new XiangMu_Adapter(list,getActivity());
+        xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        adapter = new XiangMu_Adapter(list, getActivity());
         xRecyclerView.setAdapter(adapter);
+
         getHttp();
     }
 
     private void getHttp() {
+        promptDialog = new PromptDialog(getActivity());
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -94,7 +101,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/yxbAppProjectList.do")
+                .url(Urls.BASE_URL + "yxbApp/yxbAppProjectList.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -102,7 +109,8 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(getActivity(),"网络错误，请稍后再试" );
                     }
 
                     @Override
@@ -110,6 +118,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                         Log.e("TAG", "项目列表GSON>" + result);
                         data = new Gson().fromJson(result, XiangMu_Gson.class);
                         list.addAll(data.getResult());
+                        promptDialog.dismiss();
                         adapter.setonEveryItemClickListener(new XiangMu_Adapter.OnEveryItemClickListener() {
                             @Override
                             public void onEveryClick(int position) {
@@ -119,7 +128,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
                                 intent.putExtra("mortgageType", mtype);
                                 intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
                                 SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
-                                Log.e("TASG","立即出借id:"+xiangmu_id);
+                                Log.e("TASG", "立即出借id:" + xiangmu_id);
                                 startActivity(intent);
                             }
                         });
@@ -135,7 +144,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener{
     public void onRefresh() {
         list.clear();
         adapter.notifyDataSetChanged();
-        a=1;
+        a = 1;
         getHttp();
         xRecyclerView.refreshComplete();
     }

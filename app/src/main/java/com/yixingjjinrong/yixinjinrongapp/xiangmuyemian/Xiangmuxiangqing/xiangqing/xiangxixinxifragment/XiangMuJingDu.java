@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuJingDu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.fragmentuits.LazyFragment;
@@ -31,6 +34,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -43,8 +47,9 @@ public class XiangMuJingDu extends LazyFragment {
     private String token1;
     private String loginid;
     private int user_id;
-    private View jindu_view;
-    
+    private View jindu_view,jd_dengruchakan,w_dongru_chakan;
+    private PromptDialog promptDialog;
+
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -54,9 +59,17 @@ public class XiangMuJingDu extends LazyFragment {
         String s = String.valueOf(user_id);
         Log.e("xianmjingduid",s );
         if (s.equals("0")) {
-            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
-
+            jd_dengruchakan.setVisibility(View.VISIBLE);
+            jd_dengruchakan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(it);
+                    getActivity().finish();
+                }
+            });
         } else {
+            jd_dengruchakan.setVisibility(View.GONE);
             gethttp_jingdu();
 
         }
@@ -66,6 +79,8 @@ public class XiangMuJingDu extends LazyFragment {
    
 
     private void gethttp_jingdu() {
+        promptDialog = new PromptDialog(getActivity());
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -98,19 +113,19 @@ public class XiangMuJingDu extends LazyFragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                       promptDialog.dismiss();
+                        ToastUtils.showToast(getActivity(),"网络异常" );
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
+                        promptDialog.dismiss();
                         Log.e("项目进度GSOn", "" + result);
                         XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
-                            jindu_view.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
                         } else {
-                            jindu_view.setVisibility(View.GONE);
                             if (data.getResult().getBorrowStatus().equals("2")) {
                                 fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());
                                 yihuan_jine.setText("已还金额  0.00");
@@ -263,7 +278,6 @@ public class XiangMuJingDu extends LazyFragment {
         fangkuan = getActivity().findViewById(R.id.fangkuan);
         fk_xyb = getActivity().findViewById(R.id.fk_xyb);
         huankuan = getActivity().findViewById(R.id.huankuan);
-        jindu_view=getActivity().findViewById(R.id.jindu_view1);
         // TextView,,,,,,;
         fabuxiangmu_time = getActivity().findViewById(R.id.fabuxiangmu_time);
         mujitime = getActivity().findViewById(R.id.mujitime);
@@ -272,7 +286,8 @@ public class XiangMuJingDu extends LazyFragment {
         daihuan_jine = getActivity().findViewById(R.id.daihuan_jine);
         daihua_qi = getActivity().findViewById(R.id.daihua_qi);
         fangkuan_time = getActivity().findViewById(R.id.fangkuan_time);
-
+        jd_dengruchakan=getActivity().findViewById(R.id.jd_dengruchakan);
+        w_dongru_chakan=getActivity().findViewById(R.id.w_dongru_chakan);
     }
 
     private void initview() {

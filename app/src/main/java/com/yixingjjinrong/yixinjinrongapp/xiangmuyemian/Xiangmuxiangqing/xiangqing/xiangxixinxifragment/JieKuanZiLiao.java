@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JieKuanZiLiao_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -43,6 +45,8 @@ public class JieKuanZiLiao extends Fragment {
     private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list=new ArrayList<>();
     private JieKuanZiLiao_Adapter adapter;
     private String borrowRandomId;
+    private View jkzl_dengruchakan;
+    private int user_id;
 
     @Nullable
     @Override
@@ -56,7 +60,23 @@ public class JieKuanZiLiao extends Fragment {
         list.clear();
         initview();
         getjk_id();
-        getHttp_jkzl();
+        String s = String.valueOf(user_id);
+        if (s.equals("0")) {
+            jkzl_dengruchakan.setVisibility(View.VISIBLE);
+            jkzl_dengruchakan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(it);
+                    getActivity().finish();
+                }
+            });
+        } else {
+            jkzl_dengruchakan.setVisibility(View.GONE);
+            getHttp_jkzl();
+
+        }
+
     }
 
     private void getHttp_jkzl() {
@@ -107,6 +127,7 @@ public class JieKuanZiLiao extends Fragment {
     }
 
     private void getjk_id() {
+        jkzl_dengruchakan=getActivity().findViewById(R.id.jkzl_dengruchakan);
         jihuan_rview=getActivity().findViewById(R.id.jihuan_rview);
         GridLayoutManager gm = new GridLayoutManager(getActivity(),3);
         jihuan_rview.setLayoutManager(gm);
@@ -115,6 +136,7 @@ public class JieKuanZiLiao extends Fragment {
     }
 
     private void initview() {
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         Log.e("项目借款资料", ""+borrowRandomId);
         MyScrollView jiekuanziliaoSV=getActivity().findViewById(R.id.jiekuanziliaoScrollView);

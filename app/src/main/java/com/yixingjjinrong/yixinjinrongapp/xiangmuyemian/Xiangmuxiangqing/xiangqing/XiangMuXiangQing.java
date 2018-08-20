@@ -46,6 +46,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.ChuJie_OK;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
@@ -105,7 +106,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private ImageView xiangmu_fh;
     private PopupWindow popview;
     private PromptDialog promptDialog;
-    private View detailedinformation,xiala_view;
+    private View detailedinformation, xiala_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +182,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
                 } else {
                     Intent itcz = new Intent(XiangMuXiangQing.this, ChongZhq.class);
                     itcz.putExtra("keyong2", data.getResult().getRedList1().getBorrowSum());
@@ -190,12 +194,29 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             }
         });
 
+        youhuijuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+                    ToastUtils.showToast(XiangMuXiangQing.this, "登录后查看");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+                     finish();
+                }else {
+                    ToastUtils.showToast(XiangMuXiangQing.this,"暂无可用优惠券" );
+                }
+            }
+        });
         bt_lijichujie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
                 } else {
 
                     if (cb_fuxuankuang.isChecked()) {
@@ -287,6 +308,18 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             }
         });
+        jinge.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    // 此处为失去焦点时的处理内容
+                    double floor = Math.floor(Float.parseFloat(jinge.getText().toString()));
+                    jinge.setText("" + floor);
+                }
+            }
+        });
 
 
     }
@@ -302,7 +335,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
         detailedinformation = findViewById(R.id.detailedinformation);
-        xiala_view=findViewById(R.id.xiale_view);
+        xiala_view = findViewById(R.id.xiale_view);
 
         Log.e("userid", "id:" + user_id);
         yujishouyi = findViewById(R.id.yujishouyi);
@@ -367,6 +400,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         promptDialog.dismiss();
+                        ToastUtils.showToast(XiangMuXiangQing.this, "网络错误，请稍后再试");
+
                     }
 
                     @Override
@@ -441,7 +476,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("我的--》juan_type", "" + juan_type);
                         Log.e("我的--》juan_id", "" + juan_id);
                         Log.e("我的--》juanmake", "" + juanmake);
-                        if (data.getResult().getJuan()!=null) {
+                        if (data.getResult().getJuan() != null) {
                             if (data.getResult().getJuan().size() != 0) {
                                 youhuijuan.setText("未使用");
                                 youhuijuan.setOnClickListener(new View.OnClickListener() {
@@ -458,7 +493,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             } else {
                                 youhuijuan.setText("暂无可用优惠券");
                             }
-                        }else {
+                        } else {
                             youhuijuan.setText("暂无可用优惠券");
                         }
 
@@ -508,7 +543,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        ToastUtils.showToast( XiangMuXiangQing.this, "网络异常，请稍后再试" );
+                        ToastUtils.showToast(XiangMuXiangQing.this, "网络异常，请稍后再试");
                         promptDialog.dismiss();
                     }
 
@@ -533,7 +568,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
+
                                                 showpopwindow();
+
 //                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
                                             }
                                         })
@@ -747,6 +784,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     @SuppressLint("WrongConstant")
     private void showpopwindow() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getWindow().setAttributes(lp);
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         View view = LayoutInflater.from(this).inflate(R.layout.shimingrenzheng_pop, null);
         final EditText pop_name = view.findViewById(R.id.pop_myname);
@@ -754,6 +794,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         ImageView guanbil = view.findViewById(R.id.guanbil);
         Button popb_t = view.findViewById(R.id.pop_myb_t);
         pop_name.addTextChangedListener(new MaxLengthWatcher(6, pop_name));
+
         pop_name.addTextChangedListener(new TextWatcher() {
             String str;
 
@@ -795,6 +836,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 getshimingHTTp();
             }
 
+        });
+        popview.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 1f;
+                getWindow().setAttributes(lp);
+            }
         });
         guanbil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1063,13 +1112,17 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        user_id = (int) SPUtils.get(this, "userId", 0);
+        token1 = (String) SPUtils.get(this, "Token1", "");
+        loginid = (String) SPUtils.get(this, "Loginid", "");
         juan_id = (int) SPUtils.get(this, "juanId", 0);
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
 //        Log.e("我的--》juan_type", "" + juan_type);
 //        Log.e("我的--》juan_id", "" + juan_id);
 //        Log.e("我的--》juanmake", "" + juanmake);
-        youhuijuan.setText(juanmake);
+            youhuijuan.setText(juanmake);
+
 
     }
 

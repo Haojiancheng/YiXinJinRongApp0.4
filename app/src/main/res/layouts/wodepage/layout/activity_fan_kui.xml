@@ -90,14 +90,13 @@
         <EditText
             android:id="@+id/fk_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
             android:background="#fdfdfe"
             android:drawablePadding="18px"
             android:hint="手机号/邮箱（选填，方便我们联系您）"
             android:inputType="textEmailAddress"
-            android:textSize="28px"
             />
     </android.support.design.widget.TextInputLayout>
 

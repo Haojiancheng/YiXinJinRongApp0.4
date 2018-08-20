@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:background="#f0f0f0"
     android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/jindu_view1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <include
+        android:id="@+id/jd_dengruchakan"
+        layout="@layout/dengru_chakan"
         android:visibility="gone"
-        android:orientation="vertical"></LinearLayout>
+        />
 
     <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
         android:id="@+id/xiangmujingduScrollView"

@@ -83,7 +83,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:layout_weight="1"
-                        android:text="3,865,678,851元"
+                        android:text="641100.00元"
                         android:textColor="#333333"
                         android:textSize="34px" />
 
@@ -91,7 +91,7 @@
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="168笔"
+                        android:text="274笔"
                         android:textColor="#333333"
                         android:textSize="34px" />
                 </LinearLayout>
@@ -131,7 +131,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:layout_weight="1"
-                        android:text="5,678,851.67元"
+                        android:text="3432.89元"
                         android:textColor="#333333"
                         android:textSize="34px" />
 
@@ -139,7 +139,7 @@
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="78,851元"
+                        android:text="297900.00元"
                         android:textColor="#333333"
                         android:textSize="34px" />
                 </LinearLayout>
@@ -179,7 +179,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:layout_weight="1"
-                        android:text="65,678笔"
+                        android:text="186笔"
                         android:textColor="#333333"
                         android:textSize="34px" />
 
@@ -323,7 +323,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="1,332,865人"
+                                android:text="42人"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -353,7 +353,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="32,865元"
+                                android:text="42740.00元"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -389,7 +389,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="0.43%"
+                                android:text="0.19%"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -418,7 +418,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="1.32%"
+                                android:text="0.77%"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -469,7 +469,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10px"
-                        android:text="（数据截止日期：2018-04-30 24:00:00）"
+                        android:text="（数据截止日期：2018-06-30 24:00:00）"
                         android:textColor="#999999"
                         android:textSize="20px" />
                 </LinearLayout>
@@ -517,7 +517,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="1,332,865人"
+                                android:text="14人"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -547,7 +547,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="32,865元"
+                                android:text="42740.00元"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -583,7 +583,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="0.43%"
+                                android:text="36.25%"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -612,7 +612,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
-                                android:text="1.32%"
+                                android:text="97.28%"
                                 android:textColor="#333333"
                                 android:textSize="34px" />
 
@@ -691,7 +691,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" 
-                        android:text="0.00元"
+                        android:text="2875.33元"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="30px"
                         android:textColor="#333333"
@@ -721,7 +721,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="0笔"
+                        android:text="19笔"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="30px"
                         android:textColor="#333333"

@@ -390,6 +390,7 @@
                     android:layout_marginTop="30px"
                     android:layout_marginBottom="30px"
                     android:layout_marginRight="30px"
+                    android:lineSpacingExtra="10px"
                     />
             </LinearLayout>
             <LinearLayout
@@ -482,26 +483,7 @@
                     android:layout_marginLeft="30px"
                     android:layout_marginRight="30px"
                     />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="恒丰银行"
-                    android:textColor="#999999"
-                    android:textSize="28px"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="30px"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="恒丰银行为亿信宝客户分别单独开立并管理其客户交易结算资金管理账户"
-                    android:textColor="#333333"
-                    android:textSize="28px"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="30px"
-                    android:layout_marginBottom="30px"
-                    android:layout_marginRight="30px"
-                    />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

@@ -370,6 +370,7 @@
                     android:textSize="28px" />
 
                 <TextView
+                    android:id="@+id/zcxy_h5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -465,6 +466,7 @@
                 android:layout_marginTop="20px"
                 android:layout_marginLeft="30px"
                 android:layout_marginBottom="30px"
+                android:layout_marginRight="30px"
                 />
         </LinearLayout>
             <ImageView

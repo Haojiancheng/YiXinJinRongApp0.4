@@ -16,6 +16,8 @@ import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore2;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
@@ -26,6 +28,8 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqi
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -54,6 +58,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.xianmu, container, false);
+        EventBus.getDefault().register(this);
         return view;
     }
 
@@ -103,7 +108,6 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
         OkHttpUtils.postString()
                 .url(Urls.BASE_URL + "yxbApp/yxbAppProjectList.do")
                 .content(canshu.toString())
-
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
@@ -138,7 +142,10 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                 });
 
     }
-
+    @Subscribe
+    public void lookMore(LookMore2 lookMore2) {
+        this.onRefresh();
+    }
 
     @Override
     public void onRefresh() {
@@ -154,5 +161,11 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
         a++;
         getHttp();
         xRecyclerView.loadMoreComplete();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 }

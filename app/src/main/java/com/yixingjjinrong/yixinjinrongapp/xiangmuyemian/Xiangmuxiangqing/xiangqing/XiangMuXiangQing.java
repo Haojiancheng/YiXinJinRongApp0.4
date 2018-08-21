@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -25,9 +28,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
@@ -66,6 +71,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
@@ -107,6 +113,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private PopupWindow popview;
     private PromptDialog promptDialog;
     private View detailedinformation, xiala_view;
+
+    private static final int MSG_SEARCH = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,13 +293,26 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                    Log.e("myshouyi", "" + myshouyi);
                     yujishouyi.setText("" + myshouyi);
                 }
+                if(mHandler.hasMessages(MSG_SEARCH)){
+                    mHandler.removeMessages(MSG_SEARCH);
+                }
+                //如果为空 直接显示搜索历史
+                if(TextUtils.isEmpty(s)){
+                    //showHistory();
+                }else {//否则延迟500ms开始搜索
+                    mHandler.sendEmptyMessageDelayed(MSG_SEARCH,5000); //自动搜索功能 删除
+                }
+
+                
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                
             }
         });
+
+        
         jinge.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -307,6 +328,19 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     }
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            int i= Integer.parseInt(jinge.getText().toString());
+            if(i<100){
+                jinge.setText("100");
+            }else {
+                int num= i/100;
+                jinge.setText(num*100+"");
+            }
+        }
+    };
 
 
     private void getID() {

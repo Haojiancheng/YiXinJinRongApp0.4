@@ -4,15 +4,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjm.bottomtabbar.BottomTabBar;
@@ -30,14 +23,10 @@ import com.zhy.autolayout.AutoLayoutActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AutoLayoutActivity {
+    private BottomTabBar mbottomBar;
     private IntentFilter filter;
     private View decorView;
-    private RadioGroup radioGroup;
-    private RadioButton rb1,rb2,rb3,rb4;
     /**
      * 双击退出功能是否生效（默认ture）
      */
@@ -47,26 +36,36 @@ public class MainActivity extends AutoLayoutActivity {
      * 双击退出函数
      */
     private long firstTime = 0;
-    private List<Fragment> mfragments=new ArrayList<>();
+
+
+    //Fragment的跳转
+//   private FragmentManager fManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EventBus.getDefault().register(this);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //获取数据
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
                 .init();
         getinit();
-        
-        
+        Intent it=getIntent();
+        String id=it.getStringExtra("id");
+        if (id!=null){
+            if (id.equals("1")){
+                mbottomBar.setCurrentTab(1);
+            }
+        }
 
     }
 
     @Override
     protected void onStart() {
+
         super.onStart();
     }
 
@@ -89,121 +88,62 @@ public class MainActivity extends AutoLayoutActivity {
     }
 
 
-    public void switchFragment(int position) {
-        //开启事务
-        FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
-        //遍历集合
-        for (int i = 0; i <mfragments.size() ; i++) {
-            Fragment fragment = mfragments.get(i);
-            if (i==position){
-                //显示fragment
-                if (fragment.isAdded()){
-                    //如果这个fragment已经被事务添加,显示
-                    fragmentTransaction.show(fragment);
-                }else{
-                    //如果这个fragment没有被事务添加过,添加
-                    fragmentTransaction.add(R.id.main_frame_layout,fragment);
-                }
-            }else{
-                //隐藏fragment
-                if (fragment.isAdded()){
-                    //如果这个fragment已经被事务添加,隐藏
-                    fragmentTransaction.hide(fragment);
-                }
-            }
-        }
-        //提交事务
-        fragmentTransaction.commit();
-    }
     private void getinit() {
-        radioGroup=findViewById(R.id.radio_group);
-        rb1=findViewById(R.id.radiobutton1);
-        rb2=findViewById(R.id.radiobutton2);
-        rb3=findViewById(R.id.radiobutton3);
-        rb4=findViewById(R.id.radiobutton4);
-        
-        mfragments.add(new Shouye());
-        mfragments.add(new XiangMu());
-        mfragments.add(new Faxian());
-        mfragments.add(new Wode());
+        EventBus.getDefault().register(this);
+        mbottomBar = findViewById(R.id.bottom_tab_bar);
+        mbottomBar.init(getSupportFragmentManager(), 768, 1280)
+                .setImgSize(53, 33)
+                .setFontSize(17)
+                .setChangeColor(Color.parseColor("#fe6623"), Color.parseColor("#999999"))
+                .setTabPadding(10, 7, 10)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
+                .addTabItem("首页", R.drawable.shouyedianji, R.drawable.shouye, Shouye.class)
+                .addTabItem("项目", R.drawable.xiangmudianji, R.drawable.xiangmu1, XiangMu.class)
+                .addTabItem("发现", R.drawable.faxiandianji, R.drawable.faxian, Faxian.class)
+                .addTabItem("我的", R.drawable.wodedianji, R.drawable.wode, Wode.class)
+                .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
+                    @Override
+                    public void onTabChange(int position, String name, View view) {
+                        if (position == 1)
+                            mbottomBar.setSpot(1, false);
 
-        Intent it=getIntent();
-        String id=it.getStringExtra("id");
-        if (id!=null){
-            if (id.equals("1")){
-                rb1.setChecked(false);
-                rb2.setChecked(true);
-                rb3.setChecked(false);
-                rb4.setChecked(false);
-                switchFragment(1);
-            }
-        }else {
-            rb1.setChecked(true);
-            rb2.setChecked(false);
-            rb3.setChecked(false);
-            rb4.setChecked(false);
-            switchFragment(0);
-        }
-        
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch(checkedId){
-                    case R.id.radiobutton1:
-                        rb1.setChecked(true);
-                        rb2.setChecked(false);
-                        rb3.setChecked(false);
-                        rb4.setChecked(false);
-                        switchFragment(0);
-                        break;
-                    case R.id.radiobutton2:
-                        rb1.setChecked(false);
-                        rb2.setChecked(true);
-                        rb3.setChecked(false);
-                        rb4.setChecked(false);
-                        switchFragment(1);
-                        break;
-                    case R.id.radiobutton3:
-                        rb1.setChecked(false);
-                        rb2.setChecked(false);
-                        rb3.setChecked(true);
-                        rb4.setChecked(false);
-                        switchFragment(2);
-                        break;
-                    case R.id.radiobutton4:
-                        rb1.setChecked(false);
-                        rb2.setChecked(false);
-                        rb3.setChecked(false);
-                        rb4.setChecked(true);
-                        switchFragment(3);
-                        break;
-                }
-            }
-        });
-        
+                    }
+                })
+                .setSpot(1, false)
+                .setSpot(2, false);
+
 
     }
 
+    //    @Override
+//    public boolean onTouch(View v, MotionEvent event) {
+//        return false;
+//    }
     @Subscribe
     public void lookMore(LookMore lookMore) {
-        rb1.setChecked(false);
-        rb2.setChecked(true);
-        rb3.setChecked(false);
-        rb4.setChecked(false);
-        switchFragment(1);
+        EventBus.getDefault().post(new LookMore2("1"));
+        mbottomBar.setCurrentTab(1);
     }
-
 
     @Subscribe
     public void mycon(MyConten mycon) {
-        rb1.setChecked(false);
-        rb2.setChecked(false);
-        rb3.setChecked(false);
-        rb4.setChecked(true);
-        switchFragment(3);
+        mbottomBar.setCurrentTab(3);
     }
 
+    //Fragment的跳转
+//    private class mainReceiver extends BroadcastReceiver {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            if (intent.getAction().equals("TUIGUANG")) {
+//                //开启事务
+//                FragmentTransaction transaction = fManager.beginTransaction();
+//                //替换fragment
+//                transaction.replace(R.id.shouye_frament, fragList.get(1));
+//                transaction.commit();
+//                //替换tabar
+//                ((RadioButton) mainTab.getChildAt(1)).setChecked(true);
+//            }
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

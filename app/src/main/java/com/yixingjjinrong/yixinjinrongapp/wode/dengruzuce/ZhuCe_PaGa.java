@@ -2,7 +2,10 @@ package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengShouJiHao_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -91,7 +95,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             public void onClick(View v) {
                 Intent it = new Intent(ZhuCe_PaGa.this, WoDe_DengRu.class);
                 startActivity(it);
-                finish();
+//                finish();
             }
         });
         zz_h5.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +107,26 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             }
         });
 
+        zhucephone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               if (s.length()>0){
+                   zhuceqingchu.setVisibility(View.VISIBLE);
+               }else {
+                   zhuceqingchu.setVisibility(View.GONE);
+               }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         zhuce_fanhui.setOnClickListener(new View.OnClickListener() {//返回按钮
             @Override
@@ -126,7 +150,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                         if (zc_check.isChecked()) {
                             getHttp();
                         } else {
-                            Toast.makeText(ZhuCe_PaGa.this, "请先阅读注册协议", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(ZhuCe_PaGa.this, "请阅读并勾选注册协议");
                         }
 
                     }
@@ -186,7 +210,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                             startActivity(zhuce_page);
                             finish();
                         } else {
-                            Toast.makeText(ZhuCe_PaGa.this, "该手机号已注册，请登入", Toast.LENGTH_SHORT).show();
+                           ToastUtils.showToast(ZhuCe_PaGa.this, data.getMessage());
                         }
                     }
                 });
@@ -202,5 +226,6 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         zz_h5 = findViewById(R.id.zz_h5);
         zz_dr = findViewById(R.id.zz_dr);
         zhucephone.addTextChangedListener(new MaxLengthWatcher(11, zhucephone));
+        zhucephone.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
     }
 }

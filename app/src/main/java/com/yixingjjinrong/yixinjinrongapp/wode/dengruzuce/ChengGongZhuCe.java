@@ -146,7 +146,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                             it.putExtras(bundle);
 
                             startActivity(it);
-                            finish();
+
                         }
                     }
                 });

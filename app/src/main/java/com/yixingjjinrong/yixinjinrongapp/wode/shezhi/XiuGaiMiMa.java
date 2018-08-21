@@ -52,6 +52,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     private int user_ird;
     private String loginid;
     private String token;
+    private ImageView xgmm_yj_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +105,11 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                 if (isChecked) {
                     //如果选中，显示密码
                     new_mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    xiugai_togglePwd.setBackground(getResources().getDrawable(R.drawable.xianshi));
+                    xgmm_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.xianshi));
                 } else {
                     //否则隐藏密码
                     new_mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    xiugai_togglePwd.setBackground(getResources().getDrawable(R.drawable.buxianshi));
+                    xgmm_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.buxianshi));
                 }
             }
         });
@@ -181,5 +182,6 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         new_mima=findViewById(R.id.new_mima);
         re_password=findViewById(R.id.re_password);
         xg_mima=findViewById(R.id.xg_mima);
+        xgmm_yj_image=findViewById(R.id.xgmm_yj_image);
     }
 }

@@ -8,6 +8,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 
@@ -17,10 +18,12 @@ public class JiFenGongLv extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
         setContentView(R.layout.activity_ji_fen_gong_lv);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .statusBarDarkFont(true)
+                .init();
         jfgl=findViewById(R.id.jfgl_web);
         WebSettings webSettings = jfgl.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -38,7 +41,6 @@ public class JiFenGongLv extends AppCompatActivity {
     }
     @JavascriptInterface
     public void backq() {
-        Toast.makeText(this, "js_调用了", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

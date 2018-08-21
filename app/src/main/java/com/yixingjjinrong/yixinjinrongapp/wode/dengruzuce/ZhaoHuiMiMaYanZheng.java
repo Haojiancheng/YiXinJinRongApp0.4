@@ -53,6 +53,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private ImageView zhyz_fh;
     private String message;
     private String jsessionId;
+    private ImageView zhyz_yj_image;
 
 
     @Override
@@ -113,11 +114,11 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 if (isChecked) {
                     //如果选中，显示密码
                     news_mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    zh_togglePwd.setBackground(getResources().getDrawable(R.drawable.xianshi));
+                    zhyz_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.xianshi));
                 } else {
                     //否则隐藏密码
                     news_mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    zh_togglePwd.setBackground(getResources().getDrawable(R.drawable.buxianshi));
+                    zhyz_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.buxianshi));
                 }
             }
         });
@@ -247,6 +248,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         et_qc=findViewById(R.id.zh_guanbi);
         jinggao=findViewById(R.id.jingdao);
         zhyz_fh=findViewById(R.id.zhyz_fh);
+        zhyz_yj_image=findViewById(R.id.zhyz_yj_image);
     }
     class TimeCount extends CountDownTimer {
 

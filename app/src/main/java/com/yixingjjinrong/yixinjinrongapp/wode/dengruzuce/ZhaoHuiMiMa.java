@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ZhaoHuiMIma_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -33,6 +35,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
     private ImageView zh_fh;
     private String sha1;//SHA1加密
     private String base1;//Base64加
+    private ImageView zhaohui_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,12 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
                 }
 
+            }
+        });
+        zhaohui_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myphonet.setText("");
             }
         });
 
@@ -127,7 +136,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
                             startActivity(zhaohuimima_it);
                             finish();
                         }else {
-                            Toast.makeText(ZhaoHuiMiMa.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(ZhaoHuiMiMa.this, ""+data.getMessage());
                         }
                     }
                 });
@@ -138,5 +147,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         zhaohuimima_xiayibu = findViewById(R.id.zhaohuimiam_xiayibu);//找回密码下一步
         myphonet = findViewById(R.id.myphonet);
         zh_fh = findViewById(R.id.zh_fh);
+        myphonet.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
+        zhaohui_image=findViewById(R.id.zhaohui_image);
     }
 }

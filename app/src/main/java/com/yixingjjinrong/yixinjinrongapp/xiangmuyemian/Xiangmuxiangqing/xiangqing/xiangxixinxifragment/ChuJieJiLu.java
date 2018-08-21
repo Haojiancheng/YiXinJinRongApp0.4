@@ -57,6 +57,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
     private String loginid;
     private View cjjl_dengruchakan;
     private PromptDialog promptDialog;
+    private int user_id;
 
 
     @Override
@@ -193,5 +194,10 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         a++;
         getHttp();
         chujejilu_rview.loadMoreComplete();
+    }
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
     }
 }

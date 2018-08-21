@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ZongE_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -27,6 +28,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,25 +115,26 @@ public class ZongziChan extends AutoLayoutActivity {
                     public void onResponse(String response, int id) {
                         Log.e("我的总资产Gson", response);
                         ZongE_Gson data = new Gson().fromJson(response, ZongE_Gson.class);
-                        String accountSum = data.getUserMap().getAccountSum();//总资产
-                        String forAmount = data.getUserMap().getForAmount();//总代收
-                        String usableAmount = data.getUserMap().getUsableAmount();//可用余额
-                        String freezeAmount = data.getUserMap().getFreezeAmount();//冻结金额
+                        if (data.getMessage().equals("成功了")) {
+                            String accountSum = data.getUserMap().getAccountSum();//总资产
+                            String forAmount = data.getUserMap().getForAmount();//总代收
+                            String usableAmount = data.getUserMap().getUsableAmount();//可用余额
+                            String freezeAmount = data.getUserMap().getFreezeAmount();//冻结金额
 
-                        zonge_z.setText(accountSum);
-                        zonge_daishou.setText(forAmount);
-                        zonge_keyong.setText(usableAmount);
-                        zonge_dongjie.setText(freezeAmount);
-                for (int i = 0; i < data.getListType().size(); i++) {
-                    int type= data.getListType().get(i).getMortgageType();
-                    if(type==1){
-                        hose_daishou.setText(data.getListType().get(i).getForPaySum());
-                    }else if(type==4){
-                        car_daishou.setText(data.getListType().get(i).getForPaySum());
-                    }
-                            
-                    Log.e("gcfr",""+data.getListType().get(i).getMortgageType() );
-                }
+                            zonge_z.setText(accountSum);
+                            zonge_daishou.setText(forAmount);
+                            zonge_keyong.setText(usableAmount);
+                            zonge_dongjie.setText(freezeAmount);
+                            for (int i = 0; i < data.getListType().size(); i++) {
+                                int type = data.getListType().get(i).getMortgageType();
+                                if (type == 1) {
+                                    hose_daishou.setText(data.getListType().get(i).getForPaySum());
+                                } else if (type == 4) {
+                                    car_daishou.setText(data.getListType().get(i).getForPaySum());
+                                }
+
+                                Log.e("gcfr", "" + data.getListType().get(i).getMortgageType());
+                            }
 
 //                zonge_dongjie.setText(data.getUserMap().);
 //                car_daishou.setText(data.getUserMap());
@@ -148,8 +151,12 @@ public class ZongziChan extends AutoLayoutActivity {
 //                //冻结金额%
 //                dong = y/z*10;
 
+                        }else {
+                            ToastUtils.showToast(ZongziChan.this,data.getMessage() );
+                        }
                     }
                 });
+
 
     }
 

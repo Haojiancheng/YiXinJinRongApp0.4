@@ -123,8 +123,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
 
-        promptDialog = new PromptDialog(this);
-        promptDialog.showLoading("");
+
         getID();//获取资源ID
         initView();
         detailedinformation.setVisibility(View.GONE);
@@ -190,21 +189,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     Intent itcz = new Intent(XiangMuXiangQing.this, ChongZhq.class);
                     itcz.putExtra("keyong2", data.getResult().getRedList1().getBorrowSum());
                     startActivity(itcz);
-                }
-            }
-        });
-
-        youhuijuan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s = String.valueOf(user_id);
-                if (s.equals("0")) {
-                    ToastUtils.showToast(XiangMuXiangQing.this, "登录后查看");
-                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
-                    startActivity(it);
-                     finish();
-                }else {
-                    ToastUtils.showToast(XiangMuXiangQing.this,"暂无可用优惠券" );
                 }
             }
         });
@@ -365,7 +349,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     private void getHttps() {
-
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -373,7 +358,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //            SPUtils.put(this, "borroFwRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             js_request.put("userId", user_id);
-//            Log.e("TAG", "id" + user_id);
+            Log.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -476,28 +461,46 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("我的--》juan_type", "" + juan_type);
                         Log.e("我的--》juan_id", "" + juan_id);
                         Log.e("我的--》juanmake", "" + juanmake);
-                        if (data.getResult().getJuan() != null) {
-                            if (data.getResult().getJuan().size() != 0) {
-                                youhuijuan.setText("未使用");
-                                youhuijuan.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
-                                        ti.putExtra("juan", data.getResult());
-                                        startActivity(ti);
+                        String s1 = String.valueOf(user_id);
+                        if (s1.equals("0")) {
+                            youhuijuan.setText("登入后查看");
+                            youhuijuan.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                                    startActivity(it);
+//                                    finish();
+                                }
+                            });
+                        } else {
+                            if (data.getResult().getJuan() != null) {
+                                if (data.getResult().getJuan().size() != 0) {
+                                    youhuijuan.setText("未使用");
+                                    youhuijuan.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
+                                            ti.putExtra("juan", data.getResult());
+                                            startActivity(ti);
 
+                                        }
+                                    });
+                                    if (juan_type!=0){
+                                        youhuijuan.setText(juanmake);
+                                    }else {
+                                        youhuijuan.setText("未使用");
                                     }
-                                });
 
 //                                youhuijuan.setText(juanmake);
+                                } else {
+                                    youhuijuan.setText("暂无可用优惠券");
+                                }
                             } else {
                                 youhuijuan.setText("暂无可用优惠券");
                             }
-                        } else {
-                            youhuijuan.setText("暂无可用优惠券");
-                        }
 
 //                        }
+                        }
                     }
                 });
 
@@ -1112,25 +1115,25 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        user_id = (int) SPUtils.get(this, "userId", 0);
-        token1 = (String) SPUtils.get(this, "Token1", "");
-        loginid = (String) SPUtils.get(this, "Loginid", "");
+
         juan_id = (int) SPUtils.get(this, "juanId", 0);
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
 //        Log.e("我的--》juan_type", "" + juan_type);
 //        Log.e("我的--》juan_id", "" + juan_id);
 //        Log.e("我的--》juanmake", "" + juanmake);
-            youhuijuan.setText(juanmake);
+//            youhuijuan.setText(juanmake);
 
 
     }
 
     @Override
     protected void onRestart() {
-
         super.onRestart();
-//        getHttps();
+        user_id = (int) SPUtils.get(this, "userId", 0);
+        token1 = (String) SPUtils.get(this, "Token1", "");
+        loginid = (String) SPUtils.get(this, "Loginid", "");
+        getHttps();
     }
 
     @Override

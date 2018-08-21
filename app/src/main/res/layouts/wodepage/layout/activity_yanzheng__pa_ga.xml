@@ -9,8 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="138px"
-        >
+        android:layout_height="138px">
 
         <ImageView
             android:id="@+id/zz_fh"
@@ -26,14 +25,13 @@
             android:id="@+id/jiekuanxieyi"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="251px"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="251px"
             android:paddingTop="60px"
             android:text="亿信宝注册"
             android:textColor="#333"
             android:textSize="38px" />
     </RelativeLayout>
-
 
 
     <View
@@ -99,8 +97,8 @@
 
             <ImageView
                 android:id="@+id/yanz_guanbi"
-                android:layout_width="40px"
-                android:layout_height="40px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="100px"
                 android:src="@drawable/guanbi" />
         </LinearLayout>
@@ -114,7 +112,7 @@
             android:background="@drawable/bt_shape"
             android:text="获取验证码"
             android:textColor="#ffffff"
-            android:textSize="24px" />
+            android:textSize="20px" />
     </LinearLayout>
 
     <View
@@ -151,15 +149,39 @@
                 app:errorTextAppearance="@style/ErrorAppearance" />
         </android.support.design.widget.TextInputLayout>
 
-        <ToggleButton
-            android:id="@+id/zc_togglePwd"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/buxianshi"
-            android:padding="10dp"
-            android:textOff=""
-            android:textOn="" />
+        <!--<ToggleButton-->
+        <!--android:id="@+id/zc_togglePwd"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_marginRight="30dp"-->
+        <!--android:background="@drawable/buxianshi"-->
+        <!--android:padding="10dp"-->
+        <!--android:textOff=""-->
+        <!--android:textOn="" />-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ToggleButton
+                android:id="@+id/zc_togglePwd"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="30px"
+                android:layout_marginRight="30dp"
+                android:background="@null"
+                android:textOff=""
+                android:textOn="" />
+
+            <ImageView
+                android:id="@+id/zc_yj_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/buxianshi"
+                 />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <View
@@ -185,6 +207,7 @@
             android:hint="推荐人手机号/邀请码（选填）"
             app:errorTextAppearance="@style/ErrorAppearance" />
     </android.support.design.widget.TextInputLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -211,7 +234,6 @@
         android:textSize="38px" />
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -226,19 +248,19 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/yinhanglogo" />
+                android:src="@drawable/yinhanglogo"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16px"
                 android:text="用户资金安全由恒丰银行提供保障"
                 android:textColor="#999"
-                android:textSize="24px" />
+                android:textSize="24px"
+                android:visibility="gone" />
 
         </LinearLayout>
     </RelativeLayout>

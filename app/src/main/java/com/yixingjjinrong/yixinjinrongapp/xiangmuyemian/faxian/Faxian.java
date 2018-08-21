@@ -199,6 +199,7 @@ public class Faxian extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
+                Log.e("sdasd", ""+s);
                 if (s.equals("0")) {
                     Intent it = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
@@ -220,5 +221,9 @@ public class Faxian extends Fragment {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+    }
 }

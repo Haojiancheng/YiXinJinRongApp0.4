@@ -59,7 +59,7 @@ import okhttp3.MediaType;
 public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
     private Button yonghudengru, chongzhi, tixian;//用户登入跳转按钮,充值，提现
-    private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing, lijichujie;//等级、总额、可用余额、我的邀请
+    private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing;//等级、总额、可用余额、我的邀请
     private ImageView zjls, wode_xiaoxi, wode_shazhi, wode_chujie, xianjin_juan, jiaxi_juan, touxiang1;//设置，我的出借,现金券，加息卷
     private int user_id;
     //    private String userToken;
@@ -78,8 +78,9 @@ public class Wode extends Fragment {
     private String inviteAmount;
     private String totalEarn;
     private String loginid;
-    private View v1;
+    private View lijichujie;
     private View wo_yaoqing;
+    private ImageView wd_yj_image;
 
 
     @Nullable
@@ -270,14 +271,14 @@ public class Wode extends Fragment {
 
                             } else {
                             }
-                            SPUtils.put(getActivity(), "userId", user_id);
+//                            SPUtils.put(getActivity(), "userId", user_id);
                             SPUtils.put(getActivity(), "Token1", userToken);
 
                         } else {
                             weidengru.setVisibility(View.VISIBLE); //显示布局
                             dengru.setVisibility(View.GONE);//影藏布局
                             user_id = 0;
-                            keyongyue.setText("0.00");
+                            keyongyue.setText("— —");
                             yaoqing.setText("0");
 
                         }
@@ -410,7 +411,8 @@ public class Wode extends Fragment {
                 String s = String.valueOf(user_id);
                 Log.e("出借user_id", "" + s);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent intentwode_chujie = new Intent(getActivity(), WoDe_ChuJie.class);
                     startActivity(intentwode_chujie);
@@ -424,7 +426,8 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
                     it.putExtra("tage", "1");
@@ -437,7 +440,8 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent it = new Intent(getActivity(), Juan.class);
                     it.putExtra("tage", "0");
@@ -448,8 +452,13 @@ public class Wode extends Fragment {
         lijichujie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                EventBus.getDefault().post(new LookMore());
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
+                } else {
+                    EventBus.getDefault().post(new LookMore());
+                }
             }
 
         });
@@ -473,7 +482,8 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent itcz = new Intent(getActivity(), ChongZhq.class);
                     itcz.putExtra("keyong2", keyong);
@@ -494,7 +504,8 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent it = new Intent(getActivity(), ZiJinliushui.class);
                     startActivity(it);
@@ -507,11 +518,11 @@ public class Wode extends Fragment {
                 if (isChecked) {
                     //如果选中，显示密码
                     wozonge.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    wode_togglePwd.setBackground(getResources().getDrawable(R.drawable.zhengyan));
+                    wd_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.zhengyan));
                 } else {
                     //否则隐藏密码
                     wozonge.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    wode_togglePwd.setBackground(getResources().getDrawable(R.drawable.biyan));
+                    wd_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.biyan));
                 }
             }
         });
@@ -520,7 +531,8 @@ public class Wode extends Fragment {
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent it = new Intent(getActivity(), MyYaoQing.class);
                     it.putExtra("mancount", inviteAmount);
@@ -542,7 +554,8 @@ public class Wode extends Fragment {
                 String s = String.valueOf(user_id);
                 Log.e("ddddddd", s);
                 if (s.equals("0")) {
-                    ToastUtils.showToast(getActivity(), "请先登入");
+                    Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
+                    startActivity(intentwode);
                 } else {
                     Intent itcz = new Intent(getActivity(), TiXian.class);
                     itcz.putExtra("keyong2", keyong);
@@ -558,9 +571,9 @@ public class Wode extends Fragment {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         userToken = (String) SPUtils.get(getActivity(), "Token1", "");
-        v1 = getActivity().findViewById(R.id.v1);
         dengru = getActivity().findViewById(R.id.dengru_chenggong);//登入状态
         weidengru = getActivity().findViewById(R.id.weidengru);//未登入状态
+        wd_yj_image=getActivity().findViewById(R.id.wd_yj_image);//金额image
         shimingrenzheng_itme = getActivity().findViewById(R.id.shiming_my);//未实名itme
         yinhangcunguan_itme = getActivity().findViewById(R.id.yinhangcunguan_my);//未开通银行存管
         fengxianpingce_itme = getActivity().findViewById(R.id.fangxianpingce_my);//未风险评测

@@ -72,7 +72,6 @@ public class HuiKuanJiHua extends LazyFragment {
                 public void onClick(View v) {
                     Intent it=new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
-                    getActivity().finish();
                 }
             });
         } else {
@@ -154,9 +153,9 @@ public class HuiKuanJiHua extends LazyFragment {
     }
 
     private void initview() {
+        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
 //        token = (String) SPUtils.get(getActivity(), "Token1", "");
@@ -188,4 +187,30 @@ public class HuiKuanJiHua extends LazyFragment {
             }
         });
     }
+
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+//        token1 = (String) SPUtils.get(getActivity(), "Token1", "");
+//        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
+//        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+//        String s = String.valueOf(user_id);
+//        if (s.equals("0")) {
+////            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+//            h_dengruchakan.setVisibility(View.VISIBLE);
+//            w_dongru_chakan.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+//                    startActivity(it);
+//                }
+//            });
+//        } else {
+//            h_dengruchakan.setVisibility(View.GONE);
+//            getHttp();
+//        }
+    }
+
+  
+
 }

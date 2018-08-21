@@ -65,7 +65,6 @@ public class XiangMuJingDu extends LazyFragment {
                 public void onClick(View v) {
                     Intent it=new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
-                    getActivity().finish();
                 }
             });
         } else {
@@ -319,5 +318,11 @@ public class XiangMuJingDu extends LazyFragment {
 
             }
         });
+    }
+
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
     }
 }

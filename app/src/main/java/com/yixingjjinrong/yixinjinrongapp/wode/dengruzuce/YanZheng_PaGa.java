@@ -48,6 +48,7 @@ import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.regex.Pattern;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -69,6 +70,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private TextView yy_yanzheng;
     private String message;
     private String jsessionId;
+    private PromptDialog promptDialog;
+    private ImageView zc_yj_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,11 +153,11 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 if (isChecked) {
                     //如果选中，显示密码
                     user_mima.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    zc_togglePwd.setBackground(getResources().getDrawable(R.drawable.xianshi));
+                    zc_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.xianshi));
                 } else {
                     //否则隐藏密码
                     user_mima.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    zc_togglePwd.setBackground(getResources().getDrawable(R.drawable.buxianshi));
+                    zc_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.buxianshi));
                 }
             }
         });
@@ -230,6 +233,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     }
 
     private void gethttp_zhuce() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         myurl = getid(context);
         Log.e("唯一标识", "" + myurl);
@@ -266,7 +271,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(YanZheng_PaGa.this,"网络错误，请稍后再试" );
                     }
 
                     @Override
@@ -289,8 +295,10 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                             Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
                             intent_dengru.putExtras(bundle);
                             startActivity(intent_dengru);
-                            finish();
+                            promptDialog.dismiss();
+
                         } else {
+                            promptDialog.dismiss();
                             Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -365,6 +373,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         yy_yanzheng = findViewById(R.id.yy_yanzheng);
         phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
         user_mima.addTextChangedListener(new MaxLengthWatcher(18, user_mima));
+        zc_yj_image=findViewById(R.id.zc_yj_image);
     }
 
     public synchronized String getid(Context context) {

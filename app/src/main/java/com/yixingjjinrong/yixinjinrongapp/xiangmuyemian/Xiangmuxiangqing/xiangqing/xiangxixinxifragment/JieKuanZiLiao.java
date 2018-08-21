@@ -68,7 +68,7 @@ public class JieKuanZiLiao extends Fragment {
                 public void onClick(View v) {
                     Intent it=new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
-                    getActivity().finish();
+
                 }
             });
         } else {
@@ -165,5 +165,12 @@ public class JieKuanZiLiao extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+            user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+
     }
 }

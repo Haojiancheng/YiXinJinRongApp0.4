@@ -789,4 +789,10 @@ public class XiangMuXinXi extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+    }
 }

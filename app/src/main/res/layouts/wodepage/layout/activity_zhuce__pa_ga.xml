@@ -66,10 +66,10 @@
 
         <ImageView
             android:id="@+id/zhuce_qingchu"
-            android:layout_width="40px"
-            android:layout_height="40px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="40px"
-    
+            android:visibility="gone"
             android:src="@drawable/guanbi" />
     </LinearLayout>
 

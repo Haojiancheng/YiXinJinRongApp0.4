@@ -1,7 +1,9 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -19,6 +21,9 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -29,6 +34,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -43,6 +49,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private String base1;//Base64加
     private Context context;
     private ImageView shezhi_fh;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,26 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         user_tuichu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gethttp();
+                AlertDialog dialog3 = new AlertDialog.Builder(WoDe_SheZhi.this)
+                        .setTitle("提示")
+                        .setMessage("您确定要退出当前账户？")
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                gethttp();
+                            }
+                        })
+                        .create();
+                dialog3.setCanceledOnTouchOutside(false);
+                dialog3.show();
+
+
 
             }
         });
@@ -77,7 +103,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
                 startActivity(shezhi_tuichu);
-                finish();
+//                finish();
             }
         });
         try {
@@ -109,6 +135,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     }
 
     private void gethttp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         String myurl= getid(context);
         try {
@@ -144,7 +172,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                            promptDialog.dismiss();
+                        ToastUtils.showToast(WoDe_SheZhi.this, "网络错误，请售后再试");
                     }
 
                     @Override
@@ -156,7 +185,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //                EventBus.getDefault().post(new UnLogin());
                         SPUtils.remove(WoDe_SheZhi.this,"userId");
                         SPUtils.remove(WoDe_SheZhi.this,"Loginid");
-
+                        promptDialog.dismiss();
                         finish();
                     }
                 });

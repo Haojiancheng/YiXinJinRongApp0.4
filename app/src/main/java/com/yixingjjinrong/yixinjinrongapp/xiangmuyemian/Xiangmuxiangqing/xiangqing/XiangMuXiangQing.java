@@ -300,7 +300,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 if(TextUtils.isEmpty(s)){
                     //showHistory();
                 }else {//否则延迟500ms开始搜索
-                    mHandler.sendEmptyMessageDelayed(MSG_SEARCH,5000); //自动搜索功能 删除
+                    mHandler.sendEmptyMessageDelayed(MSG_SEARCH,3000); //自动搜索功能 删除
                 }
 
                 

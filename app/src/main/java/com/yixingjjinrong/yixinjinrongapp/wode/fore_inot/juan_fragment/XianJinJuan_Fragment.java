@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -43,6 +44,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     private int a = 1;
     private String loginid;
     private String token;
+    private View xianjin_wushuju;
+    private TextView wnr_text;
 
     @Nullable
     @Override
@@ -105,13 +108,18 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
                         Log.e("现金券GSon", "" + result);
                         XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                         if (data.getMessage().equals("成功了")) {
-
-
+                            if (data.getQueryVouchersList().size() <= 0) {
+                                xianjin_wushuju.setVisibility(View.VISIBLE);
+                                wnr_text.setText("暂无可用现金券");
+                            } else {
+                                xianjin_wushuju.setVisibility(View.GONE);
+                            }
                             list.addAll(data.getQueryVouchersList());
-
                             myadapter.notifyDataSetChanged();
-                        }else {
-                            ToastUtils.showToast(getActivity(),data.getMessage() );
+                        } else {
+                            ToastUtils.showToast(getActivity(), data.getMessage());
+                            xianjin_wushuju.setVisibility(View.VISIBLE);
+                            wnr_text.setText("" + data.getMessage());
                         }
                     }
                 });
@@ -122,6 +130,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         token = (String) SPUtils.get(getActivity(), "Token1", "");
         xianjinjun_rview = getActivity().findViewById(R.id.xianjinjuan_rview);
+        xianjin_wushuju = getActivity().findViewById(R.id.xianjin_wushuju);
+        wnr_text = getActivity().findViewById(R.id.wnr_text);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         xianjinjun_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);

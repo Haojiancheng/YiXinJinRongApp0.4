@@ -53,10 +53,10 @@ public class MainActivity extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
         getinit();
-        Intent it=getIntent();
-        String id=it.getStringExtra("id");
-        if (id!=null){
-            if (id.equals("1")){
+        Intent it = getIntent();
+        String id = it.getStringExtra("id");
+        if (id != null) {
+            if (id.equals("1")) {
                 mbottomBar.setCurrentTab(1);
             }
         }
@@ -91,11 +91,10 @@ public class MainActivity extends AutoLayoutActivity {
     private void getinit() {
         EventBus.getDefault().register(this);
         mbottomBar = findViewById(R.id.bottom_tab_bar);
-        mbottomBar.init(getSupportFragmentManager(), 768, 1280)
-                .setImgSize(53, 33)
-                .setFontSize(17)
+        mbottomBar.init(getSupportFragmentManager(), 0, 3000)
                 .setChangeColor(Color.parseColor("#fe6623"), Color.parseColor("#999999"))
-                .setTabPadding(10, 7, 10)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
+                .setFontSize(9)
+                .setTabPadding(16, 12, 18)//设置ICON图片与上部分割线的间隔、图片与文字的间隔、文字与底部的间隔
                 .addTabItem("首页", R.drawable.shouyedianji, R.drawable.shouye, Shouye.class)
                 .addTabItem("项目", R.drawable.xiangmudianji, R.drawable.xiangmu1, XiangMu.class)
                 .addTabItem("发现", R.drawable.faxiandianji, R.drawable.faxian, Faxian.class)

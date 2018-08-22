@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
@@ -72,7 +73,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     private Context context;
     private PermissionHelper mPermissionHelper;//动态申请权限
     private String message;
-    private View dr_jg;
+    private View dr_jg,shojihao_kong;
     private ImageView dr_yj_image;
     private PromptDialog promptDialog;
 
@@ -98,7 +99,27 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
     }
 
-
+    public static boolean isMobileNo(String mobiles) {
+        /*
+         * 移动号码段:139、138、137、136、135、134、150、151、152、157、158、159、182、183、184、187、188、147
+         * 联通号码段:130、131、132、185、186、145、171/176/175
+         * 电信号码段:133、153、180、181、189、173、177
+         */
+        String telRegex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17([1-3]|[5-9]))|(18[0-9]))\\d{8}$";
+        /**
+         * (13[0-9])代表13号段 130-139
+         * (14[5|7])代表14号段 145、147
+         * (15([0-3]|[5-9]))代表15号段 150-153 155-159
+         * (17([1-3][5-8]))代表17号段 171-173 175-179 虚拟运营商170屏蔽
+         * (18[0-9]))代表18号段 180-189
+         * d{8}代表后面可以是0-9的数字，有8位
+         */
+        if (TextUtils.isEmpty(mobiles)) {
+            return false;
+        } else {
+            return mobiles.matches(telRegex);
+        }
+    }
     private void getdengruOnClick() {
 
 
@@ -115,6 +136,24 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 }else {
                     dengru_guanbi.setVisibility(View.GONE);
                 }
+                if (dengru_phone.getText().toString().isEmpty()){
+                    shojihao_kong.setVisibility(View.VISIBLE);
+                    jg_text.setText("手机号不能为空");
+                }else {
+//                    shojihao_kong.setVisibility(View.GONE);
+                    if (isMobileNo(dengru_phone.getText().toString())==false) {
+                        shojihao_kong.setVisibility(View.VISIBLE);
+                        jg_text.setText("手机号格式不正确");
+                    } else if (isMobileNo(dengru_phone.getText().toString())==false) {
+                        shojihao_kong.setVisibility(View.VISIBLE);
+                        jg_text.setText("手机号格式不正确");
+                    }else {
+                        shojihao_kong.setVisibility(View.GONE);
+                    }
+                }
+
+
+
             }
 
             @Override
@@ -140,9 +179,6 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (dengru_phone.getText().toString().isEmpty()){
-                    ToastUtils.showToast(WoDe_DengRu.this,"dsdgsd" );
-                }
             }
         });
 
@@ -169,7 +205,9 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 shoujihao = dengru_phone.getText().toString();
                 mima = dengru_mima.getText().toString();
                 if (shoujihao.isEmpty()) {
-                    ToastUtils.showToast(WoDe_DengRu.this, "手机号不能为空");
+//                    ToastUtils.showToast(WoDe_DengRu.this, "手机号不能为空");
+                    shojihao_kong.setVisibility(View.VISIBLE);
+                    jg_text.setText("手机号不能为空");
                 } else if ( mima.isEmpty()){
 //                    Toast.makeText(WoDe_DengRu.this, "成功", Toast.LENGTH_SHORT).show();
                     ToastUtils.showToast(WoDe_DengRu.this, "密码不能为空");
@@ -297,6 +335,8 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         jg_text=findViewById(R.id.jg_text);//警告text
         dengru_phone.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
         dr_yj_image=findViewById(R.id.dr_yj_image);//显示与隐藏密码图片
+        shojihao_kong=findViewById(R.id.shojihao_kong);//手机号为空判断
+        dengru_phone.addTextChangedListener(new MaxLengthWatcher(11, dengru_phone));//手机号长度限制
     }
 
     public synchronized String getid(Context context) {

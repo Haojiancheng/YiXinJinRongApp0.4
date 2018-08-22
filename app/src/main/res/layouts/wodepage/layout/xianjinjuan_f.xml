@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    <include
+        android:id="@+id/xianjin_wushuju"
+        layout="@layout/wushuju"
+        android:visibility="gone"
+        />
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/xianjinjuan_rview"
         android:layout_width="match_parent"

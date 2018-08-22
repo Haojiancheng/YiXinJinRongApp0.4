@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -353,7 +354,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                             Toast.makeText(YanZheng_PaGa.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
                             if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")) {
                                 huoqu_yanzhengma.setText("明天再试");
-                                huoqu_yanzhengma.setBackgroundResource(R.color.gray);
+                                huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_shape);
                             }
                         }
                     }
@@ -433,16 +434,17 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
         @Override
         public void onTick(long millisUntilFinished) {
-//            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#B6B6D8"));
+//            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#cccccc"));
+            huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_huise);
             huoqu_yanzhengma.setClickable(false);
-            huoqu_yanzhengma.setText("(" + millisUntilFinished / 1000 + ") 秒后可重新发送");
+            huoqu_yanzhengma.setText("再次发送(" + millisUntilFinished / 1000 + ") ");
         }
 
         @Override
         public void onFinish() {
-            huoqu_yanzhengma.setText("重新获取验证码");
+            huoqu_yanzhengma.setText("再次发送");
             huoqu_yanzhengma.setClickable(true);
-//            huoqu_yanzhengma.setBackgroundColor(Color.parseColor());
+            huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_shape);
 
         }
     }

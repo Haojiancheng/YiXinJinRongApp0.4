@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -20,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -42,6 +44,8 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     private int a=1;
     private String loginid;
     private String token;
+    private View jiaxi_wushuju;
+    private TextView wnr_text;
 
     @Nullable
     @Override
@@ -74,7 +78,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e("TAG", ">>>>base加密11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -89,7 +93,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/couponinformation.do")
+                .url(Urls.BASE_URL+"yxbApp/queryAll.do")
                 .content(canshu.toString())
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
@@ -103,9 +107,21 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
                     public void onResponse(String response, int id) {
                         Log.e("加息卷GSON", response);
                         JiaXiJuan_Gson data = new Gson().fromJson(response, JiaXiJuan_Gson.class);
-                        mlist.addAll(data.getQueryVouchersList());
+                        if (data.getMessage().equals("成功了")) {
+                            if (data.getQueryVouchersList().size() <= 0) {
+                                jiaxi_wushuju.setVisibility(View.VISIBLE);
+                                wnr_text.setText("暂无可用加息卷");
+                            } else {
+                                jiaxi_wushuju.setVisibility(View.GONE);
+                                mlist.addAll(data.getQueryVouchersList());
 
-                        myadapter.notifyDataSetChanged();
+                                myadapter.notifyDataSetChanged();
+                            }
+                        }else {
+                            ToastUtils.showToast(getActivity(),data.getMessage() );
+                            jiaxi_wushuju.setVisibility(View.VISIBLE);
+                            wnr_text.setText(""+data.getMessage());
+                        }
                     }
                 });
     }
@@ -113,13 +129,15 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     private void getid() {
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         token = (String) SPUtils.get(getActivity(), "Token1", "");
+        jiaxi_wushuju=getActivity().findViewById(R.id.jiaxi_wushuju);
+        wnr_text=getActivity().findViewById(R.id.wnr_text);
         jiaxi_rview = getActivity().findViewById(R.id.jiaxi_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         jiaxi_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         jiaxi_rview.setLoadingListener(this);
         jiaxi_rview.setPullRefreshEnabled(true);
-        jiaxi_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        jiaxi_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulse);
         jiaxi_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
     }
 
@@ -136,6 +154,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     public void onLoadMore() {
         a++;
         getHttp();
+        jiaxi_rview.setNoMore(true);//数据加载完成
         jiaxi_rview.loadMoreComplete();
     }
 }

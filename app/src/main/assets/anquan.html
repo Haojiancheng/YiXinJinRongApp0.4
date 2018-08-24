@@ -10,7 +10,7 @@
 <body>
 <div id="anquan">
     <header id="anquan-header"style="display:block;">
-        <span class="goback icon-goback"></span>
+        <span class="goback icon-goback" id="backBtn"></span>
         <span class="txt-header">安全保障</span>
     </header>
     <section class="anquan-content">             
@@ -92,25 +92,9 @@
         </div>
     </section>
 </div>
-</body>
+</body><script src="js/jquery-1.10.1.min.js"></script>
+<script src="./js/carry.js"></script>
 <script>
-    (function (doc, win) {
-        var docEl = doc.documentElement,
-                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-                recalc = function () {
-                    var clientWidth = docEl.clientWidth;
-                    if (!clientWidth) return;
-                    if(clientWidth>=750){
-                        docEl.style.fontSize = '100px';
-                    }else{
-                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-                    }
-                };
-
-        if (!doc.addEventListener) return;
-        win.addEventListener(resizeEvt, recalc, false);
-        doc.addEventListener('DOMContentLoaded', recalc, false);
-    })(document, window);
 
     $("#backBtn").click(function(){
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
@@ -121,7 +105,6 @@
         }
         return false
     });
-
 </script>
 
 </html>

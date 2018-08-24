@@ -150,4 +150,10 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         myphonet.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
         zhaohui_image=findViewById(R.id.zhaohui_image);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy();
+    }
 }

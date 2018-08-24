@@ -26,7 +26,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="35px"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -35,7 +35,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:text="项目基本信息"
-
+                        android:layout_marginTop="10px"
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
@@ -354,6 +354,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
+                    android:layout_marginBottom="20px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -800,6 +801,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
+                android:layout_marginBottom="20px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -1276,6 +1278,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
+                    android:layout_marginBottom="20px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1716,6 +1719,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
+                    android:layout_marginBottom="20px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1988,6 +1992,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
+                android:layout_marginBottom="20px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -2170,6 +2175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
+                    android:layout_marginBottom="20px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2240,6 +2246,7 @@
                         android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                          />
@@ -2253,6 +2260,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2279,6 +2287,7 @@
 
 
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2290,6 +2299,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2320,6 +2330,7 @@
                         android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2331,6 +2342,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2357,6 +2369,7 @@
 
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2368,6 +2381,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2400,6 +2414,7 @@
                         android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2411,6 +2426,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2435,6 +2451,7 @@
                         android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2446,6 +2463,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2478,6 +2496,7 @@
                         android:drawableLeft="@drawable/yirenzheng"
                         android:paddingRight="1px"
                         android:text="已认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                     <TextView
@@ -2489,6 +2508,7 @@
                         android:drawableLeft="@drawable/weirenzheng"
                         android:paddingRight="1px"
                         android:text="未认证"
+                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
                         android:visibility="gone"
@@ -2522,6 +2542,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
+                    android:layout_marginBottom="20px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2549,6 +2570,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
+                android:layout_marginBottom="20px"
                 android:background="#fbfcfd"
                 android:orientation="vertical">
 

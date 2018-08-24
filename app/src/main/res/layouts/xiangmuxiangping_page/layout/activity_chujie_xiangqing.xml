@@ -196,11 +196,13 @@
                 android:textColor="#333333"
                 />
             <ImageView
+                android:id="@+id/iv43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/yiwen"
                 android:layout_marginLeft="10px"
                 android:layout_toRightOf="@+id/xq_huankuan"
+
                 />
         </RelativeLayout>
     </LinearLayout>

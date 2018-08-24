@@ -51,11 +51,13 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private String loginid;
     private String token;
     private ImageView sm_fh;
+    public static ShiMingrenzheng instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shi_mingrenzheng);
+        instance=this;
 //        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) { //适配华为手机虚拟键遮挡tab的问题
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));//需要在setContentView()方法后面执行
 //        }
@@ -63,8 +65,8 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 .transparentBar()
                 .fullScreen(false)
                 .init();
-        Bundle b = getIntent().getExtras();
-        user_ird = b.getInt("user_ird");
+//        Bundle b = getIntent().getExtras();
+//        user_ird = b.getInt("user_ird");
         getzhen_id();
         getonrenzheng();
         sm_fh.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +159,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private void getzhen_id() {
         loginid = (String) SPUtils.get(ShiMingrenzheng.this, "Loginid", "");
         token = (String) SPUtils.get(ShiMingrenzheng.this, "Token1", "");
+        user_ird = (int) SPUtils.get(ShiMingrenzheng.this, "userId", 0);
         zhen_name=findViewById(R.id.zhen_name);
         user_idcard=findViewById(R.id.user_idcard);
         renzheng_goin=findViewById(R.id.renzheng_goin);

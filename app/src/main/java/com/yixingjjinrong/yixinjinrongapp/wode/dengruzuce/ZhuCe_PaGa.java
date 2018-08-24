@@ -49,6 +49,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
     private String phonezhuangtai;
     private TextView zz_h5, zz_dr;
     private CheckBox zc_check;//复选框
+    public static ZhuCe_PaGa zc_instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
 //        }
         setContentView(R.layout.activity_zhuce__pa_ga);
+        zc_instance=this;
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)

@@ -2,6 +2,7 @@
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
@@ -90,10 +91,11 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/guanbi"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="30px"
                     android:visibility="gone"
                     />
             </LinearLayout>
-            
+
         </LinearLayout>
 
         <View
@@ -156,8 +158,9 @@
                     android:id="@+id/dr_togglePwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="30px"
+                    android:layout_marginEnd="60px"
                     android:background="@null"
+
                     android:textOff=""
                     android:textOn="" />
 
@@ -188,14 +191,15 @@
         <Button
             android:id="@+id/dengru_goin"
             android:layout_width="690px"
-            android:layout_height="90px" 
+            android:layout_height="90px"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bt_shape"
             android:layout_marginTop="90px"
             android:text="登录"
             android:textSize="38px"
             android:textColor="#fdfdfc"
-            />
+            style="?android:attr/borderlessButtonStyle"
+        />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -236,20 +240,20 @@
         >
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:src="@drawable/yinhanglogo"
             android:visibility="gone"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:text="用户资金安全由恒丰银行提供保障"
             android:textColor="#999"
             android:textSize="24px"
             android:layout_marginLeft="16px"
             android:visibility="gone"
             />
-        
+
     </LinearLayout>
 
 

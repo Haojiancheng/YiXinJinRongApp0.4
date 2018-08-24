@@ -47,7 +47,7 @@ public class ChongZhq extends AutoLayoutActivity {
     private TextView yh_name, yh_number, cz_keyong;
     private ImageView yh_img;
     private EditText cz_money;
-    private String keyong;
+
     private int user_id;
     private Button cz_ok;
     private View yhcard;
@@ -140,8 +140,6 @@ public class ChongZhq extends AutoLayoutActivity {
                                 }
                             });
                         } else {
-
-
                             yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
                                 AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)

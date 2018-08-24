@@ -13,11 +13,11 @@
         android:orientation="vertical">
         <Button
             android:id="@+id/yonghudengru"
-            android:layout_width="450px"
-            android:layout_height="100px"
-            android:background="@drawable/bt_biankuang"
+            android:layout_width="340px"
+            android:layout_height="80px"
+            android:background="@drawable/bt_biankuanghuise"
             android:text="登录/注册"
-            android:textSize="55px"
+            android:textSize="32px"
             android:textColor="#ffffff"
             />
 

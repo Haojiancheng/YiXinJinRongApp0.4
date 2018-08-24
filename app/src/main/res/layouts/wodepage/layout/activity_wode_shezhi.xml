@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#f3f3f3" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#f3f3f3" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -198,7 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginLeft="30px"
-            android:background="#adadad" />
+            android:background="#f3f3f3" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -237,15 +237,24 @@
         </RelativeLayout>
         
     </LinearLayout>
-   <Button
-       android:id="@+id/user_tuichu"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="安全退出"
-       android:textSize="30px"
-       android:textColor="#fe6623"
-       android:background="#fdfdfe"
-       android:layout_marginTop="40px"
-       />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginTop="40px"
+        android:background="#fbfcfd"
+        >
+        <Button
+            android:id="@+id/user_tuichu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="安全退出"
+            android:textSize="30px"
+            android:textColor="#fe6623"
+            android:background="@null"
+
+
+            />
+    </LinearLayout>
+
 
 </com.zhy.autolayout.AutoLinearLayout>

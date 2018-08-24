@@ -6,11 +6,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".wode.dengruzuce.YinHangCunGuan">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/kaitongzg_fh"
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/jiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="60px"
+            android:text="开通存管"
+            android:textColor="#363636"
+            android:textSize="38px" />
+    </RelativeLayout>
     <WebView
         android:id="@+id/cg_wb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="45px"
         ></WebView>
 
 </com.zhy.autolayout.AutoLinearLayout>

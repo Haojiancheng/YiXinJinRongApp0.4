@@ -6,11 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".wode.xiaoxi.XiaoXi_XiangQing">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="#fdfdfe"
+        >
+
+        <ImageView
+            android:id="@+id/xxxp_fh"
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/jiantou" />
+
+
+        <TextView
+            android:id="@+id/xx_xq_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="251px"
+            android:paddingTop="60px"
+            android:textColor="#333"
+            android:textSize="38px" />
+    </RelativeLayout>
+
     <WebView
         android:id="@+id/xxweb"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="45px"
+        android:layout_marginTop="20px"
         ></WebView>
 
 </LinearLayout>

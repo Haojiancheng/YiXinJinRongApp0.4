@@ -9,7 +9,7 @@
         android:layout_height="300px"
         android:background="#fdfdfe"
         android:descendantFocusability="blocksDescendants"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="2px"
         android:orientation="vertical">
 
         <LinearLayout
@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/myima"
-                android:layout_width="30px"
-                android:layout_height="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
                 android:layout_marginTop="26px"
                 android:src="@drawable/fangchandiya" />
@@ -44,10 +44,10 @@
                 android:text="X18D10193" />
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#dadada" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="#dadada" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

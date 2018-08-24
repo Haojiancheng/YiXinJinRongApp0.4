@@ -3,6 +3,8 @@ package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -95,6 +97,27 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 getHttP_YAnzhengMA();
             }
         });
+        news_mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    zhyz_yj_image.setVisibility(View.VISIBLE);
+                }else {
+                    zhyz_yj_image.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         queding_zhaohui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

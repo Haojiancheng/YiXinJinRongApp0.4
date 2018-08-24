@@ -9,7 +9,7 @@
         android:layout_height="100px"
         android:orientation="horizontal"
         android:background="#f3f5f3"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="2px"
         >
 
         <LinearLayout
@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="chujie"
+                android:layout_marginTop="20px"
                 android:textColor="#333333"
                 android:textSize="30px"
                 />

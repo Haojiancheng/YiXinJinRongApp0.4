@@ -444,8 +444,8 @@
                     android:background="#dadada" />
 
                 <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="40px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="34px"
                     android:src="@drawable/huadong" />

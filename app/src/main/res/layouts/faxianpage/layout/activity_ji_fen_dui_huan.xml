@@ -46,6 +46,7 @@
                 android:text="赚取积分攻略"
                 android:layout_marginRight="30px"
                 android:textColor="#ffffff"
+                android:layout_marginBottom="20px"
                 android:textSize="28px" />
 
         </RelativeLayout>
@@ -53,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            android:text="积分兑换"
+            android:text="我的积分"
             android:layout_gravity="center_horizontal"
             android:textSize="24px"
             android:textColor="#ffc0a5"

@@ -16,8 +16,8 @@ public class MyYaoQing extends AutoLayoutActivity {
 
     private String mancount;
     private String countmoney;
-    private TextView mycountmoney,mymancount,yaoqingxiangqing;
-    private ImageView yq_fh;
+    private TextView mycountmoney, mymancount, yaoqingxiangqing;
+    private ImageView yq_fh, guize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +45,31 @@ public class MyYaoQing extends AutoLayoutActivity {
         yaoqingxiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(MyYaoQing.this, YaoQingXiangQing.class);
+                Intent it = new Intent(MyYaoQing.this, YaoQingXiangQing.class);
                 startActivity(it);
             }
         });
+        guize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MyYaoQing.this, HuoDong_GuiZe.class);
+                startActivity(it);
+
+            }
+        });
+
     }
 
     private void getinterview() {
-        Intent it=getIntent();
+        Intent it = getIntent();
         mancount = it.getStringExtra("mancount");
         countmoney = it.getStringExtra("countmoney");
-        mycountmoney=findViewById(R.id.mycount_money);
-        mymancount=findViewById(R.id.mymancount);
-        yaoqingxiangqing=findViewById(R.id.yaoqingxiangqing);
+        mycountmoney = findViewById(R.id.mycount_money);
+        mymancount = findViewById(R.id.mymancount);
+        yaoqingxiangqing = findViewById(R.id.yaoqingxiangqing);
         mycountmoney.setText(countmoney);
         mymancount.setText(mancount);
-        yq_fh=findViewById(R.id.yq_fh);
+        yq_fh = findViewById(R.id.yq_fh);
+        guize = findViewById(R.id.guize);
     }
 }

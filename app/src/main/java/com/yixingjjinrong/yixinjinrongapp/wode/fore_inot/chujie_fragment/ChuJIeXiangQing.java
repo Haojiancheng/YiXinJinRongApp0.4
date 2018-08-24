@@ -1,11 +1,16 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -38,7 +43,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
     private ImageView out_img;
     private TextView out_title,xq_huankuan,out_money,out_time,out_lv,out_jia,out_fujia,out_qishu,out_timea,out_huikuan,out_jiekuan,out_tishibook,out_hefabook,out_weituobook;
     private String type;
-    private ImageView wo_cjxq_fh;
+    private ImageView wo_cjxq_fh,iv43;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,30 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
             }
         });
 
+        iv43.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shoupopwindow();
+            }
+        });
+
+    }
+
+    private void shoupopwindow() {
+
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(ChuJIeXiangQing.this, R.layout.kuankuan_pop, null);
+        TextView text_pop = popView.findViewById(R.id.text_pop);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow;
+        popWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popWindow.setBackgroundDrawable(new BitmapDrawable());
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
+        text_pop.setText("按月付息，到期还本");
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
     private void gethttp() {
@@ -139,6 +168,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(this,"userId",0);
         String token1 = (String) SPUtils.get(this, "Token1", "");
         String loginid = (String) SPUtils.get(this, "Loginid", "");
+        iv43=findViewById(R.id.iv43);
         Intent it=getIntent();
         borrowid = it.getStringExtra("borrowid");
         investid = it.getStringExtra("investid");

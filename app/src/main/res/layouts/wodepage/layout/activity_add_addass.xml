@@ -35,9 +35,17 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fdfdfe"
+        android:layout_marginTop="20px"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="100px"
         android:orientation="horizontal"
         android:layout_marginTop="20px"
+
         >
         <TextView
             android:layout_width="wrap_content"
@@ -148,11 +156,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="详细地址"
             android:layout_marginLeft="30px"
             android:textColor="#333333"
             android:textSize="30px"
+
             />
 
         <EditText
@@ -160,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14px"
-            android:layout_marginTop="36px"
+            android:layout_marginTop="26px"
             android:background="@null"
             android:hint="请输入详细地址信息，如道路、小区、楼栋号、单元室、门牌号等"
             android:textAlignment="textStart"
@@ -173,6 +181,7 @@
         android:background="#adadad"
         android:layout_marginLeft="30px"
         />
+    </LinearLayout>
     <Button
         android:id="@+id/add_ok"
         android:layout_width="690px"

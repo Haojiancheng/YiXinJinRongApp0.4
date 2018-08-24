@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30px"
-            android:text="我已经阅读并同意"
+            android:text="我已阅读并同意"
             android:textColor="#999"
             android:textSize="28px" />
 

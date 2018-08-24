@@ -1,12 +1,19 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -16,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.wangdaiClass.Class_xiangqing;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -37,17 +45,30 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
     private WebView xxweb;
     private String loginid;
     private String token;
+    private ImageView xxxp_fh;
+    private TextView xx_xq_title;
+    private String xqtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        }
         setContentView(R.layout.activity_xiaoxi_xiangqing);
-
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .keyboardEnable(true)
+                .init();
         getxx_xqid();
         getxxxqHTTP();
+        xxxp_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getxxxqHTTP() {
@@ -107,7 +128,27 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         token = (String) SPUtils.get(XiaoXi_XiangQing.this, "Token1", "");
         Bundle b = getIntent().getExtras();
         xx_ird = b.getInt("xx_ird");
+        Intent it=getIntent();
+        xqtitle = it.getStringExtra("xqtitle");
         user_id = (int) SPUtils.get(XiaoXi_XiangQing.this,"userId",0);
         xxweb=findViewById(R.id.xxweb);
+        xxxp_fh=findViewById(R.id.xxxp_fh);
+        xx_xq_title=findViewById(R.id.xx_xq_title);
+        xx_xq_title.setText(xqtitle);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //清空所有Cookie
+        CookieSyncManager.createInstance(XiaoXi_XiangQing.this);  //Create a singleton CookieSyncManager within a context
+        CookieManager cookieManager = CookieManager.getInstance(); // the singleton CookieManager instance
+        cookieManager.removeAllCookie();// Removes all cookies.
+        CookieSyncManager.getInstance().sync(); // forces sync manager to sync now
+
+        xxweb.setWebChromeClient(null);
+        xxweb.setWebViewClient(null);
+        xxweb.getSettings().setJavaScriptEnabled(false);
+        xxweb.clearCache(true);
+
     }
 }

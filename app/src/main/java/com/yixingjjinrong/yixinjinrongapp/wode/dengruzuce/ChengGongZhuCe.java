@@ -46,6 +46,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private String logid;
     private String token;
     private ImageView zhucefanhui;
+    public static ChengGongZhuCe instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
 //        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
 //        }
+        instance=this;
         setContentView(R.layout.activity_chenggong_zhuce);
         ImmersionBar.with(this)
                 .transparentBar()
@@ -100,6 +102,9 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     }
 
     private void getconrHttp() {
+        SPUtils.put(ChengGongZhuCe.this, "username", shoujihao);
+        SPUtils.put(ChengGongZhuCe.this, "password", password);
+        SPUtils.put(ChengGongZhuCe.this, "url", myurl);
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", userid1);
@@ -159,6 +164,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             js_request.put("username", shoujihao);
             js_request.put("password", password);
             js_request.put("url", myurl);
+
             Log.e("成功注册(登入)：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
@@ -198,7 +204,13 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                         String loginId = d_data.getResult().getLoginId();
                         if (dengrufanhuizhi.equals("success")) {
                             EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
+                            SPUtils.put(ChengGongZhuCe.this, "isLogin", true);
                             SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
+                            SPUtils.put(ChengGongZhuCe.this, "userId", user_id);
+                            SPUtils.put(ChengGongZhuCe.this, "Token1", user_token);
+                            ZhuCe_PaGa.zc_instance.finish();
+                            YanZheng_PaGa.instance.finish();
+                            WoDe_DengRu.instance.finish();
                             finish();
                         }
                     }

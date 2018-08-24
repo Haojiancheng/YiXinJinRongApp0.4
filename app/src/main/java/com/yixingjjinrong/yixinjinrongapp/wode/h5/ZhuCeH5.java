@@ -12,7 +12,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-public class ZhuCeH5 extends AutoLayoutActivity {
+public class  ZhuCeH5 extends AutoLayoutActivity {
     private android.webkit.WebView wb;
     private ImageView zucexy_fh;
 

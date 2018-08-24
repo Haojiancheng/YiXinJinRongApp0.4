@@ -114,6 +114,7 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
                                 Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putInt("xx_ird", list.get(position).getId());
+                                it.putExtra("xqtitle",list.get(position).getMailTitle());
                                 it.putExtras(bundle);
                                 startActivity(it);
                             }

@@ -56,7 +56,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull XiangMu_Adapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final XiangMu_Adapter.MyViewHolder holder, final int position) {
         holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.years_lilv.setText(String.valueOf(list.get(position).getSubsidies()));
@@ -79,6 +79,17 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
         }
         int borrowStatus = list.get(position).getBorrowStatus();
         holder.chujie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener != null) {
+                    onEveryItemClickListener.onEveryClick(position);
+                }
+
+
+
+            }
+        });
+        holder.shouye_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onEveryItemClickListener != null) {
@@ -160,6 +171,8 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
         TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian;
         Button chujie;
         ImageView xiangmu_src;
+        View shouye_two;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -172,6 +185,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
             qixian = itemView.findViewById(R.id.qixian);
             chujie = itemView.findViewById(R.id.chujie);
             xiangmu_src = itemView.findViewById(R.id.xiangmu_src);
+            shouye_two = itemView.findViewById(R.id.shouye_two);
 
         }
     }

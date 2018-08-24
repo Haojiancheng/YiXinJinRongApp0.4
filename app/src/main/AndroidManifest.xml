@@ -104,7 +104,9 @@
         <activity android:name=".xiangmuyemian.shouye.xiaoxi.ShouYe_GongGao" />
         <activity android:name=".xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong" />
         <activity android:name=".wode.yinghancunguan_jieguo.CunGuan_succser" />
-        <activity android:name=".wode.yinghancunguan_jieguo.CunGuan_lose"></activity>
+        <activity android:name=".wode.yinghancunguan_jieguo.CunGuan_lose" />
+        <activity android:name=".xiangmuyemian.wangdaiClass.Class_xiangqing" />
+        <activity android:name=".wode.yaoqing.HuoDong_GuiZe"></activity>
     </application>
 
 </manifest>

@@ -6,21 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
-import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 import com.yixingjjinrong.yixinjinrongapp.wode.yinghancunguan_jieguo.CunGuan_lose;
 import com.yixingjjinrong.yixinjinrongapp.wode.yinghancunguan_jieguo.CunGuan_succser;
@@ -33,15 +30,26 @@ public class YinHangCunGuan extends AutoLayoutActivity {
     private ArrayList<String> ss = new ArrayList<>();
     private String receiveCode;
     private String retCode;
+    private ImageView kaitongzg_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-        }
         setContentView(R.layout.activity_yinhang_cunguan);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .statusBarDarkFont(true)
+                .init();
+        kaitongzg_fh=findViewById(R.id.kaitongzg_fh);
         cg_wb=findViewById(R.id.cg_wb);
+        kaitongzg_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         Intent it=getIntent();
         String htlm = it.getStringExtra("HTML");
         Log.e("开通存管HTML:",""+htlm);

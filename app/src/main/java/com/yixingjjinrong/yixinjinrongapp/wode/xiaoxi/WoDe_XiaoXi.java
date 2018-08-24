@@ -1,12 +1,16 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi;
 
+import android.content.res.Resources;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -24,6 +28,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class WoDe_XiaoXi extends AutoLayoutActivity {
@@ -60,7 +65,37 @@ public class WoDe_XiaoXi extends AutoLayoutActivity {
             }
         });
     }
+//
+ public void setIndicator (TabLayout tabs,int leftDip,int rightDip) {
+     Class<?> tabLayout = tabs.getClass();
+     Field tabStrip = null;
+     try {
+         tabStrip = tabLayout.getDeclaredField("mTabStrip");
+     } catch (NoSuchFieldException e) {
+         e.printStackTrace();
+     }
 
+     tabStrip.setAccessible(true);
+     LinearLayout llTab = null;
+     try {
+         llTab = (LinearLayout) tabStrip.get(tabs);
+     } catch (IllegalAccessException e) {
+         e.printStackTrace();
+     }
+
+     int left = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, leftDip, Resources.getSystem().getDisplayMetrics());
+     int right = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rightDip, Resources.getSystem().getDisplayMetrics());
+
+     for (int i = 0; i < llTab.getChildCount(); i++) {
+         View child = llTab.getChildAt(i);
+         child.setPadding(0, 0, 0, 0);
+         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+         params.leftMargin = left;
+         params.rightMargin = right;
+         child.setLayoutParams(params);
+         child.invalidate();
+     }
+ }
     private void getid() {
         xx_fh=findViewById(R.id.xx_fh);
         xx_vp=findViewById(R.id.xx_vp);
@@ -72,10 +107,18 @@ public class WoDe_XiaoXi extends AutoLayoutActivity {
 
         list_title.add("消息");
         list_title.add("公告");
+//        reduceMarginsInTabs(xx_tab, 2);
+//        xx_tab.setTabsFromPagerAdapter(pagerAdapter);
         pagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), this, list_fragment, list_title);
         xx_vp.setAdapter(pagerAdapter);
         xx_tab.setupWithViewPager(xx_vp);
         xx_tab.setTabMode(TabLayout.MODE_FIXED);
+        xx_tab.post(new Runnable() {
+            @Override
+            public void run() {
+                setIndicator(xx_tab,60,60);
+            }
+        });
         xx_vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

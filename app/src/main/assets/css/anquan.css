@@ -121,7 +121,7 @@
         /*贷前审查*/
         .anquan-content .content-asset .asset-examine{
             width: 100%;
-            height: 9.8rem;
+            height: 10.5rem;
             -webkit-tap-highlight-color: transparent;
             box-sizing: border-box;
         }
@@ -153,9 +153,9 @@
             padding-top: 0.3rem;
         }
         .anquan-content .content-asset .asset-examine .examine-one{
-            border:0.01rem solid #dadada;
+            border:0.02rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.18rem;
+            height: 4.5rem;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
@@ -179,9 +179,9 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-two{
-            border:0.01rem solid #dadada;
+            border:0.02rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.18rem;
+            height: 4.5rem;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
@@ -204,9 +204,9 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-three{
-            border:0.01rem solid #dadada;
+            border:0.02rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.18rem;
+            height: 4.5rem;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
@@ -229,9 +229,9 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-four{
-            border:0.01rem solid #dadada;
+            border:0.02rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.18rem;
+            height: 4.5rem;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;

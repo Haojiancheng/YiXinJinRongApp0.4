@@ -14,7 +14,6 @@
             android:id="@+id/text_pop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sdhgfsdhfgsldkhf"
             android:textSize="28px"
             android:textColor="#333333"
             android:layout_marginTop="50px"

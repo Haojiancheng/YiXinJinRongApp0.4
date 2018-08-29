@@ -121,11 +121,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        EventBus.getDefault().register(this);//注册
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {   //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));  //需要在setContentView()方法后面执行
-//        }
-
         setContentView(R.layout.xiaomuxiangqing);
         ImmersionBar.with(this)
                 .transparentBar()

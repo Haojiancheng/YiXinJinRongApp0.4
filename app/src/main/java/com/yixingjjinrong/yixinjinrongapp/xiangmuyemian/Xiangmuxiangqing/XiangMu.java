@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -72,9 +73,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         xRecyclerView.setLoadingListener(this);
         xRecyclerView.setPullRefreshEnabled(true);
-        xRecyclerView.setLoadingMoreEnabled(true);
-        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+//        xRecyclerView.setLoadingMoreEnabled(true);
+//        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotateMultiple);
         adapter = new XiangMu_Adapter(list, getActivity());
         xRecyclerView.setAdapter(adapter);
 
@@ -114,7 +115,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         promptDialog.dismiss();
-                        ToastUtils.showToast(getActivity(),"网络错误，请稍后再试" );
+                        ToastUtils.showToast(getActivity(), "网络错误，请稍后再试");
                     }
 
                     @Override
@@ -142,6 +143,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                 });
 
     }
+
     @Subscribe
     public void lookMore(LookMore2 lookMore2) {
         this.onRefresh();
@@ -160,7 +162,13 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
     public void onLoadMore() {
         a++;
         getHttp();
-        xRecyclerView.loadMoreComplete();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                xRecyclerView.loadMoreComplete();
+            }
+        }, 2000);
+
     }
 
     @Override

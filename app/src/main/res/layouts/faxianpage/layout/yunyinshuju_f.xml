@@ -64,6 +64,7 @@
                     android:background="#dadada" />
 
                 <TextView
+                    android:id="@+id/pt_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
@@ -79,6 +80,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/liejimoney"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
@@ -88,6 +90,7 @@
                         android:textSize="34px" />
 
                     <TextView
+                        android:id="@+id/leijibishu"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -127,6 +130,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/lixiyue"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
@@ -136,6 +140,7 @@
                         android:textSize="34px" />
 
                     <TextView
+                        android:id="@+id/jiedaiyue"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -175,6 +180,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/jiedeiyuebishu"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
@@ -184,6 +190,7 @@
                         android:textSize="34px" />
 
                     <TextView
+                        android:id="@+id/guanlianyue"
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -223,6 +230,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/huanxibishu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
@@ -271,6 +279,7 @@
                         android:textSize="30px" />
 
                     <TextView
+                        android:id="@+id/cjyonghu_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -288,6 +297,7 @@
                     android:background="#dadada" />
 
                 <TextView
+                    android:id="@+id/ren_num"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
@@ -320,6 +330,7 @@
                                 android:src="@drawable/shuliang" />
 
                             <TextView
+                                android:id="@+id/dqchujieren"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -350,6 +361,7 @@
                                 android:src="@drawable/chujiejine" />
 
                             <TextView
+                                android:id="@+id/renjunchujie_money"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -386,6 +398,7 @@
                                 android:src="@drawable/baifenbi" />
 
                             <TextView
+                                android:id="@+id/max_danyue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -415,6 +428,7 @@
                                 android:src="@drawable/baifenbi1" />
 
                             <TextView
+                                android:id="@+id/max_ten_money"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -465,6 +479,7 @@
                         android:textSize="30px" />
 
                     <TextView
+                        android:id="@+id/jkyonghu_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -482,11 +497,12 @@
                     android:background="#dadada" />
 
                 <TextView
+                    android:id="@+id/ljjiekuan_numb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30px"
                     android:layout_marginTop="30px"
-                    android:text="亿信宝累计出借人数量为14,460人。"
+                    android:text="亿信宝累计借款人数量为14,460人。"
                     android:textColor="#333333"
                     android:textSize="28px" />
 
@@ -514,6 +530,7 @@
                                 android:src="@drawable/shuliang" />
 
                             <TextView
+                                android:id="@+id/dqjiekuanren"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -544,6 +561,7 @@
                                 android:src="@drawable/jiekuanjine" />
 
                             <TextView
+                                android:id="@+id/ljjiekuan_money"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -580,6 +598,7 @@
                                 android:src="@drawable/baifenbi" />
 
                             <TextView
+                                android:id="@+id/max_danjiekuanyue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -609,6 +628,7 @@
                                 android:src="@drawable/baifenbi1" />
 
                             <TextView
+                                android:id="@+id/max_ten_jiekuanyue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="24px"
@@ -666,6 +686,7 @@
                     android:background="#dadada" />
 
                 <TextView
+                    android:id="@+id/yuequshuju_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -689,6 +710,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/ljdaichangjine"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" 
                         android:text="2875.33元"
@@ -719,6 +741,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/ljdaichangbishu"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="19笔"
@@ -749,6 +772,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/yuqi_money"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00元"
@@ -779,6 +803,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/yuqibishu"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0笔"
@@ -809,6 +834,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/jineyueqilv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -833,12 +859,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="金额逾期率"
+                        android:text="项目逾期率"
                         android:layout_marginLeft="30px"
                         android:textColor="#999999"
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/xiangmuyueqilv"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -869,6 +896,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/jine90"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00元"
@@ -899,6 +927,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/bishu90"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00笔"
@@ -929,6 +958,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/xiangmufenji90"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -959,6 +989,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/xiangmufenji180"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -989,6 +1020,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/xiangmufenji181"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -1019,6 +1051,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/jinefenji90"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -1049,6 +1082,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/jinefenji180"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"
@@ -1079,6 +1113,7 @@
                         android:textSize="24px"
                         />
                     <TextView
+                        android:id="@+id/jinefenji181"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="0.00%"

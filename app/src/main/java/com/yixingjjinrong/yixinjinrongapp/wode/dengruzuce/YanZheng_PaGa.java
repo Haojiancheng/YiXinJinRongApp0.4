@@ -282,7 +282,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     public void onResponse(String result, int id) {
                         Log.e("TAG", ">>>>z成功" + result);
                         ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
-                        if (date.getMessage().equals("注册成功!")) {
+                        if (date.getMessage().equals("注册成功")) {
                             int userid = date.getResult().getUserid();
                             Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);

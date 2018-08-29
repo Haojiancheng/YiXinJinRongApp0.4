@@ -389,7 +389,7 @@
                     android:id="@+id/cb_fuxuankuang"
                     android:layout_width="wrap_content"
                     android:layout_height="80px"
-                    android:layout_marginLeft="15px"
+                    android:layout_marginLeft="30px"
                     android:text="我已阅读并同意"
 
                     android:textColor="#333333"
@@ -397,13 +397,13 @@
 
                 <TextView
                     android:id="@+id/wangdaitishishu"
-                    android:layout_width="520px"
+                    android:layout_width="500px"
                     android:layout_height="80px"
                     android:layout_marginLeft="10px"
                     android:gravity="center_vertical"
                     android:text="《网络借贷风险和禁止行为提示书》、"
                     android:textColor="#078dcf"
-                    android:textSize="25px" />
+                    android:textSize="24px" />
             </LinearLayout>
 
             <LinearLayout
@@ -415,10 +415,10 @@
                     android:id="@+id/zijinlaiyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="60px"
-                    android:layout_marginLeft="85px"
+                    android:layout_marginLeft="55px"
                     android:text="《资金来源合法承诺书》、"
                     android:textColor="#078dcf"
-                    android:textSize="25px" />
+                    android:textSize="24px" />
 
                 <TextView
                     android:id="@+id/dianziqianzhang"
@@ -427,7 +427,7 @@
 
                     android:text="《个人电子签章授权委托书》"
                     android:textColor="#078dcf"
-                    android:textSize="25px" />
+                    android:textSize="24px" />
             </LinearLayout>
 
 

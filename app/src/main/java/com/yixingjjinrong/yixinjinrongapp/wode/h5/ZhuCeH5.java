@@ -44,4 +44,10 @@ public class  ZhuCeH5 extends AutoLayoutActivity {
 
         wb.loadUrl("file:///android_asset/agreement.html");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy();
+    }
 }

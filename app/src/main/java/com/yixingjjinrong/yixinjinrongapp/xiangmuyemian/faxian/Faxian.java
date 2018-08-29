@@ -31,6 +31,7 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.PingTa
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.WangDaiKeTang;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.xinxipilu.XinXiPiLu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.JiFenDuiHuan;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.ShangPingXiangQing;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -98,7 +99,7 @@ public class Faxian extends Fragment {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", "" + result);
+                        Log.e("发现", "" + result);
                         FaXian_Data data = new Gson().fromJson(result, FaXian_Data.class);
                         String paht = data.getResult().getPath();
 
@@ -113,11 +114,12 @@ public class Faxian extends Fragment {
                             @Override
                             public void onEveryClick(int position) {
                                 String awardType = String.valueOf(list.get(position).getAwardType());
-                                //跳实物
-
-
-                                //跳兑换券
-
+                                String speid = String.valueOf(list.get(position).getSpeId());
+                                //跳详情
+                                Intent it=new Intent(getActivity(), ShangPingXiangQing.class);
+                                it.putExtra("awardType", awardType);
+                                it.putExtra("speid", speid);
+                                startActivity(it);
 
                             }
                         });

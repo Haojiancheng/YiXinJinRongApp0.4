@@ -31,7 +31,6 @@ public class Class_xiangqing extends AutoLayoutActivity {
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
-                .statusBarDarkFont(true)
                 .init();
         getid();
         getweb();
@@ -47,31 +46,31 @@ public class Class_xiangqing extends AutoLayoutActivity {
     private void getweb() {
         switch (number){
             case "1":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/whatisPtoP.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/whatisPtoP.do");
                 break;
             case "2":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/commonNouns.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/commonNouns.do");
                 break;
             case "3":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/creditKnowledge.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/creditKnowledge.do");
                 break;
             case "4":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/obligationOfLenders.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/obligationOfLenders.do");
                 break;
             case "5":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/obligationsOfBorrowers.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/obligationsOfBorrowers.do");
                 break;
             case "6":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/obligationOfNetLoanPlatform.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/obligationOfNetLoanPlatform.do");
                 break;
             case "7":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/platformProhibition.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/selectionPlatform.do");
                 break;
             case "8":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/selectionPlatform.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/platformProhibition.do");
                 break;
             case "9":
-                wd_web.loadUrl("http://192.168.1.219:8080/yxb_mobile/yxbApp/interestRateRegulation.do");
+                wd_web.loadUrl(Urls.BASE_URL+"yxbApp/interestRateRegulation.do");
                 break;
         }
 

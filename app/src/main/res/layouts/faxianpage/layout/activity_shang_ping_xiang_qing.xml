@@ -34,12 +34,14 @@
 
 
     <ImageView
+        android:id="@+id/goods_xq_image"
         android:layout_width="match_parent"
         android:layout_height="450px"
 
         />
 
     <TextView
+        android:id="@+id/goods_xq_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
@@ -64,6 +66,7 @@
             android:textSize="34px" />
 
         <TextView
+            android:id="@+id/goods_xq_fen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="120"
@@ -80,6 +83,7 @@
             android:textSize="34px" />
 
         <TextView
+            android:id="@+id/goods_xq_ku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="120"
@@ -94,6 +98,7 @@
         android:background="#adadad" />
 
     <TextView
+        android:id="@+id/goods_xq_describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
@@ -107,6 +112,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/goods_xq_duihuanbt"
             android:layout_width="690px"
             android:layout_height="90px"
             android:layout_alignParentBottom="true"

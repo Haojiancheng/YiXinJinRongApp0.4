@@ -41,6 +41,7 @@ public class Fangchandiya_adapter extends RecyclerView.Adapter<Fangchandiya_adap
     public void onBindViewHolder(@NonNull Fangchandiya_adapter.MyViewHolder holder, final int position) {
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.qixian_chujie.setText(list.get(position).getDeadline());
+        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
         holder.jinge_chujie.setText(String.valueOf(list.get(position).getInvestAmount()));
         holder.years_lilv_chujie.setText(String.valueOf(list.get(position).getAnnualRate()));
         if (list.get(position).getInterest()!=null){
@@ -69,9 +70,10 @@ public class Fangchandiya_adapter extends RecyclerView.Adapter<Fangchandiya_adap
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView  xiangmu_code,years_lilv_chujie,jiahao_chujie,fujia_lilv_chujie,fujia_baihao_chujie,qixian_chujie,jinge_chujie;
+        private TextView  xiangmu_name,xiangmu_code,years_lilv_chujie,jiahao_chujie,fujia_lilv_chujie,fujia_baihao_chujie,qixian_chujie,jinge_chujie;
         public MyViewHolder(View itemView) {
             super(itemView);
+            xiangmu_name=itemView.findViewById(R.id.xiangmu_name);
             xiangmu_code=itemView.findViewById(R.id.xiangmu_code);
             years_lilv_chujie=itemView.findViewById(R.id.years_lilv_chujie);
             jiahao_chujie=itemView.findViewById(R.id.jiahao_chujie);

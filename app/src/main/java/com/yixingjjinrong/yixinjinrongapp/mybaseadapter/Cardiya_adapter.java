@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CarDiYa_Gson;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class Cardiya_adapter extends RecyclerView.Adapter<Cardiya_adapter.MyView
     public void onBindViewHolder(@NonNull Cardiya_adapter.MyViewHolde holder, final int position) {
         holder.xiangmu_code.setText(list.get(position).getBorrowCode());
         holder.qixian_chujie.setText(list.get(position).getDeadline());
+        holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
         Glide.with(context).load(R.drawable.cheliang).into(holder.myima);
         holder.jinge_chujie.setText(String.valueOf(list.get(position).getInvestAmount()));
         holder.years_lilv_chujie.setText(String.valueOf(list.get(position).getAnnualRate()));
@@ -74,10 +76,11 @@ public class Cardiya_adapter extends RecyclerView.Adapter<Cardiya_adapter.MyView
     }
 
     public class MyViewHolde extends RecyclerView.ViewHolder {
-        private TextView xiangmu_code,years_lilv_chujie,jiahao_chujie,fujia_lilv_chujie,fujia_baihao_chujie,qixian_chujie,jinge_chujie;
+        private TextView xiangmu_code,xiangmu_name,years_lilv_chujie,jiahao_chujie,fujia_lilv_chujie,fujia_baihao_chujie,qixian_chujie,jinge_chujie;
         private ImageView myima;
         public MyViewHolde(View itemView) {
             super(itemView);
+            xiangmu_name=itemView.findViewById(R.id.xiangmu_name);
             xiangmu_code=itemView.findViewById(R.id.xiangmu_code);
             years_lilv_chujie=itemView.findViewById(R.id.years_lilv_chujie);
             jiahao_chujie=itemView.findViewById(R.id.jiahao_chujie);

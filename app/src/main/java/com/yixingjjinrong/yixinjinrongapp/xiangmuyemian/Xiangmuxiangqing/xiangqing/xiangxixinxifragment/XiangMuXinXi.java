@@ -751,8 +751,8 @@ public class XiangMuXinXi extends Fragment {
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
         text_pop.setText(data.getResult().getRefund().getPaymentModezi());
-        ColorDrawable dw = new ColorDrawable(0x30000000);
-        popWindow.setBackgroundDrawable(dw);
+//        ColorDrawable dw = new ColorDrawable(0x30000000);
+//        popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
 
     }

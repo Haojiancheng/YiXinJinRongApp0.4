@@ -158,6 +158,18 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
                             list.addAll(data.getResult().getGoodsList());
                             adapter = new JiFenDuiHUan_adapter(list, paht);
                             jf_goods_rview.setAdapter(adapter);
+                            adapter.setonEveryItemClickListener(new JiFenDuiHUan_adapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    String awardType = String.valueOf(list.get(position).getAwardType());
+                                    String speid = String.valueOf(list.get(position).getSpeId());
+                                    //跳详情
+                                    Intent it=new Intent(JiFenDuiHuan.this, ShangPingXiangQing.class);
+                                    it.putExtra("awardType", awardType);
+                                    it.putExtra("speid", speid);
+                                    startActivity(it);
+                                }
+                            });
                         }else {
                             Toast.makeText(JiFenDuiHuan.this, ""+data.getMessage().toString(), Toast.LENGTH_SHORT).show();
                         }
@@ -178,5 +190,11 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
 
         jifenjilu=findViewById(R.id.jifenjilu);
         duihuanjilu=findViewById(R.id.duihuanjilu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy();
     }
 }

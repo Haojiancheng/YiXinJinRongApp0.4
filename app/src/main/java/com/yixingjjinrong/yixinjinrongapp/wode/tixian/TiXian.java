@@ -25,6 +25,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXianOk_GSON;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXian_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
@@ -65,7 +66,7 @@ public class TiXian extends AutoLayoutActivity {
                 .transparentBar()
                 .fullScreen(false)
                 .init();
-
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getID();
         gethttp();
         tx_fh.setOnClickListener(new View.OnClickListener() {

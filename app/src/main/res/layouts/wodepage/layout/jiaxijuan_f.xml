@@ -6,7 +6,7 @@
     >
     <include
         android:id="@+id/jiaxi_wushuju"
-        layout="@layout/wushuju"
+        layout="@layout/jiaxiwushuj"
         android:visibility="gone"
         />
     <com.jcodecraeer.xrecyclerview.XRecyclerView

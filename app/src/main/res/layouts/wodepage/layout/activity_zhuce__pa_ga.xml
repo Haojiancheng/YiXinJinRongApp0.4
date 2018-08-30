@@ -95,6 +95,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30px"
             android:text="我已阅读并同意"
+            android:button="@drawable/checkbox_style"
+            android:paddingLeft="20px"
             android:textColor="#999"
             android:textSize="28px" />
 

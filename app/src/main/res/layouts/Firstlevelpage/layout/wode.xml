@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/v1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
-    android:id="@+id/v1"
     android:orientation="vertical">
 
     <include
@@ -46,33 +46,42 @@
                 android:textSize="34px" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/chongzhi"
-            android:layout_width="200px"
-            android:layout_height="80px"
-            android:layout_marginLeft="100px"
-            android:layout_marginTop="35px"
-            android:background="@drawable/bt_shape"
-            android:text="充值"
-            android:textColor="#fdfdfe" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/tixian"
-            android:layout_width="200px"
-            android:layout_height="80px"
-            android:layout_marginLeft="40px"
-            android:layout_marginRight="40px"
-            android:layout_marginTop="35px"
-            android:background="@drawable/bt_biankuang"
-            android:text="提现"
-            android:textColor="#fc6623" />
+            <Button
+                android:id="@+id/chongzhi"
+                android:layout_width="160px"
+                android:layout_height="70px"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:layout_toStartOf="@+id/tixian"
+                android:background="@drawable/bt_shape"
+                android:text="充值"
+                android:textColor="#fdfdfe" />
+
+            <Button
+                android:id="@+id/tixian"
+                android:layout_width="160px"
+                android:layout_height="70px"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="40px"
+                android:background="@drawable/bt_biankuang"
+                android:text="提现"
+                android:textColor="#fc6623" />
+        </RelativeLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dadada" />
 
     <include
         android:id="@+id/shiming_my"
         layout="@layout/shimingrenzheng_itme"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <include
         android:id="@+id/yinhangcunguan_my"
@@ -222,8 +231,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/yaoqing"
                     android:layout_marginRight="10px"
+                    android:layout_toLeftOf="@+id/yaoqing"
                     android:paddingLeft="22px"
                     android:text="已邀请"
                     android:textColor="#999999"
@@ -234,8 +243,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/q1"
                     android:layout_marginRight="10px"
+                    android:layout_toLeftOf="@+id/q1"
                     android:text="0"
                     android:textColor="#fe6623"
                     android:textSize="26px" />
@@ -246,8 +255,8 @@
                     android:layout_height="wrap_content"
 
                     android:layout_centerVertical="true"
-                     android:layout_toLeftOf="@+id/e21"
                     android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/e21"
                     android:text="人"
                     android:textColor="#999999"
                     android:textSize="26px" />
@@ -339,6 +348,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/kefuphone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

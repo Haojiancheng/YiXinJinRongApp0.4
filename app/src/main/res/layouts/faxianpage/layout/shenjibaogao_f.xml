@@ -2,11 +2,15 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20px"
+        android:background="#fbfcfd"
         >
         <ImageView
             android:id="@+id/caijing16"
@@ -24,5 +28,11 @@
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#fbfcfd"
+        ></LinearLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

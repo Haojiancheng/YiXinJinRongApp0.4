@@ -46,7 +46,7 @@ public class YunYinShuJu extends Fragment {
 
     private void gethttp() {
         OkHttpUtils.postString()
-                .url("http://192.168.1.219:8080/yxb_mobile/yxbApp/OperationalData.do")
+                .url(Urls.BASE_URL+"yxbApp/OperationalData.do")
                 .content("")
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()

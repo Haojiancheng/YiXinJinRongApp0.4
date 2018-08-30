@@ -26,6 +26,8 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ChongZiMIMA_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengMa_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -71,6 +73,8 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 .statusBarDarkFont(true)
                 .init();
         getzhaohuimima_Id();
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
+
         Intent it=getIntent();
         phone = it.getStringExtra("phone");
         String mobile = phone;
@@ -122,12 +126,22 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 int lenght = news_mima.getText().toString().trim().length();
-//                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
-                if (lenght<6||lenght>18 || !isPassword(news_mima.getText().toString())){
+                if (ed_code.getText().toString().isEmpty()){
                     jinggao.setVisibility(View.VISIBLE);
-                    Toast.makeText(ZhaoHuiMiMaYanZheng.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
+                    jinggao.setText("   请输入验证码");
                 }else {
-                    getyanzhengHttp();
+                    if (news_mima.getText().toString().isEmpty()){
+                        jinggao.setVisibility(View.VISIBLE);
+                        jinggao.setText("   请输入新密码");
+                    }else {
+                        if (lenght < 6 || lenght > 18 || !isPassword(news_mima.getText().toString())) {
+                            jinggao.setVisibility(View.VISIBLE);
+                            jinggao.setText("   请输入6-18位字母和数字组合");
+//                    Toast.makeText(ZhaoHuiMiMaYanZheng.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
+                        } else {
+                            getyanzhengHttp();
+                        }
+                    }
                 }
             }
         });
@@ -199,7 +213,9 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                             startActivity(it);
                             finish();
                         }else {
-                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
+                            jinggao.setVisibility(View.VISIBLE);
+                            jinggao.setText("   "+message);
                         }
                     }
                 });

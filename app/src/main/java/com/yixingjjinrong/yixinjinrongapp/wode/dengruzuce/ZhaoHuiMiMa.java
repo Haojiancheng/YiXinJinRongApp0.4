@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ZhaoHuiMIma_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -49,6 +50,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
                 .fullScreen(false)
                 .statusBarDarkFont(true)
                 .init();
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getzhaohuimimaId();
         getzhaohuimimaOnCilk();
 
@@ -130,7 +132,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
                         ZhaoHuiMIma_Gson data = new Gson().fromJson(result, ZhaoHuiMIma_Gson.class);
                         Log.e("ddddd", ""+data.getMessage());
-                        if (data.getMessage().equals("该手机已注册!")){
+                        if (data.getMessage().equals("该手机已注册")){
                             Intent zhaohuimima_it = new Intent(ZhaoHuiMiMa.this, ZhaoHuiMiMaYanZheng.class);
                             zhaohuimima_it.putExtra("phone", myphonet.getText().toString());
                             startActivity(zhaohuimima_it);

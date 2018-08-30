@@ -195,7 +195,7 @@
         android:id="@+id/jingdao"
         android:layout_width="wrap_content"
         android:layout_height="30px"
-        android:text="  6-18位字母和数字组合"
+        android:text="  请输入6-18位字母和数字组合"
         android:textSize="24px"
         android:textColor="#ff5757"
         android:layout_marginLeft="30px"

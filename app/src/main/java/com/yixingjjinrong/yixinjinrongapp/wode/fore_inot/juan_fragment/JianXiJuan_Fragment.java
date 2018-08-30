@@ -28,6 +28,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +94,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             e.printStackTrace();
         }
         OkHttpUtils.postString()
+                //http://192.168.1.111:8080/yxb_mobile/
                 .url(Urls.BASE_URL+"yxbApp/queryAll.do")
                 .content(canshu.toString())
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -107,20 +109,13 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
                     public void onResponse(String response, int id) {
                         Log.e("加息卷GSON", response);
                         JiaXiJuan_Gson data = new Gson().fromJson(response, JiaXiJuan_Gson.class);
-                        if (data.getMessage().equals("成功了")) {
-                            if (data.getQueryVouchersList().size() <= 0) {
-                                jiaxi_wushuju.setVisibility(View.VISIBLE);
-                                wnr_text.setText("暂无可用加息卷");
-                            } else {
-                                jiaxi_wushuju.setVisibility(View.GONE);
-                                mlist.addAll(data.getQueryVouchersList());
-
-                                myadapter.notifyDataSetChanged();
-                            }
-                        }else {
-                            ToastUtils.showToast(getActivity(),data.getMessage() );
+                        if (data.getMessage().equals("没有可用券!")) {
                             jiaxi_wushuju.setVisibility(View.VISIBLE);
-                            wnr_text.setText(""+data.getMessage());
+                            wnr_text.setText("暂无可用加息券");
+                        } else {
+                            mlist.addAll(data.getQueryVouchersList());
+                            myadapter.notifyDataSetChanged();
+                            jiaxi_wushuju.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -130,7 +125,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         token = (String) SPUtils.get(getActivity(), "Token1", "");
         jiaxi_wushuju=getActivity().findViewById(R.id.jiaxi_wushuju);
-        wnr_text=getActivity().findViewById(R.id.wnr_text);
+        wnr_text=getActivity().findViewById(R.id.jiax_text);
         jiaxi_rview = getActivity().findViewById(R.id.jiaxi_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         jiaxi_rview.setLayoutManager(manager);

@@ -70,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#adadad"
+        android:background="#dadada"
         android:layout_marginLeft="30px"
         />
     <LinearLayout
@@ -102,7 +102,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#adadad"
+        android:background="#dadada"
         android:layout_marginLeft="30px"
         />
     <RelativeLayout
@@ -144,7 +144,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#adadad"
+        android:background="#dadada"
         android:layout_marginLeft="30px"
         />
     <LinearLayout
@@ -153,6 +153,12 @@
         android:orientation="horizontal"
         android:layout_marginTop="20px"
         >
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:orientation="vertical"
+            >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,23 +168,32 @@
             android:textSize="30px"
 
             />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            >
 
-        <EditText
-            android:id="@+id/add_mainaddadd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14px"
-            android:layout_marginTop="26px"
-            android:background="@null"
-            android:hint="请输入详细地址信息，如道路、小区、楼栋号、单元室、门牌号等"
-            android:textAlignment="textStart"
-            android:textColor="#333333"
-            android:textSize="30px" />
+            <EditText
+                android:id="@+id/add_mainaddadd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14px"
+                android:background="@null"
+                android:hint="请输入详细地址信息，如道路、小区、楼栋号、单元室、门牌号等"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="10px"
+                android:textAlignment="viewStart"
+                android:textColor="#333333"
+                android:textSize="30px" />
+        </LinearLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#adadad"
+        android:background="#dadada"
         android:layout_marginLeft="30px"
         />
     </LinearLayout>

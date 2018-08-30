@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
 
             <RelativeLayout
                 android:id="@+id/cade"
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
 
             <RelativeLayout
                 android:id="@+id/zhishi"
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
 
             <RelativeLayout
                 android:id="@+id/chujieren_web"
@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
             <RelativeLayout
                 android:id="@+id/jiekuanren_web"
                 android:layout_width="match_parent"
@@ -187,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
             <RelativeLayout
                 android:id="@+id/pingtaiyiwu"
                 android:layout_width="match_parent"
@@ -215,7 +215,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
             <RelativeLayout
                 android:id="@+id/good_web"
                 android:layout_width="match_parent"
@@ -243,7 +243,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
             <RelativeLayout
                 android:id="@+id/no_things"
                 android:layout_width="match_parent"
@@ -271,7 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
             <RelativeLayout
                 android:id="@+id/guiding"
                 android:layout_width="match_parent"
@@ -299,7 +299,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginLeft="30px"
-                android:background="#adadad" />
+                android:background="#dadada" />
 
         </LinearLayout>
     </ScrollView>

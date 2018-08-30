@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.FanKui_ok_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -54,6 +55,7 @@ public class FanKui extends AutoLayoutActivity {
                 .statusBarDarkFont(true)
                 .init();
         getid();
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         fanhui_yijianfk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +77,7 @@ public class FanKui extends AutoLayoutActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                text_count.setText(String.valueOf(MAX_COUNT - s.length()));
+                text_count.setText(String.valueOf(0 + s.length()));
             }
         });
         btn_submit.setOnClickListener(new View.OnClickListener() {

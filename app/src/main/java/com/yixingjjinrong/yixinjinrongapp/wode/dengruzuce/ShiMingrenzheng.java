@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -67,6 +68,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 .init();
 //        Bundle b = getIntent().getExtras();
 //        user_ird = b.getInt("user_ird");
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getzhen_id();
         getonrenzheng();
         sm_fh.setOnClickListener(new View.OnClickListener() {

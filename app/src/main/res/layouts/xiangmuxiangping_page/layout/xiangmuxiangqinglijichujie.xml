@@ -249,8 +249,8 @@
 
                 <Button
                     android:id="@+id/xq_chongzhi"
-                    android:layout_width="200px"
-                    android:layout_height="80px"
+                    android:layout_width="160px"
+                    android:layout_height="70px"
                     android:layout_marginLeft="30px"
                     android:background="@drawable/bt_shape"
                     android:text="充值"
@@ -343,8 +343,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="70px"
+                android:layout_height="100px"
                 android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:background="#fdfdfe">
 
                 <TextView
@@ -391,7 +392,8 @@
                     android:layout_height="80px"
                     android:layout_marginLeft="30px"
                     android:text="我已阅读并同意"
-
+                    android:button="@drawable/checkbox_style"
+                    android:paddingLeft="20px"
                     android:textColor="#333333"
                     android:textSize="25px" />
 

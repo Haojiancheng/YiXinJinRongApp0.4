@@ -90,7 +90,7 @@
         <View
             android:layout_width="1px"
             android:layout_height="24px"
-            android:background="#adadad"
+            android:background="#dadada"
             android:layout_gravity="center_vertical"
             />
         <TextView

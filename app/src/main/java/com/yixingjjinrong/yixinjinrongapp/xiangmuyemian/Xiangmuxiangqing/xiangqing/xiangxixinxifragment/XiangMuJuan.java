@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -22,6 +24,7 @@ public class XiangMuJuan extends AutoLayoutActivity {
     private SimpleFragmentPagerAdapter pagerAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private ImageView xmxx_fh;
     private ArrayList<Fragment> list_fragment = new ArrayList<>();//定义要装fragment的列表
     private ArrayList<String> list_title = new ArrayList<>();  //定义要装fragment的列表
     private XiangMuXianJinJuan_Fragment mxianjin;               //现金卷 fragment
@@ -31,9 +34,6 @@ public class XiangMuJuan extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
         setContentView(R.layout.juan);
 
         ImmersionBar.with(this)
@@ -42,11 +42,17 @@ public class XiangMuJuan extends AutoLayoutActivity {
                 .keyboardEnable(true)
                 .init();
         getid();
+        xmxx_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getid() {
         juan = (XiangMuXiangQing_Gson.ResultBean) getIntent().getSerializableExtra("juan");
-        
+        xmxx_fh=findViewById(R.id.fh);
         
         viewPager=findViewById(R.id.juan_vp);
         tabLayout=findViewById(R.id.juan_tab);

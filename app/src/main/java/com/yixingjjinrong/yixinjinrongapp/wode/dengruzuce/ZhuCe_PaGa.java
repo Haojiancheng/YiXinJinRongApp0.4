@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengShouJiHao_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -65,7 +66,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 .statusBarDarkFont(true)
                 .init();
         getzhuce_pagerId();
-
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getZhuCeOnClik();
     }
 

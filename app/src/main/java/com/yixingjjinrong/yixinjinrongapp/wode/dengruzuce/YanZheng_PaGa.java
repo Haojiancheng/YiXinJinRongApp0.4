@@ -31,6 +31,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ChengGongzhuce_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengMa_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
@@ -90,7 +91,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 .init();
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
-
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getyanZheng_Id();
         getyanZheng_Onclick();
 

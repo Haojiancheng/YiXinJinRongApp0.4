@@ -95,7 +95,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#adadad" />
+        android:background="#dadada" />
 
     <TextView
         android:id="@+id/goods_xq_describe"

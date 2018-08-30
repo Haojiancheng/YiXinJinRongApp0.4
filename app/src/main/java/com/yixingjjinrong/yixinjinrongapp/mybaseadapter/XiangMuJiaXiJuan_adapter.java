@@ -48,7 +48,7 @@ public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJ
             holder.qian.setText(juanBeanList.get(position).getInfo() + "%");
             holder.yaoqu.setText(juanBeanList.get(position).getRemark());
             holder.fanwei.setText(juanBeanList.get(position).getUseRange());
-            holder.time_out.setText(juanBeanList.get(position).getEndTime());
+            holder.time_out.setText("有效期至："+juanBeanList.get(position).getEndTime());
             holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

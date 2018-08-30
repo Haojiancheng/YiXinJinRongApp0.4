@@ -46,6 +46,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
@@ -127,7 +128,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
 
-
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getID();//获取资源ID
         initView();
         detailedinformation.setVisibility(View.GONE);

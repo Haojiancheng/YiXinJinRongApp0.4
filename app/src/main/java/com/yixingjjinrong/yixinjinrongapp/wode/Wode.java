@@ -1,10 +1,16 @@
 package com.yixingjjinrong.yixinjinrongapp.wode;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -16,6 +22,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
@@ -80,7 +87,8 @@ public class Wode extends Fragment {
     private View lijichujie;
     private View wo_yaoqing;
     private ImageView wd_yj_image;
-
+    private View kefuphone;
+    private static final int PERMISSION_REQUESTCODE = 1;
 
     @Nullable
     @Override
@@ -117,7 +125,7 @@ public class Wode extends Fragment {
                     ToastUtils.showToast(getActivity(), "请先登入");
                 } else {
                     RealName_one realName_c = new RealName_one();
-                    realName_c.myrealname(getActivity(),user_id,userToken ,loginid);
+                    realName_c.myrealname(getActivity(), user_id, userToken, loginid);
                 }
             }
         });
@@ -563,9 +571,88 @@ public class Wode extends Fragment {
                 }
             }
         });
+        kefuphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shoualertdialog();
+            }
+        });
 
     }
 
+    private void shoualertdialog() {
+        //自定义AlertDialog
+        LayoutInflater inflater = getLayoutInflater();
+        View view1 = inflater.inflate(R.layout.krfuphone, null);
+        Button btn_qux=view1.findViewById(R.id.btn_qux);
+        Button btn_hujiao=view1.findViewById(R.id.btn_hujiao);
+
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setView(view1)
+                .show();
+//给AlertDialog设置4个圆角
+//        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
+        dialog.setCanceledOnTouchOutside(false);
+        btn_qux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_hujiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ToastUtils.showToast(getActivity(),"hujiao" );
+                permission();
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    private void permission() {
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            //没有授权
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUESTCODE);
+        }else{
+            //已经授权
+            diallPhone("4001838818");
+        }
+    }
+
+    /**
+     * 拨打电话（跳转到拨号界面，用户手动点击拨打）
+     *
+     * @param phoneNum 电话号码
+     */
+    public void diallPhone(String phoneNum) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case PERMISSION_REQUESTCODE:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //用户点击了同意授权
+//                    diallPhone("4001838818");
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    Uri data = Uri.parse("tel:" + "4001838818");
+                    intent.setData(data);
+                    startActivity(intent);
+
+                }else{
+                    //用户拒绝了授权
+                    ToastUtils.showToast(getActivity(), "权限被拒绝");
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     private void getWodeid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
@@ -573,12 +660,13 @@ public class Wode extends Fragment {
         userToken = (String) SPUtils.get(getActivity(), "Token1", "");
         dengru = getActivity().findViewById(R.id.dengru_chenggong);//登入状态
         weidengru = getActivity().findViewById(R.id.weidengru);//未登入状态
-        wd_yj_image=getActivity().findViewById(R.id.wd_yj_image);//金额image
+        wd_yj_image = getActivity().findViewById(R.id.wd_yj_image);//金额image
         shimingrenzheng_itme = getActivity().findViewById(R.id.shiming_my);//未实名itme
         yinhangcunguan_itme = getActivity().findViewById(R.id.yinhangcunguan_my);//未开通银行存管
         fengxianpingce_itme = getActivity().findViewById(R.id.fangxianpingce_my);//未风险评测
 //        head.setVisibility(View.GONE); //显示与影藏布局
 //        food.setVisibility(View.VISIBLE);
+        kefuphone = getActivity().findViewById(R.id.kefuphone);//客服电话
         yaoqing = getActivity().findViewById(R.id.yaoqing);
         wo_yaoqing = getActivity().findViewById(R.id.wo_yaoqing);//我的邀请
         yonghudengru = getActivity().findViewById(R.id.yonghudengru);//等入按钮

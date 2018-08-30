@@ -92,7 +92,8 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/queryAll.do")
+                //http://192.168.1.111:8080/yxb_mobile/
+                .url(Urls.BASE_URL+"yxbApp/queryAll.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -107,19 +108,13 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
                     public void onResponse(String result, int id) {
                         Log.e("现金券GSon", "" + result);
                         XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
-                        if (data.getMessage().equals("成功了")) {
-                            if (data.getQueryVouchersList().size() <= 0) {
+                        if (data.getMessage().equals("没有可用券!")) {
                                 xianjin_wushuju.setVisibility(View.VISIBLE);
                                 wnr_text.setText("暂无可用现金券");
-                            } else {
-                                xianjin_wushuju.setVisibility(View.GONE);
-                            }
+                        } else {
                             list.addAll(data.getQueryVouchersList());
                             myadapter.notifyDataSetChanged();
-                        } else {
-                            ToastUtils.showToast(getActivity(), data.getMessage());
-                            xianjin_wushuju.setVisibility(View.VISIBLE);
-                            wnr_text.setText("" + data.getMessage());
+                            xianjin_wushuju.setVisibility(View.GONE);
                         }
                     }
                 });

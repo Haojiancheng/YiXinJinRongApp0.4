@@ -67,6 +67,7 @@
                 android:layout_marginRight="30px"
                 android:drawablePadding="18px"
                 android:hint="请输入手机号"
+                android:background="@null"
                 android:inputType="textEmailAddress" />
 
         </android.support.design.widget.TextInputLayout>
@@ -78,7 +79,14 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/guanbi" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dadada"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        />
     <Button
         android:id="@+id/zhaohuimiam_xiayibu"
         android:layout_width="690px"

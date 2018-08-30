@@ -6,7 +6,7 @@
         android:bottomRightRadius="10px"
         android:topLeftRadius="10px"
         android:topRightRadius="10px" />
-    <stroke android:color="#dadada" android:width="2px"/>
+    <stroke android:color="#dadada" android:width="2dp"/>
 
    
 </shape>

@@ -35,7 +35,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
                         android:text="项目基本信息"
-                        android:layout_marginTop="10px"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="20px"
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
@@ -354,7 +355,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:layout_marginBottom="20px"
+                    android:layout_marginBottom="30px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -386,14 +387,15 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55px"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30px"
-                    android:paddingTop="10px"
+                    android:layout_marginTop="30px"
+                    android:layout_marginBottom="20px"
                     android:text="借款人基本信息"
                     android:textColor="#333333"
                     android:textSize="30px" />
@@ -801,7 +803,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
-                android:layout_marginBottom="20px"
+                android:layout_marginBottom="30px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -834,14 +836,16 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55px"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
-                        android:paddingTop="10px"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="20px"
+
                         android:text="借款人基本信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -1278,7 +1282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:layout_marginBottom="20px"
+                    android:layout_marginBottom="30px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1437,14 +1441,15 @@
                 android:layout_marginTop="20px">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45px"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
-                        android:paddingTop="10px"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="20px"
                         android:text="担保人基本信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -1719,7 +1724,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:layout_marginBottom="20px"
+                    android:layout_marginBottom="30px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1751,14 +1756,15 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45px"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30px"
-                    android:paddingTop="10px"
+                    android:layout_marginTop="30px"
+                    android:layout_marginBottom="20px"
                     android:text="车辆信息"
                     android:textColor="#333333"
                     android:textSize="30px" />
@@ -1992,7 +1998,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40px"
-                android:layout_marginBottom="20px"
+                android:layout_marginBottom="30px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -2028,14 +2034,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45px"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="30px"
-                        android:paddingTop="10px"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="20px"
                         android:text="房产信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -2175,7 +2182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:layout_marginBottom="20px"
+                    android:layout_marginBottom="30px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2209,14 +2216,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45px"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="45px"
                         android:layout_marginLeft="30px"
-                        android:paddingTop="10px"
+                        android:layout_marginTop="50px"
+                        android:layout_marginBottom="20px"
                         android:text="审查信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -2542,7 +2550,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:layout_marginBottom="20px"
+                    android:layout_marginBottom="30px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2578,7 +2586,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="45px"
                     android:paddingLeft="30px"
-                    android:paddingTop="10px"
+                    android:layout_marginTop="30px"
+                    android:layout_marginBottom="20px"
                     android:text="平台免责声明"
                     android:textColor="#333333"
                     android:textSize="28px" />
@@ -2588,6 +2597,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
                     android:paddingLeft="30px"
+                    android:layout_marginBottom="30px"
                     android:text="亿信宝作为交易服务平台进行信息发布，不对任何出借人及/或任何交易提供任何担保，无论是明示、默示或法定的。亿信宝平台提供的各种信息及资料仅供参考，出借人应依其独立判断做出决策。出借人据此进行出借交易的，产生的出借风险由出借人自行承担，亿信宝不承担任何责任。"
                     android:textColor="#999999"
                     android:textSize="28px" />

@@ -121,7 +121,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
             case 3://已满标
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
-                holder.chujie.setBackgroundResource(R.drawable.bt_huise);
+                holder.chujie.setBackgroundResource(R.drawable.yimanbiao);
 
                 break;
             case 4://回款中

@@ -26,6 +26,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
@@ -67,7 +68,7 @@ public class ChongZhq extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
         getczid();
-
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getczHTTp();
         cz_fh.setOnClickListener(new View.OnClickListener() {
             @Override

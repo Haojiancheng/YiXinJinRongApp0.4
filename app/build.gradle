@@ -78,4 +78,5 @@ dependencies {
     implementation 'liji.library.dev:citypickerview:+'
     implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.0'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.7.0-beta.1'
 }

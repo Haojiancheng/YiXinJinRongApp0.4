@@ -6,7 +6,7 @@ public class YunYinShuJu_gson {
 
     /**
      * message : 成功了
-     * result : {"formattedDate":"2018年08月27日","list":[{"xiangmuyuqi":"","renjunchujie":11119.72,"stocking":null,"fenjiyuqi":null,"daichangjine":"97.93%","jiedaiyue":435300,"zuidazhanbi":"34.73%","chujierenSum":71,"dangqianjieSum":15,"leijidaichang":2876.58,"incestreturn":0.01,"buhanSum":"0","moneryyuqi":null,"monerythree":null,"id":154,"times":"2018-08-27","dangqianchuSum":65,"relevance":0,"daichangcishu":20,"jiedaiyuecishu":221,"yuqimonery":0,"jiekuanqixian":0,"stockinglixi":0,"ziranlimit":2.74,"fenbu":null,"jiekuanrenSum":16,"danhuzhanbi":"0.16%","yuqiSum":0,"buhanMonery":0,"xiangmuqi":null,"yuqi":null,"lixiyue":6140.57,"monerytwo":null,"meanwhen":53.33,"jiaoyicishu":323,"monerylv":"","jiekuancost":0.22,"touzilimit":1.11,"renjunjiekuan":49343.75,"renjunlimit":2.9,"jiekuanlilv":"7.05","zong":789500,"relevanceSum":0,"tenchujiezhanbi":"0.67%","farenlimit":0.41,"touzidedaline":379.61,"xiangmuyu":null}]}
+     * result : {"formattedDate":"2018年07月31日","list":[{"xiangmuyuqi":null,"renjunchujie":10292.45,"stocking":null,"fenjiyuqi":null,"daichangjine":"95.29%","jiedaiyue":227400,"zuidazhanbi":"24.05%","chujierenSum":53,"dangqianjieSum":13,"leijidaichang":42999.53,"incestreturn":0,"buhanSum":null,"moneryyuqi":null,"monerythree":null,"id":46,"times":"2018-07-31","dangqianchuSum":34,"relevance":null,"daichangcishu":44,"jiedaiyuecishu":289,"yuqimonery":null,"jiekuanqixian":908.85,"stockinglixi":null,"ziranlimit":1.14,"fenbu":null,"jiekuanrenSum":15,"danhuzhanbi":"0.17%","yuqiSum":null,"buhanMonery":null,"xiangmuqi":null,"yuqi":null,"lixiyue":2161.19,"monerytwo":null,"meanwhen":15,"jiaoyicishu":661,"monerylv":null,"jiekuancost":0.08,"touzilimit":1.03,"renjunjiekuan":36366.67,"renjunlimit":1.75,"jiekuanlilv":"5.27","zong":545500,"relevanceSum":null,"tenchujiezhanbi":"0.76%","farenlimit":1.99,"touzidedaline":327,"xiangmuyu":null}],"buhanSum":"0"}
      * state : success
      */
 
@@ -40,11 +40,13 @@ public class YunYinShuJu_gson {
 
     public static class ResultBean {
         /**
-         * formattedDate : 2018年08月27日
-         * list : [{"xiangmuyuqi":"","renjunchujie":11119.72,"stocking":null,"fenjiyuqi":null,"daichangjine":"97.93%","jiedaiyue":435300,"zuidazhanbi":"34.73%","chujierenSum":71,"dangqianjieSum":15,"leijidaichang":2876.58,"incestreturn":0.01,"buhanSum":"0","moneryyuqi":null,"monerythree":null,"id":154,"times":"2018-08-27","dangqianchuSum":65,"relevance":0,"daichangcishu":20,"jiedaiyuecishu":221,"yuqimonery":0,"jiekuanqixian":0,"stockinglixi":0,"ziranlimit":2.74,"fenbu":null,"jiekuanrenSum":16,"danhuzhanbi":"0.16%","yuqiSum":0,"buhanMonery":0,"xiangmuqi":null,"yuqi":null,"lixiyue":6140.57,"monerytwo":null,"meanwhen":53.33,"jiaoyicishu":323,"monerylv":"","jiekuancost":0.22,"touzilimit":1.11,"renjunjiekuan":49343.75,"renjunlimit":2.9,"jiekuanlilv":"7.05","zong":789500,"relevanceSum":0,"tenchujiezhanbi":"0.67%","farenlimit":0.41,"touzidedaline":379.61,"xiangmuyu":null}]
+         * formattedDate : 2018年07月31日
+         * list : [{"xiangmuyuqi":null,"renjunchujie":10292.45,"stocking":null,"fenjiyuqi":null,"daichangjine":"95.29%","jiedaiyue":227400,"zuidazhanbi":"24.05%","chujierenSum":53,"dangqianjieSum":13,"leijidaichang":42999.53,"incestreturn":0,"buhanSum":null,"moneryyuqi":null,"monerythree":null,"id":46,"times":"2018-07-31","dangqianchuSum":34,"relevance":null,"daichangcishu":44,"jiedaiyuecishu":289,"yuqimonery":null,"jiekuanqixian":908.85,"stockinglixi":null,"ziranlimit":1.14,"fenbu":null,"jiekuanrenSum":15,"danhuzhanbi":"0.17%","yuqiSum":null,"buhanMonery":null,"xiangmuqi":null,"yuqi":null,"lixiyue":2161.19,"monerytwo":null,"meanwhen":15,"jiaoyicishu":661,"monerylv":null,"jiekuancost":0.08,"touzilimit":1.03,"renjunjiekuan":36366.67,"renjunlimit":1.75,"jiekuanlilv":"5.27","zong":545500,"relevanceSum":null,"tenchujiezhanbi":"0.76%","farenlimit":1.99,"touzidedaline":327,"xiangmuyu":null}]
+         * buhanSum : 0
          */
 
         private String formattedDate;
+        private String buhanSum;
         private List<ListBean> list;
 
         public String getFormattedDate() {
@@ -53,6 +55,14 @@ public class YunYinShuJu_gson {
 
         public void setFormattedDate(String formattedDate) {
             this.formattedDate = formattedDate;
+        }
+
+        public String getBuhanSum() {
+            return buhanSum;
+        }
+
+        public void setBuhanSum(String buhanSum) {
+            this.buhanSum = buhanSum;
         }
 
         public List<ListBean> getList() {
@@ -65,56 +75,56 @@ public class YunYinShuJu_gson {
 
         public static class ListBean {
             /**
-             * xiangmuyuqi :
-             * renjunchujie : 11119.72
+             * xiangmuyuqi : null
+             * renjunchujie : 10292.45
              * stocking : null
              * fenjiyuqi : null
-             * daichangjine : 97.93%
-             * jiedaiyue : 435300.0
-             * zuidazhanbi : 34.73%
-             * chujierenSum : 71
-             * dangqianjieSum : 15
-             * leijidaichang : 2876.58
-             * incestreturn : 0.01
-             * buhanSum : 0
+             * daichangjine : 95.29%
+             * jiedaiyue : 227400.0
+             * zuidazhanbi : 24.05%
+             * chujierenSum : 53
+             * dangqianjieSum : 13
+             * leijidaichang : 42999.53
+             * incestreturn : 0.0
+             * buhanSum : null
              * moneryyuqi : null
              * monerythree : null
-             * id : 154
-             * times : 2018-08-27
-             * dangqianchuSum : 65
-             * relevance : 0.0
-             * daichangcishu : 20
-             * jiedaiyuecishu : 221
-             * yuqimonery : 0.0
-             * jiekuanqixian : 0.0
-             * stockinglixi : 0.0
-             * ziranlimit : 2.74
+             * id : 46
+             * times : 2018-07-31
+             * dangqianchuSum : 34
+             * relevance : null
+             * daichangcishu : 44
+             * jiedaiyuecishu : 289
+             * yuqimonery : null
+             * jiekuanqixian : 908.85
+             * stockinglixi : null
+             * ziranlimit : 1.14
              * fenbu : null
-             * jiekuanrenSum : 16
-             * danhuzhanbi : 0.16%
-             * yuqiSum : 0
-             * buhanMonery : 0
+             * jiekuanrenSum : 15
+             * danhuzhanbi : 0.17%
+             * yuqiSum : null
+             * buhanMonery : null
              * xiangmuqi : null
              * yuqi : null
-             * lixiyue : 6140.57
+             * lixiyue : 2161.19
              * monerytwo : null
-             * meanwhen : 53.33
-             * jiaoyicishu : 323
-             * monerylv :
-             * jiekuancost : 0.22
-             * touzilimit : 1.11
-             * renjunjiekuan : 49343.75
-             * renjunlimit : 2.9
-             * jiekuanlilv : 7.05
-             * zong : 789500.0
-             * relevanceSum : 0
-             * tenchujiezhanbi : 0.67%
-             * farenlimit : 0.41
-             * touzidedaline : 379.61
+             * meanwhen : 15
+             * jiaoyicishu : 661
+             * monerylv : null
+             * jiekuancost : 0.08
+             * touzilimit : 1.03
+             * renjunjiekuan : 36366.67
+             * renjunlimit : 1.75
+             * jiekuanlilv : 5.27
+             * zong : 545500.0
+             * relevanceSum : null
+             * tenchujiezhanbi : 0.76%
+             * farenlimit : 1.99
+             * touzidedaline : 327
              * xiangmuyu : null
              */
 
-            private String xiangmuyuqi;
+            private Object xiangmuyuqi;
             private double renjunchujie;
             private Object stocking;
             private Object fenjiyuqi;
@@ -125,48 +135,48 @@ public class YunYinShuJu_gson {
             private int dangqianjieSum;
             private double leijidaichang;
             private double incestreturn;
-            private String buhanSum;
+            private Object buhanSum;
             private Object moneryyuqi;
             private Object monerythree;
             private int id;
             private String times;
             private int dangqianchuSum;
-            private double relevance;
+            private Object relevance;
             private int daichangcishu;
             private int jiedaiyuecishu;
-            private double yuqimonery;
+            private Object yuqimonery;
             private double jiekuanqixian;
-            private double stockinglixi;
+            private Object stockinglixi;
             private double ziranlimit;
             private Object fenbu;
             private int jiekuanrenSum;
             private String danhuzhanbi;
-            private int yuqiSum;
-            private int buhanMonery;
+            private Object yuqiSum;
+            private Object buhanMonery;
             private Object xiangmuqi;
             private Object yuqi;
             private double lixiyue;
             private Object monerytwo;
-            private double meanwhen;
+            private int meanwhen;
             private int jiaoyicishu;
-            private String monerylv;
+            private Object monerylv;
             private double jiekuancost;
             private double touzilimit;
             private double renjunjiekuan;
             private double renjunlimit;
             private String jiekuanlilv;
             private double zong;
-            private int relevanceSum;
+            private Object relevanceSum;
             private String tenchujiezhanbi;
             private double farenlimit;
-            private double touzidedaline;
+            private int touzidedaline;
             private Object xiangmuyu;
 
-            public String getXiangmuyuqi() {
+            public Object getXiangmuyuqi() {
                 return xiangmuyuqi;
             }
 
-            public void setXiangmuyuqi(String xiangmuyuqi) {
+            public void setXiangmuyuqi(Object xiangmuyuqi) {
                 this.xiangmuyuqi = xiangmuyuqi;
             }
 
@@ -250,11 +260,11 @@ public class YunYinShuJu_gson {
                 this.incestreturn = incestreturn;
             }
 
-            public String getBuhanSum() {
+            public Object getBuhanSum() {
                 return buhanSum;
             }
 
-            public void setBuhanSum(String buhanSum) {
+            public void setBuhanSum(Object buhanSum) {
                 this.buhanSum = buhanSum;
             }
 
@@ -298,11 +308,11 @@ public class YunYinShuJu_gson {
                 this.dangqianchuSum = dangqianchuSum;
             }
 
-            public double getRelevance() {
+            public Object getRelevance() {
                 return relevance;
             }
 
-            public void setRelevance(double relevance) {
+            public void setRelevance(Object relevance) {
                 this.relevance = relevance;
             }
 
@@ -322,11 +332,11 @@ public class YunYinShuJu_gson {
                 this.jiedaiyuecishu = jiedaiyuecishu;
             }
 
-            public double getYuqimonery() {
+            public Object getYuqimonery() {
                 return yuqimonery;
             }
 
-            public void setYuqimonery(double yuqimonery) {
+            public void setYuqimonery(Object yuqimonery) {
                 this.yuqimonery = yuqimonery;
             }
 
@@ -338,11 +348,11 @@ public class YunYinShuJu_gson {
                 this.jiekuanqixian = jiekuanqixian;
             }
 
-            public double getStockinglixi() {
+            public Object getStockinglixi() {
                 return stockinglixi;
             }
 
-            public void setStockinglixi(double stockinglixi) {
+            public void setStockinglixi(Object stockinglixi) {
                 this.stockinglixi = stockinglixi;
             }
 
@@ -378,19 +388,19 @@ public class YunYinShuJu_gson {
                 this.danhuzhanbi = danhuzhanbi;
             }
 
-            public int getYuqiSum() {
+            public Object getYuqiSum() {
                 return yuqiSum;
             }
 
-            public void setYuqiSum(int yuqiSum) {
+            public void setYuqiSum(Object yuqiSum) {
                 this.yuqiSum = yuqiSum;
             }
 
-            public int getBuhanMonery() {
+            public Object getBuhanMonery() {
                 return buhanMonery;
             }
 
-            public void setBuhanMonery(int buhanMonery) {
+            public void setBuhanMonery(Object buhanMonery) {
                 this.buhanMonery = buhanMonery;
             }
 
@@ -426,11 +436,11 @@ public class YunYinShuJu_gson {
                 this.monerytwo = monerytwo;
             }
 
-            public double getMeanwhen() {
+            public int getMeanwhen() {
                 return meanwhen;
             }
 
-            public void setMeanwhen(double meanwhen) {
+            public void setMeanwhen(int meanwhen) {
                 this.meanwhen = meanwhen;
             }
 
@@ -442,11 +452,11 @@ public class YunYinShuJu_gson {
                 this.jiaoyicishu = jiaoyicishu;
             }
 
-            public String getMonerylv() {
+            public Object getMonerylv() {
                 return monerylv;
             }
 
-            public void setMonerylv(String monerylv) {
+            public void setMonerylv(Object monerylv) {
                 this.monerylv = monerylv;
             }
 
@@ -498,11 +508,11 @@ public class YunYinShuJu_gson {
                 this.zong = zong;
             }
 
-            public int getRelevanceSum() {
+            public Object getRelevanceSum() {
                 return relevanceSum;
             }
 
-            public void setRelevanceSum(int relevanceSum) {
+            public void setRelevanceSum(Object relevanceSum) {
                 this.relevanceSum = relevanceSum;
             }
 
@@ -522,11 +532,11 @@ public class YunYinShuJu_gson {
                 this.farenlimit = farenlimit;
             }
 
-            public double getTouzidedaline() {
+            public int getTouzidedaline() {
                 return touzidedaline;
             }
 
-            public void setTouzidedaline(double touzidedaline) {
+            public void setTouzidedaline(int touzidedaline) {
                 this.touzidedaline = touzidedaline;
             }
 

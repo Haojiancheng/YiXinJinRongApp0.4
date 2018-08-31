@@ -22,14 +22,13 @@
             android:src="@drawable/fanhui"/>
 
         <TextView
-            android:layout_width="260px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="251px"
-            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:paddingTop="60px"
             android:text="积分兑换"
             android:textColor="#ffffff"
-            android:textSize="38px"  />
+            android:textSize="38px" />
     </RelativeLayout>
 
 
@@ -74,11 +73,13 @@
             android:textSize="50px" />
 
         <TextView
+            android:id="@+id/m_kuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40px"
             android:layout_marginLeft="90px"
             android:text="当前库存："
+            android:visibility="gone"
             android:textColor="#999999"
             android:textSize="34px" />
 
@@ -86,7 +87,6 @@
             android:id="@+id/goods_xq_ku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="120"
             android:textColor="#333333"
             android:textSize="34px" />
 

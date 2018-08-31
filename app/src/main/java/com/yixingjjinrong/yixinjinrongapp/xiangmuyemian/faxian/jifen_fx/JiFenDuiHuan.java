@@ -120,7 +120,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
             js_request.put("userId", user_id);
             js_request.put("addressId", "");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e("TAG", ">>>>1111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -136,7 +136,8 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/integralExchangeList.do")
+                //http://192.168.1.111:8080/yxb_mobile/
+                .url("http://192.168.1.111:8080/yxb_mobile/yxbApp/integralExchangeList.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -163,10 +164,13 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
                                 public void onEveryClick(int position) {
                                     String awardType = String.valueOf(list.get(position).getAwardType());
                                     String speid = String.valueOf(list.get(position).getSpeId());
+                                    String prizeId = list.get(position).getPrizeId();
                                     //跳详情
                                     Intent it=new Intent(JiFenDuiHuan.this, ShangPingXiangQing.class);
                                     it.putExtra("awardType", awardType);
                                     it.putExtra("speid", speid);
+                                    it.putExtra("speid", speid);
+                                    it.putExtra("prizeId", prizeId);
                                     startActivity(it);
                                 }
                             });

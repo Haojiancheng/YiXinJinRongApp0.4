@@ -45,7 +45,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
     private String base1;//Base64加
     private List<MyAddass_Gson.ResultBean.AddressListBean> list = new ArrayList<>();
     private Context context;
-    private int id;
+    private String id;
     private String message;
 
     public Myaddass_adapter(List<MyAddass_Gson.ResultBean.AddressListBean> list, Context context) {
@@ -77,7 +77,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
         holder.addass_name.setText(list.get(position).getReceiverName());
         holder.addass_phone.setText(list.get(position).getReceiverPhone());
         holder.addass_addass.setText(list.get(position).getReceiverAddress() + list.get(position).getAddressDetail());
-        id = list.get(position).getId();
+        id = list.get(position).getReceiverId();
         int isDefault = list.get(position).getIsDefault();
         if (isDefault == 1) {
             Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
@@ -89,7 +89,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 try {
                     js_request.put("addressId", id);
                     base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + id);
                     sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
 //            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
                 } catch (JSONException e) {
@@ -141,7 +141,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 it.putExtra("addass_phone", list.get(position).getReceiverPhone());
                 it.putExtra("addass_addass", list.get(position).getReceiverAddress());
                 it.putExtra("main_addass", list.get(position).getAddressDetail());
-                it.putExtra("addass_id", String.valueOf(id));
+                it.putExtra("addass_id", id);
                 context.startActivity(it);
 
             }

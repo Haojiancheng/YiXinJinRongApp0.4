@@ -86,8 +86,9 @@ public class Faxian extends Fragment {
     }
 
     private void gethppt() {
+        //192.168.1.111
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/discoveryIndex.do")
+                .url(Urls.BASE_URL+ "yxbApp/discoveryIndex.do")
                 .content("")
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
@@ -115,10 +116,12 @@ public class Faxian extends Fragment {
                             public void onEveryClick(int position) {
                                 String awardType = String.valueOf(list.get(position).getAwardType());
                                 String speid = String.valueOf(list.get(position).getSpeId());
+                                String prizeId = list.get(position).getPrizeId();
                                 //跳详情
                                 Intent it=new Intent(getActivity(), ShangPingXiangQing.class);
                                 it.putExtra("awardType", awardType);
                                 it.putExtra("speid", speid);
+                                it.putExtra("prizeId", prizeId);
                                 startActivity(it);
 
                             }

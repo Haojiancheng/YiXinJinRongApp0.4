@@ -7,7 +7,7 @@ public class FaXian_Data {
 
     /**
      * message : 成功了
-     * result : {"bannerList":[{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241607397172.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608063343.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608346978.png","tid":114}],"goodsList":[{"awardType":1,"createTime":"2017-02-20 15:57:58","description":"金手链0.5g/999纯金","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":6,"id":2,"picUrl":"/upload/vipgift/20170221/201702211146548284.jpg","prizeName":"金手链","prizeStatus":"1","speId":2,"surplusNum":20,"totalNum":26,"totalPrice":"7100.00"},{"awardType":1,"createTime":"2017-02-23 11:43:57","description":"包装清单  量杯、蒸笼、电源线、汤勺、饭勺、说明书 ","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":4,"picUrl":"/upload/vipgift/20170223/201702231149206554.jpg","prizeName":"苏泊尔电饭锅CFXB40FC833-75","prizeStatus":"1","speId":4,"surplusNum":787,"totalNum":787,"totalPrice":"10777.00"},{"awardType":1,"createTime":"2017-02-23 11:54:45","description":"家那发","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":5,"picUrl":"/upload/vipgift/20170223/201702231154316559.gif","prizeName":"加拿大","prizeStatus":"1","speId":5,"surplusNum":8,"totalNum":8,"totalPrice":"8900.00"},{"awardType":1,"createTime":"2017-02-23 15:01:40","description":"SM-700S升级0重力家用全身豪华多功能零重力太空舱按摩椅 ","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":6,"picUrl":"/upload/vipgift/20170223/20170223150139609.png","prizeName":"【尚铭】","prizeStatus":"1","speId":6,"surplusNum":1,"totalNum":1,"totalPrice":"1.00"},{"awardType":1,"createTime":"2017-02-28 11:08:40","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用 ","exchangeCnt":"1","exchangeCredits":300,"exchangeNum":1,"id":8,"picUrl":"/upload/vipgift/20170228/201702281108381375.jpg","prizeName":"商务礼品U盘","prizeStatus":"1","speId":8,"surplusNum":67,"totalNum":68,"totalPrice":"1700.00"},{"awardType":1,"createTime":"2017-02-23 15:03:17","description":"智能零重力全自动电动按摩沙发椅1 ","exchangeCnt":"0","exchangeCredits":3,"exchangeNum":5,"id":7,"picUrl":"/upload/vipgift/20170223/201702231630523508.jpg","prizeName":"重力太空舱按摩椅","prizeStatus":"1","speId":7,"surplusNum":0,"totalNum":5,"totalPrice":"70103.00"},{"awardType":1,"createTime":"2017-02-20 14:10:54","description":"实物礼品","exchangeCnt":"0","exchangeCredits":2,"exchangeNum":3,"id":1,"picUrl":"/upload/vipgift/20170220/201702201410511260.jpg","prizeName":"new","prizeStatus":"1","speId":1,"surplusNum":19,"totalNum":22,"totalPrice":"414.00"},{"awardType":1,"createTime":"2017-03-16 14:45:59","description":"香葱鸡片非常美味","exchangeCnt":"0","exchangeCredits":2,"exchangeNum":1,"id":9,"picUrl":"/upload/vipgift/20170316/20170316144557509.png","prizeName":"香葱鸡片","prizeStatus":"1","speId":9,"surplusNum":0,"totalNum":1,"totalPrice":"1.00"},{"awardType":1,"createTime":"2017-02-20 15:59:06","description":"17春款系高跟鞋女尖头亮面水钻单鞋细跟性感晏会时尚女鞋婚鞋 ","exchangeCnt":"0","exchangeCredits":1,"exchangeNum":3,"id":3,"picUrl":"/upload/vipgift/20170220/201702201559059949.jpg","prizeName":"two","prizeStatus":"1","speId":3,"surplusNum":999,"totalNum":1002,"totalPrice":"1002.00"},{"awardType":2,"createTime":"2018-09-24","description":"2018-05-17 10:39:18","exchangeCnt":"无限制","exchangeCredits":1,"exchangeNum":3,"id":38,"picUrl":"加息券","prizeName":"396","prizeStatus":"2018-05-25","speId":979,"surplusNum":1,"totalNum":206,"totalPrice":"满100加息5%"},{"awardType":2,"createTime":"2018-06-03","description":"2017-08-31 11:28:20","exchangeCnt":"无限制","exchangeCredits":24,"exchangeNum":3,"id":35,"picUrl":"加息券","prizeName":"396","prizeStatus":"2018-05-25","speId":9994,"surplusNum":1,"totalNum":211,"totalPrice":"满100加息10%"},{"awardType":2,"createTime":"2019-05-24","description":"2018-05-11 14:36:15","exchangeCnt":"无限制","exchangeCredits":26,"exchangeNum":6,"id":37,"picUrl":"代金券","prizeName":"396","prizeStatus":"2018-05-25","speId":1039,"surplusNum":1,"totalNum":363,"totalPrice":"满100减￥10"}],"path":"[图片]http://192.168.1.118:8080/yxb_omsb/"}
+     * result : {"bannerList":[{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241607397172.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608063343.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608346978.png","l_total_count":3,"tid":114,"hrefurl":""}],"goodsList":[{"createTime":"2017-02-28 11:08:40","picUrl":"upload/vipgift/20170228/201702281108381375.jpg","speId":8,"exchangeNum":2,"id":8,"surplusNum":66,"awardType":1,"totalNum":68,"exchangeCredits":30,"prizeMark":"","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用\n","prizeStatus":"1","exchangeCnt":"2","prizeName":"商务礼品U盘","prizeId":"","totalPrice":"1700.00"},{"createTime":"2017-02-23 15:01:40","picUrl":"upload/vipgift/20170223/20170223150139609.png","speId":6,"exchangeNum":0,"id":6,"surplusNum":12,"awardType":1,"totalNum":1,"exchangeCredits":15,"prizeMark":"","description":"SM-700S升级0重力家用全身豪华多功能零重力太空舱按摩椅 ","prizeStatus":"1","exchangeCnt":"0","prizeName":"【尚铭】","prizeId":"","totalPrice":"1.00"},{"createTime":"2017-02-23 11:54:45","picUrl":"upload/vipgift/20170223/201702231154316559.gif","speId":5,"exchangeNum":0,"id":5,"surplusNum":81,"awardType":1,"totalNum":8,"exchangeCredits":14,"prizeMark":"","description":"家那发","prizeStatus":"1","exchangeCnt":"0","prizeName":"加拿大","prizeId":"","totalPrice":"8900.00"},{"createTime":"2017-02-23 11:43:57","picUrl":"upload/vipgift/20170223/201702231149206554.jpg","speId":4,"exchangeNum":0,"id":4,"surplusNum":787,"awardType":1,"totalNum":787,"exchangeCredits":13,"prizeMark":"","description":"包装清单\n\n量杯、蒸笼、电源线、汤勺、饭勺、说明书\n","prizeStatus":"1","exchangeCnt":"0","prizeName":"苏泊尔电饭锅CFXB40FC833-75","prizeId":"","totalPrice":"10777.00"},{"createTime":"2017-02-20 15:57:58","picUrl":"upload/vipgift/20170221/201702211146548284.jpg","speId":2,"exchangeNum":8,"id":2,"surplusNum":19,"awardType":1,"totalNum":26,"exchangeCredits":12,"prizeMark":"","description":"金手链0.5g/999纯金","prizeStatus":"1","exchangeCnt":"2","prizeName":"金手链","prizeId":"","totalPrice":"7100.00"},{"createTime":"2017-02-23 15:03:17","picUrl":"upload/vipgift/20170223/201702231630523508.jpg","speId":7,"exchangeNum":5,"id":7,"surplusNum":11,"awardType":1,"totalNum":5,"exchangeCredits":3,"prizeMark":"","description":"智能零重力全自动电动按摩沙发椅1 ","prizeStatus":"1","exchangeCnt":"2","prizeName":"重力太空舱按摩椅","prizeId":"","totalPrice":"70103.00"},{"createTime":"2017-02-20 14:10:54","picUrl":"upload/vipgift/20170220/201702201410511260.jpg","speId":1,"exchangeNum":3,"id":1,"surplusNum":19,"awardType":1,"totalNum":22,"exchangeCredits":2,"prizeMark":"","description":"实物礼品","prizeStatus":"1","exchangeCnt":"1","prizeName":"new","prizeId":"","totalPrice":"414.00"},{"createTime":"2017-03-16 14:45:59","picUrl":"upload/vipgift/20170316/20170316144557509.png","speId":9,"exchangeNum":1,"id":9,"surplusNum":111,"awardType":1,"totalNum":1,"exchangeCredits":2,"prizeMark":"","description":"香葱鸡片非常美味","prizeStatus":"1","exchangeCnt":"1","prizeName":"香葱鸡片","prizeId":"","totalPrice":"1.00"},{"createTime":"2017-02-20 15:59:06","picUrl":"upload/vipgift/20170220/201702201559059949.jpg","speId":3,"exchangeNum":3,"id":3,"surplusNum":999,"awardType":1,"totalNum":1002,"exchangeCredits":1,"prizeMark":"","description":"17春款系高跟鞋女尖头亮面水钻单鞋细跟性感晏会时尚女鞋婚鞋 ","prizeStatus":"1","exchangeCnt":"2","prizeName":"two","prizeId":"","totalPrice":"1002.00"},{"createTime":"2019-08-30","picUrl":"代金券","speId":766,"exchangeNum":6,"id":43,"surplusNum":1,"awardType":2,"totalNum":379,"exchangeCredits":31,"prizeMark":"满100减￥17","description":"2018-06-22 14:45:16","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"379","totalPrice":""},{"createTime":"2018-09-29","picUrl":"加息券","speId":74,"exchangeNum":3,"id":45,"surplusNum":1,"awardType":2,"totalNum":218,"exchangeCredits":33,"prizeMark":"满1000加息1%","description":"2018-06-22 15:14:48","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"218","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":48,"exchangeNum":6,"id":46,"surplusNum":1,"awardType":2,"totalNum":380,"exchangeCredits":34,"prizeMark":"满100减￥3","description":"2018-06-22 16:55:44","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"380","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":61,"exchangeNum":6,"id":47,"surplusNum":1,"awardType":2,"totalNum":381,"exchangeCredits":35,"prizeMark":"满100减￥5","description":"2018-06-22 16:55:56","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"381","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":87,"exchangeNum":6,"id":48,"surplusNum":1,"awardType":2,"totalNum":382,"exchangeCredits":36,"prizeMark":"满100减￥10","description":"2018-06-22 16:56:08","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"382","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":77,"exchangeNum":6,"id":49,"surplusNum":1,"awardType":2,"totalNum":383,"exchangeCredits":37,"prizeMark":"满100减￥15","description":"2018-06-22 16:56:18","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"383","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":85,"exchangeNum":6,"id":50,"surplusNum":1,"awardType":2,"totalNum":384,"exchangeCredits":38,"prizeMark":"满100减￥20","description":"2018-06-22 16:56:28","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"384","totalPrice":""},{"createTime":"2018-09-02","picUrl":"代金券","speId":1,"exchangeNum":6,"id":53,"surplusNum":1,"awardType":2,"totalNum":385,"exchangeCredits":41,"prizeMark":"满100减￥9","description":"2018-06-22 18:11:15","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"385","totalPrice":""},{"createTime":"2019-08-30","picUrl":"加息券","speId":986,"exchangeNum":3,"id":54,"surplusNum":1,"awardType":2,"totalNum":222,"exchangeCredits":42,"prizeMark":"满100加息6%","description":"2018-07-19 09:49:26","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"222","totalPrice":""},{"createTime":"2019-08-30","picUrl":"加息券","speId":121,"exchangeNum":3,"id":55,"surplusNum":1,"awardType":2,"totalNum":217,"exchangeCredits":43,"prizeMark":"满100加息7%","description":"2018-07-19 09:53:59","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"217","totalPrice":""},{"createTime":"2018-09-29","picUrl":"加息券","speId":97,"exchangeNum":3,"id":57,"surplusNum":1,"awardType":2,"totalNum":219,"exchangeCredits":44,"prizeMark":"满100加息3%","description":"2018-07-19 09:56:59","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"219","totalPrice":""}],"path":"http://192.168.1.79:8080/yxb_oms/"}
      * state : success
      */
 
@@ -41,9 +41,9 @@ public class FaXian_Data {
 
     public static class ResultBean {
         /**
-         * bannerList : [{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241607397172.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608063343.png","tid":114},{"hrefurl":"","l_name":"引导页app","l_total_count":3,"picurl":"upload/imageManage/20180524/201805241608346978.png","tid":114}]
-         * goodsList : [{"awardType":1,"createTime":"2017-02-20 15:57:58","description":"金手链0.5g/999纯金","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":6,"id":2,"picUrl":"/upload/vipgift/20170221/201702211146548284.jpg","prizeName":"金手链","prizeStatus":"1","speId":2,"surplusNum":20,"totalNum":26,"totalPrice":"7100.00"},{"awardType":1,"createTime":"2017-02-23 11:43:57","description":"包装清单  量杯、蒸笼、电源线、汤勺、饭勺、说明书 ","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":4,"picUrl":"/upload/vipgift/20170223/201702231149206554.jpg","prizeName":"苏泊尔电饭锅CFXB40FC833-75","prizeStatus":"1","speId":4,"surplusNum":787,"totalNum":787,"totalPrice":"10777.00"},{"awardType":1,"createTime":"2017-02-23 11:54:45","description":"家那发","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":5,"picUrl":"/upload/vipgift/20170223/201702231154316559.gif","prizeName":"加拿大","prizeStatus":"1","speId":5,"surplusNum":8,"totalNum":8,"totalPrice":"8900.00"},{"awardType":1,"createTime":"2017-02-23 15:01:40","description":"SM-700S升级0重力家用全身豪华多功能零重力太空舱按摩椅 ","exchangeCnt":"0","exchangeCredits":123456,"exchangeNum":0,"id":6,"picUrl":"/upload/vipgift/20170223/20170223150139609.png","prizeName":"【尚铭】","prizeStatus":"1","speId":6,"surplusNum":1,"totalNum":1,"totalPrice":"1.00"},{"awardType":1,"createTime":"2017-02-28 11:08:40","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用 ","exchangeCnt":"1","exchangeCredits":300,"exchangeNum":1,"id":8,"picUrl":"/upload/vipgift/20170228/201702281108381375.jpg","prizeName":"商务礼品U盘","prizeStatus":"1","speId":8,"surplusNum":67,"totalNum":68,"totalPrice":"1700.00"},{"awardType":1,"createTime":"2017-02-23 15:03:17","description":"智能零重力全自动电动按摩沙发椅1 ","exchangeCnt":"0","exchangeCredits":3,"exchangeNum":5,"id":7,"picUrl":"/upload/vipgift/20170223/201702231630523508.jpg","prizeName":"重力太空舱按摩椅","prizeStatus":"1","speId":7,"surplusNum":0,"totalNum":5,"totalPrice":"70103.00"},{"awardType":1,"createTime":"2017-02-20 14:10:54","description":"实物礼品","exchangeCnt":"0","exchangeCredits":2,"exchangeNum":3,"id":1,"picUrl":"/upload/vipgift/20170220/201702201410511260.jpg","prizeName":"new","prizeStatus":"1","speId":1,"surplusNum":19,"totalNum":22,"totalPrice":"414.00"},{"awardType":1,"createTime":"2017-03-16 14:45:59","description":"香葱鸡片非常美味","exchangeCnt":"0","exchangeCredits":2,"exchangeNum":1,"id":9,"picUrl":"/upload/vipgift/20170316/20170316144557509.png","prizeName":"香葱鸡片","prizeStatus":"1","speId":9,"surplusNum":0,"totalNum":1,"totalPrice":"1.00"},{"awardType":1,"createTime":"2017-02-20 15:59:06","description":"17春款系高跟鞋女尖头亮面水钻单鞋细跟性感晏会时尚女鞋婚鞋 ","exchangeCnt":"0","exchangeCredits":1,"exchangeNum":3,"id":3,"picUrl":"/upload/vipgift/20170220/201702201559059949.jpg","prizeName":"two","prizeStatus":"1","speId":3,"surplusNum":999,"totalNum":1002,"totalPrice":"1002.00"},{"awardType":2,"createTime":"2018-09-24","description":"2018-05-17 10:39:18","exchangeCnt":"无限制","exchangeCredits":1,"exchangeNum":3,"id":38,"picUrl":"加息券","prizeName":"396","prizeStatus":"2018-05-25","speId":979,"surplusNum":1,"totalNum":206,"totalPrice":"满100加息5%"},{"awardType":2,"createTime":"2018-06-03","description":"2017-08-31 11:28:20","exchangeCnt":"无限制","exchangeCredits":24,"exchangeNum":3,"id":35,"picUrl":"加息券","prizeName":"396","prizeStatus":"2018-05-25","speId":9994,"surplusNum":1,"totalNum":211,"totalPrice":"满100加息10%"},{"awardType":2,"createTime":"2019-05-24","description":"2018-05-11 14:36:15","exchangeCnt":"无限制","exchangeCredits":26,"exchangeNum":6,"id":37,"picUrl":"代金券","prizeName":"396","prizeStatus":"2018-05-25","speId":1039,"surplusNum":1,"totalNum":363,"totalPrice":"满100减￥10"}]
-         * path : [图片]http://192.168.1.118:8080/yxb_omsb/
+         * bannerList : [{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241607397172.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608063343.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180524/201805241608346978.png","l_total_count":3,"tid":114,"hrefurl":""}]
+         * goodsList : [{"createTime":"2017-02-28 11:08:40","picUrl":"upload/vipgift/20170228/201702281108381375.jpg","speId":8,"exchangeNum":2,"id":8,"surplusNum":66,"awardType":1,"totalNum":68,"exchangeCredits":30,"prizeMark":"","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用\n","prizeStatus":"1","exchangeCnt":"2","prizeName":"商务礼品U盘","prizeId":"","totalPrice":"1700.00"},{"createTime":"2017-02-23 15:01:40","picUrl":"upload/vipgift/20170223/20170223150139609.png","speId":6,"exchangeNum":0,"id":6,"surplusNum":12,"awardType":1,"totalNum":1,"exchangeCredits":15,"prizeMark":"","description":"SM-700S升级0重力家用全身豪华多功能零重力太空舱按摩椅 ","prizeStatus":"1","exchangeCnt":"0","prizeName":"【尚铭】","prizeId":"","totalPrice":"1.00"},{"createTime":"2017-02-23 11:54:45","picUrl":"upload/vipgift/20170223/201702231154316559.gif","speId":5,"exchangeNum":0,"id":5,"surplusNum":81,"awardType":1,"totalNum":8,"exchangeCredits":14,"prizeMark":"","description":"家那发","prizeStatus":"1","exchangeCnt":"0","prizeName":"加拿大","prizeId":"","totalPrice":"8900.00"},{"createTime":"2017-02-23 11:43:57","picUrl":"upload/vipgift/20170223/201702231149206554.jpg","speId":4,"exchangeNum":0,"id":4,"surplusNum":787,"awardType":1,"totalNum":787,"exchangeCredits":13,"prizeMark":"","description":"包装清单\n\n量杯、蒸笼、电源线、汤勺、饭勺、说明书\n","prizeStatus":"1","exchangeCnt":"0","prizeName":"苏泊尔电饭锅CFXB40FC833-75","prizeId":"","totalPrice":"10777.00"},{"createTime":"2017-02-20 15:57:58","picUrl":"upload/vipgift/20170221/201702211146548284.jpg","speId":2,"exchangeNum":8,"id":2,"surplusNum":19,"awardType":1,"totalNum":26,"exchangeCredits":12,"prizeMark":"","description":"金手链0.5g/999纯金","prizeStatus":"1","exchangeCnt":"2","prizeName":"金手链","prizeId":"","totalPrice":"7100.00"},{"createTime":"2017-02-23 15:03:17","picUrl":"upload/vipgift/20170223/201702231630523508.jpg","speId":7,"exchangeNum":5,"id":7,"surplusNum":11,"awardType":1,"totalNum":5,"exchangeCredits":3,"prizeMark":"","description":"智能零重力全自动电动按摩沙发椅1 ","prizeStatus":"1","exchangeCnt":"2","prizeName":"重力太空舱按摩椅","prizeId":"","totalPrice":"70103.00"},{"createTime":"2017-02-20 14:10:54","picUrl":"upload/vipgift/20170220/201702201410511260.jpg","speId":1,"exchangeNum":3,"id":1,"surplusNum":19,"awardType":1,"totalNum":22,"exchangeCredits":2,"prizeMark":"","description":"实物礼品","prizeStatus":"1","exchangeCnt":"1","prizeName":"new","prizeId":"","totalPrice":"414.00"},{"createTime":"2017-03-16 14:45:59","picUrl":"upload/vipgift/20170316/20170316144557509.png","speId":9,"exchangeNum":1,"id":9,"surplusNum":111,"awardType":1,"totalNum":1,"exchangeCredits":2,"prizeMark":"","description":"香葱鸡片非常美味","prizeStatus":"1","exchangeCnt":"1","prizeName":"香葱鸡片","prizeId":"","totalPrice":"1.00"},{"createTime":"2017-02-20 15:59:06","picUrl":"upload/vipgift/20170220/201702201559059949.jpg","speId":3,"exchangeNum":3,"id":3,"surplusNum":999,"awardType":1,"totalNum":1002,"exchangeCredits":1,"prizeMark":"","description":"17春款系高跟鞋女尖头亮面水钻单鞋细跟性感晏会时尚女鞋婚鞋 ","prizeStatus":"1","exchangeCnt":"2","prizeName":"two","prizeId":"","totalPrice":"1002.00"},{"createTime":"2019-08-30","picUrl":"代金券","speId":766,"exchangeNum":6,"id":43,"surplusNum":1,"awardType":2,"totalNum":379,"exchangeCredits":31,"prizeMark":"满100减￥17","description":"2018-06-22 14:45:16","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"379","totalPrice":""},{"createTime":"2018-09-29","picUrl":"加息券","speId":74,"exchangeNum":3,"id":45,"surplusNum":1,"awardType":2,"totalNum":218,"exchangeCredits":33,"prizeMark":"满1000加息1%","description":"2018-06-22 15:14:48","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"218","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":48,"exchangeNum":6,"id":46,"surplusNum":1,"awardType":2,"totalNum":380,"exchangeCredits":34,"prizeMark":"满100减￥3","description":"2018-06-22 16:55:44","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"380","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":61,"exchangeNum":6,"id":47,"surplusNum":1,"awardType":2,"totalNum":381,"exchangeCredits":35,"prizeMark":"满100减￥5","description":"2018-06-22 16:55:56","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"381","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":87,"exchangeNum":6,"id":48,"surplusNum":1,"awardType":2,"totalNum":382,"exchangeCredits":36,"prizeMark":"满100减￥10","description":"2018-06-22 16:56:08","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"382","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":77,"exchangeNum":6,"id":49,"surplusNum":1,"awardType":2,"totalNum":383,"exchangeCredits":37,"prizeMark":"满100减￥15","description":"2018-06-22 16:56:18","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"383","totalPrice":""},{"createTime":"2019-08-30","picUrl":"代金券","speId":85,"exchangeNum":6,"id":50,"surplusNum":1,"awardType":2,"totalNum":384,"exchangeCredits":38,"prizeMark":"满100减￥20","description":"2018-06-22 16:56:28","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"384","totalPrice":""},{"createTime":"2018-09-02","picUrl":"代金券","speId":1,"exchangeNum":6,"id":53,"surplusNum":1,"awardType":2,"totalNum":385,"exchangeCredits":41,"prizeMark":"满100减￥9","description":"2018-06-22 18:11:15","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"385","totalPrice":""},{"createTime":"2019-08-30","picUrl":"加息券","speId":986,"exchangeNum":3,"id":54,"surplusNum":1,"awardType":2,"totalNum":222,"exchangeCredits":42,"prizeMark":"满100加息6%","description":"2018-07-19 09:49:26","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"222","totalPrice":""},{"createTime":"2019-08-30","picUrl":"加息券","speId":121,"exchangeNum":3,"id":55,"surplusNum":1,"awardType":2,"totalNum":217,"exchangeCredits":43,"prizeMark":"满100加息7%","description":"2018-07-19 09:53:59","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"217","totalPrice":""},{"createTime":"2018-09-29","picUrl":"加息券","speId":97,"exchangeNum":3,"id":57,"surplusNum":1,"awardType":2,"totalNum":219,"exchangeCredits":44,"prizeMark":"满100加息3%","description":"2018-07-19 09:56:59","prizeStatus":"2018-08-31","exchangeCnt":"无限制","prizeName":"396","prizeId":"219","totalPrice":""}]
+         * path : http://192.168.1.79:8080/yxb_oms/
          */
 
         private String path;
@@ -76,26 +76,18 @@ public class FaXian_Data {
 
         public static class BannerListBean {
             /**
-             * hrefurl : 
              * l_name : 引导页app
-             * l_total_count : 3
              * picurl : upload/imageManage/20180524/201805241607397172.png
+             * l_total_count : 3
              * tid : 114
+             * hrefurl :
              */
 
-            private String hrefurl;
             private String l_name;
-            private int l_total_count;
             private String picurl;
+            private int l_total_count;
             private int tid;
-
-            public String getHrefurl() {
-                return hrefurl;
-            }
-
-            public void setHrefurl(String hrefurl) {
-                this.hrefurl = hrefurl;
-            }
+            private String hrefurl;
 
             public String getL_name() {
                 return l_name;
@@ -103,14 +95,6 @@ public class FaXian_Data {
 
             public void setL_name(String l_name) {
                 this.l_name = l_name;
-            }
-
-            public int getL_total_count() {
-                return l_total_count;
-            }
-
-            public void setL_total_count(int l_total_count) {
-                this.l_total_count = l_total_count;
             }
 
             public String getPicurl() {
@@ -121,6 +105,14 @@ public class FaXian_Data {
                 this.picurl = picurl;
             }
 
+            public int getL_total_count() {
+                return l_total_count;
+            }
+
+            public void setL_total_count(int l_total_count) {
+                this.l_total_count = l_total_count;
+            }
+
             public int getTid() {
                 return tid;
             }
@@ -128,48 +120,53 @@ public class FaXian_Data {
             public void setTid(int tid) {
                 this.tid = tid;
             }
+
+            public String getHrefurl() {
+                return hrefurl;
+            }
+
+            public void setHrefurl(String hrefurl) {
+                this.hrefurl = hrefurl;
+            }
         }
 
         public static class GoodsListBean {
             /**
+             * createTime : 2017-02-28 11:08:40
+             * picUrl : upload/vipgift/20170228/201702281108381375.jpg
+             * speId : 8
+             * exchangeNum : 2
+             * id : 8
+             * surplusNum : 66
              * awardType : 1
-             * createTime : 2017-02-20 15:57:58
-             * description : 金手链0.5g/999纯金
-             * exchangeCnt : 0
-             * exchangeCredits : 123456
-             * exchangeNum : 6
-             * id : 2
-             * picUrl : /upload/vipgift/20170221/201702211146548284.jpg
-             * prizeName : 金手链
+             * totalNum : 68
+             * exchangeCredits : 30
+             * prizeMark :
+             * description : 每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用
+
              * prizeStatus : 1
-             * speId : 2
-             * surplusNum : 20
-             * totalNum : 26
-             * totalPrice : 7100.00
+             * exchangeCnt : 2
+             * prizeName : 商务礼品U盘
+             * prizeId :
+             * totalPrice : 1700.00
              */
 
-            private int awardType;
             private String createTime;
-            private String description;
-            private String exchangeCnt;
-            private int exchangeCredits;
+            private String picUrl;
+            private int speId;
             private int exchangeNum;
             private int id;
-            private String picUrl;
-            private String prizeName;
-            private String prizeStatus;
-            private int speId;
             private int surplusNum;
+            private int awardType;
             private int totalNum;
+            private int exchangeCredits;
+            private String prizeMark;
+            private String description;
+            private String prizeStatus;
+            private String exchangeCnt;
+            private String prizeName;
+            private String prizeId;
             private String totalPrice;
-
-            public int getAwardType() {
-                return awardType;
-            }
-
-            public void setAwardType(int awardType) {
-                this.awardType = awardType;
-            }
 
             public String getCreateTime() {
                 return createTime;
@@ -179,28 +176,20 @@ public class FaXian_Data {
                 this.createTime = createTime;
             }
 
-            public String getDescription() {
-                return description;
+            public String getPicUrl() {
+                return picUrl;
             }
 
-            public void setDescription(String description) {
-                this.description = description;
+            public void setPicUrl(String picUrl) {
+                this.picUrl = picUrl;
             }
 
-            public String getExchangeCnt() {
-                return exchangeCnt;
+            public int getSpeId() {
+                return speId;
             }
 
-            public void setExchangeCnt(String exchangeCnt) {
-                this.exchangeCnt = exchangeCnt;
-            }
-
-            public int getExchangeCredits() {
-                return exchangeCredits;
-            }
-
-            public void setExchangeCredits(int exchangeCredits) {
-                this.exchangeCredits = exchangeCredits;
+            public void setSpeId(int speId) {
+                this.speId = speId;
             }
 
             public int getExchangeNum() {
@@ -219,20 +208,52 @@ public class FaXian_Data {
                 this.id = id;
             }
 
-            public String getPicUrl() {
-                return picUrl;
+            public int getSurplusNum() {
+                return surplusNum;
             }
 
-            public void setPicUrl(String picUrl) {
-                this.picUrl = picUrl;
+            public void setSurplusNum(int surplusNum) {
+                this.surplusNum = surplusNum;
             }
 
-            public String getPrizeName() {
-                return prizeName;
+            public int getAwardType() {
+                return awardType;
             }
 
-            public void setPrizeName(String prizeName) {
-                this.prizeName = prizeName;
+            public void setAwardType(int awardType) {
+                this.awardType = awardType;
+            }
+
+            public int getTotalNum() {
+                return totalNum;
+            }
+
+            public void setTotalNum(int totalNum) {
+                this.totalNum = totalNum;
+            }
+
+            public int getExchangeCredits() {
+                return exchangeCredits;
+            }
+
+            public void setExchangeCredits(int exchangeCredits) {
+                this.exchangeCredits = exchangeCredits;
+            }
+
+            public String getPrizeMark() {
+                return prizeMark;
+            }
+
+            public void setPrizeMark(String prizeMark) {
+                this.prizeMark = prizeMark;
+            }
+
+            public String getDescription() {
+                return description;
+            }
+
+            public void setDescription(String description) {
+                this.description = description;
             }
 
             public String getPrizeStatus() {
@@ -243,28 +264,28 @@ public class FaXian_Data {
                 this.prizeStatus = prizeStatus;
             }
 
-            public int getSpeId() {
-                return speId;
+            public String getExchangeCnt() {
+                return exchangeCnt;
             }
 
-            public void setSpeId(int speId) {
-                this.speId = speId;
+            public void setExchangeCnt(String exchangeCnt) {
+                this.exchangeCnt = exchangeCnt;
             }
 
-            public int getSurplusNum() {
-                return surplusNum;
+            public String getPrizeName() {
+                return prizeName;
             }
 
-            public void setSurplusNum(int surplusNum) {
-                this.surplusNum = surplusNum;
+            public void setPrizeName(String prizeName) {
+                this.prizeName = prizeName;
             }
 
-            public int getTotalNum() {
-                return totalNum;
+            public String getPrizeId() {
+                return prizeId;
             }
 
-            public void setTotalNum(int totalNum) {
-                this.totalNum = totalNum;
+            public void setPrizeId(String prizeId) {
+                this.prizeId = prizeId;
             }
 
             public String getTotalPrice() {

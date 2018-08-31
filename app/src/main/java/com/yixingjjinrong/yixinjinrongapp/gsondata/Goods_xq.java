@@ -6,7 +6,7 @@ public class Goods_xq {
 
     /**
      * message : 成功了
-     * result : {"goodsList":[{"awardType":1,"createTime":"2017-02-28 11:08:40","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用 ","exchangeCnt":0,"exchangeCredits":30,"exchangeNum":2,"id":8,"picUrl":"upload/vipgift/20170228/201702281108381375.jpg","prizeName":"商务礼品U盘","prizeStatus":1,"speId":8,"surplusNum":66,"totalNum":68,"totalPrice":1700}],"path":"http://192.168.1.79:8080/yxb_oms/"}
+     * result : {"goodsList":[{"awardType":1,"createTime":"2017-02-28 11:08:40","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用 ","exchangeCnt":0,"exchangeCredits":30,"exchangeNum":2,"id":8,"picUrl":"upload/vipgift/20170228/201702281108381375.jpg","prizeName":"商务礼品U盘","prizeStatus":1,"speId":8,"surplusNum":66,"totalNum":68,"totalPrice":1700}],"myIntegral":"149","path":"http://192.168.1.79:8080/yxb_oms/"}
      * state : success
      */
 
@@ -41,11 +41,21 @@ public class Goods_xq {
     public static class ResultBean {
         /**
          * goodsList : [{"awardType":1,"createTime":"2017-02-28 11:08:40","description":"每个U盘都配有钥匙链方便挂钥匙上，皮套+金属款 方便 经久 耐用 ","exchangeCnt":0,"exchangeCredits":30,"exchangeNum":2,"id":8,"picUrl":"upload/vipgift/20170228/201702281108381375.jpg","prizeName":"商务礼品U盘","prizeStatus":1,"speId":8,"surplusNum":66,"totalNum":68,"totalPrice":1700}]
+         * myIntegral : 149
          * path : http://192.168.1.79:8080/yxb_oms/
          */
 
+        private String myIntegral;
         private String path;
         private List<GoodsListBean> goodsList;
+
+        public String getMyIntegral() {
+            return myIntegral;
+        }
+
+        public void setMyIntegral(String myIntegral) {
+            this.myIntegral = myIntegral;
+        }
 
         public String getPath() {
             return path;

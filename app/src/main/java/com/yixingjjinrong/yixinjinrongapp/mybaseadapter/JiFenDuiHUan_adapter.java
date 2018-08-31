@@ -46,7 +46,7 @@ public class JiFenDuiHUan_adapter extends RecyclerView.Adapter<JiFenDuiHUan_adap
 
     @Override
     public void onBindViewHolder(@NonNull JiFenDuiHUan_adapter.MyViewHolder holder, final int position) {
-        if (list.get(position).getAwardType()==1){
+        if (list.get(position).getAwardType().equals("1")){
             holder.xuni_name.setText(list.get(position).getPrizeName());
         }else {
             holder.xuni_name.setText(list.get(position).getPicUrl());

@@ -73,8 +73,8 @@ public class YunYinShuJu extends Fragment {
         lixiyue.setText(data.getResult().getList().get(0).getLixiyue()+"元");
         jiedaiyue.setText(data.getResult().getList().get(0).getJiedaiyue()+"元");
         jiedeiyuebishu.setText(data.getResult().getList().get(0).getJiedaiyuecishu()+"笔");
-        guanlianyue.setText(data.getResult().getList().get(0).getRelevance()+"元");
-        huanxibishu.setText(data.getResult().getList().get(0).getRelevanceSum()+"笔");
+//        guanlianyue.setText(data.getResult().getList().get(0).getRelevance()+"元");
+//        huanxibishu.setText(data.getResult().getList().get(0).getRelevanceSum()+"笔");
         //出借用户信息
         cjyonghu_time.setText("（数据截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
         ren_num.setText("亿信宝累计出借人数量为"+data.getResult().getList().get(0).getChujierenSum()+"人。");
@@ -94,12 +94,12 @@ public class YunYinShuJu extends Fragment {
         yuequshuju_time.setText("（数据截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
         ljdaichangjine.setText(data.getResult().getList().get(0).getLeijidaichang()+"元");
         ljdaichangbishu.setText(data.getResult().getList().get(0).getDaichangcishu()+"笔");
-        yuqi_money.setText(data.getResult().getList().get(0).getYuqimonery()+"元");
-        yuqibishu.setText(data.getResult().getList().get(0).getYuqiSum()+"笔");
+//        yuqi_money.setText(data.getResult().getList().get(0).getYuqimonery()+"元");
+//        yuqibishu.setText(data.getResult().getList().get(0).getYuqiSum()+"笔");
 //        jineyueqilv.setText(data.getResult().getList().get(0).getMonerylv()+"%");
 //        xiangmuyueqilv.setText(data.getResult().getList().get(0).getXiangmuyuqi()+"%");
-        jine90.setText(data.getResult().getList().get(0).getBuhanMonery()+"元");
-        bishu90.setText(data.getResult().getList().get(0).getBuhanSum()+"笔");
+//        jine90.setText(data.getResult().getList().get(0).getBuhanMonery()+"元");
+//        bishu90.setText(data.getResult().getBuhanSum()+"笔");
 //        xiangmufenji90.setText(data.getResult().getList().get(0).getFenjiyuqi()+"%");
 //        xiangmufenji180.setText(data.getResult().getList().get(0).getXiangmuqi()+"%");
 //        xiangmufenji181.setText(data.getResult().getList().get(0).getXiangmuyu()+"%");

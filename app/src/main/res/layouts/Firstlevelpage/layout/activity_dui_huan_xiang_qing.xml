@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical"
+    tools:context="com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.DuiHuanXiangQing">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="138px"
+        android:background="@drawable/mybackgrandcolor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/dhxq_fh"
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/fanhui" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="60px"
+            android:text="确认商品"
+            android:textColor="#ffffff"
+            android:textSize="38px" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/haveadassis"
+        layout="@layout/have_adassis"
+        android:visibility="gone"></include>
+
+    <include
+        android:id="@+id/unhaveadassis"
+        layout="@layout/unhave_adassis"
+        android:visibility="gone"></include>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/caitiao" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="198px"
+            android:layout_height="match_parent"
+            android:paddingBottom="30px"
+            android:paddingTop="30px"
+            android:src="@drawable/xiaomi" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dh_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="30px"
+                android:text="小米收卷"
+                android:textColor="#333333"
+                android:textSize="28px" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="所需积分："
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/dh_suoxu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:text="10"
+                    android:textColor="#ef6623"
+                    android:textSize="34px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/duihuanxq_kc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34px"
+                android:layout_marginTop="18px"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="当前库存："
+                    android:textColor="#999999"
+                    android:textSize="28px" />
+
+                <TextView
+                    android:id="@+id/dh_dangqiankc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:text="10"
+                    android:textColor="#333333"
+                    android:textSize="34px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="198px"
+        android:layout_marginTop="20px"
+        android:background="#fdfdfe"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="30px"
+            android:text="兑换数量："
+            android:textColor="#999999"
+            android:textSize="24px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="90px"
+                android:src="@drawable/jian"
+
+                />
+            <EditText
+                android:id="@+id/dh_num"
+                android:layout_width="260px"
+                android:layout_height="90px"
+                android:layout_marginLeft="20px"
+                android:background="@drawable/bt_qianhuisebiankuang"
+                android:text="1"
+                android:textSize="34px"
+                android:textColor="#333333"
+                android:gravity="center"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="90px"
+                android:src="@drawable/jia"
+                android:layout_marginLeft="20px"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140px"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#fdfdfe">
+            <Button
+                android:id="@+id/dh_ok_bt"
+                android:layout_width="600px"
+                android:layout_height="100px"
+                android:background="@drawable/bt_shape"
+                android:text="确认兑换"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

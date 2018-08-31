@@ -4,9 +4,10 @@ import java.util.List;
 
 public class MyAddass_Gson {
 
+
     /**
      * message : 查询成功
-     * result : {"addressList":[{"id":176,"createTime":"2018-08-09 14:41:19","isDefault":1,"userId":11298,"receiverName":"贺培勇","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"我家我家","receiverPhone":"18539396112"},{"id":175,"createTime":"2018-08-09 14:34:27","isDefault":0,"userId":11298,"receiverName":"贺培勇","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"逆袭wohyizhzy","receiverPhone":"18620180301"},{"id":177,"createTime":"2018-08-09 14:41:43","isDefault":0,"userId":11298,"receiverName":"贺培勇3","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"哈哈哈哈","receiverPhone":"18539396112"},{"id":178,"createTime":"2018-08-09 14:44:39","isDefault":0,"userId":11298,"receiverName":"贺培勇1111","STATUS":1,"receiverAddress":"北京市东城区","addressDetail":"噢所以影子一样","receiverPhone":"18533333333"}]}
+     * result : {"addressList":[{"createTime":"2018-08-31 19:31:38","isDefault":0,"receiverId":"215","userId":11298,"receiverName":"你会放大","STATUS":1,"receiverAddress":"天津市 天津市 和平区","addressDetail":"的发送到发送到发送到","receiverPhone":"15726615301"},{"createTime":"2018-08-31 19:35:45","isDefault":0,"receiverId":"216","userId":11298,"receiverName":"好紧张","STATUS":1,"receiverAddress":"山西省 太原市 小店区","addressDetail":"是大V防晒大V所需 ","receiverPhone":"121634654"}]}
      * state : success
      */
 
@@ -51,34 +52,26 @@ public class MyAddass_Gson {
 
         public static class AddressListBean {
             /**
-             * id : 176
-             * createTime : 2018-08-09 14:41:19
-             * isDefault : 1
+             * createTime : 2018-08-31 19:31:38
+             * isDefault : 0
+             * receiverId : 215
              * userId : 11298
-             * receiverName : 贺培勇
+             * receiverName : 你会放大
              * STATUS : 1
-             * receiverAddress : 北京市东城区
-             * addressDetail : 我家我家
-             * receiverPhone : 18539396112
+             * receiverAddress : 天津市 天津市 和平区
+             * addressDetail : 的发送到发送到发送到
+             * receiverPhone : 15726615301
              */
 
-            private int id;
             private String createTime;
             private int isDefault;
+            private String receiverId;
             private int userId;
             private String receiverName;
             private int STATUS;
             private String receiverAddress;
             private String addressDetail;
             private String receiverPhone;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
 
             public String getCreateTime() {
                 return createTime;
@@ -94,6 +87,14 @@ public class MyAddass_Gson {
 
             public void setIsDefault(int isDefault) {
                 this.isDefault = isDefault;
+            }
+
+            public String getReceiverId() {
+                return receiverId;
+            }
+
+            public void setReceiverId(String receiverId) {
+                this.receiverId = receiverId;
             }
 
             public int getUserId() {

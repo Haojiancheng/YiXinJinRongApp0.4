@@ -929,7 +929,7 @@
                         android:id="@+id/bishu90"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="0.00笔"
+                        android:text="0笔"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="30px"
                         android:textColor="#333333"

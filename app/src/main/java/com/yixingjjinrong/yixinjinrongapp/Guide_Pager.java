@@ -94,6 +94,7 @@ public class Guide_Pager extends AutoLayoutActivity {
 
                     }
                 });
+        //
 //        mylist.add("http://e.hiphotos.baidu.com/image/h%3D300/sign=3b44ffc10746f21fd6345853c6256b31/8c1001e93901213f5480ffe659e736d12f2e955d.jpg");
 //        mylist.add("http://g.hiphotos.baidu.com/image/h%3D300/sign=23d5d41f44540923b569657ea258d1dc/dcc451da81cb39db18994d6add160924ab1830b4.jpg");
 //        mylist.add("http://d.hiphotos.baidu.com/image/h%3D300/sign=d3ab500501f3d7ca13f63976c21ebe3c/2fdda3cc7cd98d104a601b0a2c3fb80e7bec9050.jpg");

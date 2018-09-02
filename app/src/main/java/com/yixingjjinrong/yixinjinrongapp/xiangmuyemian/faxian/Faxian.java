@@ -50,7 +50,7 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class Faxian extends Fragment {
-    private TextView  fx_gengduo;
+    private TextView fx_gengduo;
     private View pingtaijieshao12, anquanbaozhang, xingxipilu, wangdaiketang;
     private Banner fanxian_banner;
     private String sha1;//SHA1加密
@@ -88,7 +88,7 @@ public class Faxian extends Fragment {
     private void gethppt() {
         //192.168.1.111
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+ "yxbApp/discoveryIndex.do")
+                .url(Urls.BASE_URL + "yxbApp/discoveryIndex.do")
                 .content("")
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
@@ -110,23 +110,28 @@ public class Faxian extends Fragment {
                         list.addAll(data.getResult().getGoodsList());
                         adapter = new FaXianBasrAdapter(list, paht);
                         myrecview.setAdapter(adapter);
+                        String s = String.valueOf(user_id);
+                        Log.e("sdasd", "" + s);
+                        if (s.equals("0")) {
+                            Intent it = new Intent(getActivity(), WoDe_DengRu.class);
+                            startActivity(it);
+                        } else {
+                            adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    String awardType = String.valueOf(list.get(position).getAwardType());
+                                    String speid = String.valueOf(list.get(position).getSpeId());
+                                    String prizeId = list.get(position).getPrizeId();
+                                    //跳详情
+                                    Intent it = new Intent(getActivity(), ShangPingXiangQing.class);
+                                    it.putExtra("awardType", awardType);
+                                    it.putExtra("speid", speid);
+                                    it.putExtra("prizeId", prizeId);
+                                    startActivity(it);
 
-                        adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
-                            @Override
-                            public void onEveryClick(int position) {
-                                String awardType = String.valueOf(list.get(position).getAwardType());
-                                String speid = String.valueOf(list.get(position).getSpeId());
-                                String prizeId = list.get(position).getPrizeId();
-                                //跳详情
-                                Intent it=new Intent(getActivity(), ShangPingXiangQing.class);
-                                it.putExtra("awardType", awardType);
-                                it.putExtra("speid", speid);
-                                it.putExtra("prizeId", prizeId);
-                                startActivity(it);
-
-                            }
-                        });
-
+                                }
+                            });
+                        }
 
                         Log.e("TAG", "Path:" + paht);
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
@@ -204,11 +209,11 @@ public class Faxian extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
-                Log.e("sdasd", ""+s);
+                Log.e("sdasd", "" + s);
                 if (s.equals("0")) {
                     Intent it = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
-                }else {
+                } else {
                     Intent it = new Intent(getActivity(), JiFenDuiHuan.class);
                     startActivity(it);
                 }

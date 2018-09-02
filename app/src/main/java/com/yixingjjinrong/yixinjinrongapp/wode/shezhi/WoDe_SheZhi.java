@@ -14,25 +14,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.yixingjjinrong.yixinjinrongapp.HandUtils.GestureEditActivity;
+import com.yixingjjinrong.yixinjinrongapp.HandUtils.GestureVerifyActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.DataCleanManager;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
-import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
@@ -50,6 +46,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private Context context;
     private ImageView shezhi_fh;
     private PromptDialog promptDialog;
+    private TextView hand_pass;
+    private String ishand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +90,12 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 dialog3.show();
 
 
-
             }
         });
         repassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, XiuGaiMiMa.class);
+                Intent shezhi_tuichu = new Intent(WoDe_SheZhi.this, XiuGaiMiMa.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
@@ -106,18 +103,12 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //                finish();
             }
         });
-        try {
-            String sizea = DataCleanManager.getTotalCacheSize(context);
-            hz.setText(""+sizea);
-            Log.e("我的缓存", ""+sizea);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         fankui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, FanKui.class);
+                Intent shezhi_tuichu = new Intent(WoDe_SheZhi.this, FanKui.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
@@ -131,14 +122,136 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 finish();
             }
         });
+        gethuancun();
+        getonclick();
+    }
 
+    private void getonclick() {
+        ishand = (String) SPUtils.get(WoDe_SheZhi.this, "ishand", "");
+        if (ishand != null) {
+            if (ishand.equals("1")) {
+                hand_pass.setText("已开启");
+                hand_pass.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
+                                .setTitle("提示")
+                                .setMessage("您是否关闭手势密码")
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(WoDe_SheZhi.this, GestureVerifyActivity.class);
+                                        intent.putExtra("shezhi", "1");
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                })
+                                .create();
+                        dialog1.setCanceledOnTouchOutside(false);
+                        dialog1.show();
+
+                    }
+                });
+
+            } else {
+                hand_pass.setText("未开启");
+                hand_pass.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
+                                .setTitle("提示")
+                                .setMessage("您是否开起手势密码")
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                })
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent it = new Intent(WoDe_SheZhi.this, GestureEditActivity.class);
+                                        startActivity(it);
+                                    }
+                                })
+                                .create();
+                        dialog1.setCanceledOnTouchOutside(false);
+                        dialog1.show();
+                    }
+                });
+            }
+        }else {
+            hand_pass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
+                            .setTitle("提示")
+                            .setMessage("您是否开起手势密码")
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            })
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent it = new Intent(WoDe_SheZhi.this, GestureEditActivity.class);
+                                    startActivity(it);
+                                }
+                            })
+                            .create();
+                    dialog1.setCanceledOnTouchOutside(false);
+                    dialog1.show();
+                }
+            });
+        }
+    }
+
+    private void gethuancun() {
+        try {
+            String totalCacheSize = DataCleanManager.getTotalCacheSize(WoDe_SheZhi.this);
+            hz.setText(totalCacheSize + "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
+                        .setTitle("提示")
+                        .setMessage("您是否清楚缓存")
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DataCleanManager.clearAllCache(WoDe_SheZhi.this);
+                                hz.setText("0KB");
+                            }
+                        })
+                        .create();
+                dialog1.setCanceledOnTouchOutside(false);
+                dialog1.show();
+            }
+        });
     }
 
     private void gethttp() {
         promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-        String myurl= getid(context);
+        String myurl = getid(context);
         try {
 
 //            SPUtils.remove(WoDe_SheZhi.this,"userId");
@@ -146,8 +259,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
             js_request.put("userid", user_ird);
             js_request.put("token", token);
             js_request.put("url", myurl);
-            Log.e("useridddd",user_ird+"" );
-            Log.e("token",token+"" );
+            Log.e("useridddd", user_ird + "");
+            Log.e("token", token + "");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -172,7 +285,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                            promptDialog.dismiss();
+                        promptDialog.dismiss();
                         ToastUtils.showToast(WoDe_SheZhi.this, "网络错误，请售后再试");
                     }
 
@@ -181,26 +294,34 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                         Log.e("退出登入的GSON:", response);
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
-                        SPUtils.put(WoDe_SheZhi.this,"isLogin",false);
+                        SPUtils.put(WoDe_SheZhi.this, "isLogin", false);
 //                EventBus.getDefault().post(new UnLogin());
-                        SPUtils.remove(WoDe_SheZhi.this,"userId");
-                        SPUtils.remove(WoDe_SheZhi.this,"Loginid");
+                        SPUtils.remove(WoDe_SheZhi.this, "userId");
+                        SPUtils.remove(WoDe_SheZhi.this, "Loginid");
                         promptDialog.dismiss();
                         finish();
                     }
                 });
     }
+
     public synchronized String getid(Context context) {
-        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        @SuppressLint("MissingPermission") String ID= TelephonyMgr.getDeviceId();
+        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        @SuppressLint("MissingPermission") String ID = TelephonyMgr.getDeviceId();
         return ID;
     }
 
     private void getSheZhi_Id() {
-        user_tuichu=findViewById(R.id.user_tuichu);//退出
-        repassword=findViewById(R.id.repassword);//修改密码
-        fankui=findViewById(R.id.fankui);//意见反馈
-        hz=findViewById(R.id.hz);//缓存
-        shezhi_fh=findViewById(R.id.shezhi_fh);
+        user_tuichu = findViewById(R.id.user_tuichu);//退出
+        repassword = findViewById(R.id.repassword);//修改密码
+        fankui = findViewById(R.id.fankui);//意见反馈
+        hz = findViewById(R.id.hz);//缓存
+        shezhi_fh = findViewById(R.id.shezhi_fh);
+        hand_pass = findViewById(R.id.hand_pass);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
     }
 }

@@ -109,7 +109,9 @@
         <activity android:name=".xiangmuyemian.wangdaiClass.Class_xiangqing" />
         <activity android:name=".wode.yaoqing.HuoDong_GuiZe" />
         <activity android:name=".xiangmuyemian.faxian.faxianerji.xinxipilu.xinxipilufragment.baogaoPDF.BaoGaoXiangQing" />
-        <activity android:name=".xiangmuyemian.faxian.jifen_fx.DuiHuanXiangQing"></activity>
+        <activity android:name=".xiangmuyemian.faxian.jifen_fx.DuiHuanXiangQing" />
+        <activity android:name=".HandUtils.GestureEditActivity" />
+        <activity android:name=".HandUtils.GestureVerifyActivity"></activity>
     </application>
 
 </manifest>

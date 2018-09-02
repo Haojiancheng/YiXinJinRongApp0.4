@@ -66,10 +66,10 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         setContentView(R.layout.chujiejilufragment);
         list.clear();
         initView();
-        chujejilu_rview=getActivity().findViewById(R.id.chujejilu_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
-        chujejilu_rview.setLayoutManager(manager);
+        chujejilu_rview=(XRecyclerView)findViewById(R.id.chujejilu_rview);
+        LinearLayoutManager manager=new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+        chujejilu_rview.setLayoutManager(manager);
         chujejilu_rview.setLoadingListener(this);
         chujejilu_rview.setPullRefreshEnabled(true);
         chujejilu_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -151,7 +151,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
-        cjjl_dengruchakan=getActivity().findViewById(R.id.cjjl_dengruchakan);
+        cjjl_dengruchakan=findViewById(R.id.cjjl_dengruchakan);
         Log.e("项目出借记录", ""+borrowRandomId);
         MyScrollView chujiejiluSV= (MyScrollView) findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {

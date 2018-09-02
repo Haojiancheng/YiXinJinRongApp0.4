@@ -270,23 +270,24 @@ public class XiangMuJingDu extends LazyFragment {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
-        fabuxiangmu = getActivity().findViewById(R.id.fabuxiangmu);
-        fb_xyb = getActivity().findViewById(R.id.fb_xyb);
-        muji = getActivity().findViewById(R.id.muji);
-        muji_xyb = getActivity().findViewById(R.id.muji_xyb);
-        fangkuan = getActivity().findViewById(R.id.fangkuan);
-        fk_xyb = getActivity().findViewById(R.id.fk_xyb);
-        huankuan = getActivity().findViewById(R.id.huankuan);
+        fabuxiangmu = (ImageView) findViewById(R.id.fabuxiangmu);
+        fb_xyb = (ImageView) findViewById(R.id.fb_xyb);
+        muji = (ImageView) findViewById(R.id.muji);
+        muji_xyb = (ImageView) findViewById(R.id.muji_xyb);
+        fangkuan = (ImageView) findViewById(R.id.fangkuan);
+        fk_xyb = (ImageView) findViewById(R.id.fk_xyb);
+        huankuan = (ImageView) findViewById(R.id.huankuan);
         // TextView,,,,,,;
-        fabuxiangmu_time = getActivity().findViewById(R.id.fabuxiangmu_time);
-        mujitime = getActivity().findViewById(R.id.mujitime);
-        yihuan_jine = getActivity().findViewById(R.id.yihuan_jine);
-        yehuan_qi = getActivity().findViewById(R.id.yehuan_qi);
-        daihuan_jine = getActivity().findViewById(R.id.daihuan_jine);
-        daihua_qi = getActivity().findViewById(R.id.daihua_qi);
-        fangkuan_time = getActivity().findViewById(R.id.fangkuan_time);
-        jd_dengruchakan=getActivity().findViewById(R.id.jd_dengruchakan);
-        w_dongru_chakan=getActivity().findViewById(R.id.w_dongru_chakan);
+        fabuxiangmu_time = (TextView) findViewById(R.id.fabuxiangmu_time);
+        mujitime = (TextView) findViewById(R.id.mujitime);
+        yihuan_jine = (TextView) findViewById(R.id.yihuan_jine);
+        yehuan_qi = (TextView) findViewById(R.id.yehuan_qi);
+        daihuan_jine = (TextView) findViewById(R.id.daihuan_jine);
+        daihua_qi = (TextView) findViewById(R.id.daihua_qi);
+        fangkuan_time = (TextView) findViewById(R.id.fangkuan_time);
+        jd_dengruchakan=findViewById(R.id.jd_dengruchakan);
+        w_dongru_chakan=findViewById(R.id.w_dongru_chakan);
+
     }
 
     private void initview() {

@@ -12,23 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.barteksc.pdfviewer.PDFView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class BaoGaoXiangQing extends AutoLayoutActivity {
-    private PDFView pdfView;
+    private WebView wb;
     private TextView bg_title;
     private ImageView bgxq_fh;
     private String pdfurl;
@@ -46,14 +42,16 @@ public class BaoGaoXiangQing extends AutoLayoutActivity {
 
         getid();
         getPermission();
-        pdfView.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+pdfurl)).load();
-        bgxq_fh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 //        pdfView.fromFile(new File(pdfurl)).load();
+        getweb();
+    }
+
+    private void getweb() {
+        wb.getSettings().setJavaScriptEnabled(true);
+        wb.getSettings().setPluginState(WebSettings.PluginState.ON);
+        wb.loadUrl(pdfurl);
+
     }
 
     private static String[] PERMISSIONS_STORAGE = {
@@ -89,7 +87,7 @@ public class BaoGaoXiangQing extends AutoLayoutActivity {
 
 
     private void getid() {
-        pdfView = findViewById(R.id.pdfView);
+        wb = findViewById(R.id.wv);
         bg_title = findViewById(R.id.bg_title);
         bgxq_fh = findViewById(R.id.bgxq_fh);
         Intent it = getIntent();

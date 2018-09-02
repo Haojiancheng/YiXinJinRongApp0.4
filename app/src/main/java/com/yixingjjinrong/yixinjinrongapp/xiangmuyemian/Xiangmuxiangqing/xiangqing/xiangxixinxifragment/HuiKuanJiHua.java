@@ -85,12 +85,12 @@ public class HuiKuanJiHua extends LazyFragment {
    
 
     private void getid_kh() {
-        hkjh_rview=getActivity().findViewById(R.id.hkjh_rview);
+        hkjh_rview= (RecyclerView) findViewById(R.id.hkjh_rview);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         hkjh_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        h_dengruchakan=getActivity().findViewById(R.id.h_dengruchakan);
-        w_dongru_chakan=getActivity().findViewById(R.id.w_dongru_chakan);
+        h_dengruchakan=findViewById(R.id.h_dengruchakan);
+        w_dongru_chakan=findViewById(R.id.w_dongru_chakan);
     }
 
     private void getHttp() {

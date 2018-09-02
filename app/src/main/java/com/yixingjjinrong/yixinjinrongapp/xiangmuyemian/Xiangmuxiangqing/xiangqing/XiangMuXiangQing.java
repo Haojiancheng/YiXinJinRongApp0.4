@@ -28,11 +28,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
-import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
@@ -73,7 +71,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
@@ -567,7 +564,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             case 3://已满标
                                 bt_lijichujie.setText(data.getResult().getRedList1().getBorrowStatusStr());
                                 bt_lijichujie.setTextColor(Color.parseColor("#ffffff"));
-                                bt_lijichujie.setBackgroundResource(R.drawable.bt_huise);
+                                bt_lijichujie.setBackgroundResource(R.drawable.yimanbiao);
                                 bt_lijichujie.setEnabled(false);
                                 break;
                             case 4://回款中

@@ -66,7 +66,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130px"
+        android:layout_marginTop="80px"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -208,19 +208,33 @@
             app:errorTextAppearance="@style/ErrorAppearance" />
     </android.support.design.widget.TextInputLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/yy_yanzheng"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30px"
+        >
+
+        <CheckBox
+            android:id="@+id/zc_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30px"
-            android:text="发送语音验证码" />
+            android:layout_marginLeft="30px"
+            android:text="我已阅读并同意"
+            android:button="@drawable/checkbox_style"
+            android:paddingLeft="20px"
+            android:textColor="#999"
+            android:textSize="28px" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/zz_h5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《注册协议》"
+            android:textColor="#fe6623"
+            android:textSize="28px" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/yanzheng_zhuce"
@@ -232,7 +246,20 @@
         android:text="注册"
         android:textColor="#fdfdfc"
         android:textSize="38px" />
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
+    <TextView
+    android:id="@+id/yy_yanzheng"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="30px"
+        android:layout_marginTop="30px"
+    android:text="发送语音验证码" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

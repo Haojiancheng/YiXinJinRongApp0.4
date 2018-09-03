@@ -137,7 +137,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
         }
         OkHttpUtils.postString()
                 //http://192.168.1.111:8080/yxb_mobile/
-                .url("http://192.168.1.111:8080/yxb_mobile/yxbApp/integralExchangeList.do")
+                .url(Urls.BASE_URL+"yxbApp/integralExchangeList.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))

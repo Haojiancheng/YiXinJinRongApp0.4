@@ -52,7 +52,7 @@ public class GestureContentView extends ViewGroup {
     private void addChild(){
         for (int i = 0; i < 9; i++) {
             ImageView image = new ImageView(context);
-            image.setBackgroundResource(R.drawable.gesture_node_normal);
+            image.setBackgroundResource(R.drawable.weixuanzhong);
             this.addView(image);
             invalidate();
             // 第几行

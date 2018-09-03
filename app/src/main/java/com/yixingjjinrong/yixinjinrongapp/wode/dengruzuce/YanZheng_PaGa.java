@@ -14,6 +14,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +37,7 @@ import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -75,6 +77,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private PromptDialog promptDialog;
     private ImageView zc_yj_image;
     public static YanZheng_PaGa instance;
+    private CheckBox zc_check;//复选框
+    private String mytimer;
+    private TextView zz_h5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 //        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
 //        }
-        instance=this;
+        instance = this;
         setContentView(R.layout.activity_yanzheng__pa_ga);
         ImmersionBar.with(this)
                 .transparentBar()
@@ -103,6 +108,14 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     }
 
     private void getyanZheng_Onclick() {
+        zz_h5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent zhuce_page = new Intent(YanZheng_PaGa.this, ZhuCeH5.class);
+
+                startActivity(zhuce_page);
+            }
+        });
         yy_yanzheng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,15 +135,22 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
                 int lenght = user_mima.getText().toString().trim().length();
 //                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
-                if (user_mima.getText().toString().equals("")) {
-                    Toast.makeText(YanZheng_PaGa.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                if (phonecode.getText().toString().equals("")) {
+                    ToastUtils.showToast(YanZheng_PaGa.this, "验证码不能为空");
                 } else {
-                    if (lenght < 6 || lenght > 18 || !isPassword(user_mima.getText().toString())) {
-
-                        Toast.makeText(YanZheng_PaGa.this, "6-18位字母和数字组合", Toast.LENGTH_SHORT).show();
+                    if (user_mima.getText().toString().equals("")) {
+                        ToastUtils.showToast(YanZheng_PaGa.this, "密码不能为空");
                     } else {
-                        gethttp_zhuce();
+                        if (lenght < 6 || lenght > 18 || !isPassword(user_mima.getText().toString())) {
+                            ToastUtils.showToast(YanZheng_PaGa.this, "6-18位字母和数字组合");
+                        } else {
+                            if (zc_check.isChecked()) {
+                                gethttp_zhuce();
+                            } else {
+                                ToastUtils.showToast(YanZheng_PaGa.this, "请阅读并勾选注册协议");
+                            }
 
+                        }
                     }
                 }
             }
@@ -139,6 +159,12 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         //从Intent当中根据key取得value
         if (intent != null) {
             get_phone = intent.getStringExtra("user_Phone");
+            mytimer = intent.getStringExtra("timer");
+            jsessionId = intent.getStringExtra("jsessionId");
+            if (mytimer.equals("1")) {
+                time = new TimeCount(60000, 1000);
+                time.start();
+            }
             huode_phone.setText(get_phone);
         }
         huoqu_yanzhengma.setOnClickListener(new View.OnClickListener() {
@@ -276,7 +302,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         promptDialog.dismiss();
-                        ToastUtils.showToast(YanZheng_PaGa.this,"网络错误，请稍后再试" );
+                        ToastUtils.showToast(YanZheng_PaGa.this, "网络错误，请稍后再试");
                     }
 
                     @Override
@@ -350,7 +376,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
                             message = data.getMessage();
                             jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId",""+ jsessionId);
+                            Log.e("jsessionId", "" + jsessionId);
                             time = new TimeCount(60000, 1000);
                             time.start();
                         } else {
@@ -365,6 +391,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     }
 
     private void getyanZheng_Id() {
+        zc_check = findViewById(R.id.zc_check);
         yanzheng_zhuce = findViewById(R.id.yanzheng_zhuce);
         huode_phone = findViewById(R.id.huode_Phone);//获得手机号
         huoqu_yanzhengma = findViewById(R.id.huoqu_yanzhengma);//获取验证码
@@ -377,7 +404,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         yy_yanzheng = findViewById(R.id.yy_yanzheng);
         phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
         user_mima.addTextChangedListener(new MaxLengthWatcher(18, user_mima));
-        zc_yj_image=findViewById(R.id.zc_yj_image);
+        zc_yj_image = findViewById(R.id.zc_yj_image);
+        zz_h5 = findViewById(R.id.zz_h5);
+
     }
 
     public synchronized String getid(Context context) {

@@ -240,9 +240,6 @@ html, body {
     left: 0;
     right: 0;
     overflow: hidden;
-      -webkit-overflow-scrolling: touch;
-  -webkit-backface-visibility: hidden;
-  z-index:1;
 }
 .bulletin-header{
     height:0.88rem;
@@ -268,17 +265,18 @@ html, body {
     background-image:url("../img/arrows2.png");
 }
 .goback{
-    width: 0.22rem;
-    height: 0.38rem;
+    width: 0.6rem;
+    height: 0.88rem;
     overflow: hidden;
     position: absolute;
     background-image: url(../img/arrows.png);
-    background-size: 100% auto;
+    background-size: auto 45.5%;
+    background-position: center;
     background-repeat: no-repeat;
 }
 .icon-goback {
-    top: 0.24rem;
-    left: 0.3rem;
+    top: 0;
+    left: 0.22rem;
 }
 .txt-header{
     white-space: nowrap;
@@ -451,7 +449,6 @@ html, body {
     top:0.88rem;
     overflow: auto;
     border-top: 0.2rem solid #f1f1f1;
-    
 }
 .toup2{
     border: 0;
@@ -465,7 +462,6 @@ html, body {
 }
 .sto1{
     font-size: 0;
-    margin-bottom:0.8rem
 }
 .dan_kuan{
     position: absolute;
@@ -477,7 +473,7 @@ html, body {
     right: 0;
     bottom: 0;
 }
-.kuan{
+.kuan,.kuan2{
     position: fixed;
     width: 4rem;
     height: 2rem;
@@ -493,8 +489,8 @@ html, body {
     border-radius: 0.06rem;
     z-index: 668;
 }
-.font{
-    font-size: 0.16rem;
+.font,.font3{
+    font-size: 0.22rem;
     line-height: 0.36rem;
     top:38%;
     left:50%;
@@ -503,27 +499,33 @@ html, body {
     -webkit-transform:translate(-50%,-50%);
     -moz-transform:translate(-50%,-50%);
     -ms-transform:translate(-50%,-50%);
-    width: 2.7rem;
+    max-width: 2.7rem;
 
 }
-.font2{
+.font2,.font4{
     text-align: center;
     color: #f2672e;
     font-size: 0;
 
 }
-.font2 a{
+.font2 a,.font4 a{
     text-decoration: none;
     line-height: 0.7rem;
-    font-size: 0.16rem;
+    font-size: 0.24rem;
     display: inline-block;
     width: 50%;
     text-align: center;
     box-sizing: border-box;
     color: #444;
+    border-right: 1px solid #999;
 }
-
-.nei_Kuan{
+.font2 a:last-child,.font4 a:last-child{
+    border-right: 0;
+}
+.font2 a{
+    width: 100%;
+}
+.nei_Kuan,.nei_Kuan2{
     height: 1.3rem;
     border-bottom: 1px solid #999;
     position: relative;
@@ -576,7 +578,7 @@ html, body {
     background-size: contain;
 }
 .fxcp_list02>li>ul>li:last-child{
-	margin-right:0
+    margin-right: 0;
 }
 .fxcp_list02>li>ul>li.on{
     background: url("../img/fxcp_icon01.png") center no-repeat;
@@ -621,5 +623,41 @@ html, body {
     word-break: break-all;
     color: #999999;
     font-size: 0.22rem;
-    margin: 0 0.4rem 0.5remm;
+    margin: 0 0.4rem 0.5rem;
+}
+.loading{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0);
+    z-index: 10;
+}
+.load_center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50% ,-50%);
+    -ms-transform:translate(-50% ,-50%); 	/* IE 9 */
+    -moz-transform:translate(-50% ,-50%);
+    -webkit-transform:translate(-50% ,-50%);
+    -o-transform:translate(-50% ,-50%);
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 5px;
+}
+.load_imgbox{
+    text-align: center;
+    margin: 0.5rem auto 0.3rem;
+    width: 1rem;
+}
+.load_imgbox img{
+    display: block;
+    width: 100%;
+}
+.load_p{
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0.3rem 0.3rem;
+    white-space: nowrap;
 }

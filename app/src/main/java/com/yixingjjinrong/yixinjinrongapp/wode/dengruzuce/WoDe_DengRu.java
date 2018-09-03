@@ -30,6 +30,8 @@ import android.widget.ToggleButton;
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.gyf.barlibrary.OnKeyboardListener;
+import com.yixingjjinrong.yixinjinrongapp.HandUtils.GestureVerifyActivity;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
@@ -79,7 +81,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     private Context context;
     private PermissionHelper mPermissionHelper;//动态申请权限
     private String message;
-    private View dr_jg,shojihao_kong;
+//    private View dr_jg,shojihao_kong;
     private ImageView dr_yj_image;
     private PromptDialog promptDialog;
     public static WoDe_DengRu instance;
@@ -138,26 +140,26 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>0) {
-                    dengru_guanbi.setVisibility(View.VISIBLE);
-                }else {
-                    dengru_guanbi.setVisibility(View.GONE);
-                }
-                if (dengru_phone.getText().toString().isEmpty()){
-                    shojihao_kong.setVisibility(View.VISIBLE);
-                    jg_text.setText("手机号不能为空");
-                }else {
-//                    shojihao_kong.setVisibility(View.GONE);
-                    if (isMobileNo(dengru_phone.getText().toString())==false) {
-                        shojihao_kong.setVisibility(View.VISIBLE);
-                        jg_text.setText("手机号格式不正确");
-                    } else if (isMobileNo(dengru_phone.getText().toString())==false) {
-                        shojihao_kong.setVisibility(View.VISIBLE);
-                        jg_text.setText("手机号格式不正确");
-                    }else {
-                        shojihao_kong.setVisibility(View.GONE);
-                    }
-                }
+//                if (s.length()>0) {
+//                    dengru_guanbi.setVisibility(View.VISIBLE);
+//                }else {
+//                    dengru_guanbi.setVisibility(View.GONE);
+//                }
+//                if (dengru_phone.getText().toString().isEmpty()){
+//                    shojihao_kong.setVisibility(View.VISIBLE);
+//                    jg_text.setText("手机号不能为空");
+//                }else {
+////                    shojihao_kong.setVisibility(View.GONE);
+//                    if (isMobileNo(dengru_phone.getText().toString())==false) {
+//                        shojihao_kong.setVisibility(View.VISIBLE);
+//                        jg_text.setText("手机号格式不正确");
+//                    } else if (isMobileNo(dengru_phone.getText().toString())==false) {
+//                        shojihao_kong.setVisibility(View.VISIBLE);
+//                        jg_text.setText("手机号格式不正确");
+//                    }else {
+//                        shojihao_kong.setVisibility(View.GONE);
+//                    }
+//                }
 
 
 
@@ -213,13 +215,22 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 mima = dengru_mima.getText().toString();
                 if (shoujihao.isEmpty()) {
 //                    ToastUtils.showToast(WoDe_DengRu.this, "手机号不能为空");
-                    shojihao_kong.setVisibility(View.VISIBLE);
-                    jg_text.setText("手机号不能为空");
+//                    shojihao_kong.setVisibility(View.VISIBLE);
+//                    jg_text.setText("手机号不能为空");
+                    ToastUtils.showToast(WoDe_DengRu.this, "手机号不能为空");
                 } else if ( mima.isEmpty()){
 //                    Toast.makeText(WoDe_DengRu.this, "成功", Toast.LENGTH_SHORT).show();
                     ToastUtils.showToast(WoDe_DengRu.this, "密码不能为空");
                 }else {
-                    getHttp();
+                    if (isMobileNo(dengru_phone.getText().toString())==false) {
+//                        shojihao_kong.setVisibility(View.VISIBLE);
+                        ToastUtils.showToast(WoDe_DengRu.this, "手机号格式不正确");
+                    } else if (isMobileNo(dengru_phone.getText().toString())==false) {
+//                        shojihao_kong.setVisibility(View.VISIBLE);
+                        ToastUtils.showToast(WoDe_DengRu.this, "手机号格式不正确");
+                    }else {
+                        getHttp();
+                    }
                 }
             }
         });
@@ -303,7 +314,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                         Log.e("登入Message", "" + message);
 
                         if (d_data.getMessage().equals("登录成功")) {
-                            dr_jg.setVisibility(View.GONE);
+//                            dr_jg.setVisibility(View.GONE);
                             dengrufanhuizhi = d_data.getState(); //状态值
                             message = d_data.getMessage();
                             String user_token = d_data.getResult().getToken();
@@ -315,13 +326,18 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                             SPUtils.put(WoDe_DengRu.this, "Loginid", loginId);
                             SPUtils.put(WoDe_DengRu.this, "userId", user_id);
                             SPUtils.put(WoDe_DengRu.this, "Token1", user_token);
+                            SPUtils.put(WoDe_DengRu.this, "shoujihao", shoujihao);
                             Log.e("sdfdf", "" + loginId);
                             promptDialog.dismiss();
+                            Intent it=new Intent(WoDe_DengRu.this, MainActivity.class);
+                            it.putExtra("id","2");
+                            startActivity(it);
                             finish();
                         } else {
                             promptDialog.dismiss();
-                            dr_jg.setVisibility(View.VISIBLE);
-                            jg_text.setText(""+d_data.getMessage());
+//                            dr_jg.setVisibility(View.VISIBLE);
+//                            jg_text.setText(""+d_data.getMessage());
+                            ToastUtils.showToast(WoDe_DengRu.this, d_data.getMessage());
                         }
 
                     }
@@ -338,11 +354,11 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         dengrujoin = findViewById(R.id.dengru_goin);//登入
         dengru_guanbi = findViewById(R.id.dengru_guanbi);//清除账号
         dr_togglePwd = findViewById(R.id.dr_togglePwd);//显示与隐藏密码按钮
-        dr_jg=findViewById(R.id.dr_jg);//警告
+//        dr_jg=findViewById(R.id.dr_jg);//警告
         jg_text=findViewById(R.id.jg_text);//警告text
         dengru_phone.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
         dr_yj_image=findViewById(R.id.dr_yj_image);//显示与隐藏密码图片
-        shojihao_kong=findViewById(R.id.shojihao_kong);//手机号为空判断
+//        shojihao_kong=findViewById(R.id.shojihao_kong);//手机号为空判断
         dengru_phone.addTextChangedListener(new MaxLengthWatcher(11, dengru_phone));//手机号长度限制
         main=findViewById(R.id.main);
     }

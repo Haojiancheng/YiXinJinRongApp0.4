@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -138,7 +139,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", response);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-                        Toast.makeText(ChengGongZhuCe.this, ""+message, Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(ChengGongZhuCe.this, ""+message);
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")){
                             Intent it=new Intent(ChengGongZhuCe.this,ShiMingrenzheng.class);

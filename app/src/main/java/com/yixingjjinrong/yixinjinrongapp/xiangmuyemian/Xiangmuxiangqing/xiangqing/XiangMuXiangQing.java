@@ -728,7 +728,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 break;
                             case 3:
 //                        st.makeText(XiangMuXiangQing.this, "未开通银行存管", st.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
                                         .setMessage("您还未开通银行存管，是否开通")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -751,7 +751,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 break;
                             case 5:
 //                        st.makeText(XiangMuXiangQing.this, "未签约", st.LENGTH_SHORT).show();
-                                AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
                                         .setMessage("您还未未签约，是否签约")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -775,7 +775,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 break;
                             case 4:
 //                        st.makeText(XiangMuXiangQing.this, "未风险评测", st.LENGTH_SHORT).show();
-                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
                                         .setMessage("您还未风险评测，是否风险评测")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -1113,7 +1113,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void shouAlertDialog(String msj) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("提示")
                 .setMessage(msj)
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {

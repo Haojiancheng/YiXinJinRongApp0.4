@@ -59,45 +59,45 @@ public class Guide_Pager extends AutoLayoutActivity {
 
 
     private void gethttp() {
-        OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/getGuideBanaerImg.do")
-                .content("")
-                .mediaType(MediaType.parse("application/json; charset=utf-8"))
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        Log.e("导航页", response);
-                        data = new Gson().fromJson(response, DaoHang_GSON.class);
-                        String paht = data.getResult().getPath();
-                        Log.e("TAG", "Path:" + paht);
-
-                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
-                            picurl = data.getResult().getImgList().get(i).getPicurl();
-                            Log.e("TAG", "url:" + picurl);
-                            mypic = new String[data.getResult().getImgList().size()];
-                        }
-                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
-                            //地址
-                            picpath = paht + data.getResult().getImgList().get(i).getPicurl();
-                            Log.e("TAG", "url:" + picpath);
-                            mypic[i] = picpath;
-                        }
-                        for (String s2 : mypic) {
-                            mylist.add(s2);
-                        }
-
-                    }
-                });
+//        OkHttpUtils.postString()
+//                .url(Urls.BASE_URL + "yxbApp/getGuideBanaerImg.do")
+//                .content("")
+//                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+//                .build()
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onError(Call call, Exception e, int id) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response, int id) {
+//                        Log.e("导航页", response);
+//                        data = new Gson().fromJson(response, DaoHang_GSON.class);
+//                        String paht = data.getResult().getPath();
+//                        Log.e("TAG", "Path:" + paht);
+//
+//                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
+//                            picurl = data.getResult().getImgList().get(i).getPicurl();
+//                            Log.e("TAG", "url:" + picurl);
+//                            mypic = new String[data.getResult().getImgList().size()];
+//                        }
+//                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
+//                            //地址
+//                            picpath = paht + data.getResult().getImgList().get(i).getPicurl();
+//                            Log.e("TAG", "url:" + picpath);
+//                            mypic[i] = picpath;
+//                        }
+//                        for (String s2 : mypic) {
+//                            mylist.add(s2);
+//                        }
+//
+//                    }
+//                });
         //
-//        mylist.add("http://e.hiphotos.baidu.com/image/h%3D300/sign=3b44ffc10746f21fd6345853c6256b31/8c1001e93901213f5480ffe659e736d12f2e955d.jpg");
-//        mylist.add("http://g.hiphotos.baidu.com/image/h%3D300/sign=23d5d41f44540923b569657ea258d1dc/dcc451da81cb39db18994d6add160924ab1830b4.jpg");
-//        mylist.add("http://d.hiphotos.baidu.com/image/h%3D300/sign=d3ab500501f3d7ca13f63976c21ebe3c/2fdda3cc7cd98d104a601b0a2c3fb80e7bec9050.jpg");
+        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021735379441.png");
+        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736048895.png");
+        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736298526.png");
     }
 
     private void initView() {

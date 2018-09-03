@@ -107,11 +107,11 @@
             android:background="#737373"
             android:layout_marginBottom="30px"
             />
-        <include
-            android:id="@+id/shojihao_kong"
-            layout="@layout/jinggao_itme"
-            android:visibility="gone"
-            />
+        <!--<include-->
+            <!--android:id="@+id/shojihao_kong"-->
+            <!--layout="@layout/jinggao_itme"-->
+            <!--android:visibility="gone"-->
+            <!--/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -184,10 +184,10 @@
             android:layout_marginTop="10px"
             android:background="#737373"
             android:layout_marginBottom="36px"/>
-        <include
-             android:id="@+id/dr_jg"
-            layout="@layout/jinggao_itme"
-            android:visibility="gone"/>
+        <!--<include-->
+             <!--android:id="@+id/dr_jg"-->
+            <!--layout="@layout/jinggao_itme"-->
+            <!--android:visibility="gone"/>-->
         <Button
             android:id="@+id/dengru_goin"
             android:layout_width="690px"

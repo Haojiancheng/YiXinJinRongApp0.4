@@ -10,8 +10,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class GestureEditActivity extends AutoLayoutActivity implements View.OnClickListener {
@@ -39,6 +41,11 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gesture_edit);
+        ImmersionBar.with(this)
+                .transparentBar()
+                .fullScreen(false)
+                .init();
+
         setUpViews();
         setUpListeners();
     }
@@ -65,10 +72,10 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
                     updateCodeList(inputCode);
                     mGestureContentView.clearDrawlineState(0L);
                     mTextReset.setClickable(true);
-                    mTextReset.setText("dd");
+                    mTextReset.setText("请再次绘制手势密码");
                 } else {
                     if (inputCode.equals(mFirstPassword)) {
-                        Toast.makeText(GestureEditActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(GestureEditActivity.this, "设置成功");
                         mGestureContentView.clearDrawlineState(0L);
                         SPUtils.put(GestureEditActivity.this, "mFirstPassword", mFirstPassword);
                         SPUtils.put(GestureEditActivity.this, "ishand", "1");
@@ -119,7 +126,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
             case R.id.text_reset:
                 mIsFirstInput = true;
                 updateCodeList("");
-                mTextTip.setText("256");
+                mTextTip.setText("重新绘制");
                 break;
             default:
                 break;

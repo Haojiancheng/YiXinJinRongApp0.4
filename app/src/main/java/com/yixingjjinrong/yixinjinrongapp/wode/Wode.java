@@ -225,6 +225,7 @@ public class Wode extends Fragment {
 //                            Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
                             phone = data.getUserMap().getPhone();
                             myphone.setText(phone);//手机号
+                            SPUtils.put(getActivity(), "myphone", phone);
                             //邀请人数
                             inviteAmount = data.getUserMap().getInviteAmount();
                             //邀请总金额

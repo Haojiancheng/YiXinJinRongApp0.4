@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.MyAddass_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShanChuDiZhi_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.UpData_Addass;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -47,10 +48,12 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
     private Context context;
     private String id;
     private String message;
+    private int user_id;
 
-    public Myaddass_adapter(List<MyAddass_Gson.ResultBean.AddressListBean> list, Context context) {
+    public Myaddass_adapter(List<MyAddass_Gson.ResultBean.AddressListBean> list, Context context, int user_id) {
         this.list = list;
         this.context = context;
+        this.user_id = user_id;
     }
 
     private OnEveryItemClickListener onEveryItemClickListener;
@@ -80,7 +83,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
         id = list.get(position).getReceiverId();
         int isDefault = list.get(position).getIsDefault();
         if (isDefault == 1) {
-            Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
+            Glide.with(context).load(R.drawable.gouxuan).into(holder.yh2);
         }
         holder.moren_dizhi1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
                 try {
                     js_request.put("addressId", id);
+                    js_request.put("userId", user_id);
                     base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + id);
                     sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -122,17 +126,25 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                                 MoRenAddass_gson mrdata = new Gson().fromJson(result, MoRenAddass_gson.class);
                                 String message = mrdata.getMessage();
                                 if (message.equals("设置默认地址成功")) {
-                                    Glide.with(context).load(R.drawable.gouxuan).into(holder.moren_dizhi1);
-                                    Toast.makeText(context, "设置默认地址成功", Toast.LENGTH_SHORT).show();
+                                    Glide.with(context).load(R.drawable.gouxuan).into(holder.yh2);
+                                    ToastUtils.showToast(context, "设置默认地址成功");
                                     notifyDataSetChanged();
                                 } else {
-                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                    ToastUtils.showToast(context, "" + message );
                                 }
                             }
                         });
             }
         });
+        holder.adess_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener != null) {
+                    onEveryItemClickListener.onEveryClick(position);
+                }
 
+            }
+        });
         holder.bianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,10 +198,10 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                                 ShanChuDiZhi_gson data = new Gson().fromJson(result, ShanChuDiZhi_gson.class);
                                 message = data.getMessage();
                                 if (message.equals("删除地址成功")) {
-                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                    ToastUtils.showToast(context, "" + message);
                                     removeData(position);
                                 } else {
-                                    Toast.makeText(context, "" + message, Toast.LENGTH_SHORT).show();
+                                    ToastUtils.showToast(context, "" + message);
                                 }
                             }
                         });
@@ -217,7 +229,9 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView addass_name, addass_phone, addass_addass, bianji, shanchu;
-        ImageView moren_dizhi1;
+        TextView moren_dizhi1;
+        ImageView yh2;
+        private View adess_view;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -227,6 +241,8 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
             moren_dizhi1 = itemView.findViewById(R.id.moren_dizhi1);
             bianji = itemView.findViewById(R.id.g4);
             shanchu = itemView.findViewById(R.id.g6);
+            yh2=itemView.findViewById(R.id.yh2);
+            adess_view=itemView.findViewById(R.id.adess_view);
         }
     }
 }

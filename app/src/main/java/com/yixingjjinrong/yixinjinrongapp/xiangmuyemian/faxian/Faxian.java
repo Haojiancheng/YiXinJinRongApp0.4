@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,9 +79,9 @@ public class Faxian extends Fragment {
 
         getOnClickq();
 
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        myrecview.setLayoutManager(manager);
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//        //设置布局的排版方向
+        myrecview.setLayoutManager(layoutManager);
 
         gethppt();
     }

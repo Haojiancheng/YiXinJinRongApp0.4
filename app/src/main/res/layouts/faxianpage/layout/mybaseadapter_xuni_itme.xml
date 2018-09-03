@@ -7,15 +7,34 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/jifenduihuantiaozhuan"
         android:layout_width="379px"
         android:layout_height="match_parent"
         android:layout_marginTop="1px"
         android:background="#fdfdfe"
         android:gravity="center_horizontal"
+
         android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/da_quan"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:orientation="vertical"
+            android:background="@drawable/datuquanbeijing"
+            android:gravity="center"
+            android:layout_marginTop="20px"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/da_quan_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="manjian"
+                android:textColor="#fff"
+                />
+        </LinearLayout>
 
         <ImageView
-
             android:id="@+id/iv_xuni"
             android:layout_width="260px"
             android:layout_height="200px"
@@ -25,7 +44,9 @@
             android:paddingRight="20px"
             android:paddingTop="20px"
             android:src="@drawable/xianjinquan"
-            tools:ignore="PxUsage" />
+            tools:ignore="PxUsage"
+            android:visibility="gone"
+            />
 
         <TextView
             android:id="@+id/tv_xuni_name"
@@ -35,6 +56,7 @@
             android:maxEms="6"
             android:maxLines="1"
             android:text="现金劵"
+            android:layout_gravity="center_horizontal"
             android:textColor="#333333"
             android:textSize="30px" />
 

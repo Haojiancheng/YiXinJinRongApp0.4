@@ -67,7 +67,7 @@
         <activity android:name=".wode.xiaoxi.XiaoXi_XiangQing" />
         <activity android:name=".xiangmuyemian.faxian.twojifen.JIFenJiLu" />
         <activity android:name=".xiangmuyemian.faxian.twojifen.DuiHuanJILu" />
-        <activity android:name=".xiangmuyemian.faxian.goodsmassing.ShangPinXiangQing" />
+        <activity android:name=".xiangmuyemian.faxian.jifen_fx.xuandizhi.XuanZe_MyAddess" />
         <activity android:name=".wode.mycontent.addess.MyAddess" />
         <activity android:name=".wode.mycontent.addess.UpData_Addass" />
         <activity android:name=".wode.mycontent.addess.AddAddass" />

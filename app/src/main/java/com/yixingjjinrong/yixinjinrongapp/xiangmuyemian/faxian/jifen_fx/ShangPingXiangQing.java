@@ -44,6 +44,8 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
     private String prizeId;
     private Goods_xq data;
     private XuNiShangPing_Gson data_xuni;
+    private View dh_da_quan;
+    private TextView dh_quan_text;
 
 
     @Override
@@ -58,6 +60,13 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
         getid();
+        if (prizeId.equals("")){
+            goods_xq_image.setVisibility(View.VISIBLE);
+            dh_da_quan.setVisibility(View.GONE);
+        }else {
+            goods_xq_image.setVisibility(View.GONE);
+            dh_da_quan.setVisibility(View.VISIBLE);
+        }
         getonclock();
         gethttp();
 
@@ -147,6 +156,7 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                             if (data_xuni.getMessage().equals("用户未登录")) {
                                 ToastUtils.showToast(ShangPingXiangQing.this, "qingdengru");
                             } else {
+                                dh_quan_text.setText(data_xuni.getResult().getVoucherList().get(0).getPrizeMark());
                                 goods_xq_name.setText(data_xuni.getResult().getVoucherList().get(0).getPrizeName());
                                 goods_xq_fen.setText(data_xuni.getResult().getVoucherList().get(0).getNeedPoint() + "");
                                 goods_xq_describe.setText(data_xuni.getResult().getVoucherList().get(0).getPrizeMark());
@@ -202,7 +212,8 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
         goods_xq_describe = findViewById(R.id.goods_xq_describe);
         goods_xq_duihuanbt = findViewById(R.id.goods_xq_duihuanbt);
         goods_xq_name = findViewById(R.id.goods_xq_name);
-
+        dh_da_quan=findViewById(R.id.dh_da_quan);
+        dh_quan_text=findViewById(R.id.dh_quan_text);
 
     }
 }

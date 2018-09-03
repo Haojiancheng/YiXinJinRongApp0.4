@@ -55,13 +55,20 @@ public class JiFenDuiHUan_adapter extends RecyclerView.Adapter<JiFenDuiHUan_adap
 
         holder.xuni_money.setText(list.get(position).getExchangeCredits()+"");
         if (list.get(position).getPicUrl().equals("加息券")){
-            holder.xuni_iv.setImageResource(R.drawable.jiaxiquan);
+            holder.xuni_iv.setVisibility(View.GONE);
+            holder.da_quan.setVisibility(View.VISIBLE);
+            holder.da_quan_text.setText(list.get(position).getPrizeMark());
+
         }else if (list.get(position).getPicUrl().equals("代金券")){
-            holder.xuni_iv.setImageResource(R.drawable.xianjinquan);
+            holder.da_quan.setVisibility(View.VISIBLE);
+            holder.xuni_iv.setVisibility(View.GONE);
+            holder.da_quan_text.setText(list.get(position).getPrizeMark());
         }else {
+            holder.da_quan.setVisibility(View.GONE);
+            holder.xuni_iv.setVisibility(View.VISIBLE);
             x.image().bind(holder.xuni_iv,picpath+list.get(position).getPicUrl());
         }
-        holder.xuni_iv.setOnClickListener(new View.OnClickListener() {
+        holder.jifenduihuantiaozhuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onEveryItemClickListener!=null){
@@ -78,13 +85,17 @@ public class JiFenDuiHUan_adapter extends RecyclerView.Adapter<JiFenDuiHUan_adap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView xuni_iv;
-        private TextView xuni_name,xuni_money;
+        private TextView xuni_name,xuni_money,da_quan_text;
+        private View da_quan,jifenduihuantiaozhuan;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             xuni_iv = itemView.findViewById(R.id.iv_xuni);
             xuni_name=itemView.findViewById(R.id.tv_xuni_name);
             xuni_money=itemView.findViewById(R.id.tv_xuni_money);
+            da_quan=itemView.findViewById(R.id.da_quan);
+            da_quan_text=itemView.findViewById(R.id.da_quan_text);
+            jifenduihuantiaozhuan=itemView.findViewById(R.id.jifenduihuantiaozhuan);
         }
     }
 }

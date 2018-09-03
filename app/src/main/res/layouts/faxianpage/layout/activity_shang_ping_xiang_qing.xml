@@ -31,12 +31,31 @@
             android:textSize="38px" />
     </RelativeLayout>
 
-
+    <LinearLayout
+        android:id="@+id/dh_da_quan"
+        android:layout_width="450px"
+        android:layout_height="450px"
+        android:orientation="vertical"
+        android:background="@drawable/datuquanbeijing"
+        android:gravity="center"
+        android:layout_marginTop="20px"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/dh_quan_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="manjian"
+            android:textColor="#fff"
+            android:textSize="60px"
+            />
+    </LinearLayout>
     <ImageView
         android:id="@+id/goods_xq_image"
         android:layout_width="match_parent"
         android:layout_height="450px"
-
+        android:visibility="gone"
         />
 
     <TextView

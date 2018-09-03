@@ -65,7 +65,7 @@ public class GestureDrawline extends View {
         canvas = new Canvas();
         canvas.setBitmap(bitmap);
         paint.setStyle(Paint.Style.STROKE);// 设置非填充
-        paint.setStrokeWidth(10);// 笔宽5像素
+        paint.setStrokeWidth(5);// 笔宽5像素
         paint.setColor(Color.rgb(245, 142, 33));// 设置默认连线颜色
         paint.setAntiAlias(true);// 不显示锯齿
 

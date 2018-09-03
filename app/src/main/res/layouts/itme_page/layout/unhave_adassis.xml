@@ -6,6 +6,7 @@
     android:background="#fdfdfe">
 
     <LinearLayout
+        android:id="@+id/xuanzhe_adasse"
         android:layout_width="400px"
         android:layout_height="80px"
         android:layout_centerInParent="true"

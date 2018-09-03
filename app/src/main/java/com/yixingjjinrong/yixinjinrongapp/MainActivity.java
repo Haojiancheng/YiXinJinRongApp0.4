@@ -58,6 +58,8 @@ public class MainActivity extends AutoLayoutActivity {
         if (id != null) {
             if (id.equals("1")) {
                 mbottomBar.setCurrentTab(1);
+            }else if (id.equals("2")){
+                mbottomBar.setCurrentTab(3);
             }
         }
 

@@ -57,10 +57,17 @@ public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.My
        
         holder.shiwu_money.setText(list.get(position).getExchangeCredits()+"");
         if (list.get(position).getPicUrl().equals("加息券")){
-            holder.shiwu_iv.setImageResource(R.drawable.jiaxiquan);
+
+            holder.quan.setVisibility(View.VISIBLE);
+            holder.shiwu_iv.setVisibility(View.GONE);
+            holder.quan_text.setText(list.get(position).getPrizeMark());
         }else if (list.get(position).getPicUrl().equals("代金券")){
-            holder.shiwu_iv.setImageResource(R.drawable.xianjinquan);
+            holder.quan.setVisibility(View.VISIBLE);
+            holder.shiwu_iv.setVisibility(View.GONE);
+            holder.quan_text.setText(list.get(position).getPrizeMark());
         }else {
+            holder.quan.setVisibility(View.GONE);
+            holder.shiwu_iv.setVisibility(View.VISIBLE);
             x.image().bind(holder.shiwu_iv,paht+list.get(position).getPicUrl());
             Log.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
         }
@@ -77,12 +84,13 @@ public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.My
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return 4;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView shiwu_iv,xuni_iv;
-        private TextView shiwu_name,shiwu_money,xuni_name,xuni_money;
+        private TextView shiwu_name,shiwu_money,xuni_name,xuni_money,quan_text;
+        private View quan;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -92,6 +100,8 @@ public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.My
             shiwu_money=itemView.findViewById(R.id.tv_money_shiwu);
             xuni_name=itemView.findViewById(R.id.tv_xuni_name);
             xuni_money=itemView.findViewById(R.id.tv_xuni_money);
+            quan=itemView.findViewById(R.id.quan);
+            quan_text=itemView.findViewById(R.id.quan_text);
         }
 
     }

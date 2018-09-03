@@ -120,7 +120,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
 
                             list.addAll(data.getResult().getAddressList());
 
-                            adapter = new Myaddass_adapter(list, MyAddess.this);
+                            adapter = new Myaddass_adapter(list,MyAddess.this, user_id);
                             addass_rview.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }else {

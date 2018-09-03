@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="454px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shaoshi_shoujihao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60px"
+            android:text="1562166+"
+            android:textColor="#333"
+            android:textSize="48px" />
+
+        <EditText
+            android:id="@+id/shmm_password"
+            android:layout_width="570px"
+            android:layout_height="90px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="55px"
+            android:background="@drawable/bt_biankuanghuise"
+            android:gravity="center"
+            android:hint="请输入登入密码" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="60px"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/shmm_quxiao"
+                android:layout_width="225px"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_biankuang"
+                android:text="取消"
+                android:textSize="38px"
+                android:textColor="#fe6623"
+                android:layout_marginRight="60px"
+                />
+            <Button
+                android:id="@+id/shmm_queding"
+                android:layout_width="225px"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_shape"
+                android:text="确定"
+                android:textColor="#fff"
+                android:textSize="38px"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

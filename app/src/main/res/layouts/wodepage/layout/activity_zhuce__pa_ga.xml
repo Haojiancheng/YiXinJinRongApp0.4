@@ -82,32 +82,7 @@
         android:background="#737373" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30px"
-        >
 
-        <CheckBox
-            android:id="@+id/zc_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30px"
-            android:text="我已阅读并同意"
-            android:button="@drawable/checkbox_style"
-            android:paddingLeft="20px"
-            android:textColor="#999"
-            android:textSize="28px" />
-
-        <TextView
-            android:id="@+id/zz_h5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="《注册协议》"
-            android:textColor="#fe6623"
-            android:textSize="28px" />
-    </LinearLayout>
 
     <Button
         android:id="@+id/zhuce_xiayibu"
@@ -120,27 +95,31 @@
         android:textColor="#fdfdfc"
         android:textSize="38px" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginTop="40px">
 
         <TextView
+            android:id="@+id/ss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已有账号，" />
+            android:text="已有账号，"
+            android:layout_toStartOf="@+id/zz_dr"
+            android:textSize="28px"
+            />
 
         <TextView
             android:id="@+id/zz_dr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30px"
             android:text="立即登录"
             android:textColor="#fe6623"
             android:textSize="28px" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

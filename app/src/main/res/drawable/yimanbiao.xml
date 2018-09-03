@@ -2,10 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 填充的颜色 -->
-    <solid android:color="#f78e40" />
+    <solid android:color="#fb9f58" />
     <!--设置渐变-->
-    <gradient android:startColor="#eff56d30"
-        android:endColor="#eb8133"
+    <gradient android:startColor="#f07e4e"
+        android:endColor="#f68f53"
         android:angle="180"
         android:shape="rectangle" />
     <corners
@@ -13,5 +13,6 @@
         android:bottomRightRadius="90px"
         android:topLeftRadius="90px"
         android:topRightRadius="90px" />
+
 
 </shape>

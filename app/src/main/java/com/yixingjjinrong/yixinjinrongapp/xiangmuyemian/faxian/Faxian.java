@@ -63,6 +63,7 @@ public class Faxian extends Fragment {
     private FaXianBasrAdapter adapter;
     private List<FaXian_Data.ResultBean.GoodsListBean> list = new ArrayList<>();
     private int user_id;
+    private String s;
 
 
     @Nullable
@@ -111,28 +112,28 @@ public class Faxian extends Fragment {
                         list.addAll(data.getResult().getGoodsList());
                         adapter = new FaXianBasrAdapter(list, paht);
                         myrecview.setAdapter(adapter);
-                        String s = String.valueOf(user_id);
+                        s = String.valueOf(user_id);
                         Log.e("sdasd", "" + s);
-                        if (s.equals("0")) {
-                            Intent it = new Intent(getActivity(), WoDe_DengRu.class);
-                            startActivity(it);
-                        } else {
-                            adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
-                                @Override
-                                public void onEveryClick(int position) {
-                                    String awardType = String.valueOf(list.get(position).getAwardType());
-                                    String speid = String.valueOf(list.get(position).getSpeId());
-                                    String prizeId = list.get(position).getPrizeId();
-                                    //跳详情
+
+                        adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                String awardType = String.valueOf(list.get(position).getAwardType());
+                                String speid = String.valueOf(list.get(position).getSpeId());
+                                String prizeId = list.get(position).getPrizeId();
+                                //跳详情
+                                if (s.equals("0")) {
+                                    Intent it = new Intent(getActivity(), WoDe_DengRu.class);
+                                    startActivity(it);
+                                } else {
                                     Intent it = new Intent(getActivity(), ShangPingXiangQing.class);
                                     it.putExtra("awardType", awardType);
                                     it.putExtra("speid", speid);
                                     it.putExtra("prizeId", prizeId);
                                     startActivity(it);
-
                                 }
-                            });
-                        }
+                            }
+                        });
 
                         Log.e("TAG", "Path:" + paht);
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {

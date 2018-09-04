@@ -73,6 +73,7 @@
                 android:textColor="#fc6623" />
         </RelativeLayout>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
@@ -261,17 +262,14 @@
                     android:textColor="#999999"
                     android:textSize="26px" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/e21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="20px"
-                    android:text=">"
-
-                    android:textColor="#999999"
-                    android:textSize="26px" />
+                    android:src="@drawable/dianji" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -322,16 +320,14 @@
                     android:textColor="#999999"
                     android:textSize="26px" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/r2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="20px"
-                    android:text=">"
-                    android:textColor="#999999"
-                    android:textSize="26px" />
+                    android:src="@drawable/dianji" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -381,16 +377,14 @@
                     android:textColor="#999999"
                     android:textSize="26px" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/bi1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20px"
-                    android:text=">"
-                    android:textColor="#999999"
-                    android:textSize="26px" />
+                    android:src="@drawable/dianji" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

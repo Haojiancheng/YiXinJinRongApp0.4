@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,12 +38,12 @@ import okhttp3.MediaType;
 
 public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.LoadingListener {
     private XRecyclerView duihuan_xrview;
-  private ImageView dhjl_fh;
+    private ImageView dhjl_fh;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
     private int a = 1;
-    List<DuiHuanJiLu_gson.ResultBean.ListBean> list=new ArrayList<>();
+    List<DuiHuanJiLu_gson.ResultBean.ListBean> list = new ArrayList<>();
     private DuiHuanJiLu_adapter adapter;
 
     @Override
@@ -104,31 +105,32 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("兑换记录GSON:",result );
+                        Log.e("兑换记录GSON:", result);
                         DuiHuanJiLu_gson data = new Gson().fromJson(result, DuiHuanJiLu_gson.class);
                         list.addAll(data.getResult().getList());
-                        adapter=new DuiHuanJiLu_adapter(list);
-                        duihuan_xrview.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
 
     private void getduihuanid() {
-        user_id = (int) SPUtils.get(this,"userId",0);
-        duihuan_xrview=findViewById(R.id.duhuan_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(this);
+        user_id = (int) SPUtils.get(this, "userId", 0);
+        duihuan_xrview = findViewById(R.id.duhuan_rview);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         duihuan_xrview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         duihuan_xrview.setLoadingListener(this);
         duihuan_xrview.setPullRefreshEnabled(true);
         duihuan_xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
-        dhjl_fh=findViewById(R.id.dhjl_fh);
+        dhjl_fh = findViewById(R.id.dhjl_fh);
+        adapter = new DuiHuanJiLu_adapter(list);
+        duihuan_xrview.setAdapter(adapter);
     }
 
     @Override
     public void onRefresh() {
         list.clear();
-        a=1;
+        a = 1;
         getfuihuanHTTp();
         duihuan_xrview.refreshComplete();
         adapter.notifyDataSetChanged();
@@ -138,6 +140,13 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
     public void onLoadMore() {
         a++;
         getfuihuanHTTp();
-        duihuan_xrview.loadMoreComplete();
+         new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                duihuan_xrview.loadMoreComplete();
+            }
+        }, 2000);
     }
+
+
 }

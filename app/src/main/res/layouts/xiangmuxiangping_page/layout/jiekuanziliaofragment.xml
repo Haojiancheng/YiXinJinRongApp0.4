@@ -21,10 +21,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <android.support.v7.widget.RecyclerView
+            <com.yixingjjinrong.yixinjinrongapp.MyView.MyRectclerView
                 android:id="@+id/jihuan_rview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                android:layout_height="match_parent"></com.yixingjjinrong.yixinjinrongapp.MyView.MyRectclerView>
         </LinearLayout>
     </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
 

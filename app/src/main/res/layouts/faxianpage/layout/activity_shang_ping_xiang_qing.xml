@@ -33,8 +33,8 @@
 
     <LinearLayout
         android:id="@+id/dh_da_quan"
-        android:layout_width="450px"
-        android:layout_height="450px"
+        android:layout_width="600px"
+        android:layout_height="500px"
         android:orientation="vertical"
         android:background="@drawable/datuquanbeijing"
         android:gravity="center"

@@ -76,8 +76,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
 
         zhucefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                finish();
+            public void onClick(View v) {//返回到我的页面
+                getfanhuiHttp();
             }
         });
         wodezhanghu.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +97,64 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             }
         });
 
+    }
+
+    private void getfanhuiHttp() {
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("username", shoujihao);
+            js_request.put("password", password);
+            js_request.put("url", myurl);
+            Log.e("实名成功(登入)：", "" + js_request);
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+            Log.e("TAG", ">>>>SH!!" + sha1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            JSONObject sign = canshu.put("sign", sha1);
+//            Log.e("我的账户：", ""+canshu);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/Applogin.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", ">>>>GSON" + response);
+                        DengruData d_data = new Gson().fromJson(response, DengruData.class);
+                        //状态值
+                        String dengrufanhuizhi = d_data.getState();
+                        String user_token = d_data.getResult().getToken();
+                        int user_id = d_data.getResult().getUserid();
+                        String loginId = d_data.getResult().getLoginId();
+                        if (dengrufanhuizhi.equals("success")) {
+                            EventBus.getDefault().post(new User_data(shoujihao, dengrufanhuizhi, user_token, user_id, loginId));
+                            SPUtils.put(ChengGongZhuCe.this, "isLogin", true);
+                            SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
+                            SPUtils.put(ChengGongZhuCe.this, "userId", user_id);
+                            SPUtils.put(ChengGongZhuCe.this, "Token1", user_token);
+                            ZhuCe_PaGa.zc_instance.finish();
+                            YanZheng_PaGa.instance.finish();
+                            WoDe_DengRu.instance.finish();
+                            finish();
+                        }
+                    }
+                });
     }
 
     private void getconrHttp() {

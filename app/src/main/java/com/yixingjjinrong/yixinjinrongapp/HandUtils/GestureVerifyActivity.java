@@ -52,6 +52,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -86,6 +87,7 @@ public class GestureVerifyActivity extends AutoLayoutActivity implements android
     private String myphone;
     private String message;
     private String dengrufanhuizhi;
+    private PromptDialog promptDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -249,6 +251,9 @@ public class GestureVerifyActivity extends AutoLayoutActivity implements android
 //                    Toast.makeText(WoDe_DengRu.this, "成功", Toast.LENGTH_SHORT).show();
                     ToastUtils.showToast(GestureVerifyActivity.this, "密码不能为空");
                 } else {
+                    promptDialog = new PromptDialog(GestureVerifyActivity.this);
+                    promptDialog.showLoading("");
+                    popview.dismiss();
                     gethttp();
                 }
             }
@@ -297,6 +302,7 @@ public class GestureVerifyActivity extends AutoLayoutActivity implements android
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         Log.e("我的登入", "" + e);
+                        promptDialog.dismiss();
                         ToastUtils.showToast(GestureVerifyActivity.this, "网络连接超时，请稍后再试");
                     }
 
@@ -327,6 +333,8 @@ public class GestureVerifyActivity extends AutoLayoutActivity implements android
                             Intent it=new Intent(GestureVerifyActivity.this, MainActivity.class);
                             it.putExtra("id","2");
                             startActivity(it);
+                            SPUtils.remove(GestureVerifyActivity.this, "ishand");
+                            promptDialog.dismiss();
                             finish();
                         } else {
                             ToastUtils.showToast(GestureVerifyActivity.this, d_data.getMessage());

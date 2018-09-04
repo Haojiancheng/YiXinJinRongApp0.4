@@ -151,6 +151,7 @@
             android:layout_marginLeft="30px"
             android:background="#dadada" />
         <RelativeLayout
+            android:id="@+id/xj31"
             android:layout_width="match_parent"
             android:layout_height="80px"
             android:gravity="center_vertical"
@@ -169,7 +170,7 @@
 
 
             <ImageView
-                android:id="@+id/xj31"
+
                 android:layout_width="30px"
                 android:layout_height="30px"
                 android:layout_alignParentEnd="true"

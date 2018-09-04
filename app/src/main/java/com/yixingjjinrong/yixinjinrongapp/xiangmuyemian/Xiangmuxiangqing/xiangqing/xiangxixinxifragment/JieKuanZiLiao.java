@@ -9,10 +9,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.yixingjjinrong.yixinjinrongapp.MyView.MyRectclerView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JieKuanZiLiao_Gson;
@@ -39,7 +41,7 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class JieKuanZiLiao extends Fragment {
-    private RecyclerView jihuan_rview;
+    private MyRectclerView jihuan_rview;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private List<JieKuanZiLiao_Gson.ResultBean.QualificationListBean> list=new ArrayList<>();
@@ -47,6 +49,7 @@ public class JieKuanZiLiao extends Fragment {
     private String borrowRandomId;
     private View jkzl_dengruchakan;
     private int user_id;
+    private MyScrollView jiekuanziliaoSV;
 
     @Nullable
     @Override
@@ -131,7 +134,14 @@ public class JieKuanZiLiao extends Fragment {
         jihuan_rview=getActivity().findViewById(R.id.jihuan_rview);
         GridLayoutManager gm = new GridLayoutManager(getActivity(),3);
         jihuan_rview.setLayoutManager(gm);
-
+        jihuan_rview.setNestedScrollingEnabled(false);//解决冲突
+//        jihuan_rview.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                jiekuanziliaoSV.requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
 
     }
 
@@ -139,7 +149,7 @@ public class JieKuanZiLiao extends Fragment {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         Log.e("项目借款资料", ""+borrowRandomId);
-        MyScrollView jiekuanziliaoSV=getActivity().findViewById(R.id.jiekuanziliaoScrollView);
+        jiekuanziliaoSV = getActivity().findViewById(R.id.jiekuanziliaoScrollView);
         jiekuanziliaoSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {

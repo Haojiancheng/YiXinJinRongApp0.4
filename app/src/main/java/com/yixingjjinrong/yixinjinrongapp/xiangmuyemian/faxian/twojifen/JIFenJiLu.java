@@ -1,5 +1,6 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,6 +60,7 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
                 .init();
 
         getlilu_id();
+
         getjiluHTTp();
         jfjl_fh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +110,7 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
                         Log.e("积分记录列表GSON:",""+result);
                         JiFenJiLu_gson data = new Gson().fromJson(result, JiFenJiLu_gson.class);
                         list.addAll(data.getResult().getList());
-                        adapter=new JiFenJiLu_adapter(list);
-                        jilu_xrview.setAdapter(adapter);
+
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -125,6 +126,8 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
         jilu_xrview.setPullRefreshEnabled(true);
         jfjl_fh=findViewById(R.id.jfjl_fh);
         jilu_xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        adapter=new JiFenJiLu_adapter(list);
+        jilu_xrview.setAdapter(adapter);
     }
 
     @Override
@@ -140,6 +143,13 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
     public void onLoadMore() {
         a++;
         getjiluHTTp();
-        jilu_xrview.loadMoreComplete();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                jilu_xrview.loadMoreComplete();
+            }
+        }, 2000);
+
     }
 }

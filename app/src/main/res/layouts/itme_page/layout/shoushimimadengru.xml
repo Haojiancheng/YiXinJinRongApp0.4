@@ -29,6 +29,7 @@
             android:layout_marginTop="55px"
             android:background="@drawable/bt_biankuanghuise"
             android:gravity="center"
+            android:inputType="textPassword"
             android:hint="请输入登入密码" />
 
         <LinearLayout

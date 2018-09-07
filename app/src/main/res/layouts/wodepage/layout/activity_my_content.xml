@@ -110,6 +110,7 @@
             android:layout_marginLeft="30px"
             android:background="#dadada" />
         <RelativeLayout
+            android:id="@+id/shiming_itme"
             android:layout_width="match_parent"
             android:layout_height="80px"
             android:gravity="center_vertical"
@@ -188,6 +189,7 @@
         >
 
         <RelativeLayout
+            android:id="@+id/cunguan_itme"
             android:layout_width="match_parent"
             android:layout_height="80px"
             android:gravity="center_vertical"
@@ -229,6 +231,7 @@
             android:layout_marginLeft="30px"
             android:background="#dadada" />
         <RelativeLayout
+            android:id="@+id/fengxian_itme"
             android:layout_width="match_parent"
             android:layout_height="80px"
             android:gravity="center_vertical"

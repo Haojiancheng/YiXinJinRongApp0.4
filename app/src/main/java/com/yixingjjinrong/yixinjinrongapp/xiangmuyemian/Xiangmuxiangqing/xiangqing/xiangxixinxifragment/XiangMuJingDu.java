@@ -123,7 +123,15 @@ public class XiangMuJingDu extends LazyFragment {
                         XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
-                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                            jd_dengruchakan.setVisibility(View.VISIBLE);
+                            jd_dengruchakan.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                                    startActivity(it);
+                                }
+                            });
+//                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
                         } else {
                             if (data.getResult().getBorrowStatus().equals("2")) {
                                 fabuxiangmu_time.setText("开始时间  " + data.getResult().getPublishTime());

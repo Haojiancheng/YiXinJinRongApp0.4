@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fdfdfe"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/yishiyong"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/yishi_qian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥50"
+                android:textColor="#ffff"
+                android:textSize="58px" />
+
+            <TextView
+                android:id="@+id/yishi_yaoqu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:text="满1000减"
+                android:textColor="#ffff"
+                android:textSize="28px" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/yishi_laiyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="40px"
+                android:text="来源：积分兑换"
+                android:textColor="#333333"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/yishi_fanwei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="26px"
+                android:text="适用于3个月及以上的房产抵押"
+                android:textColor="#999999"
+                android:textSize="22px" />
+
+            <TextView
+                android:id="@+id/yishi_time_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="26px"
+                android:text="有效期至：2018-03-06"
+                android:textColor="#999999"
+                android:textSize="22px" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<Button-->
+                <!--android:id="@+id/shiyong_bt"-->
+                <!--android:layout_width="140px"-->
+                <!--android:layout_height="52px"-->
+                <!--android:background="@drawable/bt_shape"-->
+                <!--android:text="立即使用"-->
+                <!--android:textSize="20px"-->
+                <!--android:layout_marginEnd="20px"-->
+                <!--android:textColor="#ffffff" />-->
+        </LinearLayout>
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

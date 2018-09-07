@@ -36,22 +36,23 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class ZongziChan extends AutoLayoutActivity {
-//    private DiscView rv;
+    private DiscView rv;
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private int user_id;
-    private TextView zonge_z,zonge_daishou,zonge_keyong,zonge_dongjie;
+    private TextView zonge_z, zonge_daishou, zonge_keyong, zonge_dongjie;
     private String loginid;
     private String token;
     private ImageView ze_fh;
-    private TextView hose_daishou,car_daishou;
+    private TextView hose_daishou, car_daishou;
+    private double zong_floor;
+    private double ke_floor;
+    private double dong_floor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
+
         setContentView(R.layout.activity_zongzi_chan);
         ImmersionBar.with(this)
                 .transparentBar()
@@ -60,8 +61,10 @@ public class ZongziChan extends AutoLayoutActivity {
 
 
         getzzcID();
+        getquan();
+
+
         gethttp();
-//        getquan();
         ze_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,13 +73,6 @@ public class ZongziChan extends AutoLayoutActivity {
         });
     }
 
-    private void getquan() {
-//        List<DataItem> items = new ArrayList<>();
-//        items.add(new DataItem((int)zong_floor, "总代收", getResources().getColor(R.color.colorRed)));
-//        items.add(new DataItem((int)ke_floor, "可用余额", getResources().getColor(R.color.colorPrimaryDark)));
-//        items.add(new DataItem((int)dong_floor, "冻结金额", getResources().getColor(R.color.colorTransparent)));
-//        rv.setItems(items);
-    }
 
     private void gethttp() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -138,21 +134,9 @@ public class ZongziChan extends AutoLayoutActivity {
 
 //                zonge_dongjie.setText(data.getUserMap().);
 //                car_daishou.setText(data.getUserMap());
-//               float i=Float.parseFloat(forAmount);
-//               float u=Float.parseFloat(usableAmount);
-//               float y=Float.parseFloat(freezeAmount);
-//               float z=Float.parseFloat(accountSum);
-//                //总代收%
-//                zong = i/z*10;
-//                zong_floor = Math.floor(zong);
-//                //可用余额%
-//                ke = u/z*10;
-//                ke_floor = Math.floor(zong);
-//                //冻结金额%
-//                dong = y/z*10;
 
-                        }else {
-                            ToastUtils.showToast(ZongziChan.this,data.getMessage() );
+                        } else {
+                            ToastUtils.showToast(ZongziChan.this, data.getMessage());
                         }
                     }
                 });
@@ -160,21 +144,64 @@ public class ZongziChan extends AutoLayoutActivity {
 
     }
 
+    private void getquan() {
+        String forAmount = (String)SPUtils.get(this, "forAmount", "");//总代收
+        String usableAmount = (String)SPUtils.get(this, "usableAmount", "");//可用余额
+        String freezeAmount =(String) SPUtils.get(this, "freezeAmount", "");//冻结金额
+        String accountSum =(String) SPUtils.get(this, "accountSum", "");//总额
+        if (accountSum.equals("0.00")) {
+            List<DataItem> items = new ArrayList<>();
+            Log.e("<可用余额", "" + ke_floor);
+            Log.e("<冻结金额", "" + dong_floor);
+            Log.e("<总代收", "" + zong_floor);
+            items.add(new DataItem((int) 4, "", getResources().getColor(R.color.seaShell)));
+            items.add(new DataItem((int) 1, "", getResources().getColor(R.color.seaShell)));
+            items.add(new DataItem((int) 5, "", getResources().getColor(R.color.seaShell)));
+            rv.setItems(items);
+        }else {
+            float i = Float.parseFloat(forAmount);
+            float u = Float.parseFloat(usableAmount);
+            float y = Float.parseFloat(freezeAmount);
+            float z = Float.parseFloat(accountSum);
+            //总代收%
+
+            //可用余额%
+            double ke = u / z * 10;
+            ke_floor = Math.floor(ke);
+            //冻结金额%
+            double dong = y / z * 10;
+            dong_floor = Math.floor(dong);
+            double zong = i / z * 10;
+            zong_floor = 10.0 - dong_floor - ke_floor;
+            Log.e("可用余额", "" + ke_floor);
+            Log.e("冻结金额", "" + dong_floor);
+            Log.e("总代收", "" + zong_floor + "代收:" + Math.floor(zong));
+
+            List<DataItem> items = new ArrayList<>();
+            Log.e("<可用余额", "" + ke_floor);
+            Log.e("<冻结金额", "" + dong_floor);
+            Log.e("<总代收", "" + zong_floor);
+            items.add(new DataItem((int) zong_floor, "", getResources().getColor(R.color.slateblue)));
+            items.add(new DataItem((int) ke_floor, "", getResources().getColor(R.color.chocolate)));
+            items.add(new DataItem((int) dong_floor, "", getResources().getColor(R.color.palegreen)));
+            rv.setItems(items);
+        }
+    }
+
     private void getzzcID() {
         user_id = (int) SPUtils.get(this, "userId", 0);
         loginid = (String) SPUtils.get(ZongziChan.this, "Loginid", "");
         token = (String) SPUtils.get(ZongziChan.this, "Token1", "");
-        Log.e("loginid+token", "%%"+loginid+"^^"+token);
-//        rv = findViewById(R.id.disc);
-        zonge_z=findViewById(R.id.zonge_z);
-        zonge_daishou=findViewById(R.id.zonge_daishou);
-        zonge_keyong=findViewById(R.id.zonge_keyong);
-        zonge_dongjie=findViewById(R.id.zonge_dongjie);
-        ze_fh=findViewById(R.id.ze_fh);
-        hose_daishou=findViewById(R.id.hose_daishou);
-        car_daishou=findViewById(R.id.cae_daishou);
-        
-        
+        Log.e("loginid+token", "%%" + loginid + "^^" + token);
+        rv = findViewById(R.id.disc);
+        zonge_z = findViewById(R.id.zonge_z);
+        zonge_daishou = findViewById(R.id.zonge_daishou);
+        zonge_keyong = findViewById(R.id.zonge_keyong);
+        zonge_dongjie = findViewById(R.id.zonge_dongjie);
+        ze_fh = findViewById(R.id.ze_fh);
+        hose_daishou = findViewById(R.id.hose_daishou);
+        car_daishou = findViewById(R.id.cae_daishou);
+
 
     }
 }

@@ -74,6 +74,12 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getHttp_zhucechenggong();
+    }
+
     private void getHttp_zhucechenggong() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {

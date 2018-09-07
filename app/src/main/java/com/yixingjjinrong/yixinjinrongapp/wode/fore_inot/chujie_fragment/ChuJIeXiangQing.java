@@ -45,6 +45,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
     private TextView out_title, xq_huankuan, out_money, out_time, out_lv, out_jia, out_fujia, out_qishu, out_timea, out_huikuan, out_jiekuan, out_tishibook, out_hefabook, out_weituobook;
     private String type;
     private ImageView wo_cjxq_fh, iv43;
+    private OutXX_gson data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         popWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
-        text_pop.setText("按月付息，到期还本");
+        text_pop.setText(data.getInvestDetails().getPaymentModezi());
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
@@ -168,12 +169,8 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String result, int id) {
                         Log.e("出借详情GSon：", "" + result);
-                        final OutXX_gson data = new Gson().fromJson(result, OutXX_gson.class);
-                        if (type.equals("fang")) {
-                            Glide.with(ChuJIeXiangQing.this).load(R.drawable.fangchandiya).into(out_img);
-                        } else {
-                            Glide.with(ChuJIeXiangQing.this).load(R.drawable.cheliang).into(out_img);
-                        }
+                        data = new Gson().fromJson(result, OutXX_gson.class);
+
                         out_title.setText(" " + data.getInvestDetails().getBorrowTitle() + data.getInvestDetails().getBorrowCode());
                         out_money.setText(" " + data.getInvestDetails().getInvestAmount());
                         out_time.setText(" " + data.getInvestDetails().getDeadline());
@@ -228,5 +225,10 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         out_hefabook = findViewById(R.id.out_hefabook);
         out_weituobook = findViewById(R.id.out_weituobook);
         xq_huankuan = findViewById(R.id.xq_huankuan);
+        if (type.equals("1")) {
+            Glide.with(ChuJIeXiangQing.this).load(R.drawable.fangchandiya).into(out_img);
+        } else {
+            Glide.with(ChuJIeXiangQing.this).load(R.drawable.cheliang).into(out_img);
+        }
     }
 }

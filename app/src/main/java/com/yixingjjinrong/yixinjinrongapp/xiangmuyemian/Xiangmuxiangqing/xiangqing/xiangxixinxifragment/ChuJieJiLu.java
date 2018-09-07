@@ -124,7 +124,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
                         IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
                         String message = date.getMessage();
                         if (message.equals("用户未登录。")) {
-                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
                             cjjl_dengruchakan.setVisibility(View.VISIBLE);
                             cjjl_dengruchakan.setOnClickListener(new View.OnClickListener() {
                                 @Override

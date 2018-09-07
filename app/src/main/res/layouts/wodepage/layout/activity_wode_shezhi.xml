@@ -41,6 +41,7 @@
         android:layout_marginTop="40px"
         >
         <RelativeLayout
+            android:id="@+id/repassword"
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center_vertical"
@@ -57,7 +58,7 @@
                 android:textSize="30px" />
 
             <TextView
-                android:id="@+id/repassword"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/xj1"
@@ -83,6 +84,7 @@
             android:layout_marginLeft="30px"
             android:background="#f3f3f3" />
         <RelativeLayout
+            android:id="@+id/shoushi_bt"
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center_vertical"
@@ -169,6 +171,7 @@
         android:layout_marginTop="40px"
         >
         <RelativeLayout
+            android:id="@+id/fankui"
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center_vertical"
@@ -186,7 +189,7 @@
 
 
             <ImageView
-                android:id="@+id/fankui"
+
                 android:layout_width="30px"
                 android:layout_height="30px"
                 android:layout_alignParentEnd="true"
@@ -201,6 +204,7 @@
             android:layout_marginLeft="30px"
             android:background="#f3f3f3" />
         <RelativeLayout
+            android:id="@+id/hz_bt"
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center_vertical"

@@ -57,6 +57,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
     public static ZhuCe_PaGa zc_instance;
     private String message;
     private String jsessionId;
+    private YanZhengShouJiHao_Data data1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,24 +150,8 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                     } else if (myphone.length() > 11||isMobileNo(myphone)==false) {
                         Toast.makeText(ZhuCe_PaGa.this, "手机号非法", Toast.LENGTH_SHORT).show();
                     } else {
-                        AlertDialog dialog3 = new AlertDialog.Builder(ZhuCe_PaGa.this)
-                                .setTitle("提示")
-                                .setMessage("发送验证码短信至 : "+myphone)
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                        getHttp();
 
-                                    }
-                                })
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getduanxinhttp();
-                                    }
-                                })
-                                .create();
-                        dialog3.setCanceledOnTouchOutside(false);
-                        dialog3.show();
 
 
                     }
@@ -225,8 +210,14 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                             message = data.getMessage();
                             jsessionId = data.getResult().getJsessionId();
                             Log.e("jsessionId",""+ jsessionId);
-                            getHttp();
 
+                                Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
+                                zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
+                                zhuce_page.putExtra("timer","1");
+                                zhuce_page.putExtra("jsessionId",jsessionId);
+
+                                startActivity(zhuce_page);
+                                finish();
                         } else {
                             ToastUtils.showToast(ZhuCe_PaGa.this,  data.getMessage());
 
@@ -270,19 +261,34 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String result, int id) {
                         Log.e("TAG", "Gson:" + result);
-                        YanZhengShouJiHao_Data data = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
-                        phonezhuangtai = data.getResult().getMapPhone();
-                        if (phonezhuangtai.equals("1")) {
-                            Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
-                            zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
-                            zhuce_page.putExtra("timer","1");
-                            zhuce_page.putExtra("jsessionId",jsessionId);
 
-                            startActivity(zhuce_page);
-                            finish();
+                        data1 = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
+                        phonezhuangtai = data1.getResult().getMapPhone();
+                        if (phonezhuangtai.equals("1")) {
+                            AlertDialog dialog3 = new AlertDialog.Builder(ZhuCe_PaGa.this)
+                                    .setTitle("提示")
+                                    .setMessage("发送验证码短信至 : "+myphone)
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    })
+                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            getduanxinhttp();
+                                        }
+                                    })
+                                    .create();
+                            dialog3.setCanceledOnTouchOutside(false);
+                            dialog3.show();
+
                         } else {
-                           ToastUtils.showToast(ZhuCe_PaGa.this, data.getMessage());
+                            ToastUtils.showToast(ZhuCe_PaGa.this, data1.getMessage());
                         }
+
+
                     }
                 });
 

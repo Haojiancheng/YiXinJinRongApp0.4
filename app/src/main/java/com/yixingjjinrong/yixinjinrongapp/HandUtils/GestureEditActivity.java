@@ -72,7 +72,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
                     updateCodeList(inputCode);
                     mGestureContentView.clearDrawlineState(0L);
                     mTextReset.setClickable(true);
-                    mTextReset.setText("请再次绘制手势密码");
+//                    mTextReset.setText("请再次绘制手势密码");
                 } else {
                     if (inputCode.equals(mFirstPassword)) {
                         ToastUtils.showToast(GestureEditActivity.this, "设置成功");

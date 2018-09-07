@@ -110,7 +110,7 @@
 
                     <ToggleButton
                         android:id="@+id/wode_togglePwd"
-                        android:layout_width="50px"
+                        android:layout_width="70px"
                         android:layout_height="30px"
                         android:background="@null"
                         android:textOff=""

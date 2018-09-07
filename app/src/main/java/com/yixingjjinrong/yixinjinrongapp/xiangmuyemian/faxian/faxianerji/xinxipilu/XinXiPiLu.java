@@ -39,8 +39,8 @@ public class XinXiPiLu extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
+//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {  //适配华为手机虚拟键遮挡tab的问题
+//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));//需要在setContentView()方法后面执行
 //        }
         setContentView(R.layout.activity_xin_xi_pi_lu);
 //        getPiLuId();//获取资源ID

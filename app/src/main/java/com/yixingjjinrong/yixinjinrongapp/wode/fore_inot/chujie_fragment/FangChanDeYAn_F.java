@@ -90,7 +90,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
             js_request.put("userId", user_id);
             js_request.put("borrowStatus", 1);
             js_request.put("pageNumber", a);
-            js_request.put("guaranteeType", 0);
+            js_request.put("mortgageType", 1);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             Log.e("我的出借房产表参数：", "" + js_request);

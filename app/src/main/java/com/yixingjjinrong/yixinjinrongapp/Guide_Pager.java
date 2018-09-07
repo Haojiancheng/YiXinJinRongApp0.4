@@ -50,7 +50,10 @@ public class Guide_Pager extends AutoLayoutActivity {
 
         gethttp();
         initView();
-
+        SharedPreferences sharedPreferences = getSharedPreferences("First", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("isFirst", false);
+        edit.commit();
 
     }
 
@@ -132,10 +135,7 @@ public class Guide_Pager extends AutoLayoutActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = getSharedPreferences("First", MODE_PRIVATE);
-                SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putBoolean("isFirst", false);
-                edit.commit();
+
                 Intent intent = new Intent(Guide_Pager.this, MainActivity.class);
                 startActivity(intent);
                 finish();

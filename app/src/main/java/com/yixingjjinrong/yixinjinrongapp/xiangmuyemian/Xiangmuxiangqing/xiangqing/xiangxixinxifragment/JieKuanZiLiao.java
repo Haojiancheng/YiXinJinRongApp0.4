@@ -85,7 +85,6 @@ public class JieKuanZiLiao extends Fragment {
     private void getHttp_jkzl() {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
-
             js_request.put("borrowRandomId",borrowRandomId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);

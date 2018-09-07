@@ -30,9 +30,9 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
-    <WebView
-        android:id="@+id/wv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.github.barteksc.pdfviewer.PDFView>
 
 </com.zhy.autolayout.AutoLinearLayout>

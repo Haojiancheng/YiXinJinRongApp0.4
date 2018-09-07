@@ -104,7 +104,7 @@
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
             android:layout_marginTop="10px"
-            android:background="#737373"
+            android:background="#dadada"
             android:layout_marginBottom="30px"
             />
         <!--<include-->
@@ -156,11 +156,10 @@
 
                 <ToggleButton
                     android:id="@+id/dr_togglePwd"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="60px"
-                    android:background="@null"
 
+                    android:background="@null"
                     android:textOff=""
                     android:textOn="" />
 
@@ -168,7 +167,6 @@
                     android:id="@+id/dr_yj_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:visibility="gone"
                     android:src="@drawable/buxianshi" />
@@ -182,7 +180,7 @@
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
             android:layout_marginTop="10px"
-            android:background="#737373"
+            android:background="#dadada"
             android:layout_marginBottom="36px"/>
         <!--<include-->
              <!--android:id="@+id/dr_jg"-->

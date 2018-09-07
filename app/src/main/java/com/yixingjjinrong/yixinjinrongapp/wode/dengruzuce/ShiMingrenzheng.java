@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
@@ -29,6 +31,7 @@ import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
@@ -53,6 +56,9 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private String token;
     private ImageView sm_fh;
     public static ShiMingrenzheng instance;
+    private String username;
+    private String password;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +80,73 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
         sm_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getfanhuiHttp();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getfanhuiHttp();
+    }
+
+    private void getfanhuiHttp() {
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("username", username);
+            js_request.put("password", password);
+            js_request.put("url", url);
+            Log.e("实名成功(登入)：", "" + js_request);
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+            Log.e("TAG", ">>>>SH!!" + sha1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            JSONObject sign = canshu.put("sign", sha1);
+//            Log.e("我的账户：", ""+canshu);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/Applogin.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", ">>>>GSON" + response);
+                        DengruData d_data = new Gson().fromJson(response, DengruData.class);
+                        //状态值
+                        String dengrufanhuizhi = d_data.getState();
+                        String user_token = d_data.getResult().getToken();
+                        int user_id = d_data.getResult().getUserid();
+                        String loginId = d_data.getResult().getLoginId();
+                        if (dengrufanhuizhi.equals("success")) {
+                            EventBus.getDefault().post(new User_data(username, dengrufanhuizhi, user_token, user_id, loginId));
+                            SPUtils.put(ShiMingrenzheng.this, "isLogin", true);
+                            SPUtils.put(ShiMingrenzheng.this, "Loginid", loginId);
+                            SPUtils.put(ShiMingrenzheng.this, "userId", user_id);
+                            SPUtils.put(ShiMingrenzheng.this, "Token1", user_token);
+                            ZhuCe_PaGa.zc_instance.finish();
+                            YanZheng_PaGa.instance.finish();
+                            WoDe_DengRu.instance.finish();
+                            finish();
+                        }
+                    }
+                });
     }
 
     private void getonrenzheng() {
@@ -161,6 +231,9 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private void getzhen_id() {
         loginid = (String) SPUtils.get(ShiMingrenzheng.this, "Loginid", "");
         token = (String) SPUtils.get(ShiMingrenzheng.this, "Token1", "");
+        username = (String) SPUtils.get(ShiMingrenzheng.this, "username", "");
+        password = (String) SPUtils.get(ShiMingrenzheng.this, "password", "");
+        url = (String) SPUtils.get(ShiMingrenzheng.this, "url", "");
         user_ird = (int) SPUtils.get(ShiMingrenzheng.this, "userId", 0);
         zhen_name=findViewById(R.id.zhen_name);
         user_idcard=findViewById(R.id.user_idcard);

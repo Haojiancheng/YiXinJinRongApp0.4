@@ -96,7 +96,7 @@ public class DiscView extends View {
                 reverseDrawItemInfo(stack,i-1,canvas,null);
                 endPoint = getEndPoint(point[i],point[i-1]);
             }
-            drawDataLine(point[i],endPoint,canvas,items.get(i));
+//            drawDataLine(point[i],endPoint,canvas,items.get(i));
         }
     }
 
@@ -105,7 +105,7 @@ public class DiscView extends View {
         while (!stack.isEmpty()){
             curPoint = stack.pop();
             nextPoint = getEndPoint(curPoint,nextPoint);
-            drawDataLine(curPoint,nextPoint,canvas,items.get(position--));
+//            drawDataLine(curPoint,nextPoint,canvas,items.get(position--));
         }
     }
 
@@ -190,7 +190,7 @@ public class DiscView extends View {
     }
 
     private void drawText(Canvas canvas,Point point,DataItem item) {
-        drawText(canvas,point,item.getTopText(),true);
+//        drawText(canvas,point,item.getTopText(),true);
 //        drawText(canvas,point,item.getBottomText(),false);
     }
 

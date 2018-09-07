@@ -144,7 +144,7 @@
                     android:layout_marginLeft="14px"
                     android:layout_marginTop="40px"
                     android:background="@null"
-                    android:hint="请输入金额"
+                    android:hint="请输入充值金额"
                     android:textSize="30px" />
 
             </LinearLayout>

@@ -36,8 +36,8 @@ import okhttp3.MediaType;
 
 public class WoDe_SheZhi extends AutoLayoutActivity {
     private Button user_tuichu;//退出按钮
-    private TextView repassword;//修改密码
-    private ImageView fankui;//意见反馈
+    private View repassword;//修改密码
+    private View fankui;//意见反馈
     private TextView hz;//缓存
     private int user_ird;
     private String token;
@@ -48,6 +48,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private PromptDialog promptDialog;
     private TextView hand_pass;
     private String ishand;
+    private View shoushi_bt;//手势密码
+    private View hz_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +115,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 bundle.putInt("user_ird", user_ird);
                 shezhi_tuichu.putExtras(bundle);
                 startActivity(shezhi_tuichu);
-                finish();
+
             }
         });
         shezhi_fh.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +133,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         if (ishand != null) {
             if (ishand.equals("1")) {
                 hand_pass.setText("已开启");
-                hand_pass.setOnClickListener(new View.OnClickListener() {
+                shoushi_bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
@@ -140,7 +142,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        finish();
+
                                     }
                                 })
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -161,7 +163,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 
             } else {
                 hand_pass.setText("未开启");
-                hand_pass.setOnClickListener(new View.OnClickListener() {
+                shoushi_bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
@@ -170,7 +172,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        finish();
+
                                     }
                                 })
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -187,7 +189,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 });
             }
         }else {
-            hand_pass.setOnClickListener(new View.OnClickListener() {
+            shoushi_bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
@@ -196,7 +198,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    finish();
+
                                 }
                             })
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -221,7 +223,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        hz.setOnClickListener(new View.OnClickListener() {
+        hz_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
@@ -230,7 +232,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                finish();
+
                             }
                         })
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -317,6 +319,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         hz = findViewById(R.id.hz);//缓存
         shezhi_fh = findViewById(R.id.shezhi_fh);
         hand_pass = findViewById(R.id.hand_pass);
+        shoushi_bt=findViewById(R.id.shoushi_bt);//手势密码
+        hz_bt=findViewById(R.id.hz_bt);
     }
 
     @Override

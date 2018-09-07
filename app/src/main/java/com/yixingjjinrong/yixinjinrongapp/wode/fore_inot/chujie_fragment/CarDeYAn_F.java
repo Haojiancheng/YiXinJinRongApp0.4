@@ -67,11 +67,12 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
             js_request.put("userId", user_id);
             js_request.put("borrowStatus", 1);
             js_request.put("pageNumber", a);
-            js_request.put("guaranteeType", 1);
+            js_request.put("mortgageType", 4);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e("我的出借车辆表参数：", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -98,7 +99,8 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("车辆抵押GSON:L","-"+response );
+                        Log.e("车辆抵押GSON:L",""+response );
+
                         CarDiYa_Gson data = new Gson().fromJson(response, CarDiYa_Gson.class);
                         list.addAll(data.getInvestList());
 

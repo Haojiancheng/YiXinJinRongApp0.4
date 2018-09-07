@@ -4,9 +4,9 @@ public class OutXX_gson {
 
     /**
      * message : 成功了
-     * result : {"userId":11208,"borrowId":"2610","investId":"5851","guaranteeType":0}
+     * result : {"userId":11298,"borrowId":"2804","investId":"6418","guaranteeType":0}
      * state : success
-     * investDetails : {"t_borrow_style":"按月付息，到期还本","borrowTitle":"测试888","endTenderDate":"2018-07-24 14:55 ","line":"0/3","annualRate":"9.0","guaranteeType":"0","id":"5851","borrowId":"2610","Interest":"","borrowCode":"X18D10080","investid":"5851","investAmount":"100.00","lastdate":"","deadline":"3个月","borrowRandomId":"0cb75c2b-cdb5-4628-a3a9-faf662cd6eb1"}
+     * investDetails : {"t_borrow_style":"按月付息，到期还本","borrowTitle":"微信010","endTenderDate":"2018-09-08 17:42 ","line":"0/3","paymentModezi":"计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。","annualRate":"5.0","guaranteeType":"0","id":"6418","borrowId":"2804","Interest":"","borrowCode":"YXB20210211","investid":"6418","investAmount":"100.00","lastdate":"","deadline":"3个月","borrowRandomId":"c7f58f96-80e6-49bf-8b0b-35e14eab2f28"}
      */
 
     private String message;
@@ -49,26 +49,28 @@ public class OutXX_gson {
     public static class InvestDetailsBean {
         /**
          * t_borrow_style : 按月付息，到期还本
-         * borrowTitle : 测试888
-         * endTenderDate : 2018-07-24 14:55
+         * borrowTitle : 微信010
+         * endTenderDate : 2018-09-08 17:42
          * line : 0/3
-         * annualRate : 9.0
+         * paymentModezi : 计算公式：每月应付利息=借款本金总金额×约定年化利率/12，最后一期（月）应付金额=当月应付利息+借款本金总金额。
+         * annualRate : 5.0
          * guaranteeType : 0
-         * id : 5851
-         * borrowId : 2610
+         * id : 6418
+         * borrowId : 2804
          * Interest :
-         * borrowCode : X18D10080
-         * investid : 5851
+         * borrowCode : YXB20210211
+         * investid : 6418
          * investAmount : 100.00
          * lastdate :
          * deadline : 3个月
-         * borrowRandomId : 0cb75c2b-cdb5-4628-a3a9-faf662cd6eb1
+         * borrowRandomId : c7f58f96-80e6-49bf-8b0b-35e14eab2f28
          */
 
         private String t_borrow_style;
         private String borrowTitle;
         private String endTenderDate;
         private String line;
+        private String paymentModezi;
         private String annualRate;
         private String guaranteeType;
         private String id;
@@ -111,6 +113,14 @@ public class OutXX_gson {
 
         public void setLine(String line) {
             this.line = line;
+        }
+
+        public String getPaymentModezi() {
+            return paymentModezi;
+        }
+
+        public void setPaymentModezi(String paymentModezi) {
+            this.paymentModezi = paymentModezi;
         }
 
         public String getAnnualRate() {

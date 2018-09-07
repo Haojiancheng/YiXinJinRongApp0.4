@@ -13,6 +13,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
+import com.yixingjjinrong.yixinjinrongapp.MyView.KeywordsUtil;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
@@ -789,7 +791,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
                                                 fxpop();
-//                                        st.makeText(XiangMuXiangQing.this, "请风险评测", st.LENGTH_SHORT).show();
                                             }
                                         })
                                         .create();
@@ -807,11 +808,21 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             case 8://不是100的倍数
                                 ToastUtils.showToast(XiangMuXiangQing.this, "投资金额只能是100的倍数");
                                 break;
-                            case 11:
-                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
+                            case 11://稳健
+                                promptDialog.dismiss();
+//                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
+                                String sd="根据测试结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+
+                                 tb_fcianpop("稳健型",sd,11);
+
                                 break;
-                            case 10:
-                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
+                            case 10://保守
+                                promptDialog.dismiss();
+//                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
+                                String sd1="根据测试结果您只能出借AAA、AA、A级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+
+                                tb_fcianpop("保守型",sd1,10);
+
                                 break;
                         }
                     }
@@ -820,11 +831,52 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
+    private void tb_fcianpop(String tit,String msg,int i) {
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        final View popView = View.inflate(this, R.layout.chejie_pop, null);
+        TextView tilt=popView.findViewById(R.id.tilt);//等级
+        TextView  fxian_msg=popView.findViewById(R.id.fxian_msg);//信息
+        Button pc_agen=popView.findViewById(R.id.pc_agen);//重新评测
+        TextView fxian_close=popView.findViewById(R.id.fxian_close);//再想想
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow = new PopupWindow(popView, width, height);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+        tilt.setText(tit);//等级
+        if (i==11) {
+            SpannableString spannableString = KeywordsUtil.matcherSearchTitle(Color.parseColor("#F36934"), msg, "AAA、AA、A、BBB、BB、B");
+            fxian_msg.setText(spannableString);//信息
+        }else {
+            SpannableString spannableString = KeywordsUtil.matcherSearchTitle(Color.parseColor("#F36934"), msg, "AAA、AA、A");
+            fxian_msg.setText(spannableString);//信息
+        }
+        pc_agen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//重新评测
+                 Intent it =new Intent(XiangMuXiangQing.this,FengXianPingCe.class);
+                 startActivity(it);
+                popWindow.dismiss();
+            }
+        });
+        fxian_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//再想想
+              popWindow.dismiss();
+            }
+        });
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
+    }
+
+
     private void fxpop() {
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         final View popView = View.inflate(this, R.layout.fangxianpingce_pop, null);
         TextView txt_pc = popView.findViewById(R.id.txt_pc);
-        ImageView pc_guanp = findViewById(R.id.pc_guanbi);
+        ImageView pc_guanp = popView.findViewById(R.id.pc_guanbi);
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
 
@@ -840,12 +892,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             }
 
         });
-//        pc_guanp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                popWindow.dismiss();
-//            }
-//        });
+        pc_guanp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popWindow.dismiss();
+            }
+        });
         ColorDrawable dw = new ColorDrawable(0x30000000);
         popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
@@ -1112,26 +1164,26 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
-    private void shouAlertDialog(String msj) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("提示")
-                .setMessage(msj)
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        promptDialog.dismiss();
-                    }
-                })
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getchujieHttpTwo();
-                    }
-                })
-                .create();
-        alertDialog.show();
-
-    }
+//    private void shouAlertDialog(String msj) {
+//        AlertDialog alertDialog = new AlertDialog.Builder(this)
+//                .setTitle("提示")
+//                .setMessage(msj)
+//                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        promptDialog.dismiss();
+//                    }
+//                })
+//                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        getchujieHttpTwo();
+//                    }
+//                })
+//                .create();
+//        alertDialog.show();
+//
+//    }
 
     private void getchujieHttpTwo() {
 

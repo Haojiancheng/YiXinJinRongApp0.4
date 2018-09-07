@@ -273,6 +273,12 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                 });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getfanhuiHttp();
+    }
+
     private void getchengg_id() {
         lijishiming=findViewById(R.id.lijishiming);
         wodezhanghu=findViewById(R.id.wodezhanghu);

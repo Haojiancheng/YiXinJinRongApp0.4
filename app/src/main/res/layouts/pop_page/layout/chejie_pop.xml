@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+
+    >
+    <LinearLayout
+        android:layout_width="550px"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pop_biankuang"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/beijingtop"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="53px"
+                android:text="您当前风险评测级别为"
+                android:textColor="#ffdbc0"
+                android:textSize="26px" />
+
+            <TextView
+                android:id="@+id/tilt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="47px"
+                android:layout_marginTop="26px"
+                android:text="稳健型"
+                android:textColor="#fff"
+                android:textSize="50px" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fxian_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="73px"
+            android:lineSpacingExtra="15px"
+            android:text="根据测试结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。"
+            android:textColor="#333"
+            android:textSize="28px" />
+        <Button
+            android:id="@+id/pc_agen"
+            android:layout_width="400px"
+            android:layout_height="90px"
+            android:background="@drawable/bt_shape"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="90px"
+            android:text="重新评测"
+            android:textSize="38px"
+            android:textColor="#fff"
+            />
+        <TextView
+            android:id="@+id/fxian_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="再想想"
+            android:textColor="#f36934"
+            android:textSize="32px"
+            android:layout_marginTop="55px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="70px"
+            />
+
+    </LinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

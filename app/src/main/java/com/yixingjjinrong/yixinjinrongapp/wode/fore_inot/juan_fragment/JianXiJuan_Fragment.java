@@ -1,6 +1,8 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
@@ -22,6 +25,9 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment.juan_daoqi.JiaxiJuan_DaoQi;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -36,17 +42,17 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.LoadingListener{
-    private String sha1;//SHA1加密
-    private String base1;//Base64加密
     private XRecyclerView jiaxi_rview;
     private List<JiaXiJuan_Gson.QueryVouchersListBean> mlist=new ArrayList<>();
     private JiaXiJuan_adapter myadapter;
+    private String sha1;//SHA1加密
+    private String base1;//Base64加密
     private int user_id;
     private int a=1;
     private String loginid;
     private String token;
     private View jiaxi_wushuju;
-    private TextView wnr_text;
+    private TextView wnr_text,xj_daoqi;
 
     @Nullable
     @Override
@@ -67,6 +73,13 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         Log.e("条目数", mlist.size()+"");
         jiaxi_rview.setAdapter(myadapter);
         getHttp();
+        xj_daoqi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(getActivity(), JiaxiJuan_DaoQi.class);
+                startActivity(it);
+            }
+        });
     }
 
     private void getHttp() {
@@ -116,6 +129,15 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
                             mlist.addAll(data.getQueryVouchersList());
                             myadapter.notifyDataSetChanged();
                             jiaxi_wushuju.setVisibility(View.GONE);
+                            myadapter.setonEveryItemClickListener(new JiaXiJuan_adapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    Intent it=new Intent(getActivity(), MainActivity.class);
+                                    it.putExtra("id","1");
+                                    startActivity(it);
+                                    getActivity().finish();
+                                }
+                            });
                         }
                     }
                 });
@@ -134,6 +156,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         jiaxi_rview.setPullRefreshEnabled(true);
         jiaxi_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulse);
         jiaxi_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        xj_daoqi=getActivity().findViewById(R.id.xj_daoqi);
     }
 
     @Override
@@ -149,7 +172,12 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
     public void onLoadMore() {
         a++;
         getHttp();
-        jiaxi_rview.setNoMore(true);//数据加载完成
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                jiaxi_rview.loadMoreComplete();
+            }
+        }, 2000);
         jiaxi_rview.loadMoreComplete();
     }
 }

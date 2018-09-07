@@ -101,6 +101,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/wode_chujie"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -108,7 +109,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/wode_chujie"
+
                 android:layout_width="70px"
                 android:layout_height="70px"
                 android:src="@drawable/chujie" />
@@ -123,6 +124,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/zjls"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -130,7 +132,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/zjls"
+
                 android:layout_width="70px"
                 android:layout_height="70px"
                 android:src="@drawable/liushui" />
@@ -145,6 +147,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/xianjing_juan"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -152,7 +155,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/xianjing_juan"
+
                 android:layout_width="70px"
                 android:layout_height="70px"
                 android:src="@drawable/xianjinquan" />
@@ -167,6 +170,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/jiaxi_juan"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -174,7 +178,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/jiaxi_juan"
+
                 android:layout_width="70px"
                 android:layout_height="70px"
                 android:src="@drawable/jiaxiquan" />

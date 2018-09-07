@@ -1,11 +1,17 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.tixian;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -31,6 +37,7 @@ import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -54,6 +61,8 @@ public class TiXian extends AutoLayoutActivity {
     private String loginid;
     private String token;
     private ImageView tx_fh;
+    private View kftelephone;
+    private static final int PERMISSION_REQUESTCODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +85,68 @@ public class TiXian extends AutoLayoutActivity {
                 finish();
             }
         });
+        kftelephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shoualertdialog();
+            }
+        });
+    }
+
+    private void shoualertdialog() {
+        //自定义AlertDialog
+        LayoutInflater inflater = getLayoutInflater();
+        View view1 = inflater.inflate(R.layout.krfuphone, null);
+        Button btn_qux=view1.findViewById(R.id.btn_qux);
+        Button btn_hujiao=view1.findViewById(R.id.btn_hujiao);
+
+        final AlertDialog dialog = new AlertDialog.Builder(TiXian.this)
+                .setView(view1)
+                .show();
+//给AlertDialog设置4个圆角
+//        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
+        dialog.setCanceledOnTouchOutside(false);
+        btn_qux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_hujiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ToastUtils.showToast(getActivity(),"hujiao" );
+                permission();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void permission() {
+        if (ContextCompat.checkSelfPermission(TiXian.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            //没有授权
+            ActivityCompat.requestPermissions(TiXian.this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUESTCODE);
+        } else {
+            //已经授权
+            diallPhone("4001838818");
+        }
+    }
+
+    private void diallPhone(String s) {
+        Intent tent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + s);
+        tent.setData(data);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(tent);
     }
 
     private void gethttp() {
@@ -390,6 +461,7 @@ public class TiXian extends AutoLayoutActivity {
         t_cz_money=findViewById(R.id.t_cz_money);
         cz_ok=findViewById(R.id.cz_ok);
         tx_fh=findViewById(R.id.tx_fh);
+        kftelephone=findViewById(R.id.kftelephone);
 
     }
 }

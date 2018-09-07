@@ -40,12 +40,12 @@
         android:layout_height="440px"
         android:background="#fdfdfe">
 
-        <!--<com.yixingjjinrong.yixinjinrongapp.MyView.DiscView-->
+        <com.yixingjjinrong.yixinjinrongapp.MyView.DiscView
 
-            <!--android:id="@+id/disc"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="400px"-->
-            <!--android:layout_gravity="center" />-->
+            android:id="@+id/disc"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,10 +1,13 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
@@ -22,6 +26,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment.juan_daoqi.XianJinJuan_YiDao;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -45,7 +50,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     private String loginid;
     private String token;
     private View xianjin_wushuju;
-    private TextView wnr_text;
+    private TextView wnr_text,xianjin_daoqi;
 
     @Nullable
     @Override
@@ -64,6 +69,13 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         myadapter = new XianjinJuan_adapter(list);
         xianjinjun_rview.setAdapter(myadapter);
         getHttp();
+        xianjin_daoqi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(getActivity(), XianJinJuan_YiDao.class);
+                startActivity(in);
+            }
+        });
     }
 
 
@@ -115,6 +127,15 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
                             list.addAll(data.getQueryVouchersList());
                             myadapter.notifyDataSetChanged();
                             xianjin_wushuju.setVisibility(View.GONE);
+                            myadapter.setonEveryItemClickListener(new XianjinJuan_adapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    Intent it=new Intent(getActivity(), MainActivity.class);
+                                    it.putExtra("id","1");
+                                    startActivity(it);
+                                    getActivity().finish();
+                                }
+                            });
                         }
                     }
                 });
@@ -126,6 +147,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         token = (String) SPUtils.get(getActivity(), "Token1", "");
         xianjinjun_rview = getActivity().findViewById(R.id.xianjinjuan_rview);
         xianjin_wushuju = getActivity().findViewById(R.id.xianjin_wushuju);
+        xianjin_daoqi=getActivity().findViewById(R.id.xianjin_daoqi);
         wnr_text = getActivity().findViewById(R.id.wnr_text);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         xianjinjun_rview.setLayoutManager(manager);
@@ -154,6 +176,12 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
     public void onLoadMore() {
         a++;
         getHttp();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                xianjinjun_rview.loadMoreComplete();
+            }
+        }, 2000);
         xianjinjun_rview.loadMoreComplete();
     }
 }

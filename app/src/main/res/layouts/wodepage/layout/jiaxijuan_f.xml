@@ -12,9 +12,18 @@
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/jiaxi_rview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="1100px">
 
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
+    <TextView
+        android:id="@+id/xj_daoqi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="已使用现金券  >>"
+        android:textColor="#999999"
+        android:textSize="24px"
+        />
 
 
 </com.zhy.autolayout.AutoLinearLayout>

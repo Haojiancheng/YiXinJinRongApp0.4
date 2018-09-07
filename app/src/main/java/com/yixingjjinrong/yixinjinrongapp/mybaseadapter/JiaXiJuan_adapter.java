@@ -24,6 +24,16 @@ public class JiaXiJuan_adapter extends RecyclerView.Adapter<JiaXiJuan_adapter.My
     public JiaXiJuan_adapter(List<JiaXiJuan_Gson.QueryVouchersListBean> mlist) {
         this.mlist = mlist;
     }
+    private OnEveryItemClickListener onEveryItemClickListener;
+
+    public interface OnEveryItemClickListener {
+        void onEveryClick(int position);
+    }
+
+
+    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
+        this.onEveryItemClickListener = onEveryItemClickListener;
+    }
 
     @NonNull
     @Override
@@ -34,11 +44,20 @@ public class JiaXiJuan_adapter extends RecyclerView.Adapter<JiaXiJuan_adapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JiaXiJuan_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull JiaXiJuan_adapter.MyViewHolder holder, final int position) {
         holder.qian.setText(mlist.get(position).getInfo() + "%");
         holder.yaoqu.setText(mlist.get(position).getRemark());
         holder.fanwei.setText(mlist.get(position).getUseRange());
-        holder.time_out.setText(mlist.get(position).getEndTime());
+        holder.time_out.setText("有效期至："+mlist.get(position).getEndTime());
+        holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener != null) {
+                    onEveryItemClickListener.onEveryClick(position);
+                }
+
+            }
+        });
 
     }
 

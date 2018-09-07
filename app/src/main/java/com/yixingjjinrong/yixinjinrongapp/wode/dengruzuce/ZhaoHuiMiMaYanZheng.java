@@ -1,18 +1,26 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -44,13 +52,13 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
-    private Button queding_zhaohui,zhaohui_yanzheng;//找回密码——确定
+    private Button queding_zhaohui, zhaohui_yanzheng;//找回密码——确定
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private String phone;
     private TimeCount time;
-    private TextView phonet,jinggao;
-    private EditText ed_code,news_mima;
+    private TextView phonet;
+    private EditText ed_code, news_mima;
     private ImageView et_qc;
     private ToggleButton zh_togglePwd;
     public static final String REGEX_PASSWORD = "^(?=.*?[a-z])(?=.*?[0-9])[a-zA-Z0-9_]{6,16}$";
@@ -58,6 +66,9 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private String message;
     private String jsessionId;
     private ImageView zhyz_yj_image;
+    private String timer;
+    private View zhyz_collphone;
+    private static final int PERMISSION_REQUESTCODE = 1;
 
 
     @Override
@@ -75,19 +86,21 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         getzhaohuimima_Id();
         HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
 
-        Intent it=getIntent();
-        phone = it.getStringExtra("phone");
-        String mobile = phone;
-        String maskNumber = mobile.substring(0,3)+"****"+mobile.substring(7,mobile.length());
-        phonet.setText("正在为"+maskNumber+"找回登入密码");
         getzhaohuimima_Onclik();
-
     }
+
     public static boolean isPassword(String password) {
         return Pattern.matches(REGEX_PASSWORD, password);
     }
 
     private void getzhaohuimima_Onclik() {
+        zhyz_collphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shoualertdialog();
+            }
+        });
+
         zhyz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,9 +122,9 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>0) {
+                if (s.length() > 0) {
                     zhyz_yj_image.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     zhyz_yj_image.setVisibility(View.GONE);
                 }
             }
@@ -126,17 +139,20 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 int lenght = news_mima.getText().toString().trim().length();
-                if (ed_code.getText().toString().isEmpty()){
-                    jinggao.setVisibility(View.VISIBLE);
-                    jinggao.setText("   请输入验证码");
-                }else {
-                    if (news_mima.getText().toString().isEmpty()){
-                        jinggao.setVisibility(View.VISIBLE);
-                        jinggao.setText("   请输入新密码");
-                    }else {
+                if (ed_code.getText().toString().isEmpty()) {
+//                    jinggao.setVisibility(View.VISIBLE);
+                    ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "请输入验证码");
+//                    jinggao.setText("   请输入验证码");
+                } else {
+                    if (news_mima.getText().toString().isEmpty()) {
+//                        jinggao.setVisibility(View.VISIBLE);
+//                        jinggao.setText("   请输入新密码");
+                        ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "请输入新密码");
+                    } else {
                         if (lenght < 6 || lenght > 18 || !isPassword(news_mima.getText().toString())) {
-                            jinggao.setVisibility(View.VISIBLE);
-                            jinggao.setText("   请输入6-18位字母和数字组合");
+//                            jinggao.setVisibility(View.VISIBLE);
+//                            jinggao.setText("   请输入6-18位字母和数字组合");
+                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "请输入6-18位字母和数字组合");
 //                    Toast.makeText(ZhaoHuiMiMaYanZheng.this,"6-18位字母和数字组合",Toast.LENGTH_SHORT).show();
                         } else {
                             getyanzhengHttp();
@@ -167,13 +183,70 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         });
     }
 
+    private void shoualertdialog() {
+        //自定义AlertDialog
+        LayoutInflater inflater = getLayoutInflater();
+        View view1 = inflater.inflate(R.layout.krfuphone, null);
+        Button btn_qux = view1.findViewById(R.id.btn_qux);
+        Button btn_hujiao = view1.findViewById(R.id.btn_hujiao);
+
+        final AlertDialog dialog = new AlertDialog.Builder(ZhaoHuiMiMaYanZheng.this)
+                .setView(view1)
+                .show();
+//给AlertDialog设置4个圆角
+//        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
+        dialog.setCanceledOnTouchOutside(false);
+        btn_qux.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btn_hujiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ToastUtils.showToast(getActivity(),"hujiao" );
+                permission();
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    private void permission() {
+        if (ContextCompat.checkSelfPermission(ZhaoHuiMiMaYanZheng.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            //没有授权
+            ActivityCompat.requestPermissions(ZhaoHuiMiMaYanZheng.this, new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUESTCODE);
+        } else {
+            //已经授权
+            diallPhone("4001838818");
+        }
+    }
+
+    private void diallPhone(String s) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + s);
+        intent.setData(data);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        startActivity(intent);
+    }
+
     private void getyanzhengHttp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("phone", phone);
             js_request.put("password", news_mima.getText().toString());
             js_request.put("code", ed_code.getText().toString());
-            Log.e("找回密码",""+js_request);
+            Log.e("找回密码", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -190,7 +263,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/forgetPwd.do")
+                .url(Urls.BASE_URL + "yxbApp/forgetPwd.do")
                 .content(canshu.toString())
                 .addHeader("Cookie", "JSESSIONID=" + jsessionId)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -203,19 +276,22 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("找回密码的GSON",""+result );
+                        Log.e("找回密码的GSON", "" + result);
                         ChongZiMIMA_Gson data = new Gson().fromJson(result, ChongZiMIMA_Gson.class);
                         String message = data.getMessage().toString();
                         String zhuangtai = data.getState().toString();
-                        if (zhuangtai.equals("success")){
-                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, ""+message, Toast.LENGTH_SHORT).show();
-                            Intent it=new Intent(ZhaoHuiMiMaYanZheng.this,WoDe_DengRu.class);
+                        if (zhuangtai.equals("success")) {
+                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, "" + message, Toast.LENGTH_SHORT).show();
+                            Intent it = new Intent(ZhaoHuiMiMaYanZheng.this, WoDe_DengRu.class);
                             startActivity(it);
+                            ZhaoHuiMiMa.zhaoHuiMiMa.finish();
+                            WoDe_DengRu.instance.finish();
                             finish();
-                        }else {
+                        } else {
                             ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
-                            jinggao.setVisibility(View.VISIBLE);
-                            jinggao.setText("   "+message);
+//                            jinggao.setVisibility(View.VISIBLE);
+//                            jinggao.setText("   "+message);
+                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
                         }
                     }
                 });
@@ -243,7 +319,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/sendsms.do")
+                .url(Urls.BASE_URL + "yxbApp/sendsms.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -262,13 +338,13 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 
                             message = data.getMessage();
                             jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId",""+ jsessionId);
+                            Log.e("jsessionId", "" + jsessionId);
                             time = new TimeCount(60000, 1000);
                             time.start();
                         } else {
                             Toast.makeText(ZhaoHuiMiMaYanZheng.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
                             if (data.getMessage().equals("验证码发送次数达到上限，请明天再试")) {
-                               zhaohui_yanzheng .setText("明天再试");
+                                zhaohui_yanzheng.setText("明天再试");
                                 zhaohui_yanzheng.setBackgroundResource(R.color.gray);
                             }
                         }
@@ -278,17 +354,34 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     }
 
     private void getzhaohuimima_Id() {
-        queding_zhaohui=findViewById(R.id.zhaohuimiam_queding);//找回密码——确定
-        zhaohui_yanzheng=findViewById(R.id.zhaohui_yanzheng);
-        phonet=findViewById(R.id.phonet);
-        ed_code=findViewById(R.id.edit_code);
-        news_mima=findViewById(R.id.news_mima);
-        zh_togglePwd=findViewById(R.id.zh_togglePwd);
-        et_qc=findViewById(R.id.zh_guanbi);
-        jinggao=findViewById(R.id.jingdao);
-        zhyz_fh=findViewById(R.id.zhyz_fh);
-        zhyz_yj_image=findViewById(R.id.zhyz_yj_image);
+        queding_zhaohui = findViewById(R.id.zhaohuimiam_queding);//找回密码——确定
+        zhaohui_yanzheng = findViewById(R.id.zhaohui_yanzheng);
+        phonet = findViewById(R.id.phonet);
+        ed_code = findViewById(R.id.edit_code);
+        news_mima = findViewById(R.id.news_mima);
+        zh_togglePwd = findViewById(R.id.zh_togglePwd);
+        et_qc = findViewById(R.id.zh_guanbi);
+//        jinggao=findViewById(R.id.jingdao);
+        zhyz_fh = findViewById(R.id.zhyz_fh);
+        zhyz_yj_image = findViewById(R.id.zhyz_yj_image);
+        zhyz_collphone=findViewById(R.id.zhyz_collphone);
+
+        Intent it = getIntent();
+        if (it != null) {
+            phone = it.getStringExtra("phone");
+            timer = it.getStringExtra("timer");
+            jsessionId = it.getStringExtra("jsessionId");
+            String mobile = phone;
+            String maskNumber = mobile.substring(0, 3) + "****" + mobile.substring(7, mobile.length());
+            phonet.setText("正在为" + maskNumber + "找回登入密码");
+            if (timer.equals("1")) {
+                time = new TimeCount(60000, 1000);
+                time.start();
+            }
+        }
+
     }
+
     class TimeCount extends CountDownTimer {
 
         public TimeCount(long millisInFuture, long countDownInterval) {
@@ -299,14 +392,15 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         public void onTick(long millisUntilFinished) {
 //            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#B6B6D8"));
             zhaohui_yanzheng.setClickable(false);
-            zhaohui_yanzheng.setText("("+millisUntilFinished / 1000 +") 秒后可重新发送");
+            zhaohui_yanzheng.setBackgroundResource(R.drawable.bt_huise);
+            zhaohui_yanzheng.setText(millisUntilFinished / 1000 + "s后重新获取");
         }
 
         @Override
         public void onFinish() {
-            zhaohui_yanzheng.setText("重新获取验证码");
+            zhaohui_yanzheng.setText("再次获取");
             zhaohui_yanzheng.setClickable(true);
-//            huoqu_yanzhengma.setBackgroundColor(Color.parseColor());
+            zhaohui_yanzheng.setBackgroundResource(R.drawable.bt_shape);
 
         }
     }

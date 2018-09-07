@@ -47,6 +47,7 @@ public class My_Content extends AutoLayoutActivity {
     private ImageView mycontentfanhui;
     private GeRenXingXiGson gr_data;
     private PromptDialog promptDialog;
+    private View shiming_itme,cunguan_itme,fengxian_itme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +136,7 @@ public class My_Content extends AutoLayoutActivity {
 
         if (gr_data.getUserMap().getAuth().equals("1")) { //实名认证
             shiming.setText("已认证");
-            shiming.setOnClickListener(new View.OnClickListener() {
+            shiming_itme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent it = new Intent(My_Content.this, YiShiMing.class);
@@ -143,7 +144,7 @@ public class My_Content extends AutoLayoutActivity {
                 }
             });
         } else {
-            shiming.setOnClickListener(new View.OnClickListener() {
+            shiming_itme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getshimingHTTp();
@@ -153,7 +154,7 @@ public class My_Content extends AutoLayoutActivity {
         }
         if (gr_data.getUserMap().getCg().equals("1")) {//银行存管
             cunguan.setText("已开通");
-            cunguan.setOnClickListener(new View.OnClickListener() {
+            cunguan_itme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent it = new Intent(My_Content.this, YiShiMing.class);
@@ -163,7 +164,7 @@ public class My_Content extends AutoLayoutActivity {
         } else {
             cunguan.setText("未开通");
 
-            cunguan.setOnClickListener(new View.OnClickListener() {
+            cunguan_itme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     grthttp();
@@ -191,7 +192,7 @@ public class My_Content extends AutoLayoutActivity {
         } else {
 
             ceping.setText("未测评");
-            ceping.setOnClickListener(new View.OnClickListener() {
+            fengxian_itme.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(My_Content.this, FengXianPingCe.class);
@@ -324,6 +325,9 @@ public class My_Content extends AutoLayoutActivity {
         ceping = findViewById(R.id.ceping);
         shouhuodi = findViewById(R.id.xj31);//收货地址
         mycontentfanhui = findViewById(R.id.mycontentfanhui);
+        fengxian_itme=findViewById(R.id.fengxian_itme);
+        cunguan_itme=findViewById(R.id.cunguan_itme);
+        shiming_itme=findViewById(R.id.shiming_itme);
     }
 
     @Override

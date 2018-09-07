@@ -111,7 +111,11 @@
         <activity android:name=".xiangmuyemian.faxian.faxianerji.xinxipilu.xinxipilufragment.baogaoPDF.BaoGaoXiangQing" />
         <activity android:name=".xiangmuyemian.faxian.jifen_fx.DuiHuanXiangQing" />
         <activity android:name=".HandUtils.GestureEditActivity" />
-        <activity android:name=".HandUtils.GestureVerifyActivity"></activity>
+        <activity android:name=".HandUtils.GestureVerifyActivity" />
+        <activity android:name=".wode.fore_inot.wodechujie_one.MyChuJie_one" />
+        <activity android:name=".wode.fore_inot.wodechujie_one.yidaoqi.YiDaoQiXiangMu" />
+        <activity android:name=".wode.fore_inot.juan_fragment.juan_daoqi.JiaxiJuan_DaoQi" />
+        <activity android:name=".wode.fore_inot.juan_fragment.juan_daoqi.XianJinJuan_YiDao"></activity>
     </application>
 
 </manifest>

@@ -140,11 +140,11 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                if (s.length()>0) {
-//                    dengru_guanbi.setVisibility(View.VISIBLE);
-//                }else {
-//                    dengru_guanbi.setVisibility(View.GONE);
-//                }
+                if (s.length()>0) {
+                    dengru_guanbi.setVisibility(View.VISIBLE);
+                }else {
+                    dengru_guanbi.setVisibility(View.GONE);
+                }
 //                if (dengru_phone.getText().toString().isEmpty()){
 //                    shojihao_kong.setVisibility(View.VISIBLE);
 //                    jg_text.setText("手机号不能为空");

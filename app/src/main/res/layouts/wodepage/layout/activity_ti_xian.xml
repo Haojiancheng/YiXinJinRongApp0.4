@@ -138,7 +138,7 @@
                     android:layout_marginLeft="14px"
                     android:layout_marginTop="40px"
                     android:background="@null"
-                    android:hint="请输入金额"
+                    android:hint="请输提现入金额"
                     android:textSize="30px" />
 
             </LinearLayout>
@@ -197,6 +197,7 @@
         android:textColor="#999999"
         />
     <LinearLayout
+        android:id="@+id/kftelephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

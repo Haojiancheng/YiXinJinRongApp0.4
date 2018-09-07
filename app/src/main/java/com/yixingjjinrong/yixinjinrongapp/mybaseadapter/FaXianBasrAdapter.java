@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
+public class
+FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
     private List<FaXian_Data.ResultBean.GoodsListBean> list;
     private String paht;
 

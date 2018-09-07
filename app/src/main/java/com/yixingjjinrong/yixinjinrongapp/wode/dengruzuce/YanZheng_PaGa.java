@@ -469,12 +469,12 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 //            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#cccccc"));
             huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_huise);
             huoqu_yanzhengma.setClickable(false);
-            huoqu_yanzhengma.setText("再次发送(" + millisUntilFinished / 1000 + ") ");
+            huoqu_yanzhengma.setText( millisUntilFinished / 1000 + "s后重新获取");
         }
 
         @Override
         public void onFinish() {
-            huoqu_yanzhengma.setText("再次发送");
+            huoqu_yanzhengma.setText("再次获取");
             huoqu_yanzhengma.setClickable(true);
             huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_shape);
 

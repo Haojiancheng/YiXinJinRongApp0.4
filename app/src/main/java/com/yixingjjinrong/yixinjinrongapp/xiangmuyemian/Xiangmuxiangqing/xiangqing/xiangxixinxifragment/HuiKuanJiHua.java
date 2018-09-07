@@ -139,7 +139,15 @@ public class HuiKuanJiHua extends LazyFragment {
                         HuiKuanJiHua_Gson data = new Gson().fromJson(response, HuiKuanJiHua_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
-                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
+                            h_dengruchakan.setVisibility(View.VISIBLE);
+                            w_dongru_chakan.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                                    startActivity(it);
+                                }
+                            });
+//                            Toast.makeText(getActivity(), "请先登入再查看", Toast.LENGTH_SHORT).show();
                         } else {
 //                Toast.makeText(getActivity(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                             hkjhlist.addAll(data.getResult().getRepaymentList());

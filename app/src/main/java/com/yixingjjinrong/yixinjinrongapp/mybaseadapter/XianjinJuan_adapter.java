@@ -21,6 +21,17 @@ public class XianjinJuan_adapter extends RecyclerView.Adapter<XianjinJuan_adapte
         this.list = list;
     }
 
+    private OnEveryItemClickListener onEveryItemClickListener;
+
+    public interface OnEveryItemClickListener {
+        void onEveryClick(int position);
+    }
+
+
+    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
+        this.onEveryItemClickListener = onEveryItemClickListener;
+    }
+
     @NonNull
     @Override
     public XianjinJuan_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -30,11 +41,19 @@ public class XianjinJuan_adapter extends RecyclerView.Adapter<XianjinJuan_adapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull XianjinJuan_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull XianjinJuan_adapter.MyViewHolder holder, final int position) {
         holder.qian.setText("¥"+list.get(position).getInfo());
         holder.yaoqu.setText(list.get(position).getRemark());
         holder.fanwei.setText(list.get(position).getUseRange());
-        holder.time_out.setText(list.get(position).getEndTime());
+        holder.time_out.setText("有效期至："+list.get(position).getEndTime());
+        holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener != null) {
+                    onEveryItemClickListener.onEveryClick(position);
+                }
+            }
+        });
     }
 
     @Override

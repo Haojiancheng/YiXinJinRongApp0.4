@@ -8,7 +8,6 @@
         android:layout_height="96px"
         android:orientation="horizontal"
         android:layout_marginTop="2px"
-        android:layout_marginRight="30px"
         android:background="#fdfdfe"
         >
 
@@ -17,7 +16,8 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="50px"
             android:text="137***5555"
             android:textSize="24px"
             android:textColor="#333333"
@@ -28,20 +28,29 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="2.00"
+            android:layout_marginLeft="20px"
             android:textSize="24px"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textColor="#333333"
             />
-        <TextView
-            android:id="@+id/date_jl"
+        <RelativeLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
+            >
+        <TextView
+            android:id="@+id/date_jl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
             android:text="2018-01-01 12:27"
             android:gravity="center"
             android:textSize="24px"
             android:textColor="#333333"
             />
+        </RelativeLayout>
     </LinearLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -39,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.x;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -55,6 +56,8 @@ public class ChongZhq extends AutoLayoutActivity {
     private String loginid;
     private String token;
     private ImageView cz_fh;
+    private View kongbai;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,8 @@ public class ChongZhq extends AutoLayoutActivity {
 
 
     private void getczHTTp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
@@ -111,7 +116,7 @@ public class ChongZhq extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
                     }
 
                     @Override
@@ -121,6 +126,8 @@ public class ChongZhq extends AutoLayoutActivity {
                         cz_keyong.setText("可用余额:  " + data.getUsableSum() + "元");
                         String msg = data.getMsg();
                         if (msg.equals("")) {
+                            promptDialog.dismiss();
+                            kongbai.setVisibility(View.GONE);
                             yh_name.setText(data.getBankName());
                             yh_number.setText(data.getCardNum());
                             x.image().bind(yh_img, data.getBankImage());
@@ -141,6 +148,8 @@ public class ChongZhq extends AutoLayoutActivity {
                                 }
                             });
                         } else {
+                            promptDialog.dismiss();
+                            kongbai.setVisibility(View.VISIBLE);
                             yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
                                 AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
@@ -384,9 +393,10 @@ public class ChongZhq extends AutoLayoutActivity {
         cz_money = findViewById(R.id.cz_money);
         yh_img = findViewById(R.id.yh_img);
         cz_ok = findViewById(R.id.cz_ok);
-        yhcard = findViewById(R.id.yhcard);
+        yhcard = findViewById(R.id.yhcard1);
         cz_fh = findViewById(R.id.cz_fh);
         cz_money.setInputType( InputType.TYPE_CLASS_NUMBER);
+        kongbai=findViewById(R.id.chongzhi_kongbai);
     }
 
 }

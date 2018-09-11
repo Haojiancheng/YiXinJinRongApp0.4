@@ -3,8 +3,10 @@ package com.yixingjjinrong.yixinjinrongapp.wode.zongzichen;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
@@ -43,11 +45,15 @@ public class ZongziChan extends AutoLayoutActivity {
     private TextView zonge_z, zonge_daishou, zonge_keyong, zonge_dongjie;
     private String loginid;
     private String token;
-    private ImageView ze_fh;
+    private ImageView ze_fh,xiala,r2;
     private TextView hose_daishou, car_daishou;
     private double zong_floor;
     private double ke_floor;
     private double dong_floor;
+    private ToggleButton zs_togglePwd,dj_togglePwd;
+    private View fc_dy,cl_dy,dj_cheliang,dj_fangchan,dj_tixian;
+    private TextView dj_che_money,dj_fang_money,dj_tixian_money;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +71,44 @@ public class ZongziChan extends AutoLayoutActivity {
 
 
         gethttp();
+        getonclock();
         ze_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+    }
+
+    private void getonclock() {
+        zs_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    xiala.setImageDrawable(getResources().getDrawable(R.drawable.xiala));
+                    fc_dy.setVisibility(View.VISIBLE);
+                    cl_dy.setVisibility(View.VISIBLE);
+                }else {
+                    xiala.setImageDrawable(getResources().getDrawable(R.drawable.dianji));
+                    fc_dy.setVisibility(View.GONE);
+                    cl_dy.setVisibility(View.GONE);
+                }
+            }
+        });
+        dj_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    r2.setImageDrawable(getResources().getDrawable(R.drawable.xiala));
+                    dj_cheliang.setVisibility(View.VISIBLE);
+                    dj_fangchan.setVisibility(View.VISIBLE);
+                    dj_tixian.setVisibility(View.VISIBLE);
+                }else {
+                    r2.setImageDrawable(getResources().getDrawable(R.drawable.dianji));
+                    dj_cheliang.setVisibility(View.GONE);
+                    dj_fangchan.setVisibility(View.GONE);
+                    dj_tixian.setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -131,6 +171,15 @@ public class ZongziChan extends AutoLayoutActivity {
 
                                 Log.e("gcfr", "" + data.getListType().get(i).getMortgageType());
                             }
+                            for (int i = 0; i < data.getListFreeze().size(); i++) {
+                                int type = data.getListFreeze().get(i).getMortgageType();
+                                if (type==1){
+                                    dj_che_money.setText(data.getListFreeze().get(i).getSumMoney()+"");
+                                }else if (type==4){
+                                    dj_fang_money.setText(data.getListFreeze().get(i).getSumMoney()+"");
+                                }
+                            }
+                            dj_tixian_money.setText(data.getListFreeze().get(2).getWithdrawMoney());
 
 //                zonge_dongjie.setText(data.getUserMap().);
 //                car_daishou.setText(data.getUserMap());
@@ -201,7 +250,18 @@ public class ZongziChan extends AutoLayoutActivity {
         ze_fh = findViewById(R.id.ze_fh);
         hose_daishou = findViewById(R.id.hose_daishou);
         car_daishou = findViewById(R.id.cae_daishou);
-
+        zs_togglePwd=findViewById(R.id.zs_togglePwd);
+        xiala=findViewById(R.id.xiala_1);
+        fc_dy=findViewById(R.id.fc_dy);
+        cl_dy=findViewById(R.id.cl_dy);
+        dj_tixian=findViewById(R.id.dj_tixian);
+        dj_cheliang=findViewById(R.id.dj_cheliang);
+        dj_fangchan=findViewById(R.id.dj_fangchan);
+        r2=findViewById(R.id.dj_r2);
+        dj_togglePwd=findViewById(R.id.dj_togglePwd);
+        dj_tixian_money=findViewById(R.id.dj_tixian_money);
+        dj_che_money=findViewById(R.id.dj_che_money);
+        dj_fang_money=findViewById(R.id.dj_fang_money);
 
     }
 }

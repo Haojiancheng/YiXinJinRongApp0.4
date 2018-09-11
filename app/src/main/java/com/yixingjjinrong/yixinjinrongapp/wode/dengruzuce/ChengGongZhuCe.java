@@ -46,7 +46,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private String myurl;
     private String logid;
     private String token;
-    private ImageView zhucefanhui;
+//    private ImageView zhucefanhui;
     public static ChengGongZhuCe instance;
 
     @Override
@@ -74,12 +74,12 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             Log.e("成功注册：", "Phone_my:"+shoujihao+"__password:"+password+"__url:"+myurl);
         }
 
-        zhucefanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//返回到我的页面
-                getfanhuiHttp();
-            }
-        });
+//        zhucefanhui.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {//返回到我的页面
+//                getfanhuiHttp();
+//            }
+//        });
         wodezhanghu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,6 +282,6 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
     private void getchengg_id() {
         lijishiming=findViewById(R.id.lijishiming);
         wodezhanghu=findViewById(R.id.wodezhanghu);
-        zhucefanhui=findViewById(R.id.zhucefanhui1);
+//        zhucefanhui=findViewById(R.id.zhucefanhui1);
     }
 }

@@ -91,8 +91,8 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
             public void onClick(View v) {
                 int lenght = new_mima.getText().toString().trim().length();
 //                Toast.makeText(YanZheng_PaGa.this,"6:"+isPassword(user_mima.getText().toString()),Toast.LENGTH_SHORT).show();
-                if (lenght<6||lenght>18 || !isPassword(new_mima.getText().toString())){
-                    ToastUtils.showToast(XiuGaiMiMa.this,"6-18位字母和数字组合");
+                if (lenght<6||lenght>18){
+                    ToastUtils.showToast(XiuGaiMiMa.this,"请输入6-18位字母和数字组合");
                 }else{
                     gethttp_repassword();
 

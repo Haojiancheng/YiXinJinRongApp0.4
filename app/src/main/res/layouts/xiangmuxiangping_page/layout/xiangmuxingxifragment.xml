@@ -33,10 +33,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="30px"
-                        android:text="项目基本信息"
-                        android:layout_marginTop="30px"
                         android:layout_marginBottom="20px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="30px"
+                        android:text="项目基本信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
@@ -90,12 +90,13 @@
                         android:layout_alignParentTop="true"
                         android:orientation="vertical">
 
+
                         <TextView
                             android:id="@+id/main_tv_hidden"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="25px"
-                            android:lines="3"
+
                             android:textAlignment="textEnd"
                             android:textColor="#333333"
                             android:textSize="28px" />
@@ -122,7 +123,8 @@
                         android:layout_marginRight="30px"
                         android:text="【展开】"
                         android:textColor="#009ACD"
-                        android:textSize="24px" />
+                        android:textSize="24px"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -201,6 +203,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/kuankuanfangshi_xx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
@@ -220,9 +223,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
+                        android:drawablePadding="10px"
                         android:drawableRight="@drawable/yiwen"
                         android:text=" "
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -237,7 +240,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
-                        android:text="约定年化"
+                        android:text="协议年化"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
@@ -354,8 +357,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -378,454 +381,469 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        <LinearLayout
-            android:id="@+id/qiye"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20px"
-            android:background="#fdfdfe"
-            android:orientation="vertical">
+
             <LinearLayout
+                android:id="@+id/qiye"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20px"
+                android:background="#fdfdfe"
+                android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="30px"
-                    android:layout_marginBottom="20px"
-                    android:text="借款人基本信息"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="30px"
+                        android:text="借款人基本信息"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="主体性质"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/zt_xingzhi1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="法人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款企业名称"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="统一社会信用代码"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_dm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="成立时间"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="祖册资本"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_zb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="所属行业"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_hy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="注册地址"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_dizhi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="办公地址"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_bg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="法定代表人"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_fd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="月均收入"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_shouru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="自然人"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="平台历史还款期数"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_huanhuancishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0次"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="平台历史逾期期数"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_yuqicishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0次"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="平台历史逾期金额"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_lishiyuqi_jinge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="平台当期逾期金额"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_dangqian_jine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="335px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="截止借款前6个月内借款人征信报告的逾期情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_6yue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="325px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人在其他网络借贷平台借款情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_qita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="经营范围"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/qy_fanwei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="0元"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="主体性质"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/zt_xingzhi1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="法人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="借款企业名称"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="统一社会信用代码"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_dm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="成立时间"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="祖册资本"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_zb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="所属行业"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_hy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="注册地址"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_dizhi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="办公地址"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="法定代表人"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_fd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="月均收入"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_shouru"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="自然人"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="平台历史还款期数"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_huanhuancishu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0次"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="平台历史逾期期数"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_yuqicishu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0次"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="平台历史逾期金额"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_lishiyuqi_jinge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0元"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="平台当期逾期金额"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_dangqian_jine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0元"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="400px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="截止借款前6个月内借款人
-征信报告的逾期情况"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_6yue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0元"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="400px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="借款人在其他网络借
-贷平台借款情况"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_qita"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0元"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:layout_marginBottom="30px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="经营范围"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/qy_fanwei"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="0元"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-        </LinearLayout>
             <LinearLayout
                 android:id="@+id/geren"
                 android:layout_width="match_parent"
@@ -842,9 +860,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
                         android:layout_marginLeft="30px"
                         android:layout_marginTop="30px"
-                        android:layout_marginBottom="20px"
 
                         android:text="借款人基本信息"
                         android:textColor="#333333"
@@ -977,6 +995,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -997,10 +1016,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text=""
+
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1258,7 +1278,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="400px"
+                        android:layout_width="335px"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
                         android:text="截止借款6个月内借款人征信报告中的逾期情况"
@@ -1281,15 +1301,15 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="400px"
+                        android:layout_width="325px"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
-                        android:text="借款人在其他网络借贷平台借款情"
+                        android:text="借款人在其他网络借贷平台借款情况"
                         android:textColor="#999999"
                         android:textSize="28px" />
 
@@ -1306,139 +1326,145 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        <LinearLayout
-            android:id="@+id/car_danbaogs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#fdfdfe"
-            android:layout_marginTop="20px"
-            android:visibility="gone"
-            >
+
             <LinearLayout
+                android:id="@+id/car_danbaogs"
                 android:layout_width="match_parent"
-                android:layout_height="45px"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="#fdfdfe"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30px"
-                    android:paddingTop="10px"
-                    android:text="担保公司基本信息"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
+                    android:layout_height="45px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30px"
+                        android:paddingTop="10px"
+                        android:text="担保公司基本信息"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="担保公司名称"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbgs_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="我擦"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="统一社会信用代码"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbgs_daima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="我擦"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="法定代表人"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbgs_daibiaoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="我擦"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="注册地址"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/dbgs_addass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:text="我擦"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="担保公司名称"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/dbgs_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="我擦"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="统一社会信用代码"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/dbgs_daima"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="我擦"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="法定代表人"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/dbgs_daibiaoman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="我擦"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="注册地址"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/dbgs_addass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:text="我擦"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-        </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/car_danbaoren"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="20px"
                 android:background="#fdfdfe"
-                android:layout_marginTop="20px">
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1447,13 +1473,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
                         android:layout_marginLeft="30px"
                         android:layout_marginTop="30px"
-                        android:layout_marginBottom="20px"
                         android:text="担保人基本信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
                 </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1479,6 +1506,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1503,6 +1531,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1527,6 +1556,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1551,6 +1581,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1575,6 +1606,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1599,6 +1631,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1623,6 +1656,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1647,6 +1681,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1671,6 +1706,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1695,6 +1731,7 @@
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1723,8 +1760,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -1747,282 +1784,294 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        <LinearLayout
-            android:id="@+id/car_xx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20px"
-            android:background="#fdfdfe"
-            android:orientation="vertical">
+
             <LinearLayout
+                android:id="@+id/car_xx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20px"
+                android:background="#fdfdfe"
+                android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginTop="30px"
-                    android:layout_marginBottom="20px"
-                    android:text="车辆信息"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="30px"
+                        android:text="车辆信息"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="品牌车型"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_pp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="奥迪a6"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="车牌号码"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="京A1***4"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="车架号码"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_jia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="京A1***4"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="行驶公里"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_km"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="1000公里"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="购买时间"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="2018-02-06"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="发动机排量"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_pailiang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="3.4"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="车况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_ck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="优"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="购买价格"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="100万"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="评估价格"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="100万"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="参考价格"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/car_cmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text="100万"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="品牌车型"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_pp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="奥迪a6"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="车牌号码"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="京A1***4"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="车架号码"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_jia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="京A1***4"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="行驶公里"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_km"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="1000公里"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="购买时间"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="2018-02-06"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="发动机排量"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_pailiang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="3.4"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="车况"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_ck"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="优"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="购买价格"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_buy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="100万"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="评估价格"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_money"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="100万"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
-                android:layout_marginBottom="30px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:text="参考价格"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
-
-                <TextView
-                    android:id="@+id/car_cmoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="25px"
-                    android:paddingRight="1px"
-                    android:text="100万"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/hose_xx"
@@ -2040,9 +2089,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
                         android:layout_marginLeft="30px"
                         android:layout_marginTop="30px"
-                        android:layout_marginBottom="20px"
                         android:text="房产信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -2181,8 +2230,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2222,9 +2271,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="45px"
+                        android:layout_marginBottom="20px"
                         android:layout_marginLeft="30px"
                         android:layout_marginTop="50px"
-                        android:layout_marginBottom="20px"
                         android:text="审查信息"
                         android:textColor="#333333"
                         android:textSize="30px" />
@@ -2252,12 +2301,11 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
-                        android:textSize="28px"
-                         />
+                        android:textSize="28px" />
 
                     <TextView
                         android:id="@+id/sf_wrz"
@@ -2266,13 +2314,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/sc_zhuzhi"
@@ -2294,10 +2341,11 @@
                         android:drawableLeft="@drawable/yirenzheng"
 
 
-                        android:text="已认证"
                         android:drawablePadding="10px"
+                        android:text="已认证"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/zz_wrz"
                         android:layout_width="0px"
@@ -2305,13 +2353,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -2336,11 +2383,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/zxbg_wrz"
                         android:layout_width="0px"
@@ -2348,13 +2396,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/sc_cq"
@@ -2375,11 +2422,12 @@
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
 
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/fwcq_wrz"
                         android:layout_width="0px"
@@ -2387,14 +2435,13 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
-                    
+                        android:visibility="gone" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -2420,11 +2467,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/fcpg_wrz"
                         android:layout_width="0px"
@@ -2432,13 +2480,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="0px"
@@ -2457,11 +2504,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/dbh_wrz"
                         android:layout_width="0px"
@@ -2469,21 +2517,21 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/qy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40px"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/qyrz"
@@ -2502,11 +2550,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/yirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="已认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px" />
+
                     <TextView
                         android:id="@+id/qy_wrz"
                         android:layout_width="0px"
@@ -2514,13 +2563,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:drawableLeft="@drawable/weirenzheng"
+                        android:drawablePadding="10px"
                         android:paddingRight="1px"
                         android:text="未认证"
-                        android:drawablePadding="10px"
                         android:textColor="#333333"
                         android:textSize="28px"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="0px"
@@ -2549,8 +2597,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
                     <TextView
@@ -2577,17 +2625,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40px"
                 android:layout_marginBottom="20px"
+                android:layout_marginTop="40px"
                 android:background="#fbfcfd"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="45px"
-                    android:paddingLeft="30px"
-                    android:layout_marginTop="30px"
                     android:layout_marginBottom="20px"
+                    android:layout_marginTop="30px"
+                    android:paddingLeft="30px"
                     android:text="平台免责声明"
                     android:textColor="#333333"
                     android:textSize="28px" />
@@ -2595,9 +2643,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40px"
-                    android:paddingLeft="30px"
                     android:layout_marginBottom="30px"
+                    android:layout_marginTop="20px"
+                    android:paddingLeft="30px"
                     android:text="亿信宝作为交易服务平台进行信息发布，不对任何出借人及/或任何交易提供任何担保，无论是明示、默示或法定的。亿信宝平台提供的各种信息及资料仅供参考，出借人应依其独立判断做出决策。出借人据此进行出借交易的，产生的出借风险由出借人自行承担，亿信宝不承担任何责任。"
                     android:textColor="#999999"
                     android:textSize="28px" />

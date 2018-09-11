@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -51,6 +52,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
     private XRecyclerView xxrview;
     private String loginid;
     private String token;
+    private View xiaoxi_wushuju;
+
 
     @Nullable
     @Override
@@ -64,6 +67,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getxiaoxiid();
+        adapter=new XX_adapter(list);
+        xxrview.setAdapter(adapter);
         getxiaoxiHTTP();
     }
     private void getxiaoxiHTTP() {
@@ -90,7 +95,7 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/queryMsgListByUserId.do")
+                .url(Urls.BASE_URL+"yxbApp/queryMsgListByUserId.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -105,21 +110,25 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
                     public void onResponse(String result, int id) {
                         Log.e("我的消息GSON:",result );
                         User_XiaoXi_GSON data = new Gson().fromJson(result, User_XiaoXi_GSON.class);
-                        list.addAll(data.getResult());
-                        adapter=new XX_adapter(list);
-                        xxrview.setAdapter(adapter);
-                        adapter.setonEveryItemClickListener(new XX_adapter.OnEveryItemClickListener() {
-                            @Override
-                            public void onEveryClick(int position) {
-                                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putInt("xx_ird", list.get(position).getId());
-                                it.putExtra("xqtitle",list.get(position).getMailTitle());
-                                it.putExtras(bundle);
-                                startActivity(it);
-                            }
-                        });
-                        adapter.notifyDataSetChanged();
+                        if (data.getMessage().equals("没有消息!")){
+                            xiaoxi_wushuju.setVisibility(View.VISIBLE);
+//                            wnr_text.setText("暂无消息");
+                        }else {
+                            xiaoxi_wushuju.setVisibility(View.GONE);
+                            list.addAll(data.getResult());
+                            adapter.setonEveryItemClickListener(new XX_adapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("xx_ird", list.get(position).getId());
+                                    it.putExtra("xqtitle", list.get(position).getMailTitle());
+                                    it.putExtras(bundle);
+                                    startActivity(it);
+                                }
+                            });
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 });
 
@@ -135,6 +144,8 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
         xxrview.setLoadingListener(this);
         xxrview.setPullRefreshEnabled(true);
         xxrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        xiaoxi_wushuju=getActivity().findViewById(R.id.xiaoxi_wushuju);
+
     }
 
     @Override

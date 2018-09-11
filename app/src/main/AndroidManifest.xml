@@ -115,7 +115,9 @@
         <activity android:name=".wode.fore_inot.wodechujie_one.MyChuJie_one" />
         <activity android:name=".wode.fore_inot.wodechujie_one.yidaoqi.YiDaoQiXiangMu" />
         <activity android:name=".wode.fore_inot.juan_fragment.juan_daoqi.JiaxiJuan_DaoQi" />
-        <activity android:name=".wode.fore_inot.juan_fragment.juan_daoqi.XianJinJuan_YiDao"></activity>
+        <activity android:name=".wode.fore_inot.juan_fragment.juan_daoqi.XianJinJuan_YiDao" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.chongxinpingce.ChongXinPingCe" />
+        <activity android:name=".wode.mycontent.shiming.WoDeShiMing"></activity>
     </application>
 
 </manifest>

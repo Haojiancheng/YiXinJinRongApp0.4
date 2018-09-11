@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="35px"
-                        android:text="约定年化收益"
+                        android:text="协议年化利率"
                         android:textColor="#999999"
                         android:textSize="24px" />
 

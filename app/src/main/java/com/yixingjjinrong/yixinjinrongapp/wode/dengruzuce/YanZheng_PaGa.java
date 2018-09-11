@@ -141,8 +141,8 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     if (user_mima.getText().toString().equals("")) {
                         ToastUtils.showToast(YanZheng_PaGa.this, "密码不能为空");
                     } else {
-                        if (lenght < 6 || lenght > 18 || !isPassword(user_mima.getText().toString())) {
-                            ToastUtils.showToast(YanZheng_PaGa.this, "6-18位字母和数字组合");
+                        if (lenght < 6 || lenght > 18 ) {
+                            ToastUtils.showToast(YanZheng_PaGa.this, "请输入6-18位字母和数字组合");
                         } else {
                             if (zc_check.isChecked()) {
                                 gethttp_zhuce();
@@ -256,7 +256,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     @Override
                     public void onResponse(String response, int id) {
                         Log.e("语音严重吗Gson", "" + response);
-                        ToastUtils.showToast(YanZheng_PaGa.this, "成功");
+                        ToastUtils.showToast(YanZheng_PaGa.this, "已发送语音验证码");
                     }
                 });
 

@@ -7,9 +7,10 @@ public class ZongE_Gson {
 
     /**
      * message : 成功了
-     * result : {"userId":10985,"token":"login:869381039260413","loginId":"login:10985"}
-     * userMap : {"hasPaySum":"0.00","hasRePayPrincipal":"0.00","otherEarnAmount":"0.00","usableAmount":"10934.00","freezeAmount":"1133.00","usableCreditLimit":"0.00","creditLimit":"0.00","forRePayInterest":"0.00","earnSum":"0.00","forPayPrincipal":"0.00","hasPayPrincipal":"0.00","hasPayInterest":"0.00","forAmount":"0.0","forRePaySum":"0.00","hasRePaySum":"0.00","cashFreezeAmount":"0.00","forRePayPrincipal":"0.00","hasRePayInterest":"0.00","forPaySum":"0.00","accountSum":"12067.00","forPayInterest":"0.00","rateEarnAmount":"0.00"}
-     * listType : [{"mortgageType":4,"forPaySum":"0.00"},{"mortgageType":"1","forPaySum":"0.00"}]
+     * result : {"userId":11298,"token":"login:864711326104376","loginId":"login:11298"}
+     * listFreeze : [{"mortgageType":1,"sumMoney":13400},{"mortgageType":4,"sumMoney":37350},{"withdrawMoney":"361437.65"}]
+     * userMap : {"hasPaySum":"10615.05","hasRePayPrincipal":"0.00","otherEarnAmount":"0.00","usableAmount":"1050431.90","freezeAmount":"494449.65","usableCreditLimit":"0.00","creditLimit":"0.00","forRePayInterest":"0.00","earnSum":"406.08","forPayPrincipal":"15600.00","hasPayPrincipal":"10500.00","hasPayInterest":"115.05","forAmount":"15891.03","forRePaySum":"0.00","hasRePaySum":"0.00","cashFreezeAmount":"0.00","forRePayPrincipal":"0.00","hasRePayInterest":"0.00","forPaySum":"15891.03","accountSum":"1560772.58","forPayInterest":"291.03","rateEarnAmount":"406.08"}
+     * listType : [{"mortgageType":1,"forPaySum":"3356.97"},{"mortgageType":4,"forPaySum":"10301.06"}]
      * state : success
      */
 
@@ -17,6 +18,7 @@ public class ZongE_Gson {
     private String result;
     private UserMapBean userMap;
     private String state;
+    private List<ListFreezeBean> listFreeze;
     private List<ListTypeBean> listType;
 
     public String getMessage() {
@@ -51,6 +53,14 @@ public class ZongE_Gson {
         this.state = state;
     }
 
+    public List<ListFreezeBean> getListFreeze() {
+        return listFreeze;
+    }
+
+    public void setListFreeze(List<ListFreezeBean> listFreeze) {
+        this.listFreeze = listFreeze;
+    }
+
     public List<ListTypeBean> getListType() {
         return listType;
     }
@@ -61,28 +71,28 @@ public class ZongE_Gson {
 
     public static class UserMapBean {
         /**
-         * hasPaySum : 0.00
+         * hasPaySum : 10615.05
          * hasRePayPrincipal : 0.00
          * otherEarnAmount : 0.00
-         * usableAmount : 10934.00
-         * freezeAmount : 1133.00
+         * usableAmount : 1050431.90
+         * freezeAmount : 494449.65
          * usableCreditLimit : 0.00
          * creditLimit : 0.00
          * forRePayInterest : 0.00
-         * earnSum : 0.00
-         * forPayPrincipal : 0.00
-         * hasPayPrincipal : 0.00
-         * hasPayInterest : 0.00
-         * forAmount : 0.0
+         * earnSum : 406.08
+         * forPayPrincipal : 15600.00
+         * hasPayPrincipal : 10500.00
+         * hasPayInterest : 115.05
+         * forAmount : 15891.03
          * forRePaySum : 0.00
          * hasRePaySum : 0.00
          * cashFreezeAmount : 0.00
          * forRePayPrincipal : 0.00
          * hasRePayInterest : 0.00
-         * forPaySum : 0.00
-         * accountSum : 12067.00
-         * forPayInterest : 0.00
-         * rateEarnAmount : 0.00
+         * forPaySum : 15891.03
+         * accountSum : 1560772.58
+         * forPayInterest : 291.03
+         * rateEarnAmount : 406.08
          */
 
         private String hasPaySum;
@@ -285,10 +295,46 @@ public class ZongE_Gson {
         }
     }
 
+    public static class ListFreezeBean {
+        /**
+         * mortgageType : 1
+         * sumMoney : 13400.0
+         * withdrawMoney : 361437.65
+         */
+
+        private int mortgageType;
+        private double sumMoney;
+        private String withdrawMoney;
+
+        public int getMortgageType() {
+            return mortgageType;
+        }
+
+        public void setMortgageType(int mortgageType) {
+            this.mortgageType = mortgageType;
+        }
+
+        public double getSumMoney() {
+            return sumMoney;
+        }
+
+        public void setSumMoney(double sumMoney) {
+            this.sumMoney = sumMoney;
+        }
+
+        public String getWithdrawMoney() {
+            return withdrawMoney;
+        }
+
+        public void setWithdrawMoney(String withdrawMoney) {
+            this.withdrawMoney = withdrawMoney;
+        }
+    }
+
     public static class ListTypeBean {
         /**
-         * mortgageType : 4
-         * forPaySum : 0.00
+         * mortgageType : 1
+         * forPaySum : 3356.97
          */
 
         private int mortgageType;

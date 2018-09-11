@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.MyAddess;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.WoDeShiMing;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.YiShiMing;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -148,7 +149,7 @@ public class My_Content extends AutoLayoutActivity {
                 @Override
                 public void onClick(View v) {
                     getshimingHTTp();
-                    finish();
+
                 }
             });
         }
@@ -301,10 +302,7 @@ public class My_Content extends AutoLayoutActivity {
                         if (message.equals("可以认证")) {
                             String jieguo = data.getState().toString();
                             if (jieguo.equals("success")) {
-                                Intent it = new Intent(My_Content.this, ShiMingrenzheng.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putInt("user_ird", user_id);
-                                it.putExtras(bundle);
+                                Intent it = new Intent(My_Content.this, WoDeShiMing.class);
                                 startActivity(it);
                             }
                         } else {

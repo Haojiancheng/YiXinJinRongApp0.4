@@ -32,9 +32,14 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
+    <include
+        android:id="@+id/chongzhi_kongbai"
+        layout="@layout/kongbai"
+        android:visibility="gone"
+        />
 
     <LinearLayout
-        android:id="@+id/yhcard"
+        android:id="@+id/yhcard1"
         android:layout_width="match_parent"
         android:layout_height="134px"
         android:layout_marginTop="20px"

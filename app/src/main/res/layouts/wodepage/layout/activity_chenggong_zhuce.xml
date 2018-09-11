@@ -11,14 +11,14 @@
         android:layout_height="138px"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/zhucefanhui1"
-            android:layout_width="40px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20px"
-            android:paddingRight="20px"
-            android:paddingTop="20px"
-            android:src="@drawable/jiantou" />
+        <!--<ImageView-->
+            <!--android:id="@+id/zhucefanhui1"-->
+            <!--android:layout_width="40px"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="20px"-->
+            <!--android:paddingRight="20px"-->
+            <!--android:paddingTop="20px"-->
+            <!--android:src="@drawable/jiantou" />-->
 
         <TextView
             android:layout_width="260px"

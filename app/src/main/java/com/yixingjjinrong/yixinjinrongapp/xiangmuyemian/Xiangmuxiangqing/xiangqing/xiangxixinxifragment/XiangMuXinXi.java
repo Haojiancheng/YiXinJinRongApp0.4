@@ -60,7 +60,7 @@ public class XiangMuXinXi extends Fragment {
     private View geren, qiye, shencha;
     private TextView qy_name, qy_dm, qy_time, qy_zb, qy_hy, qy_dizhi, qy_bg, qy_fd, qy_shouru, qy_huanhuancishu, qy_yuqicishu, qy_lishiyuqi_jinge, qy_dangqian_jine, qy_6yue, qy_qita, qy_fanwei;
     private int user_id;
-    private View xx_view, xiale_view;
+    private View xx_view, xiale_view,kuankuanfangshi_xx;
     private PromptDialog promptDialog;
 
     @Nullable
@@ -100,6 +100,8 @@ public class XiangMuXinXi extends Fragment {
 
         show = getActivity().findViewById(R.id.main_tv_show);
         hidden = getActivity().findViewById(R.id.main_tv_hidden);
+        hidden.setMaxLines(3);
+        kuankuanfangshi_xx=getActivity().findViewById(R.id.kuankuanfangshi_xx);
 //基本信息
         xm_name = getActivity().findViewById(R.id.xm_name);
         jk_jine = getActivity().findViewById(R.id.jk_jine);
@@ -332,7 +334,7 @@ public class XiangMuXinXi extends Fragment {
                             man_hunyin.setText(data.getResult().getRxx().getMaritalStatus());
                             yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                             hk_lanyuan.setText(data.getResult().getRepaysource());
-                            hk_fangshi.setOnClickListener(new View.OnClickListener() {
+                            kuankuanfangshi_xx.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     shoupopwindow();

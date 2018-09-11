@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -54,7 +55,7 @@ public class ShouYe_HuoDong extends AutoLayoutActivity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
-        hd_web.loadUrl(web_url);
+        hd_web.loadUrl(Urls.BASE_URL+web_url);
     }
 
     private void getid() {

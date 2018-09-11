@@ -33,12 +33,14 @@ import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.User_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
@@ -46,6 +48,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.MyChuJie_one;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.zijinliushui.ZiJinliushui;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.WoDeShiMing;
 import com.yixingjjinrong.yixinjinrongapp.wode.shezhi.WoDe_SheZhi;
 import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.WoDe_XiaoXi;
@@ -126,8 +129,10 @@ public class Wode extends Fragment {
                 if (s.equals("0")) {
                     ToastUtils.showToast(getActivity(), "请先登入");
                 } else {
-                    RealName_one realName_c = new RealName_one();
-                    realName_c.myrealname(getActivity(), user_id, userToken, loginid);
+                    getshimingHTTp();
+
+//                    RealName_one realName_c = new RealName_one();
+//                    realName_c.myrealname(getActivity(), user_id, userToken, loginid);
                 }
             }
         });
@@ -361,54 +366,54 @@ public class Wode extends Fragment {
 
     private void getshimingHTTp() {
 
-//        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
-//        try {
-//            js_request.put("userId", user_id);
-//            js_request.put("token", userToken);
-//            js_request.put("loginId", loginid);
-//            base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>base加密11111!!--" + base1);
-//            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>SH!!" + sha1);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JSONObject canshu = new JSONObject();
-//        try {
-//            canshu.put("param", base1);
-//            canshu.put("sign", sha1);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        OkHttpUtils.postString()
-//                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
-//                .content(canshu.toString())
-//
-//                .mediaType(MediaType.parse("application/json; charset=utf-8"))
-//                .build()
-//                .execute(new StringCallback() {
-//                    @Override
-//                    public void onError(Call call, Exception e, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String result, int id) {
-//                        Log.e("是否可实名GSON：", result);
-//                        ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
-//                        String message = data.getMessage().toString();
-////                Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
-//                        String jieguo = data.getState().toString();
-//                        if (jieguo.equals("success")) {
-//                            Intent it = new Intent(getActivity(), ShiMingrenzheng.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putInt("user_ird", user_id);
-//                            it.putExtras(bundle);
-//                            startActivity(it);
-//                        }
-//                    }
-//                });
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("userId", user_id);
+            js_request.put("token", userToken);
+            js_request.put("loginId", loginid);
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+            Log.e("TAG", ">>>>SH!!" + sha1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            canshu.put("sign", sha1);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/queryUserAuthInfo.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String result, int id) {
+                        Log.e("是否可实名GSON：", result);
+                        ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
+                        String message = data.getMessage().toString();
+//                Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
+                        String jieguo = data.getState().toString();
+                        if (jieguo.equals("success")) {
+                            Intent it = new Intent(getActivity(), WoDeShiMing.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("user_ird", user_id);
+                            it.putExtras(bundle);
+                            startActivity(it);
+                        }
+                    }
+                });
 
     }
 

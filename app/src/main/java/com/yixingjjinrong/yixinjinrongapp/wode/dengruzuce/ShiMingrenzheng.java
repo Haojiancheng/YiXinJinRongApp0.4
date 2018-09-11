@@ -48,14 +48,14 @@ import okhttp3.MediaType;
 public class ShiMingrenzheng extends AutoLayoutActivity {
     private EditText zhen_name,user_idcard;
     private Button renzheng_goin;
+    private ImageView sm_fh;
+    public static ShiMingrenzheng instance;
     private int user_ird;
     private String sha1;//SHA1加密
     private String base1;//Base64加密
     private TextView jinggao;//错误消息
     private String loginid;
     private String token;
-    private ImageView sm_fh;
-    public static ShiMingrenzheng instance;
     private String username;
     private String password;
     private String url;

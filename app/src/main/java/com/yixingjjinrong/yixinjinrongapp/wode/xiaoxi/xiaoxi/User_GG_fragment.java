@@ -41,16 +41,17 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingListener{
+public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingListener {
     private int user_id;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-    private List<GG_GSON.ResultBean> list=new ArrayList<>();
+    private List<GG_GSON.ResultBean> list = new ArrayList<>();
     private GG_adapter adapter;
-    int a=1;
+    int a = 1;
     private XRecyclerView gg_xview;
     private String loginid;
     private String token;
+    private View gongao_wushuju;
 
     @Nullable
     @Override
@@ -64,6 +65,8 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getggid();
+        adapter = new GG_adapter(list);
+        gg_xview.setAdapter(adapter);
         getggHTTp();
 
     }
@@ -86,13 +89,13 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            Log.e("我的消息", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/queryPublicMsgList.do")
+                .url(Urls.BASE_URL+"yxbApp/queryPublicMsgList.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -105,23 +108,26 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("哦公告GSon:",""+result );
+                        Log.e("哦公告GSon:", "" + result);
                         GG_GSON data = new Gson().fromJson(result, GG_GSON.class);
-                        list.addAll(data.getResult());
-                        adapter=new GG_adapter(list);
-                        gg_xview.setAdapter(adapter);
-                        adapter.setonEveryItemClickListener(new GG_adapter.OnEveryItemClickListener() {
-                            @Override
-                            public void onEveryClick(int position) {
-                                Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putInt("xx_ird", list.get(position).getId());
-                                it.putExtra("xqtitle",list.get(position).getArticle_title());
-                                it.putExtras(bundle);
-                                startActivity(it);
-                            }
-                        });
-                        adapter.notifyDataSetChanged();
+                        if (data.getMessage().equals("没有消息!")) {
+                            gongao_wushuju.setVisibility(View.VISIBLE);
+//                            wnr_text.setText("暂无消息");
+                        } else {
+                            list.addAll(data.getResult());
+                            adapter.setonEveryItemClickListener(new GG_adapter.OnEveryItemClickListener() {
+                                @Override
+                                public void onEveryClick(int position) {
+                                    Intent it = new Intent(getActivity(), XiaoXi_XiangQing.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("xx_ird", list.get(position).getId());
+                                    it.putExtra("xqtitle", list.get(position).getArticle_title());
+                                    it.putExtras(bundle);
+                                    startActivity(it);
+                                }
+                            });
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 });
 
@@ -129,21 +135,22 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
     }
 
     private void getggid() {
-        user_id = (int) SPUtils.get(getActivity(),"userId",0);
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         token = (String) SPUtils.get(getActivity(), "Token1", "");
-        gg_xview=getActivity().findViewById(R.id.gg_xview);
+        gg_xview = getActivity().findViewById(R.id.gg_xview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         gg_xview.setLayoutManager(linearLayoutManager);
         gg_xview.setLoadingListener(this);
         gg_xview.setPullRefreshEnabled(true);
         gg_xview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
+        gongao_wushuju=getActivity().findViewById(R.id.gongao_wushuju);
     }
 
     @Override
     public void onRefresh() {
         list.clear();
-        a=1;
+        a = 1;
         getggHTTp();
         gg_xview.refreshComplete();
         adapter.notifyDataSetChanged();

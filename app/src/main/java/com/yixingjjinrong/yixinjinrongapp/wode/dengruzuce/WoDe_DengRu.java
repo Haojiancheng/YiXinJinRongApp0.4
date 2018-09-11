@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.telephony.TelephonyManager;
@@ -16,6 +17,7 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
@@ -23,6 +25,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -86,6 +89,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     private PromptDialog promptDialog;
     public static WoDe_DengRu instance;
     private AutoRelativeLayout main;
+    private ScrollView dr_scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +134,20 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         }
     }
     private void getdengruOnClick() {
+        dengru_mima.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                changeScrollView();
+                return false;
+            }
+        });
+        dengru_phone.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                changeScrollView();
+                return false;
+            }
+        });
 
 
         dengru_phone.addTextChangedListener(new TextWatcher() {
@@ -263,6 +281,16 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
     }
 
+    private void changeScrollView() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dr_scrollView.scrollTo(0, dr_scrollView.getHeight());
+            }
+        }, 200);
+
+    }
+
     private void getHttp() {
         promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
@@ -361,6 +389,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 //        shojihao_kong=findViewById(R.id.shojihao_kong);//手机号为空判断
         dengru_phone.addTextChangedListener(new MaxLengthWatcher(11, dengru_phone));//手机号长度限制
         main=findViewById(R.id.main);
+        dr_scrollView=findViewById(R.id.dr_scrollview);
     }
 
     public synchronized String getid(Context context) {

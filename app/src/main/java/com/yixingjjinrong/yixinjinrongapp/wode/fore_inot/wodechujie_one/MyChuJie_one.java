@@ -49,6 +49,7 @@ public class MyChuJie_one extends AutoLayoutActivity implements XRecyclerView.Lo
     private List<MyChuJIe_gson.InvestListBean> list = new ArrayList<>();
     private MyChuJie_adapter adapter;
     private TextView yidaoqixiangmu;
+    private View wodechujie_wushuju;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class MyChuJie_one extends AutoLayoutActivity implements XRecyclerView.Lo
         yidaoqixiangmu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(MyChuJie_one.this, YiDaoQiXiangMu.class);
+                Intent it = new Intent(MyChuJie_one.this, YiDaoQiXiangMu.class);
                 startActivity(it);
             }
         });
@@ -118,25 +119,30 @@ public class MyChuJie_one extends AutoLayoutActivity implements XRecyclerView.Lo
                     public void onResponse(String response, int id) {
                         Log.e("我的出借Gson", "" + response);
                         MyChuJIe_gson data = new Gson().fromJson(response, MyChuJIe_gson.class);
-                        if (data.getMessage().equals("用户未登录。")){
-                            ToastUtils.showToast(MyChuJie_one.this,"用户未登录。" );
-                        }else {
-                            list.addAll(data.getInvestList());
-                            adapter.setonEveryItemClickListener(new MyChuJie_adapter.OnEveryItemClickListener() {
-                                @Override
-                                public void onEveryClick(int position) {
-                                    String borrowid = String.valueOf(list.get(position).getBorrowId());
-                                    String investid = String.valueOf(list.get(position).getInvestid());
-                                    String typse = String.valueOf(list.get(position).getMortgageType());
-                                    Intent it = new Intent(MyChuJie_one.this, ChuJIeXiangQing.class);
-                                    it.putExtra("borrowid", borrowid);
-                                    it.putExtra("investid", investid);
-                                    it.putExtra("type", typse);
-                                    startActivity(it);
-                                }
-                            });
+                        if (data.getMessage().equals("用户未登录。")) {
+                            ToastUtils.showToast(MyChuJie_one.this, "用户未登录。");
+                        } else {
+                            if (data.getMessage().equals("没有可用券!")) {
+                                wodechujie_wushuju.setVisibility(View.VISIBLE);
+                            } else {
+                                wodechujie_wushuju.setVisibility(View.GONE);
+                                list.addAll(data.getInvestList());
+                                adapter.setonEveryItemClickListener(new MyChuJie_adapter.OnEveryItemClickListener() {
+                                    @Override
+                                    public void onEveryClick(int position) {
+                                        String borrowid = String.valueOf(list.get(position).getBorrowId());
+                                        String investid = String.valueOf(list.get(position).getInvestid());
+                                        String typse = String.valueOf(list.get(position).getMortgageType());
+                                        Intent it = new Intent(MyChuJie_one.this, ChuJIeXiangQing.class);
+                                        it.putExtra("borrowid", borrowid);
+                                        it.putExtra("investid", investid);
+                                        it.putExtra("type", typse);
+                                        startActivity(it);
+                                    }
+                                });
 
-                            adapter.notifyDataSetChanged();
+                                adapter.notifyDataSetChanged();
+                            }
                         }
 
                     }
@@ -156,7 +162,8 @@ public class MyChuJie_one extends AutoLayoutActivity implements XRecyclerView.Lo
         chujie_one_xview.setPullRefreshEnabled(true);
 //        xRecyclerView.setLoadingMoreEnabled(true);
 //        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        yidaoqixiangmu=findViewById(R.id.yidaoqixiangmu);
+        wodechujie_wushuju = findViewById(R.id.wodechujie_wushuju);
+        yidaoqixiangmu = findViewById(R.id.yidaoqixiangmu);
         chujie_one_xview.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotateMultiple);
     }
 

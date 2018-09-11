@@ -9,250 +9,260 @@
     android:focusableInTouchMode="true"
     tools:context=".wode.dengruzuce.WoDe_DengRu">
 
-    <LinearLayout
-        android:id="@+id/beijinglogo"
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:background="@drawable/beijing"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="138px"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/dengrufanhui"
-                android:layout_width="40px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20px"
-                android:paddingRight="20px"
-                android:paddingTop="20px"
-                android:src="@drawable/fanhui" />
-
-            <TextView
-                android:layout_width="260px"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="251px"
-                android:gravity="center_horizontal"
-                android:paddingTop="60px"
-                android:text="登录"
-                android:textColor="#ffffff"
-                android:textSize="38px" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/dr_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40px"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/beijinglogo"
-        android:orientation="vertical">
+        android:fadingEdge="none"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
+                android:id="@+id/beijinglogo"
+                android:layout_width="match_parent"
+                android:layout_height="500px"
+                android:background="@drawable/beijing"
+                android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="138px"
+                    android:orientation="horizontal">
 
-                    android:layout_width="700px"
-                    android:layout_height="wrap_content"
-                    android:hint="请输入手机号"
-                    app:hintTextAppearance="@style/MyStyles"
+                    <ImageView
+                        android:id="@+id/dengrufanhui"
+                        android:layout_width="40px"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="20px"
+                        android:src="@drawable/fanhui" />
 
-                    >
+                    <TextView
+                        android:layout_width="260px"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="251px"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="60px"
+                        android:text="登录"
+                        android:textColor="#ffffff"
+                        android:textSize="38px" />
+                </RelativeLayout>
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/dengru_Phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:background="@null"
-                        android:drawableStart="@drawable/zhanghao"
-                        android:drawablePadding="18px"
-                        android:inputType="textMultiLine" />
-
-                </android.support.design.widget.TextInputLayout>
-                <ImageView
-                    android:id="@+id/dengru_guanbi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/guanbi"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="30px"
-                    android:visibility="gone"
-                    />
             </LinearLayout>
 
-        </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="30px"
-            android:layout_marginTop="10px"
-            android:background="#dadada"
-            android:layout_marginBottom="30px"
-            />
-        <!--<include-->
-            <!--android:id="@+id/shojihao_kong"-->
-            <!--layout="@layout/jinggao_itme"-->
-            <!--android:visibility="gone"-->
-            <!--/>-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40px"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="700px"
-                android:layout_height="wrap_content"
-
-                android:background="@null"
-                android:hint="请输入密码"
-                >
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/dengru_mima"
-                    android:layout_width="700px"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="30px"
-                    android:background="@null"
-                    android:drawablePadding="18px"
-                    android:drawableStart="@drawable/mima"
-                    android:inputType="textPassword"
-                    app:errorTextAppearance="@style/ErrorAppearance" />
-            </android.support.design.widget.TextInputLayout>
-
-            <!--<ToggleButton-->
-                <!--android:id="@+id/dr_togglePwd"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="30px"-->
-                <!--android:background="@null"-->
-                <!--android:drawableRight="@drawable/buxianshi"-->
-                <!--android:textOff=""-->
-                <!--android:textOn="" />-->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/beijinglogo"
+                android:layout_marginTop="40px"
+                android:orientation="vertical">
 
-                >
-
-                <ToggleButton
-                    android:id="@+id/dr_togglePwd"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    android:background="@null"
-                    android:textOff=""
-                    android:textOn="" />
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+
+                            android:layout_width="700px"
+                            android:layout_height="wrap_content"
+                            android:hint="请输入手机号"
+                            app:hintTextAppearance="@style/MyStyles"
+
+                            >
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/dengru_Phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30px"
+                                android:background="@null"
+                                android:drawablePadding="18px"
+                                android:drawableStart="@drawable/zhanghao"
+                                android:inputType="textMultiLine" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageView
+                            android:id="@+id/dengru_guanbi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="30px"
+                            android:src="@drawable/guanbi"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="10px"
+                    android:background="#dadada" />
+                <!--<include-->
+                <!--android:id="@+id/shojihao_kong"-->
+                <!--layout="@layout/jinggao_itme"-->
+                <!--android:visibility="gone"-->
+                <!--/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="700px"
+                        android:layout_height="wrap_content"
+
+                        android:background="@null"
+                        android:hint="请输入密码">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/dengru_mima"
+                            android:layout_width="700px"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="30px"
+                            android:background="@null"
+                            android:drawablePadding="18px"
+                            android:drawableStart="@drawable/mima"
+                            android:inputType="textPassword"
+                            app:errorTextAppearance="@style/ErrorAppearance" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!--<ToggleButton-->
+                    <!--android:id="@+id/dr_togglePwd"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:background="@null"-->
+                    <!--android:drawableRight="@drawable/buxianshi"-->
+                    <!--android:textOff=""-->
+                    <!--android:textOn="" />-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <ToggleButton
+                            android:id="@+id/dr_togglePwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:background="@null"
+                            android:textOff=""
+                            android:textOn="" />
+
+                        <ImageView
+                            android:id="@+id/dr_yj_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/buxianshi"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="36px"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:layout_marginTop="10px"
+                    android:background="#dadada" />
+                <!--<include-->
+                <!--android:id="@+id/dr_jg"-->
+                <!--layout="@layout/jinggao_itme"-->
+                <!--android:visibility="gone"/>-->
+                <Button
+                    android:id="@+id/dengru_goin"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="690px"
+                    android:layout_height="90px"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="90px"
+                    android:background="@drawable/bt_shape"
+                    android:text="登录"
+                    android:textColor="#fdfdfc"
+                    android:textSize="38px" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginTop="40px">
+
+                    <TextView
+                        android:id="@+id/zhaohuimima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="64px"
+                        android:text="忘记密码?"
+                        android:textColor="#656565"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/zhuce_dengrupage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="64px"
+                        android:text="免费注册"
+                        android:textColor="#ef6d30"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="20px"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/dr_yj_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:visibility="gone"
-                    android:src="@drawable/buxianshi" />
+                    android:src="@drawable/yinhanglogo"
+                    android:visibility="gone" />
 
-            </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16px"
+                    android:text="用户资金安全由恒丰银行提供保障"
+                    android:textColor="#999"
+                    android:textSize="24px"
+                    android:visibility="gone" />
 
+            </LinearLayout>
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="30px"
-            android:layout_marginTop="10px"
-            android:background="#dadada"
-            android:layout_marginBottom="36px"/>
-        <!--<include-->
-             <!--android:id="@+id/dr_jg"-->
-            <!--layout="@layout/jinggao_itme"-->
-            <!--android:visibility="gone"/>-->
-        <Button
-            android:id="@+id/dengru_goin"
-            android:layout_width="690px"
-            android:layout_height="90px"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/bt_shape"
-            android:layout_marginTop="90px"
-            android:text="登录"
-            android:textSize="38px"
-            android:textColor="#fdfdfc"
-            style="?android:attr/borderlessButtonStyle"
-        />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40px"
-            android:layout_marginBottom="10px"
-            >
-            <TextView
-                android:id="@+id/zhaohuimima"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="忘记密码?"
-            android:layout_marginLeft="64px"
-            android:textSize="28px"
-            android:textColor="#656565"
-            />
-            <TextView
-                android:id="@+id/zhuce_dengrupage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="免费注册"
-                android:layout_alignParentRight="true"
-                android:textSize="28px"
-                android:textColor="#ef6d30"
-                android:layout_marginRight="64px"
-                />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50px"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20px"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/yinhanglogo"
-            android:visibility="gone"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户资金安全由恒丰银行提供保障"
-            android:textColor="#999"
-            android:textSize="24px"
-            android:layout_marginLeft="16px"
-            android:visibility="gone"
-            />
-
-    </LinearLayout>
-
+    </ScrollView>
 
 </com.zhy.autolayout.AutoRelativeLayout>

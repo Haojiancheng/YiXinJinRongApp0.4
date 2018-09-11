@@ -32,7 +32,11 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
-
+    <include
+        android:id="@+id/wodechujie_wushuju"
+        layout="@layout/wujilu_wodechujie"
+        android:visibility="gone"
+        />
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/chujie_one_xview"
         android:layout_width="match_parent"

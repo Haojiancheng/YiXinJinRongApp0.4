@@ -20,9 +20,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
 
-            android:layout_marginTop="20px"
+            android:layout_marginTop="10px"
             >
             <LinearLayout
+                android:id="@+id/h5e"
                 android:layout_width="fill_parent"
                 android:layout_height="96px"
                 android:orientation="horizontal"
@@ -33,7 +34,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="出借人"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="50px"
                     android:textSize="24px"
                     android:textColor="#999999"
                     />
@@ -43,19 +45,27 @@
                     android:layout_width="0px"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="20px"
                     android:text="出借金额（元）"
                     android:textColor="#999999"
                     android:textSize="24px" />
-                <TextView
+                <RelativeLayout
                     android:layout_width="0px"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="出借时间"
-                    android:gravity="center"
-                    android:textSize="24px"
-                    android:textColor="#999999"
-                    />
+                    android:layout_weight="1.5"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="50px"
+                        android:text="出借时间"
+                        android:textColor="#999999"
+                        android:textSize="24px" />
+                </RelativeLayout>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -66,7 +76,6 @@
                android:id="@+id/chujejilu_rview"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginTop="20px"
                >
 
            </com.jcodecraeer.xrecyclerview.XRecyclerView>

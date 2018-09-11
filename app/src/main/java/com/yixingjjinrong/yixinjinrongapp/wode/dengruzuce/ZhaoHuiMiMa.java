@@ -80,11 +80,11 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 if (myphonet.getText().toString().equals(""))
-                    Toast.makeText(ZhaoHuiMiMa.this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(ZhaoHuiMiMa.this, "请输入手机号");
                 else if (myphonet.getText().toString().length() < 11) {
-                    Toast.makeText(ZhaoHuiMiMa.this, "手机号非法", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(ZhaoHuiMiMa.this, "手机号格式不正确");
                 } else if (myphonet.getText().toString().length() > 11) {
-                    Toast.makeText(ZhaoHuiMiMa.this, "手机号非法", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(ZhaoHuiMiMa.this, "手机号格式不正确");
                 } else {
                     gethttp();
 
@@ -193,7 +193,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
                     }
                     startActivity(intent);
 
-                }else{
+                } else {
                     //用户拒绝了授权
 //                    ToastUtils.showToast(ZhaoHuiMiMa.this, "权限被拒绝");
                 }
@@ -315,7 +315,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
                             String message = data.getMessage();
                             String jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId",""+ jsessionId);
+                            Log.e("jsessionId", "" + jsessionId);
                             String phonezhuangtai = data1.getResult().getMapPhone();
                             if (phonezhuangtai.equals("0")) {
                                 Intent zhaohuimima_it = new Intent(ZhaoHuiMiMa.this, ZhaoHuiMiMaYanZheng.class);
@@ -340,7 +340,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         zhaohuimima_xiayibu = findViewById(R.id.zhaohuimiam_xiayibu);//找回密码下一步
         myphonet = findViewById(R.id.myphonet);
         zh_fh = findViewById(R.id.zh_fh);
-        zhouhukefu=findViewById(R.id.zhouhukefu);
+        zhouhukefu = findViewById(R.id.zhouhukefu);
         myphonet.setInputType(InputType.TYPE_CLASS_NUMBER);//数字键盘
         zhaohui_image = findViewById(R.id.zhaohui_image);
     }

@@ -83,7 +83,7 @@
                     <TextView
                         android:layout_width="190px"
                         android:layout_height="match_parent"
-                        android:text="约定年化利率"
+                        android:text="协议年化利率"
                         android:textColor="#ffc0a5"
                         android:textSize="24px" />
                 </LinearLayout>
@@ -259,34 +259,34 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="270px"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20px"
                 android:background="#fdfdfe"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100px"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="100px"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="30px"
-                        android:gravity="center_vertical"
-                        android:text="预计到期收益（元）"
-                        android:textColor="#999999"
-                        android:textSize="24px" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginLeft="30px"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="预计到期收益（元）"-->
+                        <!--android:textColor="#999999"-->
+                        <!--android:textSize="24px" />-->
 
-                    <TextView
-                        android:id="@+id/yujishouyi"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:text="0.00"
-                        android:textColor="#fe6623"
-                        android:textSize="34px" />
-                </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:id="@+id/yujishouyi"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:text="0.00"-->
+                        <!--android:textColor="#fe6623"-->
+                        <!--android:textSize="34px" />-->
+                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

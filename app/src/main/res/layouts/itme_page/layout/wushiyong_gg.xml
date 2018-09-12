@@ -9,15 +9,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="230px"
-        android:src="@drawable/zanwuneirong" />
+        android:src="@drawable/konguqeye_xiaoxi" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂无公告"
-        android:textSize="24px"
-        android:textColor="#999999"
-        android:layout_marginTop="30px"
-        android:layout_gravity="center_horizontal"
-        />
+        android:text="暂时没有内容哦~"
+        android:textSize="32px"
+        android:textColor="#999"
+        android:layout_marginTop="46px"
+        android:layout_gravity="center_horizontal" />
 
 </com.zhy.autolayout.AutoLinearLayout>

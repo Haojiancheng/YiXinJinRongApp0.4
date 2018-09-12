@@ -79,7 +79,7 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            Log.e("TAG", ">>>>base加密11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
@@ -110,7 +110,7 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
                     public void onResponse(String result, int id) {
                         Log.e("哦公告GSon:", "" + result);
                         GG_GSON data = new Gson().fromJson(result, GG_GSON.class);
-                        if (data.getMessage().equals("没有消息!")) {
+                        if (data.getMessage().equals("没有公告!")) {
                             gongao_wushuju.setVisibility(View.VISIBLE);
 //                            wnr_text.setText("暂无消息");
                         } else {

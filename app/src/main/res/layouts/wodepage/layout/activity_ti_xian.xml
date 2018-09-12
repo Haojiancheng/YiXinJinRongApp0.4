@@ -31,7 +31,10 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
-
+    <include
+        android:id="@+id/tixin_kongbai"
+        layout="@layout/kongbai"
+        />
     <LinearLayout
         android:id="@+id/yhcard"
         android:layout_width="match_parent"

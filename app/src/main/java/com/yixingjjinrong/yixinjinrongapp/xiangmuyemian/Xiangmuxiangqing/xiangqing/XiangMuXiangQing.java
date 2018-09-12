@@ -117,7 +117,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private PopupWindow popview;
     private PromptDialog promptDialog;
     private View detailedinformation, xiala_view;
-    private int MAX=1000000;
+    private int MAX = 1000000;
 
     private static final int MSG_SEARCH = 1;
 
@@ -135,9 +135,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         getID();//获取资源ID
         initView();
         detailedinformation.setVisibility(View.GONE);
-
         Intent it = getIntent();
-
         Log.e("立即出借borrid", "" + id);
         mType = it.getStringExtra("mortgageType");
         getjinge();//获取输入金额
@@ -242,7 +240,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    finish();
+
                                                 }
                                             })
                                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -316,38 +314,70 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//网贷提示书
-                Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
-                it.putExtra("url", "yxbApp/agreement.do");
-                it.putExtra("title1", "网络借贷风险和禁止行为提示书");
-                startActivity(it);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
+                } else {
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+                    it.putExtra("url", "yxbApp/agreement.do");
+                    it.putExtra("title1", "网络借贷风险和禁止行为提示书");
+                    startActivity(it);
+                }
             }
         });
         jikuanxieyi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//借款协议
-                Intent it = new Intent(XiangMuXiangQing.this, WandaiTishishu.class);
-                it.putExtra("url", "yxbApp/borrowmoney.do?");
-                it.putExtra("b_id", id);
-                it.putExtra("title1", "借款协议范本");
-                startActivity(it);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
+                } else {
+                    Intent it = new Intent(XiangMuXiangQing.this, WandaiTishishu.class);
+                    it.putExtra("url", "yxbApp/borrowmoney.do?");
+                    it.putExtra("b_id", id);
+                    it.putExtra("title1", "借款协议范本");
+                    startActivity(it);
+                }
             }
         });
         dianziqianzhang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//电子签章
-                Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
-                it.putExtra("url", "yxbApp/promisebook.do");
-                it.putExtra("title1", "个人电子签章授权委托书");
-                startActivity(it);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
+                } else {
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+                    it.putExtra("url", "yxbApp/promisebook.do");
+                    it.putExtra("title1", "个人电子签章授权委托书");
+                    startActivity(it);
+                }
             }
         });
         zijinlaiyuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
-                it.putExtra("url", "yxbApp/Promptbook.do ");
-                it.putExtra("title1", "资金来源合法承诺书");
-                startActivity(it);
+                String s = String.valueOf(user_id);
+                if (s.equals("0")) {
+//                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
+                    Intent it = new Intent(XiangMuXiangQing.this, WoDe_DengRu.class);
+                    startActivity(it);
+
+                } else {
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+                    it.putExtra("url", "yxbApp/Promptbook.do ");
+                    it.putExtra("title1", "资金来源合法承诺书");
+                    startActivity(it);
+                }
             }
         });
 
@@ -1141,6 +1171,30 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
                             getsmHttp();
+                        }else {
+                            if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
+                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
+                                        .setTitle("提示")
+                                        .setMessage("认证失败！您今日的认证次数已达上限，请明天再进行认证！")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+
+                                            }
+                                        })
+                                        .create();
+                                dialog1.setCanceledOnTouchOutside(false);
+                                dialog1.show();
+                            }else {
+                                ToastUtils.showToast(XiangMuXiangQing.this, message);
+                            }
                         }
                     }
                 });

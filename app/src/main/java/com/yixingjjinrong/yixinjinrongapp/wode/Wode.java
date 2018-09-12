@@ -411,6 +411,8 @@ public class Wode extends Fragment {
                             bundle.putInt("user_ird", user_id);
                             it.putExtras(bundle);
                             startActivity(it);
+                        }else {
+                            ToastUtils.showToast(getActivity(),message );
                         }
                     }
                 });

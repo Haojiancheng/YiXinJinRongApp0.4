@@ -81,10 +81,11 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100px"
         android:layout_marginTop="40px"
+        android:orientation="vertical"
         android:background="#fdfdfe">
 
         <EditText
@@ -98,7 +99,7 @@
             android:hint="手机号/邮箱（选填，方便我们联系您）"
             android:inputType="textEmailAddress"
             />
-    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_submit"
@@ -107,7 +108,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="148px"
         android:background="@drawable/bt_shape"
-        android:text="确定"
+        android:text="提交"
         android:textColor="#fdfdfc"
         android:textSize="38px" />
 

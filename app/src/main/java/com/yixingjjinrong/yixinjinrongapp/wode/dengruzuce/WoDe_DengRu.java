@@ -102,7 +102,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                 .keyboardEnable(true)  //解决软键盘与底部输入框冲突问题，默认为false，还有一个重载方法，可以指定软键盘mode
                 .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)  //单独指定软键盘模式
                 .init();
-        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
+//        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
         isLogin = (boolean) SPUtils.get(this, "isLogin", false);

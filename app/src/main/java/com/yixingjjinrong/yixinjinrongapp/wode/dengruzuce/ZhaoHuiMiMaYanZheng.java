@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -149,7 +150,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 //                        jinggao.setText("   请输入新密码");
                         ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "请输入新密码");
                     } else {
-                        if (lenght < 6 || lenght > 18 || !isPassword(news_mima.getText().toString())) {
+                        if (lenght < 6 || lenght > 18) {
 //                            jinggao.setVisibility(View.VISIBLE);
 //                            jinggao.setText("   请输入6-18位字母和数字组合");
                             ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "请输入6-18位字母和数字组合");
@@ -281,12 +282,28 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                         String message = data.getMessage().toString();
                         String zhuangtai = data.getState().toString();
                         if (zhuangtai.equals("success")) {
-                            Toast.makeText(ZhaoHuiMiMaYanZheng.this, "" + message, Toast.LENGTH_SHORT).show();
-                            Intent it = new Intent(ZhaoHuiMiMaYanZheng.this, WoDe_DengRu.class);
-                            startActivity(it);
-                            ZhaoHuiMiMa.zhaoHuiMiMa.finish();
-                            WoDe_DengRu.instance.finish();
-                            finish();
+                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "" + message);
+                            LayoutInflater inflater = getLayoutInflater();
+                            View view1 = inflater.inflate(R.layout.xgch, null);
+                            final AlertDialog dialog = new AlertDialog.Builder(ZhaoHuiMiMaYanZheng.this)
+                                    .setView(view1)
+                                    .show();
+                                    //给AlertDialog设置4个圆角
+                                    //dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
+                            dialog.setCanceledOnTouchOutside(false);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent it = new Intent(ZhaoHuiMiMaYanZheng.this, WoDe_DengRu.class);
+                                    startActivity(it);
+                                    ZhaoHuiMiMa.zhaoHuiMiMa.finish();
+                                    WoDe_DengRu.instance.finish();
+                                    finish();
+                                }
+                            }, 2000);
+
+
                         } else {
                             ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
 //                            jinggao.setVisibility(View.VISIBLE);
@@ -364,8 +381,27 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 //        jinggao=findViewById(R.id.jingdao);
         zhyz_fh = findViewById(R.id.zhyz_fh);
         zhyz_yj_image = findViewById(R.id.zhyz_yj_image);
-        zhyz_collphone=findViewById(R.id.zhyz_collphone);
+        zhyz_collphone = findViewById(R.id.zhyz_collphone);
+        ed_code.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    et_qc.setVisibility(View.VISIBLE);
+                } else {
+                    et_qc.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         Intent it = getIntent();
         if (it != null) {
             phone = it.getStringExtra("phone");

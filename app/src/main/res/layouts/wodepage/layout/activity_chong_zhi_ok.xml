@@ -6,12 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".wode.chongzhi.ChongZhiOK">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="138px"-->
+        <!--android:background="@drawable/mybackgrandcolor"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/cz_fy_fh"-->
+            <!--android:layout_width="40px"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="20px"-->
+            <!--android:paddingRight="20px"-->
+            <!--android:paddingTop="20px"-->
+            <!--android:src="@drawable/fanhui" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="260px"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="251px"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:paddingTop="60px"-->
+            <!--android:text="充值"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="38px" />-->
+    <!--</RelativeLayout>-->
 
     <WebView
         android:id="@+id/chongzok"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="45px"
         ></WebView>
 
 </com.zhy.autolayout.AutoLinearLayout>

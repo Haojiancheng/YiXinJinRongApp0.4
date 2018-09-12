@@ -756,6 +756,7 @@ public class XiangMuXinXi extends Fragment {
 //        ColorDrawable dw = new ColorDrawable(0x30000000);
 //        popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+//        popWindow.showAsDropDown(R.id.hk_fangshi, 0,5);
 
     }
 

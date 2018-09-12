@@ -31,6 +31,8 @@ import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.WoDeShiMing;
+import com.yixingjjinrong.yixinjinrongapp.wode.tixian.TiXian;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -72,7 +74,7 @@ public class ChongZhq extends AutoLayoutActivity {
                 .init();
         getczid();
         HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
-        getczHTTp();
+//        getczHTTp();
         cz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +167,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getshimingHTTp();
-                                                finish();
+//                                                finish();
                                             }
                                         })
                                         .create();
@@ -186,7 +188,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getchHTTP();
-                                                finish();
+//                                                finish();
                                             }
                                         })
                                         .create();
@@ -210,7 +212,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Intent it = new Intent(ChongZhq.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
-                                                finish();
+//                                                finish();
                                             }
                                         })
                                         .create();
@@ -265,11 +267,35 @@ public class ChongZhq extends AutoLayoutActivity {
                         String message = data.getMessage().toString();
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
-                            Intent it = new Intent(ChongZhq.this, ShiMingrenzheng.class);
+                            Intent it = new Intent(ChongZhq.this, WoDeShiMing.class);
                             Bundle bundle = new Bundle();
                             bundle.putInt("user_ird", user_id);
                             it.putExtras(bundle);
                             startActivity(it);
+                        }else {
+                            if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
+                                AlertDialog dialog1 = new AlertDialog.Builder(ChongZhq.this)
+                                        .setTitle("提示")
+                                        .setMessage("认证失败！您今日的认证次数已达上限，请明天再进行认证！")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+
+                                            }
+                                        })
+                                        .create();
+                                dialog1.setCanceledOnTouchOutside(false);
+                                dialog1.show();
+                            }else {
+                                ToastUtils.showToast(ChongZhq.this, message);
+                            }
                         }
                     }
                 });
@@ -399,4 +425,9 @@ public class ChongZhq extends AutoLayoutActivity {
         kongbai=findViewById(R.id.chongzhi_kongbai);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getczHTTp();
+    }
 }

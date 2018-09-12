@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f0f0f0"
     tools:context=".wode.mycontent.addess.MyAddess">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,9 +36,8 @@
     </RelativeLayout>
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/addass_rview"
-        android:layout_marginTop="20px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1040px"
         >
 
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
@@ -46,14 +46,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom"
+        android:background="#fdfdfe"
         >
         <Button
             android:id="@+id/addass_instat"
             android:layout_width="690px"
             android:layout_height="90px"
             android:background="@drawable/bt_shape"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="10px"
             android:text="添加新地址"
             android:layout_marginBottom="30px"
             android:layout_gravity="center_horizontal"

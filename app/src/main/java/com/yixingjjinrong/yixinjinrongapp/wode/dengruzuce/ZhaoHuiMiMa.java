@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +77,8 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
 
     private void getzhaohuimimaOnCilk() {
+
+
         myphonet.addTextChangedListener(new MaxLengthWatcher(11, myphonet));
         zhaohuimima_xiayibu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,6 +347,27 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         zhouhukefu = findViewById(R.id.zhouhukefu);
         myphonet.setInputType(InputType.TYPE_CLASS_NUMBER);//数字键盘
         zhaohui_image = findViewById(R.id.zhaohui_image);
+        myphonet.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    zhaohui_image.setVisibility(View.VISIBLE);
+                }else {
+                    zhaohui_image.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     @Override

@@ -75,7 +75,7 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
-            js_request.put("msgId", xx_ird);
+            js_request.put("pubMsgId", xx_ird);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
@@ -95,7 +95,7 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/getMsgDetailById.do")
+                .url(Urls.BASE_URL + "yxbApp/yxbAppIndexPublicMsgDetail.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))

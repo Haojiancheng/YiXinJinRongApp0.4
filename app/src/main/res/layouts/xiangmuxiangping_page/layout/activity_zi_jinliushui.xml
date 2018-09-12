@@ -33,6 +33,11 @@
             android:textSize="38px" />
 
     </RelativeLayout>
+    <include
+        android:id="@+id/zijinliushui_wushuju"
+        layout="@layout/wujilu_zijinliushui"
+        android:visibility="gone"
+        />
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/liushuirview"
         android:layout_width="match_parent"

@@ -6,5 +6,5 @@ public class Urls {
     //线下：http://newwei.yxb.com/
     //STG: http://newweichat-stg-test.yxb.com/
     //生产：https://wechat.yxb.com/
-    public static String BASE_URL = "http://newwei.yxb.com/";
+    public static String BASE_URL = "http://192.168.1.219:8080/yxb_mobile/";
 }

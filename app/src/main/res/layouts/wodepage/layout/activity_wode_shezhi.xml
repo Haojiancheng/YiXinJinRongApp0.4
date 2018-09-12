@@ -130,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="100px"
             android:gravity="center_vertical"
+            android:visibility="gone"
             android:layout_marginBottom="37px"
             >
 

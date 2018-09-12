@@ -45,7 +45,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
     private String base1;//Base64加
     private Button addass_instat;
     private ImageView shouhuo_dz_fh;
-    int a=1;
+//    int a=1;
     private List<MyAddass_Gson.ResultBean.AddressListBean> list=new ArrayList<>();
     private Myaddass_adapter adapter;
 
@@ -62,6 +62,8 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
                 .fullScreen(false)
                 .init();
         getaddassid();
+        adapter = new Myaddass_adapter(list,MyAddess.this, user_id);
+        addass_rview.setAdapter(adapter);
         getaddAssHTTP();
         addass_instat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +85,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
-            js_request.put("pageNum", a);
+//            js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -120,8 +122,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
 
                             list.addAll(data.getResult().getAddressList());
 
-                            adapter = new Myaddass_adapter(list,MyAddess.this, user_id);
-                            addass_rview.setAdapter(adapter);
+
                             adapter.notifyDataSetChanged();
                         }else {
                             Toast.makeText(MyAddess.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
@@ -139,6 +140,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         addass_rview.setLayoutManager(linearLayoutManager);
         addass_rview.setLoadingListener(this);
         addass_rview.setPullRefreshEnabled(true);
+        addass_rview.setLoadingMoreEnabled(false);
         addass_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         addass_instat=findViewById(R.id.addass_instat);
         shouhuo_dz_fh=findViewById(R.id.shouhuo_dz_fh);
@@ -147,7 +149,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
     @Override
     public void onRefresh() {
         list.clear();
-        a=1;
+//        a=1;
         getaddAssHTTP();
         addass_rview.refreshComplete();
         adapter.notifyDataSetChanged();
@@ -155,7 +157,8 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
 
     @Override
     public void onLoadMore() {
-        a++;
+//        list.clear();
+//        a++;
         getaddAssHTTP();
 
         addass_rview.loadMoreComplete();
@@ -166,6 +169,7 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         super.onRestart();
         list.clear();
         getaddAssHTTP();
-//        adapter.notifyDataSetChanged();
+        addass_rview.refreshComplete();
+        adapter.notifyDataSetChanged();
     }
 }

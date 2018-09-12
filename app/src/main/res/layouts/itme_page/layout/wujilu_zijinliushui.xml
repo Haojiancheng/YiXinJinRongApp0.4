@@ -9,15 +9,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="230px"
-        android:src="@drawable/konguqeye_xiaoxi" />
+        android:src="@drawable/wujilu" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暂时没有内容哦~"
-        android:textSize="32px"
-        android:textColor="#999"
-        android:layout_marginTop="46px"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="30px"
+        android:text="暂无资金流水记录"
+        android:textColor="#999999"
+        android:textSize="24px" />
 
 </com.zhy.autolayout.AutoLinearLayout>

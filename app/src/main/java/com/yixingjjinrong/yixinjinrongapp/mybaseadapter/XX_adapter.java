@@ -46,7 +46,7 @@ public class XX_adapter extends RecyclerView.Adapter<XX_adapter.MyViewHoldre> {
             holder.xx_time.setText(list.get(position).getSendTime());
         } else {
             holder.xx_title.setTextColor(Color.parseColor("#999999"));
-            holder.xx_title.setText(list.get(position).getMailContent());
+            holder.xx_title.setText(list.get(position).getMailTitle());
             holder.xx_time.setText(list.get(position).getSendTime());
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,6 @@ public class XX_adapter extends RecyclerView.Adapter<XX_adapter.MyViewHoldre> {
                 if (onEveryItemClickListener != null) {
                     onEveryItemClickListener.onEveryClick(position);
                 }
-
             }
         });
     }

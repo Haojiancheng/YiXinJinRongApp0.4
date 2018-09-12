@@ -38,6 +38,7 @@ import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.WoDeShiMing;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -46,12 +47,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.x;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
 public class TiXian extends AutoLayoutActivity {
     private ImageView t_yh_img;
-    private TextView t_yh_name,t_yh_number,t_cz_keyong;
+    private TextView t_yh_name, t_yh_number, t_cz_keyong;
     private EditText t_cz_money;
     private Button cz_ok;
     private String sha1;//SHA1加密
@@ -63,6 +65,8 @@ public class TiXian extends AutoLayoutActivity {
     private ImageView tx_fh;
     private View kftelephone;
     private static final int PERMISSION_REQUESTCODE = 1;
+    private View tixin_kongbai;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +81,11 @@ public class TiXian extends AutoLayoutActivity {
                 .init();
         HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         getID();
-        gethttp();
+//        gethttp();
         tx_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hintKbTwo();
+//                hintKbTwo();
                 finish();
             }
         });
@@ -97,8 +101,8 @@ public class TiXian extends AutoLayoutActivity {
         //自定义AlertDialog
         LayoutInflater inflater = getLayoutInflater();
         View view1 = inflater.inflate(R.layout.krfuphone, null);
-        Button btn_qux=view1.findViewById(R.id.btn_qux);
-        Button btn_hujiao=view1.findViewById(R.id.btn_hujiao);
+        Button btn_qux = view1.findViewById(R.id.btn_qux);
+        Button btn_hujiao = view1.findViewById(R.id.btn_hujiao);
 
         final AlertDialog dialog = new AlertDialog.Builder(TiXian.this)
                 .setView(view1)
@@ -150,6 +154,8 @@ public class TiXian extends AutoLayoutActivity {
     }
 
     private void gethttp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
@@ -179,27 +185,29 @@ public class TiXian extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("提现GSon",result );
+                        promptDialog.dismiss();
+                        Log.e("提现GSon", result);
                         final TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
                         String msg = data.getMsg();
                         if (msg.equals("")) {
+                            tixin_kongbai.setVisibility(View.GONE);
                             t_yh_name.setText(data.getBankName());
                             t_yh_number.setText(data.getCardNum());
                             x.image().bind(t_yh_img, data.getImage());
                             data.getFreeMoney();
-                            t_cz_keyong.setText("可提现金额:  "+data.getFreeMoney()+"元");
+                            t_cz_keyong.setText("可提现金额:  " + data.getFreeMoney() + "元");
                             cz_ok.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {//可以提现，下一步
                                     if (t_cz_money.getText().toString().equals("")) {
                                         ToastUtils.showToast(TiXian.this, "提现金额不为空");
                                     } else {
-                                        if (Integer.valueOf(t_cz_money.getText().toString().trim()) <100) {//金额不能小于100
+                                        if (Integer.valueOf(t_cz_money.getText().toString().trim()) < 100) {//金额不能小于100
                                             ToastUtils.showToast(TiXian.this, "提现金额不能小于100元");
                                         } else {
                                             getokHTTp();
@@ -209,8 +217,7 @@ public class TiXian extends AutoLayoutActivity {
                                 }
                             });
                         } else {
-
-
+                            tixin_kongbai.setVisibility(View.VISIBLE);
 //                    t_yhcard.setVisibility(View.GONE);//影藏布局
                             if (msg.equals("auth")) {
                                 AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
@@ -226,7 +233,7 @@ public class TiXian extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getshimingHTTp();
-                                                finish();
+
                                             }
                                         })
                                         .create();
@@ -248,7 +255,7 @@ public class TiXian extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getchHTTP();
-                                                finish();
+
                                             }
                                         })
                                         .create();
@@ -271,7 +278,7 @@ public class TiXian extends AutoLayoutActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Intent it = new Intent(TiXian.this, KUaiJieZhiFu.class);
                                                 startActivity(it);
-                                                finish();
+
                                             }
                                         })
                                         .create();
@@ -294,7 +301,7 @@ public class TiXian extends AutoLayoutActivity {
             js_request.put("money", t_cz_money.getText().toString());
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("提现的金额", ""+js_request);
+            Log.e("提现的金额", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -333,13 +340,14 @@ public class TiXian extends AutoLayoutActivity {
                             Log.e("提现HTML!:", "" + html.toString());
                             startActivity(itcz);
                             finish();
-                        }else {
-                            ToastUtils.showToast(TiXian.this,""+data.getMessage() );
+                        } else {
+                            ToastUtils.showToast(TiXian.this, "" + data.getMessage());
                         }
                     }
                 });
 
     }
+
     private void getshimingHTTp() {
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
@@ -380,11 +388,36 @@ public class TiXian extends AutoLayoutActivity {
                         String message = data.getMessage().toString();
                         String jieguo = data.getState().toString();
                         if (jieguo.equals("success")) {
-                            Intent it = new Intent(TiXian.this, ShiMingrenzheng.class);
+                            Intent it = new Intent(TiXian.this, WoDeShiMing.class);
                             Bundle bundle = new Bundle();
                             bundle.putInt("user_ird", user_id);
                             it.putExtras(bundle);
                             startActivity(it);
+                        }else {
+                            if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
+                                AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)
+                                        .setTitle("提示")
+                                        .setMessage("认证失败！您今日的认证次数已达上限，请明天再进行认证！")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+
+                                            }
+                                        })
+                                        .create();
+                                dialog1.setCanceledOnTouchOutside(false);
+                                dialog1.show();
+                            }else {
+                                ToastUtils.showToast(TiXian.this, message);
+                            }
+
                         }
                     }
                 });
@@ -425,23 +458,24 @@ public class TiXian extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:",""+result );
+                        Log.e("存管GSON:", "" + result);
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
-                        Intent it=new Intent(TiXian.this, YinHangCunGuan.class);
-                        it.putExtra("HTML",html );
-                        Log.e("我的页面银行存管HTML:",""+it);
+                        Intent it = new Intent(TiXian.this, YinHangCunGuan.class);
+                        it.putExtra("HTML", html);
+                        Log.e("我的页面银行存管HTML:", "" + it);
                         startActivity(it);
 
-                        Log.e("wangy",""+html );
+                        Log.e("wangy", "" + html);
                     }
                 });
     }
+
     //此方法只是关闭软键盘 可以在finish之前调用一下
     private void hintKbTwo() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm.isActive()&&getCurrentFocus()!=null){
-            if (getCurrentFocus().getWindowToken()!=null) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive() && getCurrentFocus() != null) {
+            if (getCurrentFocus().getWindowToken() != null) {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
@@ -454,14 +488,21 @@ public class TiXian extends AutoLayoutActivity {
         token = (String) SPUtils.get(TiXian.this, "Token1", "");
         keyong = itzc.getStringExtra("keyong2");
         Log.e("提现----》", "" + keyong);
-        t_yh_img=findViewById(R.id.t_yh_img);
-        t_yh_name=findViewById(R.id.t_yh_name);
-        t_yh_number=findViewById(R.id.t_yh_number);
-        t_cz_keyong=findViewById(R.id.t_cz_keyong);
-        t_cz_money=findViewById(R.id.t_cz_money);
-        cz_ok=findViewById(R.id.cz_ok);
-        tx_fh=findViewById(R.id.tx_fh);
-        kftelephone=findViewById(R.id.kftelephone);
+        t_yh_img = findViewById(R.id.t_yh_img);
+        t_yh_name = findViewById(R.id.t_yh_name);
+        t_yh_number = findViewById(R.id.t_yh_number);
+        t_cz_keyong = findViewById(R.id.t_cz_keyong);
+        t_cz_money = findViewById(R.id.t_cz_money);
+        cz_ok = findViewById(R.id.cz_ok);
+        tx_fh = findViewById(R.id.tx_fh);
+        kftelephone = findViewById(R.id.kftelephone);
+        tixin_kongbai = findViewById(R.id.tixin_kongbai);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gethttp();
     }
 }

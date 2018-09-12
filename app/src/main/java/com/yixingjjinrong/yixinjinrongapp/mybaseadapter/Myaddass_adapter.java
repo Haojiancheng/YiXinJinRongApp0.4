@@ -129,6 +129,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                                     Glide.with(context).load(R.drawable.gouxuan).into(holder.yh2);
                                     ToastUtils.showToast(context, "设置默认地址成功");
                                     notifyDataSetChanged();
+
                                 } else {
                                     ToastUtils.showToast(context, "" + message );
                                 }

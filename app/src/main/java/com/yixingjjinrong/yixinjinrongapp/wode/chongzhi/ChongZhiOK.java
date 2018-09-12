@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 public class ChongZhiOK extends AutoLayoutActivity {
     private WebView chongzok;
     private ArrayList<String> ss = new ArrayList<>();
+//    private ImageView cz_fy_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,24 @@ public class ChongZhiOK extends AutoLayoutActivity {
             AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
         }
         setContentView(R.layout.activity_chong_zhi_ok);
-        chongzok = findViewById(R.id.chongzok);
+
+
+        getid();
+        getweb();
+        getonclock();
+
+    }
+
+    private void getonclock() {
+//        cz_fy_fh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+    }
+
+    private void getweb() {
         final Intent intent = getIntent();
         String html = intent.getStringExtra("HTML");
         Log.e("充值成功HTM：L", html);
@@ -98,6 +118,12 @@ public class ChongZhiOK extends AutoLayoutActivity {
         });
         chongzok.setWebChromeClient(new MyWebChromeClient());
     }
+
+    private void getid() {
+        chongzok = findViewById(R.id.chongzok);
+//        cz_fy_fh=findViewById(R.id.cz_fy_fh);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

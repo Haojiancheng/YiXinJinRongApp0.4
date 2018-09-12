@@ -127,7 +127,13 @@ public class FanKui extends AutoLayoutActivity {
                         Log.e("意见反馈GSON", "" + result);
                         FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
                         String message = data.getMessage();
-                        ToastUtils.showToast(FanKui.this, ""+message);
+
+                        if (message.equals("意见反馈成功")){
+                            ToastUtils.showToast(FanKui.this, "提交成功");
+                            finish();
+                        }else {
+                            ToastUtils.showToast(FanKui.this, ""+message);
+                        }
                     }
                 });
 

@@ -19,6 +19,8 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ZiJinLiuShui_adapter;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.MyChuJie_one;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -46,6 +48,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
     private String loginid;
     private String token;
     private ImageView wo_zjls_fh;
+    private View zijinliushui_wushuju;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +114,20 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
                     public void onResponse(String result, int id) {
                         Log.e("我的资金流水GSon","" +result);
                         ZiJInLiuShu_gson data = new Gson().fromJson(result, ZiJInLiuShu_gson.class);
-                        list.addAll(data.getFundRecordlist());
+                        if (data.getMessage().equals("用户未登录。")) {
+                            ToastUtils.showToast(ZiJinliushui.this, "用户未登录。");
+                        } else {
+                            if (data.getMessage().equals("没有可用券!")) {
+                                zijinliushui_wushuju.setVisibility(View.VISIBLE);
+                            } else {
+                                zijinliushui_wushuju.setVisibility(View.GONE);
+                                list.addAll(data.getFundRecordlist());
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
 
-                        adapter.notifyDataSetChanged();
+
+
                     }
                 });
 
@@ -132,6 +146,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         wo_zjls_fh=findViewById(R.id.wo_zjls_fh);
         xrview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         xrview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        zijinliushui_wushuju=findViewById(R.id.zijinliushui_wushuju);
     }
 
     @Override

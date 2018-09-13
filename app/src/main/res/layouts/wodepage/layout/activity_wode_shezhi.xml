@@ -216,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30px"
-                android:text="缓存清理"
+                android:text="清理缓存"
                 android:layout_marginTop="40px"
                 android:textColor="#333"
                 android:textSize="30px" />

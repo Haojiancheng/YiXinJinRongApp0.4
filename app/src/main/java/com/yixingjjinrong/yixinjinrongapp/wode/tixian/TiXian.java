@@ -393,6 +393,7 @@ public class TiXian extends AutoLayoutActivity {
                             bundle.putInt("user_ird", user_id);
                             it.putExtras(bundle);
                             startActivity(it);
+                            finish();
                         }else {
                             if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
                                 AlertDialog dialog1 = new AlertDialog.Builder(TiXian.this)

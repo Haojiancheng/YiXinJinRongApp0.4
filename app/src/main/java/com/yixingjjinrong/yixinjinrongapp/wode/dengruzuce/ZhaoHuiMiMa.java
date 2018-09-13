@@ -315,7 +315,7 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
                         Log.e("TAG", ">>>>成功" + result);
 
                         YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
-                        if (data.getMessage().equals("发送短信成功")) {
+                        if (data.getState().equals("success")) {
 
                             String message = data.getMessage();
                             String jsessionId = data.getResult().getJsessionId();

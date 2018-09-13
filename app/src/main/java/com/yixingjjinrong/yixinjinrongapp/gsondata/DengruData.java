@@ -5,7 +5,7 @@ public class DengruData {
 
     /**
      * message : 登录成功
-     * result : {"loginId":"login:11210","token":"login:864711326104376","userid":11210}
+     * result : {"loginId":"login:11298","token":"login:864711326104376","inviterId":"33e84","userid":11298}
      * state : success
      */
 
@@ -39,13 +39,15 @@ public class DengruData {
 
     public static class ResultBean {
         /**
-         * loginId : login:11210
+         * loginId : login:11298
          * token : login:864711326104376
-         * userid : 11210
+         * inviterId : 33e84
+         * userid : 11298
          */
 
         private String loginId;
         private String token;
+        private String inviterId;
         private int userid;
 
         public String getLoginId() {
@@ -62,6 +64,14 @@ public class DengruData {
 
         public void setToken(String token) {
             this.token = token;
+        }
+
+        public String getInviterId() {
+            return inviterId;
+        }
+
+        public void setInviterId(String inviterId) {
+            this.inviterId = inviterId;
         }
 
         public int getUserid() {

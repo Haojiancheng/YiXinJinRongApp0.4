@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
         android:layout_marginTop="24px"
-        android:text="3、邀请好友注册并累计出借满2000元即可获得现金奖"
+        android:text="3、有出借记录的用户邀请好友注册，且好友累计出借"
         android:textAlignment="viewStart"
         android:textColor="#666666"
         android:textSize="26px" />
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
         android:layout_marginTop="24px"
-        android:text="励;"
+        android:text="金额满2000元即可获得对应的现金奖励;"
         android:textAlignment="viewStart"
         android:textColor="#666666"
         android:textSize="26px" />

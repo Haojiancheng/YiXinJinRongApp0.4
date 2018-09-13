@@ -90,6 +90,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
     public static WoDe_DengRu instance;
     private AutoRelativeLayout main;
     private ScrollView dr_scrollView;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -355,12 +356,22 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                             SPUtils.put(WoDe_DengRu.this, "userId", user_id);
                             SPUtils.put(WoDe_DengRu.this, "Token1", user_token);
                             SPUtils.put(WoDe_DengRu.this, "shoujihao", shoujihao);
+                            SPUtils.put(WoDe_DengRu.this, "inviterId", d_data.getResult().getInviterId());
                             Log.e("sdfdf", "" + loginId);
                             promptDialog.dismiss();
-                            Intent it=new Intent(WoDe_DengRu.this, MainActivity.class);
-                            it.putExtra("id","2");
-                            startActivity(it);
-                            finish();
+                            if (type!=null) {
+                                if (type.equals("1")) {
+                                    Intent it = new Intent(WoDe_DengRu.this, MainActivity.class);
+                                    it.putExtra("id", "2");
+                                    startActivity(it);
+                                    finish();
+                                } else {
+                                    finish();
+                                }
+                            }else {
+                                finish();
+                            }
+
                         } else {
                             promptDialog.dismiss();
 //                            dr_jg.setVisibility(View.VISIBLE);
@@ -390,6 +401,8 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
         dengru_phone.addTextChangedListener(new MaxLengthWatcher(11, dengru_phone));//手机号长度限制
         main=findViewById(R.id.main);
         dr_scrollView=findViewById(R.id.dr_scrollview);
+        Intent it=getIntent();
+        type = it.getStringExtra("type");
     }
 
     public synchronized String getid(Context context) {

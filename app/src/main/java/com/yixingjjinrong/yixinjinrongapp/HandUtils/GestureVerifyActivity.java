@@ -198,6 +198,7 @@ public class GestureVerifyActivity extends AutoLayoutActivity implements android
                 SPUtils.remove(this, "userId");
                 SPUtils.put(this, "userId", 0);
                 Intent intent = new Intent(this, WoDe_DengRu.class);
+                intent.putExtra("type","1");
                 startActivity(intent);
                 this.finish();
                 break;

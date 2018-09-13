@@ -8,10 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.GeRenXingXiGson;
@@ -21,9 +21,9 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.MyAddess;
+import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.ceping.CePingJieGuo;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.WoDeShiMing;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.shiming.YiShiMing;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -188,7 +188,14 @@ public class My_Content extends AutoLayoutActivity {
                     break;
 
             }
-
+            fengxian_itme.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(My_Content.this, CePingJieGuo.class);
+                    intent.putExtra("type", gr_data.getUserMap().getRiskType());
+                    startActivity(intent);
+                }
+            });
 
         } else {
 

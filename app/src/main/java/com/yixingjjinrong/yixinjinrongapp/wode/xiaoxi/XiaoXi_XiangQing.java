@@ -48,6 +48,9 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
     private ImageView xxxp_fh;
     private TextView xx_xq_title;
     private String xqtitle;
+    private String type;
+    private String jiekou;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +75,16 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
     }
 
     private void getxxxqHTTP() {
+        if (jiekou.equals("xiaoxi")){
+            type="getMsgDetailById.do";
+        }else {
+            type="yxbAppIndexPublicMsgDetail.do";
+        }
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
             js_request.put("pubMsgId", xx_ird);
+            js_request.put("msgId", xx_ird);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
@@ -89,13 +98,13 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            Log.e("我的消息", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/yxbAppIndexPublicMsgDetail.do")
+                .url(Urls.BASE_URL + "yxbApp/" + type)
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -103,16 +112,16 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Log.e("消息详情：", Urls.BASE_URL + "yxbApp/" + type);
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("消息详情GSON：",""+result);
+                        Log.e("消息详情GSON：", "" + result);
                         XXxiangqing_gson data = new Gson().fromJson(result, XXxiangqing_gson.class);
                         String result1 = data.getResult();
                         WebSettings webSettings = xxweb.getSettings();
-
+                        Log.e("消息详情：", Urls.BASE_URL + "yxbApp/" + type);
                         webSettings.setJavaScriptEnabled(true);
                         // 设置允许JS弹窗
                         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -128,14 +137,16 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         token = (String) SPUtils.get(XiaoXi_XiangQing.this, "Token1", "");
         Bundle b = getIntent().getExtras();
         xx_ird = b.getInt("xx_ird");
-        Intent it=getIntent();
+        Intent it = getIntent();
         xqtitle = it.getStringExtra("xqtitle");
-        user_id = (int) SPUtils.get(XiaoXi_XiangQing.this,"userId",0);
-        xxweb=findViewById(R.id.xxweb);
-        xxxp_fh=findViewById(R.id.xxxp_fh);
-        xx_xq_title=findViewById(R.id.xx_xq_title);
+        jiekou = it.getStringExtra("type");
+        user_id = (int) SPUtils.get(XiaoXi_XiangQing.this, "userId", 0);
+        xxweb = findViewById(R.id.xxweb);
+        xxxp_fh = findViewById(R.id.xxxp_fh);
+        xx_xq_title = findViewById(R.id.xx_xq_title);
         xx_xq_title.setText(xqtitle);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

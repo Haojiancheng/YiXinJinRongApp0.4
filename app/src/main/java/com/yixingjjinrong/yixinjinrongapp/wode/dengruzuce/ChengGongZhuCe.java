@@ -264,6 +264,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                             SPUtils.put(ChengGongZhuCe.this, "Loginid", loginId);
                             SPUtils.put(ChengGongZhuCe.this, "userId", user_id);
                             SPUtils.put(ChengGongZhuCe.this, "Token1", user_token);
+                            SPUtils.put(ChengGongZhuCe.this, "inviterId", d_data.getResult().getInviterId());
                             ZhuCe_PaGa.zc_instance.finish();
                             YanZheng_PaGa.instance.finish();
                             WoDe_DengRu.instance.finish();

@@ -195,7 +195,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
+
         android:layout_marginTop="40px">
 
         <EditText
@@ -205,7 +205,7 @@
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
             android:drawablePadding="18px"
-
+            android:background="@null"
             android:hint="推荐人手机号/邀请码（选填）"
             app:errorTextAppearance="@style/ErrorAppearance" />
     </android.support.design.widget.TextInputLayout>

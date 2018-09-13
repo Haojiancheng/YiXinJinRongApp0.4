@@ -2,6 +2,7 @@ package com.yixingjjinrong.yixinjinrongapp.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.multidex.MultiDex;
 
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -40,4 +41,5 @@ public class MyApplication extends Application {
         MultiDex.install(base);
 
     }
+
 }

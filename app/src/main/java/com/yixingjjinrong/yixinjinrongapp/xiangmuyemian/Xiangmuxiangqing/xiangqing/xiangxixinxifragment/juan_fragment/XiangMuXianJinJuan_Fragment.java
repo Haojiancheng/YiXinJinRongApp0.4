@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinBean;
@@ -41,6 +42,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment {
     private int a = 0;
     private XiangMuXiangQing_Gson.ResultBean juan;
     private List<XianJinBean.xianJuanBean> xianJuanBeanList;
+    private String mymoney;
 
 
     @Nullable
@@ -56,6 +58,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         juan = (XiangMuXiangQing_Gson.ResultBean) getArguments().getSerializable("juan");
         XianJinBean xianJinBean=new XianJinBean();
+        mymoney = (String) SPUtils.get(getActivity(), "mymoney", "");
         xianJuanBeanList = new ArrayList<XianJinBean.xianJuanBean>();
         getfcdy_id();
 
@@ -85,19 +88,29 @@ public class XiangMuXianJinJuan_Fragment extends Fragment {
                
             }
         }
+        final int i = Integer.parseInt(mymoney);
         Log.e("XianJinBean", xianJuanBeanList.size()+"");
-        myadapter = new XiangMuXianjinJuan_adapter(xianJuanBeanList,getActivity());
+        myadapter = new XiangMuXianjinJuan_adapter(xianJuanBeanList,getActivity(),i);
         xianjinjun_rview.setAdapter(myadapter);
+
+
         myadapter.setonEveryItemClickListener(new XiangMuXianjinJuan_adapter.OnEveryItemClickListener() {
             @Override
             public void onEveryClick(int position) {
-                int juanId= xianJuanBeanList.get(position).getId();
-                int juantype= xianJuanBeanList.get(position).getActivitype();
-                String juanmake=xianJuanBeanList.get(position).getRemark();
-                SPUtils.put(getActivity(), "juanId", juanId);
-                SPUtils.put(getActivity(), "juantype", juantype);
-                SPUtils.put(getActivity(), "juanmake", juanmake);
-                getActivity().finish();
+                if (i>=xianJuanBeanList.get(position).getQuota()){
+                    int juanId= xianJuanBeanList.get(position).getId();
+                    int juantype= xianJuanBeanList.get(position).getActivitype();
+                    String juanmake=xianJuanBeanList.get(position).getRemark();
+                    SPUtils.put(getActivity(), "juanId", juanId);
+                    SPUtils.put(getActivity(), "juantype", juantype);
+                    SPUtils.put(getActivity(), "juanmake", juanmake);
+                    String quota = String.valueOf(xianJuanBeanList.get(position).getQuota());
+                    SPUtils.put(getActivity(), "juanjine", quota);
+                    getActivity().finish();
+                }else {
+//                    ToastUtils.showLongToast(getActivity(), "此卷不可用");
+                }
+
             }
         });
     }

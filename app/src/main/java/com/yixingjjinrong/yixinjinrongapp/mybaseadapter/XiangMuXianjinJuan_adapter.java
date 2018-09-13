@@ -1,6 +1,7 @@
 package com.yixingjjinrong.yixinjinrongapp.mybaseadapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinBean;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
@@ -22,11 +25,14 @@ import java.util.List;
 public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXianjinJuan_adapter.MyViewHolder> {
     private List<XianJinBean.xianJuanBean> juanBeanList;
     private Context context;
+    private int jinge;
 
-    public XiangMuXianjinJuan_adapter(List<XianJinBean.xianJuanBean> juanBeanList, Context context) {
+    public XiangMuXianjinJuan_adapter(List<XianJinBean.xianJuanBean> juanBeanList, Context context, int jinge) {
         this.juanBeanList = juanBeanList;
         this.context = context;
+        this.jinge = jinge;
     }
+
     private OnEveryItemClickListener onEveryItemClickListener;
     public interface OnEveryItemClickListener{
         void onEveryClick(int position);
@@ -48,11 +54,17 @@ public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXian
     @Override
     public void onBindViewHolder(@NonNull final XiangMuXianjinJuan_adapter.MyViewHolder holder, final int position) {
         if (juanBeanList.get(position).getActivitype()==6) {
+            if (jinge>=juanBeanList.get(position).getQuota()){
+
+                holder.juanpeijing.setBackgroundResource(R.drawable.keshiyong);
+            }else {
+                holder.juanpeijing.setBackgroundResource(R.drawable.yishiyong);
+            }
             holder.qian.setText("¥" + juanBeanList.get(position).getInfo());
             holder.yaoqu.setText(juanBeanList.get(position).getRemark());
             holder.fanwei.setText(juanBeanList.get(position).getUseRange());
             holder.time_out.setText("有效期至："+juanBeanList.get(position).getEndTime());
-            holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onEveryItemClickListener!=null){
@@ -73,6 +85,7 @@ public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXian
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView qian, yaoqu, fanwei, time_out;
         private Button shiyong_bt;
+        private View juanpeijing;
         public MyViewHolder(View itemView) {
             super(itemView);
             qian = itemView.findViewById(R.id.qian);
@@ -80,6 +93,8 @@ public class XiangMuXianjinJuan_adapter extends RecyclerView.Adapter<XiangMuXian
             fanwei = itemView.findViewById(R.id.fanwei);
             time_out = itemView.findViewById(R.id.time_out);
             shiyong_bt=itemView.findViewById(R.id.shiyong_bt);
+            shiyong_bt.setVisibility(View.GONE);
+            juanpeijing=itemView.findViewById(R.id.juanpeijing);
         }
     }
 }

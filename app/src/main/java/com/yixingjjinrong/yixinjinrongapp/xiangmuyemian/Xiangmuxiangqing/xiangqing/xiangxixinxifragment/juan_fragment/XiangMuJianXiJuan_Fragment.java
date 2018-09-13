@@ -44,6 +44,7 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
     private int a=0;
     private XiangMuXiangQing_Gson.ResultBean juan;
     private List<JiaXiBean.xianJuanBean> jiaXiBeanList;
+    private String mymoney;
 
 
     @Nullable
@@ -61,6 +62,7 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
         juan = (XiangMuXiangQing_Gson.ResultBean) getArguments().getSerializable("juan");
         JiaXiBean jiaXiBean=new JiaXiBean();
         jiaXiBeanList = new ArrayList<JiaXiBean.xianJuanBean>();
+        mymoney = (String) SPUtils.get(getActivity(), "mymoney", "");
         getid();
 
         Log.e("加息卷user_id", "" + user_id);
@@ -88,18 +90,26 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
                 jiaXiBeanList.add(jiaXiaBean);
             }
         }
-        myadapter=new XiangMuJiaXiJuan_adapter(jiaXiBeanList);
+        final int i = Integer.parseInt(mymoney);
+
+        myadapter=new XiangMuJiaXiJuan_adapter(jiaXiBeanList,i);
         jiaxi_rview.setAdapter(myadapter);
         myadapter.setonEveryItemClickListener(new XiangMuJiaXiJuan_adapter.OnEveryItemClickListener() {
             @Override
             public void onEveryClick(int position) {
-                int juanId= jiaXiBeanList.get(position).getId();
-                int juantype= jiaXiBeanList.get(position).getActivitype();
-                String juanmake=jiaXiBeanList.get(position).getRemark();
-                SPUtils.put(getActivity(), "juanId", juanId);
-                SPUtils.put(getActivity(), "juantype", juantype);
-                SPUtils.put(getActivity(), "juanmake", juanmake);
-                getActivity().finish();
+                if (i>=jiaXiBeanList.get(position).getQuota()) {
+                    int juanId = jiaXiBeanList.get(position).getId();
+                    int juantype = jiaXiBeanList.get(position).getActivitype();
+                    String juanmake = jiaXiBeanList.get(position).getRemark();
+                    SPUtils.put(getActivity(), "juanId", juanId);
+                    SPUtils.put(getActivity(), "juantype", juantype);
+                    SPUtils.put(getActivity(), "juanmake", juanmake);
+                    String quota = String.valueOf(jiaXiBeanList.get(position).getQuota());
+                    SPUtils.put(getActivity(), "juanjine", quota);
+                    getActivity().finish();
+                }else {
+
+                }
             }
         });
     }

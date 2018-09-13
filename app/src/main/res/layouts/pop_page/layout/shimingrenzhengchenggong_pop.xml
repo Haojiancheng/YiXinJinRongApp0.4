@@ -9,7 +9,7 @@
     >
 
     <ImageView
-        android:id="@+id/guanbil"
+        android:id="@+id/smcg_cg_guanbil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/l6"
@@ -63,53 +63,39 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="为了保护您的账户安全，出借前需要进行实名验证"
-                    android:textColor="#333333"
-                    android:layout_marginTop="34px"
-                    android:textSize="24px" />
+               <ImageView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/chenggong"
+                   android:layout_marginTop="40px"
+                   />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="* 请确保信息准确，以免影响您的出借、提现等操作"
+                    android:text="实名认证成功"
+                    android:layout_marginTop="20px"
                     android:textColor="#fe6623"
-                    android:textSize="22px" />
+                    android:textSize="34px" />
 
-                <EditText
-                    android:id="@+id/pop_myname"
-                    android:layout_width="540px"
-                    android:layout_height="80px"
-                    android:layout_marginTop="34px"
-                    android:background="@drawable/bt_biankuanghuise"
-                    android:drawableStart="@drawable/zhenshixingming"
-                    android:hint="请输入您的真实姓名"
-                    android:drawablePadding="18px"
-                    android:paddingLeft="20px"
 
-                    />
-
-                <EditText
-                    android:id="@+id/pop_myidcard"
-                    android:layout_width="540px"
-                    android:layout_height="80px"
-                    android:layout_marginTop="40px"
-                    android:background="@drawable/bt_biankuanghuise"
-                    android:drawableStart="@drawable/shenfenzhenghao"
-                    android:hint="请输入18位身份证号"
-                    android:drawablePadding="18px"
-                    android:paddingLeft="20px" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginRight="80px"
+                    android:layout_marginTop="48px"
+                    android:lineSpacingExtra="12sp"
+                    android:text="平台已接入恒丰银行资金存管系统，充值、提现、出借等资金操作均需开通银行存管账户，支持多家银行储蓄卡" />
 
                 <Button
-                    android:id="@+id/pop_myb_t"
+                    android:id="@+id/pop_cg_kt"
                     android:layout_width="540px"
                     android:layout_height="80px"
-                    android:layout_marginTop="50px"
+                    android:layout_marginTop="60px"
                     android:layout_marginBottom="50px"
                     android:background="@drawable/bt_shape"
-                    android:text="立即认证"
+                    android:text="开通存管"
                     android:textColor="#ffffff"
                     android:textSize="30px" />
             </LinearLayout>

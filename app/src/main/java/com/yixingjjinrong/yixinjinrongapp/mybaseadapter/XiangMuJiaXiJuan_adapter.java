@@ -20,14 +20,18 @@ import java.util.List;
 
 public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJuan_adapter.MyViewHolder> {
     private List<JiaXiBean.xianJuanBean> juanBeanList;
+    private int jinge;
+
+    public XiangMuJiaXiJuan_adapter(List<JiaXiBean.xianJuanBean> juanBeanList, int jinge) {
+        this.juanBeanList = juanBeanList;
+        this.jinge = jinge;
+    }
 
     private OnEveryItemClickListener onEveryItemClickListener;
     public interface OnEveryItemClickListener{
         void onEveryClick(int position);
     }
-    public XiangMuJiaXiJuan_adapter(List<JiaXiBean.xianJuanBean> juanBeanList) {
-        this.juanBeanList = juanBeanList;
-    }
+
     public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener){
         this.onEveryItemClickListener=onEveryItemClickListener;
     }
@@ -45,14 +49,20 @@ public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJ
     @Override
     public void onBindViewHolder(@NonNull XiangMuJiaXiJuan_adapter.MyViewHolder holder, final int position) {
         if (juanBeanList.get(position).getActivitype()==3) {
+            if (jinge>=juanBeanList.get(position).getQuota()){
+                holder.juanpeijing.setBackgroundResource(R.drawable.keshiyong);
+            }else {
+                holder.juanpeijing.setBackgroundResource(R.drawable.yishiyong);
+            }
+
             holder.qian.setText(juanBeanList.get(position).getInfo() + "%");
             holder.yaoqu.setText(juanBeanList.get(position).getRemark());
             holder.fanwei.setText(juanBeanList.get(position).getUseRange());
             holder.time_out.setText("有效期至："+juanBeanList.get(position).getEndTime());
-            holder.shiyong_bt.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("点击了", "jjjjjjbbbbbb");
+//                    Log.e("点击了", "jjjjjjbbbbbb");
                     if (onEveryItemClickListener != null) {
                         onEveryItemClickListener.onEveryClick(position);
                     }
@@ -70,6 +80,7 @@ public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJ
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView qian, yaoqu, fanwei, time_out;
         private Button shiyong_bt;
+        private View juanpeijing;
         public MyViewHolder(View itemView) {
             super(itemView);
             qian = itemView.findViewById(R.id.qian);
@@ -77,6 +88,8 @@ public class XiangMuJiaXiJuan_adapter extends RecyclerView.Adapter<XiangMuJiaXiJ
             fanwei = itemView.findViewById(R.id.fanwei);
             time_out = itemView.findViewById(R.id.time_out);
             shiyong_bt=itemView.findViewById(R.id.shiyong_bt);
+            shiyong_bt.setVisibility(View.GONE);
+            juanpeijing=itemView.findViewById(R.id.juanpeijing);
         }
     }
 }

@@ -181,6 +181,7 @@
 
             </LinearLayout>
             <Button
+                android:id="@+id/yuanqing_haoyou"
                 android:layout_width="match_parent"
                 android:layout_height="100px"
                 android:layout_alignParentEnd="true"

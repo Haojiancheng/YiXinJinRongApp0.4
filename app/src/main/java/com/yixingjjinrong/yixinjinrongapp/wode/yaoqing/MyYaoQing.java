@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class MyYaoQing extends AutoLayoutActivity {
@@ -18,6 +21,7 @@ public class MyYaoQing extends AutoLayoutActivity {
     private String countmoney;
     private TextView mycountmoney, mymancount, yaoqingxiangqing;
     private ImageView yq_fh, guize;
+    private Button yuanqing_haoyou;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,5 +75,8 @@ public class MyYaoQing extends AutoLayoutActivity {
         mymancount.setText(mancount);
         yq_fh = findViewById(R.id.yq_fh);
         guize = findViewById(R.id.guize);
+//        SPUtils.put(ShiMingRenZhengKO.this, "inviterId", d_data.getResult().getInviterId());
+        SPUtils.get(MyYaoQing.this, "inviterId", "");
+        yuanqing_haoyou=findViewById(R.id.yuanqing_haoyou);
     }
 }

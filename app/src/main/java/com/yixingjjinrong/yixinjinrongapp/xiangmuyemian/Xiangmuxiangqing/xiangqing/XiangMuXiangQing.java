@@ -120,6 +120,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private int MAX = 1000000;
 
     private static final int MSG_SEARCH = 1;
+    private String juanjinge;
+    private PopupWindow popview1;
+    private PopupWindow popview2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,11 +178,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                 } else {
 
-                    if (cb_fuxuankuang.isChecked()) {
-                        getchujieHttp();
-                    } else {
-                        ToastUtils.showToast(XiangMuXiangQing.this, "请先阅读并勾选协议");
-                    }
+                    getchujieHttp();
+
                 }
 
             }
@@ -234,47 +234,45 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             } else {
 
                                 if (msg.equals("auth")) {
-                                    AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                            .setTitle("提示")
-                                            .setMessage("您还未实名认证，是否实名认证")
-                                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-
-                                                }
-                                            })
-                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
+//                                    AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
+//                                            .setTitle("提示")
+//                                            .setMessage("您还未实名认证，是否实名认证")
+//                                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                                }
+//                                            })
+//                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
                                                     showpopwindow();
-                                                }
-                                            })
-                                            .create();
-                                    dialog1.setCanceledOnTouchOutside(false);
-                                    dialog1.show();
-                                }
-                                if (msg.equals("bank_link")) {
-                                    AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                            .setTitle("提示")
-                                            .setMessage("您还未开通银行存管，是否开通")
-                                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    finish();
-                                                }
-                                            })
-                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
+//                                                }
+//                                            })
+//                                            .create();
+//                                    dialog1.setCanceledOnTouchOutside(false);
+//                                    dialog1.show();
+                                }else if (msg.equals("bank_link")) {
+//                                    AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
+//                                            .setTitle("提示")
+//                                            .setMessage("您还未开通银行存管，是否开通")
+//                                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                                }
+//                                            })
+//                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
                                                     cGpop();
-                                                }
-                                            })
-                                            .create();
-                                    dialog1.setCanceledOnTouchOutside(false);
-                                    dialog1.show();
+//                                                }
+//                                            })
+//                                            .create();
+//                                    dialog1.setCanceledOnTouchOutside(false);
+//                                    dialog1.show();
 
-                                }
-                                if (msg.equals("sign_card")) {
+                                }else if (msg.equals("sign_card")) {
 //                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
                                     AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                             .setTitle("提示")
@@ -282,7 +280,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    finish();
+
                                                 }
                                             })
                                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -290,7 +288,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
                                                     startActivity(it);
-                                                    finish();
+//                                                    finish();
                                                 }
                                             })
                                             .create();
@@ -463,6 +461,21 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 } else {//否则延迟500ms开始搜索
                     mHandler.sendEmptyMessageDelayed(MSG_SEARCH, 3000); //自动搜索功能 删除
                 }
+                int i = Integer.parseInt(jinge.getText().toString());
+
+                if (juanjinge.equals("")){
+
+                }else {
+                    if (i>=Integer.parseInt(juanjinge)){
+
+                    }else {
+                        youhuijuan.setText("未使用");
+                        SPUtils.remove(XiangMuXiangQing.this, "juantype");
+                        SPUtils.remove(XiangMuXiangQing.this, "juanId");
+                        SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+                        SPUtils.remove(XiangMuXiangQing.this, "juanjine");
+                    }
+                }
 
 
             }
@@ -513,6 +526,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juan_id = (int) SPUtils.get(this, "juanId", 0);
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
+        juanjinge = (String) SPUtils.get(this, "juanjine", "");
         detailedinformation = findViewById(R.id.detailedinformation);
         xiala_view = findViewById(R.id.xiale_view);
 
@@ -691,6 +705,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         public void onClick(View v) {
                                             Intent ti = new Intent(XiangMuXiangQing.this, XiangMuJuan.class);
                                             ti.putExtra("juan", data.getResult());
+                                            SPUtils.put(XiangMuXiangQing.this, "mymoney", jinge.getText().toString());
                                             startActivity(ti);
 
                                         }
@@ -775,70 +790,73 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         int aaa = data.getMsg().getAaa();
                         switch (aaa) {
                             case 2:
+                                promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未实名认证", st.LENGTH_SHORT).show();
-                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                        .setTitle("提示")
-                                        .setMessage("您还未实名认证，是否认证")
-                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
-                                            }
-                                        })
-                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
+//                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this)
+//                                        .setTitle("提示")
+//                                        .setMessage("您还未实名认证，是否认证")
+//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                            }
+//                                        })
+//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                promptDialog.dismiss();
 
                                                 showpopwindow();
-
-//                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
-                                            }
-                                        })
-                                        .create();
-                                dialog.setCanceledOnTouchOutside(false);
-                                dialog.show();
+////                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
+//                                            }
+//                                        })
+//                                        .create();
+//                                dialog.setCanceledOnTouchOutside(false);
+//                                dialog.show();
                                 break;
                             case 3:
+                                promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未开通银行存管", st.LENGTH_SHORT).show();
-                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                        .setTitle("提示")
-                                        .setMessage("您还未开通银行存管，是否开通")
-                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
-                                            }
-                                        })
-                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
+//                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
+//                                        .setTitle("提示")
+//                                        .setMessage("您还未开通银行存管，是否开通")
+//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                            }
+//                                        })
+//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                promptDialog.dismiss();
                                                 cGpop();
 //                                        st.makeText(XiangMuXiangQing.this, "请开通", st.LENGTH_SHORT).show();
-                                            }
-                                        })
-                                        .create();
-                                dialog1.setCanceledOnTouchOutside(false);
-                                dialog1.show();
+//                                            }
+//                                        })
+//                                        .create();
+//                                dialog1.setCanceledOnTouchOutside(false);
+//                                dialog1.show();
                                 break;
                             case 5:
+                                promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未签约", st.LENGTH_SHORT).show();
                                 AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
-                                        .setMessage("您还未未签约，是否签约")
+                                        .setMessage("您的余额不足请充值")
                                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
+
                                             }
                                         })
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 promptDialog.dismiss();
-                                                Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
-                                                startActivity(it);
+//                                                Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
+//                                                startActivity(it);
+                                                getChongzhiHttp();
 //                                        st.makeText(XiangMuXiangQing.this, "请签约", st.LENGTH_SHORT).show();
                                             }
                                         })
@@ -847,31 +865,35 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 dialog2.show();
                                 break;
                             case 4:
+                                promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未风险评测", st.LENGTH_SHORT).show();
-                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                        .setTitle("提示")
-                                        .setMessage("您还未风险评测，是否风险评测")
-                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
-                                            }
-                                        })
-                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
+//                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
+//                                        .setTitle("提示")
+//                                        .setMessage("您还未风险评测，是否风险评测")
+//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                            }
+//                                        })
+//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                promptDialog.dismiss();
                                                 fxpop();
-                                            }
-                                        })
-                                        .create();
-                                dialog3.setCanceledOnTouchOutside(false);
-                                dialog3.show();
+//                                            }
+//                                        })
+//                                        .create();
+//                                dialog3.setCanceledOnTouchOutside(false);
+//                                dialog3.show();
                                 break;
                             case 0:
 //                        st.makeText(XiangMuXiangQing.this, "请稍等…………", st.LENGTH_SHORT).show();
-                                getchujieHttpTwo();
-
+                                if (cb_fuxuankuang.isChecked()) {
+                                    getchujieHttpTwo();
+                                } else {
+                                    ToastUtils.showToast(XiangMuXiangQing.this, "请先阅读并勾选协议");
+                                }
                                 break;
                             case 9://小于100
                                 ToastUtils.showToast(XiangMuXiangQing.this, "投资金额不能小于100");
@@ -893,7 +915,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 String sd1 = "根据测试结果您只能出借AAA、AA、A级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
 
                                 tb_fcianpop("保守型", sd1, 10);
-
                                 break;
                         }
                     }
@@ -1055,6 +1076,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     @SuppressLint("WrongConstant")
     private void showpopwindow() {
+
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = 0.7f;
         getWindow().setAttributes(lp);
@@ -1091,13 +1113,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         });//只能是汉字
         pop_idcard.addTextChangedListener(new MaxLengthWatcher(18, pop_idcard));
         pop_idcard.setTransformationMethod(new A2bigA());//小写转大写
-        popview = new PopupWindow(view,
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+        popview1 = new PopupWindow(view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popview.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popview.setFocusable(true);
+        popview1.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popview1.setFocusable(true);
         // 设置点击其他地方就消失
-        popview.setOutsideTouchable(true);
+        popview1.setOutsideTouchable(true);
         popb_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1105,10 +1127,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 popidcard = pop_idcard.getText().toString();
 
                 getshimingHTTp();
+
             }
 
         });
-        popview.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        popview1.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 WindowManager.LayoutParams lp = getWindow().getAttributes();
@@ -1119,12 +1142,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         guanbil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popview.dismiss();
+                popview1.dismiss();
             }
         });
-        popview.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
-        popview.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        popview.showAtLocation(parent, Gravity.BOTTOM
+        popview1.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popview1.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        popview1.showAtLocation(parent, Gravity.BOTTOM
                 | Gravity.CENTER_VERTICAL, 0, 0);
 
     }
@@ -1243,11 +1266,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                         String zhuangtai = data.getState();
                         Log.e("实名认证", zhuangtai);
-                        if (zhuangtai.equals("success")) {
+                        if (zhuangtai.equals("success")) {   //实名认证成功
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
-                            Intent intent = new Intent(XiangMuXiangQing.this, ShiMingRenZhengKO.class);
-                            startActivity(intent);
+                            popview1.dismiss();
+                            showshimingokpop();//实名认证成功，弹成功pop
+
+//                            Intent intent = new Intent(XiangMuXiangQing.this, ShiMingRenZhengKO.class);
+//                            startActivity(intent);
                         } else {
 //                        jinggao.setVisibility(View.VISIBLE);
 //                        jinggao.setText(message);
@@ -1259,26 +1285,42 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
-//    private void shouAlertDialog(String msj) {
-//        AlertDialog alertDialog = new AlertDialog.Builder(this)
-//                .setTitle("提示")
-//                .setMessage(msj)
-//                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        promptDialog.dismiss();
-//                    }
-//                })
-//                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        getchujieHttpTwo();
-//                    }
-//                })
-//                .create();
-//        alertDialog.show();
-//
-//    }
+    @SuppressLint("WrongConstant")
+    private void showshimingokpop() {
+
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getWindow().setAttributes(lp);
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View view = LayoutInflater.from(this).inflate(R.layout.shimingrenzhengchenggong_pop, null);
+        ImageView smcg_cg_guanbil=view.findViewById(R.id.smcg_cg_guanbil);//关闭按钮
+        Button pop_cg_kt=view.findViewById(R.id.pop_cg_kt);//开通存管
+
+        popview2 = new PopupWindow(view,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popview2.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popview2.setFocusable(false);
+        // 设置点击其他地方就消失
+        popview2.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        smcg_cg_guanbil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popview2.dismiss();
+            }
+        });
+        pop_cg_kt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getchHTTP();//开通存管
+                popview2.dismiss();
+            }
+        });
+        popview2.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        popview2.showAtLocation(parent, Gravity.BOTTOM
+                | Gravity.CENTER_VERTICAL, 0, 0);
+    }
+
 
     private void getchujieHttpTwo() {
 
@@ -1342,6 +1384,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             SPUtils.remove(XiangMuXiangQing.this, "juantype");
                             SPUtils.remove(XiangMuXiangQing.this, "juanId");
                             SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+                            SPUtils.remove(XiangMuXiangQing.this, "juanjine");
                             bt_lijichujie.setEnabled(true);
                             promptDialog.dismiss();
                             finish();
@@ -1406,9 +1449,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juan_id = (int) SPUtils.get(this, "juanId", 0);
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
-//        Log.e("我的--》juan_type", "" + juan_type);
-//        Log.e("我的--》juan_id", "" + juan_id);
-//        Log.e("我的--》juanmake", "" + juanmake);
+        juanjinge = (String) SPUtils.get(this, "juanjine", "");
+        Log.e("我的--》juan_type", "" + juan_type);
+        Log.e("我的--》juan_id", "" + juan_id);
+        Log.e("我的--》juanmake", "" + juanmake);
+        Log.e("我的--》juanjine", "" + juanjinge);
 //            youhuijuan.setText(juanmake);
 
 
@@ -1429,6 +1474,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         SPUtils.remove(XiangMuXiangQing.this, "juantype");
         SPUtils.remove(XiangMuXiangQing.this, "juanId");
         SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+        SPUtils.remove(XiangMuXiangQing.this, "juanjine");
         ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

@@ -16,7 +16,35 @@
         android:layout_marginTop="10px"
         android:text="重置密码成功"
        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:orientation="horizontal">
+    <Button
 
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+
+        android:textColor="#1965db"
+        android:textSize="24px" />
+    <!--<View-->
+    <!--android:layout_width="1px"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:background="#dadada" />-->
+    <Button
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+
+        android:textColor="#1965db"
+        android:textSize="24px" />
+    </LinearLayout>
     
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -1,6 +1,7 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -128,9 +129,15 @@ public class FanKui extends AutoLayoutActivity {
                         FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
                         String message = data.getMessage();
 
-                        if (message.equals("意见反馈成功")){
+                        if (message.equals("意见反馈成功!")){
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finish();
+                                }
+                            }, 2000);
                             ToastUtils.showToast(FanKui.this, "提交成功");
-                            finish();
                         }else {
                             ToastUtils.showToast(FanKui.this, ""+message);
                         }

@@ -140,6 +140,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                             SPUtils.put(ShiMingrenzheng.this, "Loginid", loginId);
                             SPUtils.put(ShiMingrenzheng.this, "userId", user_id);
                             SPUtils.put(ShiMingrenzheng.this, "Token1", user_token);
+                            SPUtils.put(ShiMingrenzheng.this, "inviterId", d_data.getResult().getInviterId());
                             ZhuCe_PaGa.zc_instance.finish();
                             YanZheng_PaGa.instance.finish();
                             WoDe_DengRu.instance.finish();

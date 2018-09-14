@@ -34,6 +34,7 @@
     <include
         android:id="@+id/tixin_kongbai"
         layout="@layout/kongbai"
+        android:visibility="gone"
         />
     <LinearLayout
         android:id="@+id/yhcard"
@@ -153,21 +154,33 @@
             android:layout_height="1px"
             android:background="#dadada" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/t_cz_keyong"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="33px"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30px"
                 android:text="可用余额:  0.00元"
                 android:textColor="#999999"
                 android:textSize="24px" />
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/t_shouxuf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30px"
+                android:text="提现手续费:  0.00元"
+                android:textColor="#999999"
+                android:textSize="24px" />
+        </RelativeLayout>
     </LinearLayout>
 
 

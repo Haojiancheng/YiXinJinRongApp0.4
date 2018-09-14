@@ -167,7 +167,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getshimingHTTp();
-//                                                finish();
+                                                finish();
                                             }
                                         })
                                         .create();

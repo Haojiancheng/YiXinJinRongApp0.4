@@ -390,7 +390,7 @@ html, body {
     font-size: 0.24rem;
 }
 .preNexts{
- padding-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
 }
 .choose .input input{
     display: none;
@@ -475,8 +475,8 @@ html, body {
 }
 .kuan,.kuan2{
     position: fixed;
-    width: 4rem;
-    height: 2rem;
+    width: 5rem;
+    height: 2.8rem;
     background: #fef6f2;
 
     border: 1px solid #c6c6c6;
@@ -486,20 +486,20 @@ html, body {
     -webkit-transform:translate(-50%,-50%);
     -moz-transform:translate(-50%,-50%);
     -ms-transform:translate(-50%,-50%);
-    border-radius: 0.06rem;
+    border-radius: 6px;
     z-index: 668;
 }
 .font,.font3{
-    font-size: 0.22rem;
+    font-size: 0.28rem;
     line-height: 0.36rem;
-    top:38%;
+    top:50%;
     left:50%;
-    position: fixed;
+    position: absolute;
     transform:translate(-50%,-50%);
     -webkit-transform:translate(-50%,-50%);
     -moz-transform:translate(-50%,-50%);
     -ms-transform:translate(-50%,-50%);
-    max-width: 2.7rem;
+    max-width: 4rem;
 
 }
 .font2,.font4{
@@ -510,8 +510,8 @@ html, body {
 }
 .font2 a,.font4 a{
     text-decoration: none;
-    line-height: 0.7rem;
-    font-size: 0.24rem;
+    line-height: 1rem;
+    font-size: 0.26rem;
     display: inline-block;
     width: 50%;
     text-align: center;
@@ -526,7 +526,7 @@ html, body {
     width: 100%;
 }
 .nei_Kuan,.nei_Kuan2{
-    height: 1.3rem;
+    height: 1.8rem;
     border-bottom: 1px solid #999;
     position: relative;
 }

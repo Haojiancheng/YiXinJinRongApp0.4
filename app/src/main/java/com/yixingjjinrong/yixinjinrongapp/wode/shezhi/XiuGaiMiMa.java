@@ -163,6 +163,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                             ToastUtils.showToast(XiuGaiMiMa.this, "修改成功,请重新登入");
                             Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
                             startActivity(it);
+                            WoDe_SheZhi.wodezhezhi.finish();
                             finish();
                         }
                     }

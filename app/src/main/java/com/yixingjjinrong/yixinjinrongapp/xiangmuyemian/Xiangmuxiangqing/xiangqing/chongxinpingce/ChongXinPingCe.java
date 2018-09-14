@@ -14,6 +14,7 @@ import android.webkit.WebViewClient;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 
 public class ChongXinPingCe extends AppCompatActivity {
     private WebView cxpc_vciew;
@@ -30,6 +31,7 @@ public class ChongXinPingCe extends AppCompatActivity {
                 .keyboardEnable(true)
                 .init();
         cxpc_vciew=findViewById(R.id.cxpc_vciew);
+        user_id = (int) SPUtils.get(this, "userId", 0);
         WebSettings webSettings = cxpc_vciew.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);

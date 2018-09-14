@@ -127,7 +127,7 @@ public class MainActivity extends AutoLayoutActivity {
             long minutes = (diff - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
             Log.e("时间差：", "" + minutes);
             if (minutes>=30){
-                gethttp();
+//                gethttp();
             }
         }
     }

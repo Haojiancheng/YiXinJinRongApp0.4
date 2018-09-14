@@ -129,7 +129,7 @@ public class FanKui extends AutoLayoutActivity {
                         FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
                         String message = data.getMessage();
 
-                        if (message.equals("意见反馈成功!")){
+                        if (data.getState().equals("success")){
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override

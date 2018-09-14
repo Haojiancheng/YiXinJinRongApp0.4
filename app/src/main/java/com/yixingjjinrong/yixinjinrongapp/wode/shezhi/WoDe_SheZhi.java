@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
+import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -50,6 +51,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     private String ishand;
     private View shoushi_bt;//手势密码
     private View hz_bt;
+    public static WoDe_SheZhi wodezhezhi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
 //        }
         setContentView(R.layout.activity_wode_shezhi);
-
+        wodezhezhi = this;
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
@@ -188,7 +190,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                     }
                 });
             }
-        }else {
+        } else {
             shoushi_bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -319,8 +321,8 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         hz = findViewById(R.id.hz);//缓存
         shezhi_fh = findViewById(R.id.shezhi_fh);
         hand_pass = findViewById(R.id.hand_pass);
-        shoushi_bt=findViewById(R.id.shoushi_bt);//手势密码
-        hz_bt=findViewById(R.id.hz_bt);
+        shoushi_bt = findViewById(R.id.shoushi_bt);//手势密码
+        hz_bt = findViewById(R.id.hz_bt);
     }
 
     @Override

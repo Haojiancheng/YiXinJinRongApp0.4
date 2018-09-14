@@ -197,7 +197,7 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Log.e("短信", "roon"+"+"+e );
                     }
 
                     @Override
@@ -249,13 +249,12 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         OkHttpUtils.postString()
                 .url(Urls.BASE_URL + "yxbApp/PhoneVerify.do")
                 .content(canshu.toString())
-
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        Log.e("手机号", "ron") ;
                     }
 
                     @Override

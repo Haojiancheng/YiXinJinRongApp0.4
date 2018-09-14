@@ -181,7 +181,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"
-                    android:text="房产抵押（本金+利息）"
+                    android:text="房产项目（本金+利息）"
                     android:textColor="#999999"
                     android:textSize="24px" />
 
@@ -230,7 +230,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="4.5"
-                    android:text="车辆抵押（本金+利息）"
+                    android:text="车辆项目（本金+利息）"
                     android:textColor="#999999"
                     android:textSize="24px" />
 

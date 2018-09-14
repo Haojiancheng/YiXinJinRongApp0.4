@@ -219,7 +219,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="30px"
-                    android:text="暂无"
+                    android:text="亿信宝"
                     android:textColor="#333333"
                     android:textSize="28px" />
             </RelativeLayout>
@@ -240,6 +240,7 @@
                     android:textSize="28px" />
 
                 <TextView
+                    android:id="@+id/gzh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -248,7 +249,6 @@
                     android:layout_marginRight="20px"
                     android:layout_marginTop="20px"
                     android:layout_marginBottom="20px"
-                    android:text="微信订阅号：亿信金融（微信号：yixinjinrong2015）      微信服务号：亿信宝（微信号：yxb-com）"
                     android:textColor="#333333"
                     android:textSize="28px" />
             </RelativeLayout>

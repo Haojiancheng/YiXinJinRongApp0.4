@@ -48,6 +48,8 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
 //    int a=1;
     private List<MyAddass_Gson.ResultBean.AddressListBean> list=new ArrayList<>();
     private Myaddass_adapter adapter;
+    private View ku_dizhi;
+    private Button kong_addass_instat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,13 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        kong_addass_instat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(MyAddess.this,AddAddass.class);
+                startActivity(it);
             }
         });
     }
@@ -119,12 +128,13 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
                         Log.e("我的地址GSON", ""+result);
                         MyAddass_Gson data = new Gson().fromJson(result, MyAddass_Gson.class);
                         if (data.getMessage().equals("查询成功")) {
-
+                            ku_dizhi.setVisibility(View.GONE);
                             list.addAll(data.getResult().getAddressList());
 
 
                             adapter.notifyDataSetChanged();
                         }else {
+                            ku_dizhi.setVisibility(View.VISIBLE);
                             Toast.makeText(MyAddess.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
@@ -144,6 +154,9 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         addass_rview.setLoadingMoreProgressStyle(ProgressStyle.BallPulseRise);
         addass_instat=findViewById(R.id.addass_instat);
         shouhuo_dz_fh=findViewById(R.id.shouhuo_dz_fh);
+        ku_dizhi=findViewById(R.id.ku_dizhi);
+        kong_addass_instat=findViewById(R.id.kong_addass_instat);
+
     }
 
     @Override

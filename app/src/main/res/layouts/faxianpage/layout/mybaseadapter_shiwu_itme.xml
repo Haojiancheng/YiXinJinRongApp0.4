@@ -38,7 +38,7 @@
 
         <ImageView
             android:id="@+id/im_shiwu"
-            android:layout_width="150px"
+            android:layout_width="130px"
             android:layout_height="130px"
             android:layout_marginLeft="30px"
             android:layout_marginTop="20px"
@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="亿金币"
+                    android:text="积分"
                     android:textColor="#999999"
                     android:textSize="28px" />
             </LinearLayout>

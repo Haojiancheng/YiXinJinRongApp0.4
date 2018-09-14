@@ -54,15 +54,16 @@
         android:gravity="center"
         android:layout_marginTop="40px"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="60px"
+            android:layout_marginStart="60px"
+            android:lineSpacingExtra="10sp"
             android:text="尊敬的用户,您好!恭喜您成功开通存管账户,特赠送您199元红包,助力您的财富之旅,可前往'我的账户'-'优惠券'中查看.先安全再投资,就在亿信宝."
-            android:textColor="#c74e4e"
-            android:textSize="30px"
-            android:layout_marginStart="30px"
-            android:layout_marginEnd="30px"
-            />
+            android:textColor="#f6631a"
+            android:textSize="30px" />
 
 
     </LinearLayout>
@@ -72,7 +73,7 @@
         android:layout_width="490px"
         android:layout_height="90px"
         android:background="@drawable/bt_shape"
-        android:text="个人中心"
+        android:text="账户中心"
         android:layout_marginTop="90px"
 
         android:layout_gravity="center"
@@ -85,5 +86,6 @@
         android:text="返回"
         android:layout_marginTop="36px"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:textColor="#ef6623" />
 </com.zhy.autolayout.AutoLinearLayout>

@@ -17,6 +17,7 @@ import com.zhy.autolayout.AutoLayoutActivity;
 public class PingTaJieShao extends AutoLayoutActivity {
     private ImageView ptjs_fh;
     private TextView zcxy_h5;
+    private TextView gzh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class PingTaJieShao extends AutoLayoutActivity {
                 .init();
         ptjs_fh = findViewById(R.id.ptjs_fh);
         zcxy_h5 = findViewById(R.id.zcxy_h5);
+        gzh=findViewById(R.id.gzh);
         ptjs_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +46,7 @@ public class PingTaJieShao extends AutoLayoutActivity {
                 startActivity(zhuce_page);
             }
         });
+        gzh.setText("微信订阅号：亿信金融（微信号：yixinjinrong2015）"+"\n"+"微信服务号：亿信宝（微信号：yxb-com）");
 
     }
 }

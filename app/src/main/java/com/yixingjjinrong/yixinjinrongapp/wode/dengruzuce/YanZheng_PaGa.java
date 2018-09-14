@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -155,18 +157,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 }
             }
         });
-        Intent intent = getIntent();
-        //从Intent当中根据key取得value
-        if (intent != null) {
-            get_phone = intent.getStringExtra("user_Phone");
-            mytimer = intent.getStringExtra("timer");
-            jsessionId = intent.getStringExtra("jsessionId");
-            if (mytimer.equals("1")) {
-                time = new TimeCount(60000, 1000);
-                time.start();
-            }
-            huode_phone.setText(get_phone);
-        }
+
         huoqu_yanzhengma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,6 +271,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             Log.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
             Log.e("TAG", ">>>>SH!!" + sha1);
+            Log.e("jsessionIdzhuce", jsessionId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -292,7 +284,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL + "yxbApp/registerApp.do?")
+                .url(Urls.BASE_URL + "yxbApp/registerAndroid.do?")
                 .content(canshu.toString())
                 .addHeader("Cookie", "JSESSIONID=" + jsessionId)
                 // js_request.put("jsessionId", jsessionId);
@@ -311,7 +303,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                         ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
                         if (date.getMessage().equals("注册成功")) {
                             int userid = date.getResult().getUserid();
-                            Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(YanZheng_PaGa.this, "" + date.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent_dengru = new Intent(YanZheng_PaGa.this, ChengGongZhuCe.class);
                             intent_dengru.putExtra("Phone_my", get_phone);
                             intent_dengru.putExtra("logid", date.getResult().getLoginId());
@@ -406,6 +398,59 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         user_mima.addTextChangedListener(new MaxLengthWatcher(18, user_mima));
         zc_yj_image = findViewById(R.id.zc_yj_image);
         zz_h5 = findViewById(R.id.zz_h5);
+        Intent intent = getIntent();
+        //从Intent当中根据key取得value
+        if (intent != null) {
+            get_phone = intent.getStringExtra("user_Phone");
+            mytimer = intent.getStringExtra("timer");
+            jsessionId = intent.getStringExtra("jsessionId");
+            Log.e("验证jsessionId", jsessionId);
+            if (mytimer.equals("1")) {
+                time = new TimeCount(60000, 1000);
+                time.start();
+            }
+            huode_phone.setText(get_phone);
+        }
+        phonecode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    et_qc.setVisibility(View.VISIBLE);
+                }else {
+                    et_qc.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        user_mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    zc_yj_image.setVisibility(View.VISIBLE);
+                }else {
+                    zc_yj_image.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 

@@ -1,6 +1,7 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.yaoqing;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,13 @@ import android.widget.TextView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
 import com.zhy.autolayout.AutoLayoutActivity;
+
+import gdut.bsx.share2.Share2;
+import gdut.bsx.share2.ShareContentType;
 
 public class MyYaoQing extends AutoLayoutActivity {
 
@@ -22,6 +27,8 @@ public class MyYaoQing extends AutoLayoutActivity {
     private TextView mycountmoney, mymancount, yaoqingxiangqing;
     private ImageView yq_fh, guize;
     private Button yuanqing_haoyou;
+    private Uri shareFileUrl = null;
+    private String inviterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,27 @@ public class MyYaoQing extends AutoLayoutActivity {
 
             }
         });
+        yuanqing_haoyou.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Share2.Builder(MyYaoQing.this)
+                        .setContentType(ShareContentType.TEXT)
+                        .setTextContent(Urls.BASE_URL+"inviteFriendReg.do?inviteCode="+inviterId)
+                        .setTitle("Share Text")
+                        .setShareFileUri(getShareFileUri())
+                        // .forcedUseSystemChooser(false)
+                        .build()
+                        .shareBySystem();
+            }
+        });
 
+    }
+
+    private Uri getShareFileUri() {
+        if (shareFileUrl == null) {
+
+        }
+        return shareFileUrl;
     }
 
     private void getinterview() {
@@ -76,7 +103,7 @@ public class MyYaoQing extends AutoLayoutActivity {
         yq_fh = findViewById(R.id.yq_fh);
         guize = findViewById(R.id.guize);
 //        SPUtils.put(ShiMingRenZhengKO.this, "inviterId", d_data.getResult().getInviterId());
-        SPUtils.get(MyYaoQing.this, "inviterId", "");
+        inviterId = (String) SPUtils.get(MyYaoQing.this, "inviterId", "");
         yuanqing_haoyou=findViewById(R.id.yuanqing_haoyou);
     }
 }

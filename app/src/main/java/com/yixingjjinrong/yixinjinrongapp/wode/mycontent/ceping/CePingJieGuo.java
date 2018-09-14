@@ -48,6 +48,7 @@ public class CePingJieGuo extends AutoLayoutActivity {
             public void onClick(View v) {
                 Intent it = new Intent(CePingJieGuo.this, ChongXinPingCe.class);
                 startActivity(it);
+                finish();
             }
         });
     }

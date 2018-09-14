@@ -6,9 +6,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100px"
+        android:layout_height="140px"
         android:orientation="horizontal"
-        android:background="#f3f5f3"
+        android:background="#fdfdfe"
         android:layout_marginTop="2px"
         >
 
@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="26px"
+                android:layout_marginTop="20px"
                 android:text="2018-06-05"
                 />
         </LinearLayout>
@@ -47,6 +48,8 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:paddingVertical="28px"
+                android:gravity="center"
+                android:layout_marginEnd="30px"
                 android:text="-1000" />
         </RelativeLayout>
     </LinearLayout>

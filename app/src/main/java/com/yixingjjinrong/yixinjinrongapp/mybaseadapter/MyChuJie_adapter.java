@@ -44,7 +44,7 @@ public class MyChuJie_adapter extends RecyclerView.Adapter<MyChuJie_adapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyChuJie_adapter.MyViewHolder holder, final int position) {
-        holder.xiangmu_code.setText(list.get(position).getBorrowCode());
+        holder.xiangmu_code.setText("");
         holder.qixian_chujie.setText(list.get(position).getDeadline());
         holder.xiangmu_name.setText(list.get(position).getBorrowTitle());
         holder.jinge_chujie.setText(String.valueOf(list.get(position).getInvestAmount()));

@@ -171,7 +171,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
                         Log.e("出借详情GSon：", "" + result);
                         data = new Gson().fromJson(result, OutXX_gson.class);
 
-                        out_title.setText(" " + data.getInvestDetails().getBorrowTitle() + data.getInvestDetails().getBorrowCode());
+                        out_title.setText(" " + data.getInvestDetails().getBorrowTitle() );
                         out_money.setText(" " + data.getInvestDetails().getInvestAmount());
                         out_time.setText(" " + data.getInvestDetails().getDeadline());
                         out_lv.setText(" " + data.getInvestDetails().getAnnualRate() + "%");

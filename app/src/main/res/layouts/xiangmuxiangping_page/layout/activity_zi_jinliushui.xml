@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f0f0f0"
     tools:context=".wode.fore_inot.zijinliushui.ZiJinliushui">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,5 +42,7 @@
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/liushuirview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="20px"
+        ></com.jcodecraeer.xrecyclerview.XRecyclerView>
 </com.zhy.autolayout.AutoLinearLayout>

@@ -56,7 +56,7 @@ FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
         }
         
        
-        holder.shiwu_money.setText(list.get(position).getExchangeCredits()+"");
+        holder.shiwu_money.setText(list.get(position).getExchangeCredits()+" ");
         if (list.get(position).getPicUrl().equals("加息券")){
 
             holder.quan.setVisibility(View.VISIBLE);
@@ -72,7 +72,7 @@ FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
             x.image().bind(holder.shiwu_iv,paht+list.get(position).getPicUrl());
             Log.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
         }
-        holder.shiwu_iv.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onEveryItemClickListener!=null){

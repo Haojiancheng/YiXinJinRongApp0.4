@@ -787,6 +787,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     public void onResponse(String response, int id) {
                         Log.e("立即出借GSon", response);
                         LJCJONR_GSon data = new Gson().fromJson(response, LJCJONR_GSon.class);
+//                        if (data.getMessage().equals()){}
                         int aaa = data.getMsg().getAaa();
                         switch (aaa) {
                             case 2:
@@ -888,6 +889,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                dialog3.show();
                                 break;
                             case 0:
+                                promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "请稍等…………", st.LENGTH_SHORT).show();
                                 if (cb_fuxuankuang.isChecked()) {
                                     getchujieHttpTwo();
@@ -1153,6 +1155,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void getshimingHTTp() {
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("userId", user_id);
@@ -1182,7 +1185,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(XiangMuXiangQing.this, "网络连接失败，请稍后再试");
                     }
 
                     @Override
@@ -1190,11 +1194,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         Log.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
-                        ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
+//                        ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
                         String jieguo = data.getState().toString();
-                        if (jieguo.equals("success")) {
+                        if (message.equals("可以认证")) {
                             getsmHttp();
                         }else {
+                            promptDialog.dismiss();
                             if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
                                 AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
@@ -1254,7 +1259,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        ToastUtils.showToast(XiangMuXiangQing.this, "网络连接失败，请稍后再试");
+                        promptDialog.dismiss();
                     }
 
                     @Override
@@ -1263,12 +1269,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
                         String message = data.getMessage().toString();
 //                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
-
                         String zhuangtai = data.getState();
                         Log.e("实名认证", zhuangtai);
                         if (zhuangtai.equals("success")) {   //实名认证成功
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
+                            promptDialog.dismiss();
                             popview1.dismiss();
                             showshimingokpop();//实名认证成功，弹成功pop
 
@@ -1277,6 +1283,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         } else {
 //                        jinggao.setVisibility(View.VISIBLE);
 //                        jinggao.setText(message);
+                            promptDialog.dismiss();
                             ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
                         }
                     }

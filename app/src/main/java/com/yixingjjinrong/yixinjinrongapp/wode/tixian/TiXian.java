@@ -8,8 +8,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +32,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
+import com.yixingjjinrong.yixinjinrongapp.gsondata.Shouxuf_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXianOk_GSON;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXian_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
@@ -67,6 +73,8 @@ public class TiXian extends AutoLayoutActivity {
     private static final int PERMISSION_REQUESTCODE = 1;
     private View tixin_kongbai;
     private PromptDialog promptDialog;
+    private TextView t_shouxuf;
+    private static final int MSG_SEARCH = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -498,7 +506,79 @@ public class TiXian extends AutoLayoutActivity {
         tx_fh = findViewById(R.id.tx_fh);
         kftelephone = findViewById(R.id.kftelephone);
         tixin_kongbai = findViewById(R.id.tixin_kongbai);
+        t_shouxuf=findViewById(R.id.t_shouxuf);
+        t_cz_money.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mHandler.hasMessages(MSG_SEARCH)) {
+                    mHandler.removeMessages(MSG_SEARCH);
+                }
+                //如果为空 直接显示搜索历史
+                if (TextUtils.isEmpty(s)) {
+                    //showHistory();
+                } else {//否则延迟500ms开始搜索
+                    mHandler.sendEmptyMessageDelayed(MSG_SEARCH, 1500); //自动搜索功能 删除
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            getfeiHttp();
+        }
+    };
+    private void getfeiHttp() {
+        JSONObject js_request = new JSONObject();//服务器需要传参的json对象
+        try {
+            js_request.put("userId", String.valueOf(user_id));
+            js_request.put("token", token);
+            js_request.put("loginId", loginid);
+            js_request.put("money", t_cz_money.getText().toString());
+            base1 = Base64JiaMI.AES_Encode(js_request.toString());
+
+            sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject canshu = new JSONObject();
+        try {
+            canshu.put("param", base1);
+            canshu.put("sign", sha1);
+            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/computingMoney.do")
+                .content(canshu.toString())
+
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.e("wss","rong");
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("手续费",""+response);
+                        Shouxuf_gson date = new Gson().fromJson(response, Shouxuf_gson.class);
+                        t_shouxuf.setText("提现手续费:  "+date.getCost()+"元");
+                    }
+                });
     }
 
     @Override

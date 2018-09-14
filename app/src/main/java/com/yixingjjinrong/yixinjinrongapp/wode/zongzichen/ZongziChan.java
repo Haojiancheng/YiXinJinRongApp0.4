@@ -179,7 +179,12 @@ public class ZongziChan extends AutoLayoutActivity {
                                     dj_fang_money.setText(data.getListFreeze().get(i).getSumMoney()+"");
                                 }
                             }
-                            dj_tixian_money.setText(data.getListFreeze().get(2).getWithdrawMoney());
+                            if (data.getListFreeze().get(2).getWithdrawMoney().equals("")) {
+                                dj_tixian_money.setText("0.00");
+                            }else {
+                                dj_tixian_money.setText(data.getListFreeze().get(2).getWithdrawMoney());
+
+                            }
 
 //                zonge_dongjie.setText(data.getUserMap().);
 //                car_daishou.setText(data.getUserMap());

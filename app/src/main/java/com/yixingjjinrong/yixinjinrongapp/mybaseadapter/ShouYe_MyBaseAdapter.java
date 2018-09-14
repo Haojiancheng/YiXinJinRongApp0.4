@@ -62,7 +62,7 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
-            ((MyViewHolder) holder).first_name.setText(mylist.get(position).getBorrowTitle() + "   " + mylist.get(position).getBorrowCode());
+            ((MyViewHolder) holder).first_name.setText(mylist.get(position).getBorrowTitle() );
             ((MyViewHolder) holder).first_lv.setText(String.valueOf(mylist.get(position).getSubsidies()));
             ((MyViewHolder) holder).first_yue.setText(mylist.get(position).getAmount() + " 元");
             if (mylist.get(position).getSubsidiesRate().equals("0.0")) {
@@ -135,7 +135,7 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
         }
         if (holder instanceof MyViewHolder2) {
             ((MyViewHolder2) holder).xiangmu_name.setText(mylist.get(position).getBorrowTitle());
-            ((MyViewHolder2) holder).xiangmu_code.setText(mylist.get(position).getBorrowCode());
+            ((MyViewHolder2) holder).xiangmu_code.setText("");
             ((MyViewHolder2) holder).years_lilv.setText(mylist.get(position).getSubsidies());
             if (mylist.get(position).getSubsidiesRate().equals("0.0")) {
                 ((MyViewHolder2) holder).fujia_lilv.setText("");

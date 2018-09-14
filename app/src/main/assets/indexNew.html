@@ -53,7 +53,7 @@
             </div>
             <div class="swipers">
                 <!-- 上下 -->
-                <div class="swiper-container">
+                <div class="swiper-container swiper-no-swiping">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="scores">
@@ -146,6 +146,7 @@
                                         <label for="t3s4">D.&nbsp;半年以下</label>
                                     </div>
                                 </div>
+                                <div class="swiper-button-prev">上一题</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -549,8 +550,8 @@
                 $.ajax({
                     type: "post",
                     //url : "http://192.168.1.219:8080/yxb_mobile/yxbApp/addUserInvestigation.do",//测试
-                    url: "http://newwei.yxb.com/yxbApp/addUserInvestigation.do", //线下
-                    //url : "http://newweichat-stg-test.yxb.com/yxbApp/addUserInvestigation.do", //STG
+                    //url: "http://newwei.yxb.com/yxbApp/addUserInvestigation.do", //线下
+                    url : "http://newweichat-stg-test.yxb.com/yxbApp/addUserInvestigation.do", //STG
                     //url : "https://wechat.yxb.com/yxbApp/addUserInvestigation.do", //生产
                     dataType: "jsonp",//数据类型为jsonp
                     jsonp: "jsonpCallback",//服务端用于接收callback调用的function名的参数
@@ -584,9 +585,14 @@
     });
     function setListData(lx, fx, cc, zj, n) {
         $(".sm_later").html(lx);
-        $(".fxcp_list02>li").eq(0).find("em").text(fx);
-        $(".fxcp_list02>li").eq(1).find("em").text(cc);
-        $(".fxcp_list02>li").eq(2).find("em").text(zj);
+        $(".fxcp_list02>li").eq(0).find("em").html(fx);
+        if(cc.length>3){
+            $(".fxcp_list02>li").eq(1).find("em").css({"font-size":"0.24rem"}).html(cc)
+        }else{
+            $(".fxcp_list02>li").eq(1).find("em").css({"font-size":"0.34rem"}).html(cc)
+        }
+        $(".fxcp_list02>li").eq(1).find("em").html(cc);
+        $(".fxcp_list02>li").eq(2).find("em").html(zj);
         $(".fxcp_list02 li>ul").each(function (i) {
             $(this).children("li").removeClass("on");
             $(this).children("li").slice(0, n).addClass("on");
@@ -634,7 +640,7 @@
     }
 
     $("#backBtn01").click(function(){
-        showIfWindow("退出风险评测",nsback,hidePop);
+        showIfWindow("出借前需进行风险评测，确定要终止风险评测吗？",nsback,hidePop);
         return false
     });
     $("#las a").click(function () {

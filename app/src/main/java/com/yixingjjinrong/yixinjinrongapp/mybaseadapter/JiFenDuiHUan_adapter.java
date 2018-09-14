@@ -53,7 +53,7 @@ public class JiFenDuiHUan_adapter extends RecyclerView.Adapter<JiFenDuiHUan_adap
         }
 
 
-        holder.xuni_money.setText(list.get(position).getExchangeCredits()+"");
+        holder.xuni_money.setText(list.get(position).getExchangeCredits()+" ");
         if (list.get(position).getPicUrl().equals("加息券")){
             holder.xuni_iv.setVisibility(View.GONE);
             holder.da_quan.setVisibility(View.VISIBLE);

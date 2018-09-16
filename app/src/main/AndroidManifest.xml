@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.yixingjjinrong.yixinjinrongapp">
     //联网
     <uses-permission android:name="android.permission.INTERNET" />
@@ -119,6 +120,21 @@
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.chongxinpingce.ChongXinPingCe" />
         <activity android:name=".wode.mycontent.shiming.WoDeShiMing" />
         <activity android:name=".wode.mycontent.ceping.CePingJieGuo"></activity>
+
+
+        <provider
+            android:name=".utils.MyProvider"
+            android:authorities="com.yixingjjinrong.yixinjinrongapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
+            <!--  -->
+        </provider>
+
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class WandaiTishishu extends AutoLayoutActivity {
@@ -48,7 +49,7 @@ public class WandaiTishishu extends AutoLayoutActivity {
         // 设置允许JS弹窗
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         web.loadUrl(Urls.BASE_URL + url+"borrowRandomId="+bid);
-        Log.e("ddddfd_-ff", ""+Urls.BASE_URL + url+"borrowRandomId="+bid);
+        MyLog.e("ddddfd_-ff", ""+Urls.BASE_URL + url+"borrowRandomId="+bid);
         web_fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

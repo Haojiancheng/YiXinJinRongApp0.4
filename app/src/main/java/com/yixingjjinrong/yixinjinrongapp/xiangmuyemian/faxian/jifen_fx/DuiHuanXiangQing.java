@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.DuiHuanxq_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DuiHuanxq_XUNi_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -137,9 +138,9 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
             js_request.put("speId", speid);
             js_request.put("prizeId", prizeId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,7 +148,7 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("兑换详情", "" + canshu);
+            MyLog.e("兑换详情", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -161,12 +162,12 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("兑换详情roon", "" + e);
+                        MyLog.e("兑换详情roon", "" + e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("兑换详情gson", response);
+                        MyLog.e("兑换详情gson", response);
                         if (prizeId.equals("")) {
                             data = new Gson().fromJson(response, DuiHuanxq_Gson.class);
                             String path = data.getResult().getPath();
@@ -240,9 +241,9 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
             js_request.put("receiverId", receiverId);
             js_request.put("changeNum", dh_num.getText().toString());//数量
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -250,7 +251,7 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("兑换详情", "" + canshu);
+            MyLog.e("兑换详情", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -263,12 +264,12 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("确认兑换roo", "" + e);
+                        MyLog.e("确认兑换roo", "" + e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("确认兑换Gson", "" + response);
+                        MyLog.e("确认兑换Gson", "" + response);
                         DuiHUan_JieGuo_gson data = new Gson().fromJson(response, DuiHUan_JieGuo_gson.class);
                         ToastUtils.showToast(DuiHuanXiangQing.this, data.getMessage());
                     }
@@ -290,9 +291,9 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
             js_request.put("receiverId", receiverId);
             js_request.put("changeNum", "1");//数量
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -300,7 +301,7 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("兑换详情", "" + canshu);
+            MyLog.e("兑换详情", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -313,12 +314,12 @@ public class DuiHuanXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("确认兑换roo", "" + e);
+                        MyLog.e("确认兑换roo", "" + e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("确认兑换Gson", "" + response);
+                        MyLog.e("确认兑换Gson", "" + response);
                         DuiHUan_JieGuo_gson data = new Gson().fromJson(response, DuiHUan_JieGuo_gson.class);
                         ToastUtils.showToast(DuiHuanXiangQing.this, data.getMessage());
 

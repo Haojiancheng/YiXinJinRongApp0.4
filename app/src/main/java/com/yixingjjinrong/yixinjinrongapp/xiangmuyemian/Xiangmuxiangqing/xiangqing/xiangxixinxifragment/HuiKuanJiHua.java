@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.HuiKuanJiHua_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
@@ -103,9 +104,9 @@ public class HuiKuanJiHua extends LazyFragment {
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -113,8 +114,8 @@ public class HuiKuanJiHua extends LazyFragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -135,7 +136,7 @@ public class HuiKuanJiHua extends LazyFragment {
                     @Override
                     public void onResponse(String response, int id) {
                         promptDialog.dismiss();
-                        Log.e("回款计划Gason", "<><>,>?>?GSOn" + response);
+                        MyLog.e("回款计划Gason", "<><>,>?>?GSOn" + response);
                         HuiKuanJiHua_Gson data = new Gson().fromJson(response, HuiKuanJiHua_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
@@ -167,7 +168,7 @@ public class HuiKuanJiHua extends LazyFragment {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
 //        token = (String) SPUtils.get(getActivity(), "Token1", "");
-        Log.e("项目回款计划", ""+borrowRandomId);
+        MyLog.e("项目回款计划", ""+borrowRandomId);
         MyScrollView huikuanjihuaSV= (MyScrollView) findViewById(R.id.huikuanjihuaScrollView);
         huikuanjihuaSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

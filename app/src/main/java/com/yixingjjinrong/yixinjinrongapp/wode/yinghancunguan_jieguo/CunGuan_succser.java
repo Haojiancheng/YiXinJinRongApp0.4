@@ -41,7 +41,7 @@ public class CunGuan_succser extends AutoLayoutActivity {
             @Override
             public void onClick(View v) {
                 Intent it=new Intent(CunGuan_succser.this, MainActivity.class);
-                it.putExtra("id","3");
+                it.putExtra("id","2");
                 startActivity(it);
                 finish();
             }

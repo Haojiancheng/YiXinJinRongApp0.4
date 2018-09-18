@@ -26,6 +26,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ShouYe_MyBaseAdapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -67,6 +68,7 @@ public class Shouye extends Fragment {
     private String[] mypic;
     private Button bt_first_chujie;
     private View first_viwe;
+    private int user_id;
 
 
     @Nullable
@@ -102,6 +104,7 @@ public class Shouye extends Fragment {
         mylistview.setLayoutManager(manager);
         mylistview.setHasFixedSize(true);
         mylistview.setNestedScrollingEnabled(false);
+
     }
 
     private void getHttp() {
@@ -114,28 +117,28 @@ public class Shouye extends Fragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         ToastUtils.showToast(getActivity(),"无网络，请稍后再试" );
-                        Log.e("我的ROON",""+e );
+                        MyLog.e("我的ROON",""+e );
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("TAG", "" + response);
+                        MyLog.e("TAG", "" + response);
                         data = new Gson().fromJson(response, ShouYe_Gson.class);
                         String paht = data.getResult().getPath();
-                        Log.e("TAG", "Path:" + paht);
+                        MyLog.e("TAG", "Path:" + paht);
 
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                             picurl = data.getResult().getBannerList().get(i).getPicurl();
-                            Log.e("TAG", "url:" + picurl);
+                            MyLog.e("TAG", "url:" + picurl);
                             mypic = new String[data.getResult().getBannerList().size()];
                         }
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                             picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
-                            Log.e("TAG", "url:" + picpath);
+                            MyLog.e("TAG", "url:" + picpath);
                             mypic[i] = picpath;
                         }
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                            Log.e("TAG", ">>>URL:" + mypic[i].toString());
+                            MyLog.e("TAG", ">>>URL:" + mypic[i].toString());
                         }
                         bann = getActivity().findViewById(R.id.shouyetobbanner);
                         List<String> list3 = new ArrayList<>();
@@ -149,10 +152,19 @@ public class Shouye extends Fragment {
                         bann.setOnBannerListener(new OnBannerListener() {
                             @Override
                             public void OnBannerClick(int position) {
-                                String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
-                                Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
-                                it.putExtra("h5", hrefurl);
-                                startActivity(it);
+                                String hrefurl1 = data.getResult().getBannerList().get(position).getHrefurl();
+                                if (hrefurl1.indexOf("userId=")!=-1){
+                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
+                                    it.putExtra("h5", hrefurl+user_id);
+                                    startActivity(it);
+                                }else {
+                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
+                                    it.putExtra("h5", hrefurl);
+                                    startActivity(it);
+                                }
+
                             }
                         });
 
@@ -168,7 +180,7 @@ public class Shouye extends Fragment {
                                 intent.putExtra("mortgageType", mtype);
                                 intent.putExtra("bt_name", mylist.get(position).getBorrowStatusStr());
                                 SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
-                                Log.e("TASG","立即出借id:"+xiangmu_id);
+                                MyLog.e("TASG","立即出借id:"+xiangmu_id);
                                 startActivity(intent);
                             }
                         });
@@ -245,6 +257,8 @@ public class Shouye extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+        MyLog.e("我的Idd", ""+user_id);
         getHttp();
     }
 

@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.Add_addass_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -82,11 +83,11 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
             js_request.put("name", add_name.getText().toString());
             js_request.put("addressDetail",add_mainaddass.getText().toString());
             js_request.put("address", add_addass.getText().toString());
-            Log.e("添加：name", ""+js_request);
+            MyLog.e("添加：name", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -94,7 +95,7 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            MyLog.e("我的消息",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -113,7 +114,7 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("添加收货地址GSOn：",""+result );
+                        MyLog.e("添加收货地址GSOn：",""+result );
                         Add_addass_gson add = new Gson().fromJson(result, Add_addass_gson.class);
                         String message = add.getMessage();
                         if (message.equals("添加地址成功")){

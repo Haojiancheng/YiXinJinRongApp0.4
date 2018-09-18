@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.juan_fragment.juan_daoqi.XianJinJuan_YiDao;
@@ -65,7 +66,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
         super.onActivityCreated(savedInstanceState);
         getfcdy_id();
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
-        Log.e("现金券user_id", "" + user_id);
+        MyLog.e("现金券user_id", "" + user_id);
         myadapter = new XianjinJuan_adapter(list);
         xianjinjun_rview.setAdapter(myadapter);
         getHttp();
@@ -89,9 +90,9 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -118,7 +119,7 @@ public class XianJinJuan_Fragment extends Fragment implements XRecyclerView.Load
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("现金券GSon", "" + result);
+                        MyLog.e("现金券GSon", "" + result);
                         XianJinJuan_gson data = new Gson().fromJson(result, XianJinJuan_gson.class);
                         if (data.getMessage().equals("没有可用券!")) {
                                 xianjin_wushuju.setVisibility(View.VISIBLE);

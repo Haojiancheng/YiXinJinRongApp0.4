@@ -27,6 +27,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
@@ -105,7 +106,7 @@ public class ChongZhq extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -123,7 +124,7 @@ public class ChongZhq extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("充值GSON:", "" + response);
+                        MyLog.e("充值GSON:", "" + response);
                         Yinhangka_Gson data = new Gson().fromJson(response, Yinhangka_Gson.class);
                         cz_keyong.setText("可用余额:  " + data.getUsableSum() + "元");
                         String msg = data.getMsg();
@@ -262,7 +263,7 @@ public class ChongZhq extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("是否可实名GSON：", response);
+                        MyLog.e("是否可实名GSON：", response);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
                         String jieguo = data.getState().toString();
@@ -319,7 +320,7 @@ public class ChongZhq extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -337,15 +338,15 @@ public class ChongZhq extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:", "" + result);
+                        MyLog.e("存管GSON:", "" + result);
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
                         Intent it = new Intent(ChongZhq.this, YinHangCunGuan.class);
                         it.putExtra("HTML", html);
-                        Log.e("我的页面银行存管HTML:", "" + it);
+                        MyLog.e("我的页面银行存管HTML:", "" + it);
                         startActivity(it);
 
-                        Log.e("wangy", "" + html);
+                        MyLog.e("wangy", "" + html);
                     }
                 });
 
@@ -370,7 +371,7 @@ public class ChongZhq extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -388,12 +389,12 @@ public class ChongZhq extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("ok充值：", result);
+                        MyLog.e("ok充值：", result);
                         ChongZhiOk_GSon data = new Gson().fromJson(result, ChongZhiOk_GSon.class);
                         String html = data.getHtml();
                         Intent itcz = new Intent(ChongZhq.this, ChongZhiOK.class);
                         itcz.putExtra("HTML", html);
-                        Log.e("HTMLone:", "" + html.toString());
+                        MyLog.e("HTMLone:", "" + html.toString());
                         startActivity(itcz);
                         finish();
                     }

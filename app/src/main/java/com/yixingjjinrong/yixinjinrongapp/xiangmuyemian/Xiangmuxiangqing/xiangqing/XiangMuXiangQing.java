@@ -48,6 +48,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.Yinhangka_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
@@ -139,7 +140,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         initView();
         detailedinformation.setVisibility(View.GONE);
         Intent it = getIntent();
-        Log.e("立即出借borrid", "" + id);
+        MyLog.e("立即出借borrid", "" + id);
         mType = it.getStringExtra("mortgageType");
         getjinge();//获取输入金额
         getWebview();//各种提示书
@@ -203,7 +204,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -221,7 +222,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("充值GSON:", "" + response);
+                        MyLog.e("充值GSON:", "" + response);
                         Yinhangka_Gson data = new Gson().fromJson(response, Yinhangka_Gson.class);
                         String msg = data.getMsg();
                         if (data.getMessage().equals("用户未登录。")) {
@@ -246,13 +247,13 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
 //                                                @Override
 //                                                public void onClick(DialogInterface dialog, int which) {
-                                                    showpopwindow();
+                                    showpopwindow();
 //                                                }
 //                                            })
 //                                            .create();
 //                                    dialog1.setCanceledOnTouchOutside(false);
 //                                    dialog1.show();
-                                }else if (msg.equals("bank_link")) {
+                                } else if (msg.equals("bank_link")) {
 //                                    AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
 //                                            .setTitle("提示")
 //                                            .setMessage("您还未开通银行存管，是否开通")
@@ -265,14 +266,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
 //                                                @Override
 //                                                public void onClick(DialogInterface dialog, int which) {
-                                                    cGpop();
+                                    cGpop();
 //                                                }
 //                                            })
 //                                            .create();
 //                                    dialog1.setCanceledOnTouchOutside(false);
 //                                    dialog1.show();
 
-                                }else if (msg.equals("sign_card")) {
+                                } else if (msg.equals("sign_card")) {
 //                        Toast.makeText(ChongZhq.this, "没有签约", Toast.LENGTH_SHORT).show();
                                     AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                             .setTitle("提示")
@@ -427,7 +428,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("CharSequence", "" + s);
+                MyLog.e("CharSequence", "" + s);
 //                int myjine = Integer.parseInt(jinge.getText().toString());
 //                if (myjine>=MAX){
 //
@@ -445,45 +446,52 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                    yujishouyi.setText("0.00");
 //                } else {
 //                    double b1 = Double.parseDouble(myjine);
-//                    Log.e("s1", "" + b1);
+//                    MyLog.e("s1", "" + b1);
 //
 //                    //*Integer.valueOf(data.getResult().getRedList1().getDeadlines())
 //                    double myshouyi = b1 * (data.getResult().getRedList1().getRan() / 12 * Integer.valueOf(data.getResult().getRedList1().getDeadlines())) / 100;
-////                    Log.e("myshouyi", "" + myshouyi);
+////                    MyLog.e("myshouyi", "" + myshouyi);
 //                    yujishouyi.setText("" + myshouyi);
 //                }
-                if (mHandler.hasMessages(MSG_SEARCH)) {
-                    mHandler.removeMessages(MSG_SEARCH);
-                }
-                //如果为空 直接显示搜索历史
-                if (TextUtils.isEmpty(s)) {
-                    //showHistory();
-                } else {//否则延迟500ms开始搜索
-                    mHandler.sendEmptyMessageDelayed(MSG_SEARCH, 3000); //自动搜索功能 删除
-                }
-                int i = Integer.parseInt(jinge.getText().toString());
+                if (jinge.getText().toString().equals("")) {
 
-                if (juanjinge.equals("")){
-
-                }else {
-                    if (i>=Integer.parseInt(juanjinge)){
-
-                    }else {
-                        youhuijuan.setText("未使用");
-                        SPUtils.remove(XiangMuXiangQing.this, "juantype");
-                        SPUtils.remove(XiangMuXiangQing.this, "juanId");
-                        SPUtils.remove(XiangMuXiangQing.this, "juanmake");
-                        SPUtils.remove(XiangMuXiangQing.this, "juanjine");
+                } else {
+                    if (mHandler.hasMessages(MSG_SEARCH)) {
+                        mHandler.removeMessages(MSG_SEARCH);
                     }
+                    //如果为空 直接显示搜索历史
+                    if (TextUtils.isEmpty(s)) {
+                        //showHistory();
+                    } else {//否则延迟500ms开始搜索
+                        mHandler.sendEmptyMessageDelayed(MSG_SEARCH, 3000); //自动搜索功能 删除
+                    }
+
+                    int i = Integer.parseInt(jinge.getText().toString());
+
+
+                    if (juanjinge.equals("")) {
+
+                    } else {
+                        if (i >= Integer.parseInt(juanjinge)) {
+
+                        } else {
+                            youhuijuan.setText("未使用");
+                            SPUtils.remove(XiangMuXiangQing.this, "juantype");
+                            SPUtils.remove(XiangMuXiangQing.this, "juanId");
+                            SPUtils.remove(XiangMuXiangQing.this, "juanmake");
+                            SPUtils.remove(XiangMuXiangQing.this, "juanjine");
+                        }
+                    }
+
+
                 }
-
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
             }
+
         });
 
 
@@ -506,12 +514,16 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            int i = Integer.parseInt(jinge.getText().toString());
-            if (i < 100) {
-                jinge.setText("100");
+            if (jinge.getText().toString().equals("")) {
+
             } else {
-                int num = i / 100;
-                jinge.setText(num * 100 + "");
+                int i = Integer.parseInt(jinge.getText().toString());
+                if (i < 100) {
+                    jinge.setText("100");
+                } else {
+                    int num = i / 100;
+                    jinge.setText(num * 100 + "");
+                }
             }
         }
     };
@@ -530,7 +542,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         detailedinformation = findViewById(R.id.detailedinformation);
         xiala_view = findViewById(R.id.xiale_view);
 
-        Log.e("userid", "id:" + user_id);
+        MyLog.e("userid", "id:" + user_id);
 //        yujishouyi = findViewById(R.id.yujishouyi);
         jianhao = findViewById(R.id.bt_jianhao);
         jinge = findViewById(R.id.et_jinge);
@@ -567,11 +579,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //            SPUtils.put(this, "borroFwRandomId", id);
             SPUtils.put(this, "mtype1", mType);
             js_request.put("userId", user_id);
-            Log.e("TAG", "id" + user_id);
+            MyLog.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -579,7 +591,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("立即出借首页", "" + canshu);
+            MyLog.e("立即出借首页", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -600,7 +612,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("8888Gson:", "" + result);
+                        MyLog.e("8888Gson:", "" + result);
 
                         data = new Gson().fromJson(result, XiangMuXiangQing_Gson.class);
                         promptDialog.dismiss();
@@ -682,9 +694,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                        if (s.equals("0")) {
 //                            youhuijuan.setText("暂无可用优惠券");
 //                        } else {
-                        Log.e("我的--》juan_type", "" + juan_type);
-                        Log.e("我的--》juan_id", "" + juan_id);
-                        Log.e("我的--》juanmake", "" + juanmake);
+                        MyLog.e("我的--》juan_type", "" + juan_type);
+                        MyLog.e("我的--》juan_id", "" + juan_id);
+                        MyLog.e("我的--》juanmake", "" + juanmake);
                         String s1 = String.valueOf(user_id);
                         if (s1.equals("0")) {
                             youhuijuan.setText("登录后查看");
@@ -742,22 +754,23 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     private void getchujieHttp() {
 //        bt_lijichujie.setEnabled(false);
+        promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
             js_request.put("userId", user_id);
-//            Log.e("立即出借Userid:", "" + user_id);
+//            MyLog.e("立即出借Userid:", "" + user_id);
             js_request.put("borrowRandomId", id);
-//            Log.e("立即出借borrowRandomId:", "" + id);
+//            MyLog.e("立即出借borrowRandomId:", "" + id);
             js_request.put("investAmount", jinge.getText().toString());
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
-//            Log.e("TAG", "id" + user_id);
+//            MyLog.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+//            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>SH!!" + sha1);
+//            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -765,7 +778,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("LijiChujie_gsonOne加密", "" + canshu);
+            MyLog.e("LijiChujie_gsonOne加密", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -785,13 +798,17 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("立即出借GSon", response);
+                        MyLog.e("立即出借GSon", response);
                         LJCJONR_GSon data = new Gson().fromJson(response, LJCJONR_GSon.class);
 //                        if (data.getMessage().equals()){}
-                        int aaa = data.getMsg().getAaa();
-                        switch (aaa) {
-                            case 2:
-                                promptDialog.dismiss();
+                        if (data.getMessage().equals("用户未登录。")) {
+                            promptDialog.dismiss();
+                            ToastUtils.showToast(XiangMuXiangQing.this, "请现登入");
+                        } else {
+                            int aaa = data.getMsg().getAaa();
+                            switch (aaa) {
+                                case 2:
+                                    promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未实名认证", st.LENGTH_SHORT).show();
 //                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this)
 //                                        .setTitle("提示")
@@ -807,16 +824,16 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                            public void onClick(DialogInterface dialog, int which) {
 //                                                promptDialog.dismiss();
 
-                                                showpopwindow();
+                                    showpopwindow();
 ////                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
 //                                            }
 //                                        })
 //                                        .create();
 //                                dialog.setCanceledOnTouchOutside(false);
 //                                dialog.show();
-                                break;
-                            case 3:
-                                promptDialog.dismiss();
+                                    break;
+                                case 3:
+                                    promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未开通银行存管", st.LENGTH_SHORT).show();
 //                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
 //                                        .setTitle("提示")
@@ -831,42 +848,42 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                            @Override
 //                                            public void onClick(DialogInterface dialog, int which) {
 //                                                promptDialog.dismiss();
-                                                cGpop();
+                                    cGpop();
 //                                        st.makeText(XiangMuXiangQing.this, "请开通", st.LENGTH_SHORT).show();
 //                                            }
 //                                        })
 //                                        .create();
 //                                dialog1.setCanceledOnTouchOutside(false);
 //                                dialog1.show();
-                                break;
-                            case 5:
-                                promptDialog.dismiss();
+                                    break;
+                                case 5:
+                                    promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未签约", st.LENGTH_SHORT).show();
-                                AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this)
-                                        .setTitle("提示")
-                                        .setMessage("您的余额不足请充值")
-                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
+                                    AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this)
+                                            .setTitle("提示")
+                                            .setMessage("您的余额不足请充值")
+                                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
 
-                                            }
-                                        })
-                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                promptDialog.dismiss();
+                                                }
+                                            })
+                                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    promptDialog.dismiss();
 //                                                Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
 //                                                startActivity(it);
-                                                getChongzhiHttp();
+                                                    getChongzhiHttp();
 //                                        st.makeText(XiangMuXiangQing.this, "请签约", st.LENGTH_SHORT).show();
-                                            }
-                                        })
-                                        .create();
-                                dialog2.setCanceledOnTouchOutside(false);
-                                dialog2.show();
-                                break;
-                            case 4:
-                                promptDialog.dismiss();
+                                                }
+                                            })
+                                            .create();
+                                    dialog2.setCanceledOnTouchOutside(false);
+                                    dialog2.show();
+                                    break;
+                                case 4:
+                                    promptDialog.dismiss();
 //                        st.makeText(XiangMuXiangQing.this, "未风险评测", st.LENGTH_SHORT).show();
 //                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
 //                                        .setTitle("提示")
@@ -881,43 +898,47 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                                            @Override
 //                                            public void onClick(DialogInterface dialog, int which) {
 //                                                promptDialog.dismiss();
-                                                fxpop();
+                                    fxpop();
 //                                            }
 //                                        })
 //                                        .create();
 //                                dialog3.setCanceledOnTouchOutside(false);
 //                                dialog3.show();
-                                break;
-                            case 0:
-                                promptDialog.dismiss();
+                                    break;
+                                case 0:
+
 //                        st.makeText(XiangMuXiangQing.this, "请稍等…………", st.LENGTH_SHORT).show();
-                                if (cb_fuxuankuang.isChecked()) {
-                                    getchujieHttpTwo();
-                                } else {
-                                    ToastUtils.showToast(XiangMuXiangQing.this, "请先阅读并勾选协议");
-                                }
-                                break;
-                            case 9://小于100
-                                ToastUtils.showToast(XiangMuXiangQing.this, "投资金额不能小于100");
-                                break;
-                            case 8://不是100的倍数
-                                ToastUtils.showToast(XiangMuXiangQing.this, "投资金额只能是100的倍数");
-                                break;
-                            case 11://稳健
-                                promptDialog.dismiss();
+                                    if (cb_fuxuankuang.isChecked()) {
+                                        getchujieHttpTwo();
+                                    } else {
+                                        promptDialog.dismiss();
+                                        ToastUtils.showToast(XiangMuXiangQing.this, "请先阅读并勾选协议");
+                                    }
+                                    break;
+                                case 9://小于100
+                                    promptDialog.dismiss();
+                                    ToastUtils.showToast(XiangMuXiangQing.this, "投资金额不能小于100");
+                                    break;
+                                case 8://不是100的倍数
+                                    promptDialog.dismiss();
+                                    ToastUtils.showToast(XiangMuXiangQing.this, "投资金额只能是100的倍数");
+                                    break;
+                                case 11://稳健
+                                    promptDialog.dismiss();
 //                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                String sd = "根据测试结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+                                    String sd = "根据测试结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
 
-                                tb_fcianpop("稳健型", sd, 11);
+                                    tb_fcianpop("稳健型", sd, 11);
 
-                                break;
-                            case 10://保守
-                                promptDialog.dismiss();
+                                    break;
+                                case 10://保守
+                                    promptDialog.dismiss();
 //                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                String sd1 = "根据测试结果您只能出借AAA、AA、A级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+                                    String sd1 = "根据测试结果您只能出借AAA、AA、A级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
 
-                                tb_fcianpop("保守型", sd1, 10);
-                                break;
+                                    tb_fcianpop("保守型", sd1, 10);
+                                    break;
+                            }
                         }
                     }
                 });
@@ -1044,7 +1065,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1062,15 +1083,15 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:", "" + result);
+                        MyLog.e("存管GSON:", "" + result);
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
                         Intent it = new Intent(XiangMuXiangQing.this, YinHangCunGuan.class);
                         it.putExtra("HTML", html);
-                        Log.e("我的页面银行存管HTML:", "" + it);
+                        MyLog.e("我的页面银行存管HTML:", "" + it);
                         startActivity(it);
 
-                        Log.e("wangy", "" + html);
+                        MyLog.e("wangy", "" + html);
                     }
                 });
 
@@ -1162,9 +1183,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1191,16 +1212,16 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("是否可实名GSON：", result);
+                        MyLog.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
 //                        ToastUtils.showToast(XiangMuXiangQing.this, "" + message);
                         String jieguo = data.getState().toString();
                         if (message.equals("可以认证")) {
                             getsmHttp();
-                        }else {
+                        } else {
                             promptDialog.dismiss();
-                            if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")){
+                            if (message.equals("认证失败！您今日的认证次数已达上限，请明天再进行认证！")) {
                                 AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                         .setTitle("提示")
                                         .setMessage("认证失败！您今日的认证次数已达上限，请明天再进行认证！")
@@ -1220,7 +1241,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                         .create();
                                 dialog1.setCanceledOnTouchOutside(false);
                                 dialog1.show();
-                            }else {
+                            } else {
                                 ToastUtils.showToast(XiangMuXiangQing.this, message);
                             }
                         }
@@ -1237,9 +1258,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1265,12 +1286,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("实名认证的GSOn", "" + result);
+                        MyLog.e("实名认证的GSOn", "" + result);
                         ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
                         String message = data.getMessage().toString();
 //                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
                         String zhuangtai = data.getState();
-                        Log.e("实名认证", zhuangtai);
+                        MyLog.e("实名认证", zhuangtai);
                         if (zhuangtai.equals("success")) {   //实名认证成功
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
@@ -1300,8 +1321,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         getWindow().setAttributes(lp);
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         View view = LayoutInflater.from(this).inflate(R.layout.shimingrenzhengchenggong_pop, null);
-        ImageView smcg_cg_guanbil=view.findViewById(R.id.smcg_cg_guanbil);//关闭按钮
-        Button pop_cg_kt=view.findViewById(R.id.pop_cg_kt);//开通存管
+        ImageView smcg_cg_guanbil = view.findViewById(R.id.smcg_cg_guanbil);//关闭按钮
+        Button pop_cg_kt = view.findViewById(R.id.pop_cg_kt);//开通存管
 
         popview2 = new PopupWindow(view,
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -1330,25 +1351,26 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
 
     private void getchujieHttpTwo() {
-
+//        promptDialog = new PromptDialog(this);
+//        promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
             js_request.put("userId", user_id);
-            Log.e("立即出借Userid:", "" + user_id);
+            MyLog.e("立即出借Userid:", "" + user_id);
             js_request.put("borrowRandomId", id);
-            Log.e("立即出借borrowRandomId:", "" + id);
+            MyLog.e("立即出借borrowRandomId:", "" + id);
             js_request.put("investAmount", jinge.getText().toString());
             js_request.put("activitype", juan_type);
             js_request.put("activityId", juan_id);
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
 //Yixinjinrong201806
-            Log.e("TAG", "id" + js_request);
+            MyLog.e("TAG", "id" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAGjs_request", "" + js_request);
+            MyLog.e("TAGjs_request", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1356,7 +1378,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("立即出接two", "" + canshu);
+            MyLog.e("立即出接two", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1376,7 +1398,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("立即出借GSon", result);
+                        MyLog.e("立即出借GSon", result);
                         LJCJtwo_gson data = new Gson().fromJson(result, LJCJtwo_gson.class);
                         String msg = data.getResult().getMsg();
 
@@ -1457,10 +1479,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juan_type = (int) SPUtils.get(this, "juantype", 0);
         juanmake = (String) SPUtils.get(this, "juanmake", "");
         juanjinge = (String) SPUtils.get(this, "juanjine", "");
-        Log.e("我的--》juan_type", "" + juan_type);
-        Log.e("我的--》juan_id", "" + juan_id);
-        Log.e("我的--》juanmake", "" + juanmake);
-        Log.e("我的--》juanjine", "" + juanjinge);
+        MyLog.e("我的--》juan_type", "" + juan_type);
+        MyLog.e("我的--》juan_id", "" + juan_id);
+        MyLog.e("我的--》juanmake", "" + juanmake);
+        MyLog.e("我的--》juanjine", "" + juanjinge);
 //            youhuijuan.setText(juanmake);
 
 

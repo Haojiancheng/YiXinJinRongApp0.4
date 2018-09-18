@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuJingDu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
@@ -57,7 +58,7 @@ public class XiangMuJingDu extends LazyFragment {
         initview();
         gethttpjingde_id();
         String s = String.valueOf(user_id);
-        Log.e("xianmjingduid",s );
+        MyLog.e("xianmjingduid",s );
         if (s.equals("0")) {
             jd_dengruchakan.setVisibility(View.VISIBLE);
             jd_dengruchakan.setOnClickListener(new View.OnClickListener() {
@@ -87,9 +88,9 @@ public class XiangMuJingDu extends LazyFragment {
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -97,8 +98,8 @@ public class XiangMuJingDu extends LazyFragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -119,7 +120,7 @@ public class XiangMuJingDu extends LazyFragment {
                     @Override
                     public void onResponse(String result, int id) {
                         promptDialog.dismiss();
-                        Log.e("项目进度GSOn", "" + result);
+                        MyLog.e("项目进度GSOn", "" + result);
                         XiangMuJingDu_Gson data = new Gson().fromJson(result, XiangMuJingDu_Gson.class);
                         String message = data.getMessage();
                         if (message.equals("用户未登录。")) {
@@ -300,7 +301,7 @@ public class XiangMuJingDu extends LazyFragment {
 
     private void initview() {
         borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
-        Log.e("项目进度类型", "" + borrowRandomId);
+        MyLog.e("项目进度类型", "" + borrowRandomId);
         MyScrollView xiangmujinduSV= (MyScrollView) findViewById(R.id.xiangmujingduScrollView);
         xiangmujinduSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

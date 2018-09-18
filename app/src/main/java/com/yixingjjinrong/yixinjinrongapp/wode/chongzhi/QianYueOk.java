@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.contractResult.Contract_OK;
@@ -52,7 +53,7 @@ public class QianYueOk extends AppCompatActivity {
         qy_web = findViewById(R.id.qy_web);
         Intent it = getIntent();
         String html = it.getStringExtra("HTML");
-        Log.e("签约HTMl", html);
+        MyLog.e("签约HTMl", html);
         WebSettings webSettings = qy_web.getSettings();
 
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存
@@ -71,7 +72,7 @@ public class QianYueOk extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Log.e("onPageFinished返回url", url);
+                MyLog.e("onPageFinished返回url", url);
                 //http://newwei.yxb.com/yxbApp/appSignCardNoticeUrls.do?receiveCode=0000&retCode=5360&phone=17338108873
 
                 if (url.contains("appSignCardNoticeUrls.do?receiveCode=")) {
@@ -84,13 +85,13 @@ public class QianYueOk extends AppCompatActivity {
 //                    Log.e("输出====sp2",""+sp2[j]);
                             String[] sp3 = sp2[j].toString().split("[=]");
                             for (int a = 0; a < sp3.length; a++) {
-                                Log.e("输出====sp3[1]", "" + sp3[1]);
-                                Log.e("输出====sp3[0]", "" + sp3[0]);
+                                MyLog.e("输出====sp3[1]", "" + sp3[1]);
+                                MyLog.e("输出====sp3[0]", "" + sp3[0]);
                                 ss.add(sp3[1]);
                             }
                         }
                     }
-                    Log.e("ss==========", ss.toString());
+                    MyLog.e("ss==========", ss.toString());
                     //第一个
                     receiveCode = ss.get(1);
 
@@ -98,7 +99,7 @@ public class QianYueOk extends AppCompatActivity {
                     retCode = ss.get(2);
                     //电话号
                     myphone = ss.get(5);
-                    Log.e("大会不为广大", "phone" + myphone + "receiveCode" + receiveCode + "retCode" + retCode);
+                    MyLog.e("大会不为广大", "phone" + myphone + "receiveCode" + receiveCode + "retCode" + retCode);
                     if (receiveCode.equals("0000") && retCode.equals("0000")) {
                         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
                         try {
@@ -116,7 +117,7 @@ public class QianYueOk extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(String result) {
-                                Log.e("签约成功Gson",""+result );
+                                MyLog.e("签约成功Gson",""+result );
                                 Intent inte = new Intent(QianYueOk.this, Contract_OK.class);
                                 startActivity(inte);
                                 finish();
@@ -154,7 +155,7 @@ public class QianYueOk extends AppCompatActivity {
                         x.http().post(params, new Callback.CommonCallback<String>() {
                             @Override
                             public void onSuccess(String result) {
-                                Log.e("签约失败Gson", result);
+                                MyLog.e("签约失败Gson", result);
                                 Intent inte = new Intent(QianYueOk.this, Contract_loser.class);
                                 startActivity(inte);
                                 finish();

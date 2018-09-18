@@ -15,6 +15,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore2;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.XiangMu;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -73,7 +74,7 @@ public class ChongZhiSuccers extends AutoLayoutActivity {
     private void getokid() {
         Intent it=getIntent();
         jine = it.getStringExtra("jine");
-        Log.e("我冲的钱",""+jine );
+        MyLog.e("我冲的钱",""+jine );
         chongzhiok_jinge=findViewById(R.id.chongzhiok_jinge);
         bt_chong_agen=findViewById(R.id.bt_chong_agen);
         bt_chujie=findViewById(R.id.bt_chujie);

@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.OutXX_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.ChuJieXiangXing.Wo_HuikuanJIHua;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -138,11 +139,11 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
             js_request.put("borrowId", borrowid);
             js_request.put("investId", investid);
             js_request.put("guaranteeType", 0);
-            Log.e("我的出借房产表参数：", "" + js_request);
+            MyLog.e("我的出借房产表参数：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -150,7 +151,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("出借详情ddd：", "" + canshu);
+            MyLog.e("出借详情ddd：", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -168,7 +169,7 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("出借详情GSon：", "" + result);
+                        MyLog.e("出借详情GSon：", "" + result);
                         data = new Gson().fromJson(result, OutXX_gson.class);
 
                         out_title.setText(" " + data.getInvestDetails().getBorrowTitle() );

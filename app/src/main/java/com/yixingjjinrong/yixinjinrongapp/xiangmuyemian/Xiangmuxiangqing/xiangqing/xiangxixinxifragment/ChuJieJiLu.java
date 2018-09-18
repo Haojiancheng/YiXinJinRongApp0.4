@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ChuJieJiLu_Adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
@@ -88,9 +89,9 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -98,8 +99,8 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -120,7 +121,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
                     @Override
                     public void onResponse(String result, int id) {
                         promptDialog.dismiss();
-                        Log.e("TAG出借记录》GSON", "" + result);
+                        MyLog.e("TAG出借记录》GSON", "" + result);
                         IChuJieJiLu_Gson date = new Gson().fromJson(result, IChuJieJiLu_Gson.class);
                         String message = date.getMessage();
                         if (message.equals("用户未登录。")) {
@@ -152,7 +153,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
         cjjl_dengruchakan=findViewById(R.id.cjjl_dengruchakan);
-        Log.e("项目出借记录", ""+borrowRandomId);
+        MyLog.e("项目出借记录", ""+borrowRandomId);
         MyScrollView chujiejiluSV= (MyScrollView) findViewById(R.id.chujiejiluScrollView);
         chujiejiluSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

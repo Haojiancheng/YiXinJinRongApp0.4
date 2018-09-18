@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XianJinJuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_yishi_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -33,7 +34,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
-public class XianJinJuan_YiDao extends AutoLayoutActivity implements XRecyclerView.LoadingListener{
+public class XianJinJuan_YiDao extends AutoLayoutActivity implements XRecyclerView.LoadingListener {
     private ImageView ys_xjinfh;
     private XRecyclerView yishi_xj_xview;
     private String sha1;//SHA1加密
@@ -58,7 +59,7 @@ public class XianJinJuan_YiDao extends AutoLayoutActivity implements XRecyclerVi
                 .init();
 
         getid();
-adapter=new XianjinJuan_yishi_adapter(list);
+        adapter = new XianjinJuan_yishi_adapter(list);
         yishi_xj_xview.setAdapter(adapter);
         getHttp();
         ys_xjinfh.setOnClickListener(new View.OnClickListener() {
@@ -79,9 +80,9 @@ adapter=new XianjinJuan_yishi_adapter(list);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -95,7 +96,7 @@ adapter=new XianjinJuan_yishi_adapter(list);
         }
         OkHttpUtils.postString()
                 //http://192.168.1.111:8080/yxb_mobile/
-                .url(Urls.BASE_URL+"yxbApp/queryAll.do")
+                .url(Urls.BASE_URL + "yxbApp/queryAll.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -108,7 +109,7 @@ adapter=new XianjinJuan_yishi_adapter(list);
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("现金券到期GSon", "" + response);
+                        MyLog.e("现金券到期GSon", "" + response);
                         XianJinJuan_gson data = new Gson().fromJson(response, XianJinJuan_gson.class);
                         if (data.getMessage().equals("没有可用券!")) {
                             xj_wsys.setVisibility(View.VISIBLE);
@@ -126,9 +127,9 @@ adapter=new XianjinJuan_yishi_adapter(list);
         loginid = (String) SPUtils.get(XianJinJuan_YiDao.this, "Loginid", "");
         token = (String) SPUtils.get(XianJinJuan_YiDao.this, "Token1", "");
         user_id = (int) SPUtils.get(XianJinJuan_YiDao.this, "userId", 0);
-        ys_xjinfh=findViewById(R.id.ys_xjinfh);
-        yishi_xj_xview=findViewById(R.id.yishi_xj_xview);
-        xj_wsys=findViewById(R.id.xj_wsys);
+        ys_xjinfh = findViewById(R.id.ys_xjinfh);
+        yishi_xj_xview = findViewById(R.id.yishi_xj_xview);
+        xj_wsys = findViewById(R.id.xj_wsys);
         LinearLayoutManager manager = new LinearLayoutManager(XianJinJuan_YiDao.this);
         yishi_xj_xview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);

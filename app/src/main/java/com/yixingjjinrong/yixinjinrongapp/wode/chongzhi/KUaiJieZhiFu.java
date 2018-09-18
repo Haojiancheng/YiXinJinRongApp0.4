@@ -3,7 +3,6 @@ package com.yixingjjinrong.yixinjinrongapp.wode.chongzhi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +12,12 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
-import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.QianYue_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -56,12 +55,12 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
                 .init();
         getqyid();
 
-        Log.e("dsfs",""+ s);
+        MyLog.e("dsfs",""+ s);
         bt_sqqy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = qy_phone.getText().toString();
-                Log.e("dsfs",""+ s);
+                MyLog.e("dsfs",""+ s);
                 if (s.equals("")) {
                     ToastUtils.showToast(KUaiJieZhiFu.this, "手机号不能为空");
                 } else {
@@ -94,7 +93,7 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
 
     private void getHttp() {
 
-        Log.e("dsfs",""+ s);
+        MyLog.e("dsfs",""+ s);
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
@@ -102,11 +101,11 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
             js_request.put("bankReservedPhone", s);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("TAG", "id" + user_id);
+            MyLog.e("TAG", "id" + user_id);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -114,7 +113,7 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("开通快捷支付",""+canshu );
+            MyLog.e("开通快捷支付",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -133,12 +132,12 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("开通快捷支付Gson",response );
+                        MyLog.e("开通快捷支付Gson",response );
                         QianYue_gson data = new Gson().fromJson(response, QianYue_gson.class);
                         String html = data.getHtml();
                         Intent itcz = new Intent(KUaiJieZhiFu.this, QianYueOk.class);
                         itcz.putExtra("HTML", html);
-                        Log.e("HTML!:",""+html.toString() );
+                        MyLog.e("HTML!:",""+html.toString() );
                         startActivity(itcz);
                         finish();
                     }

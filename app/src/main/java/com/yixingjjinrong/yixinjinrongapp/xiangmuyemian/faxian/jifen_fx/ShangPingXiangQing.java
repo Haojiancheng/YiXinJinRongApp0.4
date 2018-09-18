@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.Goods_xq;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XuNiShangPing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -81,9 +82,9 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
             js_request.put("speId", speid);
             js_request.put("prizeId", prizeId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -91,7 +92,7 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息", "" + canshu);
+            MyLog.e("我的消息", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -105,12 +106,12 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("网络错误", "" + e);
+                        MyLog.e("网络错误", "" + e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("商品详情gson", response);
+                        MyLog.e("商品详情gson", response);
                         if (prizeId.equals("")) {
                             data = new Gson().fromJson(response, Goods_xq.class);
                             if (data.getMessage().equals("用户未登录")) {

@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiMingRenZengJieGuo_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingRenZhengKO;
@@ -95,11 +96,11 @@ public class WoDeShiMing extends AutoLayoutActivity {
             js_request.put("realName", my_name);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("实名认证", ""+js_request);
+            MyLog.e("实名认证", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -107,7 +108,7 @@ public class WoDeShiMing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("实名认证加密", ""+canshu);
+            MyLog.e("实名认证加密", ""+canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -126,13 +127,13 @@ public class WoDeShiMing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("实名认证的GSOn", ""+result);
+                        MyLog.e("实名认证的GSOn", ""+result);
                         ShiMingRenZengJieGuo_gson data = new Gson().fromJson(result, ShiMingRenZengJieGuo_gson.class);
                         String message = data.getMessage().toString();
 //                Toast.makeText(ShiMingrenzheng.this, ""+message, Toast.LENGTH_SHORT).show();
 
                         String zhuangtai = data.getState();
-                        Log.e("实名认证", zhuangtai);
+                        MyLog.e("实名认证", zhuangtai);
                         if (zhuangtai.equals("success")){
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();

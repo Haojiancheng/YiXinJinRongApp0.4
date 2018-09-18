@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.UpData_addass_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -103,9 +104,9 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
             js_request.put("addressDetail", sh_mainaddass.getText().toString());
             js_request.put("address", sh_addass.getText().toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -113,7 +114,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            MyLog.e("我的消息",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -132,7 +133,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("更改收货地址GSON", ""+result);
+                        MyLog.e("更改收货地址GSON", ""+result);
                         UpData_addass_gson data = new Gson().fromJson(result, UpData_addass_gson.class);
                         String message = data.getMessage();
                         if (message.equals("更新地址成功")){

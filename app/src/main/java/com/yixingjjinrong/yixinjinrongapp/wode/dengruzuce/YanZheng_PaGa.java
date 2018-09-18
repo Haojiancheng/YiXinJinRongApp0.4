@@ -35,6 +35,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengMa_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
@@ -218,9 +219,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             js_request.put("ip", ip);
 
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -246,7 +247,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("语音严重吗Gson", "" + response);
+                        MyLog.e("语音严重吗Gson", "" + response);
                         ToastUtils.showToast(YanZheng_PaGa.this, "已发送语音验证码");
                     }
                 });
@@ -258,7 +259,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         myurl = getid(context);
-        Log.e("唯一标识", "" + myurl);
+        MyLog.e("唯一标识", "" + myurl);
         try {
             js_request.put("phone", get_phone);
             js_request.put("password", user_mima.getText().toString());
@@ -266,12 +267,12 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             js_request.put("address", "1");
             js_request.put("phonemap", user_yaoqingren.getText().toString());
             js_request.put("url", myurl);
-            Log.e("祖册参数", "" + js_request);
+            MyLog.e("祖册参数", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
-            Log.e("jsessionIdzhuce", jsessionId);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("jsessionIdzhuce", jsessionId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -299,7 +300,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", ">>>>z成功" + result);
+                        MyLog.e("TAG", ">>>>z成功" + result);
                         ChengGongzhuce_Gson date = new Gson().fromJson(result, ChengGongzhuce_Gson.class);
                         if (date.getMessage().equals("注册成功")) {
                             int userid = date.getResult().getUserid();
@@ -314,7 +315,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                             intent_dengru.putExtra("url", myurl);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("user_id", userid);
-                            Log.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
+                            MyLog.e("验证注册：", "Phone_my:" + get_phone + "__password:" + user_mima.getText().toString() + "__url:" + myurl);
                             intent_dengru.putExtras(bundle);
                             startActivity(intent_dengru);
                             promptDialog.dismiss();
@@ -333,9 +334,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             js_request.put("phone", get_phone);
             js_request.put("type", 4);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
 
         }
@@ -361,14 +362,14 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", ">>>>成功" + result);
+                        MyLog.e("TAG", ">>>>成功" + result);
 
                         YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
                         if (data.getMessage().equals("发送短信成功")) {
 
                             message = data.getMessage();
                             jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId", "" + jsessionId);
+                            MyLog.e("jsessionId", "" + jsessionId);
                             time = new TimeCount(60000, 1000);
                             time.start();
                         } else {
@@ -404,7 +405,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             get_phone = intent.getStringExtra("user_Phone");
             mytimer = intent.getStringExtra("timer");
             jsessionId = intent.getStringExtra("jsessionId");
-            Log.e("验证jsessionId", jsessionId);
+            MyLog.e("验证jsessionId", jsessionId);
             if (mytimer.equals("1")) {
                 time = new TimeCount(60000, 1000);
                 time.start();

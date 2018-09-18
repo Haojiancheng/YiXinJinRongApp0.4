@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JiFenJiLu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiFenJiLu_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -77,9 +78,9 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
             js_request.put("userId", user_id);
             js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -87,8 +88,8 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -107,7 +108,7 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("积分记录列表GSON:",""+result);
+                        MyLog.e("积分记录列表GSON:",""+result);
                         JiFenJiLu_gson data = new Gson().fromJson(result, JiFenJiLu_gson.class);
                         list.addAll(data.getResult().getList());
 

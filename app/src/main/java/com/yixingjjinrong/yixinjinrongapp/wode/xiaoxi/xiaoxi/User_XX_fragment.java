@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.User_XiaoXi_GSON;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XX_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
@@ -79,9 +80,9 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -89,7 +90,7 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            MyLog.e("我的消息",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,7 +109,7 @@ public class User_XX_fragment extends Fragment implements XRecyclerView.LoadingL
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("我的消息GSON:",result );
+                        MyLog.e("我的消息GSON:",result );
                         User_XiaoXi_GSON data = new Gson().fromJson(result, User_XiaoXi_GSON.class);
                         if (data.getMessage().equals("没有消息!")){
                             xiaoxi_wushuju.setVisibility(View.VISIBLE);

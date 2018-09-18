@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JieKuanZiLiao_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JieKuanZiLiao_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
@@ -87,9 +88,9 @@ public class JieKuanZiLiao extends Fragment {
         try {
             js_request.put("borrowRandomId",borrowRandomId);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -97,8 +98,8 @@ public class JieKuanZiLiao extends Fragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -117,7 +118,7 @@ public class JieKuanZiLiao extends Fragment {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG","《借款资料》GSOn"+result);
+                        MyLog.e("TAG","《借款资料》GSOn"+result);
                         JieKuanZiLiao_Gson data=new Gson().fromJson(result,JieKuanZiLiao_Gson.class);
                         String urlpaht=data.getResult().getICIMAGE();
                         list.addAll(data.getResult().getQualificationList());
@@ -147,7 +148,7 @@ public class JieKuanZiLiao extends Fragment {
     private void initview() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
-        Log.e("项目借款资料", ""+borrowRandomId);
+        MyLog.e("项目借款资料", ""+borrowRandomId);
         jiekuanziliaoSV = getActivity().findViewById(R.id.jiekuanziliaoScrollView);
         jiekuanziliaoSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override

@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DaoHang_GSON;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.ViewPagerAdapter;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -49,7 +50,7 @@ public class Guide_Pager extends AutoLayoutActivity {
         //http://newweichat-stg-test.yxb.com/yxbApp/getGuideBanaerImg.do
 
         gethttp();
-        initView();
+
         SharedPreferences sharedPreferences = getSharedPreferences("First", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putBoolean("isFirst", false);
@@ -59,45 +60,47 @@ public class Guide_Pager extends AutoLayoutActivity {
 
 
     private void gethttp() {
-//        OkHttpUtils.postString()
-//                .url(Urls.BASE_URL + "yxbApp/getGuideBanaerImg.do")
-//                .content("")
-//                .mediaType(MediaType.parse("application/json; charset=utf-8"))
-//                .build()
-//                .execute(new StringCallback() {
-//                    @Override
-//                    public void onError(Call call, Exception e, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String response, int id) {
-//                        Log.e("导航页", response);
-//                        data = new Gson().fromJson(response, DaoHang_GSON.class);
-//                        String paht = data.getResult().getPath();
-//                        Log.e("TAG", "Path:" + paht);
-//
-//                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
-//                            picurl = data.getResult().getImgList().get(i).getPicurl();
-//                            Log.e("TAG", "url:" + picurl);
-//                            mypic = new String[data.getResult().getImgList().size()];
-//                        }
-//                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
-//                            //地址
-//                            picpath = paht + data.getResult().getImgList().get(i).getPicurl();
-//                            Log.e("TAG", "url:" + picpath);
-//                            mypic[i] = picpath;
-//                        }
-//                        for (String s2 : mypic) {
-//                            mylist.add(s2);
-//                        }
-//
-//                    }
-//                });
+        OkHttpUtils.postString()
+                .url(Urls.BASE_URL + "yxbApp/getGuideBanaerImg.do")
+                .content("")
+                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        MyLog.e("导航页", response);
+                        data = new Gson().fromJson(response, DaoHang_GSON.class);
+                        String paht = data.getResult().getPath();
+                        MyLog.e("TAG", "Path:" + paht);
+
+                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
+                            picurl = data.getResult().getImgList().get(i).getPicurl();
+                            MyLog.e("TAG", "url:" + picurl);
+                            mypic = new String[data.getResult().getImgList().size()];
+                        }
+                        for (int i = 0; i < data.getResult().getImgList().size(); i++) {
+                            //地址
+                            picpath = paht + data.getResult().getImgList().get(i).getPicurl();
+                            MyLog.e("TAG", "url:" + picpath);
+                            mypic[i] = picpath;
+                        }
+                        for (String s2 : mypic) {
+                            mylist.add(s2);
+                            MyLog.e("wode图",""+s2 );
+                        }
+                        initView();
+
+                    }
+                });
         //
-        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021735379441.png");
-        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736048895.png");
-        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736298526.png");
+//        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021735379441.png");
+//        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736048895.png");
+//        mylist.add("https://wechat.yxb.com/upload/imageManage/20180802/201808021736298526.png");
     }
 
     private void initView() {

@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMuXianjinJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XianjinJuan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 
 import org.json.JSONException;
@@ -62,7 +63,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment {
         xianJuanBeanList = new ArrayList<XianJinBean.xianJuanBean>();
         getfcdy_id();
 
-        Log.e("现金券user_id", "" + user_id);
+        MyLog.e("现金券user_id", "" + user_id);
     }
 
     private void getfcdy_id() {
@@ -89,7 +90,7 @@ public class XiangMuXianJinJuan_Fragment extends Fragment {
             }
         }
         final int i = Integer.parseInt(mymoney);
-        Log.e("XianJinBean", xianJuanBeanList.size()+"");
+        MyLog.e("XianJinBean", xianJuanBeanList.size()+"");
         myadapter = new XiangMuXianjinJuan_adapter(xianJuanBeanList,getActivity(),i);
         xianjinjun_rview.setAdapter(myadapter);
 

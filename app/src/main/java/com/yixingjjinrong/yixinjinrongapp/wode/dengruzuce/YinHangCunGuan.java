@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
 import com.yixingjjinrong.yixinjinrongapp.wode.yinghancunguan_jieguo.CunGuan_lose;
 import com.yixingjjinrong.yixinjinrongapp.wode.yinghancunguan_jieguo.CunGuan_succser;
@@ -52,7 +53,7 @@ public class YinHangCunGuan extends AutoLayoutActivity {
 
         Intent it=getIntent();
         String htlm = it.getStringExtra("HTML");
-        Log.e("开通存管HTML:",""+htlm);
+        MyLog.e("开通存管HTML:",""+htlm);
         WebSettings webSettings = cg_wb.getSettings();
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存
 
@@ -66,7 +67,7 @@ public class YinHangCunGuan extends AutoLayoutActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Log.e("onPageFinished返回的URL", url);
+                MyLog.e("onPageFinished返回的URL", url);
                 //返回http://newpay-dev-test.yxb.com/fuyouwap/appWebRegNotifyPaeseUrl.do
                 //退出http://newpay-dev-test.yxb.com/fuyouwap/appWebRegNotifyPaeseUrl.do
                 //http://newwei.yxb.com/yxb_mobile/fuRegUserUrl.do?receiveCode=0000&retCode=0000
@@ -81,13 +82,13 @@ public class YinHangCunGuan extends AutoLayoutActivity {
 //                    Log.e("输出====sp2",""+sp2[j]);
                             String[] sp3 = sp2[j].toString().split("[=]");
                             for (int a = 0; a < sp3.length; a++) {
-                                Log.e("输出====sp3[1]", "" + sp3[1]);
-                                Log.e("输出====sp3[0]", "" + sp3[0]);
+                                MyLog.e("输出====sp3[1]", "" + sp3[1]);
+                                MyLog.e("输出====sp3[0]", "" + sp3[0]);
                                 ss.add(sp3[1]);
                             }
                         }
                     }
-                    Log.e("ss==========", ss.toString());
+                    MyLog.e("ss==========", ss.toString());
                     //第一个
                     receiveCode = ss.get(1);
                     //第二个

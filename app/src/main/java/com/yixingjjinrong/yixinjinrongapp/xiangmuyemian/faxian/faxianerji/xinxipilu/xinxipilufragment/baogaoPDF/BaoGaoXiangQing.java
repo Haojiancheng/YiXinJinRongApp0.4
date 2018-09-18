@@ -23,6 +23,7 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.io.File;
@@ -55,10 +56,10 @@ public class BaoGaoXiangQing extends AutoLayoutActivity implements OnPageChangeL
         });
 
         if (bgtitle.equals("2017审计报告")){
-            Log.e("审计报告","2017" );
+            MyLog.e("审计报告","2017" );
             getweb("sj2017.pdf");
         }else {
-            Log.e("审计报告","2016" );
+            MyLog.e("审计报告","2016" );
             getweb("sj2016.pdf");
 
         }

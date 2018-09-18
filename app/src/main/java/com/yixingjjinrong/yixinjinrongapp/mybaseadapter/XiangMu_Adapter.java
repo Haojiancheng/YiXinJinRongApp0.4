@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 
 import java.sql.Time;
 import java.text.DateFormat;
@@ -107,8 +108,8 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                     SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
                     String date = sDateFormat.format(new java.util.Date());
 
-                    Log.e("我的时间", "" + ableTenderDate);
-                    Log.e("系统时间", "" + date);
+                    MyLog.e("我的时间", "" + ableTenderDate);
+                    MyLog.e("系统时间", "" + date);
 //                    getTimeString(ableTenderDate, date);
 
                 } else {//可出借

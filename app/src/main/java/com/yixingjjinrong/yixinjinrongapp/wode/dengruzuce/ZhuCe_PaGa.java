@@ -28,6 +28,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.YanZhengShouJiHao_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.ZhuCeH5;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -174,9 +175,9 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             js_request.put("phone", myphone);
             js_request.put("type", 4);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
 
         }
@@ -197,19 +198,19 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("短信", "roon"+"+"+e );
+                        MyLog.e("短信", "roon"+"+"+e );
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", ">>>>成功" + result);
+                        MyLog.e("TAG", ">>>>成功" + result);
 
                         YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
                         if (data.getMessage().equals("发送短信成功")) {
 
                             message = data.getMessage();
                             jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId",""+ jsessionId);
+                            MyLog.e("jsessionId",""+ jsessionId);
 
                                 Intent zhuce_page = new Intent(ZhuCe_PaGa.this, YanZheng_PaGa.class);
                                 zhuce_page.putExtra("user_Phone", zhucephone.getText().toString());
@@ -232,9 +233,9 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
             js_request.put("phone", myphone);
             js_request.put("type", 4);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -254,12 +255,12 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("手机号", "ron") ;
+                        MyLog.e("手机号", "ron") ;
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", "Gson:" + result);
+                        MyLog.e("TAG", "Gson:" + result);
 
                         data1 = new Gson().fromJson(result, YanZhengShouJiHao_Data.class);
                         phonezhuangtai = data1.getResult().getMapPhone();

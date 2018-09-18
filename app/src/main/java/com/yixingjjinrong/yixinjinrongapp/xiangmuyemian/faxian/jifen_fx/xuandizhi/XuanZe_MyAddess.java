@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.MyAddass_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Myaddass_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.AddAddass;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -81,9 +82,9 @@ public class XuanZe_MyAddess extends AutoLayoutActivity implements XRecyclerView
             js_request.put("userId", user_id);
             js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -91,7 +92,7 @@ public class XuanZe_MyAddess extends AutoLayoutActivity implements XRecyclerView
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            MyLog.e("我的消息",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,7 +111,7 @@ public class XuanZe_MyAddess extends AutoLayoutActivity implements XRecyclerView
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("我的地址GSON", ""+result);
+                        MyLog.e("我的地址GSON", ""+result);
                         MyAddass_Gson data = new Gson().fromJson(result, MyAddass_Gson.class);
                         if (data.getMessage().equals("查询成功")) {
 

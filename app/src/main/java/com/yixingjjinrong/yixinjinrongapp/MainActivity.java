@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore2;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.MyConten;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.Wode;
@@ -106,7 +107,7 @@ public class MainActivity extends AutoLayoutActivity {
         curDate1 = new Date(System.currentTimeMillis());
         //获取当前时间
         str = formatter.format(curDate1);
-        Log.e("我进入后台了：", str);
+        MyLog.e("我进入后台了：", str);
 
     }
 
@@ -118,14 +119,14 @@ public class MainActivity extends AutoLayoutActivity {
         Date curDate = new Date(System.currentTimeMillis());
         //获取当前时间
         String str2 = formatter.format(curDate);
-        Log.e("我进入前台了：", str2);
+        MyLog.e("我进入前台了：", str2);
         //时间差
         if (curDate1!=null) {
             long diff = curDate.getTime() - curDate1.getTime();//这样得到的差值是微秒级别
             long days = diff / (1000 * 60 * 60 * 24);
             long hours = (diff - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
             long minutes = (diff - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
-            Log.e("时间差：", "" + minutes);
+            MyLog.e("时间差：", "" + minutes);
             if (minutes>=30){
 //                gethttp();
             }
@@ -142,12 +143,12 @@ public class MainActivity extends AutoLayoutActivity {
             js_request.put("userid", user_id);
             js_request.put("token", userToken);
             js_request.put("url", myurl);
-            Log.e("useridddd", user_id + "");
-            Log.e("token", userToken + "");
+            MyLog.e("useridddd", user_id + "");
+            MyLog.e("token", userToken + "");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -173,7 +174,7 @@ public class MainActivity extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("退出登入的GSON:", response);
+                        MyLog.e("退出登入的GSON:", response);
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
                         SPUtils.put(MainActivity.this, "isLogin", false);

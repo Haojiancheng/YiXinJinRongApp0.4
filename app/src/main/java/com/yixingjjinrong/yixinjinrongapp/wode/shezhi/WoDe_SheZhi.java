@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.DataCleanManager;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ZhaoHuiMiMa;
@@ -263,12 +264,12 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
             js_request.put("userid", user_ird);
             js_request.put("token", token);
             js_request.put("url", myurl);
-            Log.e("useridddd", user_ird + "");
-            Log.e("token", token + "");
+            MyLog.e("useridddd", user_ird + "");
+            MyLog.e("token", token + "");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -295,7 +296,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("退出登入的GSON:", response);
+                        MyLog.e("退出登入的GSON:", response);
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
                         SPUtils.put(WoDe_SheZhi.this, "isLogin", false);

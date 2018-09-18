@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XXxiangqing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -88,9 +89,9 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -98,7 +99,7 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息", "" + canshu);
+            MyLog.e("我的消息", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -112,12 +113,12 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("消息详情：", Urls.BASE_URL + "yxbApp/" + type);
+                        MyLog.e("消息详情：", Urls.BASE_URL + "yxbApp/" + type);
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("消息详情GSON：", "" + result);
+                        MyLog.e("消息详情GSON：", "" + result);
                         XXxiangqing_gson data = new Gson().fromJson(result, XXxiangqing_gson.class);
                         String result1 = data.getResult();
                         WebSettings webSettings = xxweb.getSettings();

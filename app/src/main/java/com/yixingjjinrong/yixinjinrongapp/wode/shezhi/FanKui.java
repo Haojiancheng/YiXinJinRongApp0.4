@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.FanKui_ok_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -94,12 +95,12 @@ public class FanKui extends AutoLayoutActivity {
         try {
             js_request.put("counts", et_content.getText().toString());
             js_request.put("userid", user_ird);
-            Log.e("....ID", "" + user_ird);
-            Log.e("....counts", "" + et_content.getText().toString());
+            MyLog.e("....ID", "" + user_ird);
+            MyLog.e("....counts", "" + et_content.getText().toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -125,7 +126,7 @@ public class FanKui extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("意见反馈GSON", "" + result);
+                        MyLog.e("意见反馈GSON", "" + result);
                         FanKui_ok_gson data = new Gson().fromJson(result, FanKui_ok_gson.class);
                         String message = data.getMessage();
 

@@ -18,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ZiJInLiuShu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.ZiJinLiuShui_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.MyChuJie_one;
@@ -84,9 +85,9 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
             js_request.put("loginId", loginid);
 //            js_request.put("pageNumber", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -94,7 +95,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的资金流水加密：",""+canshu );
+            MyLog.e("我的资金流水加密：",""+canshu );
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -112,7 +113,7 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("我的资金流水GSon","" +result);
+                        MyLog.e("我的资金流水GSon","" +result);
                         ZiJInLiuShu_gson data = new Gson().fromJson(result, ZiJInLiuShu_gson.class);
                         if (data.getMessage().equals("用户未登录。")) {
                             ToastUtils.showToast(ZiJinliushui.this, "用户未登录。");

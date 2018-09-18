@@ -18,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -60,8 +61,8 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
                 .keyboardEnable(true)
                 .init();
         getchengg_id();
-        
-        
+
+
         final Intent intent = getIntent();
         if (intent != null) {
             shoujihao = intent.getStringExtra("Phone_my");
@@ -71,7 +72,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             password = intent.getStringExtra("password");
             Bundle b = getIntent().getExtras();
             userid1 = b.getInt("user_id");
-            Log.e("成功注册：", "Phone_my:"+shoujihao+"__password:"+password+"__url:"+myurl);
+            MyLog.e("成功注册：", "Phone_my:"+shoujihao+"__password:"+password+"__url:"+myurl);
         }
 
 //        zhucefanhui.setOnClickListener(new View.OnClickListener() {
@@ -105,11 +106,11 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             js_request.put("username", shoujihao);
             js_request.put("password", password);
             js_request.put("url", myurl);
-            Log.e("实名成功(登入)：", "" + js_request);
+            MyLog.e("实名成功(登入)：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -135,7 +136,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("TAG", ">>>>GSON" + response);
+                        MyLog.e("TAG", ">>>>GSON" + response);
                         DengruData d_data = new Gson().fromJson(response, DengruData.class);
                         //状态值
                         String dengrufanhuizhi = d_data.getState();
@@ -167,9 +168,9 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", logid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -194,7 +195,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("是否可实名GSON：", response);
+                        MyLog.e("是否可实名GSON：", response);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(response, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
                         ToastUtils.showToast(ChengGongZhuCe.this, ""+message);
@@ -221,11 +222,11 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
             js_request.put("password", password);
             js_request.put("url", myurl);
 
-            Log.e("成功注册(登入)：", "" + js_request);
+            MyLog.e("成功注册(登入)：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -251,7 +252,7 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("TAG", ">>>>GSON" + response);
+                        MyLog.e("TAG", ">>>>GSON" + response);
                         DengruData d_data = new Gson().fromJson(response, DengruData.class);
                         //状态值
                         dengrufanhuizhi = d_data.getState();

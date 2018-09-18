@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.CunGuan_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.DengruData;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -86,11 +87,11 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
             js_request.put("username", username);
             js_request.put("password", password);
             js_request.put("url", url);
-            Log.e("实名成功(登入)：", "" + js_request);
+            MyLog.e("实名成功(登入)：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -116,7 +117,7 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("TAG", ">>>>GSON" + response);
+                        MyLog.e("TAG", ">>>>GSON" + response);
                         DengruData d_data = new Gson().fromJson(response, DengruData.class);
                         //状态值
                         String dengrufanhuizhi = d_data.getState();
@@ -147,7 +148,7 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
             js_request.put("userid", user_id);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("存管参数", ""+js_request);
+            MyLog.e("存管参数", ""+js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -159,7 +160,7 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -177,15 +178,15 @@ public class ShiMingRenZhengKO extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:",""+result );
+                        MyLog.e("存管GSON:",""+result );
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
                         Intent it=new Intent(ShiMingRenZhengKO.this, YinHangCunGuan.class);
                         it.putExtra("HTML",html );
-                        Log.e("我的页面银行存管HTML:",""+it);
+                        MyLog.e("我的页面银行存管HTML:",""+it);
                         startActivity(it);
                         finish();
-                        Log.e("wangy",""+html );
+                        MyLog.e("wangy",""+html );
                     }
                 });
     }

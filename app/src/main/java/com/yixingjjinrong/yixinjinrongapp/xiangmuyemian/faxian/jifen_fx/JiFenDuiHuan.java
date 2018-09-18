@@ -21,6 +21,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.FaXianBasrAdapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiFenDuiHUan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen.DuiHuanJILu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.twojifen.JIFenJiLu;
@@ -120,9 +121,9 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
             js_request.put("userId", user_id);
             js_request.put("addressId", "");
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>1111!!--" + js_request);
+            MyLog.e("TAG", ">>>>1111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -130,7 +131,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息",""+canshu );
+            MyLog.e("我的消息",""+canshu );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -150,7 +151,7 @@ public class JiFenDuiHuan extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("积分兑换GSOn:",result );
+                        MyLog.e("积分兑换GSOn:",result );
                         JiFenDuiHuan_Gson data = new Gson().fromJson(result, JiFenDuiHuan_Gson.class);
                         if (data.getMessage().equals("成功了")) {
 

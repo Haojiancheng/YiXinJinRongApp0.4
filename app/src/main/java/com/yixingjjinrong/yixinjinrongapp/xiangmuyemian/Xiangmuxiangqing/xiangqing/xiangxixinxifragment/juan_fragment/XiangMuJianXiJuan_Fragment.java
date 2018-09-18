@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMuJiaXiJuan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
 
@@ -65,7 +66,7 @@ public class XiangMuJianXiJuan_Fragment extends Fragment {
         mymoney = (String) SPUtils.get(getActivity(), "mymoney", "");
         getid();
 
-        Log.e("加息卷user_id", "" + user_id);
+        MyLog.e("加息卷user_id", "" + user_id);
     }
 
     private void getid() {

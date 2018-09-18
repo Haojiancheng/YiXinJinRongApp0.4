@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
@@ -68,9 +69,9 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         mlist.clear();
         user_id = (int) SPUtils.get(getActivity(),"userId",0);
         getid();
-        Log.e("加息卷user_id", "" + user_id);
+        MyLog.e("加息卷user_id", "" + user_id);
         myadapter=new JiaXiJuan_adapter(mlist);
-        Log.e("条目数", mlist.size()+"");
+        MyLog.e("条目数", mlist.size()+"");
         jiaxi_rview.setAdapter(myadapter);
         getHttp();
         xj_daoqi.setOnClickListener(new View.OnClickListener() {
@@ -92,9 +93,9 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -102,7 +103,7 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("加密参数", "" + canshu);
+            MyLog.e("加密参数", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -115,12 +116,12 @@ public class JianXiJuan_Fragment extends Fragment implements XRecyclerView.Loadi
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                         Log.e("加息卷roon",""+e );
+                        MyLog.e("加息卷roon",""+e );
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("加息卷GSON", response);
+                        MyLog.e("加息卷GSON", response);
                         JiaXiJuan_Gson data = new Gson().fromJson(response, JiaXiJuan_Gson.class);
                         if (data.getMessage().equals("没有可用券!")) {
                             jiaxi_wushuju.setVisibility(View.VISIBLE);

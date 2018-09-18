@@ -23,6 +23,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMu_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.XiangMu_Adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.XiangMuXiangQing;
@@ -90,9 +91,9 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
 
             js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-//            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+//            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-//            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);/
+//            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -100,7 +101,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + canshu);
 
 
         } catch (JSONException e) {
@@ -120,7 +121,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", "项目列表GSON>" + result);
+                        MyLog.e("TAG", "项目列表GSON>" + result);
                         data = new Gson().fromJson(result, XiangMu_Gson.class);
                         list.addAll(data.getResult());
                         promptDialog.dismiss();
@@ -133,7 +134,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                                 intent.putExtra("mortgageType", mtype);
                                 intent.putExtra("bt_name", list.get(position).getBorrowStatusStr());
                                 SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
-                                Log.e("TASG", "立即出借id:" + xiangmu_id);
+                                MyLog.e("TASG", "立即出借id:" + xiangmu_id);
                                 startActivity(intent);
                             }
                         });

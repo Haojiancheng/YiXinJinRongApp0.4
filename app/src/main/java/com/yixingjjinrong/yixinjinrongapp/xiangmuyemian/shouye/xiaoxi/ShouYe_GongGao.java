@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.Shouyegg;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -62,9 +63,9 @@ public class ShouYe_GongGao extends AutoLayoutActivity {
         try {
             js_request.put("pubMsgId", xx_ird);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -72,7 +73,7 @@ public class ShouYe_GongGao extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("立即出借首页", "" + canshu);
+            MyLog.e("立即出借首页", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -86,12 +87,12 @@ public class ShouYe_GongGao extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                              Log.e("错误",""+e );
+                              MyLog.e("错误",""+e );
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("公告信息",""+response );
+                        MyLog.e("公告信息",""+response );
                         Shouyegg data = new Gson().fromJson(response, Shouyegg.class);
                         result = data.getResult();
                         getweb();

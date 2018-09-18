@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.CarDiYa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Cardiya_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -71,10 +72,10 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
-            Log.e("我的出借车辆表参数：", "" + js_request);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("我的出借车辆表参数：", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -82,7 +83,7 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的出借车辆表加密：",""+canshu );
+            MyLog.e("我的出借车辆表加密：",""+canshu );
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -99,7 +100,7 @@ public class CarDeYAn_F extends Fragment implements XRecyclerView.LoadingListene
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("车辆抵押GSON:L",""+response );
+                        MyLog.e("车辆抵押GSON:L",""+response );
 
                         CarDiYa_Gson data = new Gson().fromJson(response, CarDiYa_Gson.class);
                         list.addAll(data.getInvestList());

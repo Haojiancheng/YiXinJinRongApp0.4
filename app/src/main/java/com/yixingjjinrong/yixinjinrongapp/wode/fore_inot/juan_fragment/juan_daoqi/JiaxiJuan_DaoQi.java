@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.JiaXiJuan_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.JiaXiJuan_yishi_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -75,9 +76,9 @@ public class JiaxiJuan_DaoQi extends AutoLayoutActivity implements XRecyclerView
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -85,7 +86,7 @@ public class JiaxiJuan_DaoQi extends AutoLayoutActivity implements XRecyclerView
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("加密参数", "" + canshu);
+            MyLog.e("加密参数", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -103,7 +104,7 @@ public class JiaxiJuan_DaoQi extends AutoLayoutActivity implements XRecyclerView
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("加息卷到期GSON", response);
+                        MyLog.e("加息卷到期GSON", response);
                         JiaXiJuan_Gson data = new Gson().fromJson(response, JiaXiJuan_Gson.class);
                         if (data.getMessage().equals("没有可用券!")) {
                             jx_wsys.setVisibility(View.VISIBLE);

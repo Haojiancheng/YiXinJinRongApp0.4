@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.DuiHuanJiLu_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.DuiHuanJiLu_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -75,9 +76,9 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
             js_request.put("userId", user_id);
             js_request.put("pageNum", a);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -85,8 +86,8 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -105,7 +106,7 @@ public class DuiHuanJILu extends AutoLayoutActivity implements XRecyclerView.Loa
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("兑换记录GSON:", result);
+                        MyLog.e("兑换记录GSON:", result);
                         DuiHuanJiLu_gson data = new Gson().fromJson(result, DuiHuanJiLu_gson.class);
                         list.addAll(data.getResult().getList());
                         adapter.notifyDataSetChanged();

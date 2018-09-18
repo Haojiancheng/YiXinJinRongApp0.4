@@ -17,6 +17,7 @@ import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.GsonBean;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhiOK;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.QianYueOk;
@@ -47,7 +48,7 @@ public class TiXian_OK extends AutoLayoutActivity {
         tixian_web = findViewById(R.id.tixian_web);
         final Intent intent = getIntent();
         String html = intent.getStringExtra("tixianhtml");
-        Log.e("提现成功HTM：L", html);
+        MyLog.e("提现成功HTM：L", html);
         WebSettings webSettings = tixian_web.getSettings();
 
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存
@@ -77,7 +78,7 @@ public class TiXian_OK extends AutoLayoutActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Log.e("提现返回的URL", "" + url);
+                MyLog.e("提现返回的URL", "" + url);
                 //http://localhost:8080/yxb_mobile/yxbApp/frontWithdrawUrlApp.do?receiveCode=0000&receiveJson={%22amt%22:%2220000%22,%22login_id%22:%2217720181111%22,%22mchnt_cd%22:%220003310F0351795%22,%22mchnt_txn_ssn%22:%22ZJWD20180725142222457471%22,%22rem%22:%22%22,%22resp_code%22:%220000%22,%22resp_desc%22:%22??%22,%22signature%22:%22z+UJ+oZhZUhNvwtkRN0RUECIBgjtHOi6FHrGQrLLAGtMgX0rH+ZsZFtO1W1Cx20yezXhxAGAMv2YhhwxrD0H5KsDxee53Xx4rikWJhktQadpOJ1dtqka+rTaQeIy1Rz3WvCr/LjHp7SbEfH8ZZAiEU0AyCd2/xAAQCcIofD5BtY=%22}
                 if (url.indexOf(Urls.BASE_URL+"yxbApp/frontWithdrawUrlApp.do?") != -1) {
                     String[] sp = url.split("[?]");
@@ -88,14 +89,14 @@ public class TiXian_OK extends AutoLayoutActivity {
                         for (int j = 0; j < sp2.length; j++) {
                             String[] sp3 = sp2[j].toString().split("[=]");
                             for (int a = 0; a < sp3.length; a++) {
-                                Log.e("输出====sp3[1]", "" + sp3[1]);
-                                Log.e("输出====sp3[0]", "" + sp3[0]);
+                                MyLog.e("输出====sp3[1]", "" + sp3[1]);
+                                MyLog.e("输出====sp3[0]", "" + sp3[0]);
                                 ss.add(sp3[1]);
 
                             }
                         }
                     }
-                    Log.e("json===========", ss.toString());
+                    MyLog.e("json===========", ss.toString());
                     try {
                         docode = URLDecoder.decode(ss.get(2), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
@@ -105,8 +106,8 @@ public class TiXian_OK extends AutoLayoutActivity {
                     Gson gson = new Gson();
                     GsonBean data = gson.fromJson(docode + "\"" + "}", GsonBean.class);
 
-                    Log.e("readlly", docode + "\"" + "}");
-                    Log.e("amt", data.getAmt() + "");
+                    MyLog.e("readlly", docode + "\"" + "}");
+                    MyLog.e("amt", data.getAmt() + "");
                     String receiveCode = ss.get(1);//第一个
 
                     String retCode = data.getResp_code();//第二个

@@ -37,6 +37,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.User_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
@@ -172,7 +173,7 @@ public class Wode extends Fragment {
         user_id = event.getUser_id();
         userToken = event.getUserToken();
         loginid = event.getOginid();
-        Log.e("eventggfdg", "" + loginid);
+        MyLog.e("eventggfdg", "" + loginid);
 //        getHttp();
         isLogin = (boolean) SPUtils.get(getActivity(), "isLogin", false);
 
@@ -197,9 +198,9 @@ public class Wode extends Fragment {
             js_request.put("token", userToken);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e(">>>>token!!--", "" + js_request);
+            MyLog.e(">>>>token!!--", "" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -207,7 +208,7 @@ public class Wode extends Fragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的加密：", ":" + canshu);
+            MyLog.e("我的加密：", ":" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -224,7 +225,7 @@ public class Wode extends Fragment {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", ">>>Gson" + result);
+                        MyLog.e("TAG", ">>>Gson" + result);
                         User_Gson data = new Gson().fromJson(result, User_Gson.class);
                         String message = data.getMessage();
 
@@ -238,7 +239,7 @@ public class Wode extends Fragment {
                             //邀请总金额
                             totalEarn = data.getUserMap().getTotalEarn();
                             String zhuangtaima = data.getState();
-                            //                Log.e("state",zhuangtaima);
+                            //                MyLog.e("state",zhuangtaima);
                             if (zhuangtaima.equals("success")) {
                                 weidengru.setVisibility(View.GONE); //显示布局
                                 dengru.setVisibility(View.VISIBLE);//影藏布局
@@ -332,7 +333,7 @@ public class Wode extends Fragment {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -350,15 +351,15 @@ public class Wode extends Fragment {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("存管GSON:", "" + response);
+                        MyLog.e("存管GSON:", "" + response);
                         CunGuan_gson data = new Gson().fromJson(response, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
                         Intent it = new Intent(getActivity(), YinHangCunGuan.class);
                         it.putExtra("HTML", html);
-                        Log.e("我的页面银行存管HTML:", "" + it);
+                        MyLog.e("我的页面银行存管HTML:", "" + it);
                         startActivity(it);
 
-                        Log.e("wangy", "" + html);
+                        MyLog.e("wangy", "" + html);
                     }
                 });
 
@@ -372,9 +373,9 @@ public class Wode extends Fragment {
             js_request.put("token", userToken);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -400,7 +401,7 @@ public class Wode extends Fragment {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("是否可实名GSON：", result);
+                        MyLog.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
 //                Toast.makeText(getActivity(), "" + message, Toast.LENGTH_SHORT).show();
@@ -437,7 +438,7 @@ public class Wode extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
-                Log.e("出借user_id", "" + s);
+                MyLog.e("出借user_id", "" + s);
                 if (s.equals("0")) {
                     Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(intentwode);
@@ -580,7 +581,7 @@ public class Wode extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
-                Log.e("ddddddd", s);
+                MyLog.e("ddddddd", s);
                 if (s.equals("0")) {
                     Intent intentwode = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(intentwode);
@@ -714,7 +715,7 @@ public class Wode extends Fragment {
         if (isLogin == false) {
             userToken = "";
             user_id = 0;
-            Log.e("onResume+loginid", "" + loginid);
+            MyLog.e("onResume+loginid", "" + loginid);
             shimingrenzheng_itme.setVisibility(View.GONE);
             yinhangcunguan_itme.setVisibility(View.GONE);
             fengxianpingce_itme.setVisibility(View.GONE);
@@ -725,7 +726,7 @@ public class Wode extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("onStart", "开始执行………………");
+        MyLog.e("onStart", "开始执行………………");
         shimingrenzheng_itme.setVisibility(View.GONE);
         getHttp();
     }

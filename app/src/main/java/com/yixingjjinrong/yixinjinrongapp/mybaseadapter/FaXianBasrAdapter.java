@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.FaXian_Data;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 
 import org.xutils.x;
 
@@ -70,7 +71,7 @@ FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
             holder.quan.setVisibility(View.GONE);
             holder.shiwu_iv.setVisibility(View.VISIBLE);
             x.image().bind(holder.shiwu_iv,paht+list.get(position).getPicUrl());
-            Log.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
+            MyLog.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

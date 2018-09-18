@@ -3,7 +3,6 @@ package com.yixingjjinrong.yixinjinrongapp.wode.chongzhi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -12,10 +11,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiShiBai;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.jieguo.ChongZhiSuccers;
 import com.yixingjjinrong.yixinjinrongapp.wode.h5.MyWebChromeClient;
@@ -55,7 +54,7 @@ public class ChongZhiOK extends AutoLayoutActivity {
     private void getweb() {
         final Intent intent = getIntent();
         String html = intent.getStringExtra("HTML");
-        Log.e("充值成功HTM：L", html);
+        MyLog.e("充值成功HTM：L", html);
         WebSettings webSettings = chongzok.getSettings();
 
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存
@@ -69,26 +68,26 @@ public class ChongZhiOK extends AutoLayoutActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                Log.e("onPageFinished返回的URL", url);
+                MyLog.e("onPageFinished返回的URL", url);
                 //http://192.168.1.79:8080/yxb_mobile/yxbApp/frontFuonlineUrlApp.do?receiveCode=0000&retCode=0000&amt=10000receiveCode=0000&retCode=0000&amt=10000
                 if (url.indexOf(Urls.BASE_URL+"yxbApp/frontFuonlineUrlApp.do?") != -1) {
                     String[] sp = url.split("[?]");
                     for (int i = 0; i < sp.length; i++) {
-//            Log.e("输出====",""+sp[1]);
+//            MyLog.e("输出====",""+sp[1]);
                         String str = sp[1].toString();
                         String[] sp2 = str.split("[&]");
                         for (int j = 0; j < sp2.length; j++) {
-//                    Log.e("输出====sp2",""+sp2[j]);
+//                    MyLog.e("输出====sp2",""+sp2[j]);
                             String[] sp3 = sp2[j].toString().split("[=]");
                             for (int a = 0; a < sp3.length; a++) {
-                                Log.e("输出====sp3[1]", "" + sp3[1]);
-                                Log.e("输出====sp3[0]", "" + sp3[0]);
+                                MyLog.e("输出====sp3[1]", "" + sp3[1]);
+                                MyLog.e("输出====sp3[0]", "" + sp3[0]);
                                 ss.add(sp3[1]);
 
                             }
                         }
                     }
-                    Log.e("ss==========", ss.toString());
+                    MyLog.e("ss==========", ss.toString());
                     String receiveCode = ss.get(1);//第一个
 
                     String retCode = ss.get(2);//第二个

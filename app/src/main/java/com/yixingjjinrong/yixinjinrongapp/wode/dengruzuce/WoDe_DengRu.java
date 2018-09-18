@@ -47,6 +47,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.MyConten;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
@@ -336,11 +337,11 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e(">>>>登入", "" + result);
+                        MyLog.e(">>>>登入", "" + result);
 //                SPUtils.put(WoDe_DengRu.this,"isLogin",true);
 //                if (isLogin==true) {
                         DengruData d_data = new Gson().fromJson(result, DengruData.class);
-                        Log.e("登入Message", "" + message);
+                        MyLog.e("登入Message", "" + message);
 
                         if (d_data.getMessage().equals("登录成功")) {
 //                            dr_jg.setVisibility(View.GONE);
@@ -357,7 +358,7 @@ public class WoDe_DengRu extends AutoLayoutActivity implements PermissionInterfa
                             SPUtils.put(WoDe_DengRu.this, "Token1", user_token);
                             SPUtils.put(WoDe_DengRu.this, "shoujihao", shoujihao);
                             SPUtils.put(WoDe_DengRu.this, "inviterId", d_data.getResult().getInviterId());
-                            Log.e("sdfdf", "" + loginId);
+                            MyLog.e("sdfdf", "" + loginId);
                             promptDialog.dismiss();
                             if (type!=null) {
                                 if (type.equals("1")) {

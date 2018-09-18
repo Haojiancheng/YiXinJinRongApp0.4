@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.GG_GSON;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.GG_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.xiaoxi.XiaoXi_XiangQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
@@ -79,9 +80,9 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + js_request);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + js_request);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -89,7 +90,7 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的消息", "" + canshu);
+            MyLog.e("我的消息", "" + canshu);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,7 +109,7 @@ public class User_GG_fragment extends Fragment implements XRecyclerView.LoadingL
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("哦公告GSon:", "" + result);
+                        MyLog.e("哦公告GSon:", "" + result);
                         GG_GSON data = new Gson().fromJson(result, GG_GSON.class);
                         if (data.getMessage().equals("没有公告!")) {
                             gongao_wushuju.setVisibility(View.VISIBLE);

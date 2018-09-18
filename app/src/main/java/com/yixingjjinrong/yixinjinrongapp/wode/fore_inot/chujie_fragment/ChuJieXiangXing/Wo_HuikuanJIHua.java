@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.HuiKuanJH_adapter;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Wo_HUiKuanJIHUa_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -76,9 +77,9 @@ public class Wo_HuikuanJIHua extends AutoLayoutActivity {
             js_request.put("borrowId",bid);
             js_request.put("investId",investid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,8 +87,8 @@ public class Wo_HuikuanJIHua extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -106,7 +107,7 @@ public class Wo_HuikuanJIHua extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("回款计划Gason","<><>,>?>?GSOn"+result);
+                        MyLog.e("回款计划Gason","<><>,>?>?GSOn"+result);
                         Wo_HUiKuanJIHua_gson data=new Gson().fromJson(result,Wo_HUiKuanJIHua_gson.class);
                         list.addAll(data.getRepayList());
                         adapter=new Wo_HUiKuanJIHUa_adapter(list);

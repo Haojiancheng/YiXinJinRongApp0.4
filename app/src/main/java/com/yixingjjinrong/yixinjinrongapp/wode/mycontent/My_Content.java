@@ -18,6 +18,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.GeRenXingXiGson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShiFouKeShiMing_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
@@ -93,7 +94,7 @@ public class My_Content extends AutoLayoutActivity {
             js_request.put("userId", user_id);
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
-            Log.e("sdashf", js_request.toString());
+            MyLog.e("sdashf", js_request.toString());
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
         } catch (JSONException e) {
@@ -103,7 +104,7 @@ public class My_Content extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -116,14 +117,14 @@ public class My_Content extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("个人信息roon", "" + e);
+                        MyLog.e("个人信息roon", "" + e);
                         promptDialog.dismiss();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         promptDialog.dismiss();
-                        Log.e("个人信息gson", "" + response);
+                        MyLog.e("个人信息gson", "" + response);
                         gr_data = new Gson().fromJson(response, GeRenXingXiGson.class);
                         getmy();
 
@@ -233,7 +234,7 @@ public class My_Content extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -250,7 +251,7 @@ public class My_Content extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:", "" + result);
+                        MyLog.e("存管GSON:", "" + result);
 
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         if (data.getMessage().equals("存管账号开通成功")) {
@@ -259,7 +260,7 @@ public class My_Content extends AutoLayoutActivity {
                             it.putExtra("HTML", html);
                             startActivity(it);
 //                    Toast.makeText(My_Content.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.e("wangy", "" + html);
+                            MyLog.e("wangy", "" + html);
                         } else {
                             ToastUtils.showToast(My_Content.this, data.getMessage());
                         }
@@ -275,9 +276,9 @@ public class My_Content extends AutoLayoutActivity {
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -303,7 +304,7 @@ public class My_Content extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("是否可实名GSON：", result);
+                        MyLog.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
                         if (message.equals("可以认证")) {

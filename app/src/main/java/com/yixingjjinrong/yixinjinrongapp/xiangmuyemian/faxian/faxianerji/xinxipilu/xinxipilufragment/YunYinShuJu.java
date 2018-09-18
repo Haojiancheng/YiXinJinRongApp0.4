@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YunYinShuJu_gson;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -53,12 +54,12 @@ public class YunYinShuJu extends Fragment {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("运营数据room", "" + e);
+                        MyLog.e("运营数据room", "" + e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("运营数据", "" + response);
+                        MyLog.e("运营数据", "" + response);
                         data = new Gson().fromJson(response, YunYinShuJu_gson.class);
                         getshuju();
                     }

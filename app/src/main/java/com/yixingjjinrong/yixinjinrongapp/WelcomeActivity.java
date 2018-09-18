@@ -12,6 +12,7 @@ import android.view.Window;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.HandUtils.GestureVerifyActivity;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionHelper;
 import com.yixingjjinrong.yixinjinrongapp.utils.PermissionInterface;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
@@ -44,7 +45,7 @@ public class WelcomeActivity extends AutoLayoutActivity implements PermissionInt
                     startActivity(intent);
                     finish();
                 } else {
-                    Log.e("hand",""+ishand);
+                    MyLog.e("hand",""+ishand);
                     if (ishand.equals("1")) {
                         Intent intent = new Intent(WelcomeActivity.this, GestureVerifyActivity.class);
                         intent.putExtra("shezhi","2");

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.JieKuanZiLiao_Gson;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 
 import org.xutils.x;
 
@@ -45,7 +46,7 @@ public class JieKuanZiLiao_Adapter extends RecyclerView.Adapter<JieKuanZiLiao_Ad
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.jkzl_tv.setText(list.get(position).getImgName());
         Glide.with(context).load(urlpath+list.get(position).getImgUrl()).into(holder.jkzl_iv);
-        Log.e("图片", ""+urlpath+list.get(position).getImgUrl());
+        MyLog.e("图片", ""+urlpath+list.get(position).getImgUrl());
 
     }
 

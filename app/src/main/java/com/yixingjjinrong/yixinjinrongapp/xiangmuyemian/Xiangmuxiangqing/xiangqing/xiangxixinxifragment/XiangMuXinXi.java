@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXinXi_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.XiangMuXingXi_Car_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.PublicStaticClass;
@@ -257,13 +258,13 @@ public class XiangMuXinXi extends Fragment {
 //                        promptDialog.dismiss();
 //                        xx_view.setVisibility(View.VISIBLE);
                         String s1 = String.valueOf(user_id);
-                        Log.e("项目星系user_id", "" + s1);
+                        MyLog.e("项目星系user_id", "" + s1);
                         if (s1.equals("0")) {
                             shencha.setVisibility(View.GONE);
                         } else {
                             shencha.setVisibility(View.VISIBLE);
                         }
-                        Log.e("TAG", "XXGSON>>>" + result);
+                        MyLog.e("TAG", "XXGSON>>>" + result);
                         //房产标GSON
                         data = new Gson().fromJson(result, XiangMuXinXi_Gson.class);
                         //车辆标GSON
@@ -353,7 +354,7 @@ public class XiangMuXinXi extends Fragment {
                                 @Override
                                 public boolean onPreDraw() {
                                     hidden.getViewTreeObserver().removeOnPreDrawListener(this);
-//                                    Log.e("行数", ""+hidden.getLineCount());
+//                                    MyLog.e("行数", ""+hidden.getLineCount());
                                     if (hidden.getLineCount() <= 3) {
                                         tv_click.setVisibility(View.GONE);
                                     } else {
@@ -556,7 +557,7 @@ public class XiangMuXinXi extends Fragment {
                                 @Override
                                 public boolean onPreDraw() {
                                     hidden.getViewTreeObserver().removeOnPreDrawListener(this);
-                                    Log.e("行数", "" + hidden.getLineCount());
+                                    MyLog.e("行数", "" + hidden.getLineCount());
                                     if (hidden.getLineCount() <= 3) {
                                         tv_click.setVisibility(View.GONE);
                                     } else {

@@ -55,7 +55,7 @@ public class ShouYe_HuoDong extends AutoLayoutActivity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
-        hd_web.loadUrl(Urls.BASE_URL+web_url);
+        hd_web.loadUrl(web_url);
     }
 
     private void getid() {

@@ -33,6 +33,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.ZhaoHuiMIma_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -216,9 +217,9 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
             js_request.put("type", 2);
 //            js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
+            MyLog.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -226,8 +227,8 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>()base()加密11111!!--" + base1);
-            Log.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
+            MyLog.e("TAG", ">>>>()base()加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>()sha1()加密11111!!--" + sha1);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -246,10 +247,10 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("ssss", "" + result);
+                        MyLog.e("ssss", "" + result);
 
                         data1 = new Gson().fromJson(result, ZhaoHuiMIma_Gson.class);
-                        Log.e("ddddd", "" + data1.getMessage());
+                        MyLog.e("ddddd", "" + data1.getMessage());
                         if (data1.getMessage().equals("该手机已注册")) {
 //                            finish();
                             AlertDialog dialog3 = new AlertDialog.Builder(ZhaoHuiMiMa.this)
@@ -284,9 +285,9 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
             js_request.put("phone", myphonet.getText().toString());
             js_request.put("type", 3);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
 
         }
@@ -312,14 +313,14 @@ public class ZhaoHuiMiMa extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG", ">>>>成功" + result);
+                        MyLog.e("TAG", ">>>>成功" + result);
 
                         YanZhengMa_gson data = new Gson().fromJson(result, YanZhengMa_gson.class);
                         if (data.getState().equals("success")) {
 
                             String message = data.getMessage();
                             String jsessionId = data.getResult().getJsessionId();
-                            Log.e("jsessionId", "" + jsessionId);
+                            MyLog.e("jsessionId", "" + jsessionId);
                             String phonezhuangtai = data1.getResult().getMapPhone();
                             if (phonezhuangtai.equals("0")) {
                                 Intent zhaohuimima_it = new Intent(ZhaoHuiMiMa.this, ZhaoHuiMiMaYanZheng.class);

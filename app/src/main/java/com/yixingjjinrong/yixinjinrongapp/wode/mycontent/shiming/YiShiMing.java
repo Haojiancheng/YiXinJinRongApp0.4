@@ -15,6 +15,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.YiRenZheng_GSON;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -65,9 +66,9 @@ public class YiShiMing extends AutoLayoutActivity {
             js_request.put("token", userToken);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -88,13 +89,13 @@ public class YiShiMing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("已实名roow",""+e );
+                        MyLog.e("已实名roow",""+e );
                         ToastUtils.showToast(YiShiMing.this, "网络连接失败");
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("已认证GSON:",result );
+                        MyLog.e("已认证GSON:",result );
                         YiRenZheng_GSON data = new Gson().fromJson(result, YiRenZheng_GSON.class);
                         if (data.getMessage().equals("已经认证")) {
                             String realName = data.getResult().getRealName();

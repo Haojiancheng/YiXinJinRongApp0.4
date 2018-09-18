@@ -22,6 +22,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.FangChanDiYa_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Fangchandiya_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.yaoqing.YaoQingXiangQing;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -93,11 +94,11 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
             js_request.put("mortgageType", 1);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("我的出借房产表参数：", "" + js_request);
+            MyLog.e("我的出借房产表参数：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -105,7 +106,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的出借房产表加密：", "" + canshu);
+            MyLog.e("我的出借房产表加密：", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -123,7 +124,7 @@ public class FangChanDeYAn_F extends Fragment implements XRecyclerView.LoadingLi
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("TAG<>?<>Gsaonm", "" + result);
+                        MyLog.e("TAG<>?<>Gsaonm", "" + result);
                         FangChanDiYa_Gson data = new Gson().fromJson(result, FangChanDiYa_Gson.class);
                         list.addAll(data.getInvestList());
 

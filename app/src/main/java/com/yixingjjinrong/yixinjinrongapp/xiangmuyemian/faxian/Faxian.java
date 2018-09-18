@@ -25,6 +25,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.FaXian_Data;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.FaXianBasrAdapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.AnQuanBaoZhang;
@@ -102,7 +103,7 @@ public class Faxian extends Fragment {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("发现", "" + result);
+                        MyLog.e("发现", "" + result);
                         FaXian_Data data = new Gson().fromJson(result, FaXian_Data.class);
                         String paht = data.getResult().getPath();
 
@@ -113,7 +114,7 @@ public class Faxian extends Fragment {
                         adapter = new FaXianBasrAdapter(list, paht);
                         myrecview.setAdapter(adapter);
                         s = String.valueOf(user_id);
-                        Log.e("sdasd", "" + s);
+                        MyLog.e("sdasd", "" + s);
 
                         adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
                             @Override
@@ -135,16 +136,16 @@ public class Faxian extends Fragment {
                             }
                         });
 
-                        Log.e("TAG", "Path:" + paht);
+                        MyLog.e("TAG", "Path:" + paht);
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                             picurl = data.getResult().getBannerList().get(i).getPicurl();
-                            Log.e("TAG", "url:" + picurl);
+                            MyLog.e("TAG", "url:" + picurl);
 
                         }
                         String[] mypic = new String[data.getResult().getBannerList().size()];
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
                             picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
-                            Log.e("TAG", "url:" + picpath);
+                            MyLog.e("TAG", "url:" + picpath);
 
                             mypic[i] = picpath;
 
@@ -152,7 +153,7 @@ public class Faxian extends Fragment {
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
 
 
-                            Log.e("TAG", ">>>URL:" + mypic[i].toString());
+                            MyLog.e("TAG", ">>>URL:" + mypic[i].toString());
                         }
                         fanxian_banner = getActivity().findViewById(R.id.faxian_banner);
                         List<String> list3 = new ArrayList<>();
@@ -211,7 +212,7 @@ public class Faxian extends Fragment {
             @Override
             public void onClick(View v) {
                 String s = String.valueOf(user_id);
-                Log.e("sdasd", "" + s);
+                MyLog.e("sdasd", "" + s);
                 if (s.equals("0")) {
                     Intent it = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);

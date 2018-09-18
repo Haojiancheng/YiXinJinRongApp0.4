@@ -19,6 +19,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.MyChuJIe_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.MyChuJie_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.chujie_fragment.ChuJIeXiangQing;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.MyChuJie_one;
@@ -78,11 +79,11 @@ public class YiDaoQiXiangMu extends AutoLayoutActivity implements XRecyclerView.
 //            js_request.put("mortgageType", 1);
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("我的出借房产表参数：", "" + js_request);
+            MyLog.e("我的出借房产表参数：", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,7 +91,7 @@ public class YiDaoQiXiangMu extends AutoLayoutActivity implements XRecyclerView.
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的出借房产表加密：", "" + canshu);
+            MyLog.e("我的出借房产表加密：", "" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -108,7 +109,7 @@ public class YiDaoQiXiangMu extends AutoLayoutActivity implements XRecyclerView.
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("我的出借Gson", "" + response);
+                        MyLog.e("我的出借Gson", "" + response);
                         MyChuJIe_gson data = new Gson().fromJson(response, MyChuJIe_gson.class);
                         list.addAll(data.getInvestList());
 //                        adapter.setonEveryItemClickListener(new MyChuJie_adapter.OnEveryItemClickListener() {

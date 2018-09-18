@@ -38,6 +38,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.TiXian_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.KUaiJieZhiFu;
@@ -180,7 +181,7 @@ public class TiXian extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -199,7 +200,7 @@ public class TiXian extends AutoLayoutActivity {
                     @Override
                     public void onResponse(String result, int id) {
                         promptDialog.dismiss();
-                        Log.e("提现GSon", result);
+                        MyLog.e("提现GSon", result);
                         final TiXian_Gson data = new Gson().fromJson(result, TiXian_Gson.class);
                         String msg = data.getMsg();
                         if (msg.equals("")) {
@@ -309,7 +310,7 @@ public class TiXian extends AutoLayoutActivity {
             js_request.put("money", t_cz_money.getText().toString());
             js_request.put("token", token);
             js_request.put("loginId", loginid);
-            Log.e("提现的金额", "" + js_request);
+            MyLog.e("提现的金额", "" + js_request);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
 
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
@@ -321,7 +322,7 @@ public class TiXian extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -339,13 +340,13 @@ public class TiXian extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("ok提现：", result);
+                        MyLog.e("ok提现：", result);
                         TiXianOk_GSON data = new Gson().fromJson(result, TiXianOk_GSON.class);
                         if (data.getMessage().equals("提现成功！")) {
                             String html = data.getHtml();
                             Intent itcz = new Intent(TiXian.this, TiXian_OK.class);
                             itcz.putExtra("tixianhtml", html);
-                            Log.e("提现HTML!:", "" + html.toString());
+                            MyLog.e("提现HTML!:", "" + html.toString());
                             startActivity(itcz);
                             finish();
                         } else {
@@ -363,9 +364,9 @@ public class TiXian extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -391,7 +392,7 @@ public class TiXian extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("是否可实名GSON：", result);
+                        MyLog.e("是否可实名GSON：", result);
                         ShiFouKeShiMing_gson data = new Gson().fromJson(result, ShiFouKeShiMing_gson.class);
                         String message = data.getMessage().toString();
                         String jieguo = data.getState().toString();
@@ -449,7 +450,7 @@ public class TiXian extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -467,15 +468,15 @@ public class TiXian extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("存管GSON:", "" + result);
+                        MyLog.e("存管GSON:", "" + result);
                         CunGuan_gson data = new Gson().fromJson(result, CunGuan_gson.class);
                         String html = data.getResult().getHtml();
                         Intent it = new Intent(TiXian.this, YinHangCunGuan.class);
                         it.putExtra("HTML", html);
-                        Log.e("我的页面银行存管HTML:", "" + it);
+                        MyLog.e("我的页面银行存管HTML:", "" + it);
                         startActivity(it);
 
-                        Log.e("wangy", "" + html);
+                        MyLog.e("wangy", "" + html);
                     }
                 });
     }
@@ -496,7 +497,7 @@ public class TiXian extends AutoLayoutActivity {
         loginid = (String) SPUtils.get(TiXian.this, "Loginid", "");
         token = (String) SPUtils.get(TiXian.this, "Token1", "");
         keyong = itzc.getStringExtra("keyong2");
-        Log.e("提现----》", "" + keyong);
+        MyLog.e("提现----》", "" + keyong);
         t_yh_img = findViewById(R.id.t_yh_img);
         t_yh_name = findViewById(R.id.t_yh_name);
         t_yh_number = findViewById(R.id.t_yh_number);
@@ -556,7 +557,7 @@ public class TiXian extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("TAG", ">>>>加密11111!!--" + canshu);
+            MyLog.e("TAG", ">>>>加密11111!!--" + canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -569,12 +570,12 @@ public class TiXian extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Log.e("wss","rong");
+                        MyLog.e("wss","rong");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e("手续费",""+response);
+                        MyLog.e("手续费",""+response);
                         Shouxuf_gson date = new Gson().fromJson(response, Shouxuf_gson.class);
                         t_shouxuf.setText("提现手续费:  "+date.getCost()+"元");
                     }

@@ -47,6 +47,9 @@ public class ChuJie_OK extends AutoLayoutActivity {
         cjcg_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//返回
+                Intent intent=new Intent(ChuJie_OK.this,XiangMuXiangQing.class);
+                intent.putExtra("mortgageType", mortgageType);
+                startActivity(intent);
                 finish();
             }
         });

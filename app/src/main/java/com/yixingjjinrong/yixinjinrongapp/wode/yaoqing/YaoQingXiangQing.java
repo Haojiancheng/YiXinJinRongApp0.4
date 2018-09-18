@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.YaoQingXiangQing_Gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.mybaseadapter.Yaoqing_adapter;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -86,9 +87,9 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
             js_request.put("token", token);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>base加密11111!!--" + base1);
+            MyLog.e("TAG", ">>>>base加密11111!!--" + base1);
             sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
-            Log.e("TAG", ">>>>SH!!" + sha1);
+            MyLog.e("TAG", ">>>>SH!!" + sha1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -96,7 +97,7 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
         try {
             canshu.put("param", base1);
             canshu.put("sign", sha1);
-            Log.e("我的加密：", ":"+canshu);
+            MyLog.e("我的加密：", ":"+canshu);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -114,7 +115,7 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
 
                     @Override
                     public void onResponse(String result, int id) {
-                        Log.e("我的邀请详情Gson",""+result );
+                        MyLog.e("我的邀请详情Gson",""+result );
                         YaoQingXiangQing_Gson data = new Gson().fromJson(result, YaoQingXiangQing_Gson.class);
                         int inviteAmount = data.getQueryAwardList().size();//邀请人数
                         String totalEarn = data.getTotalEarn();//总收益

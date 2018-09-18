@@ -24,6 +24,7 @@ import com.yixingjjinrong.yixinjinrongapp.gsondata.MyAddass_Gson;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShanChuDiZhi_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.addess.UpData_Addass;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -93,7 +94,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                     js_request.put("addressId", id);
                     js_request.put("userId", user_id);
                     base1 = Base64JiaMI.AES_Encode(js_request.toString());
-            Log.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + id);
+                    MyLog.e("TAG", ">>>>SDEWSFDREREbase加密11111!!--" + id);
                     sha1 = SHA1jiami.Encrypt(js_request.toString(), "SHA-1");
 //            Log.e("TAG", ">>>>GGGGGGGSH!!" + sha1);
                 } catch (JSONException e) {
@@ -103,7 +104,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 try {
                     canshu.put("param", base1);
                     canshu.put("sign", sha1);
-                    Log.e("TAG", ">>>>()base()加密11111!!--" + canshu);
+                    MyLog.e("TAG", ">>>>()base()加密11111!!--" + canshu);
 
 
                 } catch (JSONException e) {
@@ -122,7 +123,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
 
                             @Override
                             public void onResponse(String result, int id) {
-                                Log.e("设置为默认地址GSON:", result);
+                                MyLog.e("设置为默认地址GSON:", result);
                                 MoRenAddass_gson mrdata = new Gson().fromJson(result, MoRenAddass_gson.class);
                                 String message = mrdata.getMessage();
                                 if (message.equals("设置默认地址成功")) {
@@ -175,7 +176,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
                 try {
                     canshu.put("param", base1);
                     canshu.put("sign", sha1);
-                    Log.e("TAG", ">>>>()base()加密11111!!--" + canshu);
+                    MyLog.e("TAG", ">>>>()base()加密11111!!--" + canshu);
 
 
                 } catch (JSONException e) {
@@ -195,7 +196,7 @@ public class Myaddass_adapter extends RecyclerView.Adapter<Myaddass_adapter.MyVi
 
                             @Override
                             public void onResponse(String result, int id) {
-                                Log.e("删除收货地址GSON:", result);
+                                MyLog.e("删除收货地址GSON:", result);
                                 ShanChuDiZhi_gson data = new Gson().fromJson(result, ShanChuDiZhi_gson.class);
                                 message = data.getMessage();
                                 if (message.equals("删除地址成功")) {

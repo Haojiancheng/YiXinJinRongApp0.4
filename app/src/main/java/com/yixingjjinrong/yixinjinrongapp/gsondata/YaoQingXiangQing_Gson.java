@@ -7,10 +7,10 @@ public class YaoQingXiangQing_Gson {
     /**
      * message : 成功了
      * result :
-     * totalEarn : 0.00
+     * totalEarn : 100.55
      * state : success
-     * queryAwardList : [{"cellphone":"158******00","realName":"被*","investAmount":2000},{"cellphone":"155******01","realName":"新*","investAmount":300},{"cellphone":"158******00","realName":"被*","investAmount":1000},{"cellphone":"155******01","realName":"新*","investAmount":500},{"cellphone":"155******01","realName":"新*","investAmount":500},{"cellphone":"155******01","realName":"新*","investAmount":500}]
-     * inviteAmount : 0
+     * queryAwardList : [{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"7000.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"50.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"600.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"700.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"800.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1000.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1700.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1700.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1700.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1800.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1800.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1800.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1800.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1900.00"},{"cellphone":"134****0002","realName":"*F","investAmount":"1900.00"},{"cellphone":"134****0003","realName":"*B","investAmount":"5000.00"},{"cellphone":"134****0003","realName":"*B","investAmount":"5000.00"}]
+     * inviteAmount : 9
      */
 
     private String message;
@@ -70,14 +70,14 @@ public class YaoQingXiangQing_Gson {
 
     public static class QueryAwardListBean {
         /**
-         * cellphone : 158******00
-         * realName : 被*
-         * investAmount : 2000
+         * cellphone : 134****0002
+         * realName : *F
+         * investAmount : 900.00
          */
 
         private String cellphone;
         private String realName;
-        private int investAmount;
+        private String investAmount;
 
         public String getCellphone() {
             return cellphone;
@@ -95,11 +95,11 @@ public class YaoQingXiangQing_Gson {
             this.realName = realName;
         }
 
-        public int getInvestAmount() {
+        public String getInvestAmount() {
             return investAmount;
         }
 
-        public void setInvestAmount(int investAmount) {
+        public void setInvestAmount(String investAmount) {
             this.investAmount = investAmount;
         }
     }

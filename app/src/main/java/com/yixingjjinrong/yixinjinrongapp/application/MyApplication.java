@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 public class MyApplication extends Application {
+    public static  double version=1.1 ;
 
     @Override
     public void onCreate() {

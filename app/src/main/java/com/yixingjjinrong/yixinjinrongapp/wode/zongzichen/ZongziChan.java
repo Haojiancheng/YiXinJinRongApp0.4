@@ -173,11 +173,11 @@ public class ZongziChan extends AutoLayoutActivity {
                                 MyLog.e("gcfr", "" + data.getListType().get(i).getMortgageType());
                             }
                             for (int i = 0; i < data.getListFreeze().size(); i++) {
-                                int type = data.getListFreeze().get(i).getMortgageType();
-                                if (type==1){
-                                    dj_che_money.setText(data.getListFreeze().get(i).getSumMoney()+"");
-                                }else if (type==4){
-                                    dj_fang_money.setText(data.getListFreeze().get(i).getSumMoney()+"");
+                                String type =String.valueOf(data.getListFreeze().get(i).getMortgageType()) ;
+                                if (type.equals("1")){
+                                    dj_fang_money.setText(data.getListFreeze().get(i).getSumMoney());
+                                }else if (type.equals("4")){
+                                    dj_che_money.setText(data.getListFreeze().get(i).getSumMoney());
                                 }
                             }
                             if (data.getListFreeze().get(2).getWithdrawMoney().equals("")) {

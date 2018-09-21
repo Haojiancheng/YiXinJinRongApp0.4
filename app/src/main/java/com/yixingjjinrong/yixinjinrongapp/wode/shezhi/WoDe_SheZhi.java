@@ -231,7 +231,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
             public void onClick(View view) {
                 AlertDialog dialog1 = new AlertDialog.Builder(WoDe_SheZhi.this)
                         .setTitle("提示")
-                        .setMessage("您是否清楚缓存")
+                        .setMessage("您是否清理缓存")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

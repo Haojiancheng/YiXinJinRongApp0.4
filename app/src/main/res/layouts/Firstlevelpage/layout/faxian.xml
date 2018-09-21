@@ -169,7 +169,7 @@
     </LinearLayout>
 
     <com.youth.banner.Banner
-        android:id="@+id/faxian_banner"
+        android:id="@+id/faxian_banner12"
         android:layout_width="match_parent"
         android:layout_height="254px"
         android:background="#586e58"></com.youth.banner.Banner>

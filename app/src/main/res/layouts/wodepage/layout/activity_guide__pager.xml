@@ -15,7 +15,7 @@
         android:layout_width="280px"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="260px"
+        android:layout_marginBottom="230px"
         android:layout_centerHorizontal="true"
         android:text="立即体验"
         android:textColor="#ffffff"

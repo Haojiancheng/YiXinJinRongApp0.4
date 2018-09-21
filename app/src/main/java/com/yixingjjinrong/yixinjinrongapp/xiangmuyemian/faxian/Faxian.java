@@ -34,7 +34,9 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.WangDa
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.faxianerji.xinxipilu.XinXiPiLu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.JiFenDuiHuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.faxian.jifen_fx.ShangPingXiangQing;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye.banner_h5.ShouYe_HuoDong;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -65,6 +67,7 @@ public class Faxian extends Fragment {
     private List<FaXian_Data.ResultBean.GoodsListBean> list = new ArrayList<>();
     private int user_id;
     private String s;
+    private FaXian_Data data;
 
 
     @Nullable
@@ -104,7 +107,7 @@ public class Faxian extends Fragment {
                     @Override
                     public void onResponse(String result, int id) {
                         MyLog.e("发现", "" + result);
-                        FaXian_Data data = new Gson().fromJson(result, FaXian_Data.class);
+                        data = new Gson().fromJson(result, FaXian_Data.class);
                         String paht = data.getResult().getPath();
 
                         /**
@@ -155,7 +158,7 @@ public class Faxian extends Fragment {
 
                             MyLog.e("TAG", ">>>URL:" + mypic[i].toString());
                         }
-                        fanxian_banner = getActivity().findViewById(R.id.faxian_banner);
+
                         List<String> list3 = new ArrayList<>();
                         for (String s2 : mypic) {
                             list3.add(s2);
@@ -164,6 +167,24 @@ public class Faxian extends Fragment {
                         fanxian_banner.setImages(list3);
                         fanxian_banner.setDelayTime(5000);
                         fanxian_banner.start();
+
+//                        fanxian_banner.setOnBannerListener(new OnBannerListener() {
+//                            @Override
+//                            public void OnBannerClick(int position) {
+//
+//                                if (data.getResult().getBannerList().get(position).getHrefurl().indexOf("userId=")!=-1){
+//                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+//                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
+//                                    it.putExtra("h5", hrefurl+user_id);
+//                                    startActivity(it);
+//                                }else {
+//                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+//                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
+//                                    it.putExtra("h5", hrefurl);
+//                                    startActivity(it);
+//                                }
+//                            }
+//                        });
 
 
                     }
@@ -180,6 +201,22 @@ public class Faxian extends Fragment {
     }
 
     private void getOnClickq() {
+        fanxian_banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                if (data.getResult().getBannerList().get(position).getHrefurl().indexOf("userId=") != -1) {
+                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+                    Intent it = new Intent(getActivity(), ShouYe_HuoDong.class);
+                    it.putExtra("h5", hrefurl + user_id);
+                    startActivity(it);
+                } else {
+                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
+                    Intent it = new Intent(getActivity(), ShouYe_HuoDong.class);
+                    it.putExtra("h5", hrefurl);
+                    startActivity(it);
+                }
+            }
+        });
         pingtaijieshao12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,6 +268,7 @@ public class Faxian extends Fragment {
         wangdaiketang = getActivity().findViewById(R.id.wangdaiketang);
         fx_gengduo = getActivity().findViewById(R.id.fx_gengduo);
         myrecview = getActivity().findViewById(R.id.myrecycerview);
+        fanxian_banner = getActivity().findViewById(R.id.faxian_banner);
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
     }
 

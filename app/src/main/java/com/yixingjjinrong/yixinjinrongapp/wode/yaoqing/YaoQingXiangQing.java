@@ -120,7 +120,7 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
                         int inviteAmount = data.getQueryAwardList().size();//邀请人数
                         String totalEarn = data.getTotalEarn();//总收益
                         xq_mycount_money.setText(totalEarn);//接到的钱
-                        xq_mymancount.setText(""+inviteAmount);//接到的人数
+                        xq_mymancount.setText(data.getInviteAmount());//接到的人数
                         if(inviteAmount==0){
                             wushuju.setVisibility(View.VISIBLE);
                             youshuju.setVisibility(View.GONE);

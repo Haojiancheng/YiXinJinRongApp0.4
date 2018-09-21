@@ -1,9 +1,12 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,12 +18,16 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -283,15 +290,21 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                         String message = data.getMessage().toString();
                         String zhuangtai = data.getState().toString();
                         if (zhuangtai.equals("success")) {
-                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "" + message);
-                            LayoutInflater inflater = getLayoutInflater();
-                            View view1 = inflater.inflate(R.layout.xgch, null);
-                            final AlertDialog dialog = new AlertDialog.Builder(ZhaoHuiMiMaYanZheng.this)
-                                    .setView(view1)
-                                    .show();
-                                    //给AlertDialog设置4个圆角
-                                    //dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
-                            dialog.setCanceledOnTouchOutside(false);
+//                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "" + message);
+//                            LayoutInflater inflater = getLayoutInflater();
+//                            View view1 = inflater.inflate(R.layout.xgch, null);
+//                            final AlertDialog dialog = new AlertDialog.Builder(ZhaoHuiMiMaYanZheng.this)
+//                                    .setView(view1)
+//                                    .show();
+//
+//                            WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+//                            params.width = 300;
+//                            params.height = 300 ;
+//                            dialog.getWindow().setAttributes(params);
+//                                    //给AlertDialog设置4个圆角
+//                                    //dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialogbg);
+//                            dialog.setCanceledOnTouchOutside(false);
+                            showpopwindow();
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
@@ -302,7 +315,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                                     WoDe_DengRu.instance.finish();
                                     finish();
                                 }
-                            }, 2000);
+                            }, 1000);
 
 
                         } else {
@@ -314,6 +327,20 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                     }
                 });
 
+    }
+
+    @SuppressLint("WrongConstant")
+    private void showpopwindow() {
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        final View popView = View.inflate(this, R.layout.xgch, null);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow = new PopupWindow(popView, width, height);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
     private void getHttP_YAnzhengMA() {

@@ -1,12 +1,18 @@
 package com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.shouye;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,7 +27,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
+import com.yixingjjinrong.yixinjinrongapp.MainActivity;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.MyApplication;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.ShouYe_Gson;
@@ -41,11 +49,18 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Shouye extends Fragment {
 
@@ -281,4 +296,188 @@ public class Shouye extends Fragment {
         super.onPause();
         isGetData = false;
     }
+
+    /**
+     * 检查服务器端版本号
+     */
+//    private class CheckServerVersion implements Runnable {
+//        @Override
+//        public void run() {
+//            OkHttpUtils.get()
+//                    .url(getString(R.string.base_url) + "statistic/user/getVersion.json")
+//                    .build()
+//                    .execute(new StringCallback() {
+//                        private double vercode;
+//
+//                        @Override
+//                        public void onError(Call call, Exception e, int id) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onResponse(String response, int id) {
+//                            Log.i("返回版本数据",response);
+//                            versionDataBean = JsonUtil.json2Bean(response, VersionDataBean.class);
+//                            vercode = MyApplication.version;//获取版本号
+//                            try {
+//                                double serverVersionCode = Double.valueOf(versionDataBean.getApp_version());
+//                                Log.i("本地版本号:", vercode +"");
+//                                Log.i("服务器版本号:", serverVersionCode +"");
+//                                if (vercode < serverVersionCode) {
+//                                    Message showUpdateDialog = Message.obtain();
+//                                    showUpdateDialog.what = SHOW_UPDATE_DIALOG;
+//                                    handler.sendMessage(showUpdateDialog);
+//                                } else {
+//
+//                                }
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    });
+//        }
+//    }
+//
+//    /**
+//     * 弹出提示更新的dialog
+//     */
+//    private void showUpdateDialog() {
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+//        dialog.setCancelable(false);
+//        dialog.setTitle("版本更新提示");
+//        dialog.setMessage(SharedPreferencesUtil.getString(MainActivity.this,"version_mark",""));
+////        dialog.setNegativeButton("暫不更新", new DialogInterface.OnClickListener() {
+////            @Override
+////            public void onClick(DialogInterface dialog, int which) {
+////                //跳转到登录界面
+//////                finish();
+////            }
+////        });
+//        dialog.setPositiveButton("立刻更新", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //从服务器端下载最新apk
+//                downloadApk();
+//            }
+//        });
+//        dialog.show();
+//    }
+//
+//    /**
+//     * 从服务器端下载最新apk
+//     */
+//    private void downloadApk() {
+//        //显示下载进度
+//        ProgressDialog dialog = new ProgressDialog(this);
+//        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        dialog.setCancelable(false);
+//        dialog.show();
+//
+//        //访问网络下载apk
+//        new Thread(new DownloadApk(dialog)).start();
+//    }
+//
+//    /**
+//     * 访问网络下载apk
+//     */
+//    private class DownloadApk implements Runnable {
+//        private ProgressDialog dialog;
+//        InputStream is;
+//        FileOutputStream fos;
+//
+//        public DownloadApk(ProgressDialog dialog) {
+//            this.dialog = dialog;
+//        }
+//
+//        @Override
+//        public void run() {
+//            OkHttpClient client = new OkHttpClient();
+////                String url = versionDataBean.VERSION_URL;
+//            Request request = new Request.Builder().get().url(versionDataBean.getApp_file()).build();
+//            try {
+//                Log.i("这里的apk是什么?:",versionDataBean.getApp_file());
+//                Response response = client.newCall(request).execute();
+//                if (response.isSuccessful()) {
+//                    Log.i("数租长度",response.body().contentLength()+"");
+//                    //获取内容总长度
+//                    long contentLength = response.body().contentLength();
+//                    //设置最大值
+//                    int length = (int)contentLength/(1024 * 2);
+//                    dialog.setMax(length);
+//                    //保存到sd卡
+//                    File apkFile = new File(Environment.getExternalStorageDirectory(), getString(R.string.app_name) + ".apk");
+//                    fos = new FileOutputStream(apkFile);
+//                    //获得输入流
+//                    is = response.body().byteStream();
+//                    //定义缓冲区大小
+//                    byte[] bys = new byte[1024];
+//                    int progress = 0;
+//                    int len = -1;
+//                    while ((len = is.read(bys)) != -1) {
+//                        try {
+//                            Thread.sleep(1);
+//                            fos.write(bys, 0, len);
+//                            fos.flush();
+//                            progress += len;
+//                            //设置进度
+//                            int progress1 = progress/(1024 * 2);
+//                            dialog.setProgress(progress1);
+//                        } catch (Exception e) {
+//                            Message msg = Message.obtain();
+//                            msg.what = SHOW_ERROR;
+//                            msg.obj = "ERROR:10002";
+//                            handler.sendMessage(msg);
+//                        }
+//                    }
+//                    //下载完成,提示用户安装
+//                    installApk(apkFile);
+//                }
+//            } catch (Exception e) {
+//                Message msg = Message.obtain();
+//                msg.what = SHOW_ERROR;
+//                msg.obj = "网络异常";
+//                handler.sendMessage(msg);
+//            } finally {
+//                //关闭io流
+//                if (is != null) {
+//                    try {
+//                        is.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    is = null;
+//                }
+//                if (fos != null) {
+//                    try {
+//                        fos.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    fos = null;
+//                }
+//            }
+//            dialog.dismiss();
+//        }
+//    }
+//
+//    /**
+//     * 下载完成,提示用户安装
+//     */
+//    private void installApk(File file) {
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        Uri data;
+//        // 判断版本大于等于7.0
+//        // 判断版本大于等于7.0
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            // "net.csdn.blog.ruancoder.fileprovider"即是在清单文件中配置的authorities
+//            data = FileProvider.getUriForFile(getActivity(), "com.yixingjjinrong.yixinjinrongapp.fileprovider", file);
+//            // 给目标应用一个临时授权
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        } else {
+//            data = Uri.fromFile(file);
+//        }
+//        intent.setDataAndType(data, "application/vnd.android.package-archive");
+//        this.startActivity(intent);
+//    }
+
 }

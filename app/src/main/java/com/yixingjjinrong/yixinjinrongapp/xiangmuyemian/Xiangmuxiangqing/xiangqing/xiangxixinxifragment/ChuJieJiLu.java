@@ -73,6 +73,7 @@ public class ChuJieJiLu extends LazyFragment implements XRecyclerView.LoadingLis
         chujejilu_rview.setLayoutManager(manager);
         chujejilu_rview.setLoadingListener(this);
         chujejilu_rview.setPullRefreshEnabled(true);
+        chujejilu_rview.setNestedScrollingEnabled(false);//解决冲突
         chujejilu_rview.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         chujejilu_rview.setLoadingMoreProgressStyle(ProgressStyle.Pacman);
         adapter=new ChuJieJiLu_Adapter(list);

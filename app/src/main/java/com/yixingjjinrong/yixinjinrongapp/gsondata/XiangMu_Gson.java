@@ -6,7 +6,7 @@ public class XiangMu_Gson {
 
     /**
      * message : 查询成功
-     * result : [{"ableTenderDate":"2018-06-27 16:38 ","amount":"10,000.00","annualRate":1,"borrowCode":"X18D10062","borrowFrom":1,"borrowRandomId":"d89cdc35-2497-45e7-b917-a0b70445bffe","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"143阿斯顿阿斯顿","deadlineNew":"5个月","id":2435,"investNumTotal":"9,500.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"5.00%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:35 ","amount":"10,000.00","annualRate":4,"borrowCode":"X18D10061","borrowFrom":1,"borrowRandomId":"94c8cea1-2f8f-4afb-9b18-6e6c9642f4a7","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"梵蒂冈","deadlineNew":"5个月","id":2434,"investNumTotal":"10,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":4,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:30 ","amount":"20,000.00","annualRate":3,"borrowCode":"X18D10060","borrowFrom":1,"borrowRandomId":"30c64044-0f84-4dec-a547-1e02a163d81e","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"4个月","id":2433,"investNumTotal":"20,000.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:15","amount":"11,111.00","annualRate":4,"borrowCode":"X18D10059","borrowFrom":1,"borrowRandomId":"501cdd96-6575-4c1e-b45a-2608b33b949b","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"asdasdasdasdasd","deadlineNew":"9个月","id":2429,"investNumTotal":"10,911.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"1.80%","subsidies":4,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-27 16:42","amount":"11,111.00","annualRate":1,"borrowCode":"X18D10058","borrowFrom":1,"borrowRandomId":"03491b4e-370d-47be-9af1-bf8c3f7aa483","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿爱的","deadlineNew":"2个月","id":2428,"investNumTotal":"11,111.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0%","subsidies":1,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-23 16:45 ","amount":"11,111.00","annualRate":2,"borrowCode":"X18D10057","borrowFrom":1,"borrowRandomId":"60046ae1-75c3-420e-995d-215d58268a3c","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"12个月","id":2396,"investNumTotal":"11.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"99.90%","subsidies":1,"subsidiesRate":1,"timeFlag":0},{"ableTenderDate":"2018-06-22 14:15 ","amount":"123,123.00","annualRate":3,"borrowCode":"X18D10048","borrowFrom":1,"borrowRandomId":"a714cb94-9614-48e9-a168-b80a20f27419","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"asd","deadlineNew":"3个月","id":2371,"investNumTotal":"121,923.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"0.97%","subsidies":3,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-22 14:05 ","amount":"10,000.00","annualRate":2,"borrowCode":"X18D10047","borrowFrom":1,"borrowRandomId":"722e2e57-60c2-4d21-bab3-aaa6cb121707","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"阿斯顿","deadlineNew":"2个月","id":2370,"investNumTotal":"9,700.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"3.00%","subsidies":1,"subsidiesRate":1,"timeFlag":0},{"ableTenderDate":"2018-06-22 10:24","amount":"700.00","annualRate":6,"borrowCode":"X18D10041","borrowFrom":1,"borrowRandomId":"6787d50b-92ca-4cd6-95fb-a10e3757c0b5","borrowSpe":"个人借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"房屋_公司_一次性还款","deadlineNew":"3个月","id":2363,"investNumTotal":"300.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"57.14%","subsidies":6,"subsidiesRate":0,"timeFlag":0},{"ableTenderDate":"2018-06-20 11:23","amount":"6,000.00","annualRate":6,"borrowCode":"X18D10016","borrowFrom":2,"borrowRandomId":"9f7863e6-41c0-4f8b-9f8d-04686381dad8","borrowSpe":"公司借款","borrowStatus":2,"borrowStatusStr":"立即出借","borrowTitle":"企业担保公司","deadlineNew":"2个月","id":2311,"investNumTotal":"4,800.00","isDayThe":1,"mortgageType":1,"mortgageTypeStr":"房产抵押","schedules":"20.00%","subsidies":6,"subsidiesRate":0,"timeFlag":0}]
+     * result : [{"borrowTitle":"谢庚哲专用","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:57 ","id":3088,"amount":"1,200,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"95168316","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"1,200,000.00","borrowRandomId":"61b20f0c-90f5-420e-a36e-c61a37ae30d4"},{"borrowTitle":"AAA级别1015004","borrowStatus":2,"schedules":"0.01%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3087,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015004","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"2,999,700.00","borrowRandomId":"e4ad9be9-7116-4ebc-8fb0-6fa7a1973da5"},{"borrowTitle":"BBB级别1015003","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3086,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015003","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":4,"investNumTotal":"3,000,000.00","borrowRandomId":"54de6d3a-b47f-46f2-bc61-dec436e7a587"},{"borrowTitle":"CCC级别1015002","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:30 ","id":3085,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015002","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":7,"investNumTotal":"3,000,000.00","borrowRandomId":"142f3a88-a57f-433a-b2f1-eb6ad1d1ccbe"},{"borrowTitle":"测试1013003","borrowStatus":2,"schedules":"23.00%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-13 10:40 ","id":3083,"amount":"1,500,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1013003","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"1,155,000.00","borrowRandomId":"a6cd0268-c944-4579-8480-444bbec392b8"},{"borrowTitle":"测试1013002","borrowStatus":2,"schedules":"46.66%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-13 10:40 ","id":3082,"amount":"1,500,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1013002","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"800,000.00","borrowRandomId":"11e475a6-2243-4f55-b978-a8ffe521738d"},{"borrowTitle":"测试1013001","borrowStatus":2,"schedules":"46.66%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-13 10:40 ","id":3081,"amount":"1,500,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1013001","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"800,000.00","borrowRandomId":"c4fa0ca9-cb60-4b75-95e8-e132e7d7bdde"},{"borrowTitle":"测试房贷车贷标","borrowStatus":2,"schedules":"16.68%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-12 18:14 ","id":3080,"amount":"1,200,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"34858884","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"999,800.00","borrowRandomId":"483a12d4-c592-4903-8a41-a79cafb609de"},{"borrowTitle":"个人资金周转","borrowStatus":2,"schedules":"0.20%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-12 13:57 ","id":3074,"amount":"150,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"CXLT002018101201","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":3,"investNumTotal":"149,700.00","borrowRandomId":"ebaedc14-2dd8-4be0-b19e-9388625a15bb"},{"borrowTitle":"试试功能吧","borrowStatus":2,"schedules":"90.50%","mortgageTypeStr":"房产抵押","mortgageType":1,"deadlineNew":"3个月","timeFlag":0,"annualRate":"6.0","timeFlags":1,"ableTenderDate":"2018-10-10 11:55","id":3051,"amount":"100,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aa-bb-cc","subsidies":"5.0","subsidiesRate":"1.0","borrowSafelevel":1,"investNumTotal":"9,500.00","borrowRandomId":"d1ef29cd-7449-4a15-8c0b-fc1aa0918b98"}]
      * state : success
      */
 
@@ -40,103 +40,59 @@ public class XiangMu_Gson {
 
     public static class ResultBean {
         /**
-         * ableTenderDate : 2018-06-27 16:38
-         * amount : 10,000.00
-         * annualRate : 1.0
-         * borrowCode : X18D10062
-         * borrowFrom : 1
-         * borrowRandomId : d89cdc35-2497-45e7-b917-a0b70445bffe
-         * borrowSpe : 个人借款
+         * borrowTitle : 谢庚哲专用
          * borrowStatus : 2
-         * borrowStatusStr : 立即出借
-         * borrowTitle : 143阿斯顿阿斯顿
-         * deadlineNew : 5个月
-         * id : 2435
-         * investNumTotal : 9,500.00
-         * isDayThe : 1
-         * mortgageType : 1
-         * mortgageTypeStr : 房产抵押
-         * schedules : 5.00%
-         * subsidies : 1.0
-         * subsidiesRate : 0.0
+         * schedules : 0%
+         * mortgageTypeStr : 车辆抵押
+         * mortgageType : 4
+         * deadlineNew : 3个月
          * timeFlag : 0
+         * annualRate : 9.0
+         * timeFlags : 1
+         * ableTenderDate : 2018-10-15 14:57
+         * id : 3088
+         * amount : 1,200,000.00
+         * borrowStatusStr : 立即出借
+         * isDayThe : 1
+         * borrowSpe : 个人借款
+         * borrowFrom : 1
+         * borrowCode : 95168316
+         * subsidies : 9.0
+         * subsidiesRate : 0.0
+         * borrowSafelevel : 1
+         * investNumTotal : 1,200,000.00
+         * borrowRandomId : 61b20f0c-90f5-420e-a36e-c61a37ae30d4
          */
 
-        private String ableTenderDate;
-        private String amount;
-        private double annualRate;
-        private String borrowCode;
-        private int borrowFrom;
-        private String borrowRandomId;
-        private String borrowSpe;
-        private int borrowStatus;
-        private String borrowStatusStr;
         private String borrowTitle;
-        private String deadlineNew;
-        private int id;
-        private String investNumTotal;
-        private int isDayThe;
-        private int mortgageType;
-        private String mortgageTypeStr;
+        private int borrowStatus;
         private String schedules;
-        private double subsidies;
-        private double subsidiesRate;
+        private String mortgageTypeStr;
+        private int mortgageType;
+        private String deadlineNew;
         private int timeFlag;
+        private String annualRate;
+        private int timeFlags;
+        private String ableTenderDate;
+        private int id;
+        private String amount;
+        private String borrowStatusStr;
+        private int isDayThe;
+        private String borrowSpe;
+        private int borrowFrom;
+        private String borrowCode;
+        private String subsidies;
+        private double subsidiesRate;
+        private int borrowSafelevel;
+        private String investNumTotal;
+        private String borrowRandomId;
 
-        public String getAbleTenderDate() {
-            return ableTenderDate;
+        public String getBorrowTitle() {
+            return borrowTitle;
         }
 
-        public void setAbleTenderDate(String ableTenderDate) {
-            this.ableTenderDate = ableTenderDate;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
-        }
-
-        public double getAnnualRate() {
-            return annualRate;
-        }
-
-        public void setAnnualRate(double annualRate) {
-            this.annualRate = annualRate;
-        }
-
-        public String getBorrowCode() {
-            return borrowCode;
-        }
-
-        public void setBorrowCode(String borrowCode) {
-            this.borrowCode = borrowCode;
-        }
-
-        public int getBorrowFrom() {
-            return borrowFrom;
-        }
-
-        public void setBorrowFrom(int borrowFrom) {
-            this.borrowFrom = borrowFrom;
-        }
-
-        public String getBorrowRandomId() {
-            return borrowRandomId;
-        }
-
-        public void setBorrowRandomId(String borrowRandomId) {
-            this.borrowRandomId = borrowRandomId;
-        }
-
-        public String getBorrowSpe() {
-            return borrowSpe;
-        }
-
-        public void setBorrowSpe(String borrowSpe) {
-            this.borrowSpe = borrowSpe;
+        public void setBorrowTitle(String borrowTitle) {
+            this.borrowTitle = borrowTitle;
         }
 
         public int getBorrowStatus() {
@@ -147,60 +103,12 @@ public class XiangMu_Gson {
             this.borrowStatus = borrowStatus;
         }
 
-        public String getBorrowStatusStr() {
-            return borrowStatusStr;
+        public String getSchedules() {
+            return schedules;
         }
 
-        public void setBorrowStatusStr(String borrowStatusStr) {
-            this.borrowStatusStr = borrowStatusStr;
-        }
-
-        public String getBorrowTitle() {
-            return borrowTitle;
-        }
-
-        public void setBorrowTitle(String borrowTitle) {
-            this.borrowTitle = borrowTitle;
-        }
-
-        public String getDeadlineNew() {
-            return deadlineNew;
-        }
-
-        public void setDeadlineNew(String deadlineNew) {
-            this.deadlineNew = deadlineNew;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getInvestNumTotal() {
-            return investNumTotal;
-        }
-
-        public void setInvestNumTotal(String investNumTotal) {
-            this.investNumTotal = investNumTotal;
-        }
-
-        public int getIsDayThe() {
-            return isDayThe;
-        }
-
-        public void setIsDayThe(int isDayThe) {
-            this.isDayThe = isDayThe;
-        }
-
-        public int getMortgageType() {
-            return mortgageType;
-        }
-
-        public void setMortgageType(int mortgageType) {
-            this.mortgageType = mortgageType;
+        public void setSchedules(String schedules) {
+            this.schedules = schedules;
         }
 
         public String getMortgageTypeStr() {
@@ -211,19 +119,115 @@ public class XiangMu_Gson {
             this.mortgageTypeStr = mortgageTypeStr;
         }
 
-        public String getSchedules() {
-            return schedules;
+        public int getMortgageType() {
+            return mortgageType;
         }
 
-        public void setSchedules(String schedules) {
-            this.schedules = schedules;
+        public void setMortgageType(int mortgageType) {
+            this.mortgageType = mortgageType;
         }
 
-        public double getSubsidies() {
+        public String getDeadlineNew() {
+            return deadlineNew;
+        }
+
+        public void setDeadlineNew(String deadlineNew) {
+            this.deadlineNew = deadlineNew;
+        }
+
+        public int getTimeFlag() {
+            return timeFlag;
+        }
+
+        public void setTimeFlag(int timeFlag) {
+            this.timeFlag = timeFlag;
+        }
+
+        public String getAnnualRate() {
+            return annualRate;
+        }
+
+        public void setAnnualRate(String annualRate) {
+            this.annualRate = annualRate;
+        }
+
+        public int getTimeFlags() {
+            return timeFlags;
+        }
+
+        public void setTimeFlags(int timeFlags) {
+            this.timeFlags = timeFlags;
+        }
+
+        public String getAbleTenderDate() {
+            return ableTenderDate;
+        }
+
+        public void setAbleTenderDate(String ableTenderDate) {
+            this.ableTenderDate = ableTenderDate;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
+
+        public String getBorrowStatusStr() {
+            return borrowStatusStr;
+        }
+
+        public void setBorrowStatusStr(String borrowStatusStr) {
+            this.borrowStatusStr = borrowStatusStr;
+        }
+
+        public int getIsDayThe() {
+            return isDayThe;
+        }
+
+        public void setIsDayThe(int isDayThe) {
+            this.isDayThe = isDayThe;
+        }
+
+        public String getBorrowSpe() {
+            return borrowSpe;
+        }
+
+        public void setBorrowSpe(String borrowSpe) {
+            this.borrowSpe = borrowSpe;
+        }
+
+        public int getBorrowFrom() {
+            return borrowFrom;
+        }
+
+        public void setBorrowFrom(int borrowFrom) {
+            this.borrowFrom = borrowFrom;
+        }
+
+        public String getBorrowCode() {
+            return borrowCode;
+        }
+
+        public void setBorrowCode(String borrowCode) {
+            this.borrowCode = borrowCode;
+        }
+
+        public String getSubsidies() {
             return subsidies;
         }
 
-        public void setSubsidies(double subsidies) {
+        public void setSubsidies(String subsidies) {
             this.subsidies = subsidies;
         }
 
@@ -235,12 +239,28 @@ public class XiangMu_Gson {
             this.subsidiesRate = subsidiesRate;
         }
 
-        public int getTimeFlag() {
-            return timeFlag;
+        public int getBorrowSafelevel() {
+            return borrowSafelevel;
         }
 
-        public void setTimeFlag(int timeFlag) {
-            this.timeFlag = timeFlag;
+        public void setBorrowSafelevel(int borrowSafelevel) {
+            this.borrowSafelevel = borrowSafelevel;
+        }
+
+        public String getInvestNumTotal() {
+            return investNumTotal;
+        }
+
+        public void setInvestNumTotal(String investNumTotal) {
+            this.investNumTotal = investNumTotal;
+        }
+
+        public String getBorrowRandomId() {
+            return borrowRandomId;
+        }
+
+        public void setBorrowRandomId(String borrowRandomId) {
+            this.borrowRandomId = borrowRandomId;
         }
     }
 }

@@ -7,7 +7,7 @@ public class ShouYe_Gson {
 
     /**
      * message : 查询成功
-     * result : {"bannerList":[{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/201808011345553381.jpg","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"},{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/20180801134633305.jpg","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"},{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/201808011346597369.png","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"}],"borrowList":[{"borrowTitle":"后台测试专用08-10","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"房产抵押","mortgageType":1,"deadlineNew":"3个月","timeFlag":0,"annualRate":"6.0","ableTenderDate":"2018-08-10 16:30 ","id":2697,"amount":"100.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"xgz-2018-08-10-ceshi","subsidies":"5.0","subsidiesRate":"1.0","investNumTotal":"100.00","borrowRandomId":"8ec38ff2-e200-462f-a57e-7019afffe5fa"},{"borrowTitle":"测试0806001","borrowStatus":2,"schedules":"1.59%","mortgageTypeStr":"房产抵押","mortgageType":1,"deadlineNew":"4个月","timeFlag":0,"annualRate":"9.5","ableTenderDate":"2018-08-06 10:50 ","id":2679,"amount":"125,500.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa0806001","subsidies":"9.5","subsidiesRate":"0.0","investNumTotal":"123,500.00","borrowRandomId":"6b96c519-822a-4df7-9baa-c3b90dabc349"},{"borrowTitle":"测试0803002","borrowStatus":2,"schedules":"0.07%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","ableTenderDate":"2018-08-03 19:09","id":2666,"amount":"1,233,550.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"abcd1234567","subsidies":"9.0","subsidiesRate":"0.0","investNumTotal":"1,232,650.00","borrowRandomId":"e74ed447-3e67-4667-a698-f24b710ab9bd"}],"publicMsgList":[{"article_title":"亿信宝公告","article_pub_time":"2018-08-01","article_link":"","aid":228},{"article_title":"程成城称乘","article_pub_time":"2018-08-01","article_link":"","aid":229}],"path":"http://newbck.yxb.com/"}
+     * result : {"bannerList":[{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801016030.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801144302.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801353746.png","l_total_count":3,"tid":114,"hrefurl":""}],"borrowList":[{"borrowTitle":"谢庚哲专用","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:57 ","id":3088,"amount":"1,200,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"95168316","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"1,200,000.00","borrowRandomId":"61b20f0c-90f5-420e-a36e-c61a37ae30d4"},{"borrowTitle":"AAA级别1015004","borrowStatus":2,"schedules":"0.01%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3087,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015004","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"2,999,700.00","borrowRandomId":"e4ad9be9-7116-4ebc-8fb0-6fa7a1973da5"},{"borrowTitle":"BBB级别1015003","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3086,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015003","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":4,"investNumTotal":"3,000,000.00","borrowRandomId":"54de6d3a-b47f-46f2-bc61-dec436e7a587"}],"publicMsgList":[{"article_title":"亿信宝公告","article_pub_time":"2018-08-01","article_link":"","aid":228},{"article_title":"程成城称乘","article_pub_time":"2018-08-01","article_link":"","aid":229}],"path":"http://192.168.1.79:8080/yxb_oms/"}
      * state : success
      */
 
@@ -41,10 +41,10 @@ public class ShouYe_Gson {
 
     public static class ResultBean {
         /**
-         * bannerList : [{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/201808011345553381.jpg","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"},{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/20180801134633305.jpg","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"},{"l_name":"正式app的banner栏目","picurl":"upload/imageManage/20180801/201808011346597369.png","l_total_count":3,"tid":119,"hrefurl":"www.baidu.com"}]
-         * borrowList : [{"borrowTitle":"后台测试专用08-10","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"房产抵押","mortgageType":1,"deadlineNew":"3个月","timeFlag":0,"annualRate":"6.0","ableTenderDate":"2018-08-10 16:30 ","id":2697,"amount":"100.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"xgz-2018-08-10-ceshi","subsidies":"5.0","subsidiesRate":"1.0","investNumTotal":"100.00","borrowRandomId":"8ec38ff2-e200-462f-a57e-7019afffe5fa"},{"borrowTitle":"测试0806001","borrowStatus":2,"schedules":"1.59%","mortgageTypeStr":"房产抵押","mortgageType":1,"deadlineNew":"4个月","timeFlag":0,"annualRate":"9.5","ableTenderDate":"2018-08-06 10:50 ","id":2679,"amount":"125,500.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa0806001","subsidies":"9.5","subsidiesRate":"0.0","investNumTotal":"123,500.00","borrowRandomId":"6b96c519-822a-4df7-9baa-c3b90dabc349"},{"borrowTitle":"测试0803002","borrowStatus":2,"schedules":"0.07%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","ableTenderDate":"2018-08-03 19:09","id":2666,"amount":"1,233,550.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"abcd1234567","subsidies":"9.0","subsidiesRate":"0.0","investNumTotal":"1,232,650.00","borrowRandomId":"e74ed447-3e67-4667-a698-f24b710ab9bd"}]
+         * bannerList : [{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801016030.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801144302.png","l_total_count":3,"tid":114,"hrefurl":""},{"l_name":"引导页app","picurl":"upload/imageManage/20180918/201809181801353746.png","l_total_count":3,"tid":114,"hrefurl":""}]
+         * borrowList : [{"borrowTitle":"谢庚哲专用","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:57 ","id":3088,"amount":"1,200,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"95168316","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"1,200,000.00","borrowRandomId":"61b20f0c-90f5-420e-a36e-c61a37ae30d4"},{"borrowTitle":"AAA级别1015004","borrowStatus":2,"schedules":"0.01%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3087,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015004","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":1,"investNumTotal":"2,999,700.00","borrowRandomId":"e4ad9be9-7116-4ebc-8fb0-6fa7a1973da5"},{"borrowTitle":"BBB级别1015003","borrowStatus":2,"schedules":"0%","mortgageTypeStr":"车辆抵押","mortgageType":4,"deadlineNew":"3个月","timeFlag":0,"annualRate":"9.0","timeFlags":1,"ableTenderDate":"2018-10-15 14:34","id":3086,"amount":"3,000,000.00","borrowStatusStr":"立即出借","isDayThe":1,"borrowSpe":"个人借款","borrowFrom":1,"borrowCode":"aaaa-1015003","subsidies":"9.0","subsidiesRate":"0.0","borrowSafelevel":4,"investNumTotal":"3,000,000.00","borrowRandomId":"54de6d3a-b47f-46f2-bc61-dec436e7a587"}]
          * publicMsgList : [{"article_title":"亿信宝公告","article_pub_time":"2018-08-01","article_link":"","aid":228},{"article_title":"程成城称乘","article_pub_time":"2018-08-01","article_link":"","aid":229}]
-         * path : http://newbck.yxb.com/
+         * path : http://192.168.1.79:8080/yxb_oms/
          */
 
         private String path;
@@ -86,11 +86,11 @@ public class ShouYe_Gson {
 
         public static class BannerListBean {
             /**
-             * l_name : 正式app的banner栏目
-             * picurl : upload/imageManage/20180801/201808011345553381.jpg
+             * l_name : 引导页app
+             * picurl : upload/imageManage/20180918/201809181801016030.png
              * l_total_count : 3
-             * tid : 119
-             * hrefurl : www.baidu.com
+             * tid : 114
+             * hrefurl :
              */
 
             private String l_name;
@@ -142,26 +142,28 @@ public class ShouYe_Gson {
 
         public static class BorrowListBean {
             /**
-             * borrowTitle : 后台测试专用08-10
+             * borrowTitle : 谢庚哲专用
              * borrowStatus : 2
              * schedules : 0%
-             * mortgageTypeStr : 房产抵押
-             * mortgageType : 1
+             * mortgageTypeStr : 车辆抵押
+             * mortgageType : 4
              * deadlineNew : 3个月
              * timeFlag : 0
-             * annualRate : 6.0
-             * ableTenderDate : 2018-08-10 16:30
-             * id : 2697
-             * amount : 100.00
+             * annualRate : 9.0
+             * timeFlags : 1
+             * ableTenderDate : 2018-10-15 14:57
+             * id : 3088
+             * amount : 1,200,000.00
              * borrowStatusStr : 立即出借
              * isDayThe : 1
              * borrowSpe : 个人借款
              * borrowFrom : 1
-             * borrowCode : xgz-2018-08-10-ceshi
-             * subsidies : 5.0
-             * subsidiesRate : 1.0
-             * investNumTotal : 100.00
-             * borrowRandomId : 8ec38ff2-e200-462f-a57e-7019afffe5fa
+             * borrowCode : 95168316
+             * subsidies : 9.0
+             * subsidiesRate : 0.0
+             * borrowSafelevel : 1
+             * investNumTotal : 1,200,000.00
+             * borrowRandomId : 61b20f0c-90f5-420e-a36e-c61a37ae30d4
              */
 
             private String borrowTitle;
@@ -172,6 +174,7 @@ public class ShouYe_Gson {
             private String deadlineNew;
             private int timeFlag;
             private String annualRate;
+            private int timeFlags;
             private String ableTenderDate;
             private int id;
             private String amount;
@@ -182,6 +185,7 @@ public class ShouYe_Gson {
             private String borrowCode;
             private String subsidies;
             private String subsidiesRate;
+            private int borrowSafelevel;
             private String investNumTotal;
             private String borrowRandomId;
 
@@ -247,6 +251,14 @@ public class ShouYe_Gson {
 
             public void setAnnualRate(String annualRate) {
                 this.annualRate = annualRate;
+            }
+
+            public int getTimeFlags() {
+                return timeFlags;
+            }
+
+            public void setTimeFlags(int timeFlags) {
+                this.timeFlags = timeFlags;
             }
 
             public String getAbleTenderDate() {
@@ -327,6 +339,14 @@ public class ShouYe_Gson {
 
             public void setSubsidiesRate(String subsidiesRate) {
                 this.subsidiesRate = subsidiesRate;
+            }
+
+            public int getBorrowSafelevel() {
+                return borrowSafelevel;
+            }
+
+            public void setBorrowSafelevel(int borrowSafelevel) {
+                this.borrowSafelevel = borrowSafelevel;
             }
 
             public String getInvestNumTotal() {

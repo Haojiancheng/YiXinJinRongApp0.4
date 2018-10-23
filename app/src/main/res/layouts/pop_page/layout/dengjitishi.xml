@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ts_fxdengji">
+
+    <LinearLayout
+        android:id="@+id/l5"
+        android:layout_width="484px"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fx_cengci"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="风险"
+                android:textColor="#333333"
+                android:textSize="32px" />
+            <TextView
+                android:id="@+id/b_dengji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AAA"
+                android:textColor="#ef6623"
+                android:textSize="32px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="级"
+                android:textColor="#333333"
+                android:textSize="32px" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/b_messages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="42px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="26px"
+            android:text="借款人市场竞争能力极强，融资能力和还款能力极强，还款意愿很好"
+            android:textColor="#333333"
+            android:textSize="28px" />
+
+    </LinearLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

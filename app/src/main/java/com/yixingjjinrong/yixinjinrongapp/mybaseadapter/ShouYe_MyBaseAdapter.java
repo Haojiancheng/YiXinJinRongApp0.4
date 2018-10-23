@@ -25,11 +25,12 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     public static final int TYPE_TWO = 2;
     Context context;
     private List<ShouYe_Gson.ResultBean.BorrowListBean> mylist;
+
     public ShouYe_MyBaseAdapter(Context context, List<ShouYe_Gson.ResultBean.BorrowListBean> mylist) {
         this.context = context;
         this.mylist = mylist;
     }
-
+    ///********************************************************************************************************
     private OnEveryItemClickListener onEveryItemClickListener;
 
     public interface OnEveryItemClickListener {
@@ -40,7 +41,18 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
         this.onEveryItemClickListener = onEveryItemClickListener;
     }
+    ///********************************************************************************************************
+    private OnEveryItemClickListener onEveryItemClickListener2;
 
+    public interface OnEveryItemClickListener2 {
+        void onEveryClick(int position);
+    }
+
+    public void setOnEveryItemClickListener2(OnEveryItemClickListener onEveryItemClickListener2) {
+        this.onEveryItemClickListener2 = onEveryItemClickListener2;
+    }
+
+    ///********************************************************************************************************
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,9 +74,39 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
-            ((MyViewHolder) holder).first_name.setText(mylist.get(position).getBorrowTitle() );
+            ((MyViewHolder) holder).first_name.setText(mylist.get(position).getBorrowTitle());
             ((MyViewHolder) holder).first_lv.setText(String.valueOf(mylist.get(position).getSubsidies()));
             ((MyViewHolder) holder).first_yue.setText(mylist.get(position).getAmount() + " 元");
+            switch (mylist.get(position).getBorrowSafelevel()) {
+                case 1:
+                    ((MyViewHolder) holder).first_leve.setText("AAA");
+                    break;
+                case 2:
+                    ((MyViewHolder) holder).first_leve.setText("AA");
+                case 3:
+                    ((MyViewHolder) holder).first_leve.setText("A");
+                    break;
+                case 4:
+                    ((MyViewHolder) holder).first_leve.setText("BBB");
+                    break;
+                case 5:
+                    ((MyViewHolder) holder).first_leve.setText("BB");
+                    break;
+                case 6:
+                    ((MyViewHolder) holder).first_leve.setText("B");
+                    break;
+                case 7:
+                    ((MyViewHolder) holder).first_leve.setText("CCC");
+                    break;
+                case 8:
+                    ((MyViewHolder) holder).first_leve.setText("CC");
+                    break;
+                case 9:
+                    ((MyViewHolder) holder).first_leve.setText("C");
+                    break;
+                default:
+                    break;
+            }
             if (mylist.get(position).getSubsidiesRate().equals("0.0")) {
                 ((MyViewHolder) holder).first_fujialv.setText("");
                 ((MyViewHolder) holder).first_jia.setText("");
@@ -111,7 +153,8 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     ((MyViewHolder) holder).first_chujie.setText(mylist.get(position).getBorrowStatusStr());
                     ((MyViewHolder) holder).first_chujie.setTextColor(Color.parseColor("#ffffff"));
                     ((MyViewHolder) holder).first_chujie.setBackgroundResource(R.drawable.bt_shenhuise);
-
+                    break;
+                default:
                     break;
             }
             ((MyViewHolder) holder).first_chujie.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +173,14 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     }
                 }
             });
+            ((MyViewHolder) holder).first_leve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onEveryItemClickListener2 != null) {
+                        onEveryItemClickListener2.onEveryClick(position);
+                    }
+                }
+            });
 
 
         }
@@ -137,6 +188,36 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
             ((MyViewHolder2) holder).xiangmu_name.setText(mylist.get(position).getBorrowTitle());
             ((MyViewHolder2) holder).xiangmu_code.setText("");
             ((MyViewHolder2) holder).years_lilv.setText(mylist.get(position).getSubsidies());
+            switch (mylist.get(position).getBorrowSafelevel()){
+                case 1:
+                    ((MyViewHolder2) holder).leve.setText("AAA");
+                    break;
+                case 2:
+                    ((MyViewHolder2) holder).leve.setText("AA");
+                case 3:
+                    ((MyViewHolder2) holder).leve.setText("A");
+                    break;
+                case 4:
+                    ((MyViewHolder2) holder).leve.setText("BBB");
+                    break;
+                case 5:
+                    ((MyViewHolder2) holder).leve.setText("BB");
+                    break;
+                case 6:
+                    ((MyViewHolder2) holder).leve.setText("B");
+                    break;
+                case 7:
+                    ((MyViewHolder2) holder).leve.setText("CCC");
+                    break;
+                case 8:
+                    ((MyViewHolder2) holder).leve.setText("CC");
+                    break;
+                case 9:
+                    ((MyViewHolder2) holder).leve.setText("C");
+                    break;
+                default:
+                    break;
+            }
             if (mylist.get(position).getSubsidiesRate().equals("0.0")) {
                 ((MyViewHolder2) holder).fujia_lilv.setText("");
                 ((MyViewHolder2) holder).fujia_jiahao.setText("");
@@ -177,6 +258,8 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     ((MyViewHolder2) holder).chujie.setTextColor(Color.parseColor("#ffffff"));
                     ((MyViewHolder2) holder).chujie.setBackgroundResource(R.drawable.bt_shenhuise);
                     break;
+                default:
+                    break;
             }
             ((MyViewHolder2) holder).qixian.setText(mylist.get(position).getDeadlineNew());
             int type = mylist.get(position).getMortgageType();
@@ -201,6 +284,14 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     }
                 }
             });
+            ((MyViewHolder2) holder).leve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onEveryItemClickListener2 != null) {
+                        onEveryItemClickListener2.onEveryClick(position);
+                    }
+                }
+            });
 
         }
 
@@ -208,10 +299,10 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if (mylist.size()==0){
+        if (mylist.size() == 0) {
             return mylist.size();
-        }else if (mylist.size()!=0&&mylist.size()>=3){
-            return 3; 
+        } else if (mylist.size() != 0 && mylist.size() >= 3) {
+            return 3;
         }
         return 0;
     }
@@ -227,7 +318,7 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView first_name, first_lv, first_jia, first_fujialv, first_fujiabai, first_qixian, first_yue;
+        TextView first_name, first_lv, first_jia, first_fujialv, first_fujiabai, first_qixian, first_yue, first_leve;
         Button first_chujie;
         View view_first;
         ImageView xiangmu_src;
@@ -244,12 +335,13 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
             first_yue = itemView.findViewById(R.id.first_yue);
             xiangmu_src = itemView.findViewById(R.id.first_src);
             view_first = itemView.findViewById(R.id.view_first);
+            first_leve = itemView.findViewById(R.id.first_leve);
 
         }
     }
 
     class MyViewHolder2 extends RecyclerView.ViewHolder {
-        TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian;
+        TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian,leve;
         Button chujie;
         ImageView xiangmu_srctwo;
         View view_two;
@@ -265,7 +357,8 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
             qixian = itemView.findViewById(R.id.qixian);
             chujie = itemView.findViewById(R.id.chujie);
             xiangmu_srctwo = itemView.findViewById(R.id.xiangmu_src);
-            view_two=itemView.findViewById(R.id.shouye_two);
+            view_two = itemView.findViewById(R.id.shouye_two);
+            leve=itemView.findViewById(R.id.leve);
         }
     }
 

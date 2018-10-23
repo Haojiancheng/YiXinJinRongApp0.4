@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/xiangmugenzong_kong"
+        layout="@layout/xmgz_wujilu"
+        android:visibility="gone"
+        />
+    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+        android:id="@+id/xiangmugengzongScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20px">
+
+
+        <LinearLayout
+            android:id="@+id/xiangmugenzong_have"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fdfdfe"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="30px"
+                        android:text="项目跟踪相关信息"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="截止日期"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款资金运用情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/yunyong_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人还款能力变化情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/nengli_bianhua"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人涉诉情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/shesu_qingkuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人经营状态及财务状况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/jingying_caiwu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人逾期情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/yuqi_qingkuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:text=""
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20px"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人受行政处罚情况"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/chufa_qingkuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20px"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人近一个月同业申请数量"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/shenqing_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20px"
+                    android:layout_marginTop="40px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="借款人近一个月同业借款数量"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/jiekuan_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:paddingRight="1px"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fdfdfe"
+                android:layout_marginTop="30px"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="30px"
+                        android:text="项目跟踪相关图片"
+                        android:textColor="#333333"
+                        android:textSize="30px" />
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/genzong_rview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

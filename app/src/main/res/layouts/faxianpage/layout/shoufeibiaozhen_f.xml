@@ -194,7 +194,7 @@
             <TextView
             android:layout_width="470px"
             android:layout_height="wrap_content"
-            android:text="非固定费率，具体标准需根据借款人资信或抵/质押物情况确定并在借贷撮合前告知借款人"
+            android:text="将按照不超过借款金额的年化8%收取基本服务费。"
             android:textSize="28px"
             android:textColor="#333333"
             android:layout_alignParentRight="true"

@@ -137,6 +137,24 @@ public class XiangMuXinXi_Gson {
         private String newAddresss;
         private OverMoneysBean overMoneys;
         private String deadline;
+        private String covered;
+        private String auditOpinionOld;
+
+        public String getCovered() {
+            return covered;
+        }
+
+        public void setCovered(String covered) {
+            this.covered = covered;
+        }
+
+        public String getAuditOpinionOld() {
+            return auditOpinionOld;
+        }
+
+        public void setAuditOpinionOld(String auditOpinionOld) {
+            this.auditOpinionOld = auditOpinionOld;
+        }
 
         public String getAddressd() {
             return addressd;

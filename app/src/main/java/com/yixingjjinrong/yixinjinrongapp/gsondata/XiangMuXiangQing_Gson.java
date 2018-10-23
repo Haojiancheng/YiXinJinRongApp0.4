@@ -137,6 +137,33 @@ public class XiangMuXiangQing_Gson implements Serializable{
             private String surplus;
             private String deadline;
             private String deadlines;
+            private String ableTenderDates;
+            private String endTenderDate;
+            private String borrowSafelevel;
+
+            public String getBorrowSafelevel() {
+                return borrowSafelevel;
+            }
+
+            public void setBorrowSafelevel(String borrowSafelevel) {
+                this.borrowSafelevel = borrowSafelevel;
+            }
+
+            public String getAbleTenderDates() {
+                return ableTenderDates;
+            }
+
+            public void setAbleTenderDates(String ableTenderDates) {
+                this.ableTenderDates = ableTenderDates;
+            }
+
+            public String getEndTenderDate() {
+                return endTenderDate;
+            }
+
+            public void setEndTenderDate(String endTenderDate) {
+                this.endTenderDate = endTenderDate;
+            }
 
             public String getDeadlines() {
                 return deadlines;

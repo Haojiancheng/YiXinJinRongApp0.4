@@ -116,12 +116,12 @@ public class Faxian extends Fragment {
                         list.addAll(data.getResult().getGoodsList());
                         adapter = new FaXianBasrAdapter(list, paht);
                         myrecview.setAdapter(adapter);
-                        s = String.valueOf(user_id);
-                        MyLog.e("sdasd", "" + s);
-
                         adapter.setonEveryItemClickListener(new FaXianBasrAdapter.OnEveryItemClickListener() {
                             @Override
                             public void onEveryClick(int position) {
+                                user_id = (int) SPUtils.get(getActivity(), "userId", 0);
+                                s = String.valueOf(user_id);
+                                MyLog.e("sdasd", "" + s);
                                 String awardType = String.valueOf(list.get(position).getAwardType());
                                 String speid = String.valueOf(list.get(position).getSpeId());
                                 String prizeId = list.get(position).getPrizeId();

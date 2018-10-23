@@ -61,8 +61,9 @@ public class XiangMuXinXi extends Fragment {
     private View geren, qiye, shencha;
     private TextView qy_name, qy_dm, qy_time, qy_zb, qy_hy, qy_dizhi, qy_bg, qy_fd, qy_shouru, qy_huanhuancishu, qy_yuqicishu, qy_lishiyuqi_jinge, qy_dangqian_jine, qy_6yue, qy_qita, qy_fanwei;
     private int user_id;
-    private View xx_view, xiale_view,kuankuanfangshi_xx;
+    private View xx_view, xiale_view,kuankuanfangshi_xx,new_fxpg;
     private PromptDialog promptDialog;
+    private TextView fxpg_fxjg;
 
     @Nullable
     @Override
@@ -87,6 +88,7 @@ public class XiangMuXinXi extends Fragment {
     private void getxmxxid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         xx_view = getActivity().findViewById(R.id.xx_view);
+        new_fxpg=getActivity().findViewById(R.id.new_fxpg);
 //        xiale_view = getActivity().findViewById(R.id.xiale_view);
         //企业、个人
         tv_click = getActivity().findViewById(R.id.main_tv_click);
@@ -98,7 +100,7 @@ public class XiangMuXinXi extends Fragment {
         sx_pg = getActivity().findViewById(R.id.sx_pg);
         sc_zhuzhi = getActivity().findViewById(R.id.sc_zhuzhi);
         sc_cq = getActivity().findViewById(R.id.sc_cq);
-
+        fxpg_fxjg=getActivity().findViewById(R.id.fxpg_fxjg);
         show = getActivity().findViewById(R.id.main_tv_show);
         hidden = getActivity().findViewById(R.id.main_tv_hidden);
         hidden.setMaxLines(3);
@@ -425,7 +427,15 @@ public class XiangMuXinXi extends Fragment {
                             dangqian_jine.setText(data.getResult().getOverMoneys().getOverMoney() + "元");
                             yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                             qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
-
+//   ,,,,,dbh_rz,dbh_wrz,sh_yj;
+//                            if (data.getResult().getCovered().equals("")){
+//                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
+//                                new_fxpg.setVisibility(View.GONE);
+//                            }else {
+//                                sh_yj.setText(data.getResult().getAuditOpinionOld());
+//                                fxpg_fxjg.setText(data.getResult().getCovered());
+//                                new_fxpg.setVisibility(View.VISIBLE);
+//                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 qy.setVisibility(View.VISIBLE);
                                 if (data.getResult().getAuthentication().getCompany_auth() == 1) {
@@ -639,6 +649,14 @@ public class XiangMuXinXi extends Fragment {
                             xk_jg.setText(data.getResult().getHouse().getReferencePrice());
 
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
+//                            if (data.getResult().getCovered().equals("")){
+//                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
+//                                new_fxpg.setVisibility(View.GONE);
+//                            }else {
+//                                sh_yj.setText(data.getResult().getAuditOpinionOld());
+//                                fxpg_fxjg.setText(data.getResult().getCovered());
+//                                new_fxpg.setVisibility(View.VISIBLE);
+//                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 qy.setVisibility(View.VISIBLE);
                                 if (data.getResult().getAuthentication().getCompany_auth() == 1) {

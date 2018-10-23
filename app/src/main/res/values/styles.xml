@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.TranslucentDecor">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar.TranslucentDecor" tools:ignore="NewApi">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -9,5 +9,11 @@
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
+    <style name="showPopupAnimation" parent="android:Animation"> <!--name为调用这个style动画的名字，自己设置的-->
+        <item name="android:windowExitAnimation">@anim/alpha_exit</item><!-- 退出动画-->
+        <item name="android:windowEnterAnimation">@anim/alpha_in</item>
+    </style>
+
+
 
 </resources>

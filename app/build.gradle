@@ -16,22 +16,6 @@ android {
         multiDexEnabled true
     }
 
-//    productFlavors {
-//        WengCang {
-//            applicationId "com.yixingjjinrongSTG.yixinjinrongapp"
-//            versionCode 1
-//            versionName "1.1.1"
-//            manifestPlaceholders = [ appName : "STG" ]
-//        }
-//
-//        TouTiao {
-//            applicationId "com.yixingjjinrongxianxia.yixinjinrongapp"
-//            versionCode 1
-//            versionName "1.1.1"
-//            manifestPlaceholders = [ appName : "线下" ]
-//        }
-//    }
-
     buildTypes {
         release {
             minifyEnabled false

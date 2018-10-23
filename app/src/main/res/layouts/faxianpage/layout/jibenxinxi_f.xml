@@ -493,6 +493,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="20px"
+                android:visibility="gone"
                 android:background="#fdfdfe"
                 >
                 <TextView

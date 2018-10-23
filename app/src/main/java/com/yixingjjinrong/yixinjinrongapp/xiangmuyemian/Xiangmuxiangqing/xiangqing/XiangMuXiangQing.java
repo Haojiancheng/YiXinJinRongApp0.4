@@ -24,11 +24,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -59,7 +63,10 @@ import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.ChuJie_OK;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WandaiTishishu;
-import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView;
+
+import android.webkit.WebView;
+
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView1;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.adapter.SimpleFragmentPagerAdapter;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.chongxinpingce.ChongXinPingCe;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.ChuJieJiLu;
@@ -68,6 +75,7 @@ import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqi
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJingDu;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJuan;
 import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuXinXi;
+import com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangmuGenZong;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -92,6 +100,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private JieKuanZiLiao mJieKuanZiLiao;         //借款资料 fragment
     private XiangMuJingDu mXiangMuJingDu;         //项目进度 fragment
     private XiangMuXinXi mXiangMuXinXi;           //项目信息 fragment
+    private XiangmuGenZong mxiangmugenzong;            //项目跟踪 fragment
     private SimpleFragmentPagerAdapter pagerAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -119,11 +128,15 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private PromptDialog promptDialog;
     private View detailedinformation, xiala_view;
     private int MAX = 1000000;
-
+    private View huankuanlan;////还款方式栏目框
     private static final int MSG_SEARCH = 1;
     private String juanjinge;
     private PopupWindow popview1;
     private PopupWindow popview2;
+    private TextView kaishi_time, jiezhi_time;//开始与截止时间
+    private TextView xq_leve;
+    private View leve_clock;
+    private PopupWindow bookpopWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +157,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         mType = it.getStringExtra("mortgageType");
         getjinge();//获取输入金额
         getWebview();//各种提示书
-
 
         getonclock();
         getHttps();
@@ -183,6 +195,71 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                 }
 
+            }
+        });
+        leve_clock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (data.getResult().getRedList1().getBorrowSafelevel()) {
+                    case "1":
+                        gettishipop("低风险", "AAA", "借款人市场竞争能力极强，融资能力和还款能力极强，还款意愿很好。");
+                        break;
+                    case "2":
+                        gettishipop("低风险", "AA", "借款人市场竞争能力很强，融资能力和还款能力很强，还款意愿很好。");
+                    case "3":
+                        gettishipop("低风险", "A", "借款人市场竞争能力较强，融资能力和还款能力较强，还款意愿良好。");
+                        break;
+                    case "4":
+                        gettishipop("中低风险", "BBB", "借款人市场竞争能力一般，借款人还款能力较强，还款意愿良好。");
+                        break;
+                    case "5":
+                        gettishipop("中低风险", "BB", "借款人市场竞争能力一般，借款人还款能力正常，还款意愿良好。");
+                        break;
+                    case "6":
+                        gettishipop("中低风险", "B", "借款人市场竞争能力一般，借款人还款能力尚可，还款意愿良好。");
+                        break;
+                    case "7":
+                        gettishipop("高风险", "CCC", "出现可能影响借款人还款能力的不利因素，存在较低概率不能按期足额偿还债务本息。");
+                        break;
+                    case "8":
+                        gettishipop("高风险", "CC", "出现影响借款人还款能力的不利因素，存在较高概率不能按期足额偿还债务本息。");
+                        break;
+                    case "9":
+                        gettishipop("高风险", "C", "出现影响借款人还款能力的重大不利因素，存在很高概率不能按期足额偿还债务本息。");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+
+    private void gettishipop(String cc, String dengji, String message) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getWindow().setAttributes(lp);
+        View parent = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(this, R.layout.dengjitishi, null);
+        TextView b_dengji = popView.findViewById(R.id.b_dengji);
+        TextView fx_cengci = popView.findViewById(R.id.fx_cengci);
+        TextView b_message = popView.findViewById(R.id.b_messages);
+//        int width = getResources().getDisplayMetrics().widthPixels;
+//        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
+        b_dengji.setText(dengji);
+        b_message.setText(message);
+        fx_cengci.setText(cc);
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 1f;
+                getWindow().setAttributes(lp);
             }
         });
     }
@@ -312,7 +389,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         });
         wangdaitishishu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//网贷提示书
+            public void onClick(View v) {//三本网贷提示书合并
                 String s = String.valueOf(user_id);
                 if (s.equals("0")) {
 //                    ToastUtils.showToast(XiangMuXiangQing.this, "请先登入");
@@ -320,10 +397,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     startActivity(it);
 
                 } else {
-                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
-                    it.putExtra("url", "yxbApp/agreement.do");
-                    it.putExtra("title1", "网络借贷风险和禁止行为提示书");
-                    startActivity(it);
+//                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+//                    it.putExtra("url", "yxbApp/agreement.do");
+//                    it.putExtra("title1", "网络借贷风险和禁止行为提示书");
+//                    startActivity(it);
+                    gettishibookpop();
+
                 }
             }
         });
@@ -355,7 +434,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     startActivity(it);
 
                 } else {
-                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView1.class);
                     it.putExtra("url", "yxbApp/promisebook.do");
                     it.putExtra("title1", "个人电子签章授权委托书");
                     startActivity(it);
@@ -372,7 +451,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     startActivity(it);
 
                 } else {
-                    Intent it = new Intent(XiangMuXiangQing.this, WebView.class);
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView1.class);
                     it.putExtra("url", "yxbApp/Promptbook.do ");
                     it.putExtra("title1", "资金来源合法承诺书");
                     startActivity(it);
@@ -541,7 +620,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         juanjinge = (String) SPUtils.get(this, "juanjine", "");
         detailedinformation = findViewById(R.id.detailedinformation);
         xiala_view = findViewById(R.id.xiale_view);
-
+        xq_leve = findViewById(R.id.xq_leve);
+        leve_clock = findViewById(R.id.leve_clock);
         MyLog.e("userid", "id:" + user_id);
 //        yujishouyi = findViewById(R.id.yujishouyi);
         jianhao = findViewById(R.id.bt_jianhao);
@@ -564,12 +644,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         dianziqianzhang = findViewById(R.id.dianziqianzhang);//电子签章
         youhuijuan = findViewById(R.id.youhuijuan);//优惠券
         cb_fuxuankuang = findViewById(R.id.cb_fuxuankuang);//复选框
-
-
+        huankuanlan = findViewById(R.id.huankuanglan);//还款方式栏目框
+        kaishi_time = findViewById(R.id.kaishi_time);//开始投标时间
+        jiezhi_time = findViewById(R.id.jiezhi_time);//截止投标时间
     }
 
 
     private void getHttps() {
+
         promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -617,6 +699,37 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         data = new Gson().fromJson(result, XiangMuXiangQing_Gson.class);
                         promptDialog.dismiss();
                         detailedinformation.setVisibility(View.VISIBLE);
+                        String borrowSafelevel = data.getResult().getRedList1().getBorrowSafelevel();
+                        switch (borrowSafelevel) {
+                            case "1":
+                                xq_leve.setText("AAA");
+                                break;
+                            case "2":
+                                xq_leve.setText("AA");
+                            case "3":
+                                xq_leve.setText("A");
+                                break;
+                            case "4":
+                                xq_leve.setText("BBB");
+                                break;
+                            case "5":
+                                xq_leve.setText("BB");
+                                break;
+                            case "6":
+                                xq_leve.setText("B");
+                                break;
+                            case "7":
+                                xq_leve.setText("CCC");
+                                break;
+                            case "8":
+                                xq_leve.setText("CC");
+                                break;
+                            case "9":
+                                xq_leve.setText("C");
+                                break;
+                            default:
+                                break;
+                        }
 
                         shengyuchujie.setText(data.getResult().getRedList1().getSurplus());
 
@@ -626,18 +739,32 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         if (borrowSum.indexOf("元") != -1) {
                             xiangqing_zonge.setText(borrowSum);
                         } else {
+//                            String replace2 = borrowSum.replace("万元", "");
+//                            MyLog.e("去掉万元", ""+replace2);
                             String replace = borrowSum.replace(".00", "");
                             if (replace.indexOf("0") != -1) {
-                                String replace1 = replace.replace("0", "");
-                                xiangqing_zonge.setText(replace1);
+                                if (replace.indexOf(".") != -1) {
+                                    String replace1 = replace.replace("0", "");
+                                    xiangqing_zonge.setText(replace1);
+                                } else {
+                                    xiangqing_zonge.setText(replace);
+                                }
                             } else {
                                 xiangqing_zonge.setText(replace);
                             }
                         }
                         xiangqing_qixian.setText(data.getResult().getRedList1().getDeadline());
-                        fangshi.setText(data.getResult().getRedList1().getPaymentMode());
+                        fangshi.setText(data.getResult().getRedList1().getPaymentMode());//还款方式
                         xiangqing_lilv.setText(data.getResult().getRedList1().getRanaa() + "");
+                        kaishi_time.setText(data.getResult().getRedList1().getAbleTenderDates());//开始时间
+                        jiezhi_time.setText(data.getResult().getRedList1().getEndTenderDate());//截止时间
                         int borrowStatus = data.getResult().getRedList1().getBorrowStatus();
+                        String s = String.valueOf(user_id);
+                        if (s.equals("0")) {//还款方式栏目框
+                            huankuanlan.setVisibility(View.GONE);
+                        } else {
+                            huankuanlan.setVisibility(View.VISIBLE);
+                        }
                         switch (borrowStatus) {
                             case 2://招标中（出借）
                                 if (String.valueOf(data.getResult().getRedList1().getTimeFlag()).equals("1")) {//预热
@@ -674,7 +801,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         }
 
 
-                        String s = String.valueOf(user_id);
+//                        String s = String.valueOf(user_id);
                         if (s.equals("0")) {
                             keyangyue.setText("0.00");
                         } else {
@@ -926,7 +1053,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 case 11://稳健
                                     promptDialog.dismiss();
 //                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                    String sd = "根据测试结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+                                    String sd = "您当前风险评测等级为稳健型，根据评测结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。继续出借本项目表明您已充分知晓，理解和接受该项目的风险，并愿意自行承担相关。";
 
                                     tb_fcianpop("稳健型", sd, 11);
 
@@ -934,7 +1061,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                 case 10://保守
                                     promptDialog.dismiss();
 //                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
-                                    String sd1 = "根据测试结果您只能出借AAA、AA、A级风险的借款项目。如果您认为测评结果与实际不符，请重新评测。";
+                                    String sd1 = "您当前风险评测等级为 保守型，根据评测结果您只能出借AAA、AA、A级风险的借款项目。继续出借本项目表明您已充分知晓，理解和接受该项目的风险，并愿意自行承担相关风险。";
 
                                     tb_fcianpop("保守型", sd1, 10);
                                     break;
@@ -1018,7 +1145,53 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
-    private void cGpop() {
+    @SuppressLint("JavascriptInterface")
+    private void gettishibookpop() {//提示书pop
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(this, R.layout.threebook, null);
+        WebView bookweb = popView.findViewById(R.id.bookweb);
+        WebSettings webSettings = bookweb.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setAllowFileAccess(true);// 设置允许访问文件数据
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setSavePassword(false);
+        webSettings.setSaveFormData(false);
+        webSettings.setSupportZoom(true);
+        webSettings.setUseWideViewPort(true);
+        bookweb.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        bookweb.setHorizontalScrollBarEnabled(false);
+        bookweb.getSettings().setSupportZoom(true);
+        bookweb.getSettings().setBuiltInZoomControls(true);
+
+
+        bookweb.addJavascriptInterface(this, "android");
+        // 设置允许JS弹窗
+        bookweb.loadUrl("https://wechat.yxb.com/yxbApp/threeAgreement.do");
+        bookweb.setWebChromeClient(new WebChromeClient());
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        bookpopWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
+        bookpopWindow.setFocusable(true);
+        bookpopWindow.setOutsideTouchable(true);//设置同意在外点击消失
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        bookpopWindow.setBackgroundDrawable(dw);
+        bookpopWindow.setAnimationStyle(R.style.showPopupAnimation);
+        bookpopWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
+
+    }
+
+    @JavascriptInterface
+    public void closePop() {//提示书pop返回方法
+        bookpopWindow.dismiss();
+        ToastUtils.showToast(this, "我擦");
+    }
+
+    private void cGpop() {//存管pop
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         View popView = View.inflate(this, R.layout.yinhangcunguan_pop, null);
         TextView cg_pop = popView.findViewById(R.id.ch_pop);
@@ -1386,7 +1559,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         OkHttpUtils.postString()
                 .url(Urls.BASE_URL + "yxbApp/Immediately.do")
                 .content(canshu.toString())
-
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
                 .execute(new StringCallback() {
@@ -1433,15 +1605,18 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         mJieKuanZiLiao = new JieKuanZiLiao();
         mXiangMuJingDu = new XiangMuJingDu();
         mXiangMuXinXi = new XiangMuXinXi();
+        mxiangmugenzong = new XiangmuGenZong();
         list_fragment.add(mXiangMuXinXi);
         list_fragment.add(mHuiKuanJiHua);
         list_fragment.add(mXiangMuJingDu);
+        list_fragment.add(mxiangmugenzong);
         list_fragment.add(mJieKuanZiLiao);
         list_fragment.add(mChuJieJiLu);
 
         list_title.add("项目信息");
         list_title.add("回款计划");
         list_title.add("项目进度");
+        list_title.add("项目跟踪");
         list_title.add("借款资料");
         list_title.add("出借记录");
 
@@ -1450,7 +1625,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         viewPager.setAdapter(pagerAdapter);
         tabLayout = findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+//        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

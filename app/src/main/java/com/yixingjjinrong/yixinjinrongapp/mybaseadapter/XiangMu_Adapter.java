@@ -36,7 +36,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
         this.list = list;
         this.context = context;
     }
-
+    ///**
     private OnEveryItemClickListener onEveryItemClickListener;
 
     public interface OnEveryItemClickListener {
@@ -47,7 +47,18 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
     public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
         this.onEveryItemClickListener = onEveryItemClickListener;
     }
+    ///**
+    private OnEveryItemClickListener onEveryItemClickListener2;
 
+    public interface OnEveryItemClickListener2 {
+        void onEveryClick(int position);
+    }
+
+    public void setOnEveryItemClickListener2(OnEveryItemClickListener onEveryItemClickListener2) {
+        this.onEveryItemClickListener2 = onEveryItemClickListener2;
+    }
+
+    ///**
     @NonNull
     @Override
     public XiangMu_Adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,6 +73,36 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
         holder.xiangmu_code.setText("");
         holder.years_lilv.setText(String.valueOf(list.get(position).getSubsidies()));
         holder.qixian.setText(list.get(position).getDeadlineNew());
+        switch (list.get(position).getBorrowSafelevel()){
+            case 1:
+                holder.leve.setText("AAA");
+                break;
+            case 2:
+                holder.leve.setText("AA");
+            case 3:
+                holder.leve.setText("A");
+                break;
+            case 4:
+                holder.leve.setText("BBB");
+                break;
+            case 5:
+                holder.leve.setText("BB");
+                break;
+            case 6:
+                holder.leve.setText("B");
+                break;
+            case 7:
+                holder.leve.setText("CCC");
+                break;
+            case 8:
+                holder.leve.setText("CC");
+                break;
+            case 9:
+                holder.leve.setText("C");
+                break;
+            default:
+                break;
+        }
         int type = list.get(position).getMortgageType();
         if (type == 1) {
             Glide.with(context).load(R.drawable.fangchandiya).into(holder.xiangmu_src);
@@ -85,12 +126,17 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                 if (onEveryItemClickListener != null) {
                     onEveryItemClickListener.onEveryClick(position);
                 }
-
-
-
             }
         });
-        holder.shouye_two.setOnClickListener(new View.OnClickListener() {
+        holder.leve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onEveryItemClickListener2 != null) {
+                    onEveryItemClickListener2.onEveryClick(position);
+                }
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onEveryItemClickListener != null) {
@@ -135,7 +181,8 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                 holder.chujie.setText(list.get(position).getBorrowStatusStr());
                 holder.chujie.setTextColor(Color.parseColor("#ffffff"));
                 holder.chujie.setBackgroundResource(R.drawable.bt_shenhuise);
-
+                break;
+            default:
                 break;
         }
 
@@ -169,7 +216,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian;
+        TextView xiangmu_name, xiangmu_code, years_lilv, jiahao, fujia_lilv, fujia_jiahao, qixian,leve;
         Button chujie;
         ImageView xiangmu_src;
         View shouye_two;
@@ -187,6 +234,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
             chujie = itemView.findViewById(R.id.chujie);
             xiangmu_src = itemView.findViewById(R.id.xiangmu_src);
             shouye_two = itemView.findViewById(R.id.shouye_two);
+            leve=itemView.findViewById(R.id.leve);
 
         }
     }

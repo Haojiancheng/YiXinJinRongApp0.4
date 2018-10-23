@@ -2597,7 +2597,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30px"
                     android:layout_marginTop="40px"
                     android:orientation="horizontal">
 
@@ -2611,15 +2610,45 @@
 
                     <TextView
                         android:id="@+id/sh_yj"
-                        android:layout_width="530px"
+                        android:layout_width="540px"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
                         android:text="经风控综合评估，该借款项目审批通过"
+                        android:textAlignment="viewEnd"
                         android:textColor="#333333"
                         android:textSize="28px" />
 
                 </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/new_fxpg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30px"
+                    android:layout_marginTop="40px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30px"
+                        android:text="风险评估及可能产生的风险结果"
+                        android:textColor="#999999"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:id="@+id/fxpg_fxjg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="25px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginTop="20px"
+                        android:text="经风控综合评估，该借款项目审批通过"
+                        android:textColor="#333333"
+                        android:textSize="28px" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

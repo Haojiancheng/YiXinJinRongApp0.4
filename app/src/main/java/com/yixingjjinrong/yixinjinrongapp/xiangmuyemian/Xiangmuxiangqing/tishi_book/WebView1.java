@@ -16,7 +16,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 
-public class WebView extends AutoLayoutActivity {
+public class WebView1 extends AutoLayoutActivity {
     private android.webkit.WebView wb;
     private TextView title2;
     private ImageView web_fanhui_fh;

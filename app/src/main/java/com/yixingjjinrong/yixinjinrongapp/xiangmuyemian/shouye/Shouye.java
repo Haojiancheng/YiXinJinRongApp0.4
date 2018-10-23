@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +17,15 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -188,7 +192,7 @@ public class Shouye extends Fragment {
                         mylistview.setAdapter(adapter);
                         adapter.setonEveryItemClickListener(new ShouYe_MyBaseAdapter.OnEveryItemClickListener() {
                             @Override
-                            public void onEveryClick(int position) {
+                            public void onEveryClick(int position) {//出借详情
                                 String mtype = String.valueOf(mylist.get(position).getMortgageType());
                                 String xiangmu_id = mylist.get(position).getBorrowRandomId();
                                 Intent intent = new Intent(getActivity(), XiangMuXiangQing.class);
@@ -197,6 +201,41 @@ public class Shouye extends Fragment {
                                 SPUtils.put(getActivity(), "borroFwRandomId", xiangmu_id);
                                 MyLog.e("TASG","立即出借id:"+xiangmu_id);
                                 startActivity(intent);
+                            }
+                        });
+                        adapter.setOnEveryItemClickListener2(new ShouYe_MyBaseAdapter.OnEveryItemClickListener() {
+                            @Override
+                            public void onEveryClick(int position) {
+                                switch (data.getResult().getBorrowList().get(position).getBorrowSafelevel()){
+                                    case 1:
+                                        gettishipop("低风险","AAA","借款人市场竞争能力极强，融资能力和还款能力极强，还款意愿很好。");
+                                        break;
+                                    case 2:
+                                        gettishipop("低风险","AA","借款人市场竞争能力很强，融资能力和还款能力很强，还款意愿很好。");
+                                    case 3:
+                                        gettishipop("低风险","A", "借款人市场竞争能力较强，融资能力和还款能力较强，还款意愿良好。");
+                                        break;
+                                    case 4:
+                                        gettishipop("中低风险","BBB","借款人市场竞争能力一般，借款人还款能力较强，还款意愿良好。" );
+                                        break;
+                                    case 5:
+                                        gettishipop("中低风险","BB","借款人市场竞争能力一般，借款人还款能力正常，还款意愿良好。" );
+                                        break;
+                                    case 6:
+                                        gettishipop("中低风险","B", "借款人市场竞争能力一般，借款人还款能力尚可，还款意愿良好。");
+                                        break;
+                                    case 7:
+                                        gettishipop("高风险","CCC","出现可能影响借款人还款能力的不利因素，存在较低概率不能按期足额偿还债务本息。" );
+                                        break;
+                                    case 8:
+                                        gettishipop("高风险","CC","出现影响借款人还款能力的不利因素，存在较高概率不能按期足额偿还债务本息。" );
+                                        break;
+                                    case 9:
+                                        gettishipop("高风险","C","出现影响借款人还款能力的重大不利因素，存在很高概率不能按期足额偿还债务本息。" );
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         });
 
@@ -213,6 +252,36 @@ public class Shouye extends Fragment {
                     }
                 });
 
+    }
+
+    private void gettishipop(String cc, String dengji, String message) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getActivity().getWindow().setAttributes(lp);
+        View parent=((ViewGroup)getActivity().findViewById(android.R.id.content)).getChildAt(0);
+        View popView = View.inflate(getActivity(), R.layout.dengjitishi, null);
+        TextView b_dengji = popView.findViewById(R.id.b_dengji);
+        TextView b_message = popView.findViewById(R.id.b_messages);
+        TextView fx_cengci = popView.findViewById(R.id.fx_cengci);
+//        int width = getResources().getDisplayMetrics().widthPixels;
+//        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(true);// 设置同意在外点击消失
+        b_dengji.setText(dengji);
+        b_message.setText(message);
+        fx_cengci.setText(cc);
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+                lp.alpha = 1f;
+                getActivity().getWindow().setAttributes(lp);
+            }
+        });
     }
 
     private void getgonggao() {

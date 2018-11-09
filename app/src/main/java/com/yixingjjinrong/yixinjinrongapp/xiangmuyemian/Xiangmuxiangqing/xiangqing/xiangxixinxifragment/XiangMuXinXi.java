@@ -263,8 +263,10 @@ public class XiangMuXinXi extends Fragment {
                         MyLog.e("项目星系user_id", "" + s1);
                         if (s1.equals("0")) {
                             shencha.setVisibility(View.GONE);
+                            kuankuanfangshi_xx.setVisibility(View.GONE);
                         } else {
                             shencha.setVisibility(View.VISIBLE);
+                            kuankuanfangshi_xx.setVisibility(View.VISIBLE);
                         }
                         MyLog.e("TAG", "XXGSON>>>" + result);
                         //房产标GSON

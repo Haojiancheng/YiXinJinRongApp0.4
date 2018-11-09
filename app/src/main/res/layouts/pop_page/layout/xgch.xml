@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     >
 
 
     <TextView
         android:id="@+id/et_passwd"
-        android:layout_width="wrap_content"
-        android:layout_height="130px"
+        android:layout_width="400px"
+        android:layout_height="240px"
         android:gravity="center"
-        android:background="#ffffff"
+        android:background="@drawable/ts_fxdengji"
         android:layout_centerInParent="true"
         android:textSize="30px"
         android:text="重置密码成功" />

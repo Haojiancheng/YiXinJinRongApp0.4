@@ -44,14 +44,12 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
         setContentView(R.layout.activity_add_addass);
         ImmersionBar.with(this)
                 .transparentBar()
                 .fullScreen(false)
                 .init();
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         cityPicker = new CityPicker(AddAddass.this, this);
         getadd_id();
         add_addass.setOnClickListener(new View.OnClickListener() {

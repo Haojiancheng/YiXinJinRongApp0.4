@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#f0f0f0"
     tools:context="com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.yidaoqi.YiDaoQiXiangMu">
     <RelativeLayout
         android:layout_width="match_parent"

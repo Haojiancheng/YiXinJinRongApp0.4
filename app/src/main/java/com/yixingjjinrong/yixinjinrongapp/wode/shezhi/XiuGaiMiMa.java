@@ -1,15 +1,23 @@
 package com.yixingjjinrong.yixinjinrongapp.wode.shezhi;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -38,6 +46,7 @@ import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -53,7 +62,8 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     private int user_ird;
     private String loginid;
     private String token;
-    private ImageView xgmm_yj_image;
+    private ImageView xgmm_yj_image,update_yuan;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +110,53 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                 }
             }
         });
+        old_mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    update_yuan.setVisibility(View.VISIBLE);
+                }else {
+                    update_yuan.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        update_yuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                old_mima.setText("");
+            }
+        });
+        new_mima.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()>0) {
+                    xgmm_yj_image.setVisibility(View.VISIBLE);
+                }else {
+                    xgmm_yj_image.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         xiugai_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -118,6 +175,8 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
     }
 
     private void gethttp_repassword() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("password", old_mima.getText().toString());
@@ -149,26 +208,55 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                            promptDialog.dismiss();
+                            ToastUtils.showToast(XiuGaiMiMa.this, "网络连接失败");
                     }
 
                     @Override
                     public void onResponse(String result, int id) {
+                        promptDialog.dismiss();
                         MyLog.e("=反回的GSON",""+result );
                         XiuGaiMiMa_Gson data = new Gson().fromJson(result, XiuGaiMiMa_Gson.class);
                         String token = data.getResult().getToken();
                         String state = data.getState();
-                        ToastUtils.showToast(XiuGaiMiMa.this, ""+data.getMessage());
+//                        ToastUtils.showToast(XiuGaiMiMa.this, ""+data.getMessage());
                         if (state.equals("success")){
 //                    EventBus.getDefault().post(new User_data("", "",token,Integer.parseInt("")));
-                            ToastUtils.showToast(XiuGaiMiMa.this, "修改成功,请重新登入");
-                            Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
-                            startActivity(it);
-                            WoDe_SheZhi.wodezhezhi.finish();
-                            finish();
+//                            ToastUtils.showToast(XiuGaiMiMa.this, "修改成功,请重新登入");
+
+                            showpopwindow();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent it=new Intent(XiuGaiMiMa.this,WoDe_DengRu.class);
+                                    startActivity(it);
+                                    WoDe_SheZhi.wodezhezhi.finish();
+                                    finish();
+                                }
+                            }, 1000);
+
+                        }else {
+                            ToastUtils.showToast(XiuGaiMiMa.this, data.getMessage());
                         }
                     }
                 });
+    }
+
+    private void showpopwindow() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getWindow().setAttributes(lp);
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        final View popView = View.inflate(this, R.layout.xgch, null);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        final PopupWindow popWindow = new PopupWindow(popView, width, height);
+        popWindow.setFocusable(true);
+        popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
+        ColorDrawable dw = new ColorDrawable(0x00000000);
+        popWindow.setBackgroundDrawable(dw);
+        popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
     public static boolean isPassword(String password) {
@@ -182,6 +270,7 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         xiugai_togglePwd=findViewById(R.id.xiugai_togglePwd);
         old_mima=findViewById(R.id.old_mima);
         new_mima=findViewById(R.id.new_mima);
+        update_yuan=findViewById(R.id.update_yuan);
         re_password=findViewById(R.id.re_password);
         xg_mima=findViewById(R.id.xg_mima);
         xgmm_yj_image=findViewById(R.id.xgmm_yj_image);

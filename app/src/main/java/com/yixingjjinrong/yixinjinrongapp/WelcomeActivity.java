@@ -34,31 +34,6 @@ public class WelcomeActivity extends AutoLayoutActivity implements PermissionInt
         mPermissionHelper = new PermissionHelper(this, this);
         mPermissionHelper.requestPermissions();
         ishand = (String) SPUtils.get(WelcomeActivity.this, "ishand", "");
-        SharedPreferences sharedPreferences = getSharedPreferences("First",MODE_PRIVATE);
-        final boolean isFirst = sharedPreferences.getBoolean("isFirst",true);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isFirst) {
-                    Intent intent = new Intent(WelcomeActivity.this, Guide_Pager.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    MyLog.e("hand",""+ishand);
-                    if (ishand.equals("1")) {
-                        Intent intent = new Intent(WelcomeActivity.this, GestureVerifyActivity.class);
-                        intent.putExtra("shezhi","2");
-                        startActivity(intent);
-                        finish();
-                    }else {
-                        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            }
-        },2000);
 
     }
 
@@ -103,6 +78,32 @@ public class WelcomeActivity extends AutoLayoutActivity implements PermissionInt
     private void initViews() {
         //已经拥有所需权限，可以放心操作任何东西了
 //        Toast.makeText(this, "已经拥有所需权限，可以放心操作任何东西了", Toast.LENGTH_SHORT).show();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("First", MODE_PRIVATE);
+        final boolean isFirst = sharedPreferences.getBoolean("isFirst", true);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isFirst) {
+                    Intent intent = new Intent(WelcomeActivity.this, Guide_Pager.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    MyLog.e("hand", "" + ishand);
+                    if (ishand.equals("1")) {
+                        Intent intent = new Intent(WelcomeActivity.this, GestureVerifyActivity.class);
+                        intent.putExtra("shezhi", "2");
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+        }, 2000);
 
     }
 }

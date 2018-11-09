@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fdfdfe"
     tools:context="com.yixingjjinrong.yixinjinrongapp.HandUtils.GestureEditActivity">
 
 
@@ -11,32 +12,17 @@
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="138px"
-        android:background="@drawable/mybackgrandcolor"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
-        android:layout_alignParentTop="true" >
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+        android:orientation="horizontal" >
 
-            android:gravity="center"
-            android:text="设置手势密码"
-            android:textSize="35px"
-            android:textColor="#ffffff" />
-
-        <TextView
+        <ImageView
             android:id="@+id/text_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="right"
-            android:text="取消"
-            android:textSize="28px"
-            android:textColor="#eaeced" />
+            android:layout_width="40px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="20px"
+            android:src="@drawable/jiantou" />
     </RelativeLayout>
 
     <LinearLayout
@@ -58,9 +44,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="绘制解锁图案"
-            android:textColor="#F98F12"
-            android:layout_marginTop="10dip" />
+            android:text="为了账户安全和快捷登入，请设置手势密码"
+            android:textColor="#666"
+            android:textSize="30px"
+            android:layout_marginTop="70px" />
     </LinearLayout>
 
     <FrameLayout
@@ -80,5 +67,6 @@
         android:layout_below="@id/gesture_container"
         android:layout_marginTop="40px"
         android:text="重新绘制"
-        android:textColor="#666666" />
+        android:textSize="30px"
+        android:textColor="#666" />
 </com.zhy.autolayout.AutoRelativeLayout>

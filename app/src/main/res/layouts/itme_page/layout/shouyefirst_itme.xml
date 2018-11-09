@@ -16,11 +16,15 @@
         <TextView
             android:id="@+id/first_leve"
             android:layout_width="wrap_content"
-            android:layout_height="32px"
+            android:layout_height="wrap_content"
             android:text="AAA"
             android:layout_marginRight="10px"
             android:background="#0686d8"
             android:textSize="20px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:paddingTop="10px"
+            android:paddingBottom="10px"
             android:textColor="#ffffff"
             />
 

@@ -36,6 +36,10 @@
                         android:layout_marginLeft="30px"
                         android:background="#ffffff"
                         android:text="AAA"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        android:paddingTop="10px"
+                        android:paddingBottom="10px"
                         android:textColor="#ef6632"
                         android:textSize="20px" />
                     <TextView
@@ -393,13 +397,10 @@
                         android:layout_height="70px"
                         android:layout_gravity="center"
                         android:layout_marginLeft="30px"
-                        android:background="@drawable/bt_huisebiankuang"
-                        android:drawableStart="@drawable/jianhao"
-                        android:paddingLeft="25px"
-
+                        android:background="@drawable/jianhaohuise"
                         />
 
-                    <EditText
+                    <com.yixingjjinrong.yixinjinrongapp.MyView.MyEditTextView
                         android:id="@+id/et_jinge"
                         android:layout_width="500px"
                         android:layout_height="70px"
@@ -419,9 +420,7 @@
                         android:layout_height="70px"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20px"
-                        android:background="@drawable/bt_huisebiankuang"
-                        android:drawableStart="@drawable/jiahao"
-                        android:paddingLeft="25px" />
+                        android:background="@drawable/jiahaochegnse"/>
                 </LinearLayout>
 
                 <TextView
@@ -497,7 +496,7 @@
                     android:gravity="center_vertical"
                     android:text="《网络借贷风险和禁止行为提示书》、"
                     android:textColor="#078dcf"
-                    android:textSize="24px" />
+                    android:textSize="22px" />
             </LinearLayout>
 
             <LinearLayout
@@ -512,16 +511,15 @@
                     android:layout_marginLeft="55px"
                     android:text="《资金来源合法承诺书》、"
                     android:textColor="#078dcf"
-                    android:textSize="24px" />
+                    android:textSize="22px" />
 
                 <TextView
                     android:id="@+id/dianziqianzhang"
                     android:layout_width="wrap_content"
                     android:layout_height="60px"
-
                     android:text="《个人电子签章授权委托书》"
                     android:textColor="#078dcf"
-                    android:textSize="24px" />
+                    android:textSize="22px" />
             </LinearLayout>
 
 

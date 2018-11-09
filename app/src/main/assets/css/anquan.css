@@ -56,6 +56,11 @@
             right: 0;
             top: 0.88rem;
             overflow: auto;
+            z-index: 1;
+            -webkit-overflow-scrolling: touch;
+            -webkit-backface-visibility: hidden;
+            /*-webkit-transform: translate3d(0,0,0);*/
+        }
         }
         /*多重安全保障*/
         .anquan-content .content-guarantee{}
@@ -152,16 +157,16 @@
             padding-bottom: 0.3rem;
             padding-top: 0.3rem;
         }
-        .anquan-content .content-asset .asset-examine .examine-one{
-            border:0.02rem solid #dadada;
-            /*width: 3.08rem;*/
+       /* .anquan-content .content-asset .asset-examine .examine{
             height: 4.5rem;
+        }
+        .anquan-content .content-asset .asset-examine .examine-one{
+            border:0.01rem solid #dadada;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
             float: left;
-            /*margin-right: 0.29rem;*/
-            border-radius: 5px;;
+            border-radius: 4%;
             margin-bottom: 0.18rem;
         }
         .anquan-content .content-asset .asset-examine .examine-one .one-title{
@@ -179,14 +184,12 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-two{
-            border:0.02rem solid #dadada;
-            /*width: 3.08rem;*/
-            height: 4.5rem;
+            border:0.01rem solid #dadada;
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
             float: right;
-            border-radius: 5px;;
+            border-radius: 4%;
             margin-bottom: 0.18rem;
         }
         .anquan-content .content-asset .asset-examine .examine-two .two-title{
@@ -204,15 +207,15 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-three{
-            border:0.02rem solid #dadada;
+            border:0.01rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.5rem;
+            /*height: 4.18rem;*/
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
             float: left;
             /*margin-right: 0.29rem;*/
-            border-radius: 5px;;
+            border-radius: 4%;
         }
         .anquan-content .content-asset .asset-examine .examine-three .three-title{
             font-size: 0.27rem;
@@ -229,14 +232,14 @@
             letter-spacing:0.05rem;
         }
         .anquan-content .content-asset .asset-examine .examine-four{
-            border:0.02rem solid #dadada;
+            border:0.01rem solid #dadada;
             /*width: 3.08rem;*/
-            height: 4.5rem;
+            /*height: 4.18rem;*/
             width: 42%;
             padding-right: 0.19rem;
             padding-left: 0.19rem;
             float: right;
-            border-radius: 5px;;
+            border-radius: 4%;
         }
         .anquan-content .content-asset .asset-examine .examine-four .four-title{
             font-size: 0.27rem;

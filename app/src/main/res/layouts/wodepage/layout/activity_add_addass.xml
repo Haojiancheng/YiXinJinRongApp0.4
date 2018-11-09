@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".wode.mycontent.addess.AddAddass">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,9 +25,9 @@
             />
 
         <TextView
-            android:layout_width="260px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="251px"
+            android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:paddingTop="60px"
             android:text="添加收货地址"
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="14px"
+            android:hint="姓名"
             android:background="@null"
             android:textColor="#333333"
             android:textSize="30px" />
@@ -94,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="14px"
+            android:hint="联系电话"
             android:textColor="#333333"
             android:background="@null"
             android:textSize="30px"
@@ -156,7 +160,7 @@
         <LinearLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
+            android:layout_weight="1.6"
             android:orientation="vertical"
             >
         <TextView
@@ -182,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14px"
                 android:background="@null"
-                android:hint="请输入详细地址信息，如道路、小区、楼栋号、单元室、门牌号等"
+                android:hint="请输入详细地址信息"
                 android:inputType="textMultiLine"
                 android:lineSpacingExtra="10px"
                 android:textAlignment="viewStart"

@@ -83,13 +83,13 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
     private CheckBox zc_check;//复选框
     private String mytimer;
     private TextView zz_h5;
+    private ToggleButton yaoping_togglePwd;
+    private ImageView yq_xiala_1;
+    private View yangqingman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
         instance = this;
         setContentView(R.layout.activity_yanzheng__pa_ga);
         ImmersionBar.with(this)
@@ -144,7 +144,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                     if (user_mima.getText().toString().equals("")) {
                         ToastUtils.showToast(YanZheng_PaGa.this, "密码不能为空");
                     } else {
-                        if (lenght < 6 || lenght > 18 ) {
+                        if (lenght < 6 || lenght > 18) {
                             ToastUtils.showToast(YanZheng_PaGa.this, "请输入6-18位字母和数字组合");
                         } else {
                             if (zc_check.isChecked()) {
@@ -190,6 +190,20 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
                 phonecode.setText("");
             }
         });
+//        显示或隐藏邀请人
+        yaoping_togglePwd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    yangqingman.setVisibility(View.GONE);
+                    yq_xiala_1.setImageDrawable(getResources().getDrawable(R.drawable.xiala));
+                } else {
+                    yangqingman.setVisibility(View.VISIBLE);
+                    yq_xiala_1.setImageDrawable(getResources().getDrawable(R.drawable.dianji));
+                }
+            }
+        });
+
     }
 
     public static String getIP(Context context) {
@@ -393,6 +407,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
         user_yaoqingren = findViewById(R.id.yaoqingren);//yaoqingren
         zc_togglePwd = findViewById(R.id.zc_togglePwd);//显示或隐藏密码
         et_qc = findViewById(R.id.yanz_guanbi);//清除输入框
+        yaoping_togglePwd = findViewById(R.id.yaoping_togglePwd);//显示或隐藏密码邀请人
+        yq_xiala_1 = findViewById(R.id.yq_xiala_1);//下拉图片
+        yangqingman = findViewById(R.id.yangqingman);//邀请人栏目
         zz_fh = findViewById(R.id.zz_fh);
         yy_yanzheng = findViewById(R.id.yy_yanzheng);
         phonecode.addTextChangedListener(new MaxLengthWatcher(6, phonecode));
@@ -420,9 +437,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>0) {
+                if (s.length() > 0) {
                     et_qc.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     et_qc.setVisibility(View.GONE);
                 }
             }
@@ -440,9 +457,9 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>0) {
+                if (s.length() > 0) {
                     zc_yj_image.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     zc_yj_image.setVisibility(View.GONE);
                 }
             }
@@ -515,7 +532,7 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
 //            huoqu_yanzhengma.setBackgroundColor(Color.parseColor("#cccccc"));
             huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_huise);
             huoqu_yanzhengma.setClickable(false);
-            huoqu_yanzhengma.setText( millisUntilFinished / 1000 + "s后重新获取");
+            huoqu_yanzhengma.setText(millisUntilFinished / 1000 + "s后重新获取");
         }
 
         @Override

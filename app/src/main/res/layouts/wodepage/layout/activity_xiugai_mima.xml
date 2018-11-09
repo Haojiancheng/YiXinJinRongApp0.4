@@ -37,7 +37,7 @@
         android:orientation="horizontal">
 
         <android.support.design.widget.TextInputLayout
-            android:layout_width="700px"
+            android:layout_width="660px"
             android:layout_height="wrap_content">
 
             <EditText
@@ -52,6 +52,14 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/update_yuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="70px"
+            android:src="@drawable/guanbi"
+            android:visibility="gone" />
     </LinearLayout>
 
 
@@ -61,7 +69,7 @@
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
         android:layout_marginTop="10px"
-        android:background="#737373" />
+        android:background="#e8e8e8" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,8 +81,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <EditText
                 android:id="@+id/new_mima"
@@ -100,8 +107,7 @@
         <!--android:textOn="" />-->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ToggleButton
                 android:id="@+id/xiugai_togglePwd"
@@ -119,23 +125,24 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/buxianshi"
-                />
+                android:visibility="gone" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
         android:layout_marginTop="10px"
-        android:background="#737373" />
+        android:background="#e8e8e8" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30px"
-        >
+        android:layout_marginTop="30px">
 
         <TextView
             android:id="@+id/xg_mima"

@@ -63,9 +63,6 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
         setContentView(R.layout.activity_zhuce__pa_ga);
         zc_instance=this;
         ImmersionBar.with(this)

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.view.menu.SubMenuBuilder;
 import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -32,12 +35,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.MyView.KeywordsUtil;
+import com.yixingjjinrong.yixinjinrongapp.MyView.MyEditTextView;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.A2bigA;
 import com.yixingjjinrong.yixinjinrongapp.application.MaxLengthWatcher;
@@ -105,7 +108,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private Button jianhao, jiahao, xq_chongzhi;//加减用户的输入金额
-    private EditText jinge;//用户输入的金额
+    private MyEditTextView jinge;//用户输入的金额
     private TextView wangdaitishishu, jikuanxieyi, dianziqianzhang, zijinlaiyuan, xiangqing_lilv, xiangqing_jiaohao, xiangqing_fujia_lilv, xiangqing_fujia_bi, shengyuchujie, xiangqing_qixian, xiangqing_zonge, fangshi, keyangyue;
     private String id;
     private String sha1;//SHA1加密
@@ -155,6 +158,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         Intent it = getIntent();
         MyLog.e("立即出借borrid", "" + id);
         mType = it.getStringExtra("mortgageType");
+
         getjinge();//获取输入金额
         getWebview();//各种提示书
 
@@ -480,6 +484,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             ToastUtils.showToast(XiangMuXiangQing.this, "起投金额不能小于100元");
                         } else {
                             jinge.setText(Integer.valueOf(jinge.getText().toString()) - 100 + "");//减后的金额
+
                         }
                     }
                 }
@@ -499,6 +504,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
         }
 
+
         jinge.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -508,6 +514,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 MyLog.e("CharSequence", "" + s);
+
 //                int myjine = Integer.parseInt(jinge.getText().toString());
 //                if (myjine>=MAX){
 //
@@ -535,6 +542,26 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 if (jinge.getText().toString().equals("")) {
 
                 } else {
+                    int i1 = Integer.parseInt(jinge.getText().toString());
+//                    if (i1 == 1000000) {//金额最大值
+//                        jinge.setText("1000000");
+//                        jiahao.setBackgroundResource(R.drawable.jiahaohuise);//加号变灰
+//                    }
+                    if (i1 > 1000000) {//金额最大值
+                        jinge.setText("1000000");
+                        jiahao.setBackgroundResource(R.drawable.jiahaohuise);//加号变灰
+                    }else if (i1 == 1000000){
+                        jiahao.setBackgroundResource(R.drawable.jiahaohuise);//加号变灰
+                    } else {
+                        jiahao.setBackgroundResource(R.drawable.jiahaochegnse);//加号变橙
+                    }
+                    if (i1 > 100) {
+                        jianhao.setBackgroundResource(R.drawable.jianhaochengse);//减号变橙
+                    } else {
+                        jianhao.setBackgroundResource(R.drawable.jianhaohuise);//减号变灰
+                    }
+
+
                     if (mHandler.hasMessages(MSG_SEARCH)) {
                         mHandler.removeMessages(MSG_SEARCH);
                     }
@@ -544,9 +571,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     } else {//否则延迟500ms开始搜索
                         mHandler.sendEmptyMessageDelayed(MSG_SEARCH, 3000); //自动搜索功能 删除
                     }
-
                     int i = Integer.parseInt(jinge.getText().toString());
-
 
                     if (juanjinge.equals("")) {
 
@@ -1074,11 +1099,11 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     }
 
     private void tb_fcianpop(String tit, String msg, int i) {
-        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        final View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         final View popView = View.inflate(this, R.layout.chejie_pop, null);
         TextView tilt = popView.findViewById(R.id.tilt);//等级
         TextView fxian_msg = popView.findViewById(R.id.fxian_msg);//信息
-        Button pc_agen = popView.findViewById(R.id.pc_agen);//重新评测
+        Button pc_agen = popView.findViewById(R.id.pc_agen);//继续出借
         TextView fxian_close = popView.findViewById(R.id.fxian_close);//再想想
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
@@ -1095,10 +1120,12 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         }
         pc_agen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//重新评测
-                Intent it = new Intent(XiangMuXiangQing.this, ChongXinPingCe.class);
-                startActivity(it);
+            public void onClick(View v) {//继续出借
+                getchujieHttpTwo();
                 popWindow.dismiss();
+                promptDialog = new PromptDialog(XiangMuXiangQing.this);
+                promptDialog.showLoading("");
+//                popWindow.dismiss();
             }
         });
         fxian_close.setOnClickListener(new View.OnClickListener() {

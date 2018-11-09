@@ -24,10 +24,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="251px"
-            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:paddingTop="60px"
-            android:text="找回登入密码"
+            android:text="找回登录密码"
             android:textColor="#363636"
             android:textSize="38px"  />
     </RelativeLayout>
@@ -47,7 +46,6 @@
             android:id="@+id/phonet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正在为15984670708找回登入密码"
             android:textColor="#333333"
             android:textSize="36px"
              />
@@ -141,7 +139,7 @@
                 android:layout_marginLeft="30px"
                 android:background="@null"
                 android:drawablePadding="18px"
-                android:hint="设置新登入密码"
+                android:hint="设置新登录密码"
                 android:inputType="textPassword"
                 app:errorTextAppearance="@style/ErrorAppearance" />
         </android.support.design.widget.TextInputLayout>

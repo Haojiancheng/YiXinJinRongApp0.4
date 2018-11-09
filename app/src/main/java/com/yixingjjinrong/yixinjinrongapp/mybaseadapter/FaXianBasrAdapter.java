@@ -26,62 +26,65 @@ FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
 
 
     private OnEveryItemClickListener onEveryItemClickListener;
-    public interface OnEveryItemClickListener{
+
+    public interface OnEveryItemClickListener {
         void onEveryClick(int position);
     }
-    
-  
-    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener){
-        this.onEveryItemClickListener=onEveryItemClickListener;
+
+
+    public void setonEveryItemClickListener(OnEveryItemClickListener onEveryItemClickListener) {
+        this.onEveryItemClickListener = onEveryItemClickListener;
     }
 
-    public FaXianBasrAdapter(List<FaXian_Data.ResultBean.GoodsListBean> list,String picpath) {
+    public FaXianBasrAdapter(List<FaXian_Data.ResultBean.GoodsListBean> list, String picpath) {
         this.list = list;
-        this.paht=picpath;
+        this.paht = picpath;
     }
 
     @NonNull
     @Override
     public FaXianBasrAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.mybaseadapter_shiwu_itme,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mybaseadapter_shiwu_itme, parent, false);
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FaXianBasrAdapter.MyViewHolder holder, final int position) {
-        if (list.get(position).getAwardType()==1){
+        if (list.get(position).getAwardType() == 1) {
             holder.shiwu_name.setText(list.get(position).getPrizeName());
-        }else {
+        } else {
             holder.shiwu_name.setText(list.get(position).getPicUrl());
         }
-        
-       
-        holder.shiwu_money.setText(list.get(position).getExchangeCredits()+" ");
-        if (list.get(position).getPicUrl().equals("加息券")){
+
+
+        if (list.get(position).getPicUrl().equals("加息券")) {
 
             holder.quan.setVisibility(View.VISIBLE);
             holder.shiwu_iv.setVisibility(View.GONE);
             holder.quan_text.setText(list.get(position).getPrizeMark());
-        }else if (list.get(position).getPicUrl().equals("代金券")){
+            holder.shiwu_money.setText(list.get(position).getSurplusNum() + " ");
+        } else if (list.get(position).getPicUrl().equals("代金券")) {
             holder.quan.setVisibility(View.VISIBLE);
             holder.shiwu_iv.setVisibility(View.GONE);
             holder.quan_text.setText(list.get(position).getPrizeMark());
-        }else {
+            holder.shiwu_money.setText(list.get(position).getSurplusNum() + " ");
+        } else {
             holder.quan.setVisibility(View.GONE);
             holder.shiwu_iv.setVisibility(View.VISIBLE);
-            x.image().bind(holder.shiwu_iv,paht+list.get(position).getPicUrl());
-            MyLog.e("faxian实物图",""+paht+list.get(position).getPicUrl() );
+            x.image().bind(holder.shiwu_iv, paht + list.get(position).getPicUrl());
+            MyLog.e("faxian实物图", "" + paht + list.get(position).getPicUrl());
+            holder.shiwu_money.setText(list.get(position).getExchangeCredits() + " ");
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onEveryItemClickListener!=null){
+                if (onEveryItemClickListener != null) {
                     onEveryItemClickListener.onEveryClick(position);
                 }
             }
         });
-        
+
     }
 
     @Override
@@ -90,20 +93,20 @@ FaXianBasrAdapter extends RecyclerView.Adapter<FaXianBasrAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView shiwu_iv,xuni_iv;
-        private TextView shiwu_name,shiwu_money,xuni_name,xuni_money,quan_text;
+        private ImageView shiwu_iv, xuni_iv;
+        private TextView shiwu_name, shiwu_money, xuni_name, xuni_money, quan_text;
         private View quan;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            shiwu_iv= itemView.findViewById(R.id.im_shiwu);
+            shiwu_iv = itemView.findViewById(R.id.im_shiwu);
             xuni_iv = itemView.findViewById(R.id.iv_xuni);
-            shiwu_name=itemView.findViewById(R.id.tv_name_shiwu);
-            shiwu_money=itemView.findViewById(R.id.tv_money_shiwu);
-            xuni_name=itemView.findViewById(R.id.tv_xuni_name);
-            xuni_money=itemView.findViewById(R.id.tv_xuni_money);
-            quan=itemView.findViewById(R.id.quan);
-            quan_text=itemView.findViewById(R.id.quan_text);
+            shiwu_name = itemView.findViewById(R.id.tv_name_shiwu);
+            shiwu_money = itemView.findViewById(R.id.tv_money_shiwu);
+            xuni_name = itemView.findViewById(R.id.tv_xuni_name);
+            xuni_money = itemView.findViewById(R.id.tv_xuni_money);
+            quan = itemView.findViewById(R.id.quan);
+            quan_text = itemView.findViewById(R.id.quan_text);
         }
 
     }

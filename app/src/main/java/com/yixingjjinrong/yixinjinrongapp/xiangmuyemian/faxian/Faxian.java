@@ -59,7 +59,6 @@ public class Faxian extends Fragment {
     private Banner fanxian_banner;
     private String sha1;//SHA1加密
     private String base1;//Base64加
-
     private String picurl;
     private String picpath;
     private RecyclerView myrecview;
@@ -147,7 +146,7 @@ public class Faxian extends Fragment {
                         }
                         String[] mypic = new String[data.getResult().getBannerList().size()];
                         for (int i = 0; i < data.getResult().getBannerList().size(); i++) {
-                            picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//地址
+                            picpath = paht + data.getResult().getBannerList().get(i).getPicurl();//图片地址
                             MyLog.e("TAG", "url:" + picpath);
 
                             mypic[i] = picpath;
@@ -167,26 +166,6 @@ public class Faxian extends Fragment {
                         fanxian_banner.setImages(list3);
                         fanxian_banner.setDelayTime(5000);
                         fanxian_banner.start();
-
-//                        fanxian_banner.setOnBannerListener(new OnBannerListener() {
-//                            @Override
-//                            public void OnBannerClick(int position) {
-//
-//                                if (data.getResult().getBannerList().get(position).getHrefurl().indexOf("userId=")!=-1){
-//                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
-//                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
-//                                    it.putExtra("h5", hrefurl+user_id);
-//                                    startActivity(it);
-//                                }else {
-//                                    String hrefurl = data.getResult().getBannerList().get(position).getHrefurl();
-//                                    Intent it=new Intent(getActivity(), ShouYe_HuoDong.class);
-//                                    it.putExtra("h5", hrefurl);
-//                                    startActivity(it);
-//                                }
-//                            }
-//                        });
-
-
                     }
                 });
     }

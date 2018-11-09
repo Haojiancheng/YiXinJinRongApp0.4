@@ -47,7 +47,7 @@ public class YunYinShuJu extends Fragment {
 
     private void gethttp() {
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/OperationalData.do")
+                .url(Urls.BASE_URL + "yxbApp/OperationalData.do")
                 .content("")
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
@@ -68,35 +68,35 @@ public class YunYinShuJu extends Fragment {
 
     private void getshuju() {
         //平台数据总览 ,,,,,,,
-        pt_time.setText("（截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
-        liejimoney.setText(data.getResult().getList().get(0).getZong()+"元");
-        leijibishu.setText(data.getResult().getList().get(0).getJiaoyicishu()+"笔");
-        lixiyue.setText(data.getResult().getList().get(0).getLixiyue()+"元");
-        jiedaiyue.setText(data.getResult().getList().get(0).getJiedaiyue()+"元");
-        jiedeiyuebishu.setText(data.getResult().getList().get(0).getJiedaiyuecishu()+"笔");
+        pt_time.setText("（截止日期：" + data.getResult().getFormattedDate() + "24:00:00）");
+        liejimoney.setText(data.getResult().getList().get(0).getZong() + "元");
+        leijibishu.setText(data.getResult().getList().get(0).getJiaoyicishu() + "笔");
+        lixiyue.setText(data.getResult().getList().get(0).getLixiyue() + "元");
+        jiedaiyue.setText(data.getResult().getList().get(0).getJiedaiyue() + "元");
+        jiedeiyuebishu.setText(data.getResult().getList().get(0).getJiedaiyuecishu() + "笔");
 //        guanlianyue.setText(data.getResult().getList().get(0).getRelevance()+"元");
 //        huanxibishu.setText(data.getResult().getList().get(0).getRelevanceSum()+"笔");
         //出借用户信息
-        cjyonghu_time.setText("（截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
-        ren_num.setText("亿信宝累计出借人数量为"+data.getResult().getList().get(0).getChujierenSum()+"人。");
-        dqchujieren.setText(data.getResult().getList().get(0).getDangqianchuSum()+"人");
-        renjunchujie_money.setText(data.getResult().getList().get(0).getRenjunchujie()+"元");
+        cjyonghu_time.setText("（截止日期：" + data.getResult().getFormattedDate() + "24:00:00）");
+        ren_num.setText("亿信宝累计出借人数量为" + data.getResult().getList().get(0).getChujierenSum() + "人。");
+        dqchujieren.setText(data.getResult().getList().get(0).getDangqianchuSum() + "人");
+        renjunchujie_money.setText(data.getResult().getList().get(0).getRenjunchujie() + "元");
         max_danyue.setText(data.getResult().getList().get(0).getDanhuzhanbi());
         max_ten_money.setText(data.getResult().getList().get(0).getTenchujiezhanbi());
         //借款用户信息
-        jkyonghu_time.setText("（截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
-        ljjiekuan_numb.setText("亿信宝累计借款人数量为"+data.getResult().getList().get(0).getJiekuanrenSum()+"人");
-        dqjiekuanren.setText(data.getResult().getList().get(0).getDangqianjieSum()+"人");
-        ljjiekuan_money.setText(data.getResult().getList().get(0).getRenjunjiekuan()+"元");
+        jkyonghu_time.setText("（截止日期：" + data.getResult().getFormattedDate() + "24:00:00）");
+        ljjiekuan_numb.setText("亿信宝累计借款人数量为" + data.getResult().getList().get(0).getJiekuanrenSum() + "人");
+        dqjiekuanren.setText(data.getResult().getList().get(0).getDangqianjieSum() + "人");
+        ljjiekuan_money.setText(data.getResult().getList().get(0).getRenjunjiekuan() + "元");
         max_danjiekuanyue.setText(data.getResult().getList().get(0).getZuidazhanbi());
         max_ten_jiekuanyue.setText(data.getResult().getList().get(0).getDaichangjine());
         //以下逾期数据针对借款人还款情况统计
 
-        yuequshuju_time.setText("（截止日期："+data.getResult().getFormattedDate()+"24:00:00）");
-        ljdaichangjine.setText(data.getResult().getList().get(0).getLeijidaichang()+"元");
-        ljdaichangbishu.setText(data.getResult().getList().get(0).getDaichangcishu()+"笔");
-//        yuqi_money.setText(data.getResult().getList().get(0).getYuqimonery()+"元");
-//        yuqibishu.setText(data.getResult().getList().get(0).getYuqiSum()+"笔");
+        yuequshuju_time.setText("（截止日期：" + data.getResult().getFormattedDate() + "24:00:00）");
+        ljdaichangjine.setText(data.getResult().getList().get(0).getLeijidaichang() + "元");
+        ljdaichangbishu.setText(data.getResult().getList().get(0).getDaichangcishu() + "笔");
+        yuqi_money.setText(data.getResult().getList().get(0).getYuqimonery() + "元");
+        yuqibishu.setText(data.getResult().getList().get(0).getYuqiSum() + "笔");
 //        jineyueqilv.setText(data.getResult().getList().get(0).getMonerylv()+"%");
 //        xiangmuyueqilv.setText(data.getResult().getList().get(0).getXiangmuyuqi()+"%");
 //        jine90.setText(data.getResult().getList().get(0).getBuhanMonery()+"元");

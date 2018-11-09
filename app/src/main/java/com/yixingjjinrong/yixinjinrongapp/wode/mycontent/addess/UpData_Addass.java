@@ -20,6 +20,7 @@ import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.yixingjjinrong.yixinjinrongapp.gsondata.UpData_addass_gson;
 import com.yixingjjinrong.yixinjinrongapp.jiami.Base64JiaMI;
 import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
+import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -66,6 +67,7 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
                 .transparentBar()
                 .fullScreen(false)
                 .init();
+        HideIMEUtil.wrap(this);//键盘管理，点击除editText外区域收起键盘
         cityPicker = new CityPicker(UpData_Addass.this, this);
         bj_dz_fh=findViewById(R.id.bj_dz_fh);
         getupdatainitview();

@@ -242,7 +242,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                 xRecyclerView.loadMoreComplete();
             }
         }, 2000);
-
+        xRecyclerView.loadMoreComplete();
     }
 
     @Override

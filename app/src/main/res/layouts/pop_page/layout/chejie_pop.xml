@@ -57,7 +57,7 @@
             android:background="@drawable/bt_shape"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="90px"
-            android:text="重新评测"
+            android:text="继续出借"
             android:textSize="38px"
             android:textColor="#fff"
             />

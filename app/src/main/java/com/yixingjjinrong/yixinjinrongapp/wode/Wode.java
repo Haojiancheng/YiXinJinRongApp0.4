@@ -11,9 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,6 @@ import android.widget.ToggleButton;
 import com.google.gson.Gson;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
-import com.yixingjjinrong.yixinjinrongapp.authentication.RealName_one;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.LookMore;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_data;
 import com.yixingjjinrong.yixinjinrongapp.eventbus_data.User_id;
@@ -41,11 +37,9 @@ import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
-import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.ShiMingrenzheng;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.WoDe_DengRu;
 import com.yixingjjinrong.yixinjinrongapp.wode.dengruzuce.YinHangCunGuan;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.Juan;
-import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.WoDe_ChuJie;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.wodechujie_one.MyChuJie_one;
 import com.yixingjjinrong.yixinjinrongapp.wode.fore_inot.zijinliushui.ZiJinliushui;
 import com.yixingjjinrong.yixinjinrongapp.wode.mycontent.My_Content;
@@ -71,7 +65,7 @@ public class Wode extends Fragment {
     private View dengru, weidengru, shimingrenzheng_itme, yinhangcunguan_itme, fengxianpingce_itme;//登入和未登入状态的头部,实名认证，银行存管，风险评测
     private Button yonghudengru, chongzhi, tixian;//用户登入跳转按钮,充值，提现
     private TextView yonghudengji, wozonge, myphone, keyongyue, yaoqing;//等级、总额、可用余额、我的邀请
-    private ImageView  wode_xiaoxi, wode_shazhi,  touxiang1;//设置，我的出借,现金券，加息卷
+    private ImageView wode_xiaoxi, wode_shazhi, touxiang1;//设置，我的出借,现金券，加息卷
     private int user_id;
     //    private String userToken;
     private String sha1;//SHA1加密
@@ -94,7 +88,8 @@ public class Wode extends Fragment {
     private ImageView wd_yj_image;
     private View kefuphone;
     private static final int PERMISSION_REQUESTCODE = 1;
-    private View wode_chujie,zjls, xianjin_juan, jiaxi_juan;
+    private View wode_chujie, zjls, xianjin_juan, jiaxi_juan;
+    private User_Gson data;
 
     @Nullable
     @Override
@@ -226,7 +221,7 @@ public class Wode extends Fragment {
                     @Override
                     public void onResponse(String result, int id) {
                         MyLog.e("TAG", ">>>Gson" + result);
-                        User_Gson data = new Gson().fromJson(result, User_Gson.class);
+                        data = new Gson().fromJson(result, User_Gson.class);
                         String message = data.getMessage();
 
                         if (message.equals("成功了")) {
@@ -243,7 +238,11 @@ public class Wode extends Fragment {
                             if (zhuangtaima.equals("success")) {
                                 weidengru.setVisibility(View.GONE); //显示布局
                                 dengru.setVisibility(View.VISIBLE);//影藏布局
-                                wozonge.setText(data.getUserMap().getAccountSum());//总额
+                                if (wode_togglePwd.isChecked()) {
+                                    wozonge.setText(data.getUserMap().getAccountSum());//总额
+                                } else {
+                                    wozonge.setText("******");//总额
+                                }
                                 keyong = data.getUserMap().getUsableAmount();
                                 keyongyue.setText(keyong);//可用余额
                                 yonghudengji.setText("LV:" + data.getUserMap().getLevelname());//等级
@@ -261,10 +260,10 @@ public class Wode extends Fragment {
                                 String usableAmount = data.getUserMap().getUsableAmount();//可用余额
                                 String freezeAmount = data.getUserMap().getFreezeAmount();//冻结金额
                                 String accountSum = data.getUserMap().getAccountSum();//总额
-                                SPUtils.put(getActivity(),"forAmount" , forAmount);//总代收
-                                SPUtils.put(getActivity(),"usableAmount" , usableAmount);//可用余额
-                                SPUtils.put(getActivity(),"freezeAmount" , freezeAmount);//冻结金额
-                                SPUtils.put(getActivity(),"accountSum" , accountSum);//冻结金额
+                                SPUtils.put(getActivity(), "forAmount", forAmount);//总代收
+                                SPUtils.put(getActivity(), "usableAmount", usableAmount);//可用余额
+                                SPUtils.put(getActivity(), "freezeAmount", freezeAmount);//冻结金额
+                                SPUtils.put(getActivity(), "accountSum", accountSum);//冻结金额
 
                                 //测评结果
                                 riskType = data.getUserMap().getRiskType();
@@ -412,8 +411,8 @@ public class Wode extends Fragment {
                             bundle.putInt("user_ird", user_id);
                             it.putExtras(bundle);
                             startActivity(it);
-                        }else {
-                            ToastUtils.showToast(getActivity(),message );
+                        } else {
+                            ToastUtils.showToast(getActivity(), message);
                         }
                     }
                 });
@@ -546,11 +545,11 @@ public class Wode extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     //如果选中，显示密码
-                    wozonge.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    wozonge.setText(data.getUserMap().getAccountSum());//总额
                     wd_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.zhengyan));
                 } else {
                     //否则隐藏密码
-                    wozonge.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    wozonge.setText("******");//总额
                     wd_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.biyan));
                 }
             }
@@ -605,8 +604,8 @@ public class Wode extends Fragment {
         //自定义AlertDialog
         LayoutInflater inflater = getLayoutInflater();
         View view1 = inflater.inflate(R.layout.krfuphone, null);
-        Button btn_qux=view1.findViewById(R.id.btn_qux);
-        Button btn_hujiao=view1.findViewById(R.id.btn_hujiao);
+        Button btn_qux = view1.findViewById(R.id.btn_qux);
+        Button btn_hujiao = view1.findViewById(R.id.btn_hujiao);
 
         final AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setView(view1)
@@ -632,10 +631,10 @@ public class Wode extends Fragment {
     }
 
     private void permission() {
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             //没有授权
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_REQUESTCODE);
-        }else{
+        } else {
             //已经授权
             diallPhone("4001838818");
         }
@@ -652,12 +651,13 @@ public class Wode extends Fragment {
         intent.setData(data);
         startActivity(intent);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case PERMISSION_REQUESTCODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //用户点击了同意授权
 //                    diallPhone("4001838818");
                     Intent intent = new Intent(Intent.ACTION_CALL);
@@ -665,7 +665,7 @@ public class Wode extends Fragment {
                     intent.setData(data);
                     startActivity(intent);
 
-                }else{
+                } else {
                     //用户拒绝了授权
                     ToastUtils.showToast(getActivity(), "权限被拒绝");
                 }
@@ -706,11 +706,14 @@ public class Wode extends Fragment {
         tixian = getActivity().findViewById(R.id.tixian);//提现
         zjls = getActivity().findViewById(R.id.zjls);//资金流水
         wode_togglePwd = getActivity().findViewById(R.id.wode_togglePwd);//眼睛
+
+//        wd_yj_image.setImageDrawable(getResources().getDrawable(R.drawable.zhengyan));
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         boolean isLogin = (boolean) SPUtils.get(getActivity(), "isLogin", false);
         if (isLogin == false) {
             userToken = "";

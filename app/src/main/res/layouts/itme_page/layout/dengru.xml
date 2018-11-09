@@ -105,14 +105,14 @@
                 <!--android:textOn="" />-->
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px">
+                    android:layout_height="wrap_content">
 
                     <ToggleButton
                         android:id="@+id/wode_togglePwd"
-                        android:layout_width="70px"
+                        android:layout_width="100px"
                         android:layout_height="30px"
                         android:background="@null"
+                        android:checked="true"
                         android:textOff=""
                         android:textOn="" />
 
@@ -120,7 +120,7 @@
                         android:id="@+id/wd_yj_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
+                        android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/zhengyan" />
 

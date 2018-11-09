@@ -349,7 +349,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text=""
+                        android:textAlignment="textEnd"
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -375,7 +375,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="25px"
-                        android:text=""
+                        android:textAlignment="textEnd"
                         android:textColor="#333333"
                         android:textSize="28px" />
                 </RelativeLayout>
@@ -2601,10 +2601,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="140px"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30px"
-                        android:text="审核意见"
+                        android:text="风控审核意见"
                         android:textColor="#999999"
                         android:textSize="28px" />
 

@@ -53,20 +53,22 @@ public class JiFenDuiHUan_adapter extends RecyclerView.Adapter<JiFenDuiHUan_adap
         }
 
 
-        holder.xuni_money.setText(list.get(position).getExchangeCredits()+" ");
+
         if (list.get(position).getPicUrl().equals("加息券")){
             holder.xuni_iv.setVisibility(View.GONE);
             holder.da_quan.setVisibility(View.VISIBLE);
             holder.da_quan_text.setText(list.get(position).getPrizeMark());
-
+            holder.xuni_money.setText(list.get(position).getSurplusNum()+" ");
         }else if (list.get(position).getPicUrl().equals("代金券")){
             holder.da_quan.setVisibility(View.VISIBLE);
             holder.xuni_iv.setVisibility(View.GONE);
             holder.da_quan_text.setText(list.get(position).getPrizeMark());
+            holder.xuni_money.setText(list.get(position).getSurplusNum()+" ");
         }else {
             holder.da_quan.setVisibility(View.GONE);
             holder.xuni_iv.setVisibility(View.VISIBLE);
             x.image().bind(holder.xuni_iv,picpath+list.get(position).getPicUrl());
+            holder.xuni_money.setText(list.get(position).getExchangeCredits()+" ");
         }
         holder.jifenduihuantiaozhuan.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,6 +57,7 @@ import org.xutils.x;
 
 import java.util.regex.Pattern;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -78,6 +79,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     private String timer;
     private View zhyz_collphone;
     private static final int PERMISSION_REQUESTCODE = 1;
+    private PromptDialog promptDialog;
 
 
     @Override
@@ -250,6 +252,8 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
     }
 
     private void getyanzhengHttp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
             js_request.put("phone", phone);
@@ -280,7 +284,8 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this,"网络连接失败" );
                     }
 
                     @Override
@@ -289,7 +294,9 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
                         ChongZiMIMA_Gson data = new Gson().fromJson(result, ChongZiMIMA_Gson.class);
                         String message = data.getMessage().toString();
                         String zhuangtai = data.getState().toString();
+                        promptDialog.dismiss();
                         if (zhuangtai.equals("success")) {
+
 //                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, "" + message);
 //                            LayoutInflater inflater = getLayoutInflater();
 //                            View view1 = inflater.inflate(R.layout.xgch, null);
@@ -320,9 +327,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 
                         } else {
                             ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
-//                            jinggao.setVisibility(View.VISIBLE);
-//                            jinggao.setText("   "+message);
-                            ToastUtils.showToast(ZhaoHuiMiMaYanZheng.this, message);
+//
                         }
                     }
                 });
@@ -331,6 +336,9 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
 
     @SuppressLint("WrongConstant")
     private void showpopwindow() {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = 0.7f;
+        getWindow().setAttributes(lp);
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         final View popView = View.inflate(this, R.layout.xgch, null);
         int width = getResources().getDisplayMetrics().widthPixels;
@@ -338,7 +346,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
         final PopupWindow popWindow = new PopupWindow(popView, width, height);
         popWindow.setFocusable(true);
         popWindow.setOutsideTouchable(false);// 设置同意在外点击消失
-        ColorDrawable dw = new ColorDrawable(0x30000000);
+        ColorDrawable dw = new ColorDrawable(0x00000000);
         popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
@@ -437,7 +445,7 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             jsessionId = it.getStringExtra("jsessionId");
             String mobile = phone;
             String maskNumber = mobile.substring(0, 3) + "****" + mobile.substring(7, mobile.length());
-            phonet.setText("正在为" + maskNumber + "找回登入密码");
+            phonet.setText("正在为" + maskNumber + "找回登录密码");
             if (timer.equals("1")) {
                 time = new TimeCount(60000, 1000);
                 time.start();

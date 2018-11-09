@@ -61,10 +61,10 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                 .fullScreen(false)
                 .init();
         getid();
-        if (prizeId.equals("")){
+        if (prizeId.equals("")) {
             goods_xq_image.setVisibility(View.VISIBLE);
             dh_da_quan.setVisibility(View.GONE);
-        }else {
+        } else {
             goods_xq_image.setVisibility(View.GONE);
             dh_da_quan.setVisibility(View.VISIBLE);
         }
@@ -99,7 +99,7 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
         }
         OkHttpUtils.postString()
                 //http://192.168.1.111:8080/yxb_mobile/
-                .url(Urls.BASE_URL+"yxbApp/integralExchangeDetail.do")
+                .url(Urls.BASE_URL + "yxbApp/integralExchangeDetail.do")
                 .content(canshu.toString())
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build()
@@ -140,7 +140,7 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                                         goods_xq_duihuanbt.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Intent it=new Intent(ShangPingXiangQing.this,DuiHuanXiangQing.class);
+                                                Intent it = new Intent(ShangPingXiangQing.this, DuiHuanXiangQing.class);
                                                 it.putExtra("awardType", awardType);
                                                 it.putExtra("speid", speid);
                                                 it.putExtra("prizeId", prizeId);
@@ -172,7 +172,7 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
                                     goods_xq_duihuanbt.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent it=new Intent(ShangPingXiangQing.this,DuiHuanXiangQing.class);
+                                            Intent it = new Intent(ShangPingXiangQing.this, DuiHuanXiangQing.class);
                                             it.putExtra("awardType", awardType);
                                             it.putExtra("speid", speid);
                                             it.putExtra("prizeId", prizeId);
@@ -213,8 +213,8 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
         goods_xq_describe = findViewById(R.id.goods_xq_describe);
         goods_xq_duihuanbt = findViewById(R.id.goods_xq_duihuanbt);
         goods_xq_name = findViewById(R.id.goods_xq_name);
-        dh_da_quan=findViewById(R.id.dh_da_quan);
-        dh_quan_text=findViewById(R.id.dh_quan_text);
+        dh_da_quan = findViewById(R.id.dh_da_quan);
+        dh_quan_text = findViewById(R.id.dh_quan_text);
 
     }
 }

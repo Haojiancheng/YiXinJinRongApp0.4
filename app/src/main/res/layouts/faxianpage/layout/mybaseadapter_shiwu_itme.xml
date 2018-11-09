@@ -17,11 +17,11 @@
         tools:ignore="PxUsage">
         <LinearLayout
             android:id="@+id/quan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110px"
+            android:layout_height="100px"
+            android:layout_marginLeft="50px"
             android:orientation="vertical"
             android:background="@drawable/quanxiaobeijing"
-            android:layout_marginLeft="30px"
             android:layout_gravity="center"
             android:gravity="center"
             android:visibility="gone"

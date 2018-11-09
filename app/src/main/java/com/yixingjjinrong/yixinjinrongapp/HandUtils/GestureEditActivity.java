@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
     /** 首次提示绘制手势密码，可以选择跳过 */
     public static final String PARAM_IS_FIRST_ADVICE = "PARAM_IS_FIRST_ADVICE";
     private TextView mTextTitle;
-    private TextView mTextCancel;
+    private ImageView mTextCancel;
     private LockIndicator mLockIndicator;
     private TextView mTextTip;
     private FrameLayout mGestureContainer;
@@ -52,7 +53,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
 
     private void setUpViews() {
         mTextTitle = (TextView) findViewById(R.id.text_title);
-        mTextCancel = (TextView) findViewById(R.id.text_cancel);
+        mTextCancel = (ImageView) findViewById(R.id.text_cancel);
         mTextReset = (TextView) findViewById(R.id.text_reset);
         mTextReset.setClickable(false);
         mLockIndicator = (LockIndicator) findViewById(R.id.lock_indicator);
@@ -73,6 +74,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
                     mGestureContentView.clearDrawlineState(0L);
                     mTextReset.setClickable(true);
 //                    mTextReset.setText("请再次绘制手势密码");
+                    mTextTip.setText(Html.fromHtml("<font color='#ff5757'>请再次绘制手势密码</font>"));
                 } else {
                     if (inputCode.equals(mFirstPassword)) {
                         ToastUtils.showToast(GestureEditActivity.this, "设置成功");
@@ -81,7 +83,7 @@ public class GestureEditActivity extends AutoLayoutActivity implements View.OnCl
                         SPUtils.put(GestureEditActivity.this, "ishand", "1");
                         GestureEditActivity.this.finish();
                     } else {
-                        mTextTip.setText(Html.fromHtml("<font color='#c70c1e'>与上一次绘制不一致，请重新绘制</font>"));
+                        mTextTip.setText(Html.fromHtml("<font color='#ff5757'>与上一次绘制不一致，请重新绘制</font>"));
                         // 左右移动动画
                         Animation shakeAnimation = AnimationUtils.loadAnimation(GestureEditActivity.this, R.anim.shake);
                         mTextTip.startAnimation(shakeAnimation);

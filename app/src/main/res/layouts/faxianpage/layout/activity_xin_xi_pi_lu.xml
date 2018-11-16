@@ -33,28 +33,33 @@
             android:textSize="38px" />
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/xinxipilutab"
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/xinxipilutab"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100px"-->
+        <!--android:background="#fdfdfe"-->
+        <!--app:tabIndicatorColor="#fe6623"-->
+        <!--app:tabIndicatorHeight="4px"-->
+        <!--app:tabMode="scrollable"-->
+        <!--app:tabMaxWidth="0dp"-->
+        <!--app:tabGravity="fill"-->
+        <!--app:layout_scrollFlags="scroll"-->
+        <!--app:tabSelectedTextColor="#fe6623"-->
+        <!--app:tabTextColor="#1a1919">-->
+
+    <!--</android.support.design.widget.TabLayout>-->
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/xinxipiluvp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="20px">-->
+
+    <!--</android.support.v4.view.ViewPager>-->
+    <WebView
+        android:id="@+id/xxpl_web"
         android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:background="#fdfdfe"
-        app:tabIndicatorColor="#fe6623"
-        app:tabIndicatorHeight="4px"
-        app:tabMode="scrollable"
-        app:tabMaxWidth="0dp"
-        app:tabGravity="fill"
-        app:layout_scrollFlags="scroll"
-        app:tabSelectedTextColor="#fe6623"
-        app:tabTextColor="#1a1919">
 
-    </android.support.design.widget.TabLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/xinxipiluvp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20px">
-
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"></WebView>
 
 </com.zhy.autolayout.AutoLinearLayout>

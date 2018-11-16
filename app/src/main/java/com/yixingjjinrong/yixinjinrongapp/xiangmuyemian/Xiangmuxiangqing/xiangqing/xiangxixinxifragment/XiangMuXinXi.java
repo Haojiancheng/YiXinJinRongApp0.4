@@ -430,14 +430,14 @@ public class XiangMuXinXi extends Fragment {
                             yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                             qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-//                            if (data.getResult().getCovered().equals("")){
-//                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
-//                                new_fxpg.setVisibility(View.GONE);
-//                            }else {
-//                                sh_yj.setText(data.getResult().getAuditOpinionOld());
-//                                fxpg_fxjg.setText(data.getResult().getCovered());
-//                                new_fxpg.setVisibility(View.VISIBLE);
-//                            }
+                            if (data.getResult().getCovered().equals("")){
+                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
+                                new_fxpg.setVisibility(View.GONE);
+                            }else {
+                                sh_yj.setText(data.getResult().getAuditOpinionOld());
+                                fxpg_fxjg.setText(data.getResult().getCovered());
+                                new_fxpg.setVisibility(View.VISIBLE);
+                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 qy.setVisibility(View.VISIBLE);
                                 if (data.getResult().getAuthentication().getCompany_auth() == 1) {
@@ -651,14 +651,14 @@ public class XiangMuXinXi extends Fragment {
                             xk_jg.setText(data.getResult().getHouse().getReferencePrice());
 
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-//                            if (data.getResult().getCovered().equals("")){
-//                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
-//                                new_fxpg.setVisibility(View.GONE);
-//                            }else {
-//                                sh_yj.setText(data.getResult().getAuditOpinionOld());
-//                                fxpg_fxjg.setText(data.getResult().getCovered());
-//                                new_fxpg.setVisibility(View.VISIBLE);
-//                            }
+                            if (data.getResult().getCovered().equals("")){
+                                sh_yj.setText("经风控综合评估，该借款项目审批通过");
+                                new_fxpg.setVisibility(View.GONE);
+                            }else {
+                                sh_yj.setText(data.getResult().getAuditOpinionOld());
+                                fxpg_fxjg.setText(data.getResult().getCovered());
+                                new_fxpg.setVisibility(View.VISIBLE);
+                            }
                             if (data.getResult().getBorrowFrom().equals("2")) {
                                 qy.setVisibility(View.VISIBLE);
                                 if (data.getResult().getAuthentication().getCompany_auth() == 1) {

@@ -103,7 +103,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private JieKuanZiLiao mJieKuanZiLiao;         //借款资料 fragment
     private XiangMuJingDu mXiangMuJingDu;         //项目进度 fragment
     private XiangMuXinXi mXiangMuXinXi;           //项目信息 fragment
-    private XiangmuGenZong mxiangmugenzong;            //项目跟踪 fragment
+    private XiangmuGenZong mxiangmugenzong;       //项目跟踪 fragment
     private SimpleFragmentPagerAdapter pagerAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;

@@ -33,523 +33,527 @@
             android:textSize="38px" />
     </RelativeLayout>
 
-
-    <com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView
+    <WebView
+        android:id="@+id/ptjs_web"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20px"
-        android:background="#f0f0f0">
+        android:layout_height="match_parent"></WebView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <!--<com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="20px"-->
+        <!--android:background="#f0f0f0">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="90px"
-                android:background="#fdfdfe"
-                android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
 
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="30px"
-                    android:src="@drawable/gongsijianjie" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="90px"-->
+                <!--android:background="#fdfdfe"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="14px"
-                    android:text="公司简介"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="50px"-->
+                    <!--android:layout_height="50px"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:src="@drawable/gongsijianjie" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#dadada" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="14px"-->
+                    <!--android:text="公司简介"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="30px" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fdfdfe"
-                android:orientation="vertical">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:background="#dadada" />-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30px"
-                    android:layout_marginRight="30px"
-                    android:layout_marginTop="30px"
-                    android:text="亿信宝（www.yxb.com）平台运营主体为亿信（北京）金融信息服务有限公司（以下简称“亿信宝”），成立于2015年1月29日，注册资本为人民币1.25亿元，实缴资本为人民币1亿元。亿信宝（www.yxb.com）网络借贷信息服务平台于2015年5月23日正式上线运营，致力于成为互联网金融服务的引领者。团队成员主要来自国内知名金融机构和知名互联网企业，在金融和互联网领域均有着丰富行业经验。我们致力于成为一家卓越的互联网金融企业，以健全的风险管控体系为基础，为出借人和借款人提供一个优质、高效、诚信、互惠互助的网络借贷信息服务平台，提供信息搜集、信息公布、资信评估、信息交互、借贷撮合等服务。2017年8月15日，亿信宝银行资金存管系统正式上线保障用户的资金和交易安全。亿信宝始终为更高品质地服务客户而持续努力。"
-                    android:textColor="#666666"
-                    android:textSize="26px" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#fdfdfe"-->
+                <!--android:orientation="vertical">-->
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="270px"
-                    android:layout_marginTop="30px"
-                    android:scrollbars="none"
-                    >
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:layout_marginTop="30px"-->
+                    <!--android:text="亿信宝（www.yxb.com）平台运营主体为亿信（北京）金融信息服务有限公司（以下简称“亿信宝”），成立于2015年1月29日，注册资本为人民币1.25亿元，实缴资本为人民币1亿元。亿信宝（www.yxb.com）网络借贷信息服务平台于2015年5月23日正式上线运营，致力于成为互联网金融服务的引领者。团队成员主要来自国内知名金融机构和知名互联网企业，在金融和互联网领域均有着丰富行业经验。我们致力于成为一家卓越的互联网金融企业，以健全的风险管控体系为基础，为出借人和借款人提供一个优质、高效、诚信、互惠互助的网络借贷信息服务平台，提供信息搜集、信息公布、资信评估、信息交互、借贷撮合等服务。2017年8月15日，亿信宝银行资金存管系统正式上线保障用户的资金和交易安全。亿信宝始终为更高品质地服务客户而持续努力。"-->
+                    <!--android:textColor="#666666"-->
+                    <!--android:textSize="26px" />-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                <!--<HorizontalScrollView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="270px"-->
+                    <!--android:layout_marginTop="30px"-->
+                    <!--android:scrollbars="none"-->
+                    <!--&gt;-->
 
-                        <ImageView
-                            android:layout_width="300px"
-                            android:layout_height="240px"
-                            android:layout_marginLeft="30px"
-                            android:src="@drawable/tupian1" />
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal">-->
 
-                        <ImageView
-                            android:layout_width="300px"
-                            android:layout_height="240px"
-                            android:layout_marginLeft="20px"
-                            android:src="@drawable/tupian2" />
+                        <!--<ImageView-->
+                            <!--android:layout_width="300px"-->
+                            <!--android:layout_height="240px"-->
+                            <!--android:layout_marginLeft="30px"-->
+                            <!--android:src="@drawable/tupian1" />-->
 
-                        <ImageView
-                            android:layout_width="300px"
-                            android:layout_height="240px"
-                            android:layout_marginLeft="20px"
-                            android:src="@drawable/tupian3" />
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
+                        <!--<ImageView-->
+                            <!--android:layout_width="300px"-->
+                            <!--android:layout_height="240px"-->
+                            <!--android:layout_marginLeft="20px"-->
+                            <!--android:src="@drawable/tupian2" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:layout_marginTop="20px"
-                android:background="#fdfdfe"
-                android:orientation="horizontal">
+                        <!--<ImageView-->
+                            <!--android:layout_width="300px"-->
+                            <!--android:layout_height="240px"-->
+                            <!--android:layout_marginLeft="20px"-->
+                            <!--android:src="@drawable/tupian3" />-->
+                    <!--</LinearLayout>-->
+                <!--</HorizontalScrollView>-->
+            <!--</LinearLayout>-->
 
-                <ImageView
-                    android:layout_width="50px"
-                    android:layout_height="50px"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="30px"
-                    android:src="@drawable/pingtaixinxi" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:layout_marginTop="20px"-->
+                <!--android:background="#fdfdfe"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="14px"
-                    android:text="平台信息"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="50px"-->
+                    <!--android:layout_height="50px"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:src="@drawable/pingtaixinxi" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#f4f4f4">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="14px"-->
+                    <!--android:text="平台信息"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="30px" />-->
+            <!--</LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="平台网址"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#f4f4f4">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="http://www.yxb.com"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="平台网址"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#fdfdfe">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="http://www.yxb.com"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="平台简称"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#fdfdfe">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="亿信宝"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="平台简称"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#f4f4f4">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="亿信宝"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="APP应用"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#f4f4f4">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="亿信宝"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="APP应用"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fdfdfe">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="亿信宝"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="公众号或服务号"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#fdfdfe">-->
 
-                <TextView
-                    android:id="@+id/gzh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="320px"
-                    android:layout_marginRight="20px"
-                    android:layout_marginTop="20px"
-                    android:layout_marginBottom="20px"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="公众号或服务号"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#f4f4f4">
+                <!--<TextView-->
+                    <!--android:id="@+id/gzh"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="320px"-->
+                    <!--android:layout_marginRight="20px"-->
+                    <!--android:layout_marginTop="20px"-->
+                    <!--android:layout_marginBottom="20px"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="信息安全测评认证信息"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#f4f4f4">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="信息系统安全等级保护3级"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="信息安全测评认证信息"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#fdfdfe">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="信息系统安全等级保护3级"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="咨询、投诉、举报联系电话"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#fdfdfe">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="400-183-8818"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="咨询、投诉、举报联系电话"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#f4f4f4">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="400-183-8818"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="投诉举报电子邮箱"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#f4f4f4">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="tousu@yxb.com"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="投诉举报电子邮箱"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#fdfdfe">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="tousu@yxb.com"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="违法违规行为投诉"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#fdfdfe">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="http://wwwbjp2p.com.cn/info/tousu"
-                    android:textColor="#333333"
-                    android:textSize="22px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="违法违规行为投诉"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#f4f4f4">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="http://wwwbjp2p.com.cn/info/tousu"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="22px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="注册协议模板"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#f4f4f4">-->
 
-                <TextView
-                    android:id="@+id/zcxy_h5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="亿信宝注册协议PDF"
-                    android:textColor="#078dcf"
-                    android:textSize="28px" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="注册协议模板"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:background="#fdfdfe">
+                <!--<TextView-->
+                    <!--android:id="@+id/zcxy_h5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="亿信宝注册协议PDF"-->
+                    <!--android:textColor="#078dcf"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="30px"
-                    android:text="商务合作、市场推广邮箱"
-                    android:textColor="#999999"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px"-->
+                <!--android:background="#fdfdfe">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30px"
-                    android:text="bd@yxb.com"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
-            </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#fdfdfe"
-            android:layout_marginTop="20px"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="90px"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="30px"-->
+                    <!--android:text="商务合作、市场推广邮箱"-->
+                    <!--android:textColor="#999999"-->
+                    <!--android:textSize="28px" />-->
 
-                android:orientation="horizontal">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginRight="30px"-->
+                    <!--android:text="bd@yxb.com"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
+            <!--</RelativeLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:background="#fdfdfe"-->
+            <!--android:layout_marginTop="20px"-->
+            <!--&gt;-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="90px"-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="30px"
-                    android:src="@drawable/gudongxinxi1" />
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="14px"
-                    android:text="股东信息"
-                    android:textColor="#333333"
-                    android:textSize="30px" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="(截至时间 2018年9月30日 24:00:00)"
-                    android:textSize="20px"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10px"
-                    />
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#dadada"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="26px"
-                android:text="亿信(北京)金融信息服务有限公司股权结构如下："
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="20px"
-                android:textColor="#111211"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gudongneirong"
-                android:layout_marginTop="20px"
-                android:layout_marginLeft="30px"
-                android:layout_marginBottom="30px"
-                android:layout_marginRight="30px"
-                />
-        </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20px"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/zuzhijiagou"
-                />
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:background="#fdfdfe"
-              android:layout_marginTop="20px"
-              >
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="90px"
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:src="@drawable/gudongxinxi1" />-->
 
-                  android:orientation="horizontal">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="14px"-->
+                    <!--android:text="股东信息"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="30px" />-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="(截至时间 2018年9月30日 24:00:00)"-->
+                    <!--android:textSize="20px"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="10px"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:background="#dadada"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:layout_marginRight="30px"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="26px"-->
+                <!--android:text="亿信(北京)金融信息服务有限公司股权结构如下："-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:layout_marginTop="20px"-->
+                <!--android:textColor="#111211"-->
+                <!--/>-->
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/gudongneirong"-->
+                <!--android:layout_marginTop="20px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:layout_marginBottom="30px"-->
+                <!--android:layout_marginRight="30px"-->
+                <!--/>-->
+        <!--</LinearLayout>-->
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="20px"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@drawable/zuzhijiagou"-->
+                <!--/>-->
+          <!--<LinearLayout-->
+              <!--android:layout_width="match_parent"-->
+              <!--android:layout_height="wrap_content"-->
+              <!--android:orientation="vertical"-->
+              <!--android:background="#fdfdfe"-->
+              <!--android:layout_marginTop="20px"-->
+              <!--&gt;-->
+              <!--<LinearLayout-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="90px"-->
 
-                  <ImageView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center_vertical"
-                      android:layout_marginLeft="30px"
-                      android:src="@drawable/yuangongxinxi1" />
+                  <!--android:orientation="horizontal">-->
 
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center_vertical"
-                      android:layout_marginLeft="14px"
-                      android:text="员工信息"
-                      android:textColor="#333333"
-                      android:textSize="30px" />
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="(截至时间 2018年9月30日 24:00:00)"
-                      android:textSize="20px"
-                      android:layout_gravity="center_vertical"
-                      android:layout_marginLeft="10px"
-                      />
-              </LinearLayout>
-              <View
-                  android:layout_width="match_parent"
-                  android:layout_height="1px"
-                  android:background="#dadada"
-                  android:layout_marginLeft="30px"
-                  android:layout_marginRight="30px"
-                  />
-              <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:textSize="26px"
-                  android:text="截止2018年9月末，亿信宝从业人员数量40人"
-                  android:layout_marginLeft="30px"
-                  android:layout_marginTop="20px"
-                  android:textColor="#111211"
-                  />
-              <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/nianlingfenbu"
-                  android:layout_gravity="center_horizontal"
-                  android:layout_marginTop="30px"
-                  />
-              <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/xuelifenbu"
-                  android:layout_gravity="center_horizontal"
-                  android:layout_marginTop="20px"
-                  android:layout_marginBottom="90px"
-                  />
-          </LinearLayout>
-        </LinearLayout>
-    </com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>
+                  <!--<ImageView-->
+                      <!--android:layout_width="wrap_content"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:layout_gravity="center_vertical"-->
+                      <!--android:layout_marginLeft="30px"-->
+                      <!--android:src="@drawable/yuangongxinxi1" />-->
+
+                  <!--<TextView-->
+                      <!--android:layout_width="wrap_content"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:layout_gravity="center_vertical"-->
+                      <!--android:layout_marginLeft="14px"-->
+                      <!--android:text="员工信息"-->
+                      <!--android:textColor="#333333"-->
+                      <!--android:textSize="30px" />-->
+                  <!--<TextView-->
+                      <!--android:layout_width="wrap_content"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:text="(截至时间 2018年9月30日 24:00:00)"-->
+                      <!--android:textSize="20px"-->
+                      <!--android:layout_gravity="center_vertical"-->
+                      <!--android:layout_marginLeft="10px"-->
+                      <!--/>-->
+              <!--</LinearLayout>-->
+              <!--<View-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="1px"-->
+                  <!--android:background="#dadada"-->
+                  <!--android:layout_marginLeft="30px"-->
+                  <!--android:layout_marginRight="30px"-->
+                  <!--/>-->
+              <!--<TextView-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:textSize="26px"-->
+                  <!--android:text="截止2018年9月末，亿信宝从业人员数量40人"-->
+                  <!--android:layout_marginLeft="30px"-->
+                  <!--android:layout_marginTop="20px"-->
+                  <!--android:textColor="#111211"-->
+                  <!--/>-->
+              <!--<ImageView-->
+                  <!--android:layout_width="wrap_content"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:src="@drawable/nianlingfenbu"-->
+                  <!--android:layout_gravity="center_horizontal"-->
+                  <!--android:layout_marginTop="30px"-->
+                  <!--/>-->
+              <!--<ImageView-->
+                  <!--android:layout_width="wrap_content"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:src="@drawable/xuelifenbu"-->
+                  <!--android:layout_gravity="center_horizontal"-->
+                  <!--android:layout_marginTop="20px"-->
+                  <!--android:layout_marginBottom="90px"-->
+                  <!--/>-->
+          <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+    <!--</com.yixingjjinrong.yixinjinrongapp.xiangmuyemian.Xiangmuxiangqing.xiangqing.myview.MyScrollView>-->
 
 </com.zhy.autolayout.AutoLinearLayout>

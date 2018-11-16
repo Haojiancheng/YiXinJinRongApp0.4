@@ -69,6 +69,13 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
         user_ird = b.getInt("user_ird");
 
         token = b.getString("token");
+
+        gethuancun();
+        getonclick();
+    }
+
+    private void getonclick() {
+        ishand = (String) SPUtils.get(WoDe_SheZhi.this, "ishand", "");
         user_tuichu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,12 +131,7 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 finish();
             }
         });
-        gethuancun();
-        getonclick();
-    }
 
-    private void getonclick() {
-        ishand = (String) SPUtils.get(WoDe_SheZhi.this, "ishand", "");
         if (ishand != null) {
             if (ishand.equals("1")) {
                 hand_pass.setText("已开启");
@@ -326,6 +328,15 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        ishand = (String) SPUtils.get(WoDe_SheZhi.this, "ishand", "");
+        if (ishand!=null){
+            if (ishand.equals("1")) {
+                hand_pass.setText("已开启");
+                getonclick();
+            }else {
+                hand_pass.setText("未开启");
+            }
+        }
 
     }
 }

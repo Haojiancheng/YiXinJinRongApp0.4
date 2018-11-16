@@ -38,6 +38,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -54,6 +55,7 @@ public class WoDeShiMing extends AutoLayoutActivity {
     private String password;
     private String url;
     private int user_ird;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class WoDeShiMing extends AutoLayoutActivity {
     }
 
     private void gethttp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         String my_name = my_zhen_name.getText().toString();
         final String zhen_id = my_user_idcard.getText().toString();
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -122,7 +126,8 @@ public class WoDeShiMing extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(WoDeShiMing.this,"网络连接失败" );
                     }
 
                     @Override
@@ -139,9 +144,11 @@ public class WoDeShiMing extends AutoLayoutActivity {
 //                    String idNo = data.getResult().getIdNo();
 //                            Intent intent=new Intent(WoDeShiMing.this,ShiMingRenZhengKO.class);
 //                            startActivity(intent);
+                            promptDialog.dismiss();
                             ToastUtils.showToast(WoDeShiMing.this,"认证成功" );
                             finish();
                         }else {
+                            promptDialog.dismiss();
                             jinggao.setVisibility(View.VISIBLE);
                             jinggao.setText(message);
                         }

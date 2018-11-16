@@ -194,6 +194,7 @@ public class ShouYe_MyBaseAdapter extends RecyclerView.Adapter {
                     break;
                 case 2:
                     ((MyViewHolder2) holder).leve.setText("AA");
+                    break;
                 case 3:
                     ((MyViewHolder2) holder).leve.setText("A");
                     break;

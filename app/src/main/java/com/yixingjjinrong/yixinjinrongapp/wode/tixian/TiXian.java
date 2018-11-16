@@ -207,7 +207,7 @@ public class TiXian extends AutoLayoutActivity {
                             tixin_kongbai.setVisibility(View.GONE);
                             t_yh_name.setText(data.getBankName());
                             t_yh_number.setText(data.getCardNum());
-                            x.image().bind(t_yh_img, data.getImage());
+                            x.image().bind(t_yh_img, Urls.BASE_URL +data.getImage());
                             data.getFreeMoney();
                             t_cz_keyong.setText("可提现金额:  " + data.getFreeMoney() + "元");
                             cz_ok.setOnClickListener(new View.OnClickListener() {

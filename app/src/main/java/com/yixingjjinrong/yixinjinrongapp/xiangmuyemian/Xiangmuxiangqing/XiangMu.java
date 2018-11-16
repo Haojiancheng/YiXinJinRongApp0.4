@@ -140,6 +140,7 @@ public class XiangMu extends Fragment implements XRecyclerView.LoadingListener {
                                         break;
                                     case 2:
                                         gettishipop("低风险","AA","借款人市场竞争能力很强，融资能力和还款能力很强，还款意愿很好。");
+                                        break;
                                     case 3:
                                         gettishipop("低风险","A", "借款人市场竞争能力较强，融资能力和还款能力较强，还款意愿良好。");
                                         break;

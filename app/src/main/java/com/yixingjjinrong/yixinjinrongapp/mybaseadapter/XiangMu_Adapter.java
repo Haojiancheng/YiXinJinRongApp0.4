@@ -79,6 +79,7 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
                 break;
             case 2:
                 holder.leve.setText("AA");
+                break;
             case 3:
                 holder.leve.setText("A");
                 break;
@@ -189,26 +190,26 @@ public class XiangMu_Adapter extends RecyclerView.Adapter<XiangMu_Adapter.MyView
 
     }
 
-    private String getTimeString(String endTime, String expendTime) {
-        //传入字串类型 end:2016/06/28 08:30 expend: 03:25
-        long longEnd = getTimeMillis(endTime);
-        String[] expendTimes = expendTime.split(":");   //截取出小时数和分钟数
-        long longExpend = Long.parseLong(expendTimes[0]) * 60 * 60 * 1000 + Long.parseLong(expendTimes[1]) * 60 * 1000;
-        SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        return sdfTime.format(new Date(longEnd - longExpend));
-    }
+//    private String getTimeString(String endTime, String expendTime) {
+//        //传入字串类型 end:2016/06/28 08:30 expend: 03:25
+//        long longEnd = getTimeMillis(endTime);
+//        String[] expendTimes = expendTime.split(":");   //截取出小时数和分钟数
+//        long longExpend = Long.parseLong(expendTimes[0]) * 60 * 60 * 1000 + Long.parseLong(expendTimes[1]) * 60 * 1000;
+//        SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+//        return sdfTime.format(new Date(longEnd - longExpend));
+//    }
 
-    private long getTimeMillis(String strTime) {
-        long returnMillis = 0;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        Date d = null;
-        try {
-            d = sdf.parse(strTime);
-            returnMillis = d.getTime();
-        } catch (ParseException e) {
-        }
-        return returnMillis;
-    }
+//    private long getTimeMillis(String strTime) {
+//        long returnMillis = 0;
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+//        Date d = null;
+//        try {
+//            d = sdf.parse(strTime);
+//            returnMillis = d.getTime();
+//        } catch (ParseException e) {
+//        }
+//        return returnMillis;
+//    }
 
     @Override
     public int getItemCount() {

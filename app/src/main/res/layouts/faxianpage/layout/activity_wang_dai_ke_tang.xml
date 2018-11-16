@@ -33,274 +33,279 @@
             android:textColor="#ffffff"
             android:textSize="38px" />
     </RelativeLayout>
-
-    <ScrollView
+    <WebView
+        android:id="@+id/wdkt_web"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fdfdfe"
-        android:layout_marginTop="20px">
+        ></WebView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#fdfdfe"-->
+        <!--android:layout_marginTop="20px">-->
 
-            <RelativeLayout
-                android:id="@+id/whatP2P"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="什么是P2P？"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/whatP2P"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="什么是P2P？"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:id="@+id/cade"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="常用名词解释"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/cade"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="常用名词解释"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:id="@+id/zhishi"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="投资P2P一定要了解的“信贷”知识"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/zhishi"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="投资P2P一定要了解的“信贷”知识"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-            <RelativeLayout
-                android:id="@+id/chujieren_web"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="出借人在参与P2P业务时，应承担那些义务？"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/chujieren_web"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="出借人在参与P2P业务时，应承担那些义务？"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
-            <RelativeLayout
-                android:id="@+id/jiekuanren_web"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="借款人在参与P2P业务时，应承担那些义务？"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/jiekuanren_web"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="借款人在参与P2P业务时，应承担那些义务？"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
-            <RelativeLayout
-                android:id="@+id/pingtaiyiwu"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="P2P网贷平台应承担那些义务？"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/pingtaiyiwu"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="P2P网贷平台应承担那些义务？"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
-            <RelativeLayout
-                android:id="@+id/good_web"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="“五招”助您选出好平台"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/good_web"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="“五招”助您选出好平台"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
-            <RelativeLayout
-                android:id="@+id/no_things"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="P2P网贷平台禁止从事那些行为"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/no_things"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="P2P网贷平台禁止从事那些行为"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
-            <RelativeLayout
-                android:id="@+id/guiding"
-                android:layout_width="match_parent"
-                android:layout_height="100px">
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30px"
-                    android:text="我国对于P2P网络借贷利率是怎样规定的？"
-                    android:textColor="#333333"
-                    android:textSize="28px" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/guiding"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="100px">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30px"
-                    android:src="@drawable/dianji" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="30px"-->
+                    <!--android:text="我国对于P2P网络借贷利率是怎样规定的？"-->
+                    <!--android:textColor="#333333"-->
+                    <!--android:textSize="28px" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="30px"
-                android:background="#dadada" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="30px"-->
+                    <!--android:src="@drawable/dianji" />-->
+            <!--</RelativeLayout>-->
 
-        </LinearLayout>
-    </ScrollView>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1px"-->
+                <!--android:layout_marginLeft="30px"-->
+                <!--android:background="#dadada" />-->
+
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 </com.zhy.autolayout.AutoLinearLayout>

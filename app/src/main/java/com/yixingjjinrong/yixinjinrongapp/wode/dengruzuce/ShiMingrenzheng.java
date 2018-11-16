@@ -27,6 +27,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.zongzichen.ZongziChan;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -43,6 +44,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import me.leefeng.promptlibrary.PromptDialog;
 import okhttp3.Call;
 import okhttp3.MediaType;
 
@@ -60,6 +62,7 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     private String username;
     private String password;
     private String url;
+    private PromptDialog promptDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +164,8 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
     }
 
     private void getHttp() {
+        promptDialog = new PromptDialog(this);
+        promptDialog.showLoading("");
         String my_name = zhen_name.getText().toString();
         final String zhen_id = user_idcard.getText().toString();
         JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -196,7 +201,8 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        promptDialog.dismiss();
+                        ToastUtils.showToast(ShiMingrenzheng.this,"网络连接失败" );
                     }
 
                     @Override
@@ -211,10 +217,12 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
                         if (zhuangtai.equals("success")){
 //                    String realName = data.getResult().getRealName();
 //                    String idNo = data.getResult().getIdNo();
+                            promptDialog.dismiss();
                             Intent intent=new Intent(ShiMingrenzheng.this,ShiMingRenZhengKO.class);
                             startActivity(intent);
                             finish();
                         }else {
+                            promptDialog.dismiss();
                             jinggao.setVisibility(View.VISIBLE);
                             jinggao.setText(message);
                         }

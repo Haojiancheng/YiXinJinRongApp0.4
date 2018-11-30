@@ -121,13 +121,13 @@ public class MainActivity extends AutoLayoutActivity {
         String str2 = formatter.format(curDate);
         MyLog.e("我进入前台了：", str2);
         //时间差
-        if (curDate1!=null) {
+        if (curDate1 != null) {
             long diff = curDate.getTime() - curDate1.getTime();//这样得到的差值是微秒级别
             long days = diff / (1000 * 60 * 60 * 24);
             long hours = (diff - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
             long minutes = (diff - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
             MyLog.e("时间差：", "" + minutes);
-            if (minutes>=30){
+            if (minutes >= 30) {
 //                gethttp();
             }
         }
@@ -178,7 +178,6 @@ public class MainActivity extends AutoLayoutActivity {
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
                         SPUtils.put(MainActivity.this, "isLogin", false);
-//                EventBus.getDefault().post(new UnLogin());
                         SPUtils.remove(MainActivity.this, "userId");
                         SPUtils.remove(MainActivity.this, "Loginid");
 //                        promptDialog.dismiss();
@@ -186,11 +185,13 @@ public class MainActivity extends AutoLayoutActivity {
                     }
                 });
     }
+
     public synchronized String getid(Context context) {
         TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         @SuppressLint("MissingPermission") String ID = TelephonyMgr.getDeviceId();
         return ID;
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (DOUBLECLICK_EXIT) {
@@ -270,5 +271,6 @@ public class MainActivity extends AutoLayoutActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

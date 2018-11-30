@@ -148,7 +148,11 @@ public class YaoQingXiangQing extends AutoLayoutActivity {
         LinearLayoutManager manager=new LinearLayoutManager(YaoQingXiangQing.this);
         yaoqing_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

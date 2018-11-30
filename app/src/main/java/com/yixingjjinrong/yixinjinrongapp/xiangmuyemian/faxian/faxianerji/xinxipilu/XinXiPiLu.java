@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 
@@ -67,7 +68,7 @@ public class XinXiPiLu extends AutoLayoutActivity {
                 return false;
             }
         });
-        xxpl_web.loadUrl("http://newwei.yxb.com/disclosure.do?nav=1-1");
+        xxpl_web.loadUrl(Urls.BASE_URL+"disclosure.do?nav=1-1");
 
 //        getinitview();//获取视图
     }
@@ -137,4 +138,10 @@ public class XinXiPiLu extends AutoLayoutActivity {
 //    private void getPiLuId() {
 //       
 //    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

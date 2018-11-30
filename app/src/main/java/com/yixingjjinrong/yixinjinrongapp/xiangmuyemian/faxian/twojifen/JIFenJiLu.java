@@ -151,6 +151,11 @@ public class JIFenJiLu extends AutoLayoutActivity implements XRecyclerView.Loadi
                 jilu_xrview.loadMoreComplete();
             }
         }, 2000);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

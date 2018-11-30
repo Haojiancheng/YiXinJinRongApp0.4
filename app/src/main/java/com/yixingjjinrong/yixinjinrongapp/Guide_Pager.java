@@ -150,6 +150,7 @@ public class Guide_Pager extends AutoLayoutActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
         finish();
     }
 }

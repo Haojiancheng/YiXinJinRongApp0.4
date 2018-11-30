@@ -127,6 +127,7 @@ public class YinHangCunGuan extends AutoLayoutActivity {
         cg_wb.setWebViewClient(null);
         cg_wb.getSettings().setJavaScriptEnabled(false);
         cg_wb.clearCache(true);
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 
 }

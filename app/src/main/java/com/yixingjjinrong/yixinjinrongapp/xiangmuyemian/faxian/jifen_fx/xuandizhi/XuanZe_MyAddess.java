@@ -181,4 +181,10 @@ public class XuanZe_MyAddess extends AutoLayoutActivity implements XRecyclerView
         getaddAssHTTP();
 //        adapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

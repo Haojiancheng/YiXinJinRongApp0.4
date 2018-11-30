@@ -540,7 +540,12 @@ public class YanZheng_PaGa extends AutoLayoutActivity implements PermissionInter
             huoqu_yanzhengma.setText("再次获取");
             huoqu_yanzhengma.setClickable(true);
             huoqu_yanzhengma.setBackgroundResource(R.drawable.bt_shape);
-
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

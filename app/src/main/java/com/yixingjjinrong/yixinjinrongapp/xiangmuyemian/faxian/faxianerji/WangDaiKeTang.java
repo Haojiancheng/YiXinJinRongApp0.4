@@ -11,7 +11,10 @@ import android.widget.ImageView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
+
+import java.net.URL;
 
 public class WangDaiKeTang extends AutoLayoutActivity {
     private ImageView wdclass_fh;
@@ -56,7 +59,7 @@ public class WangDaiKeTang extends AutoLayoutActivity {
                 return false;
             }
         });
-        wdkt_web.loadUrl("http://newwei.yxb.com/Netcreditcourses.do?nav=5-0");
+        wdkt_web.loadUrl(Urls.BASE_URL+"Netcreditcourses.do?nav=5-0");
     }
 
     private void getonclick() {
@@ -155,4 +158,9 @@ public class WangDaiKeTang extends AutoLayoutActivity {
 //        guiding = findViewById(R.id.guiding);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

@@ -47,13 +47,13 @@ public class HuiKuanJiHua extends LazyFragment {
     private String sha1;//SHA1加密
     private String base1;//Base64加
     private RecyclerView hkjh_rview;//RecyclerView
-    private List<HuiKuanJiHua_Gson.ResultBean.RepaymentListBean> hkjhlist=new ArrayList<>();
+    private List<HuiKuanJiHua_Gson.ResultBean.RepaymentListBean> hkjhlist = new ArrayList<>();
     private HuiKuanJH_adapter adapter;
     private String borrowRandomId;
     private String token1;
     private String loginid;
     private int user_id;
-    private View  h_dengruchakan,w_dongru_chakan;
+    private View h_dengruchakan, w_dongru_chakan;
     private PromptDialog promptDialog;
 
 
@@ -71,7 +71,7 @@ public class HuiKuanJiHua extends LazyFragment {
             w_dongru_chakan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                    Intent it = new Intent(getActivity(), WoDe_DengRu.class);
                     startActivity(it);
                 }
             });
@@ -79,19 +79,17 @@ public class HuiKuanJiHua extends LazyFragment {
             h_dengruchakan.setVisibility(View.GONE);
             getHttp();
         }
-       
+
     }
 
-   
-   
 
     private void getid_kh() {
-        hkjh_rview= (RecyclerView) findViewById(R.id.hkjh_rview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        hkjh_rview = (RecyclerView) findViewById(R.id.hkjh_rview);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         hkjh_rview.setLayoutManager(manager);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        h_dengruchakan=findViewById(R.id.h_dengruchakan);
-        w_dongru_chakan=findViewById(R.id.w_dongru_chakan);
+        h_dengruchakan = findViewById(R.id.h_dengruchakan);
+        w_dongru_chakan = findViewById(R.id.w_dongru_chakan);
     }
 
     private void getHttp() {
@@ -100,7 +98,7 @@ public class HuiKuanJiHua extends LazyFragment {
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
         try {
 
-            js_request.put("borrowRandomId",borrowRandomId);
+            js_request.put("borrowRandomId", borrowRandomId);
             js_request.put("token", token1);
             js_request.put("loginId", loginid);
             base1 = Base64JiaMI.AES_Encode(js_request.toString());
@@ -121,7 +119,7 @@ public class HuiKuanJiHua extends LazyFragment {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/returnedmoney.do")
+                .url(Urls.BASE_URL + "yxbApp/returnedmoney.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -130,7 +128,7 @@ public class HuiKuanJiHua extends LazyFragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         promptDialog.dismiss();
-                        ToastUtils.showToast(getActivity(),"网络异常" );
+                        ToastUtils.showToast(getActivity(), "网络异常");
                     }
 
                     @Override
@@ -144,7 +142,7 @@ public class HuiKuanJiHua extends LazyFragment {
                             w_dongru_chakan.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent it=new Intent(getActivity(), WoDe_DengRu.class);
+                                    Intent it = new Intent(getActivity(), WoDe_DengRu.class);
                                     startActivity(it);
                                 }
                             });
@@ -162,18 +160,18 @@ public class HuiKuanJiHua extends LazyFragment {
     }
 
     private void initview() {
-        borrowRandomId = (String) SPUtils.get(getActivity(),"borroFwRandomId","");
+        borrowRandomId = (String) SPUtils.get(getActivity(), "borroFwRandomId", "");
         token1 = (String) SPUtils.get(getActivity(), "Token1", "");
         loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
 //        loginid = (String) SPUtils.get(getActivity(), "Loginid", "");
 //        token = (String) SPUtils.get(getActivity(), "Token1", "");
-        MyLog.e("项目回款计划", ""+borrowRandomId);
-        MyScrollView huikuanjihuaSV= (MyScrollView) findViewById(R.id.huikuanjihuaScrollView);
+        MyLog.e("项目回款计划", "" + borrowRandomId);
+        MyScrollView huikuanjihuaSV = (MyScrollView) findViewById(R.id.huikuanjihuaScrollView);
         huikuanjihuaSV.setScrollListener(new MyScrollView.ScrollListener() {
             @Override
             public void onScrollToBottom() {
-                
+
             }
 
             @Override
@@ -220,6 +218,5 @@ public class HuiKuanJiHua extends LazyFragment {
 //        }
     }
 
-  
 
 }

@@ -301,4 +301,10 @@ public class ZhuCe_PaGa extends AutoLayoutActivity {
         zhucephone.addTextChangedListener(new MaxLengthWatcher(11, zhucephone));
         zhucephone.setInputType( InputType.TYPE_CLASS_NUMBER);//数字键盘
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

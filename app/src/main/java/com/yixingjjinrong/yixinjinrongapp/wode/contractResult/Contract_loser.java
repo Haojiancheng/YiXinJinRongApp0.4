@@ -68,4 +68,10 @@ public class Contract_loser extends AutoLayoutActivity {
         bt_oncemore = findViewById(R.id.bt_oncemore);//继续
         bt_myaccount = findViewById(R.id.bt_myaccount);//我的账户
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

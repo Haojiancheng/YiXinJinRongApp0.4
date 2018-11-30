@@ -176,4 +176,10 @@ public class UpData_Addass extends AutoLayoutActivity implements CityPickerListe
         }
         super.onBackPressed();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

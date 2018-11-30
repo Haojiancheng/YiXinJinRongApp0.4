@@ -69,4 +69,10 @@ public class ChongXinPingCe extends AppCompatActivity {
     public void backq() {
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

@@ -119,4 +119,10 @@ public class YiShiMing extends AutoLayoutActivity {
         rcard=findViewById(R.id.rcard);
         ysm_fh=findViewById(R.id.ysm_fh);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

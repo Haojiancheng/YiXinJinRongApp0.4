@@ -110,6 +110,6 @@ public class Class_xiangqing extends AutoLayoutActivity {
         wd_web.setWebViewClient(null);
         wd_web.getSettings().setJavaScriptEnabled(false);
         wd_web.clearCache(true);
-
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

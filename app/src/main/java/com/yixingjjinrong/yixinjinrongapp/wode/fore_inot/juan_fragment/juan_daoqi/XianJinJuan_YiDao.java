@@ -160,4 +160,10 @@ public class XianJinJuan_YiDao extends AutoLayoutActivity implements XRecyclerVi
         }, 2000);
         yishi_xj_xview.loadMoreComplete();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

@@ -11,6 +11,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
 import com.yixingjjinrong.yixinjinrongapp.application.AndroidWorkaround;
 import com.yixingjjinrong.yixinjinrongapp.application.Urls;
@@ -136,5 +138,6 @@ public class ChongZhiOK extends AutoLayoutActivity {
         chongzok.setWebViewClient(null);
         chongzok.getSettings().setJavaScriptEnabled(false);
         chongzok.clearCache(true);
+//        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

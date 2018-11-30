@@ -65,11 +65,8 @@ public class ZongziChan extends AutoLayoutActivity {
                 .transparentBar()
                 .fullScreen(false)
                 .init();
-
-
         getzzcID();
         getquan();
-
 
         gethttp();
         getonclock();
@@ -269,5 +266,11 @@ public class ZongziChan extends AutoLayoutActivity {
         dj_che_money=findViewById(R.id.dj_che_money);
         dj_fang_money=findViewById(R.id.dj_fang_money);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

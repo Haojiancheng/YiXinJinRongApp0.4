@@ -473,7 +473,12 @@ public class ZhaoHuiMiMaYanZheng extends AutoLayoutActivity {
             zhaohui_yanzheng.setText("再次获取");
             zhaohui_yanzheng.setClickable(true);
             zhaohui_yanzheng.setBackgroundResource(R.drawable.bt_shape);
-
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

@@ -186,4 +186,10 @@ public class MyAddess extends AutoLayoutActivity implements XRecyclerView.Loadin
         addass_rview.refreshComplete();
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

@@ -205,4 +205,10 @@ public class WoDeShiMing extends AutoLayoutActivity {
         Matcher m = p.matcher(str);
         return m.replaceAll("").trim();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

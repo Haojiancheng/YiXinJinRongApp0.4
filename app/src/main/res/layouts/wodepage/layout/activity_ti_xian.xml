@@ -52,7 +52,7 @@
             android:layout_width="80px"
             android:layout_height="80px"
             android:layout_marginLeft="30px"
-            android:src="@drawable/touxiang" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +70,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25px"
-                    android:text="招商银行"
                     android:textColor="#333333"
                     android:textSize="30px" />
 
@@ -92,7 +91,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15px"
-                android:text="63243*****234234"
                 android:textColor="#666666"
                 android:textSize="24px" />
 

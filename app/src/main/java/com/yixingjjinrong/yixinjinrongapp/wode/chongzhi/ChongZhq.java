@@ -65,9 +65,6 @@ public class ChongZhq extends AutoLayoutActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {                                  //适配华为手机虚拟键遮挡tab的问题
-//            AndroidWorkaround.assistActivity(findViewById(android.R.id.content));                   //需要在setContentView()方法后面执行
-//        }
         setContentView(R.layout.activity_chong_zhq);
         ImmersionBar.with(this)
                 .transparentBar()
@@ -133,7 +130,7 @@ public class ChongZhq extends AutoLayoutActivity {
                             kongbai.setVisibility(View.GONE);
                             yh_name.setText(data.getBankName());
                             yh_number.setText(data.getCardNum());
-                            x.image().bind(yh_img, data.getBankImage());
+                            x.image().bind(yh_img, Urls.BASE_URL+data.getBankImage());
 
 
                             cz_ok.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +165,7 @@ public class ChongZhq extends AutoLayoutActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 getshimingHTTp();
-                                                finish();
+//                                                finish();
                                             }
                                         })
                                         .create();

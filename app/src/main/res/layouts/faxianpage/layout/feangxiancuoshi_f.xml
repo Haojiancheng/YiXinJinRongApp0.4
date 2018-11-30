@@ -31,7 +31,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                    />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                     android:layout_marginLeft="30px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fengxianjiagou" />
+              />
 
             </LinearLayout>
 
@@ -81,7 +81,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                         android:layout_height="120px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20px"
-                        android:src="@drawable/youzhizichan" />
+                         />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                         android:layout_height="120px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20px"
-                        android:src="@drawable/zerenbaozheng" />
+                         />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -208,7 +208,7 @@
                         android:layout_height="120px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20px"
-                        android:src="@drawable/danbao" />
+                         />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -260,7 +260,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                       />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -290,7 +290,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="44dp"
-                            android:src="@drawable/a01" />
+           />
 
                         <LinearLayout
                             android:layout_width="300px"
@@ -304,7 +304,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/chubushenhe" />
+                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -332,7 +332,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginStart="44dp"
-                            android:src="@drawable/a02" />
+         />
 
                         <LinearLayout
                             android:layout_width="300px"
@@ -346,7 +346,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/zuzhishenhe" />
+                                />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -379,8 +379,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
-                            android:layout_marginStart="44dp"
-                            android:src="@drawable/a03" />
+      />
 
                         <LinearLayout
                             android:layout_width="300px"
@@ -394,7 +393,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/jinxingfushen" />
+                       />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -420,8 +419,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
-                            android:layout_marginStart="44dp"
-                            android:src="@drawable/a04" />
+        />
 
                         <LinearLayout
                             android:layout_width="300px"
@@ -435,7 +433,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/diyadengji" />
+                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -482,8 +480,7 @@
                         android:layout_width="40px"
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+       />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -531,8 +528,7 @@
                         android:layout_width="40px"
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+               />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -560,7 +556,6 @@
                     android:layout_marginTop="30px"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fengkongmoxing"
                     />
             </LinearLayout>
         </LinearLayout>

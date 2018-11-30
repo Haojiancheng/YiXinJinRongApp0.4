@@ -215,6 +215,11 @@ public class ShangPingXiangQing extends AutoLayoutActivity {
         goods_xq_name = findViewById(R.id.goods_xq_name);
         dh_da_quan = findViewById(R.id.dh_da_quan);
         dh_quan_text = findViewById(R.id.dh_quan_text);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

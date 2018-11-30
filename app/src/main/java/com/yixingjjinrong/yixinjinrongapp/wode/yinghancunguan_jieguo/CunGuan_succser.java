@@ -62,4 +62,10 @@ public class CunGuan_succser extends AutoLayoutActivity {
         kt_ok_myconten=findViewById(R.id.kt_ok_myconten);
         kt_ok_reback=findViewById(R.id.kt_ok_reback);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

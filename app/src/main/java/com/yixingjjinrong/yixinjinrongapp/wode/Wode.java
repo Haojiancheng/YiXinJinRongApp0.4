@@ -126,9 +126,6 @@ public class Wode extends Fragment {
                     ToastUtils.showToast(getActivity(), "请先登入");
                 } else {
                     getshimingHTTp();
-
-//                    RealName_one realName_c = new RealName_one();
-//                    realName_c.myrealname(getActivity(), user_id, userToken, loginid);
                 }
             }
         });

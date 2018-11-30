@@ -352,9 +352,9 @@ public class Shouye extends Fragment {
         //   进入当前Fragment
         if (enter && !isGetData) {
             isGetData = true;
-            //   这里可以做网络请求或者需要的数据刷新操作
+            //   这里做网络请求或者需要的数据刷新操作
+            MyLog.e("你的Idd", ""+user_id);
             getHttp();
-
 
         } else {
             isGetData = false;

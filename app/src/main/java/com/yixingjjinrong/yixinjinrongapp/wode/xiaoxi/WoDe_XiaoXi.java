@@ -32,9 +32,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class WoDe_XiaoXi extends AutoLayoutActivity {
-
-
-
     private ViewPager xx_vp;
     private TabLayout xx_tab;
     private SimpleFragmentPagerAdapter pagerAdapter;
@@ -137,5 +134,9 @@ public class WoDe_XiaoXi extends AutoLayoutActivity {
         });
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

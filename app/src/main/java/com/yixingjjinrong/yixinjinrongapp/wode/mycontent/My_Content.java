@@ -341,4 +341,10 @@ public class My_Content extends AutoLayoutActivity {
         super.onResume();
         getHttp();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

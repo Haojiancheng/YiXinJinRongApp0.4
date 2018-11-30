@@ -187,6 +187,11 @@ public class MyChuJie_one extends AutoLayoutActivity implements XRecyclerView.Lo
                 chujie_one_xview.loadMoreComplete();
             }
         }, 3000);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

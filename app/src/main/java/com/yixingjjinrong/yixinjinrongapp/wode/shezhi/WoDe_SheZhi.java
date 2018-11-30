@@ -299,7 +299,6 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
 //                Intent shezhi_tuichu=new Intent(WoDe_SheZhi.this, WoDe_DengRu.class);
 //                startActivity(shezhi_tuichu);
                         SPUtils.put(WoDe_SheZhi.this, "isLogin", false);
-//                EventBus.getDefault().post(new UnLogin());
                         SPUtils.remove(WoDe_SheZhi.this, "userId");
                         SPUtils.remove(WoDe_SheZhi.this, "Loginid");
                         promptDialog.dismiss();
@@ -337,6 +336,11 @@ public class WoDe_SheZhi extends AutoLayoutActivity {
                 hand_pass.setText("未开启");
             }
         }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

@@ -34,7 +34,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -266,7 +266,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -328,7 +328,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/shuliang" />
+                                 />
 
                             <TextView
                                 android:id="@+id/dqchujieren"
@@ -359,7 +359,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/chujiejine" />
+           />
 
                             <TextView
                                 android:id="@+id/renjunchujie_money"
@@ -396,7 +396,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/baifenbi" />
+                               />
 
                             <TextView
                                 android:id="@+id/max_danyue"
@@ -426,7 +426,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/baifenbi1" />
+                       />
 
                             <TextView
                                 android:id="@+id/max_ten_money"
@@ -468,7 +468,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+     />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -530,7 +530,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/shuliang" />
+          />
 
                             <TextView
                                 android:id="@+id/dqjiekuanren"
@@ -561,7 +561,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/jiekuanjine" />
+                              />
 
                             <TextView
                                 android:id="@+id/ljjiekuan_money"
@@ -598,7 +598,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/baifenbi" />
+      />
 
                             <TextView
                                 android:id="@+id/max_danjiekuanyue"
@@ -628,7 +628,7 @@
                             <ImageView
                                 android:layout_width="80px"
                                 android:layout_height="80px"
-                                android:src="@drawable/baifenbi1" />
+                                />
 
                             <TextView
                                 android:id="@+id/max_ten_jiekuanyue"
@@ -667,7 +667,7 @@
                         android:layout_height="40px"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="30px"
-                        android:src="@drawable/biaoti" />
+                    />
 
                     <TextView
                         android:layout_width="wrap_content"

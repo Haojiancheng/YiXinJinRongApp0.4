@@ -78,5 +78,7 @@ public class ShouYe_HuoDong extends AutoLayoutActivity {
         hd_web.setWebViewClient(null);
         hd_web.getSettings().setJavaScriptEnabled(false);
         hd_web.clearCache(true);
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
+
 }

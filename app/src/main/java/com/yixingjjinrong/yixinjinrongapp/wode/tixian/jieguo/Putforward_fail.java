@@ -51,4 +51,10 @@ public class Putforward_fail extends AutoLayoutActivity {
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

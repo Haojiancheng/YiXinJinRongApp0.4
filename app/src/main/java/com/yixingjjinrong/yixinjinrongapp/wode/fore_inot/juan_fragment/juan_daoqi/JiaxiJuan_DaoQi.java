@@ -155,4 +155,10 @@ public class JiaxiJuan_DaoQi extends AutoLayoutActivity implements XRecyclerView
         }, 2000);
         ys_xj_xview.loadMoreComplete();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

@@ -52,4 +52,10 @@ public class CunGuan_lose extends AutoLayoutActivity {
         kt_lose_fanhui=findViewById(R.id.kt_lose_fanhui);
         kt_lose_mycontent=findViewById(R.id.kt_lose_mycontent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

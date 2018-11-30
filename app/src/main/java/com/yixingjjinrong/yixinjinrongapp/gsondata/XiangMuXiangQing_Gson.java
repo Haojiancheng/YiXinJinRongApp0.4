@@ -140,6 +140,24 @@ public class XiangMuXiangQing_Gson implements Serializable{
             private String ableTenderDates;
             private String endTenderDate;
             private String borrowSafelevel;
+            private String mortgageType;
+            private String mortgageNature;
+
+            public String getMortgageNature() {
+                return mortgageNature;
+            }
+
+            public void setMortgageNature(String mortgageNature) {
+                this.mortgageNature = mortgageNature;
+            }
+
+            public String getMortgageType() {
+                return mortgageType;
+            }
+
+            public void setMortgageType(String mortgageType) {
+                this.mortgageType = mortgageType;
+            }
 
             public String getBorrowSafelevel() {
                 return borrowSafelevel;

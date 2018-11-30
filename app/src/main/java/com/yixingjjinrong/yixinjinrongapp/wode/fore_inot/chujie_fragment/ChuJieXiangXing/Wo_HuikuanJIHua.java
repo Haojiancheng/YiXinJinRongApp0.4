@@ -129,4 +129,10 @@ public class Wo_HuikuanJIHua extends AutoLayoutActivity {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         wo_hk_fh=findViewById(R.id.wo_hk_fh);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

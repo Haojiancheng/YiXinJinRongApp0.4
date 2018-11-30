@@ -84,4 +84,10 @@ public class ChuJie_OK extends AutoLayoutActivity {
         cj_time.setText(mycj_time);
         cj_money.setText(mycj_money);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

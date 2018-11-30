@@ -81,4 +81,10 @@ public class ChongZhiSuccers extends AutoLayoutActivity {
         chongzhiok_jinge.setText(jine);
         cz_sucess_fh=findViewById(R.id.cz_sucess_fh);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

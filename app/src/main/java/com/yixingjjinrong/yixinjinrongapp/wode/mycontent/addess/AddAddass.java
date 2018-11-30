@@ -148,4 +148,10 @@ public class AddAddass extends AutoLayoutActivity implements CityPickerListener{
         }
         super.onBackPressed();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

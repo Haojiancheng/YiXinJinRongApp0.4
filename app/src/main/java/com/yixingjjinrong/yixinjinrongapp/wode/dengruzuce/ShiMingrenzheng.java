@@ -277,4 +277,10 @@ public class ShiMingrenzheng extends AutoLayoutActivity {
         user_idcard.setTransformationMethod(new A2bigA());//小写转大写
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

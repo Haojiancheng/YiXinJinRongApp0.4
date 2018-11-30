@@ -16,14 +16,14 @@
             android:id="@+id/caijing16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/caijing2016"
+
             android:layout_marginLeft="52px"
             />
         <ImageView
             android:id="@+id/caijing17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/caijing2017"
+
             android:layout_marginLeft="54px"
             />
 

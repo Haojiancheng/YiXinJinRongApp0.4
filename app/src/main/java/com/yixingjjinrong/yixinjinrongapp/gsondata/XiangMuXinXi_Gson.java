@@ -118,6 +118,7 @@ public class XiangMuXinXi_Gson {
         private String ProjectName;
         private String registAddress;
         private String mortgageType;
+        private String mortgageNature;
         private OverTimessBean overTimess;
         private String newRealName;
         private String trpro;
@@ -139,6 +140,14 @@ public class XiangMuXinXi_Gson {
         private String deadline;
         private String covered;
         private String auditOpinionOld;
+
+        public String getMortgageNature() {
+            return mortgageNature;
+        }
+
+        public void setMortgageNature(String mortgageNature) {
+            this.mortgageNature = mortgageNature;
+        }
 
         public String getCovered() {
             return covered;

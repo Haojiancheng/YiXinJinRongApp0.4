@@ -275,4 +275,10 @@ public class XiuGaiMiMa extends AutoLayoutActivity {
         xg_mima=findViewById(R.id.xg_mima);
         xgmm_yj_image=findViewById(R.id.xgmm_yj_image);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

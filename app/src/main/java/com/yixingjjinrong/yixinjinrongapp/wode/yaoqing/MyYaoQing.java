@@ -106,4 +106,10 @@ public class MyYaoQing extends AutoLayoutActivity {
         inviterId = (String) SPUtils.get(MyYaoQing.this, "inviterId", "");
         yuanqing_haoyou=findViewById(R.id.yuanqing_haoyou);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

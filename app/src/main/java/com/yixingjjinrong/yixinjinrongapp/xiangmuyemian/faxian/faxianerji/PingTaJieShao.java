@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import com.gyf.barlibrary.ImmersionBar;
 import com.yixingjjinrong.yixinjinrongapp.R;
+import com.yixingjjinrong.yixinjinrongapp.application.Urls;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class PingTaJieShao extends AutoLayoutActivity {
@@ -62,7 +63,7 @@ public class PingTaJieShao extends AutoLayoutActivity {
                 return false;
             }
         });
-        ptjs_web.loadUrl("http://newwei.yxb.com/disclosure.do?nav=1-1");
+        ptjs_web.loadUrl(Urls.BASE_URL+"disclosure.do?nav=1-1");
 
     }
 
@@ -78,5 +79,11 @@ public class PingTaJieShao extends AutoLayoutActivity {
     private void getid() {
         ptjs_fh = findViewById(R.id.ptjs_fh);
         ptjs_web=findViewById(R.id.ptjs_web);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

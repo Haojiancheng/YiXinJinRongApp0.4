@@ -137,5 +137,6 @@ public class ShouYe_GongGao extends AutoLayoutActivity {
         sy_view.setWebViewClient(null);
         sy_view.getSettings().setJavaScriptEnabled(false);
         sy_view.clearCache(true);
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

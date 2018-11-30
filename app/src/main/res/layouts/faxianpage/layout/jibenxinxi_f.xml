@@ -29,7 +29,7 @@
                     <ImageView
                         android:layout_width="40px"
                         android:layout_height="40px" 
-                        android:src="@drawable/jibenxinxi"
+
                         android:layout_marginLeft="30px"
                         android:layout_gravity="center_vertical"
                         />
@@ -465,7 +465,7 @@
                     <ImageView
                         android:layout_width="40px"
                         android:layout_height="40px"
-                        android:src="@drawable/disanfang"
+
                         android:layout_marginLeft="30px"
                         android:layout_gravity="center_vertical"
                         />

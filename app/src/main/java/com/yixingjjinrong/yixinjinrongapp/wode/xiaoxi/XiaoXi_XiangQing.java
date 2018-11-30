@@ -161,6 +161,7 @@ public class XiaoXi_XiangQing extends AutoLayoutActivity {
         xxweb.setWebViewClient(null);
         xxweb.getSettings().setJavaScriptEnabled(false);
         xxweb.clearCache(true);
-
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
+
 }

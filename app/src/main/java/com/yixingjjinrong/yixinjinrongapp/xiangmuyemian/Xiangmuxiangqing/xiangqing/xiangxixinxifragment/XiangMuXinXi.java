@@ -61,7 +61,7 @@ public class XiangMuXinXi extends Fragment {
     private View geren, qiye, shencha;
     private TextView qy_name, qy_dm, qy_time, qy_zb, qy_hy, qy_dizhi, qy_bg, qy_fd, qy_shouru, qy_huanhuancishu, qy_yuqicishu, qy_lishiyuqi_jinge, qy_dangqian_jine, qy_6yue, qy_qita, qy_fanwei;
     private int user_id;
-    private View xx_view, xiale_view,kuankuanfangshi_xx,new_fxpg;
+    private View xx_view, xiale_view, kuankuanfangshi_xx, new_fxpg;
     private PromptDialog promptDialog;
     private TextView fxpg_fxjg;
 
@@ -88,7 +88,7 @@ public class XiangMuXinXi extends Fragment {
     private void getxmxxid() {
         user_id = (int) SPUtils.get(getActivity(), "userId", 0);
         xx_view = getActivity().findViewById(R.id.xx_view);
-        new_fxpg=getActivity().findViewById(R.id.new_fxpg);
+        new_fxpg = getActivity().findViewById(R.id.new_fxpg);
 //        xiale_view = getActivity().findViewById(R.id.xiale_view);
         //企业、个人
         tv_click = getActivity().findViewById(R.id.main_tv_click);
@@ -100,11 +100,11 @@ public class XiangMuXinXi extends Fragment {
         sx_pg = getActivity().findViewById(R.id.sx_pg);
         sc_zhuzhi = getActivity().findViewById(R.id.sc_zhuzhi);
         sc_cq = getActivity().findViewById(R.id.sc_cq);
-        fxpg_fxjg=getActivity().findViewById(R.id.fxpg_fxjg);
+        fxpg_fxjg = getActivity().findViewById(R.id.fxpg_fxjg);
         show = getActivity().findViewById(R.id.main_tv_show);
         hidden = getActivity().findViewById(R.id.main_tv_hidden);
         hidden.setMaxLines(3);
-        kuankuanfangshi_xx=getActivity().findViewById(R.id.kuankuanfangshi_xx);
+        kuankuanfangshi_xx = getActivity().findViewById(R.id.kuankuanfangshi_xx);
 //基本信息
         xm_name = getActivity().findViewById(R.id.xm_name);
         jk_jine = getActivity().findViewById(R.id.jk_jine);
@@ -243,7 +243,7 @@ public class XiangMuXinXi extends Fragment {
             e.printStackTrace();
         }
         OkHttpUtils.postString()
-                .url(Urls.BASE_URL+"yxbApp/ProjectInformation.do")
+                .url(Urls.BASE_URL + "yxbApp/ProjectInformation.do")
                 .content(canshu.toString())
 
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -347,9 +347,19 @@ public class XiangMuXinXi extends Fragment {
                                 }
                             });
                             if (data.getResult().getMortgageType().equals("4")) {
-                                bx_cuoshi.setText("车俩抵押");
+
+                                if (data.getResult().getMortgageNature().equals("2")) {
+                                    bx_cuoshi.setText("车辆质押");
+                                } else {
+                                    bx_cuoshi.setText("车辆抵押");
+                                }
+
                             } else {
-                                bx_cuoshi.setText("房产抵押");
+                                if (data.getResult().getMortgageNature().equals("2")) {
+                                    bx_cuoshi.setText("房产质押");
+                                } else {
+                                    bx_cuoshi.setText("房产抵押");
+                                }
                             }
 
                             start_time.setText(data.getResult().getAbleTenderDate());
@@ -367,7 +377,7 @@ public class XiangMuXinXi extends Fragment {
                                     return false;
                                 }
                             });
-                            if (tv_click!=null) {
+                            if (tv_click != null) {
 
                                 tv_click.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -383,7 +393,7 @@ public class XiangMuXinXi extends Fragment {
                                         }
                                     }
                                 });
-                            }else {
+                            } else {
                                 tv_click.setVisibility(View.GONE);
                             }
                             if (data.getResult().getBorrowFrom().equals("2")) {
@@ -430,10 +440,10 @@ public class XiangMuXinXi extends Fragment {
                             yuqi_qingkuang.setText(data.getResult().getRxx().getOverdueStatus());
                             qita_pingtai.setText(data.getResult().getRxx().getOtherWebStatus());
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-                            if (data.getResult().getCovered().equals("")){
+                            if (data.getResult().getCovered().equals("")) {
                                 sh_yj.setText("经风控综合评估，该借款项目审批通过");
                                 new_fxpg.setVisibility(View.GONE);
-                            }else {
+                            } else {
                                 sh_yj.setText(data.getResult().getAuditOpinionOld());
                                 fxpg_fxjg.setText(data.getResult().getCovered());
                                 new_fxpg.setVisibility(View.VISIBLE);
@@ -558,9 +568,19 @@ public class XiangMuXinXi extends Fragment {
                             yd_lilv.setText(String.valueOf(data.getResult().getRan()) + "%");
                             hk_lanyuan.setText(data.getResult().getRepaysource());
                             if (data.getResult().getMortgageType().equals("4")) {
-                                bx_cuoshi.setText("车俩抵押");
+
+                                if (data.getResult().getMortgageNature().equals("2")) {
+                                    bx_cuoshi.setText("车辆质押");
+                                } else {
+                                    bx_cuoshi.setText("车辆抵押");
+                                }
+
                             } else {
-                                bx_cuoshi.setText("房产抵押");
+                                if (data.getResult().getMortgageNature().equals("2")) {
+                                    bx_cuoshi.setText("房产质押");
+                                } else {
+                                    bx_cuoshi.setText("房产抵押");
+                                }
                             }
                             start_time.setText(data.getResult().getAbleTenderDate());
                             end_time.setText(data.getResult().getEndTenderDate());
@@ -579,7 +599,7 @@ public class XiangMuXinXi extends Fragment {
                                 }
                             });
 
-                            if (tv_click!=null) {
+                            if (tv_click != null) {
 
                                 tv_click.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -595,7 +615,7 @@ public class XiangMuXinXi extends Fragment {
                                         }
                                     }
                                 });
-                            }else {
+                            } else {
                                 tv_click.setVisibility(View.GONE);
                             }
                             if (data.getResult().getBorrowFrom().equals("2")) {
@@ -651,10 +671,10 @@ public class XiangMuXinXi extends Fragment {
                             xk_jg.setText(data.getResult().getHouse().getReferencePrice());
 
 //   ,,,,,dbh_rz,dbh_wrz,sh_yj;
-                            if (data.getResult().getCovered().equals("")){
+                            if (data.getResult().getCovered().equals("")) {
                                 sh_yj.setText("经风控综合评估，该借款项目审批通过");
                                 new_fxpg.setVisibility(View.GONE);
-                            }else {
+                            } else {
                                 sh_yj.setText(data.getResult().getAuditOpinionOld());
                                 fxpg_fxjg.setText(data.getResult().getCovered());
                                 new_fxpg.setVisibility(View.VISIBLE);

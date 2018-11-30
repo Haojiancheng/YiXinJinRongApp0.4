@@ -154,4 +154,10 @@ public class FanKui extends AutoLayoutActivity {
         btn_submit = findViewById(R.id.btn_submit);
         fanhui_yijianfk=findViewById(R.id.fanhui_yijianfk);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

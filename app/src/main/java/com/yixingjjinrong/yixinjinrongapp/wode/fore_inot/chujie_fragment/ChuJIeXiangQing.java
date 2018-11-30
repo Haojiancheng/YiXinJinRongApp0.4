@@ -232,4 +232,10 @@ public class ChuJIeXiangQing extends AutoLayoutActivity {
             Glide.with(ChuJIeXiangQing.this).load(R.drawable.cheliang).into(out_img);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

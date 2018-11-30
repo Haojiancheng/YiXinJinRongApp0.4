@@ -171,4 +171,10 @@ public class YiDaoQiXiangMu extends AutoLayoutActivity implements XRecyclerView.
         }, 3000);
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

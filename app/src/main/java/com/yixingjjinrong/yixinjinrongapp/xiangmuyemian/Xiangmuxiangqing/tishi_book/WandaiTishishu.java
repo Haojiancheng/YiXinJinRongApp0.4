@@ -64,4 +64,10 @@ public class WandaiTishishu extends AutoLayoutActivity {
         Toast.makeText(this, "调用back()",Toast.LENGTH_LONG ).show();
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
+    }
 }

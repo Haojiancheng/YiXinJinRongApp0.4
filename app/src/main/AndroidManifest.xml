@@ -79,7 +79,7 @@
         <activity android:name=".wode.dengruzuce.ShiMingrenzheng" />
         <activity android:name=".wode.shezhi.XiuGaiMiMa" />
         <activity android:name=".wode.shezhi.FanKui" />
-        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView" />
+        <activity android:name=".xiangmuyemian.Xiangmuxiangqing.tishi_book.WebView1" />
         <activity android:name=".wode.fore_inot.Juan" />
         <activity android:name=".xiangmuyemian.Xiangmuxiangqing.xiangqing.xiangxixinxifragment.XiangMuJuan" />
         <activity android:name=".wode.FengXianPingCe" />

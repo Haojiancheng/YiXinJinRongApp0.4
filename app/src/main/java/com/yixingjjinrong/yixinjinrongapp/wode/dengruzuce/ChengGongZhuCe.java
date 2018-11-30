@@ -286,4 +286,10 @@ public class ChengGongZhuCe extends AutoLayoutActivity {
         wodezhanghu=findViewById(R.id.wodezhanghu);
 //        zhucefanhui=findViewById(R.id.zhucefanhui1);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

@@ -120,6 +120,11 @@ public class BaoGaoXiangQing extends AutoLayoutActivity implements OnPageChangeL
     @Override
     public void onPageChanged(int page, int pageCount) {
         pageNumber = page;
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //必须调用该方法，防止内存泄漏
     }
 }

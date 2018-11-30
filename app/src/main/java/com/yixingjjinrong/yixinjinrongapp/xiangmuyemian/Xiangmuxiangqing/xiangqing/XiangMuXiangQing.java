@@ -57,6 +57,7 @@ import com.yixingjjinrong.yixinjinrongapp.jiami.SHA1jiami;
 import com.yixingjjinrong.yixinjinrongapp.utils.HideIMEUtil;
 import com.yixingjjinrong.yixinjinrongapp.utils.MyLog;
 import com.yixingjjinrong.yixinjinrongapp.utils.SPUtils;
+import com.yixingjjinrong.yixinjinrongapp.utils.Shiming_utile;
 import com.yixingjjinrong.yixinjinrongapp.utils.ToastUtils;
 import com.yixingjjinrong.yixinjinrongapp.wode.FengXianPingCe;
 import com.yixingjjinrong.yixinjinrongapp.wode.chongzhi.ChongZhq;
@@ -140,6 +141,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
     private TextView xq_leve;
     private View leve_clock;
     private PopupWindow bookpopWindow;
+    private String book_checked;
+    private String onfinsh;
+    private TextView biaotype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -405,7 +409,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 //                    it.putExtra("url", "yxbApp/agreement.do");
 //                    it.putExtra("title1", "网络借贷风险和禁止行为提示书");
 //                    startActivity(it);
-                    gettishibookpop();
+//                    gettishibookpop();
+                    Intent it = new Intent(XiangMuXiangQing.this, WebView1.class);
+                    startActivity(it);
 
                 }
             }
@@ -439,9 +445,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                 } else {
                     Intent it = new Intent(XiangMuXiangQing.this, WebView1.class);
-                    it.putExtra("url", "yxbApp/promisebook.do");
-                    it.putExtra("title1", "个人电子签章授权委托书");
                     startActivity(it);
+//                    it.putExtra("url", "yxbApp/promisebook.do");
+//                    it.putExtra("title1", "个人电子签章授权委托书");
                 }
             }
         });
@@ -456,8 +462,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
                 } else {
                     Intent it = new Intent(XiangMuXiangQing.this, WebView1.class);
-                    it.putExtra("url", "yxbApp/Promptbook.do ");
-                    it.putExtra("title1", "资金来源合法承诺书");
                     startActivity(it);
                 }
             }
@@ -550,7 +554,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                     if (i1 > 1000000) {//金额最大值
                         jinge.setText("1000000");
                         jiahao.setBackgroundResource(R.drawable.jiahaohuise);//加号变灰
-                    }else if (i1 == 1000000){
+                    } else if (i1 == 1000000) {
                         jiahao.setBackgroundResource(R.drawable.jiahaohuise);//加号变灰
                     } else {
                         jiahao.setBackgroundResource(R.drawable.jiahaochegnse);//加号变橙
@@ -672,6 +676,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         huankuanlan = findViewById(R.id.huankuanglan);//还款方式栏目框
         kaishi_time = findViewById(R.id.kaishi_time);//开始投标时间
         jiezhi_time = findViewById(R.id.jiezhi_time);//截止投标时间
+        biaotype = findViewById(R.id.biaotype);//标的类型
     }
 
 
@@ -759,13 +764,9 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         shengyuchujie.setText(data.getResult().getRedList1().getSurplus());
 
                         String borrowSum = data.getResult().getRedList1().getBorrowSum();
-//                        String s2 = subZeroAndDot(borrowSum);
-//                        xiangqing_zonge.setText(s2);
                         if (borrowSum.indexOf("元") != -1) {
                             xiangqing_zonge.setText(borrowSum);
                         } else {
-//                            String replace2 = borrowSum.replace("万元", "");
-//                            MyLog.e("去掉万元", ""+replace2);
                             String replace = borrowSum.replace(".00", "");
                             if (replace.indexOf("0") != -1) {
                                 if (replace.indexOf(".") != -1) {
@@ -783,6 +784,21 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                         xiangqing_lilv.setText(data.getResult().getRedList1().getRanaa() + "");
                         kaishi_time.setText(data.getResult().getRedList1().getAbleTenderDates());//开始时间
                         jiezhi_time.setText(data.getResult().getRedList1().getEndTenderDate());//截止时间
+                        String mortgageType = data.getResult().getRedList1().getMortgageType();//标的类型
+                        String mortgageNature = data.getResult().getRedList1().getMortgageNature();//抵押/质押
+                        if (mortgageType.equals("1")) {
+                            if (mortgageNature.equals("2")) {
+                                biaotype.setText("房产质押");
+                            } else {
+                                biaotype.setText("房产抵押");
+                            }
+                        } else {
+                            if (mortgageNature.equals("2")) {
+                                biaotype.setText("车辆质押");
+                            } else {
+                                biaotype.setText("车辆抵押");
+                            }
+                        }
                         int borrowStatus = data.getResult().getRedList1().getBorrowStatus();
                         String s = String.valueOf(user_id);
                         if (s.equals("0")) {//还款方式栏目框
@@ -896,16 +912,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
 
     }
 
-    public static String subZeroAndDot(String s) {
-        if (s.indexOf(".") > 0) {
-            s = s.replaceAll("0+?$", "");//去掉多余的0
-            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉
-        }
-        return s;
-    }
-
     private void getchujieHttp() {
-//        bt_lijichujie.setEnabled(false);
         promptDialog = new PromptDialog(this);
         promptDialog.showLoading("");
         final JSONObject js_request = new JSONObject();//服务器需要传参的json对象
@@ -961,56 +968,14 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                             switch (aaa) {
                                 case 2:
                                     promptDialog.dismiss();
-//                        st.makeText(XiangMuXiangQing.this, "未实名认证", st.LENGTH_SHORT).show();
-//                                AlertDialog dialog = new AlertDialog.Builder(XiangMuXiangQing.this)
-//                                        .setTitle("提示")
-//                                        .setMessage("您还未实名认证，是否认证")
-//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//
-//                                            }
-//                                        })
-//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                promptDialog.dismiss();
-
                                     showpopwindow();
-////                                        st.makeText(XiangMuXiangQing.this, "请实名", st.LENGTH_SHORT).show();
-//                                            }
-//                                        })
-//                                        .create();
-//                                dialog.setCanceledOnTouchOutside(false);
-//                                dialog.show();
                                     break;
                                 case 3:
                                     promptDialog.dismiss();
-//                        st.makeText(XiangMuXiangQing.this, "未开通银行存管", st.LENGTH_SHORT).show();
-//                                AlertDialog dialog1 = new AlertDialog.Builder(XiangMuXiangQing.this)
-//                                        .setTitle("提示")
-//                                        .setMessage("您还未开通银行存管，是否开通")
-//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//
-//                                            }
-//                                        })
-//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                promptDialog.dismiss();
                                     cGpop();
-//                                        st.makeText(XiangMuXiangQing.this, "请开通", st.LENGTH_SHORT).show();
-//                                            }
-//                                        })
-//                                        .create();
-//                                dialog1.setCanceledOnTouchOutside(false);
-//                                dialog1.show();
                                     break;
                                 case 5:
                                     promptDialog.dismiss();
-//                        st.makeText(XiangMuXiangQing.this, "未签约", st.LENGTH_SHORT).show();
                                     AlertDialog dialog2 = new AlertDialog.Builder(XiangMuXiangQing.this)
                                             .setTitle("提示")
                                             .setMessage("您的余额不足请充值")
@@ -1024,10 +989,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     promptDialog.dismiss();
-//                                                Intent it = new Intent(XiangMuXiangQing.this, KUaiJieZhiFu.class);
-//                                                startActivity(it);
                                                     getChongzhiHttp();
-//                                        st.makeText(XiangMuXiangQing.this, "请签约", st.LENGTH_SHORT).show();
                                                 }
                                             })
                                             .create();
@@ -1036,30 +998,10 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                     break;
                                 case 4:
                                     promptDialog.dismiss();
-//                        st.makeText(XiangMuXiangQing.this, "未风险评测", st.LENGTH_SHORT).show();
-//                                AlertDialog dialog3 = new AlertDialog.Builder(XiangMuXiangQing.this)
-//                                        .setTitle("提示")
-//                                        .setMessage("您还未风险评测，是否风险评测")
-//                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//
-//                                            }
-//                                        })
-//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                promptDialog.dismiss();
                                     fxpop();
-//                                            }
-//                                        })
-//                                        .create();
-//                                dialog3.setCanceledOnTouchOutside(false);
-//                                dialog3.show();
                                     break;
                                 case 0:
 
-//                        st.makeText(XiangMuXiangQing.this, "请稍等…………", st.LENGTH_SHORT).show();
                                     if (cb_fuxuankuang.isChecked()) {
                                         getchujieHttpTwo();
                                     } else {
@@ -1077,7 +1019,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                     break;
                                 case 11://稳健
                                     promptDialog.dismiss();
-//                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
                                     String sd = "您当前风险评测等级为稳健型，根据评测结果您只能出借AAA、AA、A、BBB、BB、B级风险的借款项目。继续出借本项目表明您已充分知晓，理解和接受该项目的风险，并愿意自行承担相关。";
 
                                     tb_fcianpop("稳健型", sd, 11);
@@ -1085,7 +1026,6 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                                     break;
                                 case 10://保守
                                     promptDialog.dismiss();
-//                                shouAlertDialog("当前项目风险等级高于您的风险评测等级，请问确认出借吗？");
                                     String sd1 = "您当前风险评测等级为 保守型，根据评测结果您只能出借AAA、AA、A级风险的借款项目。继续出借本项目表明您已充分知晓，理解和接受该项目的风险，并愿意自行承担相关风险。";
 
                                     tb_fcianpop("保守型", sd1, 10);
@@ -1171,53 +1111,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
-
-    @SuppressLint("JavascriptInterface")
-    private void gettishibookpop() {//提示书pop
-        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
-        View popView = View.inflate(this, R.layout.threebook, null);
-        WebView bookweb = popView.findViewById(R.id.bookweb);
-        WebSettings webSettings = bookweb.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSettings.setAllowFileAccess(true);// 设置允许访问文件数据
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setDatabaseEnabled(true);
-        webSettings.setSavePassword(false);
-        webSettings.setSaveFormData(false);
-        webSettings.setSupportZoom(true);
-        webSettings.setUseWideViewPort(true);
-        bookweb.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        bookweb.setHorizontalScrollBarEnabled(false);
-        bookweb.getSettings().setSupportZoom(true);
-        bookweb.getSettings().setBuiltInZoomControls(true);
-
-
-        bookweb.addJavascriptInterface(this, "android");
-        // 设置允许JS弹窗
-        bookweb.loadUrl("https://wechat.yxb.com/yxbApp/threeAgreement.do");
-        bookweb.setWebChromeClient(new WebChromeClient());
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = getResources().getDisplayMetrics().heightPixels;
-        bookpopWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
-        bookpopWindow.setFocusable(true);
-        bookpopWindow.setOutsideTouchable(true);//设置同意在外点击消失
-        ColorDrawable dw = new ColorDrawable(0x30000000);
-        bookpopWindow.setBackgroundDrawable(dw);
-        bookpopWindow.setAnimationStyle(R.style.showPopupAnimation);
-        bookpopWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
-
-
-    }
-
-    @JavascriptInterface
-    public void closePop() {//提示书pop返回方法
-        bookpopWindow.dismiss();
-        ToastUtils.showToast(this, "我擦");
-    }
-
+    
     private void cGpop() {//存管pop
         View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         View popView = View.inflate(this, R.layout.yinhangcunguan_pop, null);
@@ -1350,6 +1244,7 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
                 popidcard = pop_idcard.getText().toString();
 
                 getshimingHTTp();
+//                Shiming_utile
 
             }
 
@@ -1696,7 +1591,18 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         user_id = (int) SPUtils.get(this, "userId", 0);
         token1 = (String) SPUtils.get(this, "Token1", "");
         loginid = (String) SPUtils.get(this, "Loginid", "");
-        getHttps();
+        onfinsh = (String) SPUtils.get(this, "finsh", "");
+        book_checked = (String) SPUtils.get(this, "checked", "");
+        if (book_checked != null && book_checked.equals("yes")) {
+//            cb_fuxuankuang.isChecked();
+            cb_fuxuankuang.setChecked(true);
+        }
+        if (onfinsh != null && onfinsh.equals("nofinsh")) {
+
+        } else {
+            getHttps();
+
+        }
     }
 
     @Override
@@ -1706,6 +1612,8 @@ public class XiangMuXiangQing extends AutoLayoutActivity {
         SPUtils.remove(XiangMuXiangQing.this, "juanId");
         SPUtils.remove(XiangMuXiangQing.this, "juanmake");
         SPUtils.remove(XiangMuXiangQing.this, "juanjine");
+        SPUtils.remove(XiangMuXiangQing.this, "checked");
+        SPUtils.remove(XiangMuXiangQing.this, "finsh");
         ImmersionBar.with(this).destroy(); //防止内存泄漏
     }
 }

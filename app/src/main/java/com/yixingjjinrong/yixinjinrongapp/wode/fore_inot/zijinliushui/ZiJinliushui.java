@@ -166,4 +166,10 @@ public class ZiJinliushui extends AutoLayoutActivity implements XRecyclerView.Lo
         getlsHTTP();
         xrview.loadMoreComplete();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

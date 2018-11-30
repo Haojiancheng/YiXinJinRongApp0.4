@@ -177,4 +177,10 @@ public class KUaiJieZhiFu extends AutoLayoutActivity {
             return mobiles.matches(telRegex);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }

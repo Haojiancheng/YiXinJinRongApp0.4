@@ -86,4 +86,10 @@ public class CePingJieGuo extends AutoLayoutActivity {
         type = it.getStringExtra("type");
         user_id = (int) SPUtils.get(this, "userId", 0);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ImmersionBar.with(this).destroy(); //防止内存泄漏
+    }
 }
